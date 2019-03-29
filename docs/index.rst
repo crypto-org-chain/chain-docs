@@ -34,6 +34,7 @@ Specification
 .. toctree::
    :maxdepth: 1
 
+   transaction.md
    serialization.md
    signature-schemes.md
    transaction-flow.md

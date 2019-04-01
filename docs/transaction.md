@@ -11,7 +11,8 @@ Advanced Types:
 * AddCouncilNodeTx: takes council node data, staking address; co-signed by 2/3 current nodes
 * EditCouncilNodeTx: takes council node data, signed by that node
 * RemoveCouncilNodeTx: takes council node id; co-signed by 2/3 current nodes
-* UnjailCouncilNodeTx: takes council node id, signed by that node
+* ChangeNetworkParamTX?
+* UnjailTx: takes nonce, account, signed by the account's corresponding key
 * AddWhitelistServiceNodeTx: takes node data, whitelist type (customer acquirer, merchant acquirer, settlement agent), staking address;  co-signed by 2/3 current nodes
 * EditWhitelistServiceNodeTx: takes node data, signed by that node
 * RemoveWhitelistServiceNodeTx: takes whitelisted node id; co-signed by 2/3 current nodes

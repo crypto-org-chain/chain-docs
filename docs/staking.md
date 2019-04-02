@@ -175,8 +175,8 @@ This is a sketched out additional data structure to keep track of (a part of Acc
 
 ```
 pub struct SlashingPeriod { 
-    pub start: Timespec, // when the period started, TODO: or in block height?
-    pub end: Timespec, // when the period ended, TODO: or in block height?
+    pub start: Timespec, // when the period started,
+    pub end: Timespec, // when the period ended, 
     pub slashed_ratio: Decimal, // fixed decimal; cumulative so far slashed fraction; 0.0 initially 
 }
 ```
@@ -275,7 +275,7 @@ else:
 Tendermint expects a single compact value, `APP_HASH`, after each BlockCommit that represents the state of the application.
 In the early Chain prototype, this was constructed as a root of a Merkle tree from IDs of valid transactions.
 
-In this staking scenario, some form of "chimeric ledger" needs to be employed, as staking-related functionality is represented with accounts. In Eth, Merkle Patricia Trees are used: https://github.com/ethereum/wiki/wiki/Design-Rationale#merkle-patricia-trees
+In this staking scenario, some form of "chimeric ledger" needs to be employed, as staking-related functionality is represented with accounts. In Eth, Merkle Patricia Trees are used: https://github.com/ethereum/wiki/wiki/Design-Rationale#merkle-patricia-trees (The alternative in TM: https://github.com/tendermint/iavl depends on the order of transactions though)
 
 They could possibly be used to represent an UTXO set: https://medium.com/codechain/codechains-merkleized-utxo-set-c76c9376fd4f
 
@@ -288,7 +288,7 @@ The overall "global state" then consists of the following items:
 * ServiceNode
 * MerchantWhitelist (not yet spec-out / TODO)
 
-So each component could possibly be represented as MPT and these MPTs would then be combined together to form a single `APP_HASH`. 
+So each component could possibly be represented as MPT and these MPTs would then be combined together to form a single `APP_HASH`.
 
 ### network parameters
 
@@ -304,7 +304,7 @@ This section aims to collect all the mentioned network parameters:
 * `CUSTOMER_ACQUIRER_SHARE`
 * `MERCHANT_ACQUIRER_SHARE`
 * `COUNCIL_NODE_MIN_STAKE`
-* `MAX_EVIDENCE_AGE`
+* `MAX_EVIDENCE_AGE` (note that currently in EvidenceParams of ABCI, there's MaxAge set in the number of blocks, but here we assume time)
 * `SLASHING_PERIOD_DURATION`
 * `JAIL_DURATION`
 * `BLOCK_SIGNING_WINDOW`
@@ -316,7 +316,36 @@ This section aims to collect all the mentioned network parameters:
 TODO: TX that can change them?
 
 ### END/COMMIT_BLOCK_STATE_UPDATE
-TODO
+Besides committing all the relevant changes and computing the resulting `APP_HASH` in BlockCommit;
+for all changes in Accounts, the implementation needs to signal `ValidatorUpdate` in EndBlock if the change is relevant to the council node's staking address:
+
+* if the `bonded` amount changes and >= `COUNCIL_NODE_MIN_STAKE`, then the validator's power should be set to that amount
+* if the `bonded` amount changes and < `COUNCIL_NODE_MIN_STAKE`, then the validator's power should be set 0
+* if the `jailed_until` changes to `Some(...)`, then the validator's power should be set 0
+* if the `jailed_until` changes to `None` (unjailtx or auto?) and `bonded` amount >= `COUNCIL_NODE_MIN_STAKE`, then the validator's power should be set to the `bonded` amount
 
 ### InitChain
-TODO
+The initial prototype's configuration will need to contain the following elements:
+
+* Above network parameters
+* ERC20 snapshot state / holder mapping `initial_holders`: `Vec<(address: RedeemAddress, is_contract: bool, amount: Coin)>` (or `Map<RedeemAddress, (bool, Coin)>`)
+* Network long-term incentive address: `nlt_address`
+* Secondary distribution and launch incentive addresses: `dist_address1`, `dist_address2`
+* initial validators: `Vec<CouncilNode>`
+* bootstrap nodes / initially bonded: `Vec<RedeemAddress>`
+
+The validation of the configuration is the following:
+
+0. validate parameters format (e.g. CUSTOMER_ACQUIRER_SHARE + MERCHANT_ACQUIRER_SHARE + COUNCIL_NODE_SHARE = 1.0)
+1. check that sum of amounts in `initial_holders` == MAX_COIN (network constant)
+2. check there are no duplicate addresss (if Vec) in  `initial_holders`
+3. for each `council_node` in `Vec<CouncilNode>`: check `staking_address` is in `initial_holders` and the amount >= `COUNCIL_NODE_MIN_STAKE`
+4. for each`address` in initially bonded  `Vec<RedeemAddress>`: check `address` is `initial_holders` and the amount >= `COMMUNITY_NODE_MIN_STAKE`
+5. size(Validators in InitChainRequest) == size(`Vec<CouncilNode>`) and for every CouncilNode, its `consensus_pubkey` appears in Validators and power in Validators corresponds to staking address' amount
+
+If valid, the genesis state is then initialized as follows:
+
+0. initialize RewardsPool's amount with amounts corresponding to: `nlt_address` +  `dist_address1` + `dist_address2`
+1. for every council node, create a `CouncilNode` structure
+2. for every council node's staking address and every address in initially bonded: create `Account` where all of the corresponding amount is set as `bonded`
+3. for every address in `initial_holders` except for `nlt_address`,  `dist_address1`, `dist_address2`, council nodes' staking addresses, initially bonded addresses: if `is_contract` then add the amount to RewardsPool else create `Account` where the amount is all in `unbonded` and `unbonded_from` is set to genesis block's time (in InitCHain)

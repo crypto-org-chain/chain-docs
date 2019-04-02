@@ -1,6 +1,6 @@
 # Transaction
 
-Basic (unencrypted / non-shielded) Types:
+Basic (unencrypted / non-shielded) Types (note that all these types should also contain metadata, such as network ID):
 
 * TransferTx: UTXO-based transfer of funds, takes UTXO inputs, creates UTXO outputs
 * DepositStakeTx: takes UTXOs inputs, deposits them in the specified account's bonded amount

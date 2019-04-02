@@ -2,10 +2,10 @@
 
 Basic (unencrypted / non-shielded) Types (note that all these types should also contain metadata, such as network ID):
 
-* TransferTx: UTXO-based transfer of funds, takes UTXO inputs, creates UTXO outputs
-* DepositStakeTx: takes UTXOs inputs, deposits them in the specified account's bonded amount
-* UnbondStakeTx: takes nonce, amount, account and moves in the same account tokens from bonded to unbonded with timelock
-* WithdrawUnbondedTx: takes nonce, account and creates UTXOs
+* TransferTx: UTXO-based transfer of funds, takes UTXO inputs, creates UTXO outputs - fee
+* DepositStakeTx: takes UTXOs inputs, deposits them in the specified account's bonded amount - fee
+* UnbondStakeTx: takes nonce, amount, account and moves in the same account tokens from bonded to unbonded with timelock - fee
+* WithdrawUnbondedTx: takes nonce, account and creates UTXOs - fee
 
 Advanced Types:
 * AddCouncilNodeTx: takes council node data, staking address; co-signed by 2/3 current nodes

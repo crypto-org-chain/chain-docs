@@ -63,24 +63,11 @@ The minimal transaction fee is defined according to the formula:
 `BASE_AMOUNT` and `PER_BYTE` are special network parameters in a fraction of CRO.
 `size` is the serialized transaction data's size in bytes.
 
-Transaction payloads with UTXOs (`TransferTX`, `DepositStakeTx` and `WithdrawUnbondedTx`) where inputs and/or outputs aren't visible (are only visible to participants and validators) will be augmented, so that transaction data contains the fee amount and the validation will check:
+Basic (`TransferTX`, `DepositStakeTx`, `WithdrawUnbondedTx`, `UnbondStakeTx`,) transaction types need to check
 ```
-sum(inputs amounts) or account.unbonded == sum(outputs amounts) + fee
+sum(inputs amounts) or account.unbonded/bonded == sum(outputs amounts) + fee
 ```
-The whole transaction structure (the whole encrypted payload) will be wrapped / enveloped as something like:
-```
-TxWrap(tx_payload: ..., txid: TxId, originator_sig: RecoverableSignature)
-```
-Where `originator_sig` is a signature of the original broadcasting node (acquirer or community) on the transaction:
-
-1. CheckTX: an `originator_address` is derived from the signature and signature is verified
-
-2. DeliverTX / BlockCommit: if the transaction is valid && `originator_address.jailed_until.is_none()` &&
-`originator_address.slashed.is_none()` && `originator_address.bonded >= COMMUNITY_NODE_MIN_STAKE` && `originator_address` is not a validator/councilnode's staking_address, then `END/COMMIT_BLOCK_STATE_UPDATE(originator_address.bonded += fee; originator_address.nonce += 1)` 
-
-3. otherwise, the transaction isn't considered valid (even if it's valid without the originator) and slashing logic for non-validator nodes is triggered.
-
-For `UnbondStakeTx`, the fee goes to the rewards pool.
+The fee goes to the rewards pool.
 
 For Advanced TX types (council node and service node state metadata management), the initial prototype will not require a fee.
 
@@ -250,26 +237,6 @@ for each council_node:
             account.jailed_until = Some(BeginBlock.Timestamp + JAIL_DURATION)
 ```
 
-#### non-validators
-1. CheckTX: an `originator_address` is derived from the signature and signature is verified
-
-2. DeliverTX / BlockCommit: get `originator_account` of `originator_address` if the transaction is invalid:
-
-* increment a counter of rejected TX in a INVALID_TX_SIGNING_WINDOW for a `originator_account`
-
-* if `originator_account.rejected_tx_counter` >= INVALID_TX_SIGNING_WINDOW: 
-```
-if originator_account.slashing_period.end is set and it's before BeginBlock.Timestamp:
-    originator_account.slashing_period.slashed_ratio = max(originator_account.slashing_period.slashed_ratio, REJECTED_SLASH_RATIO)
-else:
-    if originator_account.slashing_period.end is set and it's after BeginBlock.Timestamp:
-        END/COMMIT_BLOCK_STATE_UPDATE(deduct(slashing_period, originator_account))
-
-    originator_account.slashing_period = Some(SlashingPeriod(start = Some(BeginBlock.Timestamp), 
-        end = Some(BeginBlock.Timestamp + SLASHING_PERIOD_DURATION, slashed_ratio = REJECTED_SLASH_RATIO)))
-    account.jailed_until = Some(BeginBlock.Timestamp + JAIL_DURATION)
-```
-
 ## "Global state" / APP_HASH
 
 Tendermint expects a single compact value, `APP_HASH`, after each BlockCommit that represents the state of the application.
@@ -311,7 +278,6 @@ This section aims to collect all the mentioned network parameters:
 * `MISSED_BLOCK_THRESHOLD`
 * `BYZANTINE_SLASH_RATIO`
 * `LIVENESS_SLASH_RATIO`
-* `INVALID_TX_SIGNING_WINDOW`
 
 TODO: TX that can change them?
 

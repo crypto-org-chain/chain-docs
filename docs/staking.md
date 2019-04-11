@@ -85,27 +85,8 @@ pub struct RewardsPool {
 The initial prototype will have a `DAILY_DISTRIBUTION_AMOUNT` network parameter; later on, it should take be a function that takes a target emission rate, total remaining amount etc. as parameters.
 
 ### Distribution
-The UTXO-based TX wrapping structure will be augmented as follows:
-```
-TxWrap(tx_payload: ..., txid: TxId, originator_sig: RecoverableSignature, recipient_sig: Option<RecoverableSignature>)
-``` 
+Each validator will maintain this structures (perhaps persistent / on-disk): `day_claim_council_node: Map<CouncilNode, BlockCount>`
 
-where recipient_sig is an optional signature of the receiving merchant acquirer.
-
-Each validator will maintain three structures (perhaps persistent / on-disk): `day_claim_council_node: Map<RedeemAddress, BlockCount>`, `day_claim_merchant_acquirer: Set<RedeemAddress>`, `day_claim_customer_acquirer: Set<RedeemAddress>`
-
-1. CheckTX: if recipient_sig is present, verify it and derive the address from it: merchant_acquirer_address
-2. DeliveryTX additional checks: `merchant_acquirer_address.jailed_until.is_none()`
-&&
-`merchant_acquirer_address.slashed.is_none()`
-&& `merchant_acquirer_address` is a merchant_acquirer 
-&& `merchant_acquirer_address.bonded >= <merchant_id_count> * PER_MERCHANT_MIN_STAKE`
-&& `merchant_acquirer_address` is not a validator/councilnode's staking_address
-3. BlockCommit: for each valid TX:
-* if `originator_address` is a customer acquirer address (check `originator_address.bonded >= CUSTOMER_ACQUIRER_NODE_MIN_STAKE` && `originator_address` is not a validator/councilnode's staking_address), add it to `day_claim_merchant_acquirer`
-* if `merchant_acquirer_address` is a merchant acquirer staking_address, add it to `day_claim_customer_acquirer`
-
-Where `PER_MERCHANT_MIN_STAKE` and `CUSTOMER_ACQUIRER_NODE_MIN_STAKE` are network parameters.
 The actual distribution then happens once in a while in BeginBlock, here's a pseudo code:
 ```
 for each validator in BeginBlock.LastCommitInfo:
@@ -114,36 +95,27 @@ for each validator in BeginBlock.LastCommitInfo:
         day_claim_council_node[validator_day_claim_council_node] = 0
     day_claim_council_node[validator_day_claim_council_node] += 1
 
-for each node in day_claim_council_node, day_claim_merchant_acquirer, day_claim_customer_acquirer:
+for each node in day_claim_council_node:
     if node.staking_address.jailed_until.is_some() OR node.staking_address.jailed_until.is_some() OR 
     node.slashed.is_some() OR
-    node.staking_address.bonded < <required amount> (CUSTOMER_ACQUIRER_NODE_MIN_STAKE OR CUSTOMER_ACQUIRER_NODE_MIN_STAKE OR COUNCIL_NODE_MIN_STAKE):
+    node.staking_address.bonded < COUNCIL_NODE_MIN_STAKE:
         remove node from claim set
 
 if BeginBlock.time >= RewardsPool.last_update + 24 hours:
-    amount = min(DAILY_DISTRIBUTION_AMOUNT, RewardsPool.total_remaining)
-    validator_amount = COUNCIL_NODE_SHARE * amount
-    customer_acquirer_amount = CUSTOMER_ACQUIRER_SHARE * amount
-    merchant_acquirer_amount = MERCHANT_ACQUIRER_SHARE * amount
+    validator_amount = min(DAILY_DISTRIBUTION_AMOUNT, RewardsPool.total_remaining)
 
-    for each node in day_claim_council_node, day_claim_merchant_acquirer, day_claim_customer_acquirer:
-        node_share = compute_share((day_claim_council_node OR day_claim_merchant_acquirer OR day_claim_customer_acquirer), 
-                    (validator_amount OR customer_acquirer_amount OR merchant_acquirer_amount) )
+    for each node in day_claim_council_node:
+        node_share = compute_share(node, day_claim_council_node, validator_amount)
         END/COMMIT_BLOCK_STATE_UPDATE(node.staking_address.bonded += node_share; node.staking_address.nonce += 1)
         
     END/COMMIT_BLOCK_STATE_UPDATE(RewardsPool.total_remaining -= amount; RewardsPool.nonce += 1; RewardsPool.last_update = BeginBlock.time)
     day_claim_council_node = {}
-    day_claim_merchant_acquirer = {}
-    day_claim_customer_acquirer = {}
 ```
-
-Where COUNCIL_NODE_SHARE, CUSTOMER_ACQUIRER_SHARE, MERCHANT_ACQUIRER_SHARE are network parameters and: COUNCIL_NODE_SHARE + CUSTOMER_ACQUIRER_SHARE + MERCHANT_ACQUIRER_SHARE = 1.0.
 
 `compute_share` determines the amount for each claiming node; the initial prototype will compute it:
 * council nodes: proportional to the signed block count (node block signatures / all block validators signatures)
-* acquires: simple share? (1 / other claiming nodes)
 
-NOTE: the draft technical whitepaper says these will be computed based on number of transaction processed (rather than signed blocks) in council nodes and transaction amount in acquirers (rather than simple share).
+NOTE: the draft technical whitepaper says there will be rewards for acquirer nodes.
 These terms may be revised in later drafts.
 
 ## Slashing
@@ -267,9 +239,6 @@ This section aims to collect all the mentioned network parameters:
 * `DAILY_DISTRIBUTION_AMOUNT` 
 * `PER_MERCHANT_MIN_STAKE` 
 * `CUSTOMER_ACQUIRER_NODE_MIN_STAKE`
-* `COUNCIL_NODE_SHARE`
-* `CUSTOMER_ACQUIRER_SHARE`
-* `MERCHANT_ACQUIRER_SHARE`
 * `COUNCIL_NODE_MIN_STAKE`
 * `MAX_EVIDENCE_AGE` (note that currently in EvidenceParams of ABCI, there's MaxAge set in the number of blocks, but here we assume time)
 * `SLASHING_PERIOD_DURATION`

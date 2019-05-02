@@ -82,7 +82,7 @@ pub struct RewardsPool {
 }
 ```
 
-The initial prototype will have a `DAILY_DISTRIBUTION_AMOUNT` network parameter; later on, it should take be a function that takes a target emission rate, total remaining amount etc. as parameters.
+The initial prototype will have a `DAILY_DISTRIBUTION_AMOUNT` network parameter; later on, it should be a function that takes a target emission rate, total remaining amount etc. as parameters.
 
 ### Distribution
 Each validator will maintain this structures (perhaps persistent / on-disk): `day_claim_council_node: Map<CouncilNode, BlockCount>`

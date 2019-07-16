@@ -41,6 +41,7 @@ Specification
    enclave-architecture.md
    transaction-privacy.md
    staking.md
+   threat-model.md
 
 Indices and tables
 ==================

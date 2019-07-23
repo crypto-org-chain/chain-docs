@@ -6,7 +6,7 @@ and intel cpu
 ## how it works
 chain-tx-enclave (use intel sgx)  -> working as docker
 chain-abci     (connects to enclave)   
-tendermint   (connects to chain-abic)  
+tendermint   (connects to chain-abci)
 
 ## prepare os ✍
 apt update    

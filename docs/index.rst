@@ -32,7 +32,7 @@ Introduction
    getting-started.md
    consensus.md
    genesis.md
-   account-utxo.md
+   account-utxo
 
 Specification
 -------------

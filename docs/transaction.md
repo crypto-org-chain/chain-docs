@@ -1,5 +1,33 @@
 # Transaction
 
+## Transaction identifier
+Each transaction has an identifier (typically shortened as TX ID). It is currently defined as
+
+```
+blake2s_hash(SCALE-encoded transaction binary data)
+```
+
+See [serialization](serialization.md) for more details about the transaction binary format.
+
+Note: the initial prototype uses blake2s, but it may be later changed to blake2b or something more complex: e.g. transaction identifier is a root of a Merkle tree formed from different transaction components as leaves
+
+## Witness
+See [signature-schemes](signature-schemes.md) for more details
+
+## Textual address representation
+Crypto.com Chain supports threshold / multi-signature addresses that are represented as a single hash (see [signature-schemes](signature-schemes.md)) which is different from Ethereum.
+
+To represent the underlying byte array in a textual form, [Bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) is used. The convention for the human-readable part is the following:
+
+* crmt: mainnet transfer of funds
+* crtt: testnet transfer of funds
+* staking addresses (see [accounting](account-utxo)) are textually represented in hexadecimal encoding to match the initial Ethereum ones, but Bech32 encoding may be used as well (in this case of staking addresses, the corresponding human-readable parts are *crms* for mainnet and *crts* for testnet)
+
+## Transaction fees
+The initial prototype uses a linear fee system, see [staking](staking.md) for details.
+
+## Transaction types
+
 Basic (unencrypted / non-shielded) Types (note that all these types should also contain metadata, such as network ID):
 
 * TransferTx: UTXO-based transfer of funds, takes UTXO inputs, creates UTXO outputs - fee

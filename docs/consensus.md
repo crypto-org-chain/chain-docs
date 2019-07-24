@@ -46,3 +46,25 @@ The transaction binary payload is either hex-encoded (when called with the URI m
 
 ### `abci_query`
 Currently the main usage is that given a path "account", one can query the current "staked state" of some address (which is provided as the "data" field).
+
+## APP HASH
+Tendermint expects the ABCI application to be deterministic and consistency is checked that each instance, given the same input (block/consensus events + transaction data), 
+updates its state in the same way and calculates the same "application hash" which is a compact representation of the overall ABCI application state.
+
+In Chain, it is a Blake2s hash of several components:
+
+* root of a Merkle tree of a valid transactions in a given block
+* root of a sparse Merkle trie of staked states (see [accounting details](account-utxo))
+* binary serialized state of rewards pool (see [serialization](serialization.md) for details on Chain binary format and [genesis](genesis.md) for details on "state")
+* ...
+
+## Conventions
+As [genesis](genesis.md) information is taken from the Ethereum network, the same address format is used (i.e. hexadecimal encoding of 20-bytes from a keccak-256 hash of a secp256k1 public key).
+
+For Tendermint data, its conventions must be followed (e.g. validator keys are Ed25519, base64-encoded ... "addresses" are the first 20 bytes of SHA256 of the raw public key bytes).
+
+For Crypto.com Chain, it has the following conventions:
+
+* Chain-ID: this is a string in Tendermint's genesis.json. In Crypto.com Chain, it should end with two hex digits.
+* Network-ID: a single byte determined by the two last hex digits of Chain-ID. It is included in metadata of every transaction
+* Transactions, addresses etc.: see transaction [binary serialization](serialization.md), [accounting model](account-utxo), [addresses / witness](signature-schemes.md) and [format / types](transaction.md)

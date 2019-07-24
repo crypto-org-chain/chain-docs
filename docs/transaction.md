@@ -19,9 +19,10 @@ Crypto.com Chain supports threshold / multi-signature addresses that are represe
 
 To represent the underlying byte array in a textual form, [Bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) is used. The convention for the human-readable part is the following:
 
-* crmt: mainnet transfer of funds
-* crtt: testnet transfer of funds
-* staking addresses (see [accounting](account-utxo)) are textually represented in hexadecimal encoding to match the initial Ethereum ones, but Bech32 encoding may be used as well (in this case of staking addresses, the corresponding human-readable parts are *crms* for mainnet and *crts* for testnet)
+* cro: mainnet payment
+* tcro: testnet payment
+* dcro: local devnet/regtest payment
+* staking addresses (see [accounting](account-utxo)) are textually represented in hexadecimal encoding to match the initial Ethereum ones
 
 ## Transaction fees
 The initial prototype uses a linear fee system, see [staking](staking.md) for details.

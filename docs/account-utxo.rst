@@ -58,6 +58,14 @@ The unbonded balance can be withdrawn (into transaction outputs) after
 "unbonded_from" time if the account was not jailed / slashed (see
 `staking`_).
 
+Staked State Storage
+~~~~~~~~~~~~~~~~~~~~
+
+The account state is currently stored in a sparse Merkle trie structure
+(currently MerkleBIT backed by RocksDB, but it may be migrated
+to a more robust / better understood structure,
+e.g. a Patricia Merkle trie or IAVL+).
+
 .. _chimeric ledgers: https://eprint.iacr.org/2018/262.pdf
 .. _described in transactions: transaction.md
 .. _staking: staking.md

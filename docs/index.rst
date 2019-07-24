@@ -13,6 +13,10 @@ The high-level design vision is documented in
 2) `technical whitepaper
 <https://www.crypto.com/images/chain_technical_whitepaper.pdf>`_.
 
+For a bit clearer technical vision, see
+`design philosophy
+<https://github.com/crypto-com/chain/blob/master/PHILOSOPHY.md>`_.
+
 The documentation in this repository site is meant to provide
 specifications and implementation details that will be
 useful to third party developers or contributors
@@ -27,6 +31,8 @@ Introduction
 
    getting-started.md
    consensus.md
+   genesis.md
+   account-utxo.md
 
 Specification
 -------------
@@ -41,6 +47,7 @@ Specification
    enclave-architecture.md
    transaction-privacy.md
    staking.md
+   performance.md
    threat-model.md
 
 Indices and tables

@@ -1,34 +1,83 @@
-## Getting Started
+# Getting Started
+this is the beginner's tutorial to boot-strap chain
+
+## pre-requisites
 prepare ubuntu 18.0.x  
 and intel cpu    
-~/bin  is the main folder for binaries
+```
+~/bin
+```
+bin folder is the main folder for binaries
 
 ## how it works
-chain-tx-enclave (use intel sgx)  -> working as docker
-chain-abci     (connects to enclave)   
-tendermint   (connects to chain-abci)
+chain-tx-enclave (use intel sgx)  -> working as docker    
+chain-abci     (connects to enclave)      
+tendermint   (connects to chain-abci)    
 
-## prepare os ✍
-apt update    
-apt install curl git gcc gettext pkg-config cmake vim wget  
-apt install libsnappy-dev libtool build-essential autoconf    
-
-## install golang
+## compile enclave
+1. git clone chain-tx-enclave , activate docker  
+```
 cd ~  
-wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz  
-tar xvf go1.12.7.linux-amd64.tar.gz   
-mv go /usr/local  
-mkdir ~/go  
+git clone https://github.com/crypto-com/chain-tx-enclave.git 
+cd chain-tx-enclave  
+docker build -t chain-tx .   
+docker run -ti --rm -p 25933:25933 -v ~/chain-tx-enclave/:/root/sgx -it chain-tx /bin/bash  
+```
+
+2. inside docker, install necessary components
+```
+apt update      
+apt install rsync curl git gcc unzip  libzmq3-dev  
+apt install libsnappy-dev wget vim pkg-config    
+```
+
+3. install sdk 
+you can install intel-sgx-sdk, and compile the application.
+```
+mkdir ~/bin
+cd sgx
+export SGX_MODE=SW  
+export NETWORK_ID=ab  
+make
+```
+
+4. build sgx application 
+```
+cd ~/sgx/app  
+cargo build   
+```
+for hw 
+```
+docker run -ti --device /dev/isgx -v ~/chain-tx-enclave/:/root/sgx -it chain-tx /bin/bash
+
+root@docker:/# LD_LIBRARY_PATH=/opt/intel/libsgx-enclave-common/aesm /opt/intel/libsgx-enclave-common/aesm/aesm_service &
+
+```
+5. copy enclave lib file to the system, and cargo build
+if build fails, please copy libEnclave_u.a manually.
+```
+cd ~/sgx
+make
+cd ~/sgx/app
+cp libEnclave_u.a /usr/local/lib
+```
+6. compile the release binary
+```
+cargo build --release
+cp ./target/release/tx-validation-app  ~/bin
+```
+
+7. congratulations   
+chain-tx-enclave is now ready to go
+
+
+## setup path
+cd ~
 vi .profile  
 mkdir ~/bin
 ```
 export PATH="$HOME/.cargo/bin:$PATH"
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
 export PATH=$HOME/bin:$PATH
-export SGX_MODE=SW
-export NETWORK_ID=ab
-export RUST_LOG=info
 ```
 
 ## install rust
@@ -37,20 +86,16 @@ curl https://sh.rustup.rs -sSf | sh
 source $HOME/.cargo/env    
 rustup default nightly-2019-05-22
 
-## get source code
-git clone https://github.com/zeromq/libzmq.git  
-git clone https://github.com/crypto-com/chain.git    
-git clone https://github.com/crypto-com/chain-tx-enclave.git  
-git clone https://github.com/tendermint/tendermint.git
 
-## compile zeromq
-cd libzmq  
-autogen.sh  
-./configure  
-make  
-make install  
-cd ..  
-cd chain  
+
+## install tendermint
+cd ~/bin   
+wget https://github.com/tendermint/tendermint/releases/download/v0.32.1/tendermint_v0.32.1_linux_amd64.zip  
+unzip ./tendermint_v0.32.1_linux_amd64.zip  
+
+## get source code
+git clone https://github.com/crypto-com/chain.git    
+ 
 
 ## compile chain-abci
 vi ~/.cargo/config
@@ -62,37 +107,7 @@ rustflags = ["-Ctarget-feature=+aes,+ssse3"]
 cargo build --release
 cp ./target/release/chain-abci ~/bin
 
-## compile tendermint  
-cd ~
-cd tendermint  
-make get_tools
-make build  
-cp ./build/tendermint ~/bin
 
-## compile enclave
-cd ~  
-cd chain-tx-enclave  
-docker build -t chain-tx .   
-docker run -ti --rm -p 25933:25933 -v ~/chain-tx-enclave/:/root/sgx -it chain-tx /bin/bash  
-mkdir ~/bin
-cd sgx
-export SGX_MODE=SW  
-export NETWORK_ID=ab  
-cd ~/sgx.app  
-cargo build   
-for hw 
-```
-docker run -ti --device /dev/isgx -v ~/chain-tx-enclave/:/root/sgx -it chain-tx /bin/bash
-
-root@docker:/# LD_LIBRARY_PATH=/opt/intel/libsgx-enclave-common/aesm /opt/intel/libsgx-enclave-common/aesm/aesm_service &
-
-```
-cd ~/sgx
-make
-cd ~/sgx/app
-cp libEnclave_u.a /usr/local/lib
-cargo build --release
-cp ./target/release/tx-validation-app  ~/bin
 
 
 ## run the program

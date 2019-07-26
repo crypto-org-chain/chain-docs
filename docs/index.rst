@@ -43,10 +43,11 @@ Specification
    transaction.md
    serialization.md
    signature-schemes.md
-   transaction-flow.md
+   client-flow.md
    enclave-architecture.md
    transaction-privacy.md
    staking.md
+   production.md
    performance.md
    threat-model.md
 

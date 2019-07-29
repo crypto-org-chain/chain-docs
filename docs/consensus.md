@@ -61,7 +61,7 @@ In Chain, it is a Blake2s hash of several components:
 ## Conventions
 As [genesis](genesis.md) information is taken from the Ethereum network, the same address format is used (i.e. hexadecimal encoding of 20-bytes from a keccak-256 hash of a secp256k1 public key).
 
-For Tendermint data, its conventions must be followed (e.g. validator keys are Ed25519, base64-encoded ... "addresses" are the first 20 bytes of SHA256 of the raw public key bytes).
+For Tendermint data, its conventions must be followed (e.g. validator keys are Ed25519, base64-encoded ... "addresses" are the first 20 bytes of SHA256 of the raw public key bytes): [Tendermint encoding](https://tendermint.com/docs/spec/blockchain/encoding.html#other-common-types)
 
 For Crypto.com Chain, it has the following conventions:
 

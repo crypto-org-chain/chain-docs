@@ -40,7 +40,7 @@ The main RPC methods are used `broadcast_tx_(a)sync` and `abci_query`.
 |broadcast_tx_(a)sync|
 |--------------------|
 
-This method takes “tx” parameter which is application-specific binary data (see [transaction serialization](https://cryptocom-chain-documentation.readthedocs.io/en/latest/serialization.html) for details on Chain binary format). The transaction binary payload is either hex-encoded (when called with the URI method) or base64-encoded (when called with JSON-RPC).
+This method takes “tx” parameter which is application-specific binary data (see [transaction serialization](./serialization) for details on Chain binary format). The transaction binary payload is either hex-encoded (when called with the URI method) or base64-encoded (when called with JSON-RPC).
 
 |abci_query|
 |----------|
@@ -54,12 +54,12 @@ Tendermint expects the ABCI application to be deterministic and consistency is c
 In Chain, it is a Blake2s hash of several components:
 
 - root of a Merkle tree of a valid transactions in a given block
-- root of a sparse Merkle trie of staked states (see [accounting details](https://cryptocom-chain-documentation.readthedocs.io/en/latest/account-utxo.html))
-- binary serialized state of rewards pool (see [serialization](https://cryptocom-chain-documentation.readthedocs.io/en/latest/serialization.html) for details on Chain binary format and [genesis](https://cryptocom-chain-documentation.readthedocs.io/en/latest/genesis.html) for details on “state”)
+- root of a sparse Merkle trie of staked states (see [accounting details](./transaction-accounting-model))
+- binary serialized state of rewards pool (see [serialization](./serialization) for details on Chain binary format and [genesis](./genesis) for details on “state”)
 
 ## Conventions
 
-As [genesis](https://cryptocom-chain-documentation.readthedocs.io/en/latest/genesis.html) information is taken from the Ethereum network, the same address format is used (i.e. hexadecimal encoding of 20-bytes from a keccak-256 hash of a secp256k1 public key).
+As [genesis](./genesis) information is taken from the Ethereum network, the same address format is used (i.e. hexadecimal encoding of 20-bytes from a keccak-256 hash of a secp256k1 public key).
 
 For Tendermint data, its conventions must be followed (e.g. validator keys are Ed25519, base64-encoded … “addresses” are the first 20 bytes of SHA256 of the raw public key bytes).
 
@@ -67,4 +67,4 @@ For Crypto.com Chain, it has the following conventions:
 
 - Chain-ID: this is a string in Tendermint’s genesis.json. In Crypto.com Chain, it should end with two hex digits.
 - Network-ID: a single byte determined by the two last hex digits of Chain-ID. It is included in metadata of every transaction
-- Transactions, addresses etc.: see transaction [binary serialization](https://cryptocom-chain-documentation.readthedocs.io/en/latest/serialization.html), [accounting model](https://cryptocom-chain-documentation.readthedocs.io/en/latest/account-utxo.html), [addresses / witness](https://cryptocom-chain-documentation.readthedocs.io/en/latest/signature-schemes.html) and [format / types](https://cryptocom-chain-documentation.readthedocs.io/en/latest/transaction.html)
+- Transactions, addresses etc.: see transaction [binary serialization](./serialization), [accounting model](./transaction-accounting-model), [addresses / witness](./signature-schemes) and [format / types](./transaction)

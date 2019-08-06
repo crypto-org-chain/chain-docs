@@ -7,28 +7,28 @@ Each transaction has an identifier (typically shortened as TX ID). It is current
 |blake2s_hash(SCALE-encoded transaction binary data)|
 |-|
 
-See [serialization](https://cryptocom-chain-documentation.readthedocs.io/en/latest/serialization.html) for more details about the transaction binary format.
+See [serialization](./serialization) for more details about the transaction binary format.
 
 Note: the initial prototype uses blake2s, but it may be later changed to blake2b or something more complex: e.g. transaction identifier is a root of a Merkle tree formed from different transaction components as leaves
 
 ## Witness
 
-See [signature-schemes](https://cryptocom-chain-documentation.readthedocs.io/en/latest/signature-schemes.html) for more details
+See [signature-schemes](./signature-schemes) for more details
 
 ## Textual Address Representation
 
-Crypto.com Chain supports threshold / multi-signature addresses that are represented as a single hash (see [signature-schemes](https://cryptocom-chain-documentation.readthedocs.io/en/latest/signature-schemes.html)) which is different from Ethereum.
+Crypto.com Chain supports threshold / multi-signature addresses that are represented as a single hash (see [signature-schemes](./signature-schemes)) which is different from Ethereum.
 
 To represent the underlying byte array in a textual form, [Bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) is used. The convention for the human-readable part is the following:
 
 - cro: mainnet payment
 - tcro: testnet payment
 - dcro: local devnet/regtest payment
-- staking addresses (see [accounting](https://cryptocom-chain-documentation.readthedocs.io/en/latest/account-utxo.html)) are textually represented in hexadecimal encoding to match the initial Ethereum ones
+- staking addresses (see [accounting](./transaction-accounting-model)) are textually represented in hexadecimal encoding to match the initial Ethereum ones
 
 ## Transaction Fees
 
-The initial prototype uses a linear fee system, see [staking](https://cryptocom-chain-documentation.readthedocs.io/en/latest/staking.html) for details.
+The initial prototype uses a linear fee system, see [staking](./staking) for details.
 
 ## Transaction Types
 

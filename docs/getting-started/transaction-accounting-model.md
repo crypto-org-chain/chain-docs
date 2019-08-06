@@ -23,7 +23,7 @@ For this reason, we chose the mixed model where:
 - UTXO is used for payments / value transfers
 - Account-model is used for network operations (“staked state”)
 
-Different types of transactions and how they relate to these accounting are [described in transactions](https://cryptocom-chain-documentation.readthedocs.io/en/latest/transaction.md).
+Different types of transactions and how they relate to these accounting are [described in transactions](./transaction).
 
 ### Staked state
 
@@ -36,7 +36,7 @@ The bonded amount is the amount used to check against minimal staking requiremen
 
 As it may take time for the network evidence of malicious activity (e.g. double signing) to appear, the stake cannot be withdrawn immediately and is first moved to the “unbonded” balance.
 
-The unbonded balance can be withdrawn (into transaction outputs) after “unbonded_from” time if the account was not jailed / slashed (see [staking](https://cryptocom-chain-documentation.readthedocs.io/en/latest/staking.md)).
+The unbonded balance can be withdrawn (into transaction outputs) after “unbonded_from” time if the account was not jailed / slashed (see [staking](./staking)).
 
 
 ### Staked State Storage

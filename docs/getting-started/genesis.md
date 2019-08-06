@@ -22,13 +22,13 @@ The balances of these dedicated addresses are put to the initial “Rewards Pool
 DEX, multisig etc. contracts should be avoided during the Step 3
 :::
 
-- If the address is an externally owned account and corresponds to the initial staking address of one of council nodes, its balance starts as “bonded” in the corresponding staked state (see [accounting mode](https://cryptocom-chain-documentation.readthedocs.io/en/latest/account-utxo.html) for more details).
-- Otherwise (i.e. the address is an externally owned account, but not of any validators), the address balance starts as “unbonded” in the corresponding staked state (see [accounting mode](https://cryptocom-chain-documentation.readthedocs.io/en/latest/account-utxo.html) for more details).
+- If the address is an externally owned account and corresponds to the initial staking address of one of council nodes, its balance starts as “bonded” in the corresponding staked state (see [accounting mode](./transaction-accounting-model) for more details).
+- Otherwise (i.e. the address is an externally owned account, but not of any validators), the address balance starts as “unbonded” in the corresponding staked state (see [accounting mode](./transaction-accounting-model) for more details).
 
 From this initial genesis state, the initial “application hash” (APP HASH) is computed and set in the corresponding genesis.json file of Tendermint and compiled statically into the enclave binaries (that need to be signed by the developer production keys).
 
 ## Tendermint extra information
 
-As described in [consensus](https://cryptocom-chain-documentation.readthedocs.io/en/latest/consensus.html), Tendermint executes with the application-specific code via ABCI.
+As described in [consensus](./consensus), Tendermint executes with the application-specific code via ABCI.
 
 The genesis information (network parameters, initial validators etc.) is set in the `app_data` field in genesis.json – this information is then passed to the ABCI application in the InitChainRequest.

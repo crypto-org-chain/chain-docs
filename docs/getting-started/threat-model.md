@@ -49,4 +49,4 @@ We also assume standard security measures like OS level hardening, software patc
 
 ## Result
 
-[HERE](https://cryptocom-chain-documentation.readthedocs.io/en/latest/crypto.com-chain-threat-model.pdf)
+[HERE](../crypto.com-chain-threat-model.pdf)

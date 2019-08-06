@@ -1,6 +1,6 @@
 # Enclave Architecture
 
-The primary initial use of Trusted Execution Environments (TEE) is for enforcing payment data confidentiality (see [transaction privacy](https://cryptocom-chain-documentation.readthedocs.io/en/latest/transaction-privacy.html)), while maintaining flexibility and auditability. Other use cases may be developed in the long term.
+The primary initial use of Trusted Execution Environments (TEE) is for enforcing payment data confidentiality (see [transaction privacy](./transaction-privacy)), while maintaining flexibility and auditability. Other use cases may be developed in the long term.
 
 ## Technology
 
@@ -8,7 +8,7 @@ The initial version is based on Intel SGX, but in the long-term, it would be des
 
 ## Transaction validation
 
-The validation of transactions that involve payment obfuscated transaction outputs (see [transaction types](https://cryptocom-chain-documentation.readthedocs.io/en/latest/transaction.html) and [accounting model](https://cryptocom-chain-documentation.readthedocs.io/en/latest/account-utxo.html)) need to happen inside enclaves.
+The validation of transactions that involve payment obfuscated transaction outputs (see [transaction types](./transaction) and [accounting model](./transaction-accounting-model)) need to happen inside enclaves.
 
 For the ease of development, the transaction validation happens in a separate process. The Chain ABCI application process then communicates with this process using a simple request-reply protocol over a 0MQ socket:
 
@@ -30,7 +30,7 @@ As previous transaction data is needed for transaction validation, it needs to b
 
 ## Transaction data bootstrapping
 
-As old payment data becomes inaccessible due to the periodic key rotation (see [transaction privacy](https://cryptocom-chain-documentation.readthedocs.io/en/latest/transaction-privacy.html)), newly joined nodes (or nodes that went offline for some time) would need a way to bootstrap the old transaction data by connecting to enclaves of remote nodes and requesting transaction data that the other nodes have locally sealed.
+As old payment data becomes inaccessible due to the periodic key rotation (see [transaction privacy](./transaction-privacy)), newly joined nodes (or nodes that went offline for some time) would need a way to bootstrap the old transaction data by connecting to enclaves of remote nodes and requesting transaction data that the other nodes have locally sealed.
 
 ### Lite client inside enclaves
 
@@ -46,7 +46,7 @@ Beyond the mutual attestation, enclaves should perform additional checks against
 
 ## Transaction querying
 
-As mentioned in [client flows](https://cryptocom-chain-documentation.readthedocs.io/en/latest/client-flow.html), clients may not know their transaction data and would need to submit blind queries requesting data of some payment transactions.
+As mentioned in [client flows](./client-flow), clients may not know their transaction data and would need to submit blind queries requesting data of some payment transactions.
 
 For this purpose, there needs to be an enclave that can unseal the previously stored transaction data, verify the client query and return the matching transactions.
 
@@ -60,6 +60,6 @@ For this purpose, there needs to be an enclave that can access the current rando
 
 ## Enclave breaches
 
-If enclaves were breached, it would lead to reduced confidentiality – there would still be a level of confidentiality, as the multi-signature scheme in Chain records only limited information in the blockchain (see [signature schemes](https://cryptocom-chain-documentation.readthedocs.io/en/latest/signature-schemes.html)). It would only affect transactions that were obfuscated with the breached key, as the key would be periodically rotated (see [transaction privacy](https://cryptocom-chain-documentation.readthedocs.io/en/latest/transaction-privacy.html)).
+If enclaves were breached, it would lead to reduced confidentiality – there would still be a level of confidentiality, as the multi-signature scheme in Chain records only limited information in the blockchain (see [signature schemes](./signature-schemes)). It would only affect transactions that were obfuscated with the breached key, as the key would be periodically rotated (see [transaction privacy](./transaction-privacy)).
 
-Note that the breach wouldn’t lead to the loss of ledger integrity, as that is preserved by the [consensus algorithm](https://cryptocom-chain-documentation.readthedocs.io/en/latest/consensus.html).
+Note that the breach wouldn’t lead to the loss of ledger integrity, as that is preserved by the [consensus algorithm](./consensus).

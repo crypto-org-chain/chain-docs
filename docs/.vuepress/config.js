@@ -11,6 +11,7 @@ module.exports = {
     sidebar: {
       '/getting-started/': [
         '',
+        'local_full_node_development',
         'consensus',
         'genesis',
         'transaction-accounting-model',
@@ -36,19 +37,20 @@ module.exports = {
         var ordering = {
           'Home': 0,
           'Getting Started': 1,
-          'Consensus': 2,
-          'Genesis': 3,
-          'Transaction Accounting Model': 4,
-          'Transaction': 5,
-          'Serialization': 6,
-          'Signature Schemes': 7,
-          'Transaction Flow': 8,
-          'Enclave Architecture': 9,
-          'Transaction Privacy': 10,
-          'Staking': 11,
-          'Notes on Performance': 12,
-          'Notes on Production Deployment': 13,
-          'Threat Model': 14
+          'Local Full Node Development': 2,
+          'Consensus': 3,
+          'Genesis': 4,
+          'Transaction Accounting Model': 5,
+          'Transaction': 6,
+          'Serialization': 7,
+          'Signature Schemes': 8,
+          'Transaction Flow': 9,
+          'Enclave Architecture': 10,
+          'Transaction Privacy': 11,
+          'Staking': 12,
+          'Notes on Performance': 13,
+          'Notes on Production Deployment': 14,
+          'Threat Model': 15
         };
         return (ordering[a["title"]] - ordering[b["title"]]);
       }

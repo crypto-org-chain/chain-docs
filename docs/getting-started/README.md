@@ -1,17 +1,33 @@
 # Getting Started
 
 This is the beginner's tutorial to boot-strap Chain.  
-By this tutorial, you can compile and run cro-chain from the scratch.  
+By following this tutorial, you can compile and run cro-chain from the scratch.  
 
 ## Pre-requisites
 
 Prepare ubuntu 18.0.x and Intel CPU
 
-```
+```bash
 ~/bin
 ```
 
 bin folder is the main folder for binaries
+
+- [Homebrew](https://brew.sh/)
+- [Docker](https://docs.docker.com/install/)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [cmake](https://cmake.org/install/)
+  ```bash
+  $ brew install cmake
+  ```
+- [ZeroMQ](https://zeromq.org/download/)
+  ```bash
+  $ brew install zmq
+  ```
+- pkg-config
+  ```bash
+  $ brew install pkg-config
+  ```
 
 ## How it works
 
@@ -62,7 +78,7 @@ docker run -ti --device /dev/isgx -v ~/chain-tx-enclave/:/root/sgx -it chain-tx 
 root@docker:/# LD_LIBRARY_PATH=/opt/intel/libsgx-enclave-common/aesm /opt/intel/libsgx-enclave-common/aesm/aesm_service &
 ```
 
-5. Copy enclave lib file to the system, and cargo build if build fails, please copy libEnclave_u.a manually.
+5. Copy enclave lib file to the system, and `cargo build` it. If build fails, please copy libEnclave_u.a manually.
 
 ```
 cd ~/sgx
@@ -106,11 +122,11 @@ export PATH=$HOME/bin:$PATH
 ```
 
 ## Install Programs
-1. Rust
+1. [Rust and Cargo](https://rustup.rs) ( cargo version: 1.36 onwards )
 ```
 curl https://sh.rustup.rs -sSf | sh
 ```
-2. Tendermint 
+2. [Tendermint](https://tendermint.com/docs/introduction/install.html#from-binary)
 ```
 cd ~/bin  
 wget https://github.com/tendermint/tendermint/releases/download/v0.32.1/tendermint_v0.32.1_linux_amd64.zipunzip ./tendermint_v0.32.1_linux_amd64.zip

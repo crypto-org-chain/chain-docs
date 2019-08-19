@@ -30,7 +30,7 @@ You can now see the docs at http://localhost:8080.
 1. Create a markdown file under `/docs/getting-started/`
 2. Open `/docs/.vuepress/config.js`
 3. Add the file name to `sidebar` and the `ordering` under `vuepress-plugin-export` in plugins
-```
+``` diff
 module.exports = {
   ...,
 
@@ -41,7 +41,7 @@ module.exports = {
       '/getting-started/': [
         '',
         ...,
-        '[AddYourNewFileNameHere]'
++        '[AddYourNewFileNameHere]'
         ...
       ]
     }
@@ -55,7 +55,7 @@ module.exports = {
         var ordering = {
           'Home': 0,
           ...,
-          '[AddYourNewFileNameHere]': [AddTheNumberYouWantThePageBeOrdered]
+ +         '[AddYourNewFileNameHere]': [AddTheNumberYouWantThePageBeOrdered]
           ...,
         };
         ...
@@ -65,6 +65,15 @@ module.exports = {
   ]
 }
 ```
+
+## Generating a PDF version of the site
+
+Go to ``chain-docs/docs``, then run:
+
+```
+vuepress export
+```
+a PDF version of the site will be generated under the ``/docs`` path.
 
 ## Deploying Chain-doc to Github Pages
 

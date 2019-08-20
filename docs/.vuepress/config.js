@@ -12,6 +12,7 @@ module.exports = {
       '/getting-started/': [
         '',
         'local_full_node_development',
+        'send_your_first_transaction',
         'consensus',
         'genesis',
         'transaction-accounting-model',
@@ -38,19 +39,20 @@ module.exports = {
           'Home': 0,
           'Getting Started': 1,
           'Local Full Node Development': 2,
-          'Consensus': 3,
-          'Genesis': 4,
-          'Transaction Accounting Model': 5,
-          'Transaction': 6,
-          'Serialization': 7,
-          'Signature Schemes': 8,
-          'Transaction Flow': 9,
-          'Enclave Architecture': 10,
-          'Transaction Privacy': 11,
-          'Staking': 12,
-          'Notes on Performance': 13,
-          'Notes on Production Deployment': 14,
-          'Threat Model': 15
+          'Send Your First Transaction': 3,
+          'Consensus': 4,
+          'Genesis': 5,
+          'Transaction Accounting Model': 6,
+          'Transaction': 7,
+          'Serialization': 8,
+          'Signature Schemes': 9,
+          'Transaction Flow': 10,
+          'Enclave Architecture': 11,
+          'Transaction Privacy': 12,
+          'Staking': 13,
+          'Notes on Performance': 14,
+          'Notes on Production Deployment': 15,
+          'Threat Model': 16
         };
         return (ordering[a["title"]] - ordering[b["title"]]);
       }

@@ -7,6 +7,7 @@ The documentation in this repository site is meant to provide specifications and
 ### Prerequisites
 
 You're going to need:
+
 - **NPM**
 - **Oracle JDK** (For generating the pdf, deployment needs this)
 
@@ -17,19 +18,20 @@ You're going to need:
 3. `cd chain-docs`
 4. Initialize and start chain-docs.
 
-```
+```bash
 npm install
 cd docs
 vuepress dev
 ```
 
-You can now see the docs at http://localhost:8080.
+You can now see the docs at [http://localhost:8080](http://localhost:8080).
 
 ## Adding new page to the doc
 
 1. Create a markdown file under `/docs/getting-started/`
 2. Open `/docs/.vuepress/config.js`
 3. Add the file name to `sidebar` and the `ordering` under `vuepress-plugin-export` in plugins
+
 ``` diff
 module.exports = {
   ...,
@@ -41,7 +43,7 @@ module.exports = {
       '/getting-started/': [
         '',
         ...,
-+        '[AddYourNewFileNameHere]'
++        '[Add_Your_New_File_Name_Here]'
         ...
       ]
     }
@@ -55,7 +57,7 @@ module.exports = {
         var ordering = {
           'Home': 0,
           ...,
- +         '[AddYourNewFileNameHere]': [AddTheNumberYouWantThePageBeOrdered]
++         '[Add_Your_New_File_Name_Here]': [Add_The_Number_You_Want_The_Page_Be_Ordered]
           ...,
         };
         ...
@@ -70,9 +72,10 @@ module.exports = {
 
 Go to ``chain-docs/docs``, then run:
 
-```
+```bash
 vuepress export
 ```
+
 a PDF version of the site will be generated under the ``/docs`` path.
 
 ## Deploying Chain-doc to Github Pages
@@ -82,4 +85,4 @@ a PDF version of the site will be generated under the ``/docs`` path.
 3. Push the changes to GitHub: `git push`
 4. Run `./deploy.sh`
 
-You should see your updates on http://yourusermame.github.io/chain-docs.
+You should see your updates on [http://yourusermame.github.io/chain-docs](http://yourusermame.github.io/chain-docs).

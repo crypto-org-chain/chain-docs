@@ -5,12 +5,14 @@ module.exports = {
     nav: [
       {text:'Home', link: '/'},
       {text:'Getting Started',link:'/getting-started/'},
+      {text:'Testnet Tutorial',link:'/getting-started/thaler-testnet'},
       {text:'Client RPC',link:'https://github.com/crypto-com/chain/tree/master/client-rpc'},
       {text:'Download',link:'https://crypto-com.github.io/Crypto.com_Chain.pdf'}
     ],
     sidebar: {
       '/getting-started/': [
         '',
+        'thaler-testnet',
         'local_full_node_development',
         'send_your_first_transaction',
         'consensus',
@@ -38,21 +40,22 @@ module.exports = {
         var ordering = {
           'Home': 0,
           'Getting Started': 1,
-          'Local Full Node Development': 2,
-          'Send Your First Transaction': 3,
-          'Consensus': 4,
-          'Genesis': 5,
-          'Transaction Accounting Model': 6,
-          'Transaction': 7,
-          'Serialization': 8,
-          'Signature Schemes': 9,
-          'Transaction Flow': 10,
-          'Enclave Architecture': 11,
-          'Transaction Privacy': 12,
-          'Staking': 13,
-          'Notes on Performance': 14,
-          'Notes on Production Deployment': 15,
-          'Threat Model': 16
+          'Thaler Testnet': 2,
+          'Local Full Node Development': 3,
+          'Send Your First Transaction': 4,
+          'Consensus': 5,
+          'Genesis': 6,
+          'Transaction Accounting Model': 7,
+          'Transaction': 8,
+          'Serialization': 9,
+          'Signature Schemes': 10,
+          'Transaction Flow': 11,
+          'Enclave Architecture': 12,
+          'Transaction Privacy': 13,
+          'Staking': 14,
+          'Notes on Performance': 15,
+          'Notes on Production Deployment': 16,
+          'Threat Model': 17
         };
         return (ordering[a["title"]] - ordering[b["title"]]);
       }

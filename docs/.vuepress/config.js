@@ -6,7 +6,7 @@ module.exports = {
       {text:'Home', link: '/'},
       {text:'Getting Started',link:'/getting-started/'},
       {text:'Testnet Tutorial',link:'/getting-started/thaler-testnet'},
-      {text:'Client RPC',link:'https://github.com/crypto-com/chain/tree/master/client-rpc'},
+      {text:'Wallet Management',link:'/wallets/'},
       {text:'Download',link:'https://crypto-com.github.io/Crypto.com_Chain.pdf'}
     ],
     sidebar: {
@@ -28,7 +28,13 @@ module.exports = {
         'notes-on-production-deployment',
         'notes-on-performance',
         'threat-model'
-      ]
+      ],
+      '/wallets/': [
+        '',
+        'client-cli',
+        'sample-chain-wallet',
+        'client-rpc'
+      ],
     },
     displayAllHeaders: true
   },

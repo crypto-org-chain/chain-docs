@@ -12,43 +12,57 @@ ClientCLI is a command line interface for the wallet client. It supports wallet 
 
 ClientCLI is bundled with the Crypto.com chain code. After you have [compile the binaries](https://crypto-com.github.io/getting-started/#compile-chain), it is available under `./bin/client-cli`.
 
+## How to use
+
+```bash
+$ ./bin/client-cli [command] [argument]
+```
+
+There is also a help command available at
+```bash
+$ ./bin/client-cli --help
+```
+
 ## Wallet Storage
 
 By default, your wallets are stored in the folder `./storage` located at the same path of where `./client-cli` is executed.
 
-Make sure you have backed up your wallet storage after creating the wallet or else  your funds will not be accessible forever.
+Make sure you have backed up your wallet storage after creating the wallet or else  your funds may be inaccessible in case of accident forever.
 
 ### Configure Wallet Storage Location
 
 To customize the wallet storage location when running ClientCLI, you can update environment variable `CRYPTO_CLIENT_STORAGE` with the path:
 
 ```bash
- CRYPTO_CLIENT_STORAGE=/my-wallet-storage ./bin/client-cli ...
+$ CRYPTO_CLIENT_STORAGE=/my-wallet-storage ./bin/client-cli ...
 ```
 
 ## Chain ID
 
-Crypto.com Chain has different Chain ID to distinguish between *devnet*, *testnet* and *mainnet*. When running the Crypto.com Chain in your local environment, you will also need to decide your own Chain ID.
-
-Different chain has different address prefixes for its corresponding network types, these prefixes are:
-
-| Mainnet | Testnet | Regtest   |
-| ------- | ------- | --------- |
-| `cro`   | `tcro`  | `dcro`    |
-
-Accordingly, you should set up your ClientCLI and use the correct configuration for the node you are connecting to.
+Crypto.com Chain has different [Chain ID](../getting-started/chain-id-and-network-id#chain-id) to distinguish between *devnet*, *testnet* and *mainnet*. Accordingly, you should set up your ClientCLI and use the correct configuration for the node you are connecting to.
 
 ### Configure Chain ID
 
 To customize the Chain ID while running ClientCLI, you can update the environment variable `CRYPTO_CHAIN_ID` with the full chain ID. For example, we can change it to the testnet with Chain ID `testnet-thaler-crypto-com-chain-42` by:
 
 ```bash
- CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42 ./bin/client-cli ...
+$ CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42 ./bin/client-cli ...
 ```
 
 ## Configure Tendermint URL
 
 Similarly, we can also change the Tendermint URL when running ClientCLI, update environment variable `CRYPTO_CLIENT_TENDERMINT` with the Tendermint URL.
+
+## Options
+
+A list of supported environment variables of ClientCLI is listed below:
+
+| Option | Description | Type | Default Value |
+| --- | --- | --- | --- | --- |
+| CRYPTO_CLIENT_DEBUG | How detail should the debug message be on error | true/false | false |
+| CRYPTO_CHAIN_ID | Full Chain ID | String | --- |
+| CRYPTO_CLIENT_STORAGE | Wallet storage directory | Storage | .storage |
+| CRYPTO_CLIENT_TENDERMINT | Tendermint URL | String | http://localhost:26657/ |
 
 ## 1. Wallet Management
 

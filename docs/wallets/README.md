@@ -15,4 +15,4 @@ Sample Chain Wallet is a sample wallet client with graphical user interface. It 
 
 ## ClientRPC
 
-ClientRPC is the JSONRPC interface of the wallet client. It can be used to be integrated with different services and Sample Wallet is also powered by it. It provides nearly the same set of operations as ClientCLI.
+ClientRPC is the JSONRPC interface of the wallet client. It can be used to be integrated with different services and also power the Sample Wallet. It provides nearly the same set of operations as ClientCLI.

@@ -20,8 +20,7 @@ You're going to need:
 
 ```bash
 npm install
-cd docs
-vuepress dev
+npm run docs:dev
 ```
 
 You can now see the docs at [http://localhost:8080](http://localhost:8080).

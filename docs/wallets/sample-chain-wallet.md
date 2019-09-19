@@ -12,7 +12,7 @@ Please follow the [instructions](https://github.com/crypto-com/sample-chain-wall
 
 ## Start ClientRPC
 
-TODO
+Sample wallet is powered by [ClientRPC](./client-rpc). To run the Sammple Wallet, you will have to start the ClientRPC by following the [instructions](./client-rpc#build).
 
 ## Wallet Management
 

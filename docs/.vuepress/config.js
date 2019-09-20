@@ -23,14 +23,18 @@ module.exports = {
       {
         text: "Wallet Management",
         items: [
-          { text: "Overview", link: "/wallets/#clientcli" },
+          { text: "Overview", link: "/wallets/#client-cli" },
           {
             text: "Client CLI",
-            link: "/wallets/client-cli.html#clientcli"
+            link: "/wallets/client-cli.html#client-cli"
           },
           {
             text: "Sample Chain Wallet",
             link: "/wallets/sample-chain-wallet.html#sample-chain-wallet"
+          },
+          {
+            text: "Client RPC",
+            link: "/wallets/client-rpc.html#client-rpc"
           }
         ]
       },

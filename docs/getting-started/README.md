@@ -156,7 +156,7 @@ cd ~/chain
 ```
 6. initiate compiling
 ```
-cargo build –-release 
+cargo build --release 
 ```
 7. copy binaries to working folder
 ```

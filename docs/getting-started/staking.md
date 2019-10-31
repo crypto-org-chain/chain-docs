@@ -1,6 +1,6 @@
 # Staking
 
-This doc cointains the specification of the initial staking, slashing, fees and rewards mechanisms.
+This document contains the specification of the initial staking, slashing, fees and rewards mechanisms.
 
 ## Account
 
@@ -12,9 +12,8 @@ pub struct Account {
     pub bonded: Coin, // bonded staked amount
     pub unbonded: Coin, // unbonded staked amount
     pub unbonded_from: Timespec, // when the unboded staked amount can be withdrawn
-    pub address: RedeemAddress, // ETH-style address; TODO: extended address?
-    pub jailed_until: Option<Timespec>, // has the account been jailed in slashing-related logic?
-    pub slashed: Option<SlashingPeriod>, // how much is the account supposed to be slashed in slashing-related logic?
+    pub address: StakedStateAddress, // ETH-style address of staking account; TODO: extended address?
+    pub jailed_until: Option<Timespec>, // time until which current account is jailed
 }
 ```
 
@@ -129,54 +128,111 @@ if BeginBlock.time >= RewardsPool.last_update + 24 hours:
 The draft technical whitepaper says there will be rewards for acquirer nodes. These terms may be revised in later drafts.
 :::
 
-## Slashing
+## Punishments
 
-This part describes functionality that aims to disincentivize network-observable actions, such as faulty validations, of participants with values at stake by penalizing/slashing them. The penalties may include losing some amount of their stake (surrendered to the rewards pool), losing their ability to perform the network functionality for a period of time, collect rewards etc.
+This part describes functionality that aims to disincentivize network-observable actions, such as faulty validations, of
+participants with values at stake by penalizing/slashing and jailing them. The penalties may include losing some amount
+of their stake (surrendered to the rewards pool), losing their ability to perform the network functionality for a period
+of time, collect rewards etc.
 
-### Slashing period
+Punishments for a validator are triggered when they either make a byzantine fault or become non-live.
 
-Some of the faulty behavior may be non-malicious, e.g. due to misconfiguration. In order to mitigate the impact of these initially likely categories of faults, there is a concept of a slashing period whereby the penalty is capped. As penalties are specified in fixed decimal fractions of a stake, it is the highest fraction. In other words, in a given period, a violator is punished for the worst violation rather than losing all stake.
+### Liveness Tracking
 
-Even with this “more tolerant” punishment setup, it will still be quite expensive and desirable to avoid. Note that this setup must be accompanied by immediate jailing / limiting the violater’s network ability.
+A validator is said to be **non-live** when they fail to successfully sign at least `missed_block_threshold` blocks in
+last `block_signing_window` blocks. `block_signing_window` and `missed_block_threshold` are network parameters and can
+be configured during genesis (currently, changing these network parameters at runtime is not supported). Tendermint
+passes signing information to ABCI application as `last_commit_info` in `BeginBlock` request.
 
-This is a sketched out additional data structure to keep track of (a part of Account):
+For example, if `block_signing_window` is `100` blocks and `missed_block_threshold` is `50` blocks, a validator will be
+marked as **non-live** if they fail to successfully sign at least `50` blocks in last `100` blocks.
+
+### Byzantine Faults (Double Signing)
+
+A validator is said to make a byzantine fault when they sign conflicting transactions at the same height and round.
+Tendermint has mechanisms to publish evidence of validators that signed conflicting votes (it passes this information to
+ABCI application in `BeginBlock` request), so they can be punished by the application.
+
+### Jailing
+
+A validator is jailed if:
+
+1. They are not **live**, i.e., they failed to successfully sign `missed_block_threshold` blocks in last
+   `block_signing_window` blocks.
+1. They make a byzantine fault, e.g., they sign messages at same height and round.
+
+When a validator gets jailed, they cannot perform any operations relating to their account, for example,
+`withdraw_stake`, `deposit_stake`, `unbond_stake`, etc., until they are un-jailed. Also, a validator cannot be un-jailed
+before `account.jailed_until` which is set to `block_time + jail_duration` while jailing. `jail_duration` is a network
+parameter which can be configured during genesis.
+
+### Un-jailing
+
+When a jailed validator wishes to resume normal operations (after `account.jailed_until` has passed), they can create
+`UnjailTx` which marks them as un-jailed and adds them back to validator set.
+
+### Slashing
+
+Similar to jailing, a validator is slashed if:
+
+1. They are not **live**, i.e., they failed to successfully sign `missed_block_threshold` blocks in last
+   `block_signing_window` blocks.
+1. They make a byzantine fault, e.g., they sign messages at same height and round.
+
+Unlike jailing, which happens immediately after punishments are triggered, slashing happens after `slash_wait_period`.
+`slash_wait_period` is a network parameter and can be configured during genesis. Validators are not immediately slashed
+because faulty behavior may be non-malicious, e.g. due to misconfiguration. `slash_wait_period` is introduced to create
+a _tolerant_ punishment setup.
+
+Besides this, if a validator makes multiple faults in `slash_wait_period`, they'll only be slashed once for the worst
+fault in that time period.
+
+### Slashing Rate
+
+Whenever a validator is slashed, a percentage of their `bonded` and `unbonded` amount is transferred to `rewards_pool`.
+There are many factors involved in determining slashing rate for a validator:
+
+1. `liveness_slash_percent` and `byzantine_slash_percent` are the two network parameters used while calculating slashing
+   rate. Both of these can be configured during genesis.
+1. `validator_voting_percent` is the voting percent of faulty validator in the network.
+1. List of all the faulty validators in that period.
+
+The algorithm for calculating `slashing_rate` is as follows:
 
 ```
-pub struct SlashingPeriod {
-    pub start: Timespec, // when the period started,
-    pub end: Timespec, // when the period ended,
-    pub slashed_ratio: Decimal, // fixed decimal; cumulative so far slashed fraction; 0.0 initially
-}
+validator_slash_percent = max(slash percent of individual faults)
 ```
 
-### Unjail
-
-When the previous violator wishes to resume the functionality, the node operator can send a signed `UnjailTx`. Its validation logic is the following:
+For example, if a validator made a byzantine fault as well as they are non-live, then,
 
 ```
-block_time = (... from beginblock ...)
-account = (...lookup / recover from signature...)
-if account not found:
-    return invalid("account not found")
+validator_slash_percent = max(liveness_slash_percent, byzantine_slash_percent)
+```
 
-if account.jailed_until.is_none():
-    return invalid("account not jailed")
+And if there are `n` faulty validators in this period, then,
 
-if nonce != account.nonce + 1:
-    return invalid("invalid nonce")
+```
+slashing_rate = 
+    validator_slash_percent * 
+    (
+        sqrt(validator_voting_percent_1) +
+        sqrt(validator_voting_percent_2) +
+        .. + 
+        sqrt(validator_voting_percent_n)
+    )^2
+```
 
-if block_time < account.jailed_until.unwrap() || (account.slashed.is_some() && account.slashed.end > block_time):
-    return invalid("account still jailed")
+So, if one validator of 10% voting power faults, it gets a 10% slash (assuming `liveness_slash_percent` and
+`byzantine_slash_percent` are both 100%). While, if two validators of 5% voting power each fault together, they both get
+a 20% slash.
 
-if !check_signature(txid):
-    return invalid("invalid signature")
-
-END/COMMIT_BLOCK_STATE_UPDATE(deduct(account); account.jailed = None)
+```
+slashing_rate = max(liveness_slash_percent, byzantine_slash_percent) * (sqrt(validator_voting_percent_1) + sqrt(validator_voting_percent_2))^2
+              = max(1, 1) * (sqrt(0.05) + sqrt(0.05))^2                // assuming liveness_slash_percent and byzantine_slash_percent are both 100%
+              = 0.2
 ```
 
 TODO: auto-unjailing?
-
-### Tracking
 
 #### Validators / Council Nodes
 

@@ -32,7 +32,7 @@ The initial prototype uses a linear fee system, see [staking](./staking) for det
 
 ## Transaction Types
 
-### Basic Types (unencrypted / non-shielded):
+### Basic Types (plain version):
 
 :::tip NOTE
 All these types should also contain metadata, such as network ID
@@ -45,13 +45,15 @@ All these types should also contain metadata, such as network ID
 
 ### Advanced Types:
 
-- AddCouncilNodeTx: takes council node data, staking address; co-signed by 2/3 current nodes
-- EditCouncilNodeTx: takes council node data, signed by that node
-- RemoveCouncilNodeTx: takes council node id; co-signed by 2/3 current nodes
-- ChangeNetworkParamTX?
 - UnjailTx: takes nonce, account, signed by the account’s corresponding key
-- AddWhitelistServiceNodeTx: takes node data, whitelist type (customer acquirer, merchant acquirer, settlement agent), staking address; co-signed by 2/3 current nodes
-- EditWhitelistServiceNodeTx: takes node data, signed by that node
-- RemoveWhitelistServiceNodeTx: takes whitelisted node id; co-signed by 2/3 current nodes
-- AddMerchantIdTx: takes merchant data (certificate + cert-signed pk or some payment gateway point?), signed by merchant acquirer
-- RemoveMerchantIdTx: takes merchant id, signed by merchant acquirer
+- CreateCouncilNodeTx: takes council node data, staking address; signed by that node's staking key
+
+#### TODO
+These transaction types are not yet specified:
+
+- ChangeNetworkParamTX?
+- AddWhitelistServiceNodeTx: takes node data, whitelist type (customer acquirer, merchant acquirer, settlement agent), staking address; co-signed by 2/3 current nodes?
+- EditWhitelistServiceNodeTx: takes node data, signed by that node?
+- RemoveWhitelistServiceNodeTx: takes whitelisted node id; co-signed by 2/3 current nodes>
+- AddMerchantIdTx: takes merchant data (certificate + cert-signed pk or some payment gateway point?), signed by merchant acquirer?
+- RemoveMerchantIdTx: takes merchant id, signed by merchant acquirer?

@@ -25,13 +25,23 @@ Council Node is a data structure that holds state about a node responsible for t
 
 ```
 pub struct CouncilNode {
+    pub name: String, // human-readable name
+    pub security_contact: Option<String>, // optional email for security contact
     pub staking_address: RedeemAddress, // account with the required staked amount
     pub consensus_pubkey: crypto.PubKey, // Tendermint consensus validator-associated public key: note that Tendermint supports different signature schemes
     pub council_pubkey: PublicKey, // key for council node-related transaction types
     pub service_whitelist_pubkey: PublicKey, // key for service node whitelist-related transaction types
-    pub nonce: usize, // update counter
+    pub nonce: usize, // update counter?
 }
 ```
+### Joining network
+Anyone can submit a `CreateCouncilNodeTx` that will be valid as long as:
+
+* the associated staking account has bonded amount >= `COUNCIL_NODE_MIN_STAKE` and is not punished
+* there's no other validator with the same `staking_address` or the `consensus_pubkey`
+
+The top `MAX_VALIDATORS` (ordered by the voting power) would put to the validator set in END_BLOCK.
+
 ## Service Node
 
 Service Node is a data structure that holds state about a high responsibility node and its offered service:
@@ -314,6 +324,7 @@ This section aims to collect all the mentioned network parameters:
 - `MISSED_BLOCK_THRESHOLD`
 - `BYZANTINE_SLASH_RATIO`
 - `LIVENESS_SLASH_RATIO`
+- `MAX_VALIDATORS`
 
 TODO: TX that can change them?
 

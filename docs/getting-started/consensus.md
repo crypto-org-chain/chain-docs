@@ -8,7 +8,7 @@ This allows "plugging" custom applications with Tendermint.
 
 If the application is written in Go, it can be linked directly; if it's written in other languages, it communicates over 3 TCP or Unix sockets.
 
-The details of this interface can be found on: [tendermint.com/docs/spec/abci/abci.html](https://tendermint.com/docs/spec/abci/abci.html#overview)
+The details of this interface can be found on: [tendermint.com/docs/spec/abci/abci.html](https://docs.tendermint.com/master/spec/abci/abci.html#overview)
 
 As Crypto.com Chain Core code is written in Rust, we utilize (and aim to continually improve) the [rust-abci](https://github.com/tendermint/rust-abci/) library.
 

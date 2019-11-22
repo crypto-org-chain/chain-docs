@@ -13,7 +13,7 @@ This is an early tutorial for the developers and brave and patient super-early a
 
 ## Step 1. Get Tendermint and Chain v0.0 released binaries
 
-Download the latest version of [Tendermint 0.32.\*](https://tendermint.com/docs/introduction/install.html#from-binary).
+Download the latest version of [Tendermint 0.32.\*](https://docs.tendermint.com/master/introduction/install.html#from-binary).
 Chain v0.0 can be [downloaded from GitHub](https://github.com/crypto-com/chain/releases/download/v0.0.3/crypto-com-chain-release-0.0.3.tar.gz).
 
 ## Step 2. Configure Tendermint

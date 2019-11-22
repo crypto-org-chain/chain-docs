@@ -103,7 +103,7 @@ The current consensus engine "calls" Crypto.com Chain's application code at diff
 1) when a transaction payload enters the mempool (either from the client's request or from the P2P broadcast);
 2) during consensus rounds when transactions are selected for the block.
 
-(For more details, see the [ABCI specification](https://tendermint.com/docs/introduction/what-is-tendermint.html#abci-overview).)
+(For more details, see the [ABCI specification](https://docs.tendermint.com/master/introduction/what-is-tendermint.html#abci-overview).)
 
 On the high level, the consensus engine passes transaction payloads 
 (which it is agnostic to) down to the application code and the application code returns

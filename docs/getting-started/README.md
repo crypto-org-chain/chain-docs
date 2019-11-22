@@ -126,7 +126,7 @@ export PATH=$HOME/bin:$PATH
 ```
 curl https://sh.rustup.rs -sSf | sh
 ```
-2. [Tendermint](https://tendermint.com/docs/introduction/install.html#from-binary)
+2. [Tendermint](https://docs.tendermint.com/master/introduction/install.html#from-binary)
 ```
 cd ~/bin  
 wget https://github.com/tendermint/tendermint/releases/download/v0.32.1/tendermint_v0.32.1_linux_amd64.zipunzip ./tendermint_v0.32.1_linux_amd64.zip

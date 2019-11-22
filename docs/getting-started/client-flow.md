@@ -2,7 +2,7 @@
 
 ## Block-level filtering
 
-The full node “tags” each block with a probabilistic filter (tagging is done using the [Events](https://tendermint.com/docs/spec/abci/abci.html#events) in Tendermint). This filter is then used by the light client code to determine which blocks are of any interest, requests these blocks and processes them. This current mechanism is similar to BIP 157.
+The full node “tags” each block with a probabilistic filter (tagging is done using the [Events](https://docs.tendermint.com/master/spec/abci/abci.html#events) in Tendermint). This filter is then used by the light client code to determine which blocks are of any interest, requests these blocks and processes them. This current mechanism is similar to BIP 157.
 
 Currently, the used filter is the Bloom filter used in Ethereum defined with the following parameters: m = 2048 (bits; keccak-256 hash function), k = 3 (yellowpaper page 5)
 

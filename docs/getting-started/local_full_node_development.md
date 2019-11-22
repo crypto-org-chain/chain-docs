@@ -6,7 +6,7 @@ We will need the following to run a local full node:
 - **[Genesis](https://crypto-com.github.io/getting-started/genesis.html#tendermint-extra-information):** Defining the initial state of the blockchain;
 - **[Tendermint Node](https://crypto-com.github.io/getting-started/consensus.html#client-interacting-with-the-blockchain):** Performing consensus operations;
 - **[Transaction Enclave](https://crypto-com.github.io/getting-started/enclave-architecture.html#transaction-validation):** Validating transactions;
-- **[Application BlockChain Interface (_ABCI_)](https://tendermint.com/docs/spec/abci/)**: Connecting between Tendermint and applications.
+- **[Application BlockChain Interface (_ABCI_)](https://docs.tendermint.com/master/spec/abci/)**: Connecting between Tendermint and applications.
 
 ## Step 1. Generate Genesis
 
@@ -55,7 +55,7 @@ We will be distributing funds to our newly-created wallet address ``0x3a102...81
 
 **Caution:** Only use this rest command in development as it removes the data directory, and all blockchain data will be lost.
 
-Details and field definitions of `genesis.json` can be found  [here](https://tendermint.com/docs/tendermint-core/using-tendermint.html#fields).  Note that as in the [sample genesis](https://tendermint.com/docs/tendermint-core/using-tendermint.html#sample-genesis-json), `app_hash` is initially left as empty. The missing configuration will be completed in the next step.
+Details and field definitions of `genesis.json` can be found  [here](https://docs.tendermint.com/master/tendermint-core/using-tendermint.html#fields).  Note that as in the [sample genesis](https://docs.tendermint.com/master/tendermint-core/using-tendermint.html#sample-genesis-json), `app_hash` is initially left as empty. The missing configuration will be completed in the next step.
 
 #### Step 1c) Create a Genesis configuration
 
@@ -222,7 +222,7 @@ Once we have the **transaction enclave** and **chain-abci** running, we can star
 tendermint node
 ```
 
-Or alternatively, we can start a basic [lite-client node](https://tendermint.com/docs/tendermint-core/light-client-protocol.html#light-client-protocol)
+Or alternatively, we can start a basic [lite-client node](https://docs.tendermint.com/master/tendermint-core/light-client-protocol.html#light-client-protocol)
  by running
 
 ```bash

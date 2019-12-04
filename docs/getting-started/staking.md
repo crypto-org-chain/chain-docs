@@ -42,30 +42,6 @@ Anyone can submit a `CreateCouncilNodeTx` that will be valid as long as:
 
 The top `MAX_VALIDATORS` (ordered by the voting power) would put to the validator set in END_BLOCK.
 
-## Service Node
-
-Service Node is a data structure that holds state about a high responsibility node and its offered service:
-
-```
-pub struct ServiceNode {
-    pub staking_address: RedeemAddress, // account with the required staked amount
-    pub service_pubkey: PublicKey, // key for service node whitelist entry updates
-    pub service_type: ServiceNodeType, // what service this node offers
-    pub service_url: URL, // HTTPS endpoint of the provided service
-    pub nonce: usize, // update counter
-}
-```
-
-```
-pub enum ServiceNodeType {
-    CustomerAcquirer, // (optional) custodial multi-currency wallet provider
-    MerchantAcquirer, // (optional) verified merchant ID management provider, payment gateway, merchant custodial currency risk management and per-agreement fiat settlements (most initial on-boarded merchants will most likely prefer to avoid volatility risks)
-    SettlementAgent, // provides currency exchange service (e.g. via IBC and DEX)
-}
-```
-
-As most of the functionality is meant to faciliate some actions outside Chain, the information is recorded in the flexible form of storing a URL pointing to HTTPS API. These API endpoints will either directly execute some action or return information required for the action to be executed (e.g. other protocol’s details).
-
 ## Transaction Fee
 
 The minimal transaction fee is defined according to the formula:
@@ -88,55 +64,56 @@ For Advanced TX types (council node and service node state metadata management),
 
 ## Rewards
 
-The rewards pool is a data structure that stores the information about remaining funds:
+To incentivise validators to run the network, rewards are accumulated and distributed to the validators. There are three sources for the rewards:
+
+- Monetary expansion with fixed max supply
+- Transaction Fees
+- Slashing of byzantine and non-live nodes
+
+The `RewardsPool` data structure stores all the information about remaining funds and distribution states:
 
 ```
 pub struct RewardsPool {
-    pub nonce: usize, // update counter
-    pub total_remaining: Coin, // total available amount
-    pub last_update: Timespec, // when was the pool last updated
+    pub period_bonus: Coin, // rewards accumulated from fees and slashing
+    pub last_block_height: BlockHeight, // when was the pool last updated
+    pub last_distribution_time: Timespec, // when was the pool last distributed
+    pub minted: Coin,  // record the number of new coins ever minted, can't exceeds max supply
+    pub tau: Milli,  // a decaying parameter in monetery expansion process
 }
 ```
 
-The initial prototype will have a `DAILY_DISTRIBUTION_AMOUNT` network parameter; later on, it should be a function that takes a target emission rate, total remaining amount etc. as parameters.
-
 ### Distribution
 
-Each validator will maintain this structures (perhaps persistent / on-disk): `day_claim_council_node: Map<CouncilNode, BlockCount>`
-
-The actual distribution then happens once in a while in BeginBlock, here’s a pseudo code:
+Rewards are distributed periodicly (one day), during each period, rewards are accumulated, and block proposers are recorded. At the end of the period, all of the rewards get distributed to the validators proportional to the number of blocks each validator proposed.
 
 ```
-for each validator in BeginBlock.LastCommitInfo:
-    lookup validator's staking_address
-    if day_claim_council_node[validator_day_claim_council_node] is Nil:
-        day_claim_council_node[validator_day_claim_council_node] = 0
-    day_claim_council_node[validator_day_claim_council_node] += 1
-
-for each node in day_claim_council_node:
-    if node.staking_address.jailed_until.is_some() OR node.staking_address.jailed_until.is_some() OR
-    node.slashed.is_some() OR
-    node.staking_address.bonded < COUNCIL_NODE_MIN_STAKE:
-        remove node from claim set
-
-if BeginBlock.time >= RewardsPool.last_update + 24 hours:
-    validator_amount = min(DAILY_DISTRIBUTION_AMOUNT, RewardsPool.total_remaining)
-
-    for each node in day_claim_council_node:
-        node_share = compute_share(node, day_claim_council_node, validator_amount)
-        END/COMMIT_BLOCK_STATE_UPDATE(node.staking_address.bonded += node_share; node.staking_address.nonce += 1)
-
-    END/COMMIT_BLOCK_STATE_UPDATE(RewardsPool.total_remaining -= amount; RewardsPool.nonce += 1; RewardsPool.last_update = BeginBlock.time)
-    day_claim_council_node = {}
+rewards of validator = total rewards * number of blocks proposed by the validator / total number of blocks
 ```
 
-`compute_share` determines the amount for each claiming node; the initial prototype will compute it:
+The remainder of division will become rewards of next period.
 
-- council nodes: proportional to the signed block count (node block signatures / all block validators signatures)
+The recording of block proposer is done in begin_block right before rewards distribution.
 
-:::tip NOTE
-The draft technical whitepaper says there will be rewards for acquirer nodes. These terms may be revised in later drafts.
-:::
+Monetary expansion is designed to mint new coins for validator rewards, while keeping a fixed max total supply. The number of new coin minted at each period is defined as:
+
+```
+minted coins = S * 0.45 * exp(-S/tau)
+
+S: total stakings at current block when reward distribution happens
+```
+
+The parameter `tau` will decay each time rewards get distributed:
+
+```
+tau(n) = tau(n-1) * 0.99986
+tau(0) = 145000000
+```
+
+The number is calculated with [fixed-point arithmetic](https://docs.rs/fixed/), the exponencial function is computed with [continued fraction method](https://en.wikipedia.org/wiki/Exponential_function#Continued_fractions_for_ex) with 100 iterations.
+
+All the new coins minted in this process is recorded in the `minted` field, and the fixed max supply is checked, after max supply get reached, no new coins will get minted.
+
+The rewards validator receives goes to the bonded balance of their staking account, and results in validator voting power change accordingly.
 
 ## Punishments
 

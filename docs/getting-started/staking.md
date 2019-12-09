@@ -78,7 +78,7 @@ pub struct RewardsPool {
     pub last_block_height: BlockHeight, // when was the pool last updated
     pub last_distribution_time: Timespec, // when was the pool last distributed
     pub minted: Coin,  // record the number of new coins ever minted, can't exceeds max supply
-    pub tau: Milli,  // a decaying parameter in monetery expansion process
+    pub tau: u64,  // a decaying parameter in monetery expansion process
 }
 ```
 
@@ -92,12 +92,14 @@ rewards of validator = total rewards * number of blocks proposed by the validato
 
 The remainder of division will become rewards of next period.
 
-The recording of block proposer is done in begin_block right before rewards distribution.
+The recording of block proposer is done in `begin_block` right before rewards distribution.
+
+### Monetary expansion
 
 Monetary expansion is designed to mint new coins for validator rewards, while keeping a fixed max total supply. The number of new coin minted at each period is defined as:
 
 ```
-minted coins = S * 0.45 * exp(-S/tau)
+minted coins = S * 0.45 * exp(max(-20, -S/tau))
 
 S: total stakings at current block when reward distribution happens
 ```
@@ -106,7 +108,7 @@ The parameter `tau` will decay each time rewards get distributed:
 
 ```
 tau(n) = tau(n-1) * 0.99986
-tau(0) = 145000000
+tau(0) = 1_4500_0000_0000_0000
 ```
 
 The number is calculated with [fixed-point arithmetic](https://docs.rs/fixed/), the exponencial function is computed with [continued fraction method](https://en.wikipedia.org/wiki/Exponential_function#Continued_fractions_for_ex) with 100 iterations.

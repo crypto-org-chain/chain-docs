@@ -9,7 +9,9 @@ Each transaction has an identifier (typically shortened as TX ID). It is current
 
 See [serialization](./serialization) for more details about the transaction binary format.
 
-Note: the initial prototype uses blake2s, but it may be later changed to blake2b or something more complex: e.g. transaction identifier is a root of a Merkle tree formed from different transaction components as leaves
+:::tip NOTE
+ the initial prototype uses blake2s, but it may be later changed to blake2b or something more complex: e.g. transaction identifier is a root of a Merkle tree formed from different transaction components as leaves
+:::
 
 ## Witness
 
@@ -28,25 +30,45 @@ To represent the underlying byte array in a textual form, [Bech32](https://githu
 
 ## Transaction Fees
 
-The initial prototype uses a linear fee system, see [staking](./staking) for details.
+The initial prototype uses a linear fee system. The minimal transaction fee is defined according to the formula:
+
+```
+<BASE_AMOUNT> + <PER_BYTE> * size
+```
+
+`BASE_AMOUNT` and `PER_BYTE` are special [network parameters](./network-parameters.md) in a fraction of CRO. `size` is the serialized transaction data’s size in bytes.
+
+To verify a [basic transaction](#transaction-types) one would need to check: 
+
+```
+sum(inputs amounts) or account.unbonded/bonded == sum(outputs amounts) + fee
+```
+
+The transaction fee goes to the [rewards pool](#rewards) to reward the validations.
 
 ## Transaction Types
 
 ### Basic Types (plain version):
 
 :::tip NOTE
-All these types should also contain metadata, such as network ID
+All these types should also contain metadata, such as [network ID](./chain-id-and-network-id.md#network-id)
 :::
 
-- TransferTx: UTXO-based transfer of funds, takes UTXO inputs, creates UTXO outputs - fee
-- DepositStakeTx: takes UTXOs inputs, deposits them in the specified account’s bonded amount - fee
-- UnbondStakeTx: takes nonce, amount, account and moves in the same account tokens from bonded to unbonded with timelock - fee
-- WithdrawUnbondedTx: takes nonce, account and creates UTXOs - fee
+| Tx type |  Inputs | Outputs|   Fees involved?  |   
+|----|---|---|---|---|
+|`TransferTx`    | UTXOs|UTXOs   |  Yes |   
+|`DepositStakeTx` |UTXOs| Depostit to specified account’s `bonded` amount  |  Yes|
+|`UnbondStakeTx`| Nonce, amount, account | Moves funds from `bonded` to `unbonded` under the same account with timelock| Yes|
+|`WithdrawUnbondedTx` | Nonce, account| UTXOs | Yes|
+
+Please also refer to this [flowchart](./send_your_first_transaction.md#types-of-transaction-and-address) that shows different types of transaction and how they interact with each other.
 
 ### Advanced Types:
+Besides the above-mentioned basic transactions, there are some advanced types of transactions related to the council node and service node state metadata management, for example:
+- `UnjailTx`: This transaction can be broadcasted to [un-jail](./staking.md#un-jailing) a node. It takes *nonce*, *account* and has to be signed by the account’s corresponding key.
+- `NodeJoinTx`: Anyone who wishes to become a council node can broadcast this transaction. It takes *council node data*, *staking address* and has to be signed by the node's staking key. Some basic requirements can be found  [here](./staking.md#joining-the-network). 
 
-- UnjailTx: takes nonce, account, signed by the account’s corresponding key
-- CreateCouncilNodeTx: takes council node data, staking address; signed by that node's staking key
+There will be no transaction fee for advanced types Tx in the initial prototype.
 
 #### TODO
 These transaction types are not yet specified:

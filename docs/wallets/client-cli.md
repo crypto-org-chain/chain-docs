@@ -53,7 +53,7 @@ $ CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42 ./bin/client-cli ...
 
 Similarly, we can also change the Tendermint URL when running ClientCLI, update environment variable `CRYPTO_CLIENT_TENDERMINT` with the Tendermint URL.
 
-## Options
+### Options
 
 A list of supported environment variables of ClientCLI is listed below:
 
@@ -70,16 +70,40 @@ First of all, you will need a wallet to store and spend your CRO.
 
 ### Create Wallet
 
-You can create a new wallet with the name *"Default"*  by running
+Currently, `client-cli` supports two types of wallets: The *basic wallet* and the *HD ([Hierarchical Deterministic](https://en.bitcoin.it/wiki/Deterministic_wallet)) wallet*.
 
-```bash
-$ ./bin/client-cli wallet new --name Default
-Enter passphrase:
-Confirm passphrase:
-Wallet created with name: Default
-```
+- **Basic wallet**
 
-It is important that you keep the passphrase secure. There is **no way** to recover it, and you would not be able to access the funds in the wallet if you forget the passphrase.
+    You can create a new basic wallet with the name *"Default"*  by running
+
+    ```bash
+    $ ./bin/client-cli wallet new --name Default --type basic
+    Enter passphrase:
+    Confirm passphrase:
+    Wallet created with name: Default
+    ```
+
+-  **HD wallet**
+
+    For safety reasons, it is suggested that users should create their wallet in the form of an HD wallet to prevent loss or damage of the device.
+
+    Specifically, the HD wallet comes with a "seed phrase", which is serialized into a human-readable 24-word mnemonic. User can [restore](#restore-your-hd-wallet) their wallet and associated addresses with the seed phrase.
+
+
+    You can create a new HD wallet with the name *"Default_HD"*  by running
+
+    ```bash
+    $ ./bin/client-cli wallet new --name Default_HD --type hd
+    Enter passphrase:
+    Confirm passphrase:
+    Wallet created with name: Default_HD
+    Please store following mnemonic safely to restore your wallet later:
+    verify cram era dawn august jeans jeans region oxygen bleak pretty renew jungle street transfer distance easily more bone bar shove cute issue rubber
+    ```
+
+:::danger 
+It is important that you keep the passphrase (and mnemonic for HD wallet) secure, as there is **no way** to recover it. You would not be able to access the funds in the wallet if you forget the passphrase.
+:::
 
 ### List Wallets
 
@@ -89,6 +113,19 @@ Multiple wallets can be created when needed. We can list wallets saved under the
 $ ./bin/client-cli wallet list
 Wallet name: Default
 ```
+### Restore your HD wallet
+
+You can restore an HD wallet with the mnemonic, for example: 
+
+```bash
+$ ./bin/client-cli wallet restore --name  Default_HD
+Enter passphrase:
+Confirm passphrase:
+Enter mnemonic: verify cram era dawn august jeans jeans region oxygen bleak pretty renew jungle street transfer distance easily more bone bar shove cute issue rubber
+Confirm mnemonic: verify cram era dawn august jeans jeans region oxygen bleak pretty renew jungle street transfer distance easily more bone bar shove cute issue rubber
+Wallet restored with name: Default_HD
+```
+
 
 ## 2. Funds Transfer
 
@@ -132,6 +169,7 @@ Enter timelock (seconds from UNIX epoch) (leave blank if output is not time lock
 More outputs? [yN] N
 Enter view keys (comma separated) (leave blank if you don't want any additional view keys in transaction): 0253be0b7af1cddc7a80207ef1a0b647f5649670415a8417424f23210569c28173
 ```
+
 
 ## 3. Staking Operations
 

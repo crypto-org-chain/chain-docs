@@ -69,123 +69,58 @@ We  will use  the development tool  [dev-utils](https://github.com/crypto-com/ch
 
 - Replace `{WALLET_ADDRESS}`, `{PUB_KEY}` and `{GENESIS_TIME}` with the information obtained above.
 
-	```json
-	
+```json
 	{
-	    "distribution": {
-	        "{WALLET_ADDRESS}": "2500000000000000000",
-	        "0x20a0bee429d6907e556205ef9d48ab6fe6a55531": "2500000000000000000",
-	        "0x35f517cab9a37bc31091c2f155d965af84e0bc85": "2500000000000000000",
-	        "0x3ae55c16800dc4bd0e3397a9d7806fb1f11639de": "1250000000000000000",
-	        "0x71507ee19cbc0c87ff2b5e05d161efe2aac4ee07": "1250000000000000000"
-	    },
-	    "unbonding_period": 60,
-	    "required_council_node_stake": "1250000000000000000",
-	    "initial_fee_policy": {
-	        "base_fee": "1.1",
-	        "per_byte_fee": "1.25"
-	    },
-	    "council_nodes": [
-	        {
-	            "staking_account_address": "0x3ae55c16800dc4bd0e3397a9d7806fb1f11639de",
-	            "consensus_pubkey_type": "Ed25519",
-	            "consensus_pubkey_b64": "{PUB_KEY}"
-	        }
-	    ],
-	    "launch_incentive_from": "0x35f517cab9a37bc31091c2f155d965af84e0bc85",
-	    "launch_incentive_to": "0x20a0bee429d6907e556205ef9d48ab6fe6a55531",
-	    "long_term_incentive": "0x71507ee19cbc0c87ff2b5e05d161efe2aac4ee07",
-	    "genesis_time": "{GENESIS_TIME}"
-	}
-	```
-
+    "distribution": {
+        "{WALLET_ADDRESS}": "2500000000000000000",
+        "0x3ae55c16800dc4bd0e3397a9d7806fb1f11639de": "1250000000000000000"
+    },
+    "unbonding_period": 60,
+    "required_council_node_stake": "1250000000000000000",
+    "jailing_config": {
+        "jail_duration": 86400,
+        "block_signing_window": 100,
+        "missed_block_threshold": 50
+    },
+    "slashing_config": {
+        "liveness_slash_percent": "0.1",
+        "byzantine_slash_percent": "0.2",
+        "slash_wait_period": 10800
+    },
+    "rewards_config": {
+        "monetary_expansion_cap": "6250000000000000000",
+        "distribution_period": 86400,
+        "monetary_expansion_r0": 450,
+        "monetary_expansion_tau": 14500000000000000,
+        "monetary_expansion_decay": 999860
+    },
+    "initial_fee_policy": {
+        "base_fee": "1.1",
+        "per_byte_fee": "1.25"
+    },
+    "council_nodes": {
+        "0x3ae55c16800dc4bd0e3397a9d7806fb1f11639de": [
+            "test",
+            "security@example.com",
+            {
+                "type": "tendermint/PubKeyEd25519",
+                "value": "{PUB_KEY}"
+            }
+        ]
+    },
+    "genesis_time": "{GENESIS_TIME}"
+}
+```
+  
 <a id="app-hash" />
 
 - Next, we generate the Genesis configuration based on the above configuration file.
 
 	```bash
-	$ ./target/debug/dev-utils genesis generate --genesis-dev-config-path ./dev-utils/dev-conf.json
-	"app_hash": "B3B873229A5FD2921801E592F3122B61C3CAE0C55FE0346369059F6643C751CC",
-	"app_state": {"distribution":{"0x20a0bee429d6907e556205ef9d48ab6fe6a55531":["2500000000000000000","ExternallyOwnedAccount"],"0x35f517cab9a37bc31091c2f155d965af84e0bc85":["2500000000000000000","ExternallyOwnedAccount"],"0x3a102b53a12334e984ef51fda0baab1768116363":["2500000000000000000","ExternallyOwnedAccount"],"0x3ae55c16800dc4bd0e3397a9d7806fb1f11639de":["1250000000000000000","ExternallyOwnedAccount"],"0x71507ee19cbc0c87ff2b5e05d161efe2aac4ee07":["1250000000000000000","ExternallyOwnedAccount"]},"launch_incentive_from":"0x35f517cab9a37bc31091c2f155d965af84e0bc85","launch_incentive_to":"0x20a0bee429d6907e556205ef9d48ab6fe6a55531","long_term_incentive":"0x71507ee19cbc0c87ff2b5e05d161efe2aac4ee07","network_params":{"initial_fee_policy":{"constant":1001,"coefficient":1025},"required_council_node_stake":"1250000000000000000","unbonding_period":60},"council_nodes":[{"staking_account_address":"0x3ae55c16800dc4bd0e3397a9d7806fb1f11639de","consensus_pubkey_type":"Ed25519","consensus_pubkey_b64":"EIosObgfONUsnWCBGRpFlRFq5lSxjGIChRlVrVWVkcE="}]}
+	$ ./target/debug/dev-utils genesis generate --genesis_dev_config_path ./dev-utils/dev-conf.json -i
 	```
 
-We now have the initial `app_hash`and  `app_state`. In the above example, the App Hash is  `B3B87...751CC`.
 
-#### Step 1d) Update Tendermint Genesis file
-
-Copy the genesis configuration [prepared previously](#app-hash),  append it to `~/.tendermint/config/genesis.json` such that the ``genesis.json`` file looks similar to the following:
-
-```diff
-{
-  "genesis_time": "2019-05-21T09:47:56.206264Z",
-  "chain_id": "test-chain-y3m1e6-AB",
-  "consensus_params": {
-    "block": {
-      "max_bytes": "22020096",
-      "max_gas": "-1",
-      "time_iota_ms": "1000"
-    },
-    "evidence": { "max_age": "100000" },
-    "validator": { "pub_key_types": ["ed25519"] }
-  },
-  "validators": [
-    {
-      "address": "91A26F2D061827567FE1E2ADC1C22206D4AD0FEF",
-      "pub_key": {
-        "type": "tendermint/PubKeyEd25519",
-        "value": "MFgW9OkoKufCrdAjk7Zx0LMWKA/0ixkmuBpO0flyRtU="
-      },
-      "power": "10",
-      "name": ""
-    }
-  ],
-+ "app_hash": "B3B873229A5FD2921801E592F3122B61C3CAE0C55FE0346369059F6643C751CC",
-+  "app_state": {
-+    "distribution": {
-+      "0x20a0bee429d6907e556205ef9d48ab6fe6a55531": [
-+        "2500000000000000000",
-+        "ExternallyOwnedAccount"
-+      ],
-+      "0x35f517cab9a37bc31091c2f155d965af84e0bc85": [
-+        "2500000000000000000",
-+       "ExternallyOwnedAccount"
-+      ],
-+      "0x3a102b53a12334e984ef51fda0baab1768116363": [
-+        "2500000000000000000",
-+        "ExternallyOwnedAccount"
-+      ],
-+      "0x3ae55c16800dc4bd0e3397a9d7806fb1f11639de": [
-+        "1250000000000000000",
-+        "ExternallyOwnedAccount"
-+      ],
-+      "0x71507ee19cbc0c87ff2b5e05d161efe2aac4ee07": [
-+        "1250000000000000000",
-+        "ExternallyOwnedAccount"
-+      ]
-+    },
-+    "launch_incentive_from": "0x35f517cab9a37bc31091c2f155d965af84e0bc85",
-+    "launch_incentive_to": "0x20a0bee429d6907e556205ef9d48ab6fe6a55531",
-+    "long_term_incentive": "0x71507ee19cbc0c87ff2b5e05d161efe2aac4ee07",
-+    "network_params": {
-+      "initial_fee_policy": {
-+        "constant": 1001,
-+        "coefficient": 1025
-+      },
-+      "required_council_node_stake": "1250000000000000000",
-+      "unbonding_period": 60
-+    },
-+    "council_nodes": [
-+      {
-+        "staking_account_address": "0x3ae55c16800dc4bd0e3397a9d7806fb1f11639de",
-+        "consensus_pubkey_type": "Ed25519",
-+        "consensus_pubkey_b64": "EIosObgfONUsnWCBGRpFlRFq5lSxjGIChRlVrVWVkcE="
-+      }
-+    ]
-+  }
-+}
-```
-
-By adding the extra fields( `app_hash` and `app_state`), we obtained the complete `genesis.json` file.
 
 ## Step 2.  Start Transaction Enclaves
 

@@ -70,6 +70,9 @@ Besides the above-mentioned basic transactions, there are some advanced types of
 
 There will be no transaction fee for advanced types Tx in the initial prototype.
 
+## Cross-currency transactions and settlements
+A proof of concept on the cross-currency transfers and settlement on CRO can be found in this [repository](https://github.com/crypto-com/settlement-cro). It demonstrates how to configure [Interledger](https://github.com/interledger) nodes for performing CRO-ETH cross-currency transactions between the Ethereum network (testnet or mainnet) and the CRO devnet.
+
 #### TODO
 These transaction types are not yet specified:
 

@@ -1,35 +1,29 @@
 # Consensus
 
-Crypto.com Chain prototype uses Tendermint Core as its consensus algorithm.
+Crypto.com Chain prototype uses Tendermint Core as its consensus algorithm. It utilizes the [ABCI](https://docs.tendermint.com/master/spec/abci/) (Application BlockChain Interface), which allows applications written in different languages to interact with the blockchain. 
 
-It utilizes the ABCI (Application BlockChain Interface).
+This interface allows a "plugging" custom applications with Tendermint. Specifically, if the application is written in Go, it can be linked directly with the chain; otherwise, a connection can be established via 3 TCP or Unix sockets. The details of this interface can be found [here](https://docs.tendermint.com/master/spec/abci/abci.html#overview).
 
-This allows "plugging" custom applications with Tendermint.
+As Crypto.com Chain Core code is written in Rust, we utilize (and aim to continually improve) the [rust-abci](https://github.com/tendermint/rust-abci/) library. 
 
-If the application is written in Go, it can be linked directly; if it's written in other languages, it communicates over 3 TCP or Unix sockets.
-
-The details of this interface can be found on: [tendermint.com/docs/spec/abci/abci.html](https://docs.tendermint.com/master/spec/abci/abci.html#overview)
-
-As Crypto.com Chain Core code is written in Rust, we utilize (and aim to continually improve) the [rust-abci](https://github.com/tendermint/rust-abci/) library.
-
-What is executed when by the consensus engine and by the ABCI application can be seen in [this diagram](https://blog.cosmos.network/tendermint-in-a-nutshell-39d9f7f66ad7).
+For the overall architecture of Tendermint Core consensus engine with the ABCI, please refer to this [infographic](https://github.com/mobfoundry/hackatom/raw/master/tminfo.pdf) and this [guide](https://docs.tendermint.com/master/app-dev/app-architecture.html).
 
 
 ## Client: Interacting with the blockchain
 
-To query a blockchain or submit a transaction, one can use the Tendermint RPC for that.
-
-The details of the RPC mechanism can be found on: [tendermint.com/rpc/](https://tendermint.com/rpc/#introduction)
+To query a blockchain or submit a transaction, one can use the [Tendermint RPC]( https://docs.tendermint.com/master/tendermint-core/rpc.html) for that. Details of this RPC and its mechanism can be found in [here](https://docs.tendermint.com/master/rpc/).
 
 Currently, it supports 3 methods:
 
 1. URI over HTTP
-2. JSON-RPC over HTTP
-3. JSON-RPC over WebSockets
+1. JSON-RPC over HTTP
+1. JSON-RPC over WebSockets
 
 The RPC HTTP server is executed on every full node. The RPC methods are equivalent, but WebSockets allow realtime subscription to different events.
 
-Note that Tendermint RPC is for internal use only, as it doesn’t support rate-limiting, authentication etc., so it shouldn’t be directly exposed to the internet.
+:::tip NOTE
+  Tendermint RPC is for internal use only, as it doesn’t support rate-limiting, authentication etc., so it shouldn’t be directly exposed to the internet.
+:::
 
 At this moment, it’s also recommended to use `tendermint lite` as a local proxy for the Chain client libraries when connecting to remote full nodes.
 
@@ -47,24 +41,27 @@ This method takes “tx” parameter which is application-specific binary data (
 
 Currently the main usage is that given a path “account”, one can query the current “staked state” of some address (which is provided as the “data” field).
 
-## APP HASH
+## Application hash
 
-Tendermint expects the ABCI application to be deterministic and consistency is checked that each instance, given the same input (block/consensus events + transaction data), updates its state in the same way and calculates the same “application hash” which is a compact representation of the overall ABCI application state.
+The **“application hash”** is a compact representation of the overall ABCI application state. In Tendermint, ABCI applications are expected to be deterministic. Therefore, given the same input (block/consensus events + transaction data), one can expect that the applications will update its state in the same way. Eventually, we can compare the hash value of its application state with the others and verify the consistency.
 
-In Chain, it is a Blake2s hash of several components:
+In Crypto.com Chain, the application hash is a [Blake2s](https://blake2.net/) hash of several components:
 
-- root of a Merkle tree of a valid transactions in a given block
-- root of a sparse Merkle trie of staked states (see [accounting details](./transaction-accounting-model))
-- binary serialized state of rewards pool (see [serialization](./serialization) for details on Chain binary format and [genesis](./genesis) for details on “state”)
+- Root of a Merkle tree of a valid transactions in a given block;
+- Root of a sparse Merkle trie of staked states (see [accounting details](./transaction-accounting-model));
+- Binary serialized state of rewards pool (see [serialization](./serialization) for details on Chain binary format and [genesis](./genesis) for details on “state”);
+- Serialised [network parameters](./network-parameters.md).
 
 ## Conventions
 
 As [genesis](./genesis) information is taken from the Ethereum network, the same address format is used (i.e. hexadecimal encoding of 20-bytes from a keccak-256 hash of a secp256k1 public key).
 
-For Tendermint data, its conventions must be followed (e.g. validator keys are Ed25519, base64-encoded … “addresses” are the first 20 bytes of SHA256 of the raw public key bytes).
+For Tendermint data, its conventions must be followed:
+ - *Validator Key pair*: base64-encoded Ed25519 key-pair;
+ - *Addresses*: the first 20 bytes of SHA256 of the raw public key bytes.
 
 For Crypto.com Chain, it has the following conventions:
 
-- Chain-ID: this is a string in Tendermint’s genesis.json. In Crypto.com Chain, it should end with two hex digits.
-- Network-ID: a single byte determined by the two last hex digits of Chain-ID. It is included in metadata of every transaction
-- Transactions, addresses etc.: see transaction [binary serialization](./serialization), [accounting model](./transaction-accounting-model), [addresses / witness](./signature-schemes) and [format / types](./transaction)
+- *Chain-ID*: this is a string in Tendermint’s genesis.json. In Crypto.com Chain, it should end with two hex digits;
+- [Network-ID](./chain-id-and-network-id): a single byte determined by the two last hex digits of Chain-ID. It is included in metadata of every transaction to specify the network;
+- Transactions, addresses etc.: Please refer to transaction [binary serialization](./serialization), [accounting model](./transaction-accounting-model), [addresses / witness](./signature-schemes) and [format / types](./transaction).

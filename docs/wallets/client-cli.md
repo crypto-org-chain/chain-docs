@@ -173,4 +173,35 @@ Enter view keys (comma separated) (leave blank if you don't want any additional 
 
 ## 3. Staking Operations
 
-TODO
+### Deposit
+To bond funds, one can deposit funds from a *transfer* address to a *staking* address by
+
+```bash
+$ ./bin/client-cli transaction new --name Default --type Deposit 
+```
+Funds will then be `bonded` and locked until the `unbonding_period` has passed. 
+
+### Withdraw
+On the other hand, we can create the following transaction to unbond staked funds
+```bash
+$ ./bin/client-cli transaction new --name Default --type Withdraw
+``` 
+Please also refer to this [diagram](../getting-started/send_your_first_transaction.md#types-of-transaction-and-address)  for interaction between *staking address* and *transfer address*
+
+## 4. Advance Operations
+
+### Joining the network as a validator
+
+Anyone who wishes to become a validator can submit a `NodeJoinTx` by 
+```bash
+$ ./bin/client-cli transaction new --name Default --type node-join
+```
+See [here](../getting-started/staking.md#joining-the-network) for the actual requirement of becoming a validator.
+
+### Unjailing a validator
+
+Validator could be punished and [jailed](../getting-started/staking.md#jailing) due to network misbehaviour. After the jailing period has passed, one can broadcast a `UnjailTx` to unjail the validator and resume its normal operations by
+
+```bash
+$ ./bin/client-cli transaction new --name Default --type unjail
+```

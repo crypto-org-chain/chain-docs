@@ -36,10 +36,27 @@ pub struct CouncilNode {
 ### Joining the network
 Anyone who wishes to become a council node can submit a NodeJoinTx; this transaction is considered to be valid as long as:
 
-1. The associated staking account has bonded amount >= `COUNCIL_NODE_MIN_STAKE` and is not punished
+1. The associated staking account has `bonded` amount >= `COUNCIL_NODE_MIN_STAKE` and is not [punished](#punishments);
 1. There is no other validator with the same `staking_address` or the `consensus_pubkey`
 
-The top `MAX_VALIDATORS` (ordered by the voting power) would put to the active validator set in `END_BLOCK`.
+####  Voting power and proposer selection
+At the beginning of each round, a council node will be chosen deterministically to be the block proposer.
+
+The chance of being a proposer is directly proportional to their *voting power* at that time, which, in general, is equal to the `bonded` amount (rounded to the whole unit) in the associated staking address of the council node.
+
+The top `MAX_VALIDATORS` with the most `bonded` amount would put to the *active* validator set in `END_BLOCK`. If a validator's `bonded` amount is below the top `MAX_VALIDATORS`, It will be considered as *non-active* and would not be able to take part in the consensus. For example, 
+
+- If the number of *active* validators < `MAX_VALIDATORS`:
+
+    |    |  `bonded` amount < `COUNCIL_NODE_MIN_STAKE` |  `bonded` amount => `COUNCIL_NODE_MIN_STAKE` | 
+    |----|---|---|
+    | Validator's voting power |  Set to 0 |  Set to the `bonded` amount| 
+
+- On the other hand, If the number of *active* validators = `MAX_VALIDATORS`: 
+
+    |    |  `bonded` amount is below the top `MAX_VALIDATORS` |  Otherwise | 
+    |----|---|---|
+    | Validator's voting power |  Set to 0 |  Set to the `bonded` amount| 
 
 
 
@@ -65,7 +82,7 @@ pub struct RewardsPool {
 
 ### Reward distribution
 
-Rewards are distributed periodicly (e.g. daily), rewards are accumulated during each period, and block proposers are recorded. At the end of each period, validators will receive a portion of the 'reward pool' as a reward for participating in the consensus process. Specifically, the reward is proportional to the number of blocks that were successfully proposed by the validator; it is calculated as follows:
+Rewards are distributed periodically (e.g. daily), rewards are accumulated during each period, and block proposers are recorded. At the end of each period, validators will receive a portion of the 'reward pool' as a reward for participating in the consensus process. Specifically, the reward is proportional to the number of blocks that were successfully proposed by the validator; it is calculated as follows:
 
 ```
 rewards of validator = total rewards * number of blocks proposed by the validator / total number of blocks
@@ -116,7 +133,7 @@ Punishments for a validator are triggered when they either make a *byzantine fau
     be configured during genesis (currently, changing these network parameters at runtime is not supported). Tendermint
     passes signing information to ABCI application as `last_commit_info` in `BeginBlock` request.
 
-:::tip EXAMPLE:
+:::tip Example:
     For example, if `BLOCK_SIGNING_WINDOW` is `100` blocks and `MISSED_BLOCK_THRESHOLD` is `50` blocks, a validator will be
     marked as **non-live** if they fail to successfully sign at least `50` blocks in last `100` blocks.
 :::
@@ -271,22 +288,25 @@ So each component could possibly be represented as MPT and these MPTs would then
 
 Besides committing all the relevant changes and computing the resulting `APP_HASH` in `BlockCommit`; for all changes in *Accounts*, the implementation needs to signal `ValidatorUpdate` in `EndBlock`.
 
- For example, if the changes are relevant to the `bonded` amount of the council node’s staking address and the validator is not jailed: 
+ For example, when the number of *active validators* is less then `MAX_VALIDATORS`:
+ 
+ -  When the changes are relevant to the `bonded` amount of the council node’s staking address and the validator is not jailed: 
 
-- If the `bonded` amount changes and < `COUNCIL_NODE_MIN_STAKE`, then the validator’s power should be set to 0;
-- If the `bonded` amount changes and >= `COUNCIL_NODE_MIN_STAKE`, then the validator’s power should be set to that amount.
+    - If the `bonded` amount changes and < `COUNCIL_NODE_MIN_STAKE`, then the validator’s voting power should be set to 0;
+    - If the `bonded` amount changes and >= `COUNCIL_NODE_MIN_STAKE`, then the validator’s voting power should be set to that amount (rounded to the whole unit).
 
-If the changes are relevant to the jailing condition of the council node’s staking address:
+- When the changes are relevant to the jailing condition of the council node’s staking address:
 
-- If the `jailed_until` changes to `Some(...)` (i.e. the node is being *jailed)*, then the validator’s power should be set to 0;
-- If the `jailed_until` changes to `None` (i.e. the node was *un-jailed*) and `bonded` amount >= `COUNCIL_NODE_MIN_STAKE`, then the validator’s power should be set to the `bonded` amount.
+    - If the `jailed_until` changes to `Some(...)` (i.e. the node is being *jailed)*, then the validator’s power should be set to 0;
+    - If the `jailed_until` changes to `None` (i.e. the node was *un-jailed*) and `bonded` amount >= `COUNCIL_NODE_MIN_STAKE`, then the validator’s power should be set to the `bonded` amount (rounded to the whole unit).
 
 
-It can be summarized in the following table:
-|    |   `bonded` <  `COUNCIL_NODE_MIN_STAKE` |  `bonded` >=  `COUNCIL_NODE_MIN_STAKE` but *Jailed* | `bonded` >=  `COUNCIL_NODE_MIN_STAKE` and *NOT jailed* | 
-|----|---|---|---|---|
-|Validator's voting power| Set to 0 | Set to 0| Set to the `bonded` amount| 
+    It can be summarized in the following table:
+    |    |   `bonded` <  `COUNCIL_NODE_MIN_STAKE` |  `bonded` >=  `COUNCIL_NODE_MIN_STAKE` but *Jailed* | `bonded` >=  `COUNCIL_NODE_MIN_STAKE` and *NOT jailed* | 
+    |----|---|---|---|---|
+    |Validator's voting power| Set to 0 | Set to 0| Set to the `bonded` amount| 
 
+On the other hand, If the number of the current *active* validators is equal to  `MAX_VALIDATORS`, the validator's voting power will also be depended on whether its `bonded` amount is at the top `MAX_VALIDATORS`, please refer to the [previous section](#voting-power-and-proposer-selection)
 
 ### InitChain
 

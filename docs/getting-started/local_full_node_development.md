@@ -19,13 +19,15 @@ Firstly, we will need a wallet to receive the genesis funds.
 
 To create a wallet, currently, we have [client-rpc](https://github.com/crypto-com/chain/client-rpc) and [client-cli](https://github.com/crypto-com/chain/client-cli) available for this purpose. We will be using [client-cli](https://github.com/crypto-com/chain/client-cli) in this guide.
 
-- Create a new wallet with the name "Default" by running
+- Create a new *basic* wallet with the name "Default" by running
 
   ```bash
-   ./target/debug/client-cli wallet new --name Default
+   ./target/debug/client-cli wallet new --name Default --type basic
   ```
 
   You will be prompted to enter a passphrase.
+
+  **Note**: The client-cli also supports HD wallet with mnemonic seed. Kindly follow this [instruction](../wallets/client-cli.md#wallet-management) to create your HD wallet.
   
 - Generate a staking address for the wallet to receive genesis funds. You will be prompted to enter the wallet passphrase again to verify.  
 

@@ -235,9 +235,9 @@ The communication is similar to the one described in the transaction query encla
 * the requesting TDBE presents the client-side X.509 certificate with the IAS response payload in the v3 extension -- the responding TDBE verifies its content (response is OK and signed by IAS, the code is the same as the one it is executing, etc.) and vice versa.
 
 1) after establishing the TLS session, the requesting TDBE either sends a key retrieval or a data retrieval request
-2) the responding TDBE relays this request to its transaction validation enclave that returns a sealed response
-3) the responding TDBE sends back the response to the requesting TDBE
-4) the requesting TDBE passes seals the response and passes it to its transaction validation enclave
+2) the responding TDBE relays this request to its transaction validation enclave that returns a response (sealed for the responding TDBE)
+3) the responding TDBE unseals and sends back the response to the requesting TDBE
+4) the requesting TDBE seals the response and passes it to its transaction validation enclave
 5) the transaction validation enclave verifies the response: for the key, it verifies signatures of all participating validators on the payloads to generate the key from (and that
 they are indeed correct validators) and seals it in its memory; for the data, it runs a basic validation, seals each transaction and lets its wrapper to persist it in the local database. 
 

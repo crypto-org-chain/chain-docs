@@ -21,8 +21,8 @@ For the ease of development, the transaction validation happens in a separate pr
 
 In production deployment, both of these processes should be on the same machine and hence use IPC as the underlying transport for the 0MQ messages. In development, other transport mechanisms (e.g. TCP) can be used and processes could be in different locations, for example:
 
-- Chain ABCI is on executed on the developer laptop (any operating system), and the transaction validation enclave runs inside a Docker container (using the software-simulation mode).
-- Chain ABCI is on executed on the developer laptop (any operating system), and the transaction validation enclave runs on a remote Linux machine (using the hardware mode).
+- Chain ABCI is executed on the developer laptop (any operating system), and the transaction validation enclave runs inside a Docker container (using the software-simulation mode).
+- Chain ABCI is executed on the developer laptop (any operating system), and the transaction validation enclave runs on a remote Linux machine (using the hardware mode).
 
 ### Data sealing
 

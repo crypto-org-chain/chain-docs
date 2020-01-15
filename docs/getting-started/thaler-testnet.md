@@ -1,134 +1,241 @@
-# Thaler Testnet: Running a Full Node (Linux only)
+# Thaler Testnet: Running Nodes (Linux only)
 
 The Crypto.com Chain Testnet has been named as **“Thaler”**.
 
 This is an early tutorial for the developers and brave and patient super-early adopters.
 
-## Step 0. Install Intel SGX SDK 2.6 and other pre-requisites
+## Common Setup
+
+### Step 0. Install Intel SGX SDK 2.7 and other pre-requisites
 
 - Make sure your CPU supports SGX and it is enabled in BIOS. [This GitHub repository](https://github.com/ayeks/SGX-hardware) has more information about supported hardware and cloud vendors.
-  You can download the [Linux SGX SDK installers from the Intel Open Source website](https://01.org/intel-softwareguard-extensions/downloads/intel-sgx-linux-2.6-release).
+  You can download the [Linux SGX SDK installers from the Intel Open Source website](https://01.org/intel-softwareguard-extensions/downloads/intel-sgx-linux-2.7-release).
 
-- You may also need to install libzmq (e.g. `libzmq3-dev` package in Ubuntu 18.04).
+- Note that some motherboards may have only "software controlled" option where [an extra step is needed for enabling it](https://github.com/intel/linux-sgx/issues/354#issuecomment-447961815).
 
-## Step 1. Get Tendermint and Chain v0.0 released binaries
+- You may also need to install libzmq (e.g. libzmq3-dev package in Ubuntu 18.04).
+
+::: tip NOTE
+There is an Ubuntu-based Docker image `cryptocom/chain:latest` on Dockerhub that 
+has Intel PSW and other dependencies pre-installed 
+(you still need to have the SGX driver installed on the host and 
+expose it to the container by running docker with the `--device /dev/isgx` flag).
+:::
+
+
+### Step 1. Get Tendermint and Chain v0.2 released binaries
 
 Download the latest version of [Tendermint 0.32.\*](https://docs.tendermint.com/master/introduction/install.html#from-binary).
-Chain v0.0 can be [downloaded from GitHub](https://github.com/crypto-com/chain/releases/download/v0.0.3/crypto-com-chain-release-0.0.3.tar.gz).
+Chain v0.2 can be [downloaded from GitHub](https://github.com/crypto-com/chain/releases/download/v0.2.1/crypto-com-chain-release-0.2.1.tar.gz).
 
-## Step 2. Configure Tendermint
+::: warning CAUTION
+Crypto.com Chain v0.2 is not backwards compatible with v0.0 released earlier. So, if you were running a node with old
+version of Crypto.com Chain, you'll have to delete all the associated data.
+:::
+
+### Step 2. Configure Tendermint
 
 After placing all binaries on the path. You can initialize Tendermint with `tendermint init`.
 In `.tendermint/config/`, change the content of `genesis.json` to:
 
 ```
 {
-   "genesis_time":"2019-09-16T02:26:51.366017Z",
-   "chain_id":"testnet-thaler-crypto-com-chain-42",
-   "consensus_params":{
-      "block":{
-         "max_bytes":"22020096",
-         "max_gas":"-1",
-         "time_iota_ms":"1000"
-      },
-      "evidence":{
-         "max_age":"100000"
-      },
-      "validator":{
-         "pub_key_types":[
-            "ed25519"
-         ]
-      }
-   },
-   "validators":[
-   ],
-   "app_hash":"4BBC5A3CBD174BF5BE631858A17AFAF047B27B732716459EA8698F57D5B093C0",
-   "app_state":{
-      "distribution":{
-         "0x0dd45e740a94a44ca8a6ceec3e65dca7ae5465d7":[
-            "5000000000000000",
-            "ExternallyOwnedAccount"
-         ],
-         "0x138fd36faa6d476e09c09f840db5f34e6ae16c9e":[
-            "0",
-            "ExternallyOwnedAccount"
-         ],
-         "0x22b8dca309c885955c9b5ba5b57182e08746a71d":[
-            "0",
-            "ExternallyOwnedAccount"
-         ],
-         "0x3f4229a55e2dc39014f0717487241f6e691abb2d":[
-            "5000000000000000",
-            "ExternallyOwnedAccount"
-         ],
-         "0x6dcda7d2fff9edeff00d67fc77baf247d8bc6fbd":[
-            "4990000000000000000",
-            "ExternallyOwnedAccount"
-         ],
-         "0xb4cc1eb96fc457193a38422d3a880cc92a3565ef":[
-            "4990000000000000000",
-            "ExternallyOwnedAccount"
-         ],
-         "0xd8e204d6bac6e7e2257520e29027cfbe9a1cbc55":[
-            "5000000000000000",
-            "ExternallyOwnedAccount"
-         ],
-         "0xe80c82f5d02e688eef1932c067d7c63009969e2d":[
-            "0",
-            "ExternallyOwnedAccount"
-         ],
-         "0xfc5ebc7a34b5f4e46d9c443eb1f44a64a2ec71bf":[
-            "5000000000000000",
-            "ExternallyOwnedAccount"
-         ]
-      },
-      "launch_incentive_from":"0x22b8dca309c885955c9b5ba5b57182e08746a71d",
-      "launch_incentive_to":"0x138fd36faa6d476e09c09f840db5f34e6ae16c9e",
-      "long_term_incentive":"0xe80c82f5d02e688eef1932c067d7c63009969e2d",
-      "network_params":{
-         "initial_fee_policy":{
-            "constant":1000,
-            "coefficient":1001
-         },
-         "required_council_node_stake":"5000000000000000",
-         "unbonding_period":60
-      },
-      "council_nodes":[
-         {
-            "staking_account_address":"0xfc5ebc7a34b5f4e46d9c443eb1f44a64a2ec71bf",
-            "consensus_pubkey_type":"Ed25519",
-            "consensus_pubkey_b64":"hPpJH490AJ/f4ab18lJ0G3H/NP9zVSd3erZBk3Z4Ago="
-         },
-         {
-            "staking_account_address":"0x0dd45e740a94a44ca8a6ceec3e65dca7ae5465d7",
-            "consensus_pubkey_type":"Ed25519",
-            "consensus_pubkey_b64":"WjjJBtqUl//tmSPT6RW1AcsGHpagmE/8HBPyj/RNTOw="
-         },
-         {
-            "staking_account_address":"0xd8e204d6bac6e7e2257520e29027cfbe9a1cbc55",
-            "consensus_pubkey_type":"Ed25519",
-            "consensus_pubkey_b64":"AVJQ7qFCnTiIiB4HjREblKfAHxEr6v2hGeSpMQr1vb0="
-         },
-         {
-            "staking_account_address":"0x3f4229a55e2dc39014f0717487241f6e691abb2d",
-            "consensus_pubkey_type":"Ed25519",
-            "consensus_pubkey_b64":"IxLkC/vhfNtkYan47GIMe2MnKgp2Y30HWflOfmqK6dc="
-         }
-      ]
-   }
+    "app_hash": "862D743DAAD548EB9A964AE1D176761A45F599D18636BFCA954B0859B218B5C4",
+    "app_state": {
+        "council_nodes": {
+            "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
+                "eastus",
+                "security@crypto.com",
+                {
+                    "type": "tendermint/PubKeyEd25519",
+                    "value": "h45eNtQhMBKpiJ5Us4zvv8ulGO7UZY23ffUgeG5fHLc="
+                }
+            ],
+            "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
+                "westeurope1",
+                "security@crypto.com",
+                {
+                    "type": "tendermint/PubKeyEd25519",
+                    "value": "VqVek6C0K+no0aD8/Otg+qdf/bnYfqb/HYRGAr2mUVE="
+                }
+            ]
+        },
+        "distribution": {
+            "0x4b75f275dde0a8c8e70fb84243adc97a3afb78f2": [
+                "UnbondedFromGenesis",
+                "5450000000000000000"
+            ],
+            "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
+                "Bonded",
+                "2500000000000000000"
+            ],
+            "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
+                "Bonded",
+                "50000000000000000"
+            ]
+        },
+        "network_params": {
+            "initial_fee_policy": {
+                "coefficient": 1250,
+                "constant": 1100
+            },
+            "jailing_config": {
+                "block_signing_window": 360,
+                "jail_duration": 86400,
+                "missed_block_threshold": 180
+            },
+            "max_validators": 50,
+            "required_council_node_stake": "5000000000000000",
+            "rewards_config": {
+                "distribution_period": 86400,
+                "monetary_expansion_cap": "2000000000000000000",
+                "monetary_expansion_decay": 999860,
+                "monetary_expansion_r0": 350,
+                "monetary_expansion_tau": 14500000000000000
+            },
+            "slashing_config": {
+                "byzantine_slash_percent": "0.200",
+                "liveness_slash_percent": "0.100",
+                "slash_wait_period": 10800
+            },
+            "unbonding_period": 3600
+        }
+    },
+    "chain_id": "testnet-thaler-crypto-com-chain-42",
+    "consensus_params": {
+        "block": {
+            "max_bytes": "22020096",
+            "max_gas": "-1",
+            "time_iota_ms": "1000"
+        },
+        "evidence": {
+            "max_age": "100000"
+        },
+        "validator": {
+            "pub_key_types": [
+                "ed25519"
+            ]
+        }
+    },
+    "genesis_time": "2020-01-14T07:28:01.876902Z",
+    "validators": [
+        {
+            "address": "13EC327FEBB95561685D05FA12A33BA985E6AD86",
+            "name": "eastus",
+            "power": "25000000000",
+            "pub_key": {
+                "type": "tendermint/PubKeyEd25519",
+                "value": "h45eNtQhMBKpiJ5Us4zvv8ulGO7UZY23ffUgeG5fHLc="
+            }
+        },
+        {
+            "address": "5F04CEE48B3BAD79EF7052F705473281AABAEB48",
+            "name": "westeurope1",
+            "power": "500000000",
+            "pub_key": {
+                "type": "tendermint/PubKeyEd25519",
+                "value": "VqVek6C0K+no0aD8/Otg+qdf/bnYfqb/HYRGAr2mUVE="
+            }
+        }
+    ]
 }
 ```
 
-For network configuration, in `.tendermint/config/config.toml`, you can put the following as `seeds`:
+For network configuration, in `.tendermint/config/config.toml`, you can put the following as `seeds` and `create_empty_blocks_interval`:
 
 ```
-seeds = "50269518a4c8ee22d95e5f79f9d85bb7dafde861@40.71.91.144:26656,cfd434eda488695d6c5ef164117283b7c3306ab3@40.71.91.141:26656,2236d9cb6be9fd1ceb85b4be9bfce811478fcfd3@13.69.24.163:26656,fad802ea87e0ef2cc0d70aa66a1bbf4730bf47b7@40.118.7.174:26656"
+seeds = "3ae3b20f2c22e161f5c7fdcd5109d12c86babfde@13.80.64.101:26656,f196af4ecf176cd279a3905c5bd0edb4436dfabd@13.82.183.37:26656"
+create_empty_blocks_interval = "60s"
 ```
 
-## Step 3. Run everything
+::: tip NOTE
+This page only shows the minimal setup.
+
+Depending on what you wish to test on the testnet, e.g. monitoring, you can refer to the [Tendermint documentation](https://docs.tendermint.com/master/tendermint-core/configuration.html) for more details.
+:::
+
+### Step 3. Run everything
 
 - Make sure `aesmd` service is running (you may potentially start it up manually with `LD_LIBRARY_PATH=/opt/intel/libsgx-enclave-common/aesm /opt/intel/libsgx-enclave-common/aesm/aesm_service`).
 
+- The full node (exposed for wallets / clients) and the council node (validator) have slightly different steps described in the following sections.
+
+## Running a full node (to serve data to wallets / clients)
+::: warning CAUTION
+This page only shows the minimal setup.
+
+You may want to disable unsafe operations in Tendermint configuration,
+restrict the incoming connections RPC connections (e.g. over NGINX or equivalent), want to execute the processes using supervisor or equivalent etc.
+:::
+
+### Step 3-a-1. Obtain and set the service provider credentials for development
+On the [Intel's developer portal](https://api.portal.trustedservices.intel.com/EPID-attestation),
+you can obtain credentials for the non-production Intel Attestation Service.
+Choose "unlinkable quotes".
+
+Once you obtained the credentials in the portal, set the following environment variables:
+- `SPID`: set it to the "Service Provider ID" value from the portal
+- `IAS_API_KEY`: set it to the primary or secondary API key from the portal
+
+### Step 3-a-2. Run everything
+
+- Start the tx-validation enclave app (in `tx-validation-HW-debug/`), e.g.:
+
+  ```
+  RUST_LOG=info ./tx-validation-app ipc://$HOME/enclave.socket
+  ```
+
+- Start the tx-query enclave app (in `tx-query-HW-debug/`), e.g.:
+
+```
+RUST_LOG=info ./tx-query-app 0.0.0.0:3322 ipc://$HOME/enclave.socket
+```
+
+- Start chain-abci, e.g.:
+
+  ```
+  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash FAEDA396163281569575CF55A20BDB8F65A90B482B65D494FEC907EAA7C5636A --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
+  ```
+
+- Finally, start Tendermint:
+
+  ```
+  tendermint node
+  ```
+
+## Running a council node (validator)
+::: warning CAUTION
+This page only shows the minimal setup.
+
+You may want to run full nodes (see above)
+as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html) and [local notes on production deployment](notes-on-production-deployment.md)), restrict your validator connections to only connect to your full nodes,
+test secure storage of validator keys etc.
+:::
+
+### Step 3-b-1. Create a staking address
+This can be done, for example, with the client-cli command-line tool. Set the required environment variables:
+
+- `CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42
+- `CRYPTO_CLIENT_TENDERMINT <YOUR FULL NODE, e.g. ws://localhost:26657/websocket or ws://13.80.66.193:26657/websocket>`
+
+And run (see [more details](../wallets/client-cli.md)):
+```bash
+$ client-cli wallet new --name <WALLET_NAME> --type hd
+$ client-cli address new --name <WALLET_NAME> --type Staking
+```
+
+You should obtain a hexadecimal-encoded address, e.g. `0xa861a0869c02ab8b74c7cb4f450bcbeb1e472b9a`
+### Step 3-b-2. Deposit the minimal required stake
+Unless you have obtained the CRO testnet token before, simply send a message on [Gitter](https://gitter.im/crypto-com/community),
+stating who you are and your staking address (@devashishdxt or @lezzokafka would typically reply within a day).
+
+### Step 3-b-3. Create a validator key pair
+If you plan to test a production setting with the Tendermint Key Management System (KMS) tool,
+please see [production deployment notes](notes-on-production-deployment.md) how it can be converted at the current (0.7) version.
+In a development mode, the full key pair is located in the `priv_validator_key.json` file (generated with `tendermint init`). 
+The public key should be in the base64-encoded `R9/ktG1UifLZ6nMHNA/UZUaDiLAPWt+m9I4aujcAz44=`.
+
+### Step 3-b-4. Run everything
 - Start the the-validation enclave app (in `tx-validation-HW-debug/`), e.g.:
 
   ```
@@ -138,7 +245,7 @@ seeds = "50269518a4c8ee22d95e5f79f9d85bb7dafde861@40.71.91.144:26656,cfd434eda48
 - Start chain-abci, e.g.:
 
   ```
-  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash 4BBC5A3CBD174BF5BE631858A17AFAF047B27B732716459EA8698F57D5B093C0 --enclave_server ipc://$HOME/enclave.socket
+  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash 862D743DAAD548EB9A964AE1D176761A45F599D18636BFCA954B0859B218B5C4 --enclave_server ipc://$HOME/enclave.socket
   ```
 
 - Finally, start Tendermint:
@@ -146,6 +253,13 @@ seeds = "50269518a4c8ee22d95e5f79f9d85bb7dafde861@40.71.91.144:26656,cfd434eda48
   ```
   tendermint node
   ```
+
+### Step 3-b-5. Send a council node join request transaction
+As in Step 3-b-1, this can be done, for example, with `client-cli` with the required environment variables.
+
+```bash
+$ client-cli transaction new --name Default --type node-join
+```
 
 ## Thaler testnet block explorer and CRO faucet
 

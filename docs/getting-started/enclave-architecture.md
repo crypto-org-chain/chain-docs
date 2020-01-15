@@ -6,6 +6,26 @@ The primary initial use of Trusted Execution Environments (TEE) is for enforcing
 
 The initial version is based on Intel SGX, but in the long-term, it would be desirable to support other TEE technology stacks, such as Arm TrustZone or RISC-V Keystone.
 
+## Enclave Infrastructure Overview
+
+There are _three_ enclaves planned in Crypto.com Chain's transaction data confidentiality implementation:
+
+1. _Transaction validation enclave_ (**TVE**) responsible for
+
+   - validating transactions;
+   - persisting previously valid transactions (sealed to a local machine); and
+   - holding the current key (used for obfuscating or de-obfuscating transaction data).
+
+2. _Transaction query enclave_ (**TQE**) responsible for
+
+   - serving encryption and decryption requests from wallets / clients.
+
+3. _Transaction data bootstrapping enclave_ (**TDBE**) responsible for
+   - fetching current UTXO set transaction data; and
+   - handling periodic key generation operations.
+
+For a detailed description of how these enclaves work together, please refer to the [implementation plan](../../plan.md) of transaction data confidentiality.
+
 ## Transaction validation
 
 The validation of transactions that involve payment obfuscated transaction outputs (see [transaction types](./transaction) and [accounting model](./transaction-accounting-model)) need to happen inside enclaves.
@@ -24,17 +44,21 @@ In production deployment, both of these processes should be on the same machine 
 - Chain ABCI is executed on the developer laptop (any operating system), and the transaction validation enclave runs inside a Docker container (using the software-simulation mode).
 - Chain ABCI is executed on the developer laptop (any operating system), and the transaction validation enclave runs on a remote Linux machine (using the hardware mode).
 
+For further details, please refer to the [transaction flow chat](../../plan.md#transaction-validation-enclave-tve) between Tendermint, ABCI and transaction validation enclave.
+
 ### Data sealing
 
-As previous transaction data is needed for transaction validation, it needs to be persisted locally. The enclave uses the process of “data sealing” for this purposes. To make the data accessible for future upgrades and other enclaves, it should be sealed with MRSIGNER-derived keys.
+As previous transaction data is needed for transaction validation, it needs to be persisted locally. The enclave uses the process of “data sealing” for this purposes. To make the data accessible for future upgrades and other enclaves, it should be sealed with MRSIGNER-derived keys. For further details, please refer to [TEE primitives](../../plan.md#tee-primitives).
 
 ## Transaction data bootstrapping
 
 As old payment data becomes inaccessible due to the periodic key rotation (see [transaction privacy](./transaction-privacy)), newly joined nodes (or nodes that went offline for some time) would need a way to bootstrap the old transaction data by connecting to enclaves of remote nodes and requesting transaction data that the other nodes have locally sealed.
 
+For further details, please refer to this [implementation plan](../../plan.md#transaction-data-bootstrapping-enclave-tdbe) of **transaction data bootstrapping enclave**.
+
 ### Lite client inside enclaves
 
-Each enclave should internally run a lite client that would keep track of the validator set, so that it can safely store the latest “app hash” (see consensus).
+Each enclave should internally run a lite client that would keep track of the validator set, so that it can safely store the latest “app hash” (see [consensus](./consensus#application_hash)).
 
 ### Mutual attestation
 
@@ -51,6 +75,8 @@ As mentioned in [client flows](./client-flow), clients may not know their transa
 For this purpose, there needs to be an enclave that can unseal the previously stored transaction data, verify the client query and return the matching transactions.
 
 This process would again require establishing a secure connection channel between the client and the enclave (if it is remote) as in the transaction data bootstrapping – the difference is that it may only be one-side attested, as the client may not have access to the enclave architecture.
+
+For further details, please refer to this [documentation](../../plan.md#transaction-query-enclave-tqe-optional--for-client-infrastructure) on  **transaction query enclave**.
 
 ## Transaction creation
 

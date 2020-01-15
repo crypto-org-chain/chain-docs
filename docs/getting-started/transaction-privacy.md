@@ -2,11 +2,21 @@
 
 ## Motivation
 
-Payment data need confidentiality for many reasons, including compliance with different privacy regulations, fungibility properties etc. While confidentiality can be achieved through different means, Crypto.com Chain leverages symmetric encryption in Trusted Execution Environments for the following benefits:
+Payment data need confidentiality for many reasons, including compliance with different privacy regulations, fungibility properties etc. While confidentiality can be achieved through different means, Crypto.com Chain leverages symmetric encryption in _Trusted Execution Environments_ (**TEE**) for the following benefits:
 
-- Performance due to a low overhead
-- Auditability
-- Flexibility in terms of what computation can be done and how the data schema can evolve
+- _Flexibility_ in terms of what computation can be done and how the data schema can evolve.
+  As requirements for Crypto.com Chain change, it's important that the existing code and data remain
+  forwards-compatible. For example, one may extend the transaction format to support new signature schemes.
+
+- _Auditability with potentially fine-grained access control mechanisms_:
+  in the initial implementation, it's a separation of the permission to spend and the permission
+  to view transaction data, but it could be more flexible and fine-grained (e.g.
+  permission to view certain parts of transaction data).
+
+- _Performance due to a low overhead_: unlike, for example, fully homomorphic encryption in software,
+  the overhead of executing computation in TEE should be minimal
+  and the main cryptographic primitive is symmetric encryption which can be accelerated
+  by dedicated CPU instructions, such as AES-NI.
 
 ## Payloads
 

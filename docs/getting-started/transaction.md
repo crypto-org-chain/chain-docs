@@ -4,13 +4,14 @@
 
 Each transaction has an identifier (typically shortened as TX ID). It is currently defined as
 
-|blake2s_hash(SCALE-encoded transaction binary data)|
-|-|
+| blake2s_hash(SCALE-encoded transaction binary data) |
+| --------------------------------------------------- |
+
 
 See [serialization](./serialization) for more details about the transaction binary format.
 
 :::tip NOTE
- the initial prototype uses blake2s, but it may be later changed to blake2b or something more complex: e.g. transaction identifier is a root of a Merkle tree formed from different transaction components as leaves
+the initial prototype uses blake2s, but it may be later changed to blake2b or something more complex: e.g. transaction identifier is a root of a Merkle tree formed from different transaction components as leaves
 :::
 
 ## Witness
@@ -38,7 +39,7 @@ The initial prototype uses a linear fee system. The minimal transaction fee is d
 
 `BASE_AMOUNT` and `PER_BYTE` are special [network parameters](./network-parameters.md) in a fraction of CRO. `size` is the serialized transaction data’s size in bytes.
 
-To verify a [basic transaction](#transaction-types) one would need to check: 
+To verify a [basic transaction](#transaction-types) one would need to check:
 
 ```
 sum(inputs amounts) or account.unbonded/bonded == sum(outputs amounts) + fee
@@ -51,29 +52,33 @@ The transaction fee goes to the [rewards pool](#rewards) to reward the validatio
 ### Basic Types (plain version):
 
 :::tip NOTE
-All these types should also contain metadata, such as [network ID](./chain-id-and-network-id.md#network-id)
+All these types should also contain metadata, such as [network ID](./chain-id-and-network-id.md#network-id). Furthermore, the following four types of transactions will be obfuscated to provide [privacy protections](./transaction-privacy.md) to the users.
 :::
 
-| Tx type |  Inputs | Outputs|   Fees involved?  |   
-|----|---|---|---|---|
-|`TransferTx`    | UTXOs|UTXOs   |  Yes |   
-|`DepositStakeTx` |UTXOs| Depostit to specified account’s `bonded` amount  |  Yes|
-|`UnbondStakeTx`| Nonce, amount, account | Moves funds from `bonded` to `unbonded` under the same account with timelock| Yes|
-|`WithdrawUnbondedTx` | Nonce, account| UTXOs | Yes|
+| Tx type              | Inputs                 | Outputs                                                                      | Fees involved? |
+| -------------------- | ---------------------- | ---------------------------------------------------------------------------- | -------------- |
+| `TransferTx`         | UTXOs                  | UTXOs                                                                        | Yes            |
+| `DepositStakeTx`     | UTXOs                  | Depostit to specified account’s `bonded` amount                              | Yes            |
+| `UnbondStakeTx`      | Nonce, amount, account | Moves funds from `bonded` to `unbonded` under the same account with timelock | Yes            |
+| `WithdrawUnbondedTx` | Nonce, account         | UTXOs                                                                        | Yes            |
 
 Please also refer to this [flowchart](./send_your_first_transaction.md#types-of-transaction-and-address) that shows different types of transaction and how they interact with each other.
 
 ### Advanced Types:
+
 Besides the above-mentioned basic transactions, there are some advanced types of transactions related to the council node and service node state metadata management, for example:
-- `UnjailTx`: This transaction can be broadcasted to [un-jail](./staking.md#un-jailing) a node. It takes *nonce*, *account* and has to be signed by the account’s corresponding key.
-- `NodeJoinTx`: Anyone who wishes to become a council node can broadcast this transaction. It takes *council node data*, *staking address* and has to be signed by the node's staking key. Some basic requirements can be found  [here](./staking.md#joining-the-network). 
+
+- `UnjailTx`: This transaction can be broadcasted to [un-jail](./staking.md#un-jailing) a node. It takes _nonce_, _account_ and has to be signed by the account’s corresponding key.
+- `NodeJoinTx`: Anyone who wishes to become a council node can broadcast this transaction. It takes _council node data_, _staking address_ and has to be signed by the node's staking key. For further details on the process of joining the Crypto.com chain as a validator, please refer to this [documentation](./node-joining.md). 
 
 There will be no transaction fee for advanced types Tx in the initial prototype.
 
 ## Cross-currency transactions and settlements
+
 A proof of concept on the cross-currency transfers and settlement on CRO can be found in this [repository](https://github.com/crypto-com/settlement-cro). It demonstrates how to configure [Interledger](https://github.com/interledger) nodes for performing CRO-ETH cross-currency transactions between the Ethereum network (testnet or mainnet) and the CRO devnet.
 
 #### TODO
+
 These transaction types are not yet specified:
 
 - ChangeNetworkParamTX?

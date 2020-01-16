@@ -40,7 +40,7 @@ In `.tendermint/config/`, change the content of `genesis.json` to:
 
 ```
 {
-    "app_hash": "862D743DAAD548EB9A964AE1D176761A45F599D18636BFCA954B0859B218B5C4",
+    "app_hash": "94BB489D59D26358F4EBF8A024F3000DCBFA1F5D040BD0C88B18C64B45EABBAB",
     "app_state": {
         "council_nodes": {
             "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
@@ -48,7 +48,7 @@ In `.tendermint/config/`, change the content of `genesis.json` to:
                 "security@crypto.com",
                 {
                     "type": "tendermint/PubKeyEd25519",
-                    "value": "h45eNtQhMBKpiJ5Us4zvv8ulGO7UZY23ffUgeG5fHLc="
+                    "value": "PbzRZG6PgXr6UzHh3wcRMQd689bbEz28K4ZaMAqZDtQ="
                 }
             ],
             "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
@@ -56,18 +56,18 @@ In `.tendermint/config/`, change the content of `genesis.json` to:
                 "security@crypto.com",
                 {
                     "type": "tendermint/PubKeyEd25519",
-                    "value": "VqVek6C0K+no0aD8/Otg+qdf/bnYfqb/HYRGAr2mUVE="
+                    "value": "82/BWttvHOTmZ9sQlVQKkalijwCu/RJIEZDUURTEkc0="
                 }
             ]
         },
         "distribution": {
             "0x4b75f275dde0a8c8e70fb84243adc97a3afb78f2": [
                 "UnbondedFromGenesis",
-                "5450000000000000000"
+                "7850000000000000000"
             ],
             "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
                 "Bonded",
-                "2500000000000000000"
+                "100000000000000000"
             ],
             "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
                 "Bonded",
@@ -117,24 +117,24 @@ In `.tendermint/config/`, change the content of `genesis.json` to:
             ]
         }
     },
-    "genesis_time": "2020-01-14T07:28:01.876902Z",
+    "genesis_time": "2020-01-16T07:14:14.924984Z",
     "validators": [
         {
-            "address": "13EC327FEBB95561685D05FA12A33BA985E6AD86",
+            "address": "801B1708949EA320741F226782018E396F96A8CB",
             "name": "eastus",
-            "power": "25000000000",
+            "power": "1000000000",
             "pub_key": {
                 "type": "tendermint/PubKeyEd25519",
-                "value": "h45eNtQhMBKpiJ5Us4zvv8ulGO7UZY23ffUgeG5fHLc="
+                "value": "PbzRZG6PgXr6UzHh3wcRMQd689bbEz28K4ZaMAqZDtQ="
             }
         },
         {
-            "address": "5F04CEE48B3BAD79EF7052F705473281AABAEB48",
+            "address": "6712A23B73B44D2EF274105E90483B335E4F74E7",
             "name": "westeurope1",
             "power": "500000000",
             "pub_key": {
                 "type": "tendermint/PubKeyEd25519",
-                "value": "VqVek6C0K+no0aD8/Otg+qdf/bnYfqb/HYRGAr2mUVE="
+                "value": "82/BWttvHOTmZ9sQlVQKkalijwCu/RJIEZDUURTEkc0="
             }
         }
     ]

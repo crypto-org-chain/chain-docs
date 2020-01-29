@@ -8,7 +8,7 @@ please refer to our [testnet documentation](./thaler-testnet).
 :::
 
 By following this tutorial, you can compile and run latest version of Crypto.com Chain from scratch.
-With supported hardward, you can run the chain locally within a cup of coffee ☕. However, this document aims 
+With supported hardware, you can run the chain locally within a cup of coffee ☕. However, this document aims 
 to provide you a step-by-step guide to run Crypto.com Chain locally and not a guide for
 production usage.
 

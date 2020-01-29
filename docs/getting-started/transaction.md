@@ -52,15 +52,15 @@ The transaction fee goes to the [rewards pool](#rewards) to reward the validatio
 ### Basic Types (plain version):
 
 :::tip NOTE
-All these types should also contain metadata, such as [network ID](./chain-id-and-network-id.md#network-id). Furthermore, the following four types of transactions will be obfuscated to provide [privacy protections](./transaction-privacy.md) to the users.
+All these types should also contain metadata, such as [network ID](./chain-id-and-network-id.md#network-id). Furthermore, some of these transactions will be obfuscated to provide [privacy protections](./transaction-privacy.md) to the users.
 :::
 
-| Tx type              | Inputs                 | Outputs                                                                      | Fees involved? |
-| -------------------- | ---------------------- | ---------------------------------------------------------------------------- | -------------- |
-| `TransferTx`         | UTXOs                  | UTXOs                                                                        | Yes            |
-| `DepositStakeTx`     | UTXOs                  | Depostit to specified account’s `bonded` amount                              | Yes            |
-| `UnbondStakeTx`      | Nonce, amount, account | Moves funds from `bonded` to `unbonded` under the same account with timelock | Yes            |
-| `WithdrawUnbondedTx` | Nonce, account         | UTXOs                                                                        | Yes            |
+| Tx type              | Inputs                 | Outputs                                                                      | Fees involved? | Obfuscated? |
+| -------------------- | ---------------------- | ---------------------------------------------------------------------------- | -------------- | ----------- |
+| `TransferTx`         | UTXOs                  | UTXOs                                                                        | Yes            | Yes         |
+| `DepositStakeTx`     | UTXOs                  | Depostit to specified account’s `bonded` amount                              | Yes            | Yes         |
+| `WithdrawUnbondedTx` | Nonce, account         | UTXOs                                                                        | Yes            | Yes         |
+| `UnbondStakeTx`      | Nonce, amount, account | Moves funds from `bonded` to `unbonded` under the same account with timelock | Yes            | No          |
 
 Please also refer to this [flowchart](./send_your_first_transaction.md#types-of-transaction-and-address) that shows different types of transaction and how they interact with each other.
 
@@ -69,9 +69,9 @@ Please also refer to this [flowchart](./send_your_first_transaction.md#types-of-
 Besides the above-mentioned basic transactions, there are some advanced types of transactions related to the council node and service node state metadata management, for example:
 
 - `UnjailTx`: This transaction can be broadcasted to [un-jail](./staking.md#un-jailing) a node. It takes _nonce_, _account_ and has to be signed by the account’s corresponding key.
-- `NodeJoinTx`: Anyone who wishes to become a council node can broadcast this transaction. It takes _council node data_, _staking address_ and has to be signed by the node's staking key. For further details on the process of joining the Crypto.com chain as a validator, please refer to this [documentation](./node-joining.md). 
+- `NodeJoinTx`: Anyone who wishes to become a council node can broadcast this transaction. It takes _council node data_, _staking address_ and has to be signed by the node's staking key. For further details on the process of joining the Crypto.com chain as a validator, please refer to this [documentation](./node-joining.md).
 
-There will be no transaction fee for advanced types Tx in the initial prototype.
+Remarks: There will be no transaction fee for advanced types Tx in the initial prototype.
 
 ## Cross-currency transactions and settlements
 

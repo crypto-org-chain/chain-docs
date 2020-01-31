@@ -194,7 +194,7 @@ RUST_LOG=info ./tx-query-app 0.0.0.0:3322 ipc://$HOME/enclave.socket
 - Start chain-abci, e.g.:
 
   ```
-  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash FAEDA396163281569575CF55A20BDB8F65A90B482B65D494FEC907EAA7C5636A --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
+  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash 94BB489D59D26358F4EBF8A024F3000DCBFA1F5D040BD0C88B18C64B45EABBAB --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
   ```
 
 - Finally, start Tendermint:

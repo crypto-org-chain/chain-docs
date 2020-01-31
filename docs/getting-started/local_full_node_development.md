@@ -17,7 +17,7 @@ Firstly, we will need a wallet to receive the genesis funds.
 
 ### Step 1a) Create a Wallet
 
-To create a wallet, currently, we have [client-rpc](https://github.com/crypto-com/chain/client-rpc) and [client-cli](https://github.com/crypto-com/chain/client-cli) available for this purpose. We will be using [client-cli](https://github.com/crypto-com/chain/client-cli) in this guide.
+To create a wallet, currently, we have [client-rpc](https://github.com/crypto-com/chain/tree/master/client-rpc) and [client-cli](https://github.com/crypto-com/chain/tree/master/client-cli) available for this purpose. We will be using [client-cli](https://github.com/crypto-com/chain/tree/master/client-cli) in this guide.
 
 - Create a new *basic* wallet with the name "Default" by running
 
@@ -61,7 +61,7 @@ Details and field definitions of `genesis.json` can be found  [here](https://doc
 
 #### Step 1c) Create a Genesis configuration
 
-We  will use  the development tool  [dev-utils](https://github.com/crypto-com/chain/dev-utils) to generate the completed`genesis.json`:
+We  will use  the development tool  [dev-utils](https://github.com/crypto-com/chain/tree/master/dev-utils) to generate the completed`genesis.json`:
 
 - Create a  configuration file `dev-conf.json` in  ``~/chain/dev-utils/``
 - Obtain the following information for generating the configuration of our Genesis file:

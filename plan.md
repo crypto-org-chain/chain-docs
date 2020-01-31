@@ -30,7 +30,7 @@ on the [technical documentation website](https://crypto-com.github.io).
 We summarize the basic background here:
 
 * In the context of this document, TEE breaches would reduce confidentiality (there would still be a level of confidentiality, as only limited information is being broadcasted), but they would not lead to the loss of ledger integrity. For ledger integrity, Crypto.com Chain relies on Tendermint Core as its consensus algorithm.
-* Light clients (needed in enclaves for keeping track of validators) are expected to follow [the Tendermint light client](https://github.com/tendermint/tendermint/blob/master/docs/spec/consensus/light-client.md).
+* Light clients (needed in enclaves for keeping track of validators) are expected to follow [the Tendermint light client](https://github.com/tendermint/spec/tree/master/spec/consensus/light-client).
 * Binary serialization is using the [Simple Concatenated Aggregate Little-Endian (SCALE) codec, defined in Section B.1 of Polkadot RE Protocol Specification](https://github.com/w3f/polkadot-re-spec/blob/master/runtime-environment-spec/polkadot_re_spec.pdf).
 * Crypto.com Chain uses a hybrid transaction accounting model with different transaction types.
 For the purpose of simplifying discussion in this implementation plan, we will only consider this simplified UTXO-style transaction format:

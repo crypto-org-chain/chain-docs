@@ -48,15 +48,15 @@ The top `MAX_VALIDATORS` with the most `bonded` amount would put to the *active*
 
 - If the number of *active* validators < `MAX_VALIDATORS`:
 
-    |    |  `bonded` amount < `COUNCIL_NODE_MIN_STAKE` |  `bonded` amount => `COUNCIL_NODE_MIN_STAKE` | 
+    |    |  `bonded` amount < `COUNCIL_NODE_MIN_STAKE` |  `bonded` amount => `COUNCIL_NODE_MIN_STAKE` |
     |----|---|---|
-    | Validator's voting power |  Set to 0 |  Set to the `bonded` amount| 
+    | Validator's voting power |  Set to 0 |  Set to the `bonded` amount|
 
 - On the other hand, If the number of *active* validators = `MAX_VALIDATORS`: 
 
-    |    |  `bonded` amount is below the top `MAX_VALIDATORS` |  Otherwise | 
+    |    |  `bonded` amount is below the top `MAX_VALIDATORS` |  Otherwise |
     |----|---|---|
-    | Validator's voting power |  Set to 0 |  Set to the `bonded` amount| 
+    | Validator's voting power |  Set to 0 |  Set to the `bonded` amount|
 
 
 
@@ -68,11 +68,11 @@ To incentivise validators to run the network, rewards are accumulated and distri
 1. [Transaction Fees](./transaction.md#transaction-fee)
 1. Slashing of byzantine and non-live nodes
 
-The `RewardsPool` data structure stores all the information about remaining funds and distribution states:
+The `RewardsPoolState` data structure stores all the information about remaining funds and distribution states:
 
 ```
-pub struct RewardsPool {
-    pub period_bonus: Coin, // rewards accumulated from fees and slashing
+pub struct RewardsPoolState {
+    pub period_bonus: Coin, // rewards accumulated from fees and slashing during current period
     pub last_block_height: BlockHeight, // when was the pool last updated
     pub last_distribution_time: Timespec, // when was the pool last distributed
     pub minted: Coin,  // record the number of new coins ever minted, can't exceeds max supply
@@ -82,7 +82,7 @@ pub struct RewardsPool {
 
 ### Reward distribution
 
-Rewards are distributed periodically (e.g. daily), rewards are accumulated during each period, and block proposers are recorded. At the end of each period, validators will receive a portion of the 'reward pool' as a reward for participating in the consensus process. Specifically, the reward is proportional to the number of blocks that were successfully proposed by the validator; it is calculated as follows:
+Rewards are distributed periodically (e.g. daily), rewards are accumulated during each period, and block proposers are recorded. At the end of each period, validators will receive a portion of the "reward pool" as a reward for participating in the consensus process. Specifically, the reward is proportional to the number of blocks that were successfully proposed by the validator; it is calculated as follows:
 
 ```
 rewards of validator = total rewards * number of blocks proposed by the validator / total number of blocks
@@ -94,28 +94,109 @@ The recording of block proposer is done in `BeginBlock` right before rewards dis
 
 ### Monetary expansion
 
-Monetary expansion is designed to release tokens from the reserve account to the reward pool, while keeping a fixed max total supply. The number of tokens being released at each period is defined as:
+Monetary expansion is designed to release tokens from the reserve account to the reward pool, while keeping a fixed max total supply.
+
+Configuration section in `genesis.json` for this:
 
 ```
-released tokens = S * R_0 * exp(max(-20, -S/tau))
+{
+  "app_state": {
+    ...
+    "network_params": {
+      ...
+      "rewards_config": {
+        "reward_period_seconds": 86400,  # range: [0, )
+        "monetary_expansion_r0": 450,  # range: [0, 1000]
+        "monetary_expansion_tau": 14500000000000000,  # range: [1, 100_00000000_00000000]
+        "monetary_expansion_decay": 999860,  # range: [0, 1000000]
+        "monetary_expansion_cap": "6250000000000000000" # range: [0, 100_00000000_00000000]
+      }
+    }
+  }
+}
+```
 
+The number of tokens being released at each period is defined as:
+
+```
+R0 = rewards_config["monetary_expansion_r0"]
+tau = rewards_config["monetary_expansion_tau"]
+P = rewards_config["reward_period_seconds"]
+
+S = total_staking  # example: 1500000000_00000000
+Y = 365 * 24 * 60 * 60  # seconds of a year
+
+R = (R0 / 1000) * exp(-S / tau)
+N = floor(S * (pow(1 + R, P / Y) - 1))
+N = N - N % 10000
+
+N: released coins
 S: total stakings at current block when reward distribution happens
-R_0: upper bound for the reward rate p.a. 
+R0: upper bound for the reward rate p.a.
 ```
 
-Note that this is an exponential decay function, where the index of  controls the “steepness” of the curve. Precisely, this damping factor controls the exponential decay rate of the reward function.
+Note that this is an exponential decay function, where the index of it controls the “steepness” of the curve. Precisely, this damping factor controls the exponential decay rate of the reward function.
 
 The parameter `tau` will decay each time rewards get distributed,:
 
 ```
-tau(n) = tau(n-1) * 0.99986
-tau(0) = 1_4500_0000_0000_0000
+tau(n) = tau(n-1) * rewards_config["monetary_expansion_decay"]
 ```
 
-The number is calculated with [fixed-point arithmetic](https://docs.rs/fixed/), the exponencial function is computed with [continued fraction method](https://en.wikipedia.org/wiki/Exponential_function#Continued_fractions_for_ex) with 100 iterations.
-
-
 The rewards validator received goes to the bonded balance of their staking account, and results in validator [voting power change](#end/commit_block_state_update) accordingly.
+
+### Fixed-point arithmetic
+
+First we transform the power function into exponencial and natural logarithm functions:
+
+```
+pow(x, y) = exp(y * log(x))
+```
+
+The `exp` and `log` are computed with continued fractions representation, using a form with better convergence:
+
+```
+exp2(x, y) = exp(x / y)
+log2(x, y) = log(1 + x / y)
+```
+
+![MainEq1](https://wikimedia.org/api/rest_v1/media/math/render/svg/7aa8187974263e0f3e7cc293ca82d3dc3d75af90)
+
+![MainEq2](https://wikimedia.org/api/rest_v1/media/math/render/svg/90abfa2132828fc8eea5d3551dfa4df25dbdfa87)
+
+With above substitutes, we can transform the formula like this:
+
+```
+R = (R0 / 1000) * exp(-S/tau)
+  = R0 * exp2(-S, tau) / 1000
+N = S * (pow(1 + R, P / Y) - 1)
+  = S * (exp(P * log(1 + R) / Y) - 1)
+  = S * (exp2(P * log(1 + R), Y) - 1)
+  = S * (exp2(P * log(1 + R0 * exp2(-S, tau) / 1000), Y) - 1)
+  = S * (exp2(P * log2(R0 * exp2(-S, tau), 1000), Y) - 1)
+```
+
+Break it down into simpler computation steps:
+
+```
+# To keep the intermidiate numbers smaller
+S' = S / 10000000_00000000
+tau' = tau / 10000000_00000000
+
+n0 = exp2(-S', tau')
+n1 = log2(R0 * n0, 1000)
+n2 = exp2(P * n1, Y)
+n3 = floor(S * (n2 - 1))
+N  = n3 - n3 % 10000
+```
+
+> Fixed point number format: `I65F63`.
+>
+> `exp2` runs 25 iterations.
+>
+> `log2` runs 10 iterations.
+
+TODO, how to compute the continued fractions form of `exp2` and `log2`.
 
 ## Punishments
 
@@ -289,7 +370,7 @@ So each component could possibly be represented as MPT and these MPTs would then
 Besides committing all the relevant changes and computing the resulting `APP_HASH` in `BlockCommit`; for all changes in *Accounts*, the implementation needs to signal `ValidatorUpdate` in `EndBlock`.
 
  For example, when the number of *active validators* is less then `MAX_VALIDATORS`:
- 
+
  -  When the changes are relevant to the `bonded` amount of the council node’s staking address and the validator is not jailed: 
 
     - If the `bonded` amount changes and < `COUNCIL_NODE_MIN_STAKE`, then the validator’s voting power should be set to 0;

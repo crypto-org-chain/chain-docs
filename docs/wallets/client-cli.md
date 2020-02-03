@@ -64,7 +64,7 @@ A list of supported environment variables of ClientCLI is listed below:
 | CRYPTO_CLIENT_STORAGE | Wallet storage directory | Storage | .storage |
 | CRYPTO_CLIENT_TENDERMINT | Tendermint URL | String | http://localhost:26657/ |
 
-## 1. Wallet Management
+##  Wallet Management
 
 First of all, you will need a wallet to store and spend your CRO.
 
@@ -127,7 +127,7 @@ Wallet restored with name: Default_HD
 ```
 
 
-## 2. Funds Transfer
+##  Funds Transfer
 
 ### Receive Funds
 
@@ -155,6 +155,16 @@ $ ./bin/client-cli view-key  --name Default
 Enter passphrase:
 View Key: 0253be0b7af1cddc7a80207ef1a0b647f5649670415a8417424f23210569c28173
 ```
+### Sync your wallet
+
+It is important to keep your wallet sync with the blockchain before doing any wallet operation. This can be easily done by:
+
+```bash
+$  ./bin/client-cli sync  --name Default
+Enter passphrase:
+Synchronizing: 2168 / 2168 [=============================================] 100.00 % 3.29/s
+Synchronization complete!
+```
 
 ### Send Funds
 
@@ -170,8 +180,20 @@ More outputs? [yN] N
 Enter view keys (comma separated) (leave blank if you don't want any additional view keys in transaction): 0253be0b7af1cddc7a80207ef1a0b647f5649670415a8417424f23210569c28173
 ```
 
+### Check your balance 
 
-## 3. Staking Operations
+You can check your _transferable_ balance with the `balance` command, for example : 
+
+```bash
+$ ./bin/client-cli balance new --name Default
+Enter passphrase:
+Wallet balance: 1000.00000000
+```
+
+:::tip It is suggested that you should `sync` your wallet before checking the balance in order to obtain the up-to-date balance. 
+:::
+
+##  Staking Operations
 
 ### Deposit
 To bond funds, one can deposit funds from a *transfer* address to a *staking* address by
@@ -188,7 +210,33 @@ $ ./bin/client-cli transaction new --name Default --type Withdraw
 ``` 
 Please also refer to this [diagram](../getting-started/send_your_first_transaction.md#types-of-transaction-and-address)  for interaction between *staking address* and *transfer address*
 
-## 4. Advance Operations
+### Check the staking state
+
+Crypto.com Chain uses a mixed [UTXO+Accounts model](../getting-started/transaction-accounting-model.md#utxo-accounts-model), besides checking _transferable_ balance of a _transfer_ type address, we can check the [state](../getting-started/transaction-accounting-model.md#staked-state) of a _staking_ type address by:
+
+ ```bash
+$ ./client-cli state -a <STAKING_ADDRESS> -n Default
+Enter passphrase:
++-----------------+----------------------------+
+| Nonce           |                          0 |
++-----------------+----------------------------+
+| Bonded          |          50099999.99999671 |
++-----------------+----------------------------+
+| Unbonded        |                 0.00000000 |
++-----------------+----------------------------+
+| Unbonded From   | 2020-02-01 16:53:30 +08:00 |
++-----------------+----------------------------+
+| Jailed Until    |                 Not jailed |
++-----------------+----------------------------+
+| Punishment Type |               Not punished |
++-----------------+----------------------------+
+| Slash Amount    |               Not punished |
++-----------------+----------------------------+
+ ```
+
+
+
+##  Advance Operations
 
 ### Joining the network as a validator
 

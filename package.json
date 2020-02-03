@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "vuepress": "^1.0.0-alpha.44",
-    "vuepress-plugin-export": "ulivz/vuepress-plugin-export#master"
+    "vuepress-plugin-export": "https://github.com/foreseaz/vuepress-plugin-export.git"
   }
 }

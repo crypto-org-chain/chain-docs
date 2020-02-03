@@ -19,8 +19,8 @@ You're going to need:
 4. Initialize and start chain-docs.
 
 ```bash
-npm install
-npm run docs:dev
+yarn
+yarn docs:dev
 ```
 
 You can now see the docs at [http://localhost:8080](http://localhost:8080).
@@ -73,6 +73,32 @@ Go to ``chain-docs/docs``, then run:
 
 ```bash
 vuepress export
+```
+
+PDF styling config in `/docs/.vuepress/config.js`, you can refer to [Puppeteer doc](https://pptr.dev/#?product=Puppeteer&version=v2.1.0&show=api-pagepdfoptions) for the complete page API when generating PDF.
+
+``` diff
+module.exports = {
+  plugins: [
+    ['vuepress-plugin-export',
+    {
+      page: {         // Puppeteer.page.pdf([options])
+        format: 'A4',
+        printBackground: true,
+        margin: {
+          top: 60,
+          left: 20,
+          right: 20,
+          bottom: 60
+        }
+      },
+      sorter: function(a,b){
+        ...,
+      }
+    }
+    ]
+  ]
+}
 ```
 
 a PDF version of the site will be generated under the ``/docs`` path.

@@ -2,14 +2,21 @@ module.exports = {
   title: "Crypto.com Chain",
   description: "Welcome to Crypto.com Chain's documentation!",
   themeConfig: {
-    nav: [
-      { text: "Home", link: "/" },
-      { text: "Getting Started", link: "/getting-started/" },
-
+    navbar: true,
+    nav: [{
+        text: "Home",
+        link: "/"
+      },
+      {
+        text: "Getting Started",
+        link: "/getting-started/"
+      },
       {
         text: "Thaler Testnet",
-        items: [
-          { text: "Setup Tutorial", link: "/getting-started/thaler-testnet" },
+        items: [{
+            text: "Setup Tutorial",
+            link: "/getting-started/thaler-testnet"
+          },
           {
             text: "Testnet Explorer",
             link: "https://chain.crypto.com/explorer"
@@ -22,8 +29,10 @@ module.exports = {
       },
       {
         text: "Wallet Management",
-        items: [
-          { text: "Overview", link: "/wallets/#client-cli" },
+        items: [{
+            text: "Overview",
+            link: "/wallets/#client-cli"
+          },
           {
             text: "Client CLI",
             link: "/wallets/client-cli.html#client-cli"
@@ -38,7 +47,6 @@ module.exports = {
           }
         ]
       },
-
       {
         text: "Download",
         link: "https://crypto-com.github.io/Crypto.com_Chain.pdf"
@@ -76,7 +84,17 @@ module.exports = {
     [
       "vuepress-plugin-export",
       {
-        sorter: function(a, b) {
+        page: {
+          format: 'A4',
+          printBackground: true,
+          margin: {
+            top: 60,
+            left: 20,
+            right: 20,
+            bottom: 60
+          }
+        },
+        sorter: function (a, b) {
           var ordering = {
             Home: 0,
             "Getting Started": 1,
@@ -93,7 +111,7 @@ module.exports = {
             "Enclave Architecture": 12,
             "Transaction Privacy": 13,
             Staking: 14,
-            "node-joining":15,
+            "node-joining": 15,
             "network-parameters": 16,
             "Notes on Performance": 17,
             "Notes on Production Deployment": 18,

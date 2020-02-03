@@ -8,8 +8,14 @@ npm run docs:build
 
 # build full doc pdf
 cd docs/
+
+# hack for hide navbar when exporting PDF
+sed -i '' -e "/navbar/s/true/false/" ./.vuepress/config.js
 vuepress export
+# restore navbar true and mv to dist
+sed -i '' -e "/navbar/s/false/true/" ./.vuepress/config.js
 mv 'Crypto.com Chain.pdf' ./.vuepress/dist/Crypto.com_Chain.pdf
+
 
 # navigate into the build output directory
 cd .vuepress/dist

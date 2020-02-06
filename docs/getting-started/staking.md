@@ -1,18 +1,19 @@
 # Staking
 Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a set of validators (Council Node) to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain. This document contains the specification of the initial staking, slashing, and rewards mechanisms which establish the foundation of the token ecosystem of CRO.
 
-## Account
+## Staked state / Account
 
-Account is a data structure that holds state about staking:
+StakedState is a data structure that holds state about staking:
 
 ```
-pub struct Account {
-    pub nonce: usize, // transaction counter
-    pub bonded: Coin, // bonded staked amount
-    pub unbonded: Coin, // unbonded staked amount
-    pub unbonded_from: Timespec, // when the unboded staked amount can be withdrawn
-    pub address: StakedStateAddress, // ETH-style address of staking account; TODO: extended address?
-    pub jailed_until: Option<Timespec>, // time until which current account is jailed
+pub struct StakedState {
+    pub nonce: Nonce, // transaction / update counter
+    pub bonded: Coin, // bonded stake amount
+    pub unbonded: Coin, // unbonded stake amount
+    pub unbonded_from: Timespec, // when the unboded stake amount can be withdrawn
+    pub address: StakedStateAddress, // ETH-style address of staking account
+    pub punishment: Option<Punishment>, // punishment data structure -- FIXME: details
+    pub council_node: Option<CouncilNode>, // associated council node metadata
 }
 ```
 
@@ -20,7 +21,7 @@ TODO: should it have a minimum bonded amount?
 
 ## Council Node
 
-Council Node is a data structure that holds state about a node responsible for transaction validation and service node whitelist management:
+Council Node is a data structure that holds state about a node responsible for transaction validation:
 
 ```
 pub struct CouncilNode {
@@ -29,15 +30,23 @@ pub struct CouncilNode {
     pub staking_address: RedeemAddress, // account with the required staked amount
     pub consensus_pubkey: crypto.PubKey, // Tendermint consensus validator-associated public key: note that Tendermint supports different signature schemes
     pub council_pubkey: PublicKey, // key for council node-related transaction types
-    pub service_whitelist_pubkey: PublicKey, // key for service node whitelist-related transaction types
-    pub nonce: usize, // update counter?
+    // FIXME: bootstrapping
 }
 ```
+### EFFECTIVE_MIN_STAKE
+Effective minimum stake (`EFFECTIVE_MIN_STAKE`) is defined as follows at any time:
+
+1. if the number of validators has not reached `MAX_VALIDATORS`, it is `COUNCIL_NODE_MIN_STAKE` (the network parameter)
+1. if the number of validators has reached `MAX_VALIDATORS`, it is equal to the lowest bonded amount of the staked states of the current validators plus 1.0 Coin.
+
 ### Joining the network
 Anyone who wishes to become a council node can submit a NodeJoinTx; this transaction is considered to be valid as long as:
 
-1. The associated staking account has `bonded` amount >= `COUNCIL_NODE_MIN_STAKE` and is not [punished](#punishments);
+1. The associated staking account has `bonded` amount >= `EFFECTIVE_MIN_STAKE` and is not [punished](#punishments);
 1. There is no other validator with the same `staking_address` or the `consensus_pubkey`
+
+### Leaving the network
+Anyone who wishes to leave the network, provided their associated staked state does not have any punishments, can submit UnbondStakeTx with the amount that will reduce the `bonded` amount to be lower than `COUNCIL_NODE_MIN_STAKE`.
 
 ####  Voting power and proposer selection
 At the beginning of each round, a council node will be chosen deterministically to be the block proposer.
@@ -82,6 +91,8 @@ pub struct RewardsPoolState {
 
 ### Reward distribution
 
+FIXME: fix fairness; define rewarding in terms of `LastCommitInfo` instead of block proposer
+
 Rewards are distributed periodically (e.g. daily), rewards are accumulated during each period, and block proposers are recorded. At the end of each period, validators will receive a portion of the "reward pool" as a reward for participating in the consensus process. Specifically, the reward is proportional to the number of blocks that were successfully proposed by the validator; it is calculated as follows:
 
 ```
@@ -92,7 +103,7 @@ The remainder of division will become rewards of next period.
 
 The recording of block proposer is done in `BeginBlock` right before rewards distribution.
 
-### Monetary expansion
+#### Monetary expansion
 
 Monetary expansion is designed to release tokens from the reserve account to the reward pool, while keeping a fixed max total supply.
 
@@ -145,7 +156,7 @@ tau(n) = tau(n-1) * rewards_config["monetary_expansion_decay"]
 
 The rewards validator received goes to the bonded balance of their staking account, and results in validator [voting power change](#end/commit_block_state_update) accordingly.
 
-### Fixed-point arithmetic
+#### Fixed-point arithmetic
 
 First we transform the power function into exponencial and natural logarithm functions:
 
@@ -302,8 +313,30 @@ slashing_rate = max(liveness_slash_percent, byzantine_slash_percent) * (sqrt(val
               = 0.2
 ```
 
+### Removed validators / council nodes
+A Validator is removed when its voting power is set to 0.
+This can happen in the following scenarios:
 
-#### Validators / Council Nodes
+1. The Validator is being punished for infraction(s).
+1. Its operator submitted UnbondStakeTx with sufficient stake to leave the network.
+1. When the `bonded` amount <= `EFFECTIVE_MIN_STAKE`
+
+When this happens, the following metadata is cleaned up as follows:
+- its associated reward tracking-related data is cleared:
+  - (a) immediately (*if the validator is being punished*)
+  - (b) in the block that triggers next reward distribution (*otherwise*)
+- its liveness tracking information is cleared in the block when this occurs
+- its slashing related information (mapping Tendermint address / pubkey => staked state address) is scheduled to be cleared in a block after the current block time + `MAX_EVIDENCE_AGE` (`SLASH_MAP_DELETE`)
+
+Note this inequality must be checked in network parameters: UNBOND_PERIOD >= JAIL_DURATION >= MAX_EVIDENCE_AGE
+
+If the validator wishes to re-join the validator set, they can (unjail if necessary and) submit a NodeJoinTx (see the Joining the Network section).
+
+If the NodeJoinTx transaction is valid AND this happens before  `SLASH_MAP_DELETE` AND the consensus pubkey (or associated Tendermint address) from NodeJoinTx transaction is the same, the previous slashing information is preserved (i.e. the "delete schedule" is cancelled).
+
+If the NodeJoinTx transaction is valid AND this happens before next reward distribution AND the consensus pubkey from NodeJoinTx transaction is different, the associated staked state is then rewarded for interactions with both consensus pubkeys (as reward tracking is per staked state).
+
+### Validators / Council Nodes
 
 Each `BeginBlock` contains two fields that will determine penalties:
 
@@ -313,6 +346,8 @@ Each `BeginBlock` contains two fields that will determine penalties:
 Their processing is the following:
 
 ```
+FIXME: this looks out of date?
+
 for each evidence in ByzantineValidators:
     if evidence.Timestamp >= BeginBlock.Timestamp - MAX_EVIDENCE_AGE:
         account = (... get corresponding account ...)
@@ -360,12 +395,12 @@ The overall “global state” then consists of the following items:
 - Account
 - RewardsPool
 - CouncilNode
-- ServiceNode
-- MerchantWhitelist (not yet spec-out / TODO)
 
 So each component could possibly be represented as MPT and these MPTs would then be combined together to form a single `APP_HASH`.
 
 ### END/COMMIT_BLOCK_STATE_UPDATE
+
+FIXME: scheduling slashing cleanup
 
 Besides committing all the relevant changes and computing the resulting `APP_HASH` in `BlockCommit`; for all changes in *Accounts*, the implementation needs to signal `ValidatorUpdate` in `EndBlock`.
 

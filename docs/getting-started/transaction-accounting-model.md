@@ -27,16 +27,45 @@ Different types of transactions and how they relate to these accounting are [des
 
 ### Staked state
 
-The current account usage is self-contained limited. Each account (“staked state”) contains two balances:
+The current account usage is self-contained limited. Each account (“staked state”) contains two balances: 
 
 - bonded amount
 - unbonded amount
 
-The bonded amount is the amount used to check against minimal staking requirements and used to calculate the Tendermint validator voting power (in case of council nodes).
+and its slashing related information. 
 
-As it may take time for the network evidence of malicious activity (e.g. double signing) to appear, the stake cannot be withdrawn immediately and is first moved to the “unbonded” balance.
+For example, by using [clinent-cli](../wallets/client-cli.md#staking-operations), one can check the staking stake of a _Staking_ type address and obtain the following:
 
-The unbonded balance can be withdrawn (into transaction outputs) after “unbonded_from” time if the account was not jailed / slashed (see [staking](./staking)).
+```bash 
+##### EXAMPLE: Staking state #####
++-----------------+----------------------------+
+| Nonce           |                          2 |
++-----------------+----------------------------+
+| Bonded          |           2000000.00000000 |
++-----------------+----------------------------+
+| Unbonded        |              3000.00000000 |
++-----------------+----------------------------+
+| Unbonded From   | 2020-02-02 08:28:16 +08:00 |
++-----------------+----------------------------+
+| Jailed Until    |                 Not jailed |
++-----------------+----------------------------+
+| Punishment Type |               Not punished |
++-----------------+----------------------------+
+| Slash Amount    |               Not punished |
++-----------------+----------------------------+
+```
+- The `Nonce` is the number of transactions and events involved with the account.
+
+- The `Bonded` amount is the amount used to check against minimal staking requirements and used to calculate the Tendermint validator voting power (in case of council nodes).
+
+    As it may take time for the network evidence of malicious activity (e.g. double signing) to appear, the stake cannot be withdrawn immediately and is first moved to the “unbonded” balance.
+
+- The `Unbonded` balance can be withdrawn (into transaction outputs) after `Unbonded From` time if the account was not jailed / slashed (see [staking](./staking)).
+
+- For slashing related information: 
+    - `Jailed Until` is the time until which current account is jailed;  
+    - `Punishment Type ` represents the type of [punishment](./staking.md#punishments)  that will be imposed on the account (if any); 
+    - `Slash Amount` is the amount of penalty. 
 
 
 ### Staked State Storage

@@ -193,15 +193,42 @@ Wallet balance: 1000.00000000
 :::tip It is suggested that you should `sync` your wallet before checking the balance in order to obtain the up-to-date balance. 
 :::
 
+### Check transaction history
+
+Besides checking the transferable balance of your wallet, you can view a more detailed transaction history by
+
+```bash 
+$ ./bin/client-cli history --name Default
+Enter passphrase:
++----------------+--------+--------+-----+--------------+------------+
+| Transaction ID | In/Out | Amount | Fee | Block Height | Block Time |
++----------------+--------+--------+-----+--------------+------------+
+|................|........|........|.....|..............|............|
++----------------+--------+--------+-----+--------------+------------+
+```
+It provides you with details such as the **Transaction ID**, **Direction**(In/out), **Amount** and **Fee** of the transaction, the **Block Height** of where the transaction happened and its corresponding **Block Time**.
+
+
 ##  Staking Operations
 
 ### Deposit
-To bond funds, one can deposit funds from a *transfer* address to a *staking* address by
+To bond funds for staking, you can deposit funds (an unspent transaction) to a *staking* address by the `Deposit` operation, for example: 
 
 ```bash
 $ ./bin/client-cli transaction new --name Default --type Deposit 
+Enter passphrase:
+Enter input transaction ID: <TRANSASTION_ID>
+Enter input index: 0
+More inputs? [yN]
 ```
-Funds will then be `bonded` and locked until the `unbonding_period` has passed. 
+ Note that a `<TRANSASTION_ID>` is required as an input of this transaction. It can be found by checking the [history](#check-transaction-history) of your wallet. This deposit transaction is valid only if the transaction input is unspent. 
+
+:::tip 
+For better management of your wallet, It is suggested that you can make a `Transfer` type transaction to your own address beforehand to gather unspent transactions in your wallet. 
+For example, If you would like to deposit 5000 CRO, you may make a `Transfer` type transaction of 5000 CRO to yourself at the beginning, then use this newly obtained unspent transaction ID for the deposit transaction. 
+:::
+
+Funds will then be `bonded` and locked until the `unbonding_period` has passed. Details about the deposited funds in the staking address can be found by checking its [staking state](#check-the-staking-state)
 
 ### Withdraw
 On the other hand, we can create the following transaction to unbond staked funds

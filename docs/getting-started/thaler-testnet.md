@@ -6,10 +6,10 @@ This is an early tutorial for the developers and brave and patient super-early a
 
 ## Common Setup
 
-### Step 0. Install Intel SGX SDK 2.7 and other pre-requisites
+### Step 0. Install Intel SGX SDK 2.8 and other pre-requisites
 
 - Make sure your CPU supports SGX and it is enabled in BIOS. [This GitHub repository](https://github.com/ayeks/SGX-hardware) has more information about supported hardware and cloud vendors.
-  You can download the [Linux SGX SDK installers from the Intel Open Source website](https://01.org/intel-softwareguard-extensions/downloads/intel-sgx-linux-2.7-release).
+  You can download the [Linux SGX SDK installers from the Intel Open Source website](https://01.org/intel-softwareguard-extensions/downloads/intel-sgx-linux-2.8-release).
 
 - Note that some motherboards may have only "software controlled" option where [an extra step is needed for enabling it](https://github.com/intel/linux-sgx/issues/354#issuecomment-447961815).
 
@@ -23,14 +23,16 @@ expose it to the container by running docker with the `--device /dev/isgx` flag)
 :::
 
 
-### Step 1. Get Tendermint and Chain v0.2 released binaries
+### Step 1. Get Tendermint and Chain v0.3 released binaries
 
 Download the latest version of [Tendermint 0.32.\*](https://docs.tendermint.com/master/introduction/install.html#from-binary).
-Chain v0.2 can be [downloaded from GitHub](https://github.com/crypto-com/chain/releases/download/v0.2.1/crypto-com-chain-release-0.2.1.tar.gz).
+Chain v0.3 can be [downloaded from GitHub](https://github.com/crypto-com/chain/releases/download/v0.3.0/crypto-com-chain-release-0.3.0.tar.gz).
 
 ::: warning CAUTION
-Crypto.com Chain v0.2 is not backwards compatible with v0.0 released earlier. So, if you were running a node with old
+Crypto.com Chain v0.3 is not backwards compatible with v0.2 released earlier. So, if you were running a node with old
 version of Crypto.com Chain, you'll have to delete all the associated data.
+
+Also note [released binary changes](https://github.com/crypto-com/chain/releases/tag/v0.3.0).
 :::
 
 ### Step 2. Configure Tendermint
@@ -40,38 +42,74 @@ In `.tendermint/config/`, change the content of `genesis.json` to:
 
 ```
 {
-    "app_hash": "94BB489D59D26358F4EBF8A024F3000DCBFA1F5D040BD0C88B18C64B45EABBAB",
+    "app_hash": "54F4F05167492B83F0135AA55D27308C43AEA36E3FE91F4AD21028728207D70F",
     "app_state": {
         "council_nodes": {
+            "0x6dbd5b8fe0dad494465aa7574defba711c184102": [
+                "westeurope",
+                "security@crypto.com",
+                {
+                    "type": "tendermint/PubKeyEd25519",
+                    "value": "11/ZonHB4wuTTRKnsy6EMfzj1gTo7ywcqIqZhbI1znQ="
+                }
+            ],
             "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
                 "eastus",
                 "security@crypto.com",
                 {
                     "type": "tendermint/PubKeyEd25519",
-                    "value": "PbzRZG6PgXr6UzHh3wcRMQd689bbEz28K4ZaMAqZDtQ="
+                    "value": "uHRMASqk9LSVuCNv0XwKpg1EGRs1GpCDHZ0cnXCFfbA="
                 }
             ],
             "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
-                "westeurope1",
+                "eastus2",
                 "security@crypto.com",
                 {
                     "type": "tendermint/PubKeyEd25519",
-                    "value": "82/BWttvHOTmZ9sQlVQKkalijwCu/RJIEZDUURTEkc0="
+                    "value": "A5hAzOez47vox/Lq+qulVoURKS6k6s6r9c/YmCilbNA="
                 }
             ]
         },
         "distribution": {
+            "0x3288bdff8ef3c7dbdc9faef3f18a134044804a19": [
+                "UnbondedFromGenesis",
+                "6000000000000000"
+            ],
+            "0x4ae85b35597fcb61c6c47b1fe0bdd7eed8421cdd": [
+                "UnbondedFromGenesis",
+                "6000000000000000"
+            ],
             "0x4b75f275dde0a8c8e70fb84243adc97a3afb78f2": [
                 "UnbondedFromGenesis",
-                "7850000000000000000"
+                "7946000000000000000"
+            ],
+            "0x4fd8162521f2e628adced7c1baa39384a08b4a3d": [
+                "UnbondedFromGenesis",
+                "6000000000000000"
+            ],
+            "0x6c2be7846219eab3086a66f873558b73d8f4a0d4": [
+                "UnbondedFromGenesis",
+                "6000000000000000"
+            ],
+            "0x6dbd5b8fe0dad494465aa7574defba711c184102": [
+                "Bonded",
+                "6000000000000000"
             ],
             "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
                 "Bonded",
-                "100000000000000000"
+                "6000000000000000"
+            ],
+            "0x916f9e34e140c43f3853f2949c3ea95da5eb6098": [
+                "UnbondedFromGenesis",
+                "6000000000000000"
+            ],
+            "0x9baa6de71cbc6274275eece4b1be15f545897f37": [
+                "UnbondedFromGenesis",
+                "6000000000000000"
             ],
             "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
                 "Bonded",
-                "50000000000000000"
+                "6000000000000000"
             ]
         },
         "network_params": {
@@ -80,25 +118,25 @@ In `.tendermint/config/`, change the content of `genesis.json` to:
                 "constant": 1100
             },
             "jailing_config": {
-                "block_signing_window": 360,
-                "jail_duration": 86400,
-                "missed_block_threshold": 180
+                "block_signing_window": 720,
+                "jail_duration": 3600,
+                "missed_block_threshold": 360
             },
             "max_validators": 50,
             "required_council_node_stake": "5000000000000000",
             "rewards_config": {
-                "distribution_period": 86400,
                 "monetary_expansion_cap": "2000000000000000000",
                 "monetary_expansion_decay": 999860,
                 "monetary_expansion_r0": 350,
-                "monetary_expansion_tau": 14500000000000000
+                "monetary_expansion_tau": 999999999999999999,
+                "reward_period_seconds": 86400
             },
             "slashing_config": {
                 "byzantine_slash_percent": "0.200",
                 "liveness_slash_percent": "0.100",
-                "slash_wait_period": 10800
+                "slash_wait_period": 1800
             },
-            "unbonding_period": 3600
+            "unbonding_period": 5400
         }
     },
     "chain_id": "testnet-thaler-crypto-com-chain-42",
@@ -117,24 +155,33 @@ In `.tendermint/config/`, change the content of `genesis.json` to:
             ]
         }
     },
-    "genesis_time": "2020-01-16T07:14:14.924984Z",
+    "genesis_time": "2020-02-17T19:39:53.60362Z",
     "validators": [
         {
-            "address": "801B1708949EA320741F226782018E396F96A8CB",
-            "name": "eastus",
-            "power": "1000000000",
+            "address": "38F9D0F3B1721EA6F25ACBC6A5B4C7381281CE13",
+            "name": "westeurope",
+            "power": "60000000",
             "pub_key": {
                 "type": "tendermint/PubKeyEd25519",
-                "value": "PbzRZG6PgXr6UzHh3wcRMQd689bbEz28K4ZaMAqZDtQ="
+                "value": "11/ZonHB4wuTTRKnsy6EMfzj1gTo7ywcqIqZhbI1znQ="
             }
         },
         {
-            "address": "6712A23B73B44D2EF274105E90483B335E4F74E7",
-            "name": "westeurope1",
-            "power": "500000000",
+            "address": "E6CAA77DFC2069BE8657126F2749F484A3EAEAC0",
+            "name": "eastus",
+            "power": "60000000",
             "pub_key": {
                 "type": "tendermint/PubKeyEd25519",
-                "value": "82/BWttvHOTmZ9sQlVQKkalijwCu/RJIEZDUURTEkc0="
+                "value": "uHRMASqk9LSVuCNv0XwKpg1EGRs1GpCDHZ0cnXCFfbA="
+            }
+        },
+        {
+            "address": "F2CBB18A10F3475EAC8C6AFF96840BA4B4DAD857",
+            "name": "eastus2",
+            "power": "60000000",
+            "pub_key": {
+                "type": "tendermint/PubKeyEd25519",
+                "value": "A5hAzOez47vox/Lq+qulVoURKS6k6s6r9c/YmCilbNA="
             }
         }
     ]
@@ -144,7 +191,7 @@ In `.tendermint/config/`, change the content of `genesis.json` to:
 For network configuration, in `.tendermint/config/config.toml`, you can put the following as `seeds` and `create_empty_blocks_interval`:
 
 ```
-seeds = "3ae3b20f2c22e161f5c7fdcd5109d12c86babfde@13.80.64.101:26656,f196af4ecf176cd279a3905c5bd0edb4436dfabd@13.82.183.37:26656"
+seeds = "111373a933869a49a69fa59b09932ceec29ee34b@40.76.4.61:26656,421c21179e12f17923a1fe8d631a16079d6c32c4@40.87.120.191:26656,fa3bbe6e895eea77e4321a83a863e794cf2e2929@13.94.133.75:26656"
 create_empty_blocks_interval = "60s"
 ```
 
@@ -179,12 +226,6 @@ Once you obtained the credentials in the portal, set the following environment v
 
 ### Step 3-a-2. Run everything
 
-- Start the tx-validation enclave app (in `tx-validation-HW-debug/`), e.g.:
-
-  ```
-  RUST_LOG=info ./tx-validation-app ipc://$HOME/enclave.socket
-  ```
-
 - Start the tx-query enclave app (in `tx-query-HW-debug/`), e.g.:
 
 ```
@@ -194,7 +235,7 @@ RUST_LOG=info ./tx-query-app 0.0.0.0:3322 ipc://$HOME/enclave.socket
 - Start chain-abci, e.g.:
 
   ```
-  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash 94BB489D59D26358F4EBF8A024F3000DCBFA1F5D040BD0C88B18C64B45EABBAB --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
+  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash 54F4F05167492B83F0135AA55D27308C43AEA36E3FE91F4AD21028728207D70F --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
   ```
 
 - Finally, start Tendermint:
@@ -211,6 +252,21 @@ You may want to run full nodes (see above)
 as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html) and [local notes on production deployment](notes-on-production-deployment.md)), restrict your validator connections to only connect to your full nodes,
 test secure storage of validator keys etc.
 :::
+
+### Step 3-b-0. (Optional) restoring a wallet
+If you participated in the 0.2 testnet and have backed up your seed phrase, you can restore it with, for example:
+
+```bash
+$ client-cli wallet restore --name <WALLET_NAME>
+```
+
+You can then create a staking address with:
+```
+$ client-cli address new --name <WALLET_NAME> --type Staking
+```
+
+If the created address matches one of the ones listed in the initial genesis.json distribution,
+you can skip to Step 3-b-5.
 
 ### Step 3-b-1. Create a staking address
 This can be done, for example, with the client-cli command-line tool. Set the required environment variables:
@@ -236,16 +292,10 @@ In a development mode, the full key pair is located in the `priv_validator_key.j
 The public key should be in the base64-encoded `R9/ktG1UifLZ6nMHNA/UZUaDiLAPWt+m9I4aujcAz44=`.
 
 ### Step 3-b-4. Run everything
-- Start the the-validation enclave app (in `tx-validation-HW-debug/`), e.g.:
-
-  ```
-  RUST_LOG=info ./tx-validation-app ipc://$HOME/enclave.socket
-  ```
-
 - Start chain-abci, e.g.:
 
   ```
-  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash 862D743DAAD548EB9A964AE1D176761A45F599D18636BFCA954B0859B218B5C4 --enclave_server ipc://$HOME/enclave.socket
+  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash 54F4F05167492B83F0135AA55D27308C43AEA36E3FE91F4AD21028728207D70F
   ```
 
 - Finally, start Tendermint:

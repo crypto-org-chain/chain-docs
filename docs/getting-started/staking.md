@@ -116,9 +116,9 @@ Configuration section in `genesis.json` for this:
     "network_params": {
       ...
       "rewards_config": {
-        "reward_period_seconds": 86400,  # range: [0, )
+        "reward_period_seconds": 86400,  # range: [0, 365 * 86400]
         "monetary_expansion_r0": 450,  # range: [0, 1000]
-        "monetary_expansion_tau": 14500000000000000,  # range: [1, 100_00000000_00000000]
+        "monetary_expansion_tau": 14500000000000000,  # range: [1, 2**64 - 1]
         "monetary_expansion_decay": 999860,  # range: [0, 1000000]
         "monetary_expansion_cap": "6250000000000000000" # range: [0, 100_00000000_00000000]
       }

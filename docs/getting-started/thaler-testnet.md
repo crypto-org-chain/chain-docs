@@ -274,7 +274,7 @@ you can skip to Step 3-b-5.
 This can be done, for example, with the client-cli command-line tool. Set the required environment variables:
 
 - `CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42`
-- `CRYPTO_CLIENT_TENDERMINT <YOUR FULL NODE, e.g. ws://localhost:26657/websocket or ws:/13.94.208.212:26657/websocket>`
+- `CRYPTO_CLIENT_TENDERMINT <YOUR FULL NODE, e.g. ws://localhost:26657/websocket or ws://13.94.208.212:26657/websocket>`
 
 And run (see [more details](../wallets/client-cli.md)):
 ```bash
@@ -291,7 +291,7 @@ stating who you are and your staking address (@devashishdxt or @lezzokafka would
 If you plan to test a production setting with the Tendermint Key Management System (KMS) tool,
 please see [production deployment notes](notes-on-production-deployment.md) how it can be converted at the current (0.7) version.
 In a development mode, the full key pair is located in the `priv_validator_key.json` file (generated with `tendermint init`). 
-The public key should be in the base64-encoded,e.g.`R9/ktG1UifLZ6nMHNA/UZUaDiLAPWt+m9I4aujcAz44=`.
+The public key should be base64-encoded, e.g. `R9/ktG1UifLZ6nMHNA/UZUaDiLAPWt+m9I4aujcAz44=`.
 
 ### Step 3-b-4. Run everything
 - Start chain-abci, e.g.:

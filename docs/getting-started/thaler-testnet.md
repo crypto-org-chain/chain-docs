@@ -29,7 +29,7 @@ Download the latest version of [Tendermint 0.32.\*](https://docs.tendermint.com/
 Chain v0.3 can be [downloaded from GitHub](https://github.com/crypto-com/chain/releases/download/v0.3.0/crypto-com-chain-release-0.3.0.tar.gz).
 
 ::: warning CAUTION
-Crypto.com Chain v0.3 is not backwards compatible with v0.2 released earlier. So, if you were running a node with old
+Crypto.com Chain v0.3 is not backwards compatible with v0.2 released earlier. So, if you were running a node with the old
 version of Crypto.com Chain, you'll have to delete all the associated data.
 
 Also note [released binary changes](https://github.com/crypto-com/chain/releases/tag/v0.3.0).
@@ -192,6 +192,8 @@ For network configuration, in `.tendermint/config/config.toml`, you can put the 
 
 ```
 seeds = "111373a933869a49a69fa59b09932ceec29ee34b@40.76.4.61:26656,421c21179e12f17923a1fe8d631a16079d6c32c4@40.87.120.191:26656,fa3bbe6e895eea77e4321a83a863e794cf2e2929@13.94.133.75:26656"
+```
+```
 create_empty_blocks_interval = "60s"
 ```
 
@@ -228,9 +230,9 @@ Once you obtained the credentials in the portal, set the following environment v
 
 - Start the tx-query enclave app (in `tx-query-HW-debug/`), e.g.:
 
-```
-RUST_LOG=info ./tx-query-app 0.0.0.0:3322 ipc://$HOME/enclave.socket
-```
+    ```
+    RUST_LOG=info ./tx-query-app 0.0.0.0:3322 ipc://$HOME/enclave.socket
+    ```
 
 - Start chain-abci, e.g.:
 
@@ -271,8 +273,8 @@ you can skip to Step 3-b-5.
 ### Step 3-b-1. Create a staking address
 This can be done, for example, with the client-cli command-line tool. Set the required environment variables:
 
-- `CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42
-- `CRYPTO_CLIENT_TENDERMINT <YOUR FULL NODE, e.g. ws://localhost:26657/websocket or ws://13.80.66.193:26657/websocket>`
+- `CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42`
+- `CRYPTO_CLIENT_TENDERMINT <YOUR FULL NODE, e.g. ws://localhost:26657/websocket or ws:/13.94.208.212:26657/websocket>`
 
 And run (see [more details](../wallets/client-cli.md)):
 ```bash
@@ -289,7 +291,7 @@ stating who you are and your staking address (@devashishdxt or @lezzokafka would
 If you plan to test a production setting with the Tendermint Key Management System (KMS) tool,
 please see [production deployment notes](notes-on-production-deployment.md) how it can be converted at the current (0.7) version.
 In a development mode, the full key pair is located in the `priv_validator_key.json` file (generated with `tendermint init`). 
-The public key should be in the base64-encoded `R9/ktG1UifLZ6nMHNA/UZUaDiLAPWt+m9I4aujcAz44=`.
+The public key should be in the base64-encoded,e.g.`R9/ktG1UifLZ6nMHNA/UZUaDiLAPWt+m9I4aujcAz44=`.
 
 ### Step 3-b-4. Run everything
 - Start chain-abci, e.g.:

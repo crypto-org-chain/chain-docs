@@ -69,15 +69,15 @@ The top `MAX_VALIDATORS` with the most `bonded` amount would put to the *active*
 
 
 
-## Rewards
+## Validator Rewards
 
 To incentivise validators to run the network, rewards are accumulated and distributed to the validators. There are three sources for the rewards:
 
 1. Monetary expansion with a fixed total supply
 1. [Transaction Fees](./transaction.md#transaction-fee)
-1. Slashing of byzantine and non-live nodes
+1. Slashing of byzantine and non-live nodes (if any)
 
-The `RewardsPoolState` data structure stores all the information about remaining funds and distribution states:
+The `RewardsPoolState` data structure stores all the information about the remaining funds and distribution states:
 
 ```
 pub struct RewardsPoolState {
@@ -89,7 +89,109 @@ pub struct RewardsPoolState {
 }
 ```
 
-### Reward distribution
+### Overview: The reward function
+
+**Motivation:** To incentivise the validators, the amount of the reward should dynamically react to the actual network conditions such as the _total staking_ and the _length of time_ since the genesis block. 
+
+The reward being sent to the reward pool depends on two major factors:  
+
+- **S**: The total amount of staking, and
+- **R**: The reward rate per annum.
+
+Specifically, this reward rate `R` can be expressed by the following function:
+
+```
+R = (R0 / 1000) * exp(-S / tau)
+```
+To visualize this, if we set `tau=10 Billion`, `R0=350`, we have the following graph of the function: 
+
+![](./assets/reward_rate.png)
+
+Note that the above reward rate is per annum, and the number of tokens being released to the reward pool (**N**) for that epoch is calculated by 
+
+```
+N = S  *  ( (1 + R) ^ (1 / f) - 1 )
+``` 
+
+where `S` is the total amount of tokens staked by validators to participate in the consensus process; `R0` is the upper bound for the reward rate; `tau` is a time-dependent variable that controls the exponential rate; `f` is the frequency of reward being distributed per year.
+
+:::tip Example: If the reward rate is 28% with total staking of 500 million and the reward is being distributed every day, the number of tokens being released to the reward pool at the end of the day will be
+`500,000,000 *  ( (1+0.28)^(1/365) - 1) = 338,278`
+:::
+
+More details about the actual calculation and its configuration can be found in the next section.
+
+#### Monetary expansion and network parameters
+
+Monetary expansion is designed to release tokens from the reserve account to the reward pool, while keeping a fixed maximum total supply.
+
+Precisely, the reward rate is controlled by the following parameters:
+- `monetary_expansion_cap`:     The total amount of tokens reserved for validator's reward in the basic unit
+- `distribution_period`:        The period of reward being distributed
+- `monetary_expansion_r0`:      The upper bound for the reward rate per annum 
+- `monetary_expansion_tau`:     Initial value of tau in the reward function
+- `monetary_expansion_decay`:   The decay rate of tau.
+
+
+You can find the configuration under the `rewards_params` section of the genesis file `genesis.json` in `./tendermint/config`, for example: 
+
+```
+{
+  "app_state": {
+    ...
+    "network_params": {
+      ...
+      "rewards_config": {
+        "distribution_period:": 86400,  # range: [0, )
+        "monetary_expansion_r0": 450,  
+        "monetary_expansion_tau": 14500000000000000,  
+        "monetary_expansion_decay": 999860,  # range: [0, 1000000]
+        "monetary_expansion_cap": "2250000000000000000" # range: [0, 100_00000000_00000000]
+      }
+    }
+  }
+}
+```
+represents a daily scheduled reward (every `86400` seconds), with a maximum reward rate of *45%* per annum, distributing a total sum of 22.5 billion tokens to the validators. 
+
+
+At the end of each reward epoch, the number of tokens being released at each period is defined as:
+
+```
+    R0 = rewards_config["monetary_expansion_r0"]
+    tau = rewards_config["monetary_expansion_tau"]
+    P = rewards_config["distribution_period"]
+
+    # total bonded amount of the active validators 
+    at the end of the reward epoch
+    S = total_staking  
+
+    # seconds of a year
+    Y = 365 * 24 * 60 * 60  
+
+    R = (R0 / 1000) * exp(-S / tau)
+    N = floor(S * (pow(1 + R, P / Y) - 1))
+    N = N - N % 10000
+
+    N: released coins
+    S: total stakings at current block when 
+       reward distribution happens
+    R0: upper bound for the reward rate p.a.
+```
+
+Note that this is an exponential decay function, where the index of it controls the “steepness” of the curve. Precisely, this damping factor controls the exponential decay rate of the reward function. The parameter `tau` will decay each time rewards get distributed:
+```
+tau(n) = tau(n-1) * rewards_config["monetary_expansion_decay"]
+```
+Using the example of `tau=10 Billion` and `R0=350`, the following graph shows how the reward rate deforming when `tau` is dropping by 5% every year: 
+
+![](./assets/damping.png)
+
+The rewards validator received goes to the bonded balance of their staking account, and results in validator [voting power change](#end/commit_block_state_update) accordingly.
+
+
+#### Reward distribution
+
 
 FIXME: fix fairness; define rewarding in terms of `LastCommitInfo` instead of block proposer
 
@@ -99,62 +201,9 @@ Rewards are distributed periodically (e.g. daily), rewards are accumulated durin
 rewards of validator = total rewards * number of blocks proposed by the validator / total number of blocks
 ```
 
-The remainder of division will become rewards of next period.
+The remainder of division will become rewards of the next period.
 
 The recording of block proposer is done in `BeginBlock` right before rewards distribution.
-
-#### Monetary expansion
-
-Monetary expansion is designed to release tokens from the reserve account to the reward pool, while keeping a fixed max total supply.
-
-Configuration section in `genesis.json` for this:
-
-```
-{
-  "app_state": {
-    ...
-    "network_params": {
-      ...
-      "rewards_config": {
-        "reward_period_seconds": 86400,  # range: [0, 365 * 86400]
-        "monetary_expansion_r0": 450,  # range: [0, 1000]
-        "monetary_expansion_tau": 14500000000000000,  # range: [1, 2**64 - 1]
-        "monetary_expansion_decay": 999860,  # range: [0, 1000000]
-        "monetary_expansion_cap": "6250000000000000000" # range: [0, 100_00000000_00000000]
-      }
-    }
-  }
-}
-```
-
-The number of tokens being released at each period is defined as:
-
-```
-R0 = rewards_config["monetary_expansion_r0"]
-tau = rewards_config["monetary_expansion_tau"]
-P = rewards_config["reward_period_seconds"]
-
-S = total_staking  # example: 1500000000_00000000
-Y = 365 * 24 * 60 * 60  # seconds of a year
-
-R = (R0 / 1000) * exp(-S / tau)
-N = floor(S * (pow(1 + R, P / Y) - 1))
-N = N - N % 10000
-
-N: released coins
-S: total stakings at current block when reward distribution happens
-R0: upper bound for the reward rate p.a.
-```
-
-Note that this is an exponential decay function, where the index of it controls the “steepness” of the curve. Precisely, this damping factor controls the exponential decay rate of the reward function.
-
-The parameter `tau` will decay each time rewards get distributed,:
-
-```
-tau(n) = tau(n-1) * rewards_config["monetary_expansion_decay"]
-```
-
-The rewards validator received goes to the bonded balance of their staking account, and results in validator [voting power change](#end/commit_block_state_update) accordingly.
 
 #### Fixed-point arithmetic
 
@@ -190,7 +239,7 @@ N = S * (pow(1 + R, P / Y) - 1)
 Break it down into simpler computation steps:
 
 ```
-# To keep the intermidiate numbers smaller
+# To keep the intermediate numbers smaller
 S' = S / 10000000_00000000
 tau' = tau / 10000000_00000000
 
@@ -209,109 +258,6 @@ N  = n3 - n3 % 10000
 
 TODO, how to compute the continued fractions form of `exp2` and `log2`.
 
-## Punishments
-
-This part describes functionality that aims to disincentivize network-observable actions, such as faulty validations, of
-participants with values at stake by penalizing/slashing and jailing them. The penalties may include losing some amount
-of their stake (surrendered to the rewards pool), losing their ability to perform the network functionality for a period
-of time, collect rewards etc.
-
-Punishments for a validator are triggered when they either make a *byzantine fault* or become *non-live*: 
-
-- Liveness Faults (Low availability)
-
-    A validator is said to be **non-live** when they fail to sign at least `MISSED_BLOCK_THRESHOLD` blocks in
-    last `BLOCK_SIGNING_WINDOW` blocks successfully. `BLOCK_SIGNING_WINDOW` and `MISSED_BLOCK_THRESHOLD` are network parameters and can
-    be configured during genesis (currently, changing these network parameters at runtime is not supported). Tendermint
-    passes signing information to ABCI application as `last_commit_info` in `BeginBlock` request.
-
-:::tip Example:
-    For example, if `BLOCK_SIGNING_WINDOW` is `100` blocks and `MISSED_BLOCK_THRESHOLD` is `50` blocks, a validator will be
-    marked as **non-live** if they fail to successfully sign at least `50` blocks in last `100` blocks.
-:::
-- Byzantine Faults (Double signing)
-
-    A validator is said to make a byzantine fault when they sign conflicting transactions at the same height and round.
-    Tendermint has mechanisms to publish evidence of validators that signed conflicting votes (it passes this information to
-    ABCI application in `BeginBlock` request), so they can be punished by the application.
-
-### Jailing
-
-A validator is jailed if:
-
-1. They are not **live**, i.e., they failed to sign `missed_block_threshold` blocks in last
-   `block_signing_window` blocks successfully. 
-1. They make a byzantine fault, e.g., they sign messages at same height and round.
-
-When a validator gets jailed, they cannot perform any operations relating to their account, for example,
-`withdraw_stake`, `deposit_stake`, `unbond_stake`, etc., until they are un-jailed. Also, a validator cannot be un-jailed
-before `account.jailed_until` which is set to `block_time + jail_duration` while jailing. `jail_duration` is a network
-parameter which can be configured during genesis.
-
-### Un-jailing
-
-When a jailed validator wishes to resume normal operations (after `account.jailed_until` has passed), they can create
-`UnjailTx` which marks them as un-jailed and adds them back to validator set.
-
-### Slashing
-
-Validators are responsible for signing or proposing block at each consensus round. It is important that they maintain excellent availability and network connectivity to perform these tasks.  A penalty performed by the slashing module should be imposed on validators' misbehaviour or unavailability to reinforce this. Similar to jailing, a validator is slashed if:
-
-1. They are not **live**, i.e., they failed to sign `MISSED_BLOCK_THRESHOLD` blocks in last `BLOCK_SIGNING_WINDOW` blocks successfully.
-1. They make a byzantine fault, e.g., they sign messages at same height and round.
-
-Unlike jailing, which happens immediately after punishments are triggered, slashing happens after `slash_wait_period`.
-`slash_wait_period` is a network parameter and can be configured during genesis. Validators are not immediately slashed
-because faulty behavior may be non-malicious, e.g. due to misconfiguration. `slash_wait_period` is introduced to create
-a _tolerant_ punishment setup.
-
-Besides this, if a validator makes multiple faults in `slash_wait_period`, they'll only be slashed once for the worst
-fault in that time period.
-
-#### Slashing Rate
-
-Whenever a validator is slashed, a percentage of their `bonded` and `unbonded` amount is transferred to `rewards_pool`.
-There are many factors involved in determining the slashing rate for a validator:
-
-1. `MAX_LIVENESS_SLASH_RATIO` and `MAX_BYZANTINE_SLASH_RATIO` are the two network parameters used while calculating the slashing
-   rate. Both of these can be configured in the genesis.
-1. `validator_voting_percent` is the voting percent of faulty validator in the network.
-1. List of all the faulty validators in that period.
-
-The algorithm for calculating `slashing_rate` is as follows:
-
-```
-validator_slash_percent = max(slash percent of individual faults)
-```
-
-For example, if a validator made a byzantine fault as well as they are non-live, then,
-
-```
-validator_slash_percent = max(liveness_slash_percent, byzantine_slash_percent)
-```
-
-And if there are `n` faulty validators in this period, then,
-
-```
-slashing_rate = 
-    validator_slash_percent * 
-    (
-        sqrt(validator_voting_percent_1) +
-        sqrt(validator_voting_percent_2) +
-        .. + 
-        sqrt(validator_voting_percent_n)
-    )^2
-```
-
-So, if one validator of 10% voting power faults, it gets a 10% slash (assuming `liveness_slash_percent` and
-`byzantine_slash_percent` are both 100%). While, if two validators of 5% voting power each fault together, they both get
-a 20% slash.
-
-```
-slashing_rate = max(liveness_slash_percent, byzantine_slash_percent) * (sqrt(validator_voting_percent_1) + sqrt(validator_voting_percent_2))^2
-              = max(1, 1) * (sqrt(0.05) + sqrt(0.05))^2                // assuming liveness_slash_percent and byzantine_slash_percent are both 100%
-              = 0.2
-```
 
 ### Removed validators / council nodes
 A Validator is removed when its voting power is set to 0.

@@ -26,7 +26,7 @@ expose it to the container by running docker with the `--device /dev/isgx` flag)
 ### Step 1. Get Tendermint and Chain v0.3 released binaries
 
 Download the latest version of [Tendermint 0.32.\*](https://docs.tendermint.com/master/introduction/install.html#from-binary).
-Chain v0.3 can be [downloaded from GitHub](https://github.com/crypto-com/chain/releases/download/v0.3.0/crypto-com-chain-release-0.3.0.tar.gz).
+Chain v0.3 can be [downloaded from GitHub](https://github.com/crypto-com/chain/releases/download/v0.3.1/crypto-com-chain-release-0.3.1.tar.gz).
 
 ::: warning CAUTION
 Crypto.com Chain v0.3 is not backwards compatible with v0.2 released earlier. So, if you were running a node with the old
@@ -255,7 +255,7 @@ as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core
 test secure storage of validator keys etc.
 :::
 
-### Step 3-b-0. (Optional) restoring a wallet
+### Step 3-b-0. (Optional) restoring a wallet and re-depositing the balance
 If you participated in the 0.2 testnet and have backed up your seed phrase, you can restore it with, for example:
 
 ```bash
@@ -268,7 +268,12 @@ $ client-cli address new --name <WALLET_NAME> --type Staking
 ```
 
 If the created address matches one of the ones listed in the initial genesis.json distribution,
-you can skip to Step 3-b-5.
+you can (see Step 3-b-1 for environment variable details):
+1. create a transfer address, e.g. using: `$ client-cli address new --name <WALLET_NAME> --type Transfer`
+2. submit a withdraw transaction, e.g. using: `$ client-cli transaction new --name <WALLET_NAME> --type Withdraw` with the transfer transaction details
+3. submit a deposit transaction, e.g. using `$ client-cli transaction new --name <WALLET_NAME> --type deposit-amount` with your staking address
+
+If you managed to successfully deposit the minimum required bonded amount, you can skip to Step 3-b-3. 
 
 ### Step 3-b-1. Create a staking address
 This can be done, for example, with the client-cli command-line tool. Set the required environment variables:

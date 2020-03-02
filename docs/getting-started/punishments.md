@@ -19,7 +19,7 @@ parameters and their effect on behavior of validator punishments is discussed la
 1. `LIVENESS_SLASH_PERCENT`: Percentage of funds (bonded + unbonded) slashed when a validator is non-live.
 1. `BYZANTINE_SLASH_PERCENT`: Percentage of funds (bonded + unbonded) slashed when validator makes a byzantine fault.
 
-:::tip Important:
+:::warning Important:
 During slashing, funds are slashed from both, bonded and unbonded, amounts.
 :::
 
@@ -71,12 +71,12 @@ When a validator gets jailed, they cannot perform any operations relating to the
 before `account.jailed_until` which is set to `block_time + UNBONDING_PERIOD` while jailing. `UNBONDING_PERIOD` is a
 network parameter which can be configured during genesis.
 
-:::tip Important:
+:::warning Important:
 `block_time` used in calculating `account.jailed_until` should be the time of the block at which the fault is detected
 (i.e., `current_block_height`).
 :::
 
-:::tip Important:
+:::warning Important:
 When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently
 banned validators and cannot re-join the network as a validator with same public key.
 :::
@@ -95,7 +95,7 @@ should be imposed on validators' misbehavior reinforce this. Similar to jailing,
 byzantine fault. If a validator makes multiple faults in `UNBONDING_PERIOD`, they'll only be slashed once for the worst
 fault in that period. The funds to be deducted are calculated based on `BYZANTINE_SLASH_PERCENT`.
 
-:::tip Important:
+:::warning Important:
 A validator should not be slashed more than once within `UNBONDING_PERIOD`. If a validator commits multiple faults
 within that time period, it should only be slashed once (for simplicity, we'll only slash the validator for the first
 evidence that we get from tendermint and ignore other evidences until `UNBONDING_PERIOD`).

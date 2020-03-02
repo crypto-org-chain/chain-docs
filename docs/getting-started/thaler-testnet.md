@@ -9,11 +9,12 @@ This is an early tutorial for the developers and brave and patient super-early a
 ### Step 0. Install Intel SGX SDK 2.8 and other pre-requisites
 
 - Make sure your CPU supports SGX and it is enabled in BIOS. [This GitHub repository](https://github.com/ayeks/SGX-hardware) has more information about supported hardware and cloud vendors.
-  You can download the [Linux SGX SDK installers from the Intel Open Source website](https://01.org/intel-softwareguard-extensions/downloads/intel-sgx-linux-2.8-release).
+
+- You can download the Linux SGX SDK installers from the Intel Open Source [website](https://01.org/intel-softwareguard-extensions/downloads/intel-sgx-linux-2.8-release). More details can be found in this [installation guide](https://download.01.org/intel-sgx/sgx-linux/2.8/docs/Intel_SGX_Installation_Guide_Linux_2.8_Open_Source.pdf).
 
 - Note that some motherboards may have only "software controlled" option where [an extra step is needed for enabling it](https://github.com/intel/linux-sgx/issues/354#issuecomment-447961815).
 
-- You may also need to install libzmq (e.g. libzmq3-dev package in Ubuntu 18.04).
+- You may also need to install libzmq (e.g. [libzmq3-dev](https://packages.ubuntu.com/xenial/libzmq3-dev) package in Ubuntu 18.04).
 
 ::: tip NOTE
 There is an Ubuntu-based Docker image `cryptocom/chain:latest` on Dockerhub that 
@@ -269,9 +270,28 @@ $ client-cli address new --name <WALLET_NAME> --type Staking
 
 If the created address matches one of the ones listed in the initial genesis.json distribution,
 you can (see Step 3-b-1 for environment variable details):
-1. create a transfer address, e.g. using: `$ client-cli address new --name <WALLET_NAME> --type Transfer`
-2. submit a withdraw transaction, e.g. using: `$ client-cli transaction new --name <WALLET_NAME> --type Withdraw` with the transfer transaction details
-3. submit a deposit transaction, e.g. using `$ client-cli transaction new --name <WALLET_NAME> --type deposit-amount` with your staking address
+1. create a transfer address, e.g. using: 
+```bash 
+$ client-cli address new --name <WALLET_NAME> --type Transfer
+```
+2. submit a withdraw transaction, e.g. using: 
+``` bash
+$ client-cli transaction new --name <WALLET_NAME> --type Withdraw
+``` 
+with the transfer transaction details
+
+3. sync your wallet, e.g. using:
+
+```bash
+$ client-cli sync  --name <WALLET_NAME> 
+```
+
+4. submit a deposit transaction, e.g. using 
+
+``` bash 
+$ client-cli transaction new --name <WALLET_NAME> --type deposit-amount
+```
+with your staking address 
 
 If you managed to successfully deposit the minimum required bonded amount, you can skip to Step 3-b-3. 
 

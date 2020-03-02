@@ -69,6 +69,7 @@ module.exports = {
         "enclave-architecture",
         "transaction-privacy",
         "staking",
+        "punishments",
         "node-joining",
         "network-parameters",
         "notes-on-production-deployment",
@@ -111,11 +112,12 @@ module.exports = {
             "Enclave Architecture": 12,
             "Transaction Privacy": 13,
             Staking: 14,
-            "node-joining": 15,
-            "network-parameters": 16,
-            "Notes on Performance": 17,
-            "Notes on Production Deployment": 18,
-            "Threat Model": 19
+            "punishments":15,
+            "node-joining": 16,
+            "network-parameters": 17,
+            "Notes on Performance": 18,
+            "Notes on Production Deployment": 19,
+            "Threat Model": 20
           };
           return ordering[a["title"]] - ordering[b["title"]];
         }

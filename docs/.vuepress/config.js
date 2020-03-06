@@ -55,9 +55,9 @@ module.exports = {
     sidebar: {
       "/getting-started/": [
         "",
+        "send_your_first_transaction",
         "thaler-testnet",
         "local_full_node_development",
-        "send_your_first_transaction",
         "consensus",
         "genesis",
         "chain-id-and-network-id",

@@ -45,7 +45,7 @@ We also assume standard security measures like OS level hardening, software patc
 
 ## System Diagram
 
-![An image](./system-diagram.png)
+![An image](./assets/system-diagram.png)
 
 ## Result
 

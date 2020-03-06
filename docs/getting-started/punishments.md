@@ -51,15 +51,15 @@ byzantine fault, that evidence should be verified. Also, it should be checked th
 not older than `MAX_EVIDENCE_AGE` in tendermint.
 :::
 
-### Inactivity Punishment
+### Inactivity Slashing
+
+It is important that the validators maintain excellent availability and network connectivity to perform their tasks. A penalty should be imposed on validators' misbehavior to reinforce this.
 
 When a validator fails to successfully sign `MISSED_BLOCK_THRESHOLD` blocks in last `BLOCK_SIGNING_WINDOW` blocks, it is
-immediately punished by deducting funds from their bonded and unbonded amount and removing them from active validator
-set if the resulting bonded amount is still greater than minimum required stake. The funds to be deducted are calculated
-based on `LIVENESS_SLASH_PERCENT`.
+immediately punished by deducting funds from their bonded and unbonded amount and removing them from active validator set. The funds to be deducted are calculated based on `LIVENESS_SLASH_PERCENT`. 
 
 :::tip Note:
-The validator is not **jailed** in this scenario. They can immediately send a `NodeJoinTx` to join back as a validator.
+The validator is not **jailed** in this scenario. They can immediately send a `NodeJoinTx` to join back as a validator if they are qualified (have enough bonded amount and not jailed).
 :::
 
 ### Jailing
@@ -87,16 +87,12 @@ When a jailed validator wishes to resume normal operations (after `account.jaile
 `UnjailTx` which marks them as un-jailed. After successful un-jailing, validators can submit a `UnbondTx` and
 `WithdrawTx` to withdraw their funds.
 
-### Slashing
+### Byzantine Slashing
 
-Validators are responsible for signing or proposing block at each consensus round. It is important that they maintain
-excellent availability and network connectivity to perform these tasks. A penalty performed by the slashing module
-should be imposed on validators' misbehavior reinforce this. Similar to jailing, a validator is slashed if they make a
-byzantine fault. If a validator makes multiple faults in `UNBONDING_PERIOD`, they'll only be slashed once for the worst
-fault in that period. The funds to be deducted are calculated based on `BYZANTINE_SLASH_PERCENT`.
+Validators are responsible for signing or proposing block at each consensus round. A penalty should be imposed on validators' misbehavior to reinforce this. When there is byzantine fault detected, they are immediately slashed other than jailed. During the jailing time, it won't be slashed again for other byzantine faults. The funds to be deducted are calculated based on `BYZANTINE_SLASH_PERCENT`.
 
 :::warning Important:
-A validator should not be slashed more than once within `UNBONDING_PERIOD`. If a validator commits multiple faults
+A validator should not be slashed more than once for byzantine faults within `UNBONDING_PERIOD`. If a validator commits multiple byzantine faults
 within that time period, it should only be slashed once (for simplicity, we'll only slash the validator for the first
 evidence that we get from tendermint and ignore other evidences until `UNBONDING_PERIOD`).
 :::

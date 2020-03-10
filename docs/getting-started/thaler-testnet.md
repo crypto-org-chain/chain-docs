@@ -343,4 +343,4 @@ $ client-cli transaction new --name Default --type node-join
 - You are welcome to utilize the [Crypto.com Chain Explorer](https://chain.crypto.com/explorer) to search and get more information on blocks and transactions on **Thaler** testnet network.
 
 - To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/explorer/faucet) to obtain test CRO tokens for performing transactions on the **Thaler** testnet.
-  - Note that you will need to create a [wallet](https://crypto-com.github.io/wallets/client-cli.html#_1-wallet-management), a [transfer address](https://crypto-com.github.io/wallets/client-cli.html#_2-funds-transfer) and obtain the [viewkey](https://crypto-com.github.io/wallets/client-cli.html#_2-funds-transfer) before using the faucet.
+  - Note that you will need to create a [wallet](../wallets/client-cli.md#wallet-new-create-a-new-wallet), a [transfer address](../wallets/client-cli.md#address-new-create-a-new-address) and obtain the [viewkey](../wallets/client-cli.md#view-key-obtain-the-view-key) before using the faucet.

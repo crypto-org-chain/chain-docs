@@ -464,3 +464,48 @@ Validator could be punished and [jailed](../getting-started/staking.md#jailing) 
 ```bash
 $ ./bin/client-cli transaction new --name Default --type unjail
 ```
+
+## Export & Import Tx
+
+As mentioned before, sender should add the receiver's view-key to the transaction. Because sender can't push data directly to the receiver. However, it is also possible to send / receive a payment by directly exchanging the (raw) transaction payload data. The sender (who creates the transaction) would export it, the receiver would import it and check the transaction data locally and check the transaction ID against the distributed ledger. Following explains the flow:
+
+1.  **Sender**: Get your transaction id from the history, you may need to sync before running the following command:
+    ::: details Example: Obtain the transaction id
+    ```bash
+    \$ ./bin/client-cli history --limit ? --offset ? --name <sender_wallet>
+    Enter authentication token: ## Insert your authentication token ##
+    +----------------+--------+--------+-----+--------------+------------+
+    | Transaction ID | In/Out | Amount | Fee | Block Height | Block Time |
+    +----------------+--------+--------+-----+--------------+------------+
+    |<transaction_id>|........|........|.....|..............|............|
+    +----------------+--------+--------+-----+--------------+------------+
+
+    ```
+
+    :::
+
+1.  **Sender**: Export the target transaction payload from the sender's wallet:
+    ::: details Example: Export the raw transaction data
+    ```bash
+    \$ ./bin/client-cli transaction export --id <transaction_id> --name <sender_wallet>
+    Enter authentication token: ## Insert your authentication token ##
+
+        ## transaction_payload_example ##
+        eyJ0eCI6eyJ0eXBlIjoiVHJhbnNmZXJUcmFuc2FjdGlvbiIsImlucHV0cyI6W3siaWQiOiI3ZDk3NzVjNTcyODQ1ZjRlNzRjOGU5Y2Q1NjhkZjk4Mjk0NjQ1ODM1NDA5OGQzZDBlZjcxNzRmYmQ3NDdkMDhkIiwiaW5kZXgiOjF9XSwib3V0cHV0cyI6W3siYWRkcmVzcyI6InRjcm8xenR2MDZ6dzRtdHZ3NnhhZ25jMGdheTJkbXN5OHo5cjN4N2RwdGoycW5tdnBoNDY1YXQ5c251M2x1YSIsInZhbHVlIjoiMTAwMDAwMDAwMDAwIiwidmFsaWRfZnJvbSI6bnVsbH0seyJhZGRyZXNzIjoidGNybzFtODd5cTYwMmM2M2ZrY3p2ejZwcW5xY3JzOXZ0bnEzOHRuZjQ1a3lqMG1rdHY1ZGVkaDBxYTNmcHB2IiwidmFsdWUiOiI1OTk5ODk5OTk5OTk3ODg3IiwidmFsaWRfZnJvbSI6bnVsbH1dLCJhdHRyaWJ1dGVzIjp7ImNoYWluX2hleF9pZCI6IjQyIiwiYWxsb3dlZF92aWV3IjpbeyJ2aWV3X2tleSI6IjAzZDRkNWZiN2Q4MjJiZGUwZjYwOTgwNmU3ZTEzMDVmNTI3NjYzZmM5YWU2ZmZhMjJiNDVhMDc1NDRhOGU5OGY1YiIsImFjY2VzcyI6IkFsbERhdGEifV19fSwiYmxvY2tfaGVpZ2h0IjozMjQ2Mn0
+      ```
+
+    :::
+
+1.  **Receiver**: The transaction can be imported into receiver's wallet by
+    ::: details Example: Import the raw transaction data
+    ```bash
+    \$ ./bin/client-cli transaction import --tx <transaction_payload> --name <receiver_wallet>
+
+        Enter authentication token: ## Insert your authentication token ##
+
+    import amount: <transaction_amount>
+    ```
+
+    :::
+
+1.  Finally, receiver can verify this transaction by checking the [transaction history](#history-check-your-transaction-history)

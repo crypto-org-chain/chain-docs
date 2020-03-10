@@ -17,7 +17,7 @@ Firstly, we will need a wallet to receive the genesis funds.
 
 ### Step 1a) Create a Wallet
 
-To create a wallet, currently, we have [client-rpc](https://github.com/crypto-com/chain/tree/master/client-rpc) and [client-cli](https://github.com/crypto-com/chain/tree/master/client-cli) available for this purpose. We will be using [client-cli](https://github.com/crypto-com/chain/tree/master/client-cli) in this guide.
+To create a wallet, currently, we have [client-rpc](https://github.com/crypto-com/chain/tree/master/client-rpc) and [client-cli](../wallets/client-cli.md) available for this purpose. We will be using [client-cli](../wallets/client-cli.md) in this guide.
 
 - Create a new *basic* wallet with the name "Default" by running
 
@@ -27,13 +27,13 @@ To create a wallet, currently, we have [client-rpc](https://github.com/crypto-co
 
   You will be prompted to enter a passphrase.
 
-  **Note**: The client-cli also supports HD wallet with mnemonic seed. Kindly follow this [instruction](../wallets/client-cli.md#wallet-management) to create your HD wallet.
+  **Note**: The client-cli also supports HD wallet with mnemonic seed. Kindly follow this [instruction](../wallets/client-cli.md#wallet-new-create-a-new-wallet) to create your HD wallet.
   
 - Generate a staking address for the wallet to receive genesis funds. You will be prompted to enter the wallet passphrase again to verify.  
 
   ```bash
   $ ./target/debug/client-cli address new --name Default --type Staking
-  Enter passphrase:
+  Enter authentication token: ## Insert your authentication token ##
   New address: 0x3a102b53a12334e984ef51fda0baab1768116363
   ```
 

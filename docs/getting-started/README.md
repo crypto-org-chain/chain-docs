@@ -31,7 +31,6 @@ At the end of this getting-start document, you will be running five components:
 - `chain-abci` as main chain process.
 - `client-rpc` as rpc server for client's interactions.
 - `tendermint` for consensus.
-- `tx-validation-app` for enclave transaction validation.
 - `tx-query-app` allows semi-trusted client querying of sealed tx payloads.
 
 ## Azure VM creation
@@ -76,10 +75,7 @@ It will take you serveral mins, and check the binary files share object files in
 ```
 $ ls target/debug/
 
-chain-abci client-rpc client-cli tx-query-app tx-validation-app
-libtx_validation_enclave.so libtx_query_enclave.so
-tx_query_enclave.signed.so tx_validation_enclave.signed.so
-...
+chain-abci client-rpc client-cli tx-query-app ...
 ```
 
 #### 2. Build the docker image with local binary files using following command:
@@ -180,6 +176,5 @@ $ make run
 If no error Check all containers 
 
 
-## Congratulations
-Congratulations, now the environment to run Crypto.com Chain is all set. Let's move
-on to start your first transaction.
+### Congratulations
+Congratulations, now the environment to run Crypto.com Chain is all set. Let's on on and start [sending your first transaction](./send_your_first_transaction).

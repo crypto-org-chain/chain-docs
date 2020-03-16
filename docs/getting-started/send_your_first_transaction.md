@@ -39,7 +39,7 @@ New address: 0x45c1851c2f0dc6138935857b9e23b173185fea15
 
 - Run another time and you will get the address that stores the unbonded funds.
 ```bash
-$ ./target/debug/client-cli address new --name Default --type Transfer
+$ ./target/debug/client-cli address new --name Default --type Staking
 Enter authentication token:       // Input the Authentication token
 New address: 0x2dfde2178daa679508828242119dcf2114038ea8
 ```

@@ -56,7 +56,7 @@ There are several variants of it:
 The only way to transit to active validator is by executing `NodeJoinTx`, the preconditions are:
 
 - `bonded >= min_required_staking`
-- The validator pubkey/address is not banned or already used
+- The validator pubkey/address is not already used by others, it's ok to re-use the old keys used by itself if it's a re-join from an inactive validator.
 - Not jailed if transitting from inactive validator
 
 ### From "active validator" to "inactive validator"
@@ -225,11 +225,6 @@ sometime.
 Whenever validator change consensus key, the old key and current block time are pushed into `used_validator_keys`, before that, the used keys older than `max_evidence_age` are removed.
 
 There is a maximum bound (`max_used_validator_keys`) on the size of `used_validator_keys` to prevent attack. After the maximum bound reached, re-join with new validator key is not allowed.
-
-### Validator key blacklist
-
-For all the byzantine faults we received, as long as the evidence is valid, the validator key is put into a blacklist set,
-it's banned permanently.
 
 ### Non exists and empty staking 
 

@@ -1,5 +1,6 @@
-# Staking
-Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a set of validators (Council Node) to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain. This document contains the specification of the initial staking, slashing, and rewards mechanisms which establish the foundation of the token ecosystem of CRO.
+# Staking and Council Node
+
+Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a set of validators (Council Node) to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
 
 ## Staked state / Account
 
@@ -33,233 +34,47 @@ pub struct CouncilNode {
     // FIXME: bootstrapping
 }
 ```
+
 ### EFFECTIVE_MIN_STAKE
+
 Effective minimum stake (`EFFECTIVE_MIN_STAKE`) is defined as follows at any time:
 
 1. if the number of validators has not reached `MAX_VALIDATORS`, it is `COUNCIL_NODE_MIN_STAKE` (the network parameter)
 1. if the number of validators has reached `MAX_VALIDATORS`, it is equal to the lowest bonded amount of the staked states of the current validators plus 1.0 Coin.
 
 ### Joining the network
+
 Anyone who wishes to become a council node can submit a NodeJoinTx; this transaction is considered to be valid as long as:
 
 1. The associated staking account has `bonded` amount >= `EFFECTIVE_MIN_STAKE` and is not [punished](#punishments);
 1. There is no other validator with the same `staking_address` or the `consensus_pubkey`
 
 ### Leaving the network
+
 Anyone who wishes to leave the network, provided their associated staked state does not have any punishments, can submit UnbondStakeTx with the amount that will reduce the `bonded` amount to be lower than `COUNCIL_NODE_MIN_STAKE`.
 
-####  Voting power and proposer selection
+#### Voting power and proposer selection
+
 At the beginning of each round, a council node will be chosen deterministically to be the block proposer.
 
-The chance of being a proposer is directly proportional to their *voting power* at that time, which, in general, is equal to the `bonded` amount (rounded to the whole unit) in the associated staking address of the council node.
+The chance of being a proposer is directly proportional to their _voting power_ at that time, which, in general, is equal to the `bonded` amount (rounded to the whole unit) in the associated staking address of the council node.
 
-The top `MAX_VALIDATORS` with the most `bonded` amount would put to the *active* validator set in `END_BLOCK`. If a validator's `bonded` amount is below the top `MAX_VALIDATORS`, It will be considered as *non-active* and would not be able to take part in the consensus. For example, 
+The top `MAX_VALIDATORS` with the most `bonded` amount would put to the _active_ validator set in `END_BLOCK`. If a validator's `bonded` amount is below the top `MAX_VALIDATORS`, It will be considered as _non-active_ and would not be able to take part in the consensus. For example,
 
-- If the number of *active* validators < `MAX_VALIDATORS`:
+- If the number of _active_ validators < `MAX_VALIDATORS`:
 
-    |    |  `bonded` amount < `COUNCIL_NODE_MIN_STAKE` |  `bonded` amount => `COUNCIL_NODE_MIN_STAKE` |
-    |----|---|---|
-    | Validator's voting power |  Set to 0 |  Set to the `bonded` amount|
+  |                          | `bonded` amount < `COUNCIL_NODE_MIN_STAKE` | `bonded` amount => `COUNCIL_NODE_MIN_STAKE` |
+  | ------------------------ | ------------------------------------------ | ------------------------------------------- |
+  | Validator's voting power | Set to 0                                   | Set to the `bonded` amount                  |
 
-- On the other hand, If the number of *active* validators = `MAX_VALIDATORS`: 
+- On the other hand, If the number of _active_ validators = `MAX_VALIDATORS`:
 
-    |    |  `bonded` amount is below the top `MAX_VALIDATORS` |  Otherwise |
-    |----|---|---|
-    | Validator's voting power |  Set to 0 |  Set to the `bonded` amount|
-
-
-
-## Validator Rewards
-
-To incentivise validators to run the network, rewards are accumulated and distributed to the validators. There are three sources for the rewards:
-
-1. Monetary expansion with a fixed total supply
-1. [Transaction Fees](./transaction.md#transaction-fee)
-1. Slashing of byzantine and non-live nodes (if any)
-
-The `RewardsPoolState` data structure stores all the information about the remaining funds and distribution states:
-
-```
-pub struct RewardsPoolState {
-    pub period_bonus: Coin, // rewards accumulated from fees and slashing during current period
-    pub last_block_height: BlockHeight, // when was the pool last updated
-    pub last_distribution_time: Timespec, // when was the pool last distributed
-    pub minted: Coin,  // record the number of new coins ever minted, can't exceeds max supply
-    pub tau: u64,  // a decaying parameter in monetery expansion process
-}
-```
-
-### Overview: The reward function
-
-**Motivation:** To incentivise the validators, the amount of the reward should dynamically react to the actual network conditions such as the _total staking_ and the _length of time_ since the genesis block. 
-
-The reward being sent to the reward pool depends on two major factors:  
-
-- **S**: The total amount of staking, and
-- **R**: The reward rate per annum.
-
-Specifically, this reward rate `R` can be expressed by the following function:
-
-```
-R = (R0 / 1000) * exp(-S / tau)
-```
-To visualize this, if we set `tau=10 Billion`, `R0=350`, we have the following graph of the function: 
-
-![](./assets/reward_rate.png)
-
-Note that the above reward rate is per annum, and the number of tokens being released to the reward pool (**N**) for that epoch is calculated by 
-
-```
-N = S  *  ( (1 + R) ^ (1 / f) - 1 )
-``` 
-
-where `S` is the total amount of tokens staked by validators to participate in the consensus process; `R0` is the upper bound for the reward rate; `tau` is a time-dependent variable that controls the exponential rate; `f` is the frequency of reward being distributed per year.
-
-:::tip Example: If the reward rate is 28% with total staking of 500 million and the reward is being distributed every day, the number of tokens being released to the reward pool at the end of the day will be
-`500,000,000 *  ( (1+0.28)^(1/365) - 1) = 338,278`
-:::
-
-More details about the actual calculation and its configuration can be found in the next section.
-
-#### Monetary expansion and network parameters
-
-Monetary expansion is designed to release tokens from the reserve account to the reward pool, while keeping a fixed maximum total supply.
-
-Precisely, the reward rate is controlled by the following parameters:
-- `monetary_expansion_cap`:     The total amount of tokens reserved for validator's reward in the basic unit
-- `distribution_period`:        The period of reward being distributed
-- `monetary_expansion_r0`:      The upper bound for the reward rate per annum 
-- `monetary_expansion_tau`:     Initial value of tau in the reward function
-- `monetary_expansion_decay`:   The decay rate of tau.
-
-
-You can find the configuration under the `rewards_params` section of the genesis file `genesis.json` in `./tendermint/config`, for example: 
-
-```
-{
-  "app_state": {
-    ...
-    "network_params": {
-      ...
-      "rewards_config": {
-        "distribution_period:": 86400,  # range: [0, )
-        "monetary_expansion_r0": 450,  
-        "monetary_expansion_tau": 14500000000000000,  
-        "monetary_expansion_decay": 999860,  # range: [0, 1000000]
-        "monetary_expansion_cap": "2250000000000000000" # range: [0, 100_00000000_00000000]
-      }
-    }
-  }
-}
-```
-represents a daily scheduled reward (every `86400` seconds), with a maximum reward rate of *45%* per annum, distributing a total sum of 22.5 billion tokens to the validators. 
-
-
-At the end of each reward epoch, the number of tokens being released at each period is defined as:
-
-```
-    R0 = rewards_config["monetary_expansion_r0"]
-    tau = rewards_config["monetary_expansion_tau"]
-    P = rewards_config["distribution_period"]
-
-    # total bonded amount of the active validators 
-    at the end of the reward epoch
-    S = total_staking  
-
-    # seconds of a year
-    Y = 365 * 24 * 60 * 60  
-
-    R = (R0 / 1000) * exp(-S / tau)
-    N = floor(S * (pow(1 + R, P / Y) - 1))
-    N = N - N % 10000
-
-    N: released coins
-    S: total stakings at current block when 
-       reward distribution happens
-    R0: upper bound for the reward rate p.a.
-```
-
-Note that this is an exponential decay function, where the index of it controls the “steepness” of the curve. Precisely, this damping factor controls the exponential decay rate of the reward function. The parameter `tau` will decay each time rewards get distributed:
-```
-tau(n) = tau(n-1) * rewards_config["monetary_expansion_decay"]
-```
-Using the example of `tau=10 Billion` and `R0=350`, the following graph shows how the reward rate deforming when `tau` is dropping by 5% every year: 
-
-![](./assets/damping.png)
-
-The rewards validator received goes to the bonded balance of their staking account, and results in validator [voting power change](#end/commit_block_state_update) accordingly.
-
-
-#### Reward distribution
-
-
-FIXME: fix fairness; define rewarding in terms of `LastCommitInfo` instead of block proposer
-
-Rewards are distributed periodically (e.g. daily), rewards are accumulated during each period, and block proposers are recorded. At the end of each period, validators will receive a portion of the "reward pool" as a reward for participating in the consensus process. Specifically, the reward is proportional to the number of blocks that were successfully proposed by the validator; it is calculated as follows:
-
-```
-rewards of validator = total rewards * number of blocks proposed by the validator / total number of blocks
-```
-
-The remainder of division will become rewards of the next period.
-
-The recording of block proposer is done in `BeginBlock` right before rewards distribution.
-
-#### Fixed-point arithmetic
-
-First we transform the power function into exponencial and natural logarithm functions:
-
-```
-pow(x, y) = exp(y * log(x))
-```
-
-The `exp` and `log` are computed with continued fractions representation, using a form with better convergence:
-
-```
-exp2(x, y) = exp(x / y)
-log2(x, y) = log(1 + x / y)
-```
-
-![MainEq1](https://wikimedia.org/api/rest_v1/media/math/render/svg/7aa8187974263e0f3e7cc293ca82d3dc3d75af90)
-
-![MainEq2](https://wikimedia.org/api/rest_v1/media/math/render/svg/90abfa2132828fc8eea5d3551dfa4df25dbdfa87)
-
-With above substitutes, we can transform the formula like this:
-
-```
-R = (R0 / 1000) * exp(-S/tau)
-  = R0 * exp2(-S, tau) / 1000
-N = S * (pow(1 + R, P / Y) - 1)
-  = S * (exp(P * log(1 + R) / Y) - 1)
-  = S * (exp2(P * log(1 + R), Y) - 1)
-  = S * (exp2(P * log(1 + R0 * exp2(-S, tau) / 1000), Y) - 1)
-  = S * (exp2(P * log2(R0 * exp2(-S, tau), 1000), Y) - 1)
-```
-
-Break it down into simpler computation steps:
-
-```
-# To keep the intermediate numbers smaller
-S' = S / 10000000_00000000
-tau' = tau / 10000000_00000000
-
-n0 = exp2(-S', tau')
-n1 = log2(R0 * n0, 1000)
-n2 = exp2(P * n1, Y)
-n3 = floor(S * (n2 - 1))
-N  = n3 - n3 % 10000
-```
-
-> Fixed point number format: `I65F63`.
->
-> `exp2` runs 25 iterations.
->
-> `log2` runs 10 iterations.
-
-TODO, how to compute the continued fractions form of `exp2` and `log2`.
-
+  |                          | `bonded` amount is below the top `MAX_VALIDATORS` | Otherwise                  |
+  | ------------------------ | ------------------------------------------------- | -------------------------- |
+  | Validator's voting power | Set to 0                                          | Set to the `bonded` amount |
 
 ### Removed validators / council nodes
+
 A Validator is removed when its voting power is set to 0.
 This can happen in the following scenarios:
 
@@ -268,9 +83,10 @@ This can happen in the following scenarios:
 1. When the `bonded` amount <= `EFFECTIVE_MIN_STAKE`
 
 When this happens, the following metadata is cleaned up as follows:
+
 - its associated reward tracking-related data is cleared:
-  - (a) immediately (*if the validator is being punished*)
-  - (b) in the block that triggers next reward distribution (*otherwise*)
+  - (a) immediately (_if the validator is being punished_)
+  - (b) in the block that triggers next reward distribution (_otherwise_)
 - its liveness tracking information is cleared in the block when this occurs
 - its slashing related information (mapping Tendermint address / pubkey => staked state address) is scheduled to be cleared in a block after the current block time + `MAX_EVIDENCE_AGE` (`SLASH_MAP_DELETE`)
 
@@ -278,7 +94,7 @@ Note this inequality must be checked in network parameters: UNBOND_PERIOD >= JAI
 
 If the validator wishes to re-join the validator set, they can (unjail if necessary and) submit a NodeJoinTx (see the Joining the Network section).
 
-If the NodeJoinTx transaction is valid AND this happens before  `SLASH_MAP_DELETE` AND the consensus pubkey (or associated Tendermint address) from NodeJoinTx transaction is the same, the previous slashing information is preserved (i.e. the "delete schedule" is cancelled).
+If the NodeJoinTx transaction is valid AND this happens before `SLASH_MAP_DELETE` AND the consensus pubkey (or associated Tendermint address) from NodeJoinTx transaction is the same, the previous slashing information is preserved (i.e. the "delete schedule" is cancelled).
 
 If the NodeJoinTx transaction is valid AND this happens before next reward distribution AND the consensus pubkey from NodeJoinTx transaction is different, the associated staked state is then rewarded for interactions with both consensus pubkeys (as reward tracking is per staked state).
 
@@ -327,11 +143,11 @@ for each council_node:
             account.jailed_until = Some(BeginBlock.Timestamp + JAIL_DURATION)
 ```
 
-## “Global state” / APP_HASH
+### “Global state” / APP_HASH
 
 Tendermint expects a single compact value, `APP_HASH`, after each BlockCommit that represents the state of the application. In the early Chain prototype, this was constructed as a root of a Merkle tree from IDs of valid transactions.
 
-In this staking scenario, some form of “chimeric ledger” needs to be employed, as staking-related functionality is represented with accounts. In Ethereum, [Merkle Patricia Trees](https://github.com/ethereum/wiki/wiki/Design-Rationale#merkle-patricia-trees) are used:  (The [alternative](https://github.com/tendermint/iavl) in Tendermint:  depends on the order of transactions though)
+In this staking scenario, some form of “chimeric ledger” needs to be employed, as staking-related functionality is represented with accounts. In Ethereum, [Merkle Patricia Trees](https://github.com/ethereum/wiki/wiki/Design-Rationale#merkle-patricia-trees) are used: (The [alternative](https://github.com/tendermint/iavl) in Tendermint: depends on the order of transactions though)
 
 They could possibly be used to represent an UTXO set: https://medium.com/codechain/codechains-merkleized-utxo-set-c76c9376fd4f
 
@@ -348,27 +164,27 @@ So each component could possibly be represented as MPT and these MPTs would then
 
 FIXME: scheduling slashing cleanup
 
-Besides committing all the relevant changes and computing the resulting `APP_HASH` in `BlockCommit`; for all changes in *Accounts*, the implementation needs to signal `ValidatorUpdate` in `EndBlock`.
+Besides committing all the relevant changes and computing the resulting `APP_HASH` in `BlockCommit`; for all changes in _Accounts_, the implementation needs to signal `ValidatorUpdate` in `EndBlock`.
 
- For example, when the number of *active validators* is less then `MAX_VALIDATORS`:
+For example, when the number of _active validators_ is less then `MAX_VALIDATORS`:
 
- -  When the changes are relevant to the `bonded` amount of the council node’s staking address and the validator is not jailed: 
+- When the changes are relevant to the `bonded` amount of the council node’s staking address and the validator is not jailed:
 
-    - If the `bonded` amount changes and < `COUNCIL_NODE_MIN_STAKE`, then the validator’s voting power should be set to 0;
-    - If the `bonded` amount changes and >= `COUNCIL_NODE_MIN_STAKE`, then the validator’s voting power should be set to that amount (rounded to the whole unit).
+  - If the `bonded` amount changes and < `COUNCIL_NODE_MIN_STAKE`, then the validator’s voting power should be set to 0;
+  - If the `bonded` amount changes and >= `COUNCIL_NODE_MIN_STAKE`, then the validator’s voting power should be set to that amount (rounded to the whole unit).
 
 - When the changes are relevant to the jailing condition of the council node’s staking address:
 
-    - If the `jailed_until` changes to `Some(...)` (i.e. the node is being *jailed)*, then the validator’s power should be set to 0;
-    - If the `jailed_until` changes to `None` (i.e. the node was *un-jailed*) and `bonded` amount >= `COUNCIL_NODE_MIN_STAKE`, then the validator’s power should be set to the `bonded` amount (rounded to the whole unit).
+  - If the `jailed_until` changes to `Some(...)` (i.e. the node is being _jailed)_, then the validator’s power should be set to 0;
+  - If the `jailed_until` changes to `None` (i.e. the node was _un-jailed_) and `bonded` amount >= `COUNCIL_NODE_MIN_STAKE`, then the validator’s power should be set to the `bonded` amount (rounded to the whole unit).
 
 
     It can be summarized in the following table:
-    |    |   `bonded` <  `COUNCIL_NODE_MIN_STAKE` |  `bonded` >=  `COUNCIL_NODE_MIN_STAKE` but *Jailed* | `bonded` >=  `COUNCIL_NODE_MIN_STAKE` and *NOT jailed* | 
+    |    |   `bonded` <  `COUNCIL_NODE_MIN_STAKE` |  `bonded` >=  `COUNCIL_NODE_MIN_STAKE` but *Jailed* | `bonded` >=  `COUNCIL_NODE_MIN_STAKE` and *NOT jailed* |
     |----|---|---|---|---|
-    |Validator's voting power| Set to 0 | Set to 0| Set to the `bonded` amount| 
+    |Validator's voting power| Set to 0 | Set to 0| Set to the `bonded` amount|
 
-On the other hand, If the number of the current *active* validators is equal to  `MAX_VALIDATORS`, the validator's voting power will also be depended on whether its `bonded` amount is at the top `MAX_VALIDATORS`, please refer to the [previous section](#voting-power-and-proposer-selection)
+On the other hand, If the number of the current _active_ validators is equal to `MAX_VALIDATORS`, the validator's voting power will also be depended on whether its `bonded` amount is at the top `MAX_VALIDATORS`, please refer to the [previous section](#voting-power-and-proposer-selection)
 
 ### InitChain
 
@@ -376,7 +192,7 @@ The initial prototype’s configuration will need to contain the following eleme
 
 - [Network parameters](./network-parameters.md)
 - ERC20 snapshot state / holder mapping `initial_holders`:
-`Vec<(address: RedeemAddress, is_contract: bool, amount: Coin)>` (or `Map<RedeemAddress, (bool, Coin)>`)
+  `Vec<(address: RedeemAddress, is_contract: bool, amount: Coin)>` (or `Map<RedeemAddress, (bool, Coin)>`)
 - Network long-term incentive address: `nlt_address`
 - Secondary distribution and launch incentive addresses: `dist_address1`, `dist_address2`
 - Initial validators: `Vec<CouncilNode>`

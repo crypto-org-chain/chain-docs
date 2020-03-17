@@ -1,4 +1,4 @@
-# Rewarding
+# Reward
 
 ## Abstract
 
@@ -10,7 +10,7 @@ Rewarding module enable crypto chain to reward protocol participators, the desig
 
 The basic procedure is:
 
-- Record participators for each block, sum the voting powers for each participator at the vote time. 
+- Record participators for each block, sum the voting powers for each participator at the vote time.
 - Distribute the accumulated reward pool according to the recorded sum powers at the end of reward period.
 
 For example, in one reward period with N blocks, validator `A` only participate in the first block, and all the other validators particiate in all blocks, assuming the validator set is static during this period, then we have:
@@ -98,7 +98,7 @@ result = min(N, CAP - minted)  # the amount of newly minted coins
 
 #### Decay of parameter tau
 
-The parameter `tau` in the monetary expansion calculation should be initialized to network parameter `monetary_expansion_tau` and gets decayed for each reward distribution. 
+The parameter `tau` in the monetary expansion calculation should be initialized to network parameter `monetary_expansion_tau` and gets decayed for each reward distribution.
 
 The rate of decaying is configured in network parameter `monetary_expansion_decay`.
 
@@ -120,11 +120,60 @@ To prevent overflow of integer multiplication, it can be transformed into:
 tau = (tau / 1000) * rate + (tau % 1000) * rate
 ```
 
-#### Fixed point arithemetic
+#### Fixed point arithmetic
 
 We should use continued fraction method to compute the `exp` and `pow` with fixed point arithemetics.
 
-TODO
+First we transform the power function into exponencial and natural logarithm functions:
+
+```
+pow(x, y) = exp(y * log(x))
+```
+
+The `exp` and `log` are computed with continued fractions representation, using a form with better convergence:
+
+```
+exp2(x, y) = exp(x / y)
+log2(x, y) = log(1 + x / y)
+```
+
+![MainEq1](https://wikimedia.org/api/rest_v1/media/math/render/svg/7aa8187974263e0f3e7cc293ca82d3dc3d75af90)
+
+![MainEq2](https://wikimedia.org/api/rest_v1/media/math/render/svg/90abfa2132828fc8eea5d3551dfa4df25dbdfa87)
+
+With above substitutes, we can transform the formula like this:
+
+```
+R = (R0 / 1000) * exp(-S/tau)
+  = R0 * exp2(-S, tau) / 1000
+N = S * (pow(1 + R, P / Y) - 1)
+  = S * (exp(P * log(1 + R) / Y) - 1)
+  = S * (exp2(P * log(1 + R), Y) - 1)
+  = S * (exp2(P * log(1 + R0 * exp2(-S, tau) / 1000), Y) - 1)
+  = S * (exp2(P * log2(R0 * exp2(-S, tau), 1000), Y) - 1)
+```
+
+Break it down into simpler computation steps:
+
+```
+# To keep the intermediate numbers smaller
+S' = S / 10000000_00000000
+tau' = tau / 10000000_00000000
+
+n0 = exp2(-S', tau')
+n1 = log2(R0 * n0, 1000)
+n2 = exp2(P * n1, Y)
+n3 = floor(S * (n2 - 1))
+N  = n3 - n3 % 10000
+```
+
+> Fixed point number format: `I65F63`.
+>
+> `exp2` runs 25 iterations.
+>
+> `log2` runs 10 iterations.
+
+TODO, how to compute the continued fractions form of `exp2` and `log2`.
 
 ## Implementation
 
@@ -258,7 +307,7 @@ fn begin_block(req: RequestBeginBlock) {
 
     // Mark the dirty flag as soon as reward period reached.
     node_state.rewards_pool_updated = true;
-  
+
     let minted = min(
       // Use saturating_sub to prevent underflow
       network_parameter.monetary_expansion_cap - reward_state.minted,

@@ -13,7 +13,7 @@ STRIDE provides a set of security threats in five categories (the last one is ig
 
 For each category, we enumerate all the potential threats by breaking down a high-level goal into more specific sub-goals, in a way similar to attack tree enumeration. And in each sub-goal, we set the risk level by combining the `Severity` and `Exploitability` of the item.
 
-## Severity
+### Severity
 
 - `5`: Severe impact on the whole system
 - `4`: High impact on the whole system
@@ -21,7 +21,7 @@ For each category, we enumerate all the potential threats by breaking down a hig
 - `2`: High impact on individual user/node
 - `1`: Moderate impact on individual user/node
 
-## Exploitability
+### Exploitability
 
 - `5`: Existing exploit code available
 - `4`: Relatively easy to exploit
@@ -30,23 +30,23 @@ For each category, we enumerate all the potential threats by breaking down a hig
 - `1`: Very difficult to exploit
 - `0.1`: Almost impossible
 
-## Assets
+### Assets
 
-1. __The integrity of the account balance__: the most important piece of information in the blockchain.
-2. __Validator secret keys__: one of the most powerful key, lost 1/3 of these keys will render the whole system to an unstable state.
-3. __User secret keys__: key owner implies fund owner
-4. __Transaction encryption keys__: transaction privacy of the system relies on the secrecy of this key
+1. **The integrity of the account balance**: the most important piece of information in the blockchain.
+2. **Validator secret keys**: one of the most powerful key, lost 1/3 of these keys will render the whole system to an unstable state.
+3. **User secret keys**: key owner implies fund owner
+4. **Transaction encryption keys**: transaction privacy of the system relies on the secrecy of this key
 
-## Scope
+### Scope
 
-The whole Crypto.com Chain is a complex system and involves many different components. And therefore, the scope of this threat model is limited only to the major components of the system. To be more specific, the threat modeling of Tendermint and Intel SGX is __NOT__ in the scope of this threat modeling.
+The whole Crypto.com Chain is a complex system and involves many different components. And therefore, the scope of this threat model is limited only to the major components of the system. To be more specific, the threat modeling of Tendermint and Intel SGX is **NOT** in the scope of this threat modeling.
 
 We also assume standard security measures like OS level hardening, software patching, anti-virus, network firewall, physical security, etc, are properly implemented, executed and monitored. These mitigation strategies are not mentioned here.
 
-## System Diagram
+### System Diagram
 
 ![An image](./assets/system-diagram.png)
 
-## Result
+### Result
 
 [HERE](../crypto.com-chain-threat-model.pdf)

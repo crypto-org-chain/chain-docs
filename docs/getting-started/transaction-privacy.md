@@ -20,7 +20,7 @@ Payment data need confidentiality for many reasons, including compliance with di
 
 ## Payloads
 
-Depending on the transaction type (see [transaction types](./transaction)), some of its parts (transaction data, witness or both) need to be obfuscated. In that case, the broadcasted transaction binary payload includes:
+Depending on the transaction type (see [transaction types](./transaction) and its [processing](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/transactions.md#transaction-processing)), some of its parts (transaction data, witness or both) need to be obfuscated. In that case, the broadcasted transaction binary payload includes:
 
 - Transaction ID (if the transaction data is obfuscated)
 - List of transaction inputs (if relevant) and the number of outputs (if relevant)

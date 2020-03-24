@@ -28,7 +28,7 @@ For a detailed description of how these enclaves work together, please refer to 
 
 ## Transaction validation
 
-The validation of transactions that involve payment obfuscated transaction outputs (see [transaction types](./transaction) and [accounting model](./transaction-accounting-model)) need to happen inside enclaves.
+The validation of transactions that involve payment obfuscated transaction outputs (see [transaction types](./transaction) and [accounting model](./transaction-accounting-model)) need to happen inside enclaves. Detailed transaction processing can found [here](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/transactions.md)
 
 For the ease of development, the transaction validation happens in a separate process. The Chain ABCI application process then communicates with this process using a simple request-reply protocol over a 0MQ socket:
 
@@ -76,7 +76,7 @@ For this purpose, there needs to be an enclave that can unseal the previously st
 
 This process would again require establishing a secure connection channel between the client and the enclave (if it is remote) as in the transaction data bootstrapping – the difference is that it may only be one-side attested, as the client may not have access to the enclave architecture.
 
-For further details, please refer to this [documentation](../../plan.md#transaction-query-enclave-tqe-optional--for-client-infrastructure) on  **transaction query enclave**.
+For further details, please refer to this [documentation](../../plan.md#transaction-query-enclave-tqe-optional--for-client-infrastructure) on **transaction query enclave**.
 
 ## Transaction creation
 

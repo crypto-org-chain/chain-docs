@@ -91,6 +91,33 @@ You can find the configuration under the `rewards_params` section of the genesis
 represents a daily scheduled reward (every `86400` seconds), with a maximum reward rate of _45%_ per annum, distributing a total sum of 22.5 billion tokens to the validators.
 :::
 
+::: details Reward parameters explained:
+Here is a simple example of how these configuration parameters affect the reward distribution when assuming the amount of total staking is fixed:
+![](./assets/reward_parameters_explained.png)
+
+1. Firstly, `monetary_expansion_cap` controls the total amount of tokens reserved for validator's reward (**Total rewards allocation**). Note that this number can not exceed the total supply of tokens (i.e. 100 Billion )
+
+2. Two initial values control the amount of the reward rate at the beginning; these are:
+
+- `monetary_expansion_r0`, a positive number represents the upper bound for the reward rate per annum;
+- `monetary_expansion_tau`, the initial value of tau in the reward function.
+
+3. Afterwards, we calculate the reward rate for that epoch by the total staking amount, value of `tau` and the constant `monetary_expansion_r0`. The final reward for validators will be the product of the reward rate and the total staking amount.
+
+4. Lastly, the rewards will be distributed to the validators based on the number of blocks they have proposed in that reward epoch.(see [reward distribution](#reward-distribution) for details)
+
+_Remarks_: The reward rate of shrinks in general after each reward epoch. The contraction rate is controlled by `monetary_expansion_decay`, which is the decay rate of tau in the reward function.
+
+Note that this is an exponential decay function, where the index of it controls the “steepness” of the curve. Precisely, this damping factor controls the exponential decay rate of the reward function. The parameter `tau` will decay each time rewards get distributed:
+
+```
+tau(n) = tau(n-1) * rewards_config["monetary_expansion_decay"]
+```
+
+In addition to that, `distribution_period` controls how often the reward is being distributed.
+
+:::
+
 At the end of each reward epoch, the number of tokens being released at each period is defined as:
 
 ```
@@ -113,12 +140,6 @@ At the end of each reward epoch, the number of tokens being released at each per
     S: total stakings at current block when
        reward distribution happens
     R0: upper bound for the reward rate p.a.
-```
-
-Note that this is an exponential decay function, where the index of it controls the “steepness” of the curve. Precisely, this damping factor controls the exponential decay rate of the reward function. The parameter `tau` will decay each time rewards get distributed:
-
-```
-tau(n) = tau(n-1) * rewards_config["monetary_expansion_decay"]
 ```
 
 Using the example of `tau=10 Billion` and `R0=350`, the following graph shows how the reward rate deforming when `tau` is dropping by 5% every year:
@@ -250,3 +271,25 @@ not jailed when we receive evidence of misbehavior from tendermint.
 ### Punishments: Documentation and its interactions with ABCI
 
 The detailed documentation of the slashing mechanism can be found in [here](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/punishment.md)
+
+### Appendix
+
+#### Reward related network parameters configuration
+
+The following tables show overall effects on different configuration of the reward related network parameters:
+
+| Key                  | `monetary_expansion_cap`           | `distribution_period`             | `monetary_expansion_decay`        |
+| -------------------- | ---------------------------------- | --------------------------------- | --------------------------------- |
+| Higher               | More reserved validator reward     | Less frequent reward distribution | Tau decays slower                 |
+| Lower                | Less reserved validator reward     | More frequent reward distribution | Tau decays faster                 |
+| Constraints          | Less than the maximum token supply | Value has to be positive          | Positive value less than 1000000  |
+| Sample configuration | 2e18 (20% of the total supply)     | 86400 (reward distributed daily)  | 999860 (Tau dropped by 5% yearly) |
+
+For initial values:
+
+| Key                  | `monetary_expansion_r0`        | `monetary_expansion_tau`  |
+| -------------------- | ------------------------------ | ------------------------- |
+| Higher               | Higher ceiling for reward rate | Steeper exponential curve |
+| Lower                | Lower ceiling for reward rate  | Flatter exponential curve |
+| Constraints          | Value has to be positive       | Value has to be positive  |
+| Sample configuration | 350 (35% reward rate p.a.)     | 10 Billion                |

@@ -45,7 +45,7 @@ To verify a [basic transaction](#transaction-types) one would need to check:
 sum(inputs amounts) or account.unbonded/bonded == sum(outputs amounts) + fee
 ```
 
-The transaction fee goes to the [rewards pool](#rewards) to reward the validations.
+The transaction fee goes to the [rewards pool](./reward-and-punishments#validator-rewards) to reward the validations.
 
 ## Transaction Types
 

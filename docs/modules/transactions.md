@@ -42,8 +42,7 @@ match tx {
 
 ```rust
 struct ChainInfo {
-    /// minimal fee computed based on tx size,
-    /// the actual fee is decided in the processing logic
+    /// minimal fee computed based on tx size expected to be paid
     pub min_fee_computed: Fee,
     /// network hexamedical ID
     pub chain_hex_id: u8,
@@ -91,7 +90,7 @@ struct ChainInfo {
 
      - Transfer
 
-       `sum_input - sum_output >= min_fee`
+       `sum_input - sum_output == min_fee`
 
        Return `sum_input - sum_output` as paid fee
 
@@ -103,7 +102,7 @@ struct ChainInfo {
 
      - Withdraw
 
-       `account.unbonded - sum_output >= min_fee`
+       `account.unbonded - sum_output == min_fee`
 
        Return `account.unbonded - sum_output` as paid fee
 

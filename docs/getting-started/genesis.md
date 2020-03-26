@@ -1,5 +1,10 @@
 # Genesis
 
+::: warning WARNING
+this doc may be outdated and is subject to revision
+:::
+
+
 The initial state of the network is started from the existing ERC20 contract on Ethereum. On the Ethereum mainnet, it is 0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b.
 
 The current genesis procedure is the following:

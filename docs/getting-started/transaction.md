@@ -30,7 +30,17 @@ To represent the underlying byte array in a textual form, [Bech32](https://githu
 - staking addresses (see [accounting](./transaction-accounting-model)) are textually represented in hexadecimal encoding to match the initial Ethereum ones
 
 ## Transaction Fees
+The purpose of transaction fees in the initial prototype is an anti-spam measure, i.e. to prevent broadcasting valid transactions indefinitely.
+The general scheme is:
 
+* If the transaction type allows indefinite valid transactions in an immediate time span (e.g. "transfer"), a fee (calculated as below) must be paid -- i.e. each transaction should be validated that it included this sufficient fee. Note that the fee amount must be exactly equal to the computed one (this is to prevent errors where a much larger fee could be accidentally paid if the fee amount could be set arbitrarily large).
+* If the transaction type allows a limited number of valid transactions, there is no fee. One example is "unjail" where only one valid transaction can be sent for a given state after the unjailing period.
+
+More details can be found in the [transactions document](../modules/transactions.md).
+
+(In the future, if necessary, a dynamic Dutch auction-style fee market may be introduced for congestion control -- this may, however, be outside of the consensus state machine, i.e. "off-chain", in order to incentivize full nodes or other network layers.)
+
+### Fee Calculation
 The initial prototype uses a linear fee system. The minimal transaction fee is defined according to the formula:
 
 ```
@@ -76,14 +86,3 @@ Remarks: There will be no transaction fee for advanced types Tx in the initial p
 ## Cross-currency transactions and settlements
 
 A proof of concept on the cross-currency transfers and settlement on CRO can be found in this [repository](https://github.com/crypto-com/settlement-cro). It demonstrates how to configure [Interledger](https://github.com/interledger) nodes for performing CRO-ETH cross-currency transactions between the Ethereum network (testnet or mainnet) and the CRO devnet.
-
-#### TODO
-
-These transaction types are not yet specified:
-
-- ChangeNetworkParamTX?
-- AddWhitelistServiceNodeTx: takes node data, whitelist type (customer acquirer, merchant acquirer, settlement agent), staking address; co-signed by 2/3 current nodes?
-- EditWhitelistServiceNodeTx: takes node data, signed by that node?
-- RemoveWhitelistServiceNodeTx: takes whitelisted node id; co-signed by 2/3 current nodes>
-- AddMerchantIdTx: takes merchant data (certificate + cert-signed pk or some payment gateway point?), signed by merchant acquirer?
-- RemoveMerchantIdTx: takes merchant id, signed by merchant acquirer?

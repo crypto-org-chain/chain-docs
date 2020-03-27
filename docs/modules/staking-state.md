@@ -180,26 +180,12 @@ Jailed validators won't be slashed again for byzantine faults detected in jailin
 
 ### Nonce
 
-The `nonce` is increased by one once and exactly once for each operations mutate the `StakedState`:
+The nonce is the number of transactions sent from the staking address, which is:
 
-- All the transaction types that mutate staking state:
-
-  - `DepositTx`
-  - `WithdrawTx`
-  - `UnbondTx`
-  - `UnjailTx`
-  - `NodeJoinTx`
-
-- Reward distribution
-
-- Slashing for non-live or byzantine faults
-
-  > _**NOTE:**_ Slashings for different faults are considered independent operations, each slashing will increase nonce independently.
-
-  > _**NOTE:**_ The inactivation and jailing operations happen at the same time as slashing, so the nonce won't increase
-  > for them again.
-
-- [Clean up](#clean-up) will set the `validator` to `None`, also increases the `nonce`.
+- `WithdrawTx`
+- `UnbondTx`
+- `UnjailTx`
+- `NodeJoinTx`
 
 ### Liveness tracking
 

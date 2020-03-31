@@ -2,17 +2,13 @@
 
 ## Transaction Identifier
 
-Each transaction has an identifier (typically shortened as TX ID). It is currently defined as
+Each transaction has an identifier (typically shortened as TX ID). It is defined as
 
-| blake2s_hash(SCALE-encoded transaction binary data) |
+| blake3_hash(SCALE-encoded transaction binary data) |
 | --------------------------------------------------- |
 
 
 See [serialization](./serialization) for more details about the transaction binary format.
-
-:::tip NOTE
-the initial prototype uses blake2s, but it may be later changed to blake2b or something more complex: e.g. transaction identifier is a root of a Merkle tree formed from different transaction components as leaves
-:::
 
 ## Witness
 

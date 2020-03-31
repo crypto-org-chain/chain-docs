@@ -45,7 +45,7 @@ Currently the main usage is that given a path “account”, one can query the c
 
 The **“application hash”** is a compact representation of the overall ABCI application state. In Tendermint, ABCI applications are expected to be deterministic. Therefore, given the same input (block/consensus events + transaction data), one can expect that the applications will update its state in the same way. Eventually, we can compare the hash value of its application state with the others and verify the consistency.
 
-In Crypto.com Chain, the application hash is a [Blake2s](https://blake2.net/) hash of several components:
+In Crypto.com Chain, the application hash is a [Blake3](https://github.com/BLAKE3-team/BLAKE3) hash of several components:
 
 - Root of a Merkle tree of a valid transactions in a given block;
 - Root of a sparse Merkle trie of staked states (see [accounting details](./transaction-accounting-model));

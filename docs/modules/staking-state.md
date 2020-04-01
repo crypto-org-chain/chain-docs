@@ -180,7 +180,7 @@ Jailed validators won't be slashed again for byzantine faults detected in jailin
 
 ### Nonce
 
-The nonce is the number of transactions sent from the staking address, which is:
+The nonce is the of transactions that have the witness of the staking address, which includes:
 
 - `WithdrawTx`
 - `UnbondTx`

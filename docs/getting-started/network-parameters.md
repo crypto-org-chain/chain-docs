@@ -4,10 +4,11 @@ This section aims to collect and provide brief description of all the mentioned 
 
 #### Staking-related parameters
 
-| Key              | Description                     |
-| ---------------- | ------------------------------- |
-| `UNBOUND_PERIOD` | The time duration of unbonding  |
-| `MAX_VALIDATORS` | The maximum number of validator |
+| Key                           | Description                                           |
+| ----------------------------- | ----------------------------------------------------- |
+| `unbonding_period`            | The time duration of unbonding                        |
+| `max_validators`              | The maximum number of validator                       |
+| `required_council_node_stake` | The minimum staking amount required to be a validator |
 
 #### Reward parameters
 
@@ -24,11 +25,11 @@ This section aims to collect and provide brief description of all the mentioned 
 | Key                       | Description                                                                |
 | ------------------------- | -------------------------------------------------------------------------- |
 | `MAX_EVIDENCE_AGE`        | Maximum age of evidence                                                    |
-| `BLOCK_SIGNING_WINDOW`    | Window to calculate validators's liveness                                  |
-| `JAIL_DURATION`           | The time period for jailing                                                |
-| `MISSED_BLOCK_THRESHOLD`  | Threshold of total missed blocks                                           |
-| `BYZANTINE_SLASH_PERCENT` | Maximum percentage of stake reduction for byzantine validators             |
-| `LIVENESS_SLASH_PERCENT`  | Maximum percentage of stake reduction for validators with low availability |
+| `block_signing_window`    | Window to calculate validators's liveness                                  |
+| `jail_duration`           | The time period for jailing                                                |
+| `missed_block_threshold`  | Threshold of total missed blocks                                           |
+| `byzantine_slash_percent` | Maximum percentage of stake reduction for byzantine validators             |
+| `liveness_slash_percent`  | Maximum percentage of stake reduction for validators with low availability |
 
 #### Transaction fee parameters
 

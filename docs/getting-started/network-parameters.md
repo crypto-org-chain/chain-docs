@@ -4,11 +4,11 @@ This section aims to collect and provide brief description of all the mentioned 
 
 #### Staking-related parameters
 
-| Key                           | Description                     |
-| ----------------------------- | ------------------------------- |
-| `unbonding_period`              | The time duration of unbonding  |
-| `max_validators`              | The maximum number of validator |
-| `required_council_node_stake` |                                 |
+| Key                           | Description                                           |
+| ----------------------------- | ----------------------------------------------------- |
+| `unbonding_period`            | The time duration of unbonding                        |
+| `max_validators`              | The maximum number of validator                       |
+| `required_council_node_stake` | The minimum staking amount required to be a validator |
 
 #### Reward parameters
 

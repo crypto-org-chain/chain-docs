@@ -1,15 +1,15 @@
 # Notes on Production Deployment
 
-- See [Tendermint notes on running in production](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)
+- See [Tendermint notes on running in production](https://docs.tendermint.com/master/tendermint-core/running-in-production.html) and [notes on setting up a validator](https://docs.tendermint.com/master/tendermint-core/validators.html#setting-up-a-validator)
 - Validators shouldn’t be exposed directly to the internet
 - RPC shouldn’t be exposed directly to the internet (as it currently doesn’t support rate-limiting, authentication…)
-- Validator block signing should be via [kms](https://github.com/tendermint/kms#tendermint-kms-)
+- Validator block signing should be via [tmkms](https://github.com/iqlusioninc/tmkms)
 
 ## Setting up Tendermint KMS for signing blocks (only for validators / council nodes)
-Currently (tmkms v0.6), the system is still a bit Cosmos-centric, so the setup is slightly quirky.
+Currently (tmkms v0.7), the system is still a bit Cosmos-centric, so the setup is slightly quirky.
 
 ### Configuration
-As per the [example](https://github.com/tendermint/kms/blob/master/tmkms.toml.example), create `~/.tmkms/tmkms.toml` (or any path) with something like:
+As per the [example](https://github.com/iqlusioninc/tmkms/blob/develop/tmkms.toml.example), create `~/.tmkms/tmkms.toml` (or any path) with something like:
 
 ```
 [[chain]]

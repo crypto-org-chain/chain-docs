@@ -27,7 +27,7 @@ Before diving into details, we would like to introduce you the big picture of Cr
 
 ![](./assets/big_pic.png)
 
-At the end of this getting-start document, you will be running five components:
+At the end of this getting-start document, you will be running four components:
 - `chain-abci` as main chain process.
 - `client-rpc` as rpc server for client's interactions.
 - `tendermint` for consensus.

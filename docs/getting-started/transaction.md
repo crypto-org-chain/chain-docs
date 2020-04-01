@@ -68,7 +68,7 @@ All these types should also contain metadata, such as [network ID](./chain-id-an
 | `WithdrawUnbondedTx` | Nonce, account         | UTXOs                                                                        | Yes            | Yes         |
 | `UnbondStakeTx`      | Nonce, amount, account | Moves funds from `bonded` to `unbonded` under the same account with timelock | Yes            | No          |
 
-Please also refer to this [flowchart](./send_your_first_transaction.md#types-of-transaction-and-address) that shows different types of transaction and how they interact with each other.
+Please also refer to this [flowchart](./send_your_first_transaction.md#send-your-first-transaction) that shows different types of transaction and how they interact with each other.
 
 ### Advanced Types:
 

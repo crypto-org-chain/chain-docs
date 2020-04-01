@@ -24,7 +24,7 @@ There are _three_ enclaves planned in Crypto.com Chain's transaction data confid
    - fetching current UTXO set transaction data; and
    - handling periodic key generation operations.
 
-For a detailed description of how these enclaves work together, please refer to the [implementation plan](../../plan.md) of transaction data confidentiality.
+For a detailed description of how these enclaves work together, please refer to the [implementation plan](https://github.com/crypto-com/chain-docs/blob/master/plan.md) of transaction data confidentiality.
 
 ## Transaction validation
 
@@ -44,17 +44,17 @@ In production deployment, both of these processes should be on the same machine 
 - Chain ABCI is executed on the developer laptop (any operating system), and the transaction validation enclave runs inside a Docker container (using the software-simulation mode).
 - Chain ABCI is executed on the developer laptop (any operating system), and the transaction validation enclave runs on a remote Linux machine (using the hardware mode).
 
-For further details, please refer to the [transaction flow chat](../../plan.md#transaction-validation-enclave-tve) between Tendermint, ABCI and transaction validation enclave.
+For further details, please refer to the [transaction flow chat](https://github.com/crypto-com/chain-docs/blob/master/plan.md#transaction-validation-enclave-tve) between Tendermint, ABCI and transaction validation enclave.
 
 ### Data sealing
 
-As previous transaction data is needed for transaction validation, it needs to be persisted locally. The enclave uses the process of “data sealing” for this purposes. To make the data accessible for future upgrades and other enclaves, it should be sealed with MRSIGNER-derived keys. For further details, please refer to [TEE primitives](../../plan.md#tee-primitives).
+As previous transaction data is needed for transaction validation, it needs to be persisted locally. The enclave uses the process of “data sealing” for this purposes. To make the data accessible for future upgrades and other enclaves, it should be sealed with MRSIGNER-derived keys. For further details, please refer to [TEE primitives](https://github.com/crypto-com/chain-docs/blob/master/plan.md#tee-primitives).
 
 ## Transaction data bootstrapping
 
 As old payment data becomes inaccessible due to the periodic key rotation (see [transaction privacy](./transaction-privacy)), newly joined nodes (or nodes that went offline for some time) would need a way to bootstrap the old transaction data by connecting to enclaves of remote nodes and requesting transaction data that the other nodes have locally sealed.
 
-For further details, please refer to this [implementation plan](../../plan.md#transaction-data-bootstrapping-enclave-tdbe) of **transaction data bootstrapping enclave**.
+For further details, please refer to this [implementation plan](https://github.com/crypto-com/chain-docs/blob/master/plan.md#transaction-data-bootstrapping-enclave-tdbe) of **transaction data bootstrapping enclave**.
 
 ### Lite client inside enclaves
 
@@ -76,7 +76,7 @@ For this purpose, there needs to be an enclave that can unseal the previously st
 
 This process would again require establishing a secure connection channel between the client and the enclave (if it is remote) as in the transaction data bootstrapping – the difference is that it may only be one-side attested, as the client may not have access to the enclave architecture.
 
-For further details, please refer to this [documentation](../../plan.md#transaction-query-enclave-tqe-optional--for-client-infrastructure) on **transaction query enclave**.
+For further details, please refer to this [documentation](https://github.com/crypto-com/chain-docs/blob/master/plan.md#reliance-on-the-intel-infrastructure) on **transaction query enclave**.
 
 ## Transaction creation
 

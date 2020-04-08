@@ -11,10 +11,10 @@ The native token used in Crypto.com Chain serves two main purposes:
 
 These two realms have different rules and properties. These differences are highlighted in the table below:
 
-||Transaction Volume|Visibility|State Changes|Value Transfer Rules|
-|-|-|-|-|-|
-|Payments|High|Minimal / confidentiality / data protection is desired|UTXO set is the only “state”: changes only by transactions|Flexible: new address per invoice, ad-hoc n-of-m address formations (e.g. for escrows); encoding extra information for atomic swaps etc.|
-|Network operation (staking etc.)|Low|Maximal transparency is desired|Both by transactions and network events (e.g. a validator not following the protocol)|Self-contained: same account changes (reward payouts, unbonding…)|
+|                                  | Transaction Volume | Visibility                                             | State Changes                                                                         | Value Transfer Rules                                                                                                                     |
+| -------------------------------- | ------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Payments                         | High               | Minimal / confidentiality / data protection is desired | UTXO set is the only “state”: changes only by transactions                            | Flexible: new address per invoice, ad-hoc n-of-m address formations (e.g. for escrows); encoding extra information for atomic swaps etc. |
+| Network operation (staking etc.) | Low                | Maximal transparency is desired                        | Both by transactions and network events (e.g. a validator not following the protocol) | Self-contained: same account changes (reward payouts, unbonding…)                                                                        |
 
 ## UTXO+Accounts model
 
@@ -27,16 +27,16 @@ Different types of transactions and how they relate to these accounting are [des
 
 ### Staked state
 
-The current account usage is self-contained limited. Each account (“staked state”) contains two balances: 
+The current account usage is self-contained limited. Each account (“staked state”) contains two balances:
 
 - bonded amount
 - unbonded amount
 
-and its slashing related information. 
+and its slashing related information.
 
 For example, by using [clinent-cli](../wallets/client-cli.md#staking-operations), one can check the staking stake of a _Staking_ type address and obtain the following:
 
-```bash 
+```bash
 ##### EXAMPLE: Staking state #####
 +-----------------+----------------------------+
 | Nonce           |                          2 |
@@ -54,19 +54,19 @@ For example, by using [clinent-cli](../wallets/client-cli.md#staking-operations)
 | Slash Amount    |               Not punished |
 +-----------------+----------------------------+
 ```
-- The `Nonce` is the number of transactions and events involved with the account.
+
+- The `Nonce` is the number of transactions that have the witness of the staking address.
 
 - The `Bonded` amount is the amount used to check against minimal staking requirements and used to calculate the Tendermint validator voting power (in case of council nodes).
 
-    As it may take time for the network evidence of malicious activity (e.g. double signing) to appear, the stake cannot be withdrawn immediately and is first moved to the “unbonded” balance.
+  As it may take time for the network evidence of malicious activity (e.g. double signing) to appear, the stake cannot be withdrawn immediately and is first moved to the “unbonded” balance.
 
 - The `Unbonded` balance can be withdrawn (into transaction outputs) after `Unbonded From` time if the account was not jailed / slashed (see [staking](./staking)).
 
-- For slashing related information: 
-    - `Jailed Until` is the time until which current account is jailed;  
-    - `Punishment Type ` represents the type of [punishment](./staking.md#punishments)  that will be imposed on the account (if any); 
-    - `Slash Amount` is the amount of penalty. 
-
+- For slashing related information:
+  - `Jailed Until` is the time until which current account is jailed;
+  - `Punishment Type` represents the type of [punishment](./staking.md#punishments) that will be imposed on the account (if any);
+  - `Slash Amount` is the amount of penalty.
 
 ### Staked State Storage
 

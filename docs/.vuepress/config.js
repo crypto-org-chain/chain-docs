@@ -74,7 +74,8 @@ module.exports = {
         "network-parameters",
         "notes-on-production-deployment",
         "notes-on-performance",
-        "threat-model"
+        "threat-model",
+        "technical_glossary"
       ],
       "/wallets/": ["", "client-cli", "sample-chain-wallet", "client-rpc"]
     },
@@ -117,7 +118,8 @@ module.exports = {
             "network-parameters": 17,
             "Notes on Performance": 18,
             "Notes on Production Deployment": 19,
-            "Threat Model": 20
+            "Threat Model": 20,
+            "technical_glossary":21
           };
           return ordering[a["title"]] - ordering[b["title"]];
         }

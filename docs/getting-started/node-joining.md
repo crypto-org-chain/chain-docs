@@ -23,7 +23,7 @@ curl -s 'http://localhost:26657/abci_info' | grep required_council_node_stake
 ```
 
 implies that you would need at least `625000000000000000` basic unit of CRO to become a validator, which is equivalent to `6250000000` CRO.
-::: 
+:::
 The minimum staking amount is the first requirement for being a validator. Besides this, note that only the top `MAX_VALIDATORS` with the most `bonded` amount would be considered as an _active_ validator (see [here](./staking.md#joining-the-network) for details). This network parameter can be found by:
 
 ```bash
@@ -56,7 +56,7 @@ You will be requested to unlock your wallet and fill in the following fields:
 - Name for the validator node;
 - base64 encoded public key of the validator. It can be found under `~/.tendermint/config/priv_validator_key.json`.
 
-Once the transaction has been submitted, you can then check the [current validator set](#check-the-current-validators-set) to confirm your validator is running.
+Once the transaction has been submitted, you can then check the [current validator set](#checking-the-current-validators-set) to confirm your validator is running.
 
 #### Remarks
 

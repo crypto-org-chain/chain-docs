@@ -180,7 +180,7 @@ Jailed validators won't be slashed again for byzantine faults detected in jailin
 
 ### Nonce
 
-The nonce is the of transactions that have the witness of the staking address, which includes:
+The nonce is the number of transactions that have the witness of the staking address, which includes:
 
 - `WithdrawTx`
 - `UnbondTx`
@@ -212,7 +212,7 @@ Whenever validator change consensus key, the old key and current block time are 
 
 There is a maximum bound (`max_used_validator_keys`) on the size of `used_validator_keys` to prevent attack. After the maximum bound reached, re-join with new validator key is not allowed.
 
-### Non exists and empty staking 
+### Non exists and empty staking
 
 Empty staking is defined as:
 

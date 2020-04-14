@@ -144,6 +144,11 @@ struct Child {
   hash: H256,
   is_leaf: bool,
 }
+enum Node {
+    Null,  // Special branch only for empty tree, ignored for simplicity.
+    Internal(Internal),
+    Leaf(Leaf),
+}
 ```
 
 ### `get`
@@ -296,3 +301,72 @@ fn put_at(node_key, key, value, version, i_visited) -> (NodeKey, Node) {
   }
 }
 ```
+
+## Encoding
+
+The encoding is simply concatinate the fields together.
+
+- `H256`
+  It is encoded as fixed length byte array, which is just bytes themself, no length prefixed.
+
+- `Vec<u8>`
+
+  Variable length byte array is encoded as the bytes prefixed with a `u64` length.
+
+- Numbers are encoded as little endian by default, unless indicated otherwise.
+
+### `Node`
+
+- `tag: u8`
+
+  `Null: 0, Internal: 1, Leaf: 2`
+
+- Content of different branches, empty for `Null` branch.
+
+#### `Internal`
+
+- `existence_bitmap: u16`. The bit is set if the child exists.
+
+- `leaf_bitmap: u16`. The bit is set if the child exists and is leaf node.
+
+- `for i in existence_bitmap:`
+
+  - `version: u64`, [ULEB128](https://en.wikipedia.org/wiki/LEB128)
+
+    > The high bit is set if more bytes follow
+    >
+    > ```rust
+    > for _ in 0..8 {
+    >   let low_bits = num & 0x7f;
+    >   num >>= 7;
+    >   let more = num > 0;
+    >   push(low_bits | more << 7);
+    >   if !more {
+    >     break;
+    >   }
+    > }
+    > ```
+
+  - `hash: H256`
+
+#### `Leaf`
+
+- `key: H256`
+- `hash: H256`
+- `value: Vec<u8>`
+  - `size: u32`,  [ULEB128](https://en.wikipedia.org/wiki/LEB128), max `2^31`
+  - bytes
+
+### `NodeKey`
+
+The key used to identify node in key-value storage.
+
+- `version: u64`, big endian.
+
+  > Big endian is used here to keep the numeric order.
+
+- `num_nibbles: u8`
+
+- `nibble_bytes: bytes`
+
+  One byte for two nibbles.

@@ -344,7 +344,7 @@ fn begin_block(req: RequestBeginBlock) {
         // Remaining coins after distribution
         let remains = reward_pool;
 
-        for (addr, power) in validator_state.signed_voters {
+        for (addr, power) in validator_state.reward_participators {
             // Use some type bigger than u64 (e.g. u128) to prevent overflow of multiplication
             let amount = reward_pool * power / sum_power;
             remains -= amount;
@@ -359,7 +359,7 @@ fn begin_block(req: RequestBeginBlock) {
     add_rewards(distribution);
 
     // Clear rewards statistics
-    validator_state.signed_voters.clear();
+    validator_state.reward_participators.clear();
 
     // The Result (distribution, minted) should be written into block result event list
 }
@@ -392,7 +392,6 @@ fn add_rewards(dist) {
         // Panic or not is decided by implementator
         let account = get_account(staking_addr).unwrap();
         account.bonded += amount;
-        account.nonce += 1;
     }
 }
 ```
@@ -415,7 +414,7 @@ if node_state.reward_state_updated {
 When validator get jailed or unbonded enough to become inactive during a reward period, it's reward participation record should be removed, so it won't receive any rewards.
 
 ```rust
-validator_state.signed_voters.remove(staking_addr)
+validator_state.reward_participators.remove(staking_addr)
 ```
 
 #### Slashing executed

@@ -65,7 +65,7 @@ For example, by using [clinent-cli](../wallets/client-cli.md#staking-operations)
 
 - For slashing related information:
   - `Jailed Until` is the time until which current account is jailed;
-  - `Punishment Type` represents the type of [punishment](./staking.md#punishments) that will be imposed on the account (if any);
+  - `Punishment Type` represents the type of [punishment](./reward-and-punishments.md#validator-punishments) that will be imposed on the account (if any);
   - `Slash Amount` is the amount of penalty.
 
 ### Staked State Storage

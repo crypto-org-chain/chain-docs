@@ -119,6 +119,12 @@ Surely, remember to source the new `.profile` file:
 $ source ~/.profile
 ```
 
+## Prepare environment to run the chain
+Prepare initial chain data and try to install Intel SGX if the SGX device is not ready.
+```
+$ make prepare
+```
+
 ## Run chain components
 Run all the components of Cryto.com Chain with following command:
 ```
@@ -171,6 +177,7 @@ $ make clean-data
 
 Finally you can initialize a new chain by:
 ```
+$ make prepare
 $ make run
 ```
 If no error Check all containers 

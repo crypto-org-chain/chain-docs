@@ -8,13 +8,13 @@ StakedState is a data structure that holds state about staking:
 
 ```
 pub struct StakedState {
-    pub nonce: Nonce, // transaction / update counter
-    pub bonded: Coin, // bonded stake amount
-    pub unbonded: Coin, // unbonded stake amount
-    pub unbonded_from: Timespec, // when the unboded stake amount can be withdrawn
-    pub address: StakedStateAddress, // ETH-style address of staking account
-    pub punishment: Option<Punishment>, // punishment data structure -- FIXME: details
-    pub council_node: Option<CouncilNode>, // associated council node metadata
+    pub nonce: Nonce,    /// "from" operations counter
+    pub bonded: Coin,    /// bonded amount used to determine voting power
+    pub unbonded: Coin,    /// amount unbonded for future withdrawal
+    pub unbonded_from: Timespec,    /// time when unbonded amount can be withdrawn
+    pub address: StakedStateAddress,    /// the address used (to check transaction witness against)
+    pub validator: Option<Validator>,    /// validator metadata
+    pub last_slash: Option<SlashRecord>,    /// record the last slash only for query
 }
 ```
 
@@ -26,12 +26,12 @@ Council Node is a data structure that holds state about a node responsible for t
 
 ```
 pub struct CouncilNode {
-    pub name: String, // human-readable name
-    pub security_contact: Option<String>, // optional email for security contact
-    pub staking_address: RedeemAddress, // account with the required staked amount
-    pub consensus_pubkey: crypto.PubKey, // Tendermint consensus validator-associated public key: note that Tendermint supports different signature schemes
-    pub council_pubkey: PublicKey, // key for council node-related transaction types
-    // FIXME: bootstrapping
+    pub name: ValidatorName,    /// validator name / moniker (just for reference / human use)
+    pub security_contact: ValidatorSecurityContact,    /// optional security@... email address
+    pub consensus_pubkey: TendermintValidatorPubKey,    /// Tendermint consensus validator-associated public key
+    /// X.509 credential payload for MLS (https://tools.ietf.org/html/draft-ietf-mls-protocol-09)
+    /// (expected that attestation payload will be a part of the cert extension, as done in TLS)
+    pub confidential_init: ConfidentialInit,
 }
 ```
 

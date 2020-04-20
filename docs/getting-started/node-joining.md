@@ -40,7 +40,7 @@ curl -s 'http://localhost:26657/validators'
 
 #### Staking the funds
 
-[Deposit](../wallets/client-cli.md#_3-staking-operations) required funds from your transfer address to your staking address.
+[Deposit](../wallets/client-cli.md#transaction-operations) required funds from your transfer address to your staking address.
 
 ## Sending a `NodeJoinTx`
 
@@ -60,14 +60,9 @@ Once the transaction has been submitted, you can then check the [current validat
 
 #### Remarks
 
-- Validators are responsible for signing or proposing block at each consensus round. It is important that they maintain excellent availability and network connectivity to perform these tasks. A penalty performed by the [slashing module](./staking.md#slashing) is imposed on validators' misbehaviour or unavailability to reinforce this.
+- Validators are responsible for signing or proposing block at each consensus round. It is important that they maintain excellent availability and network connectivity to perform these tasks. A penalty performed by the [slashing module](./reward-and-punishments.md#validator-punishments) is imposed on validators' misbehaviour or unavailability to reinforce this.
 - A `NodeJoinTx` is considered to be invalid if your staking amount is less then `required_council_node_stake`:
 
   ```bash
   Error: Tendermint RPC error: verification failed: staked state bonded amount is less than the minimal required stake
   ```
-
-::: tip
-As there could be multiple transaction IDs that you might need to input
-during the staking process, It is suggested that one should create a separated wallet for this validator joining process.
-:::

@@ -62,7 +62,7 @@ Monetary expansion is designed to release tokens from the reserve account to the
 Precisely, the reward rate is controlled by the following parameters:
 
 - `monetary_expansion_cap`: The total amount of tokens reserved for validator's reward in the basic unit
-- `distribution_period`: The period of reward being distributed
+- `reward_period_seconds`: The period of reward being distributed
 - `monetary_expansion_r0`: The upper bound for the reward rate per annum
 - `monetary_expansion_tau`: Initial value of tau in the reward function
 - `monetary_expansion_decay`: The decay rate of tau.
@@ -77,7 +77,7 @@ You can find the configuration under the `rewards_params` section of the genesis
     "network_params": {
       ...
       "rewards_config": {
-        "distribution_period:": 86400,  # range: [0, )
+        "reward_period_seconds": 86400,  # range: [0, )
         "monetary_expansion_r0": 450,
         "monetary_expansion_tau": 14500000000000000,
         "monetary_expansion_decay": 999860,  # range: [0, 1000000]
@@ -114,7 +114,7 @@ Note that this is an exponential decay function, where the index of it controls 
 tau(n) = tau(n-1) * rewards_config["monetary_expansion_decay"]
 ```
 
-In addition to that, `distribution_period` controls how often the reward is being distributed.
+In addition to that, `reward_period_seconds` controls how often the reward is being distributed.
 
 :::
 
@@ -123,7 +123,7 @@ At the end of each reward epoch, the number of tokens being released at each per
 ```
     R0 = rewards_config["monetary_expansion_r0"]
     tau = rewards_config["monetary_expansion_tau"]
-    P = rewards_config["distribution_period"]
+    P = rewards_config["reward_period_seconds"]
 
     # total bonded amount of the active validators
     at the end of the reward epoch
@@ -150,19 +150,28 @@ The rewards validator received goes to the bonded balance of their staking accou
 
 ### Reward distribution
 
-Rewards are distributed periodically (e.g. daily), rewards are accumulated during each period, and block proposers are recorded. At the end of each period, validators will receive a portion of the "reward pool" as a reward for participating in the consensus process. Specifically, the reward is proportional to the number of blocks that were successfully proposed by the validator; it is calculated as follows:
+Rewards are distributed periodically (e.g. daily), which is determined by the [network parameter](./network-parameters.md) `reward_period_seconds`. Rewards are accumulated during each period, block proposers and the total voting power of all validators are recorded.
+
+At the end of each reward period, validators will receive a portion of the "reward pool" as a reward for participating in the consensus process. Specifically, the reward of a validator is proportional to its contribution to the consensus process; it is calculated as follows:
 
 ```
-rewards of validator = total rewards * number of blocks proposed by the validator / total number of blocks
+rewards of a validator = total rewards in the pool * [Validatior's contribution] / [Sum of the voting power],
 ```
+
+where
+
+- _"Validatior's contribution"_ is the total sum of the voting power participating in the consensus process by the validator throughout the reward period; and
+
+- _"Sum of the voting power"_ represents the total sum of the voting power involved in the consensus process from all of the active validators throughout the reward period.
+
 
 The remainder of division will become rewards of the next period.
 
-The recording of block proposer is done in `BeginBlock` right before rewards distribution.
+
 
 ### Rewards: Documentation and its interactions with ABCI
 
-The detailed documentation of the reward mechanism can be found in [here](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/reward.md)
+The detailed documentation of the reward mechanism can be found in [here](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/reward.md).
 
 ## Validator Punishments
 
@@ -278,7 +287,7 @@ The detailed documentation of the slashing mechanism can be found in [here](http
 
 The following tables show overall effects on different configuration of the reward related network parameters:
 
-| Key                  | `monetary_expansion_cap`           | `distribution_period`             | `monetary_expansion_decay`        |
+| Key                  | `monetary_expansion_cap`           | `reward_period_seconds`           | `monetary_expansion_decay`        |
 | -------------------- | ---------------------------------- | --------------------------------- | --------------------------------- |
 | Higher               | More reserved validator reward     | Less frequent reward distribution | Tau decays slower                 |
 | Lower                | Less reserved validator reward     | More frequent reward distribution | Tau decays faster                 |

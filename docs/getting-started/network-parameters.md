@@ -15,7 +15,7 @@ This section aims to collect and provide brief description of all the mentioned 
 | Key                        | Description                                                                  |
 | -------------------------- | ---------------------------------------------------------------------------- |
 | `monetary_expansion_cap`   | The total amount of tokens reserved for validator's reward in the basic unit |
-| `distribution_period`      | The period of reward being distributed                                       |
+| `reward_period_seconds`    | The period of reward being distributed (unit: seconds)                       |
 | `monetary_expansion_r0`    | The upper bound for the reward rate per annum                                |
 | `monetary_expansion_tau`   | Initial value of tau in the reward function                                  |
 | `monetary_expansion_decay` | The decay rate of tau.                                                       |

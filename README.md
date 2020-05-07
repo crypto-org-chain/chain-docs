@@ -19,8 +19,8 @@ You're going to need:
 4. Initialize and start chain-docs.
 
 ```bash
-yarn
-yarn docs:dev
+npm
+npm run docs:dev
 ```
 
 You can now see the docs at [http://localhost:8080](http://localhost:8080).

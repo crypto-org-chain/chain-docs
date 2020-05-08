@@ -40,159 +40,161 @@ Also, please note the [released binary changes](https://github.com/crypto-com/ch
 - After placing all binaries on the path. You can initialize Tendermint with `tendermint init`.
   In `.tendermint/config/`, change the content of `genesis.json` to:
 
-  ```json
-  {
-    "app_hash": "F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5",
-    "app_state": {
-      "council_nodes": {
-        "0x6dbd5b8fe0dad494465aa7574defba711c184102": [
-          "eastus_validator_1",
-          "security@crypto.com(opens in new tab)",
-          {
-            "type": "tendermint/PubKeyEd25519",
-            "value": "/SvfTeO4Du4oR/VYTjm7IgObc14zzddEAyFb4nU8E3Q="
-          },
-          {
-            "cert": "ABCD"
-          }
-        ],
-        "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
-          "canadacentral_validator_1",
-          "security@crypto.com(opens in new tab)",
-          {
-            "type": "tendermint/PubKeyEd25519",
-            "value": "QMegiWt9+5K1b1ZVd7zOJZxhTnbAtWzvGhViiElAlaw="
-          },
-          {
-            "cert": "ABCD"
-          }
-        ],
-        "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
-          "uksouth_validator_1",
-          "security@crypto.com(opens in new tab)",
-          {
-            "type": "tendermint/PubKeyEd25519",
-            "value": "tDLheZJwsA8oYEwarR6/X+zAmNKMLHTVkh/fvcLqcwA="
-          },
-          {
-            "cert": "ABCD"
-          }
-        ]
-      },
-      "distribution": {
-        "0x4ae85b35597fcb61c6c47b1fe0bdd7eed8421cdd": [
-          "Bonded",
-          "6000000000000000"
-        ],
-        "0x4b75f275dde0a8c8e70fb84243adc97a3afb78f2": [
-          "UnbondedFromGenesis",
-          "7946000000000000000"
-        ],
-        "0x4fd8162521f2e628adced7c1baa39384a08b4a3d": [
-          "Bonded",
-          "6000000000000000"
-        ],
-        "0x6c2be7846219eab3086a66f873558b73d8f4a0d4": [
-          "Bonded",
-          "6000000000000000"
-        ],
-        "0x6dbd5b8fe0dad494465aa7574defba711c184102": [
-          "Bonded",
-          "6000000000000000"
-        ],
-        "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
-          "Bonded",
-          "6000000000000000"
-        ],
-        "0x9baa6de71cbc6274275eece4b1be15f545897f37": [
-          "Bonded",
-          "6000000000000000"
-        ],
-        "0xa9528abb92709370600d2cef41f1677374278337": [
-          "Bonded",
-          "6000000000000000"
-        ],
-        "0xb328a39002ede64c33bb60f1dc43f5df9eb47043": [
-          "Bonded",
-          "6000000000000000"
-        ],
-        "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
-          "Bonded",
-          "6000000000000000"
-        ]
-      },
-      "network_params": {
-        "initial_fee_policy": {
-          "coefficient": 1250,
-          "constant": 1100
-        },
-        "jailing_config": {
-          "block_signing_window": 720,
-          "missed_block_threshold": 360
-        },
-        "max_validators": 50,
-        "required_council_node_stake": "5000000000000000",
-        "rewards_config": {
-          "monetary_expansion_cap": "2000000000000000000",
-          "monetary_expansion_decay": 999860,
-          "monetary_expansion_r0": 350,
-          "monetary_expansion_tau": 999999999999999999,
-          "reward_period_seconds": 86400
-        },
-        "slashing_config": {
-          "byzantine_slash_percent": "0.200",
-          "liveness_slash_percent": "0.100"
-        },
-        "unbonding_period": 5400
-      }
-    },
-    "chain_id": "testnet-thaler-crypto-com-chain-42",
-    "consensus_params": {
-      "block": {
-        "max_bytes": "22020096",
-        "max_gas": "-1",
-        "time_iota_ms": "1000"
-      },
-      "evidence": {
-        "max_age_duration": "5400000000000",
-        "max_age_num_blocks": "200"
-      },
-      "validator": {
-        "pub_key_types": ["ed25519"]
-      }
-    },
-    "genesis_time": "2020-05-01T12:09:01.568951Z",
-    "validators": [
-      {
-        "address": "FA7B721B5704DF98EF3ECD3796DDEF6AA2A80257",
-        "name": "eastus_validator_1",
-        "power": "60000000",
-        "pub_key": {
+```json
+ {
+  "app_hash": "F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5",
+  "app_state": {
+    "council_nodes": {
+      "0x6dbd5b8fe0dad494465aa7574defba711c184102": [
+        "eastus_validator_1",
+        "security@crypto.com",
+        {
           "type": "tendermint/PubKeyEd25519",
           "value": "/SvfTeO4Du4oR/VYTjm7IgObc14zzddEAyFb4nU8E3Q="
+        },
+        {
+          "cert": "ABCD"
         }
-      },
-      {
-        "address": "7570B2D23A4C7B638BEFE02EB4FC7927BFDED6B7",
-        "name": "canadacentral_validator_1",
-        "power": "60000000",
-        "pub_key": {
+      ],
+      "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
+        "canadacentral_validator_1",
+        "security@crypto.com",
+        {
           "type": "tendermint/PubKeyEd25519",
           "value": "QMegiWt9+5K1b1ZVd7zOJZxhTnbAtWzvGhViiElAlaw="
+        },
+        {
+          "cert": "ABCD"
         }
-      },
-      {
-        "address": "D527DAECDE0501CF2E785A8DC0D9F4A64760F0BB",
-        "name": "uksouth_validator_1",
-        "power": "60000000",
-        "pub_key": {
+      ],
+      "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
+        "uksouth_validator_1",
+        "security@crypto.com",
+        {
           "type": "tendermint/PubKeyEd25519",
           "value": "tDLheZJwsA8oYEwarR6/X+zAmNKMLHTVkh/fvcLqcwA="
+        },
+        {
+          "cert": "ABCD"
         }
+      ]
+    },
+    "distribution": {
+      "0x4ae85b35597fcb61c6c47b1fe0bdd7eed8421cdd": [
+        "Bonded",
+        "6000000000000000"
+      ],
+      "0x4b75f275dde0a8c8e70fb84243adc97a3afb78f2": [
+        "UnbondedFromGenesis",
+        "7946000000000000000"
+      ],
+      "0x4fd8162521f2e628adced7c1baa39384a08b4a3d": [
+        "Bonded",
+        "6000000000000000"
+      ],
+      "0x6c2be7846219eab3086a66f873558b73d8f4a0d4": [
+        "Bonded",
+        "6000000000000000"
+      ],
+      "0x6dbd5b8fe0dad494465aa7574defba711c184102": [
+        "Bonded",
+        "6000000000000000"
+      ],
+      "0x6fc1e3124a7ed07f3710378b68f7046c7300179d": [
+        "Bonded",
+        "6000000000000000"
+      ],
+      "0x9baa6de71cbc6274275eece4b1be15f545897f37": [
+        "Bonded",
+        "6000000000000000"
+      ],
+      "0xa9528abb92709370600d2cef41f1677374278337": [
+        "Bonded",
+        "6000000000000000"
+      ],
+      "0xb328a39002ede64c33bb60f1dc43f5df9eb47043": [
+        "Bonded",
+        "6000000000000000"
+      ],
+      "0xb8c6886da09e12db8aebfc8108c67ce2ba086ac6": [
+        "Bonded",
+        "6000000000000000"
+      ]
+    },
+    "network_params": {
+      "initial_fee_policy": {
+        "coefficient": 1250,
+        "constant": 1100
+      },
+      "jailing_config": {
+        "block_signing_window": 720,
+        "missed_block_threshold": 360
+      },
+      "max_validators": 50,
+      "required_council_node_stake": "5000000000000000",
+      "rewards_config": {
+        "monetary_expansion_cap": "2000000000000000000",
+        "monetary_expansion_decay": 999860,
+        "monetary_expansion_r0": 350,
+        "monetary_expansion_tau": 999999999999999999,
+        "reward_period_seconds": 86400
+      },
+      "slashing_config": {
+        "byzantine_slash_percent": "0.200",
+        "liveness_slash_percent": "0.100"
+      },
+      "unbonding_period": 5400
+    }
+  },
+  "chain_id": "testnet-thaler-crypto-com-chain-42",
+  "consensus_params": {
+    "block": {
+      "max_bytes": "22020096",
+      "max_gas": "-1",
+      "time_iota_ms": "1000"
+    },
+    "evidence": {
+      "max_age_duration": "5400000000000",
+      "max_age_num_blocks": "200"
+    },
+    "validator": {
+      "pub_key_types": [
+        "ed25519"
+      ]
+    }
+  },
+  "genesis_time": "2020-05-01T12:09:01.568951Z",
+  "validators": [
+    {
+      "address": "FA7B721B5704DF98EF3ECD3796DDEF6AA2A80257",
+      "name": "eastus_validator_1",
+      "power": "60000000",
+      "pub_key": {
+        "type": "tendermint/PubKeyEd25519",
+        "value": "/SvfTeO4Du4oR/VYTjm7IgObc14zzddEAyFb4nU8E3Q="
       }
-    ]
-  }
-  ```
+    },
+    {
+      "address": "7570B2D23A4C7B638BEFE02EB4FC7927BFDED6B7",
+      "name": "canadacentral_validator_1",
+      "power": "60000000",
+      "pub_key": {
+        "type": "tendermint/PubKeyEd25519",
+        "value": "QMegiWt9+5K1b1ZVd7zOJZxhTnbAtWzvGhViiElAlaw="
+      }
+    },
+    {
+      "address": "D527DAECDE0501CF2E785A8DC0D9F4A64760F0BB",
+      "name": "uksouth_validator_1",
+      "power": "60000000",
+      "pub_key": {
+        "type": "tendermint/PubKeyEd25519",
+        "value": "tDLheZJwsA8oYEwarR6/X+zAmNKMLHTVkh/fvcLqcwA="
+      }
+    }
+  ]
+}
+```
 
 - For network configuration, in `.tendermint/config/config.toml`, you can put the following as `seeds` and `create_empty_blocks_interval`:
 

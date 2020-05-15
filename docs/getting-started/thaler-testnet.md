@@ -41,7 +41,7 @@ Also, please note the [released binary changes](https://github.com/crypto-com/ch
   In `.tendermint/config/`, change the content of `genesis.json` to:
 
 ```json
- {
+{
   "app_hash": "F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5",
   "app_state": {
     "council_nodes": {
@@ -158,9 +158,7 @@ Also, please note the [released binary changes](https://github.com/crypto-com/ch
       "max_age_num_blocks": "200"
     },
     "validator": {
-      "pub_key_types": [
-        "ed25519"
-      ]
+      "pub_key_types": ["ed25519"]
     }
   },
   "genesis_time": "2020-05-01T12:09:01.568951Z",
@@ -258,9 +256,9 @@ Once you obtained the credentials in the portal, set the following environment v
 
 - Start chain-abci, e.g.:
 
-```
-RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5 --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
-```
+  ```
+  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5 --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
+  ```
 
 - Finally, start Tendermint:
 
@@ -298,8 +296,12 @@ If the created address matches one of the ones listed in the initial _genesis.js
 
 This can be done, for example, with the client-cli command-line tool. Set the required environment variables:
 
-- `CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42`
-- `CRYPTO_CLIENT_TENDERMINT=<YOUR FULL NODE, e.g. ws://localhost:26657/websocket or ws://13.94.208.212:26657/websocket>`
+1. `CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42`;
+1. `CRYPTO_CLIENT_TENDERMINT=<YOUR_FULL_NODE>`.
+::: tip Note for environment variables setting:
+If you would like to connect to a local full node, you can put `<YOUR_FULL_NODE>=ws://localhost:26657/websocket`, or alternatively, you may use the external full node by setting
+`<YOUR_FULL_NODE>=ws://13.90.34.32:26657/websocket>`.
+:::
 
 And run the followings to create a new [HD-wallet](../wallets/client-cli.html#wallet-new-create-a-new-wallet) and [staking address](../wallets/client-cli.html#address-new-create-a-new-address):
 
@@ -331,9 +333,9 @@ please see [production deployment notes](notes-on-production-deployment.md) on h
 
 - Start chain-abci, e.g.:
 
-```
-RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5
-```
+  ```
+  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5
+  ```
 
 - Finally, start Tendermint:
 

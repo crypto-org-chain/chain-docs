@@ -235,7 +235,7 @@ You can list all of your addresses with specified type under a wallet.
 - If there are no address under the wallet:
 
   ```bash
-  $ .bin//client-cli address list -n test -t Transfer
+  $ .bin//client-cli address list --name Default -t Transfer
   Enter authentication token: ## Insert your authentication token ##
   No addresses found!
   ```
@@ -447,9 +447,9 @@ $ ./client-cli state -a <STAKING_ADDRESS>
 
 :::
 
-## Advance operations
+## Advance operations and transactions
 
-### Joining the network as a validator
+### `node-join` - Joining the network as a validator
 
 Anyone who wishes to become a validator can submit a `NodeJoinTx` by
 
@@ -459,7 +459,7 @@ $ ./bin/client-cli transaction new --name Default --type node-join
 
 See [here](../getting-started/staking.md#joining-the-network) for the actual requirement of becoming a validator.
 
-### Unjailing a validator
+### `unjail` - Unjailing a validator
 
 Validator could be [punished](../getting-started/reward-and-punishments.md#validator-punishments) and [jailed](../getting-started/reward-and-punishments.md#jailing) due to network misbehaviour. After the jailing period has passed, one can broadcast a `UnjailTx` to unjail the validator and resume its normal operations by
 
@@ -467,7 +467,7 @@ Validator could be [punished](../getting-started/reward-and-punishments.md#valid
 $ ./bin/client-cli transaction new --name Default --type unjail
 ```
 
-### Export & Import Tx
+### `export`/`import` - Export & Import Transactions
 
 As mentioned before, sender should add the receiver's view-key to the transaction. Because sender can't push data directly to the receiver. However, it is also possible to send / receive a payment by directly exchanging the (raw) transaction payload data. The sender (who creates the transaction) would export it, the receiver would import it and check the transaction data locally and check the transaction ID against the distributed ledger. Following explains the flow:
 
@@ -475,7 +475,7 @@ As mentioned before, sender should add the receiver's view-key to the transactio
     ::: details Example: Obtain the transaction id
 
     ```bash
-    \$ ./bin/client-cli history --limit ? --offset ? --name <sender_wallet>
+    $ ./bin/client-cli history --limit ? --offset ? --name <sender_wallet>
     Enter authentication token: ## Insert your authentication token ##
     +----------------+--------+--------+-----+--------------+------------+
     | Transaction ID | In/Out | Amount | Fee | Block Height | Block Time |
@@ -491,7 +491,7 @@ As mentioned before, sender should add the receiver's view-key to the transactio
     ::: details Example: Export the raw transaction data
 
     ```bash
-    \$ ./bin/client-cli transaction export --id <transaction_id> --name <sender_wallet>
+    $ ./bin/client-cli transaction export --id <transaction_id> --name <sender_wallet>
     Enter authentication token: ## Insert your authentication token ##
 
         ## transaction_payload_example ##
@@ -504,7 +504,7 @@ As mentioned before, sender should add the receiver's view-key to the transactio
     ::: details Example: Import the raw transaction data
 
     ```bash
-    \$ ./bin/client-cli transaction import --tx <transaction_payload> --name <receiver_wallet>
+    $ ./bin/client-cli transaction import --tx <transaction_payload> --name <receiver_wallet>
 
         Enter authentication token: ## Insert your authentication token ##
 
@@ -514,3 +514,79 @@ As mentioned before, sender should add the receiver's view-key to the transactio
     :::
 
 1.  Finally, receiver can verify this transaction by checking the [transaction history](#history-check-your-transaction-history)
+
+### `multisig` - Multi-signature operations
+
+Crypto.com Chain implemented the [threshold Multisig](https://blockstream.com/2019/02/18/en-musig-a-new-multisignature-standard/) for multi-signature related features. Specifically, a threshold multi-signature addresses requires multiple keys to authorize a transaction.
+
+#### Create a public key for multi-signature address
+
+To begin, we would need to create a new public key for the multi-signature address by the `new-address-public-key` command:
+
+::: details Example: Create a public key for multi-signature address
+
+```bash
+  $ ./bin/client-cli multisig new-address-public-key --name <Wallet_name>
+  ## Insert your authentication token ##
+      Enter authentication token:
+  Public key: 02a71aef2e97bdbffbf526548cf475103a82853fce43403eef40a55d17715fa6a1
+```
+
+:::
+
+#### Generating a multi-signature address
+
+Now we are ready to create a _M-of-N_ multi-signature address by the `new-address` command, where
+
+- _M_ is the minimum signatures required to spend the funds from the multi-signature address;
+- _N_ is the total number of keys involved;
+- _N_ has to be greater or equal to _M_.
+
+Some of the actual use cases of multi-signature are covered in these [application examples](https://en.bitcoin.it/wiki/Multisignature).
+
+::: details Example: Create a M-of-N multi-signature address
+
+```bash
+  $ ./bin/client-cli multisig new-address --name <Wallet_name>
+  ## Insert your authentication token ##
+      Enter authentication token:
+  ## Insert N different public keys for the multi-signature address ##
+      Enter public keys(include self public key, separated by commas):<Public_Key_1, Public_Key_2, ..., Public_Key_N>
+  ## Insert your own public key in the wallet ##
+      input self public key: 02a71aef2e97bdbffbf526548cf475103a82853fce43403eef40a55d17715fa6a1
+  ## Insert the number of signatures required to release the fund##
+      how many signatures required: M
+```
+
+:::
+
+#### List your public keys
+
+We can list the public keys for multi-signature address by the `list-address-public-keys` command:
+
+::: details Example: List public keys for multi-signature address
+
+```bash
+  $ ./bin/client-cli multisig list-address-public-keys --name <Wallet_name>
+  ## Insert your authentication token ##
+      Enter authentication token:
+  Public key: 02a71aef2e97bdbffbf526548cf475103a82853fce43403eef40a55d17715fa6a1
+```
+
+:::
+
+#### List your multi-signature addresses:
+
+Finally, multi-signature addresses will be kept in your wallet after it has been generated. We can list them by using the
+[address-list](#address-list-list-your-addresses) command as mentioned earlier.
+::: details Example: List multi-signature addresses
+
+```bash
+  $ ./bin/client-cli address list --name <Wallet_name>
+  ## Insert your authentication token ##
+      Enter authentication token:
+  Address: tcro1pra4uuphf2cykgd542kzt53echtt4tu68wpet6zf400m8wccfhes4ssmk9
+  MultiSig Address: tcro1u7wuwrnfyqvc7gx77lxvl65dj3vczv3g8k7az7ls9rq7z87m4vlqkctkv4(1/2)
+```
+
+:::

@@ -73,13 +73,19 @@ Specifically, the genesis file includes the following fields:
     - `"max_age_num_blocks"`:
       _This field is to be deprecated._
     - `"max_age_duration"`:
-      The maximum age of evidence, in nanoseconds. It is also the "unbonding period", the time duration of unbonding.
+      The maximum age of evidence, in nanoseconds. Any evidence older than this will be rejected. It is also the "unbonding period", the time duration of unbonding.
 
   - `"validator"`
     - `"pub_key_types"`: The supported validator public key types.
 
 - `"validators"`:
   The initial state of the validator set.
+  - `"address"`: The address of the validator (hash of the validator's public key). Note that the validator is identified by its address.
+  - `"name"`: The name of the validator, which should correspond to the name in _"council_nodes"_.
+  - `"power"`: The voting power of the validator, which should match with the bonded amount of its related staking address in _"distribution"_ in full units.
+  - `"pub_key"`
+    - `"type"`: The validator public key types, which should be one of the supported types in _"pub_key_types"_.
+    - `"value"`: The base64 encoding of validator's public key, which should correspond to the _"value"_ of the validator in _"council_nodes"_.
 
 ### Genesis hash
 

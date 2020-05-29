@@ -166,7 +166,7 @@ The key pair to enforce access to the confidential transaction data.
 
 **Voting power**
 
-The voting power is determined by the bounded amount in validator's staking address. The probability of a validator being selected as the proposer for a round is proportional to their voting power.
+The voting power is determined by the bonded amount in validator's staking address. The probability of a validator being selected as the proposer for a round is proportional to their voting power.
 
 #### W
 

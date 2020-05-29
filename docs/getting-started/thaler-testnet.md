@@ -300,7 +300,7 @@ This can be done, for example, with the client-cli command-line tool. Set the re
 1. `CRYPTO_CLIENT_TENDERMINT=<YOUR_FULL_NODE>`.
 ::: tip Note for environment variables setting:
 If you would like to connect to a local full node, you can put `<YOUR_FULL_NODE>=ws://localhost:26657/websocket`, or alternatively, you may use the external full node by setting
-`<YOUR_FULL_NODE>=ws://13.90.34.32:26657/websocket>`.
+`<YOUR_FULL_NODE>=ws://13.90.34.32:26657/websocket`.
 :::
 
 And run the followings to create a new [HD-wallet](../wallets/client-cli.html#wallet-new-create-a-new-wallet) and [staking address](../wallets/client-cli.html#address-new-create-a-new-address):

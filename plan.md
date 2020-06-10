@@ -231,7 +231,7 @@ The transaction data bootstrapping enclave help with two use cases:
 Each node's transaction data bootstrapping enclave may optionally open a port to listen on for data/key retrieval requests.
 The communication is similar to the one described in the transaction query enclave (TLS + enclave attestation), but is bi-directional:
 
-* if transacation data is to be requested: before establishing the connection, the missing data is computed outside of the enclave using a light client + [utreexo](https://dci.mit.edu/utreexo) (Merkle forest commitments to the UTXO set). The transaction IDs to be retrieved are passed to the transaction data bootstrapping enclave
+* if transaction data is to be requested: before establishing the connection, the missing data is computed outside of the enclave using a light client + [utreexo](https://dci.mit.edu/utreexo) (Merkle forest commitments to the UTXO set). The transaction IDs to be retrieved are passed to the transaction data bootstrapping enclave
 * the requesting TDBE presents the client-side X.509 certificate with the IAS response payload in the v3 extension -- the responding TDBE verifies its content (response is OK and signed by IAS, the code is the same as the one it is executing, etc.) and vice versa.
 
 1) after establishing the TLS session, the requesting TDBE either sends a key retrieval or a data retrieval request
@@ -281,7 +281,7 @@ among validators. The protocol for the group communication channel follows the [
 * Each validator's transaction data bootstrapping enclave retrieves the identities of other validators,
 * Based on the validator identities (sorted by the validator staking address), each validator's transaction data bootstrapping enclave
 initializes GroupContext (constructs a ratchet tree with its leaves populated with the public keys and credentials from the UserInitKeys etc.)
-* If a validator validator is removed or added, the corresponding MLS handshake messages are generated and broadcasted as transactions using Tendermint P2P
+* If a validator is removed or added, the corresponding MLS handshake messages are generated and broadcasted as transactions using Tendermint P2P
 -- transaction validation enclave either only checks the outer signature (in the case of non-validator nodes) or relays it to the transaction 
 data bootstrapping enclave (in the case of validator nodes) where the node fully checks the messages and updates its group state
 * Once group communication channel is established or whenever the group state changes, the key for transaction data obfuscation is re-generated.
@@ -310,7 +310,7 @@ The additional burden is from the following facts:
 1) As view keys are inserted into public probabilistic filters, the client code is responsible for maintaining, watching and rotating view keys.
 
 2) As clients request transaction data from remote nodes, even though the actual data is in TEE and secure channels, the node operator may
-observe the I/O (what transaction IDs are looked up, how much traffic is being exchanged etc.) -- the client code is responsible for requesting from different nodes as well as introducing some noise in the requests (e.g. requesting extra abitrary transactions).
+observe the I/O (what transaction IDs are looked up, how much traffic is being exchanged etc.) -- the client code is responsible for requesting from different nodes as well as introducing some noise in the requests (e.g. requesting extra arbitrary transactions).
 
 To address this limitation, the future implementation of full nodes will be enhanced with 
 the capability of privacy-preserving view-key indexing -- instead of client keeping track of potentially relevant transactions through the use of probabilistic filters, it can directly request all relevant transactions

@@ -170,6 +170,6 @@ The voting power is determined by the bonded amount in validator's staking addre
 
 #### W
 
-**Withdraw (Transcation type :`withdraw`)**
+**Withdraw (Transaction type :`withdraw`)**
 
 The transaction for withdrawing funds from a staking address to a transfer address.

@@ -105,7 +105,7 @@ a PDF version of the site will be generated under the ``/docs`` path.
 
 ## Deploying Chain-doc to Github Pages
 
-1. Make sure you're working on a fork in your own account, not our original respository: `git remote show origin`
+1. Make sure you're working on a fork in your own account, not our original repository: `git remote show origin`
 2. Commit your changes: `git commit -a -m "YOUR MESSAGE"`
 3. Push the changes to GitHub: `git push`
 4. Run `./deploy.sh`

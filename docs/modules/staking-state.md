@@ -34,7 +34,7 @@ There are several variants of it:
 
 `validator.inactive_time.is_none()`
 
-> **_NOTE:_** Active validator doesn't nessesarily mean the final validator take effect in tendermint, please refer to
+> **_NOTE:_** Active validator doesn't necessarily mean the final validator take effect in tendermint, please refer to
 > [Choose final validators](#choose-final-validators)
 
 #### Inactive
@@ -57,7 +57,7 @@ The only way to transit to active validator is by executing `NodeJoinTx`, the pr
 
 - `bonded >= min_required_staking`
 - The validator pubkey/address is not already used by others, it's ok to re-use the old keys used by itself if it's a re-join from an inactive validator.
-- Not jailed if transitting from inactive validator
+- Not jailed if transiting from inactive validator
 
 ### From "active validator" to "inactive validator"
 
@@ -72,7 +72,7 @@ The reasons for dropping of bonded coins maybe:
 - Execute `UnbondTx` at `deliver_tx` event
 - Slashed for non-live or byzantine faults at `begin_block` event
 
-> **_NOTE:_** The transition happens immediatelly in `deliver_tx` or `begin_block` events, won't reverse automatically
+> **_NOTE:_** The transition happens immediately in `deliver_tx` or `begin_block` events, won't reverse automatically
 > when bonded coins become enough again even in the same block, so the activeness is always well-defined during the
 > whole process.
 
@@ -172,7 +172,7 @@ Disallowed transactions are:
 
 It won't distribute rewards to jailed validators, inactive(unjailed) validators will get the rewards as normal.
 
-When a validator is jailed, it's reward participation tracking records are removed immediatelly.
+When a validator is jailed, it's reward participation tracking records are removed immediately.
 
 #### Process byzantine faults
 

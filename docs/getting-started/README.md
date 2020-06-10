@@ -71,7 +71,7 @@ $ cd chain/
 $ make build
 ```
 
-It will take you serveral mins, and check the binary files share object files in following directory:
+It will take you several minutes, and check the binary files share object files in following directory:
 ```
 $ ls target/debug/
 
@@ -99,13 +99,13 @@ The Intel SGX attestation service is a public web service operated by Intel for 
 :::
 
 In short, you should go to [Intel Portal](https://api.portal.trustedservices.intel.com/EPID-attestation)
-to sign up for the ID and KEY. It won't take you more than 5 mins.
+to sign up for the ID and KEY. It won't take you more than 5 minutes.
 
 Make sure what your subscription is [DEV Intel® Software Guard Extensions Attestation Service (Unlinkable)](https://api.portal.trustedservices.intel.com/Products/dev-intel-software-guard-extensions-attestation-service-unlinkable). Your `SPID` and `Primary key` will be shown on the portal as below:
 
 ![](./assets/intel_sub.png)
 
-After you obtained your `SPID` and `Primary key` from Intel, you should embeded them to your `.profile` file
+After you obtained your `SPID` and `Primary key` from Intel, you should embed them to your `.profile` file
 as environment variables with the other two variables (`SGX_MODE`, `NETWORK_HEX_ID`) we mentioned above. So, make sure append
 the following lines in your `.profile` file.
 
@@ -170,7 +170,7 @@ $ make stop-all
 $ make rm-all
 ```
 
-And then clean all the storages used by Tendemint, Cryto.com Chain by:
+And then clean all the storage used by Tendermint, Cryto.com Chain by:
 ```
 $ make clean-data
 ```

@@ -116,7 +116,7 @@ Congratulations! You successfully withdraw all the unbonded genesis fund and now
 
 ## Transfer CRO to another address
 
-- Fisrt you can creat another wallet with the name `Bob`, or whatever name you like. The wallet type could be `hd`(Hierarchical Deterministic) or `basic`:
+- First you can creat another wallet with the name `Bob`, or whatever name you like. The wallet type could be `hd`(Hierarchical Deterministic) or `basic`:
 
 ```bash
 ./target/debug/client-cli wallet new --name bob --type hd
@@ -191,7 +191,7 @@ Enter authentication token:       // Input the Authentication token of Bob
 | Available | 12345678.00000000 |
 +-----------+-------------------+
 ```
-Congratulations! You successfully transfered `12345678 CRO` to Bob.
+Congratulations! You've successfully transferred `12345678 CRO` to Bob.
 
 If you are interested in contributing or joining our testnet, you can continue reading the following sections about `Running a Full Node to join Thaler Testnet` and `Local Full Node Development`.
 

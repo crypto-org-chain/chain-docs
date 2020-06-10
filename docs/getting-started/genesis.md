@@ -93,7 +93,7 @@ Light client allows users to access and interact with the blockchain without hav
 
 Specifically, this **genesis hash** is computed by the `compute_genesis_hash` function: where we take `"genesis_time"`,`"app_hash"`, `"consensus_params"`; and `"chain_id"` from the genesis file as inputs and hash it by the _blake3_ hash function.
 
-We can use the development tool _dev-utils_ to generate this genesis hash from the `genesis.json` file in the default tendetmint directory `~/.tendermint/config`, for example:
+We can use the development tool _dev-utils_ to generate this genesis hash from the `genesis.json` file in the default tendermint directory `~/.tendermint/config`, for example:
 
 ```bash
 $ ./dev-utils genesis hash

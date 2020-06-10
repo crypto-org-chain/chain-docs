@@ -15,7 +15,7 @@ Please follow the [instructions](https://github.com/crypto-com/sample-chain-wall
 
 ## Start ClientRPC
 
-Sample wallet is powered by [ClientRPC](./client-rpc). To run the Sammple Wallet, you will have to start the ClientRPC by following the [instructions](./client-rpc#build).
+Sample wallet is powered by [ClientRPC](./client-rpc). To run the Sample Wallet, you will have to start the ClientRPC by following the [instructions](./client-rpc#build).
 
 ## Wallet Management
 
@@ -64,7 +64,7 @@ To send funds to another address, you will have to first obtain the other party'
 To receive funds, you will need to present your address and view key to the sender; these can be obtained by:
 
 1. Unlock your wallet;
-2. Click *Receive* at the top right-hand cornder;
+2. Click *Receive* at the top right-hand corner;
 3. Copy your recipient address and view key.
 
 

@@ -6,14 +6,14 @@ Rewarding module enable crypto chain to reward protocol participators, the desig
 
 - The total supply of CRO is fixed.
 - The distribution should be "fair", i.e. all honest participators should get rewards, non-participators should not, and the amount of rewards get distributed to a validator should be proportional to it's contribution (sum of the voting power of each vote).
-- The newly emited coins for rewarding is adjusted according to [total staking](#total-staking) and current block time.
+- The newly emitted coins for rewarding is adjusted according to [total staking](#total-staking) and current block time.
 
 The basic procedure is:
 
 - Record participators for each block, sum the voting powers for each participator at the vote time.
 - Distribute the accumulated reward pool according to the recorded sum powers at the end of reward period.
 
-For example, in one reward period with N blocks, validator `A` only participate in the first block, and all the other validators particiate in all blocks, assuming the validator set is static during this period, then we have:
+For example, in one reward period with N blocks, validator `A` only participate in the first block, and all the other validators participate in all blocks, assuming the validator set is static during this period, then we have:
 
 ```
 p: voting power of validator A
@@ -64,7 +64,7 @@ The reward pool gets accumulated throughout the whole reward period; it gets dis
 
 Due to fixed point calculations, there may be a few remainders from arithmetic operations after distribution. These remainder amounts should be left in the rewards pool for the next period.
 
-If there is zero participator for the period, the rewards pool should be left to the next period, rather than get burned.
+If there is zero participant for the period, the rewards pool should be left to the next period, rather than get burned.
 
 #### Total staking
 
@@ -122,9 +122,9 @@ tau = (tau / 1000) * rate + (tau % 1000) * rate
 
 #### Fixed point arithmetic
 
-We should use continued fraction method to compute the `exp` and `pow` with fixed point arithemetics.
+We should use continued fraction method to compute the `exp` and `pow` with fixed point arithmetics.
 
-First we transform the power function into exponencial and natural logarithm functions:
+First we transform the power function into exponential and natural logarithm functions:
 
 ```
 pow(x, y) = exp(y * log(x))

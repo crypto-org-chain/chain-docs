@@ -141,7 +141,7 @@ We can start the ABCI by running:
  chain-abci -g <APP_HASHx> -c <FULL_CHAIN_ID> --enclave_server tcp://127.0.0.1:25933
 ```
 
-If you need backtraces or logging, you may set the environment variables before it:
+If you need backtrace or logging, you may set the environment variables before it:
 
 ```bash
 $ RUST_BACKTRACE=1 RUST_LOG=info \

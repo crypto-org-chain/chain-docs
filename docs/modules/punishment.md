@@ -28,8 +28,8 @@ pub struct PunishmentConfig {
 
 #### `LivenessTracker`
 
-`LivenessTracker` is used to track liveness of all the current active validators. A the beginning of each block,
-liveness of each active validator is updated using `update_liveness` function. Besides this, `LivenessTracker` also
+`LivenessTracker` is used to track liveness of all the current active validators. At the beginning of each block,
+liveness of each active validator is updated using `update_liveness` function. Besides, `LivenessTracker` also
 exposes function to `add` and `remove` a validator from liveness tracking. Finally, `is_live` function can be used to
 check if a given validator is live or not.
 

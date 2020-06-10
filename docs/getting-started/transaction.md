@@ -64,7 +64,7 @@ All these types should also contain metadata, such as [network ID](./chain-id-an
 | Tx type              | Inputs                 | Outputs                                                                      | Fees involved? | Obfuscated? |
 | -------------------- | ---------------------- | ---------------------------------------------------------------------------- | -------------- | ----------- |
 | `TransferTx`         | UTXOs                  | UTXOs                                                                        | Yes            | Yes         |
-| `DepositStakeTx`     | UTXOs                  | Depostit to specified account’s `bonded` amount                              | Yes            | Yes         |
+| `DepositStakeTx`     | UTXOs                  | Deposit the bonded amount to the specified account                           | Yes            | Yes         |
 | `WithdrawUnbondedTx` | Nonce, account         | UTXOs                                                                        | Yes            | Yes         |
 | `UnbondStakeTx`      | Nonce, amount, account | Moves funds from `bonded` to `unbonded` under the same account with timelock | Yes            | No          |
 

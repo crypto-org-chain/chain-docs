@@ -76,7 +76,7 @@ can query the old state, unless we decide to prune the states that is too old.
 
   Replace a subtree which has single non-empty leaf node with the leaf node itself.
 
-  It further shortens the avarage depth of path greatly in sparse case.
+  It further shortens the average depth of path greatly in sparse case.
 
   > The merkle patrica tree in ethereum further utilize extension node to shorten the path, we don't implement that to
   > keep the logic simpler.
@@ -113,7 +113,7 @@ can query the old state, unless we decide to prune the states that is too old.
 
   This helps to keep data compact in underlying storage, because the nodes are inserted in key order.
 
-  > We use the block height as the version number, we'll use them interchangablely in this doc.
+  > We use the block height as the version number, we'll use them interchangeably in this doc.
 
 - We can compress the duplicates of placeholder hashes in the merkle proof.
 
@@ -304,10 +304,10 @@ fn put_at(node_key, key, value, version, i_visited) -> (NodeKey, Node) {
 
 ## Encoding
 
-The encoding is simply concatinate the fields together.
+The encoding is simply concatenate the fields together.
 
 - `H256`
-  It is encoded as fixed length byte array, which is just bytes themself, no length prefixed.
+  It is encoded as fixed length byte array, which is just bytes themselves, no length prefixed.
 
 - `Vec<u8>`
 

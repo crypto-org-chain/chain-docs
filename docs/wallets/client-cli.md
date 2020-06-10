@@ -303,7 +303,7 @@ Enter view keys (comma separated) (leave blank if you don't want any additional 
 
 :::
 
-#### Recieve funds
+#### Receive funds
 
 On the other hand, similarly, to receive funds, you will need to present your **address** and **view key** to the sender.
 

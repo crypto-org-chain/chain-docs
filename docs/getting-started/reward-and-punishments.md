@@ -18,7 +18,7 @@ pub struct RewardsPoolState {
     pub last_block_height: BlockHeight, // when was the pool last updated
     pub last_distribution_time: Timespec, // when was the pool last distributed
     pub minted: Coin,  // record the number of new coins ever minted, can't exceeds max supply
-    pub tau: u64,  // a decaying parameter in monetery expansion process
+    pub tau: u64,  // a decaying parameter in monetary expansion process
 }
 ```
 
@@ -160,7 +160,7 @@ rewards of a validator = total rewards in the pool * [Validatior's contribution]
 
 where
 
-- _"Validatior's contribution"_ is the total sum of the voting power participating in the consensus process by the validator throughout the reward period; and
+- _"Validator's contribution"_ is the total sum of the voting power participating in the consensus process by the validator throughout the reward period; and
 
 - _"Sum of the voting power"_ represents the total sum of the voting power involved in the consensus process from all of the active validators throughout the reward period.
 

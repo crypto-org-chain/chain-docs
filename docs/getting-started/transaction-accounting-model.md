@@ -34,7 +34,7 @@ The current account usage is self-contained limited. Each account (“staked sta
 
 and its slashing related information.
 
-For example, by using [clinent-cli](../wallets/client-cli.md#staking-operations), one can check the staking stake of a _Staking_ type address and obtain the following:
+For example, by using [client-cli](../wallets/client-cli.md#staking-operations), one can check the staking stake of a _Staking_ type address and obtain the following:
 
 ```bash
 ##### EXAMPLE: Staking state #####

@@ -2,7 +2,7 @@
 
 There are two address types which require corresponding signature schemes:
 
-1. "RedeemAddress": Ethereum account address (for ERC20 reedem / backwards-compatibility); see `init/address.rs` in `chain-core`.
+1. "RedeemAddress": Ethereum account address (for ERC20 redeem / backwards-compatibility); see `init/address.rs` in `chain-core`.
 2. "Tree": threshold multisig addresses; records a root of a "Merklized Abstract Syntax Tree" where branches are "OR" operations and leafs are Blake3 hashes of aggregated X-only public keys:
 
 - [Merklized Abstract Syntax Tree](https://blockstream.com/2015/08/24/treesignatures/)

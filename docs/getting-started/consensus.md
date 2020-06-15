@@ -6,7 +6,7 @@ This interface allows a "plugging" custom applications with Tendermint. Specific
 
 As Crypto.com Chain Core code is written in Rust, we utilize (and aim to continually improve) the [rust-abci](https://github.com/tendermint/rust-abci/) library. 
 
-For the overall architecture of Tendermint Core consensus engine with the ABCI, please refer to this [infographic](https://github.com/mobfoundry/hackatom/raw/master/tminfo.pdf) and this [guide](https://docs.tendermint.com/master/app-dev/app-architecture.html).
+For the overall architecture of Tendermint Core consensus engine with the ABCI, please refer to this [infographic](https://docs.tendermint.com/master/assets/img/tm-transaction-flow.258ca020.png) and this [guide](https://docs.tendermint.com/master/app-dev/app-architecture.html).
 
 
 ## Client: Interacting with the blockchain

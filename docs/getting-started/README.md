@@ -7,15 +7,15 @@ For anyone interested in joining the Crypto.com chain testnet,
 please refer to our [testnet documentation](./thaler-testnet).
 :::
 
-By following this tutorial, you can compile and run latest version of Crypto.com Chain from scratch.
-With supported hardware, you can run the chain locally within a cup of coffee ☕. However, this document aims 
-to provide you a step-by-step guide to run Crypto.com Chain locally and not a guide for
+By following this tutorial, you can compile and run the latest version of Crypto.com Chain from scratch.
+With supported hardware, you can run the chain locally within a cup of coffee ☕. However, this document aims
+to provide you with a step-by-step guide to run Crypto.com Chain locally and not a guide for
 production usage.
 
 ## Pre-requisites
 
 Because we utilize the technology of `Intel® Software Guard Extensions (Intel® SGX)`
-for [payment data confidentiality](./transaction-privacy.md#motivation ), the pre-requisites are a little more strict than the other
+for [payment data confidentiality](./transaction-privacy.md#motivation), the pre-requisites are a little more strict than the other
 chains' setup. A special type of hardware is needed and the reference of [SGX-hardware](https://github.com/ayeks/SGX-hardware)
 could help you identify if your current hardware supports `Intel® SGX` or not.
 
@@ -28,6 +28,7 @@ Before diving into details, we would like to introduce you the big picture of Cr
 ![](./assets/big_pic.png)
 
 At the end of this getting-start document, you will be running four components:
+
 - `chain-abci` as main chain process.
 - `client-rpc` as rpc server for client's interactions.
 - `tendermint` for consensus.
@@ -44,21 +45,23 @@ Make sure include the Open Enclave SDK:
 ![](./assets/azure_setup_2.png)
 
 Then choose your desirable VM `location`, `size`, `storage` and `network configs`, or you can leave
- them as default.
+them as default.
 
 ## VM environment setup
 
 SSH to the Azure VM, and start the environment setup for Crypto.com Chain.
 
 - Install `Docker`: you can refer to following document [How To Install and Use Docker on Ubuntu 18.04
-](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
+  ](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
 
-Make sure you have complete the part of ` Executing the Docker Command Without Sudo` by:
+Make sure you have complete the part of `Executing the Docker Command Without Sudo` by:
+
 ```
 sudo usermod -aG docker ${USER}
 ```
 
 - Clone the main chain repo
+
 ```
 git clone https://github.com/crypto-com/chain.git
 ```
@@ -66,12 +69,14 @@ git clone https://github.com/crypto-com/chain.git
 ## Build binary and Docker images
 
 #### 1. Build the Crypto.com Chain binary files:
+
 ```
 $ cd chain/
 $ make build
 ```
 
 It will take you several minutes, and check the binary files share object files in following directory:
+
 ```
 $ ls target/debug/
 
@@ -79,18 +84,22 @@ chain-abci client-rpc client-cli tx-query-app ...
 ```
 
 #### 2. Build the docker image with local binary files using following command:
+
 ```
 $ make image
 ```
+
 Check the current built image with:
+
 ```
 $ docker images
 
 REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
 crypto-chain            develop             817f6c7c7a76        - seconds ago      940MB
-``` 
+```
 
 ## Prepare SPID & KEY
+
 Before kicking off all the components, there is one more step to go, which is
 registering your own accessing ID and KEY for Intel SGX attestation service.
 
@@ -115,22 +124,29 @@ export IAS_API_KEY={YOUR_PRIMARY_KEY}
 ```
 
 Surely, remember to source the new `.profile` file:
+
 ```
 $ source ~/.profile
 ```
 
 ## Prepare environment to run the chain
+
 Prepare initial chain data and try to install Intel SGX if the SGX device is not ready.
+
 ```
 $ make prepare
 ```
 
 ## Run chain components
+
 Run all the components of Cryto.com Chain with following command:
+
 ```
 $ make run
 ```
+
 Then you can check if all containers are running normally:
+
 ```
 $ docker ps
 
@@ -141,7 +157,9 @@ ade1db657cd8     tendermint/tendermint:v0.32.8   "/usr/bin/tendermint…"   -   
 800f173dccc7     crypto-chain:develop            "bash ./run_tx_query…"   -       -        0.0.0.0:26651->26651/tcp               sgx-query
 1c5c71c4047b     crypto-chain:develop            "bash ./run_tx_valid…"   -       -                                               sgx-validation
 ```
+
 Besides, you can check the chain-abci and Tendermint status by following commands:
+
 ```
 $ docker logs -f chain-abci
 [-T08:50:02Z INFO  chain_abci::app] received beginblock request
@@ -163,25 +181,30 @@ $ curl 'http://localhost:26657/health'
 Congratulations! Crypto.com Chain is now running on your machine!
 
 #### Re-initialize a Crypto.com Chain
+
 If you need to stop the processes and initialize a new chain, firstly you should stop all
 service and remove docker containers by:
+
 ```
 $ make stop-all
 $ make rm-all
 ```
 
 And then clean all the storage used by Tendermint, Cryto.com Chain by:
+
 ```
 $ make clean-data
 ```
 
 Finally you can initialize a new chain by:
+
 ```
 $ make prepare
 $ make run
 ```
-If no error Check all containers 
 
+If no error Check all containers
 
 ### Congratulations
+
 Congratulations, now the environment to run Crypto.com Chain is all set. Let's on on and start [sending your first transaction](./send_your_first_transaction).

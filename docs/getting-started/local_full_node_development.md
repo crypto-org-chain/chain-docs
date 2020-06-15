@@ -22,7 +22,7 @@ To create a wallet, currently, we have [client-rpc](https://github.com/crypto-co
 - Create a new *basic* wallet with the name "Default" by running
 
   ```bash
-   ./target/debug/client-cli wallet new --name Default --type basic
+  $ ./target/debug/client-cli wallet new --name Default --type basic
   ```
 
   You will be prompted to enter a passphrase.

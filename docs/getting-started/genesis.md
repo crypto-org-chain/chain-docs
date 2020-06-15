@@ -87,16 +87,16 @@ Specifically, the genesis file includes the following fields:
     - `"type"`: The validator public key types, which should be one of the supported types in _"pub_key_types"_.
     - `"value"`: The base64 encoding of validator's public key, which should correspond to the _"value"_ of the validator in _"council_nodes"_.
 
-### Genesis hash
+## Genesis fingerprint
 
-Light client allows users to access and interact with the blockchain without having to run a full node. To ensure the light client is served by a full node with the correct blockchain data, we can compute the **genesis hash** locally beforehand and check it against the full node that we are connecting to.
+Light client allows users to access and interact with the blockchain without having to run a full node. To ensure the light client is served by a full node with the correct blockchain data, we can compute the **genesis fingerprint** locally beforehand and check it against the full node that we are connecting to.
 
-Specifically, this **genesis hash** is computed by the `compute_genesis_hash` function: where we take `"genesis_time"`,`"app_hash"`, `"consensus_params"`; and `"chain_id"` from the genesis file as inputs and hash it by the _blake3_ hash function.
+Specifically, this **genesis fingerprint** is computed by the `compute_genesis_fingerprint` function: where we take `"genesis_time"`,`"app_hash"`, `"consensus_params"`; and `"chain_id"` from the genesis file as inputs and hash it by the _blake3_ hash function.
 
-We can use the development tool _dev-utils_ to generate this genesis hash from the `genesis.json` file in the default tendermint directory `~/.tendermint/config`, for example:
+We can use the development tool _dev-utils_ to generate this genesis fingerprint from the `genesis.json` file in the default tendermint directory `~/.tendermint/config`, for example:
 
 ```bash
-$ ./dev-utils genesis hash
+$ ./dev-utils genesis fingerprint
 85828B9048F3A38C0446CFD8EFF1A33CE7F299E6605001238B63684E9633EE4E
 ```
 

@@ -11,7 +11,7 @@ The full node inserts the following data into the filter at the moment:
 1. “view keys” (secp256k1 public keys allowed to view the content) in the case of transactions producing UTXOs (see [transaction types](./transaction) and [transaction privacy mechanism](./transaction-privacy) for more details).
 2. Staked state addresses in the case of transactions manipulating accounts (see [accounting details](./transaction-accounting-model)).
 
-## Client knows transaction
+## Client knows the transaction data
 
 Each block header includes an application hash (“APP_HASH”, see [consensus](./consensus) for details). As a part of it is a root of a Merkle tree of valid transactions, a client can check whether its known transaction was included in a block:
 
@@ -19,7 +19,7 @@ Each block header includes an application hash (“APP_HASH”, see [consensus](
 2. Compute the transaction ID from transaction data (see [transaction](./transaction)).
 3. Check a Merkle inclusion proof where the transaction ID is one of the leaves, and a part of the application hash is the root.
 
-## Client doesn’t know transaction data
+## Client doesn’t know the transaction data
 
 If the client doesn’t know transaction data, it can collect valid transaction identifiers from blocks that matched its data using the block-level filter. If the transaction data was transparent (staked state operations), the client can decode transaction directly by requesting the full block data. If the transaction data was obfuscated (payments), the client needs to contact an enclave and prove they can access transaction data using view key signatures (see [transaction privacy](./transaction-privacy) and [enclave architecture](./enclave-architecture) for more details).
 
@@ -27,4 +27,4 @@ Clients are responsible for their own confidential data treatment – the use of
 
 ## Payment transaction submission
 
-When the client wishes to submit a payment transaction (UTXO-based), they will construct a plain signed transaction and submit it to one of full node’s enclaves over a secure channel (see [enclave architecture](./enclave-architecture)).
+When the client wishes to submit a payment transaction (UTXO-based), they will construct a plain signed transaction and submit it to one of the full node’s enclaves over a secure channel (see [enclave architecture](./enclave-architecture)).

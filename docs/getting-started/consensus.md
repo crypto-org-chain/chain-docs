@@ -47,7 +47,7 @@ The **“application hash”** is a compact representation of the overall ABCI a
 
 In Crypto.com Chain, the application hash is a [Blake3](https://github.com/BLAKE3-team/BLAKE3) hash of several components:
 
-- Root of a Merkle tree of a valid transactions in a given block;
+- Root of a Merkle tree of a valid transaction in a given block;
 - Root of a sparse Merkle trie of staked states (see [accounting details](./transaction-accounting-model));
 - Binary serialized state of rewards pool (see [serialization](./serialization) for details on Chain binary format and [genesis](./genesis) for details on “state”);
 - Serialised [network parameters](./network-parameters.md).

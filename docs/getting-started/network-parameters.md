@@ -1,6 +1,6 @@
 # List of network parameters
 
-This section aims to collect and provide brief description of all the mentioned network parameters:
+This section aims to collect and provide brief a description of all the mentioned network parameters:
 
 #### Staking-related parameters
 

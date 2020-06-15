@@ -48,7 +48,7 @@ For further details, please refer to the [transaction flow chat](https://github.
 
 ### Data sealing
 
-As previous transaction data is needed for transaction validation, it needs to be persisted locally. The enclave uses the process of “data sealing” for this purposes. To make the data accessible for future upgrades and other enclaves, it should be sealed with MRSIGNER-derived keys. For further details, please refer to [TEE primitives](https://github.com/crypto-com/chain-docs/blob/master/plan.md#tee-primitives).
+As previous transaction data is needed for transaction validation, it needs to be persisted locally. The enclave uses the process of “data sealing” for this purpose. To make the data accessible for future upgrades and other enclaves, it should be sealed with MRSIGNER-derived keys. For further details, please refer to [TEE primitives](https://github.com/crypto-com/chain-docs/blob/master/plan.md#tee-primitives).
 
 ## Transaction data bootstrapping
 

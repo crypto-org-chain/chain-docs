@@ -114,6 +114,7 @@ pub struct CommunityNode {
 ### extra network params
 - community node minimal required stake
 - mls handshake commit timeout
+- mls handshake message NACK timeout
 - slash rate for invalid commits?
 - keypackage expiration time (as there are consensus-related rules -- 
 e.g. when to remove nodes with expired keypackages whose TDBE failed to submit update in time;
@@ -144,6 +145,7 @@ Public
 MLSHandshake
   CommitChange
   SelfUpdateProposal
+  MsgNack
 ```
 
 CommunityNodeJoin is similar to CouncilNodeJoin, but has fewer rules, as there's no consensus key.
@@ -170,9 +172,19 @@ pub struct SelfUpdateProposal {
     commit: Vec<u8>, // MLSPlaintext -- Commit
 }
 ```
+```rust
+pub struct MsgNack {
+    nack: Vec<u8>, // msg ref + `zz` + DLEQ proof -- TBD: https://github.com/mlswg/mls-protocol/issues/21#issuecomment-455392023
+}
+```
+
+(TODO: `CommitChangeTx` / `SelfUpdateProposal` may need to contain Schnorr NIZK of knowledge (RFC 8235)
+for encrypted parts (`Welcome`, `DirectPathNode`...))
 
 ##### TDBE handling / generation
 TDBE runs as a standalone enclave which includes TM light client and reacts to information received from it.
+For fetched transactions with MLS handshake messages, it should verify they are valid (i.e. their TXID is a leaf in the Merkle tree
+of valid transactions in a particular block).
 It opens mutually attested TLS connection to tx-validation enclave (TVE) for pushing exported obfuscation keys.
 
 ###### Commits
@@ -194,6 +206,21 @@ it should be indicated in timeout-committed block
 and include any additional proposals (if any) since the original triggering block;
 (it should take the latest "timeout" block's number as AAD.)
 
+Commit (in `CommitChangeTx` / `SelfUpdateProposal`) should be applied after NACK timeout.
+
+###### NACK
+If the receiver of the `HPKECiphertext` (Welcome message or DirectPath) cannot process it
+/ it fails (e.g. the encrypted secret does not match the outside public key),
+they generate and broadcast a message that
+reveals `dh` value and provides a proof `DLEQ(dh/kem_output == node_hpke_public_key/group_point)`
+(ref: https://blog.cloudflare.com/privacy-pass-the-math/).
+
+If NACK is valid and submitted in time, the Commit-containing message should be considered as invalid
+(even though the corresponding TX was assumed as valid before) -- the punishment logic should be applied
+to the related message submitter;
+the next node's TDBE (next non-empty leaf) should generate and broadcast `CommitChangeTx` 
+and include Remove proposals as with the "commit timeout" case.
+
 ###### Updates
 After 1/3 of keypackage's lifetime is over, TDBE is allowed to generate and broadcast `SelfUpdateProposal`
 
@@ -210,8 +237,7 @@ new_key = MLS-Exporter(
 )
 ```
 and it should push it over mutually attested TLS to TVE.
-TVE should delete old key when signalled `CommitChangeTx` by abci.
-[[ TODO: signalling to TVE may need to be delayed by some time to allow for "NACK" ]]
+TVE should delete old key after being pushed the new key.
 
 As with https://github.com/mlswg/mls-protocol/blob/master/draft-ietf-mls-protocol.md#deletion-schedule
 
@@ -229,19 +255,12 @@ Notably, it needs:
 - to keep track of keypackage lifetimes -- to limit frequency / know when `SelfUpdateProposal` are valid; for validators whose corresponding keypackage expires,
 they should be removed from the validator set (similar to liveness fault handling)
 - to keep track if valid `CommitChangeTx` was received in time -- invalid one receive similar treatment as byzantine faults (removal from validator set if a validator + slash)
-- to signal to TVE valid `CommitChangeTx` -- TVE will erase its current obfuscation key in memory,
-and block/reject requests until it's pushed a new key from TDBE
-- after CommitChangeTx -- after block commit / in the next block (or two blocks?), enquire TVE if it was pushed a new key;
-if not, there are two possibilities
-  - local node problem (e.g. no running TDBE)
-  - invalid Commit (e.g. DirectPath)
-In any case, it should punish the proposer/submitter of that `CommitChangeTx`
-(if chain-abci should know identity of its staking address / TDBE and self-shutdown if it originated from its "node")
-and expect to receive `CommitChangeTx` from the next leaf.
+- to keep track if valid `NACK` was received after a "valid" `CommitChangeTx` -- NACK invalidating `CommitChangeTx` should treat the `CommitChangeTx` similar to byzantine faults
+- after `CommitChangeTx` -- after block commit and NACK timeout, enquire TVE if it was pushed a new key;
+if not, it is a local node problem (e.g. no running TDBE) -- TODO: block consensus state machine or shutdown?
 
-[[ OPEN ISSUE: 
+\[\[ OPEN ISSUE: 
 https://github.com/mlswg/mls-protocol/issues/21
-for invalid Commits, the punishment of the proposer/submitter
-may need to be delayed until one receives a valid "NACK" 
-(revealing that the proposer submitted bogus) from affected TDBE.
- ]]
+
+update the NACK solution here with the official one when it is drafted in the protocol spec
+\]\]

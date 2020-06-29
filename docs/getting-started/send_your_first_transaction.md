@@ -93,7 +93,7 @@ Enter view keys (comma separated) (leave blank if you don't want any additional 
 - Then, you can `sync` and check `balance` of your wallet:
 
 ```bash
-$ ./target/debug/client-cli sync --name Defatult
+$ ./target/debug/client-cli sync --name Default
 Enter authentication token:       // Input the Authentication token
 Synchronizing: 1951 / 1951 [=================================] 100.00 % 930.09/s
 Synchronization complete!

@@ -35,8 +35,8 @@ that would proxy to some public full node RPC.
 Via the Tendermint light-client-verifying connection, it should obtain the list of 
 needed transaction IDs (of withdrawal and transfer transactions):
 
-* full node / historical querying: all IDs between its last processed block and the last block on the remote node
-* validator: new IDs in the "UTXO set diff" between its last processed block and the last block on the remote node
+- full node / historical querying: all IDs between its last processed block and the last block on the remote node
+- validator: new IDs in the "UTXO set diff" between its last processed block and the last block on the remote node
 (TODO: https://github.com/crypto-com/chain/issues/794 ; initial implementation here can start with just "all IDs" for both)
 
 From remote node RPC, it should also learn its TDBE connection details
@@ -84,6 +84,7 @@ This mandates the following compilation / signing order:
 
 ## Obfuscation key rotation via Message Layer Security handshakes
 ### data type modifications
+
 ```rust
 struct StakedState {
     address: StakedStateAddress,
@@ -111,6 +112,7 @@ pub struct CommunityNode {
     pub confidential_init: ConfidentialInit, // contains the keypackage
 }
 ```
+
 ### extra network params
 - community node minimal required stake
 - mls handshake commit timeout
@@ -135,24 +137,25 @@ The genesis generation ceremony needs to happen in several steps:
 and generating and distributing genesis.json (that's verified by other parties)
 
 ### extra TX types
+
 ```
 Enclave
   ...
 Public
   ...
-  NodeJoin -> CouncilNodeJoin (just rename)
-  CommunityNodeJoin
+  NodeJoin
 MLSHandshake
   CommitChange
   SelfUpdateProposal
   MsgNack
 ```
 
-CommunityNodeJoin is similar to CouncilNodeJoin, but has fewer rules, as there's no consensus key.
+NodeJoin is extended that instead of taking `CouncilNode`, it'd take `NodeMetadata` which is enum
+with council node and community node variants.
 TODO: extra rules for CouncilNode -> CommunityNode (needs to unbond / become inactive first?)
 
 #### Handshake transactions
-internal Vec<u8> payloads are expected to be encoded in the TLS standard binary encodings
+internal `Vec<u8>` payloads are expected to be encoded in the TLS standard binary encodings
 (TODO: 
 [the draft MLS architecture doc](https://github.com/mlswg/mls-architecture/blob/master/draft-ietf-mls-architecture.md):
 > In addition, it does not specify a complete wire encoding, but rather a set of abstract data structures which can then be mapped onto a variety of concrete encodings, such as TLS {{?RFC8446}}, CBOR {{?RFC7049}}, and JSON {{?RFC7159}}.
@@ -160,18 +163,21 @@ internal Vec<u8> payloads are expected to be encoded in the TLS standard binary 
 Besides X.509 (to reuse TLS RA stuff) identities in keypackages, we may potentially switch to SCALE to keep it simpler;
 TLS wire format is mainly interesting for test-vectors / unit tests, but the protocol draft is too in flux at the moment.
 ).
+
 ```rust
 pub struct CommitChangeTx {
     messages: Vec<Vec<u8>>, // MLSPlaintext -- any proposals (Add or Remove), the last one is assumed to be Commit
     welcome: Option<Vec<u8>>, // Welcome -- if there are any Add proposals, there should be a welcome with encrypted paths/epochs for new joiners
 }
 ```
+
 ```rust
 pub struct SelfUpdateProposal {
     proposal: Vec<u8>, // MLSPlaintext -- Update
     commit: Vec<u8>, // MLSPlaintext -- Commit
 }
 ```
+
 ```rust
 pub struct MsgNack {
     nack: Vec<u8>, // msg ref + `zz` + DLEQ proof -- TBD: https://github.com/mlswg/mls-protocol/issues/21#issuecomment-455392023
@@ -229,6 +235,7 @@ which makes TDBE's original `SelfUpdateProposal` -- in which case, it should re-
 
 ###### new obfuscation key
 Once the Commit is applied (or state is reconstructed from Welcome), TDBE should generate a new obfuscation key as:
+
 ```
 new_key = MLS-Exporter(
     Label="Crypto.com Chain tx validation " + block number where CommitChangeTx is included,
@@ -236,6 +243,7 @@ new_key = MLS-Exporter(
     length=(AES_128_GCM_SIV key length)
 )
 ```
+
 and it should push it over mutually attested TLS to TVE.
 TVE should delete old key after being pushed the new key.
 
@@ -251,7 +259,7 @@ In MLS Architecture terminology:
 As such, abci app (chain-abci) needs to have some understanding of the logic of `MLSHandshake` transaction types.
 
 Notably, it needs:
-- to keep track of (MLS) Leaf<->staking address mapping in order to execute corresponding updates on stake
+- to keep track of (MLS) Leaf`<->`staking address mapping in order to execute corresponding updates on stake
 - to keep track of keypackage lifetimes -- to limit frequency / know when `SelfUpdateProposal` are valid; for validators whose corresponding keypackage expires,
 they should be removed from the validator set (similar to liveness fault handling)
 - to keep track if valid `CommitChangeTx` was received in time -- invalid one receive similar treatment as byzantine faults (removal from validator set if a validator + slash)
@@ -259,8 +267,8 @@ they should be removed from the validator set (similar to liveness fault handlin
 - after `CommitChangeTx` -- after block commit and NACK timeout, enquire TVE if it was pushed a new key;
 if not, it is a local node problem (e.g. no running TDBE) -- TODO: block consensus state machine or shutdown?
 
-\[\[ OPEN ISSUE: 
+[[ OPEN ISSUE: 
 https://github.com/mlswg/mls-protocol/issues/21
 
 update the NACK solution here with the official one when it is drafted in the protocol spec
-\]\]
+]]

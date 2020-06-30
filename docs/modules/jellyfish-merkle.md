@@ -45,7 +45,7 @@ can query the old state, unless we decide to prune the states that is too old.
 
   The hash of the internal node is the root hash of this subtree, which is computed like this:
 
-  ```text
+  ```
   InternalNode[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F]
   
     4 ->              +------ root hash ------+
@@ -85,7 +85,7 @@ can query the old state, unless we decide to prune the states that is too old.
 
   For example (notice the path of  `C` is not shortened because it references an internal node):
 
-  ```text
+  ```
   InternalNode[
     0 => Child(leaf),
     3 => Child(leaf),
@@ -187,7 +187,7 @@ fn get(key: H256, version: Version) -> Option<Value> {
 Since the nodes on disk are immutable, so when we need to update a value, we create new nodes. For example, when we
 update `key2`'s value:
 
-```text
+```
                   (on disk)              (in memory)
                     root0                  root1'
                    /     \                /     \
@@ -202,7 +202,7 @@ update `key2`'s value:
 And to optimize batch operations, when a node is already in memory, it's replaced. For example, if we update `key1`'s
 value now,  `root1'` is deleted and replaced by `root1''`:
 
-```text 
+```
                   (on disk)                                     (in memory)
                     root0                                         root1''
                    /     \                                       /     \

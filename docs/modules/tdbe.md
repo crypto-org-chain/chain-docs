@@ -158,7 +158,7 @@ TODO: extra rules for CouncilNode -> CommunityNode (needs to unbond / become ina
 internal `Vec<u8>` payloads are expected to be encoded in the TLS standard binary encodings
 (TODO: 
 [the draft MLS architecture doc](https://github.com/mlswg/mls-architecture/blob/master/draft-ietf-mls-architecture.md):
-> In addition, it does not specify a complete wire encoding, but rather a set of abstract data structures which can then be mapped onto a variety of concrete encodings, such as TLS {{?RFC8446}}, CBOR {{?RFC7049}}, and JSON {{?RFC7159}}.
+> In addition, it does not specify a complete wire encoding, but rather a set of abstract data structures which can then be mapped onto a variety of concrete encodings, such as TLS RFC8446, CBOR RFC7049, and JSON RFC7159.
 
 Besides X.509 (to reuse TLS RA stuff) identities in keypackages, we may potentially switch to SCALE to keep it simpler;
 TLS wire format is mainly interesting for test-vectors / unit tests, but the protocol draft is too in flux at the moment.

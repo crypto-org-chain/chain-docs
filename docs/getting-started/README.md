@@ -19,7 +19,7 @@ for [payment data confidentiality](./transaction-privacy.md#motivation), the pre
 chains' setup. A special type of hardware is needed and the reference of [SGX-hardware](https://github.com/ayeks/SGX-hardware)
 could help you identify if your current hardware supports `Intel® SGX` or not.
 
-If your development machine does not support SGX, we recommend spinning up a cloud instance listed in the [above reference](https://github.com/ayeks/SGX-hardware#cloud-vendors). In this guide, we will walk through the process of setting it up on [Azure Confidential Compute VM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-azure-compute.confidentialcompute?tab=Overview).
+If your development machine does not support SGX, we recommend spinning up a cloud instance listed in the [above reference](https://github.com/ayeks/SGX-hardware#cloud-vendors). In this guide, we will walk through the process of setting it up on [Azure Confidential Compute VM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-azure-compute.acc-virtual-machine-v2?tab=overview).
 
 ## A bird's-eye view
 
@@ -36,11 +36,11 @@ At the end of this getting-start document, you will be running four components:
 
 ## Azure VM creation
 
-Get into the portal of Azure computing and create a new [Azure Confidential Compute VM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-azure-compute.confidentialcompute?tab=Overview) as following config. Noted that `Ubuntu Server 18.04 LTS` is recommended.
+Get into the portal of Azure computing and create a new [Azure Confidential Compute VM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-azure-compute.acc-virtual-machine-v2?tab=overview) as following config. Noted that `Ubuntu Server 18.04` is recommended.
 
 ![](./assets/azure_setup_1.png)
 
-Make sure include the Open Enclave SDK:
+Make sure to enable SSH public inbound ports:
 
 ![](./assets/azure_setup_2.png)
 
@@ -58,6 +58,12 @@ Make sure you have complete the part of `Executing the Docker Command Without Su
 
 ```
 sudo usermod -aG docker ${USER}
+```
+
+- Install build dependencies
+
+```
+sudo apt install build-essential
 ```
 
 - Clone the main chain repo
@@ -134,6 +140,8 @@ $ source ~/.profile
 Prepare initial chain data and try to install Intel SGX if the SGX device is not ready.
 
 ```
+$ sudo make create-path
+$ sudo make chown-path user=$(id -u) group=$(id -g)
 $ make prepare
 ```
 
@@ -142,8 +150,15 @@ $ make prepare
 Run all the components of Cryto.com Chain with following command:
 
 ```
-$ make run
+$ make run TX_QUERY_HOSTNAME={YOUR_INSTANCE_HOSTNAME}
 ```
+
+Depending on where you will run your wallet in the next step, `{YOUR_INSTANCE_HOSTNAME}` can have different values:
+| Wallet Location | `{YOUR_INSTANCE_HOSTNAME}` |
+| --- | --- |
+| In the same Azure machine | `127.0.0.1` |
+| Remote (e.g. from your computer) | Azure instance IP address |
+| Inside the node Docker network | Ignore `TX_QUERY_HOSTNAME` |
 
 Then you can check if all containers are running normally:
 
@@ -155,7 +170,6 @@ fc51af59593b     crypto-chain:develop            "client-rpc --port=2…"   -   
 bc586070744b     crypto-chain:develop            "chain-abci --chain_…"   -       -                                               chain-abci
 ade1db657cd8     tendermint/tendermint:v0.32.8   "/usr/bin/tendermint…"   -       -        0.0.0.0:26656-26657->26656-26657/tcp   tendermint
 800f173dccc7     crypto-chain:develop            "bash ./run_tx_query…"   -       -        0.0.0.0:26651->26651/tcp               sgx-query
-1c5c71c4047b     crypto-chain:develop            "bash ./run_tx_valid…"   -       -                                               sgx-validation
 ```
 
 Besides, you can check the chain-abci and Tendermint status by following commands:
@@ -199,6 +213,8 @@ $ make clean-data
 Finally you can initialize a new chain by:
 
 ```
+$ sudo make create-path
+$ sudo make chown-path user=$(id -u) group=$(id -g)
 $ make prepare
 $ make run
 ```

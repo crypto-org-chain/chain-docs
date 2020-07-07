@@ -11,6 +11,16 @@ please refer to [ClientCLI](../wallets/client-cli).
 
  ![](./assets/states.png)
 
+## Configuring your environment to connect 
+To start using the wallet, you have to configure your environment with the node information:
+```
+$ export CRYPTO_CHAIN_ID=test-chain-y3m1e6-AB
+$ export CRYPTO_CLIENT_TENDERMINT=ws://127.0.0.1:26657/websocket
+$ export CRYPTO_GENESIS_FINGERPRINT=934B7A20886EE47EC495AFFBF305809D5F4E9CDA6E41AECB0B10FABA74A922DC
+```
+
+If you are running your wallet on the same Azure machine, you can use the above configuration. If you are running the wallet on your local machine, you will have to change the `ws://127.0.0.1:26657/websocket`  with the Azure instance public IP address.
+
 ## Restore the Default wallet
 From the getting started section, we have already kicked off the Crypto.com Chain with the
 simple make commands and docker. However, there are multiple [tendermint configs](https://github.com/crypto-com/chain/tree/master/docker/config/devnet/tendermint) should be explained.
@@ -26,7 +36,9 @@ Confirm mnemonic:       // Confirm the mnemonic
 
 Authentication token: b74ce4590ebc9d3c2a3adace926304384ae9451f43560c9702402be53811da8b
 ```
-Then you will get the `Authentication token`, keep the token safe and it will be needed for all authorised commands.
+Then you will get the `Authentication token`, keep the token safe and it will be needed for all authorized commands.
+
+A pre-created Hierarchical Deterministic(HD) Wallet wallet mnemonic with funds inside are prepared for you in Devnet. Kindly restore the wallet by using this [mnemonic](https://github.com/crypto-com/chain/blob/master/docker/config/devnet/tendermint/mnemonics.txt) before moving on to the next step. 
 
 ## Create Transfer & Staking Address
 - First, you should init the two `Staking` type address with the `Default` wallet you just restored:
@@ -54,9 +66,15 @@ New address: dcro1ayhu0665wprxf86letqlv8x4ssppeu6awf7m60qlwds9268vltwsk6ehwa
 
 To be clarified, the genesis fund is [stored](https://github.com/crypto-com/chain/blob/master/docker/config/devnet/tendermint/genesis.json#L19) in a pre-created Hierarchical Deterministic(HD) Wallet [mnemonic here](https://github.com/crypto-com/chain/blob/master/docker/config/devnet/tendermint/mnemonics.txt). So we should restore it before making transactions.
 
-- Therefore, you can check the bond status of the wallet by the following command:
+- Therefore, you can check the bond status of the wallet by the following commands:
 ```bash
-$ /target/debug/client-cli state --address 0x2dfde2178daa679508828242119dcf2114038ea8
+# To access wallet address state, you must sync your wallet first
+$ ./target/debug/client-cli sync --name Default --disable-fast-forward
+Enter authentication token:       // Input the Authentication token
+Synchronizing: 1951 / 1951 [=================================] 100.00 % 930.09/s
+Synchronization complete!
+
+$ ./target/debug/client-cli state --name Default --address 0x2dfde2178daa679508828242119dcf2114038ea8
 
 +-----------------+----------------------------+
 | Nonce           |                          0 |
@@ -75,7 +93,18 @@ $ /target/debug/client-cli state --address 0x2dfde2178daa679508828242119dcf21140
 +-----------------+----------------------------+
 ```
 
-## Withdrawal the bonded funds
+Note: If you encounter a fingerprint mismatched error
+```bash
+$ ./target/debug/client-cli sync --name Default --disable-fast-forward
+Enter authentication token:
+Error: Verify error: genesis-fingerprint from tendermint 934B7A20886EE47EC495AFFBF305809D5F4E9CDA6E41AECB0B10FABA74A922DC does not match preset genesis-fingerprint DC05002AAEAB58DA40701073A76A018C9AB02C87BD89ADCB6EE7FE5B419526C8
+```
+Make sure you have exported the fingerprint manually
+```bash
+$ export CRYPTO_GENESIS_FINGERPRINT=934B7A20886EE47EC495AFFBF305809D5F4E9CDA6E41AECB0B10FABA74A922DC
+```
+
+## Withdraw the bonded funds
 
 **Bonded address**: Previously [generated address](https://github.com/crypto-com/chain/blob/master/docker/config/devnet/tendermint/genesis.json#L19) in your wallet to receive genesis funds
 
@@ -87,13 +116,14 @@ Enter authentication token:       // Input the Authentication token
 Enter staking address: 0x2dfde2178daa679508828242119dcf2114038ea8
 Enter transfer address: dcro1ayhu0665wprxf86letqlv8x4ssppeu6awf7m60qlwds9268vltwsk6ehwa
 Enter view keys (comma separated) (leave blank if you don't want any additional view keys in transaction):
-// Leave blank because this tx is in same wallet
+# Leave blank because this tx is in same wallet
+Transaction successfully created
 ```
 
 - Then, you can `sync` and check `balance` of your wallet:
 
 ```bash
-$ ./target/debug/client-cli sync --name Default
+$ ./target/debug/client-cli sync --name Default --disable-fast-forward
 Enter authentication token:       // Input the Authentication token
 Synchronizing: 1951 / 1951 [=================================] 100.00 % 930.09/s
 Synchronization complete!
@@ -119,7 +149,7 @@ Congratulations! You successfully withdraw all the unbonded genesis fund and now
 - First you can creat another wallet with the name `Bob`, or whatever name you like. The wallet type could be `hd`(Hierarchical Deterministic) or `basic`:
 
 ```bash
-./target/debug/client-cli wallet new --name bob --type hd
+$ ./target/debug/client-cli wallet new --name Bob --type hd
 Enter passphrase:
 Confirm passphrase:
 Please store following mnemonic safely to restore your wallet later:
@@ -156,7 +186,7 @@ New address: dcro135w20p56vdduzv5e4v4g2a9ucu6vw9k25aeyd7jfxuej66l4af9s7ycz35
 - Then, you can transfer your tokens to Bob by:
 
 ```bash
-$./target/debug/client-cli transaction new --name Default --type Transfer
+$ ./target/debug/client-cli transaction new --name Default --type Transfer
 
 Enter authentication token:       // Input the Authentication token of Default
 Enter output address: dcro135w20p56vdduzv5e4v4g2a9ucu6vw9k25aeyd7jfxuej66l4af9s7ycz35
@@ -165,6 +195,7 @@ Enter timelock (seconds from UNIX epoch) (leave blank if output is not time lock
 More outputs? [yN]
 Enter view keys (comma separated) (leave blank if you don't want any additional view keys in transaction):
 02b4dabfc862b9cb9f86b8d49520023aa0cccb2ad89446577dd0fee7bc946a79a1,03ef78b2751d43c3309b6ac68641e56528a23dc5678a201e43a7ed852511a1c276
+Transaction successfully created!
 ```
 ::: tip Tip
 
@@ -174,7 +205,7 @@ Remember to include Bob's `view-key` here.
 
 - Lastly, you can `sync` and check `balance` of Bob's wallet:
 ```bash
-$ ./target/debug/client-cli sync --name Bob
+$ ./target/debug/client-cli sync --name Bob --disable-fast-forward
 Enter authentication token:       // Input the Authentication token
 Synchronizing: 5121 / 5121 [=================================] 100.00 % 1606.16/s
 Synchronization complete!

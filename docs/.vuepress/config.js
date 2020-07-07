@@ -23,7 +23,7 @@ module.exports = {
           },
           {
             text: "Testnet Faucet",
-            link: "https://chain.crypto.com/explorer/faucet"
+            link: "https://chain.crypto.com/faucet"
           }
         ]
       },

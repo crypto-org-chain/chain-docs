@@ -81,7 +81,7 @@ module.exports = {
     },
     displayAllHeaders: true
   },
-  base: "/",
+  base: "/docs/",
   plugins: [
     [
       "vuepress-plugin-export",

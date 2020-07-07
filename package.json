@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "docs:pdf": "cd docs && vuepress export"
   },
   "dependencies": {
     "vuepress": "^1.0.0-alpha.44",

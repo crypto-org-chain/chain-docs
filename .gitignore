@@ -6,3 +6,5 @@ docs/.vuepress/dist/
 
 # IDE
 .idea
+
+ci/env

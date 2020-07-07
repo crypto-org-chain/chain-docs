@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+
+echo 
+echo "npm install 💾"
+echo
+
+npm install 
+
+echo 
+echo "npm run build 🔧🔨🛠"
+echo
+
+npm run docs:build
+
+
+echo 
+echo "export pfd 📚📙📖"
+echo
+sed -i -e "/navbar/s/true/false/" docs/.vuepress/config.js
+npm run docs:pdf
+mv docs/'Crypto.com Chain.pdf' docs/.vuepress/dist/Crypto.com_Chain.pdf
+
+echo
+echo "done 🎉"

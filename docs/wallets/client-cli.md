@@ -58,12 +58,13 @@ Similarly, we can also change the Tendermint URL when running ClientCLI, update 
 
 A list of supported environment variables of ClientCLI is listed below:
 
-| Option                   | Description                                     | Type              | Default Value                  |
-| ------------------------ | ----------------------------------------------- | ----------------- | ------------------------------ |
-| CRYPTO_CLIENT_DEBUG      | How detail should the debug message be on error | true/false        | false                          |
-| CRYPTO_CHAIN_ID          | Full Chain ID                                   | String            | ---                            |
-| CRYPTO_CLIENT_STORAGE    | Wallet storage directory                        | Storage directory | .storage                       |
-| CRYPTO_CLIENT_TENDERMINT | Websocket endpoint for tendermint               | String            | ws://localhost:26657/websocket |
+| Option                     | Description                                                                  | Type              | Default Value                  |
+| -------------------------- | ---------------------------------------------------------------------------- | ----------------- | ------------------------------ |
+| CRYPTO_CLIENT_DEBUG        | How detail should the debug message be on error                              | Boolean           | false                          |
+| CRYPTO_CHAIN_ID            | Full [Chain ID](../getting-started/chain-id-and-network-id.md#chain-id)      | String            | ---                            |
+| CRYPTO_CLIENT_STORAGE      | Wallet storage directory                                                     | Storage directory | .storage                       |
+| CRYPTO_CLIENT_TENDERMINT   | Websocket endpoint for tendermint                                            | String            | ws://localhost:26657/websocket |
+| CRYPTO_GENESIS_FINGERPRINT | [The genesis fingerprint](../getting-started/genesis.md#genesis-fingerprint) | String            | ---                            |
 
 ## Wallet operations
 
@@ -147,7 +148,7 @@ Wallet name: Default
 
 ### `wallet delete` - Delete a wallet
 
-You can deleted a wallet in your storage path.
+You can delete a wallet in your storage path.
 
 :::danger
 Make sure you have backed up the wallet mnemonic before removing any of your wallets, as there will be no way to recover your wallet without the mnemonic.
@@ -168,9 +169,42 @@ All authorised commands required the authentication token of the wallet, it can 
 ::: details Example: Show authentication token of your wallet
 
 ```bash
-./bin/client-cli wallet auth-token --name Default_HD
+$ ./bin/client-cli wallet auth-token --name Default_HD
 Enter passphrase:## Enter passphrase of your wallet ##
 Authentication token: a6cdb10fee25097775354162f379b4fbb6089b2a1c02d4b978e70821a962c185
+```
+
+:::
+
+### `wallet export` - Export your wallet to a file
+
+You can export and backup your wallet(s) by using the `export` subcommand:
+
+::: details Example: Export your wallet(s)
+Exporting the wallet _Default_HD_ to the new file _"backup"_ :
+
+```bash
+$ ./bin/client-cli wallet export --name Default_HD --to_file backup
+Enter authentication token for Default_HD: ## Insert your authentication token ##
+Get all 1 wallets info.
+Export 1 wallet to file "backup" success
+```
+
+Note: Multiple wallets can be exported at the same time. Simply separate the wallet names with commas.
+
+:::
+
+### `wallet import` - Import your wallet from a file
+
+You can export and backup your wallet(s) by using the `import` subcommand:
+
+::: details Example: Import wallet
+Importing the wallet _"Default_HD"_ from the file _"backup"_ :
+
+```bash
+$ ./bin/client-cli wallet import --file ./backup
+Input passphrase for wallet Default_HD
+Authentication token of wallet pocket:
 ```
 
 :::
@@ -320,19 +354,20 @@ Staking operations involve the interaction between _transfer_ address and _staki
   ```bash
   $ ./bin/client-cli transaction new --name Default --type Deposit
   Enter authentication token: ## Insert your authentication token ##
-  Enter input transaction ID: ## Insert the transaction ID ##
-  Enter input index: 0
-  More inputs? [yN]
+  Enter staking address: 60000000 ## Insert receiver's staking address ##
+  Enter amount (in CRO): 60000000.00000000 ## Insert the deposit amount ##
+  Is the amount ********* CRO? [Y|N]:Y ## Verify the deposit amount ##
+  create a transfer transaction to make a UTXO with 60000000.00000299 amount(fee is 0.00000299)
+  broadcast transfer transaction
+  create deposit transaction
+  deposit success, transaction id is: ***********
+  Transaction successfully created!
   ```
 
-  - Remarks: For better management of your wallet, It is suggested that you can make a `Transfer` type transaction to your own address beforehand to gather unspent transactions in your wallet.
-    For example, If you would like to deposit 5000 CRO, you may make a `Transfer` type transaction of 5000 CRO to yourself at the beginning, then use this newly obtained unspent transaction ID for the deposit transaction.
+  - Remarks: In the above example, If you would like to deposit _60000000_ CRO, there will be a `Transfer` type transaction of _60000000_ CRO + _fees_ to yourself at the beginning. Afterwards, we spend this newly obtained unspent transaction output of _60000000_ CRO for the `Deposit` transaction.
     :::
 
-  ::: tip
-
-  - Note that a `<TRANSASTION_ID>` is required as an input of this transaction. It can be found by checking the [history](#check-transaction-history) of your wallet. This deposit transaction is valid only if the transaction input is unspent.
-    :::
+ 
 
 - **Unlock your bonded funds** [`--type Unbond`]
   On the other hand, we can create a `Unbond` transaction to unbond staked funds
@@ -362,7 +397,7 @@ Staking operations involve the interaction between _transfer_ address and _staki
   ```bash
   $ ./bin/client-cli transaction new --name Default --type Withdraw
     Enter authentication token: ## Insert your authentication token ##
-    Enter staking address: ## Insert your
+    Enter staking address: ## Insert your staking address ##
     Enter transfer address: ## Insert the target transfer address ##
     Enter view keys (comma separated) (leave blank if you don't want any additional view keys in transaction):
     Transaction successfully created!
@@ -370,7 +405,38 @@ Staking operations involve the interaction between _transfer_ address and _staki
 
   :::
 
-Please also refer to this [diagram](../getting-started/send_your_first_transaction.md#types-of-transaction-and-address) for interaction between _staking address_ and _transfer address_
+Please also refer to this [diagram](../getting-started/send_your_first_transaction.md#send-your-first-transaction) for interaction between _staking address_ and _transfer address_
+
+### `transaction show` Show transaction details
+
+You can show the detailed transaction metadata, inputs and outputs from a given transaction id:
+::: details Example: Show transaction details
+
+```bash
+$ ./bin/client-cli transaction show  --id <transaction id> --name <wallet name>
+  Enter authentication token: ## Insert your authentication token ##
+  Transaction metadata:
+  +----------------+--------+--------+-----+------------------+--------------+------------+
+  | Transaction ID | In/Out | Amount | Fee | Transaction Type | Block Height | Block Time |
+  +----------------+--------+--------+-----+------------------+--------------+------------+
+  |................|........|........|.....|..................|..............|............|
+  +----------------+--------+--------+-----+------------------+--------------+------------+
+  Transaction inputs:
+  +---------------+-------+
+  | Transaction ID| Index |
+  +---------------+-------+
+  |...............|.......|
+  +---------------+-------+
+  Transaction outputs:
+  +---------+-------+-------------------+---------------+
+  | Address | Value | Time-locked until | Spent/Unspent |
+  +---------+-------+-------------------+---------------+
+  |.........|.......|...................|...............|
+  +---------+-------+-------------------+---------------+
+
+```
+
+:::
 
 ## Balance & transaction history
 
@@ -426,7 +492,7 @@ Crypto.com Chain uses a mixed [UTXO+Accounts model](../getting-started/transacti
 ::: details Example: Check the state of a staking address
 
 ```bash
-$ ./client-cli state -a <STAKING_ADDRESS>
+$ ./client-cli state --address <staking address>  --name <wallet name>
 
 +-----------------+----------------------------+
 | Nonce           |                          1 |
@@ -445,6 +511,7 @@ $ ./client-cli state -a <STAKING_ADDRESS>
 +-----------------+----------------------------+
 ```
 
+**Note**: The error message `Error: Invalid input: staking not found` will be displayed if there is no transaction associated with the staking address.
 :::
 
 ## Advance operations and transactions

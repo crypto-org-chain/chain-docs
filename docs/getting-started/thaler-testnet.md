@@ -4,17 +4,30 @@ The Crypto.com Chain Testnet has been named as **“Thaler”**.
 
 This is an early tutorial for the developers and brave and patient super-early adopters.
 
+## Prepare your machine
+
+To run Crypto.com Chain nodes, you will need a machine with the following minimum requirements:
+
+- Intel SGX supported CPU
+
+::: tip NOTE
+You can look for your Intel CPU model on the [Intel Product Specifications website](https://ark.intel.com/content/www/us/en/ark.html#@Processors) and check if it has Intel® Software Guard Extensions (Intel® SGX) support.
+:::
+
+- 4GB RAM
+- 100GB storage space
+
+::: tip NOTE
+If you are using Microsoft Azure, you will need to create an instance of [Azure Confidential Computing (login required)](https://portal.azure.com/#create/microsoft-azure-compute.acc-virtual-machine-v2acc-virtual-machine-v2) with the above hardware requirement.
+
+You will also need to create an extra disk in the Azure panel and mount it to the created instance. Instructions can be found [here](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal).
+:::
+
 ## Common Setup
 
-### Step 0. Install Intel SGX SDK 2.9 and other pre-requisites
+### Step 0. Install Intel SGX 2.9 and other pre-requisites
 
 - Make sure your CPU supports SGX, and it is enabled in BIOS. [This GitHub repository](https://github.com/ayeks/SGX-hardware) has more information about supported hardware and cloud vendors.
-
-- You can download the Linux SGX SDK installers from the Intel Open Source [website](https://01.org/intel-softwareguard-extensions/downloads/intel-sgx-linux-2.9.1-release). More details can be found in this [installation guide](https://download.01.org/intel-sgx/sgx-linux/2.9.1/docs/Intel_SGX_Installation_Guide_Linux_2.9.1_Open_Source.pdf).
-
-- Note that some motherboards may have only "software controlled" option where [an extra step is needed for enabling it](https://github.com/intel/linux-sgx/issues/354#issuecomment-447961815).
-
-- You may also need to install libzmq (e.g. [libzmq3-dev](https://packages.ubuntu.com/xenial/libzmq3-dev) package in Ubuntu 18.04).
 
 ::: tip NOTE
 There is an Ubuntu-based Docker image `cryptocom/chain:latest` on Dockerhub that
@@ -22,6 +35,32 @@ has Intel PSW and other dependencies pre-installed
 (you still need to have the SGX driver installed on the host and
 expose it to the container by running docker with the `--device /dev/isgx` flag).
 :::
+
+### Step 0-0. Install Intel SGX 2.9
+
+::: tip Note
+If you are running on Azure Confidential Computing machines, you will only need to install the Intel SGX PSW 2.9 and aesmd service.
+:::
+
+- You can download the Linux SGX SDK installers from the Intel Open Source [website](https://01.org/intel-softwareguard-extensions/downloads/intel-sgx-linux-2.9.1-release). More details can be found in this [installation guide](https://download.01.org/intel-sgx/sgx-linux/2.9.1/docs/Intel_SGX_Installation_Guide_Linux_2.9.1_Open_Source.pdf).
+
+- Note that some motherboards may have only "software controlled" option where [an extra step is needed for enabling it](https://github.com/intel/linux-sgx/issues/354#issuecomment-447961815).
+
+### Step 0-1. Install aesmd service
+
+- After you have installed Intel SGX PSW 2.9 using the [installation guide](https://download.01.org/intel-sgx/sgx-linux/2.9.1/docs/Intel_SGX_Installation_Guide_Linux_2.9.1_Open_Source.pdf) from [step 0-0](#step-0-0-install-intel-sgx-2-9), run the following command to install aesm service:
+
+```bash
+sudo apt install libsgx-uae-service
+```
+
+### Step 0-2. Install ZeroMQ
+
+You may also need to install libzmq (e.g. [libzmq3-dev](https://packages.ubuntu.com/xenial/libzmq3-dev) package in Ubuntu 18.04).
+
+```bash
+sudo apt install libzmq3-dev 
+```
 
 ### Step 1. Get Tendermint and Chain v0.5.2 released binaries
 
@@ -38,7 +77,11 @@ Also, please note the [released binary changes](https://github.com/crypto-com/ch
 ### Step 2. Configure Tendermint
 
 - After placing all binaries on the path. You can initialize Tendermint with `tendermint init`.
-  In `.tendermint/config/`, change the content of `genesis.json` to:
+
+::: tip NOTE
+Depending your Tendermint home setting, the Tendermint configuration will be initialized to that home directory. To simply the following steps, we will use the default Tendermint home directory `~/.tendermint/` for illustration.
+
+- In `~/.tendermint/config/`, change the content of `genesis.json` to:
 
 ```json
 {
@@ -194,7 +237,7 @@ Also, please note the [released binary changes](https://github.com/crypto-com/ch
 }
 ```
 
-- For network configuration, in `.tendermint/config/config.toml`, you can put the following as `seeds` and `create_empty_blocks_interval`:
+- For network configuration, in `~/.tendermint/config/config.toml`, you can put the following as `seeds` and `create_empty_blocks_interval`:
 
   ```
   seeds = "f3806de90c43f5474c6de2b5edefb81b9011f51f@52.186.66.214:26656,29fab3b66ee6d9a46a4ad0cc1b061fbf02024354@13.71.189.105:26656,2ab2acc873250dccc3eb5f6eb5bd003fe5e0caa7@51.145.98.33:26656"
@@ -251,19 +294,19 @@ Once you obtained the credentials in the portal, set the following environment v
 - Start the tx-query enclave app (in `tx-query-HW-debug/`), e.g.:
 
   ```
-  RUST_LOG=info ./tx-query-app 0.0.0.0:3322 ipc://$HOME/enclave.socket
+  $ RUST_LOG=info ./tx-query-app 0.0.0.0:3322 ipc://$HOME/enclave.socket
   ```
 
 - Start chain-abci, e.g.:
 
   ```
-  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5 --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
+  $ RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5 --enclave_server ipc://$HOME/enclave.socket --tx_query <EXTERNAL_IP/HOSTNAME>:3322
   ```
 
 - Finally, start Tendermint:
 
   ```
-  tendermint node
+  $ ./tendermint node
   ```
 
 ## B. Running a council node (validator)
@@ -276,25 +319,9 @@ as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core
 test secure storage of validator keys etc.
 :::
 
-### Step 3-b-0. (Optional) restoring a wallet
+### Step 3-b. Pre-requisite
 
-If you have participated in the v0.3.1 testnet and have backed up your seed phrase, you can restore it with the [client-cli](../wallets/client-cli.md#wallet-restore-restore-an-hd-wallet), for example:
-
-```bash
-$ client-cli wallet restore --name <WALLET_NAME>
-```
-
-You can then create a staking address with:
-
-```
-$ client-cli address new --name <WALLET_NAME> --type Staking
-```
-
-If the created address matches one of the ones listed in the initial _genesis.json_ distribution, you can skip to [Step 3-b-3](#step-3-b-3-create-a-validator-key-pair).
-
-### Step 3-b-1. Create a staking address
-
-This can be done, for example, with the client-cli command-line tool. Set the required environment variables:
+In the following example, we will use the client-cli command-line tool to perform the address creation and join as a council node. To follow the steps, you need to first set the required environment variables:
 
 1. `CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42`;
 1. `CRYPTO_CLIENT_TENDERMINT=<YOUR_FULL_NODE>`.
@@ -303,11 +330,33 @@ If you would like to connect to a local full node, you can put `<YOUR_FULL_NODE>
 `<YOUR_FULL_NODE>=ws://13.90.34.32:26657/websocket`.
 :::
 
-And run the followings to create a new [HD-wallet](../wallets/client-cli.html#wallet-new-create-a-new-wallet) and [staking address](../wallets/client-cli.html#address-new-create-a-new-address):
+### Step 3-b-0. (Optional) restoring a wallet
+
+If you have participated in the v0.3.1 testnet and have backed up your seed phrase, you can restore it with the [client-cli](../wallets/client-cli.md#wallet-restore-restore-an-hd-wallet), for example:
 
 ```bash
-$ client-cli wallet new --name <WALLET_NAME> --type hd
-$ client-cli address new --name <WALLET_NAME> --type Staking
+$ ./client-cli wallet restore --name <WALLET_NAME>
+```
+
+You can then create a staking address with:
+
+```
+$ ./client-cli address new --name <WALLET_NAME> --type Staking
+```
+
+If the created address matches one of the ones listed in the initial _genesis.json_ distribution, you can skip to [Step 3-b-3](#step-3-b-3-create-a-validator-key-pair).
+
+### Step 3-b-1. Create a new wallet with staking address
+
+::: tip Note
+If you have restored your wallet and created a staking address in step 3-b-0, you can skip this step.
+:::
+
+Run the followings to create a new [HD-wallet](../wallets/client-cli.html#wallet-new-create-a-new-wallet) and [staking address](../wallets/client-cli.html#address-new-create-a-new-address):
+
+```bash
+$ ./client-cli wallet new --name <WALLET_NAME> --type hd
+$ ./client-cli address new --name <WALLET_NAME> --type Staking
 ```
 
 You should obtain a hexadecimal-encoded address, e.g. `0xa861a0869c02ab8b74c7cb4f450bcbeb1e472b9a`
@@ -319,7 +368,7 @@ stating who you are and your staking address (@devashishdxt or @lezzokafka would
 
 ### Step 3-b-3. Create a validator key pair
 
-- In a development mode, the full key pair is located in the `.tendetmint/config/priv_validator_key.json` ;
+- In a development mode, the full key pair is located in the `~/.tendertmint/config/priv_validator_key.json` ;
 
 - If the file does not exist, you can initialize the tendermint root directory by running `tendermint init`.
   The public key should be base64-encoded, e.g. `R9/ktG1UifLZ6nMHNA/UZUaDiLAPWt+m9I4aujcAz44=`.
@@ -334,13 +383,13 @@ please see [production deployment notes](notes-on-production-deployment.md) on h
 - Start chain-abci, e.g.:
 
   ```
-  RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5
+  $ RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5
   ```
 
 - Finally, start Tendermint:
 
   ```
-  tendermint node
+  $ ./tendermint node
   ```
 
 ### Step 3-b-5. Send a council node join request transaction
@@ -348,13 +397,13 @@ please see [production deployment notes](notes-on-production-deployment.md) on h
 As in Step 3-b-1, this can be done, for example, with `client-cli` with the required environment variables.
 
 ```bash
-$ client-cli transaction new --name <WALLET_NAME> --type node-join
+$ ./client-cli transaction new --name <WALLET_NAME> --type node-join
 ```
 
 You will be required to insert the following:
 
 - the staking address that holds your bonded funds;
-- a moniker for your validator node; and
+- a moniker(name) for your validator node; and
 - a base64 encoded tendermint [validator public key](#step-3-b-3-create-a-validator-key-pair).
 
 ## Thaler testnet block explorer and CRO faucet

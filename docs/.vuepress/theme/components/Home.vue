@@ -168,7 +168,7 @@ export default {
     padding 3rem 2rem;
 
     color white;
-    background url(/hero-bg.svg);
+    background url(../../public/hero-bg.svg);
     background-size cover;
 
     logo {

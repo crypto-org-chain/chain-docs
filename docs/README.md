@@ -3,7 +3,7 @@ home: true
 heroImage: CRO_icon.png
 actionText: Get Started →
 actionLink: ../getting-started/
-footer: Copyright © 2018-present Crypto.com
+footer: true
 ---
 
 The high-level design vision is documented in

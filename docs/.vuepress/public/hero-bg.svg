@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1376" height="388" viewBox="0 0 1376 388">
+    <defs>
+        <linearGradient id="prefix__e" x1="99.993%" x2="30.765%" y1="133.749%" y2="15.81%">
+            <stop offset=".011%" stop-color="#1199FA" stop-opacity="0"/>
+            <stop offset="21.971%" stop-color="#4A90E2" stop-opacity=".2"/>
+            <stop offset="100%" stop-color="#1199FA"/>
+        </linearGradient>
+        <linearGradient id="prefix__f" x1="84.152%" x2="33.031%" y1="-7.75%" y2="81.457%">
+            <stop offset="0%" stop-color="#1199FA"/>
+            <stop offset="78.029%" stop-color="#4A90E2" stop-opacity=".2"/>
+            <stop offset="99.989%" stop-color="#1199FA" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="prefix__g" x1="79.628%" x2="-24.337%" y1="25.893%" y2="114.276%">
+            <stop offset="0%" stop-color="#1199FA"/>
+            <stop offset="78.029%" stop-color="#4A90E2" stop-opacity=".2"/>
+            <stop offset="99.989%" stop-color="#1199FA" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="prefix__h" x1="79.066%" x2="-22.928%" y1="25.893%" y2="114.276%">
+            <stop offset="0%" stop-color="#1199FA"/>
+            <stop offset="78.029%" stop-color="#4A90E2" stop-opacity=".2"/>
+            <stop offset="99.989%" stop-color="#1199FA" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="prefix__i" x1="79.474%" x2="-23.951%" y1="25.893%" y2="114.276%">
+            <stop offset="0%" stop-color="#1199FA"/>
+            <stop offset="78.029%" stop-color="#4A90E2" stop-opacity=".2"/>
+            <stop offset="99.989%" stop-color="#1199FA" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="prefix__c" width="111.2%" height="110%" x="-5.6%" y="-5%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" radius="3" result="shadowSpreadInner1"/>
+            <feGaussianBlur in="shadowSpreadInner1" result="shadowBlurInner1" stdDeviation="2.5"/>
+            <feOffset dx="4" dy="4" in="shadowBlurInner1" result="shadowOffsetInner1"/>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"/>
+            <feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0.0686 0 0 0 0 0.60025 0 0 0 0 0.98 0 0 0 0.274147727 0"/>
+        </filter>
+        <rect id="prefix__a" width="1376" height="388" x="0" y="0" rx="8"/>
+        <path id="prefix__d" d="M996 379.915L1055.932 345 1116 379.915 1116 448.436 1056 483 996 448.436z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="prefix__b" fill="#fff">
+            <use xlink:href="#prefix__a"/>
+        </mask>
+        <use fill="#0F1C39" xlink:href="#prefix__a"/>
+        <g mask="url(#prefix__b)" opacity=".05">
+            <use fill="#000" filter="url(#prefix__c)" xlink:href="#prefix__d"/>
+            <use stroke="#1199FA" stroke-width="1.5" xlink:href="#prefix__d"/>
+        </g>
+        <path stroke="url(#prefix__e)" stroke-width="35" d="M23.5 113.207l-86.856 50.147v100.292L23.5 313.793l86.856-50.147V163.354L23.5 113.207z" opacity=".2" transform="matrix(-1 0 0 1 47 0)"/>
+        <path stroke="url(#prefix__e)" stroke-width="12.25" d="M310.5 271.073l-30.681 17.713v35.428l30.681 17.713 30.681-17.713v-35.428L310.5 271.073z" opacity=".2" transform="matrix(-1 0 0 1 621 0)"/>
+        <path stroke="url(#prefix__f)" stroke-width="44.8" d="M1364.5-23.135l-110.535 63.818v127.634l110.535 63.818 110.535-63.818V40.683L1364.5-23.135z" opacity=".2" transform="matrix(-1 0 0 1 2729 0)"/>
+        <path fill="url(#prefix__g)" d="M1165 260.506c0 1.828-.894 3.475-2.472 4.314l-37.026 21.506c-1.549.899-3.455.899-4.915 0l-37.115-21.506c-1.489-.839-2.472-2.486-2.472-4.314v-43.012c0-1.738.983-3.385 2.472-4.314l37.115-21.506c1.46-.899 3.366-.899 4.915 0l37.026 21.506c1.578.929 2.472 2.576 2.472 4.314v43.012z" opacity=".2"/>
+        <path fill="url(#prefix__h)" d="M1225 322.581c0 .857-.415 1.629-1.148 2.022l-17.19 10.081c-.72.421-1.605.421-2.282 0l-17.232-10.081c-.692-.393-1.148-1.165-1.148-2.022V302.42c0-.814.456-1.587 1.148-2.022l17.232-10.081c.677-.421 1.563-.421 2.282 0l17.19 10.081c.733.435 1.148 1.208 1.148 2.022v20.162z" opacity=".2"/>
+        <path fill="url(#prefix__i)" d="M206 93.821c0 1.047-.51 1.991-1.413 2.472l-21.157 12.32c-.885.516-1.975.516-2.809 0l-21.208-12.32c-.851-.481-1.413-1.425-1.413-2.472V69.18c0-.996.562-1.94 1.413-2.472l21.208-12.32c.834-.516 1.924-.516 2.809 0l21.157 12.32c.902.532 1.413 1.476 1.413 2.472V93.82z" opacity=".2"/>
+    </g>
+</svg>

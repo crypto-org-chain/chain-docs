@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="195" height="195" viewBox="0 0 195 195">
+    <defs>
+        <linearGradient id="prefix__a" x1="50%" x2="50%" y1="89.212%" y2="10.541%">
+            <stop offset="0%" stop-color="#002D72"/>
+            <stop offset="100%" stop-color="#002D72" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="prefix__b" x1="50%" x2="50%" y1="89.212%" y2="10.541%">
+            <stop offset="0%" stop-color="#002D72" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#002D72"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#FEFEFE" d="M80.745 0.902L0 46.963 0 139.089 80.745 185.156 161.489 139.089 161.489 46.963z" transform="translate(16.637 4.498)"/>
+        <path fill="#002D72" d="M80.745.902L0 46.963v92.126l80.745 46.067 80.744-46.067V46.963L80.745.903zM48.865 40.73h63.545l7.66 32.011H41.494l7.372-32.01zm18.309 54.725l-6.93-17.878h41.148l-6.784 17.878 1.97 19.973-15.833.073H65.06l2.115-20.046zm20.212 41.17v-6.342l14.225-13.482V95.527l18.606-11.966 21.231 15.789-28.897 49.75H101.1l-13.713-12.476zM20.046 99.35l21.3-15.645L60.17 95.527V116.8l14.224 13.482v6.342l-13.712 12.62H49.081L20.047 99.35z" transform="translate(16.637 4.498)"/>
+        <g>
+            <path d="M32.15 149.015H20.698L6.986 136.539v-6.342l14.224-13.482V95.44l18.605-11.965 21.232 15.789-28.897 49.75zM.344.817v39.828h31.664l7.662 32.011H.344v4.835H20.99L14.207 95.37l1.97 19.973-15.833.073v69.656l80.744-46.066V46.878L.344.817z" style="mix-blend-mode:multiply" fill="url(#prefix__a)" transform="translate(16.637 4.498) translate(0 .085) translate(80.401)"/>
+            <path d="M74.396 136.539l-13.713 12.62H49.08L20.046 99.265l21.3-15.645 18.825 11.821v21.274l14.225 13.482v6.342zm-9.338-21.124l2.115-20.046-6.929-17.878h20.5v-4.835H41.494l7.373-32.01h31.879V.816L0 46.878v92.127l80.745 46.066v-69.656H65.058z" style="mix-blend-mode:multiply" fill="url(#prefix__b)" transform="translate(16.637 4.498) translate(0 .085)"/>
+        </g>
+    </g>
+</svg>

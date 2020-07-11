@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="278" height="239" viewBox="0 0 278 239">
+    <defs>
+        <filter id="prefix__a" width="128.9%" height="134.3%" x="-14.5%" y="-15.1%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="12.5" result="shadowSpreadOuter1"/>
+            <feOffset dy="4" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="5"/>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+        </filter>
+        <path id="prefix__b" d="M112.357 21.03H214.5c5.107 0 10.214 5.259 10.214 10.516v147.216c0 6.31-5.107 10.516-10.214 10.516H10.214C5.107 189.278 0 185.07 0 178.762V10.515C0 5.258 5.107 0 10.214 0h71.5"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" transform="translate(24.357 20)">
+        <path fill="#EBEBEB" stroke="#EBEBEB" stroke-width="22" d="M129.071 39.194h102.143c5.107 0 10.215 5.258 10.215 10.515v147.216c0 6.31-5.108 10.516-10.215 10.516H26.93c-5.108 0-10.215-4.207-10.215-10.516V28.678c0-5.257 5.107-10.515 10.215-10.515h71.5"/>
+        <use fill="#000" filter="url(#prefix__a)" xlink:href="#prefix__b"/>
+        <use fill="#FFF" stroke="#FFF" stroke-width="22" xlink:href="#prefix__b"/>
+        <path stroke="#FFF" stroke-width="22.08" d="M82.011 0L112.766 21.107"/>
+        <g stroke="#1199FA" stroke-width="7.2">
+            <path d="M16.208 50.057L0 33.371 16.208 16.686M55.106 16.686L71.314 33.371 55.106 50.057M25.932 66.742L45.382 0" transform="translate(78 67.681)"/>
+        </g>
+    </g>
+</svg>

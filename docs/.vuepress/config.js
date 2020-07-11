@@ -3,6 +3,7 @@ module.exports = {
   description: "Welcome to Crypto.com Chain's documentation!",
   themeConfig: {
     navbar: true,
+    logo: '/chain_nav_logo.svg',
     nav: [{
         text: "Home",
         link: "/"

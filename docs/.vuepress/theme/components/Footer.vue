@@ -42,7 +42,7 @@
             <h3>Partners</h3>
             <div class="link">
               <a href="/partners">
-                Partnets
+                Partners
               </a>
             </div>
           </div>

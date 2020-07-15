@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-BRANCH=$(echo ${GITHUB_REF##*/} | tr '[:lower:]' '[:upper:]')
-if [ "${BRANCH}" == "DEV" ]
+if [ "${EVENT}" == "push" ]
+then
+  BRANCH="MASTER"
+elif [ "${EVENT}" == "issue_comment" ]
 then
   BRANCH="STAGING"
 fi

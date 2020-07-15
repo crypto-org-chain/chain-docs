@@ -2,19 +2,44 @@ name: chain-docs
 
 on:
   push:
-    branches: [ dev , master ]
+    branches: [ master ]
     paths:
     - 'docs/**'
     - 'ci/**'
     - '!README.md'
+  issue_comment:
+    types: [created, edited]
 jobs:
 
   build:
     name: Build
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinlauco' || github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto'))
     steps:
-    - name: Check out code
+    - name: Github API Request
+      id: request
+      uses: octokit/request-action@v2.0.0
+      if: github.event_name == 'issue_comment'
+      with:
+        route: ${{ github.event.issue.pull_request.url }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Get PR informations
+      id: pr_data
+      if: github.event_name == 'issue_comment'
+      run: |
+        echo "::set-output name=branch::${{ fromJson(steps.request.outputs.data).head.ref }}"
+        echo "::set-output name=repo_name::${{ fromJson(steps.request.outputs.data).base.repo.full_name }}"
+    - name: Checkout PR Branch
       uses: actions/checkout@v2
+      if: github.event_name == 'issue_comment'
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ steps.pr_data.outputs.repo_name }}
+        ref: ${{ steps.pr_data.outputs.branch }}
+    - name: Check MASTER code
+      uses: actions/checkout@v2
+      if: github.event_name == 'push'
     - uses: actions/setup-node@v1
       with:
         node-version: '12'
@@ -25,6 +50,7 @@ jobs:
         MASTER_BUCKET_NAME: ${{ secrets.MASTER_BUCKET_NAME }}
         MASTER_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.MASTER_CLOUDFRONT_DISTRIBUTION_ID }}
         MASTER_REGION: ${{ secrets.MASTER_REGION }}
+        EVENT: ${{ github.event_name }}
         STAGING_AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
         STAGING_AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
         STAGING_BUCKET_NAME: ${{ secrets.STAGING_BUCKET_NAME }}
@@ -45,7 +71,6 @@ jobs:
         # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
         # type: credscan,java
         # type: python
-
     - name: Upload report
       uses: github/codeql-action/upload-sarif@v1
       with:

@@ -29,7 +29,7 @@ jobs:
       if: github.event_name == 'issue_comment'
       run: |
         echo "::set-output name=branch::${{ fromJson(steps.request.outputs.data).head.ref }}"
-        echo "::set-output name=repo_name::${{ fromJson(steps.request.outputs.data).base.repo.full_name }}"
+        echo "::set-output name=repo_name::${{ fromJson(steps.request.outputs.data).head.repo.full_name }}"
     - name: Checkout PR Branch
       uses: actions/checkout@v2
       if: github.event_name == 'issue_comment'

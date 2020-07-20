@@ -4,7 +4,7 @@ After several iterations of binary formats, Crypto.com Chain settled on using
 the SCALE (Simple Concatenated Aggregate Little-Endian) codec.
 
 It is formally described in Section B.1 of [Polkadot Host Protocol
-Specification](https://github.com/w3f/polkadot-spec/blob/master/host-spec/host-spec.pdf).
+Specification](https://github.com/w3f/polkadot-spec/blob/master/host-spec/polkadot-host-spec.pdf).
 
 ## Test Vectors
 

@@ -12,6 +12,10 @@ module.exports = {
         link: "/getting-started/"
       },
       {
+        text: "Protocol Design",
+        link: "/protocol/enclave-architecture"
+      },
+      {
         text: "Thaler Testnet",
         items: [{
             text: "Setup Tutorial",
@@ -55,29 +59,35 @@ module.exports = {
     sidebar: {
       "/getting-started/": [
         "",
-        "send_your_first_transaction",
         "thaler-testnet",
-        "local_full_node_development",
-        "consensus",
+        "local-devnet",
+        "send-your-first-transaction",
+        "notes-on-production-deployment",
+        "notes-on-performance"
+      ],
+      "/protocol/": [
+        "enclave-architecture",
+        "transaction-privacy",
         "genesis",
         "chain-id-and-network-id",
+        "consensus",
         "transaction-accounting-model",
         "transaction",
+        "staking",
+        "reward-and-punishments",
         "serialization",
         "signature-schemes",
         "client-flow",
-        "enclave-architecture",
-        "transaction-privacy",
-        "staking",
-        "reward-and-punishments",
-        "node-joining",
-        "network-parameters",
-        "notes-on-production-deployment",
-        "notes-on-performance",
         "threat-model",
-        "technical_glossary"
+        "network-parameters",
+        "technical-glossary"
       ],
-      "/wallets/": ["", "client-cli", "sample-chain-wallet", "client-rpc"]
+      "/wallets/": [
+        "",
+        "client-cli",
+        "sample-chain-wallet",
+        "client-rpc"
+      ]
     },
     displayAllHeaders: true
   },
@@ -101,10 +111,10 @@ module.exports = {
             Home: 0,
             "Getting Started": 1,
             "Thaler Testnet": 2,
-            "Local Full Node Development": 3,
+            "Devnet": 3,
             "Send Your First Transaction": 4,
             Consensus: 5,
-            Genesis: 6,
+            Genesis: 7,
             "Transaction Accounting Model": 7,
             Transaction: 8,
             Serialization: 9,
@@ -114,12 +124,12 @@ module.exports = {
             "Transaction Privacy": 13,
             "node-joining": 14,
             Staking: 15,
-            "reward-and-punishments":16,
+            "reward-and-punishments": 16,
             "network-parameters": 17,
             "Notes on Performance": 18,
             "Notes on Production Deployment": 19,
             "Threat Model": 20,
-            "technical_glossary":21
+            "technical_glossary": 21
           };
           return ordering[a["title"]] - ordering[b["title"]];
         }

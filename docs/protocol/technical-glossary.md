@@ -134,7 +134,7 @@ The transaction that transfers funds between transfer addresses.
 
 **Transfer address**
 
-The address for payments/value transfers. Different prefixes of the transfer address are used to distinguish between devnet, testnet and mainnet.
+The address for payments/value transfers. Different prefixes of the transfer address are used to distinguish between _devnet_, _testnet_ and _mainnet_.
 
 #### U
 

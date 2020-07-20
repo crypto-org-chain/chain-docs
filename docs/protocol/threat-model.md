@@ -43,7 +43,7 @@ The whole Crypto.com Chain is a complex system and involves many different compo
 
 We also assume standard security measures like OS level hardening, software patching, anti-virus, network firewall, physical security, etc, are properly implemented, executed and monitored. These mitigation strategies are not mentioned here.
 
-### System Diagram
+ ### System Diagram
 
 ![An image](./assets/system-diagram.png)
 

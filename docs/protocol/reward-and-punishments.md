@@ -164,10 +164,7 @@ where
 
 - _"Sum of the voting power"_ represents the total sum of the voting power involved in the consensus process from all of the active validators throughout the reward period.
 
-
 The remainder of division will become rewards of the next period.
-
-
 
 ### Rewards: Documentation and its interactions with ABCI
 

@@ -19,10 +19,19 @@ Transaction Data Bootstrapping Enclave (TDBE):
 
 ## new/rejoining node
 (for non-genesis specified ones)
+- obtain old data (see below) from external node TDBE
+- request "invitation" from the external node TDBE:
+  - request should contain the merkle proof of the new node's associated staking state + keypackage
+  - responding node should verify both -- if correct, it'll generate `Welcome`, `Add` proposal, and `Commit`
+  - requesting node should verify the response -- if incorrect, start again (e.g. with a different external node TDBE on the list)
+- construct council or community node join request TX payload -- get it signed by the node operator
 - submit council or community node join request TX
-- if valid, wait until CommitChangeTx is committed with Welcome payload
-- mark the block where this CommitChangeTx is committed as the "fetched up to" block
-and obtain old transaction data
+- if accepted in a block, a node can start to operate
+(as Commit with Add-only proposal does not need to fill paths -- no need to wait for NACK timeout)
+-> requesting node's TDBE can apply `Welcome` to update its state
++ mark the block where node join tx was committed as the "fetched up to" block
+and obtain old transaction data (if any)
+- if not accepted (e.g. there was another `Commit` in the meantime) restart the procedure
 
 TODO: fetch keypackages/leaf nodes? https://github.com/mlswg/mls-protocol/issues/344
 
@@ -145,13 +154,25 @@ Public
   ...
   NodeJoin
 MLSHandshake
-  CommitChange
+  CommitRemove
   SelfUpdateProposal
   MsgNack
 ```
 
 NodeJoin is extended that instead of taking `CouncilNode`, it'd take `NodeMetadata` which is enum
 with council node and community node variants.
+`ConfidentialInit` instead of taking `keypackage: Vec<u8>` takes
+`init: Vec<u8>` which 
+represents:
+```rust
+pub enum MLSInit {
+  // KeyPackage
+  Genesis(Vec<u8>),
+  NodeJoin {
+    add: Vec<u8>, // MLSPlaintext -- Add
+    commit: Vec<u8> // MLSPlaintext -- Commit
+}
+```
 TODO: extra rules for CouncilNode -> CommunityNode (needs to unbond / become inactive first?)
 
 #### Handshake transactions
@@ -165,9 +186,9 @@ TLS wire format is mainly interesting for test-vectors / unit tests, but the pro
 ).
 
 ```rust
-pub struct CommitChangeTx {
-    messages: Vec<Vec<u8>>, // MLSPlaintext -- any proposals (Add or Remove), the last one is assumed to be Commit
-    welcome: Option<Vec<u8>>, // Welcome -- if there are any Add proposals, there should be a welcome with encrypted paths/epochs for new joiners
+pub struct CommitRemoveTx {
+    proposals: Vec<Vec<u8>>, // MLSPlaintext -- Remove
+    commit: Vec<u8> // MLSPlaintext -- Commit
 }
 ```
 
@@ -180,12 +201,40 @@ pub struct SelfUpdateProposal {
 
 ```rust
 pub struct MsgNack {
-    nack: Vec<u8>, // msg ref + `zz` + DLEQ proof -- TBD: https://github.com/mlswg/mls-protocol/issues/21#issuecomment-455392023
+    nack: Vec<u8>, // msg ref + `dh` + DLEQ proof -- TBD: https://github.com/mlswg/mls-protocol/issues/21#issuecomment-455392023
 }
 ```
 
-(TODO: `CommitChangeTx` / `SelfUpdateProposal` may need to contain Schnorr NIZK of knowledge (RFC 8235)
-for encrypted parts (`Welcome`, `DirectPathNode`...))
+```rust
+pub struct NackDleqProof {
+     /// the computed "r" value
+     r_response: [u8; 32],
+     /// the intermediate hash
+     c_inter_hash: [u8; 32],
+     /// revealed shared secret; same size as uncompressed pubkey
+     dh: [u8; 65],
+ }
+
+pub struct NackBody {
+  proof: NackDleqProof,
+  /// txid (domain + hash) of CommitRemoveTx or SelfUpdateProposal
+  commit_msg_ref: [u8; 32],
+  /// index of invalid `DirectPathNode` 
+  direct_path_index: u16,
+  /// leaf index of the affected receiver
+  receiver: u32,
+}
+
+/// sketch of the nack message content
+pub struct NackContentSketch {
+  body: NackBody,
+  /// the signature using the identity key of the affected receiver
+  signature: Vec<u8>,
+}
+```
+
+(TODO: `CommitRemoveTx` / `SelfUpdateProposal` may need to contain Schnorr NIZK of knowledge (RFC 8235)
+for encrypted parts (`DirectPathNode`...))
 
 ##### TDBE handling / generation
 TDBE runs as a standalone enclave which includes TM light client and reacts to information received from it.
@@ -195,24 +244,29 @@ It opens mutually attested TLS connection to tx-validation enclave (TVE) for pus
 
 ###### Commits
 When a block is committed with nodejoin, unbond or punishment events (liveness/byzantine issues, bue also including expired keypackages), 
-Node's TDBE corresponding to the leftmost non-empty leaf should generate and broadcast `CommitChangeTx` with proposals reflecting the triggering block's change (Add/Remove).
+Node's TDBE corresponding to the leftmost non-empty leaf should generate and broadcast `CommitRemoveTx` with proposals reflecting the triggering block's change (
+  bonded stake amount changes below minimum due to unbondtx or some event
+).
 
 [[ TODO: instead of leftmost non-empty leaf, start with `triggering block time ``mod`` leaf_count` closest non-empty to the right circulating to 0 ? ]]
 
+[[ TODO: Or should all nodes try to generate the Commit and they'll just try to apply / wait for NACK timeout with whatever gets first / is selected valid in a block?  ]]
+
 (It should use the triggering block's number as AAD.)
-If there are only Add proposals (post-genesis/group creation), populating the path can be omitted.
 
-If CommitChangeTx is not received in a block with time less the triggering block's time + timeout,
-OR received CommitChangeTx was invalid;
+NOTE: if the node to generate `CommitRemoveTx` is happened be the one to be removed, the next left-most node should generate and broadcast `CommitRemoveTx`
 
-node's TDBE corresponding to the next leftmost non-empty leaf should generate and broadcast `CommitChangeTx` -- it should include
-a Remove proposal for the previous node(s) (that failed to submit in time or submitted invalid `CommitChangeTx`;
+If CommitRemoveTx is not received in a block with time less the triggering block's time + timeout,
+OR received CommitRemoveTx was invalid;
+
+node's TDBE corresponding to the next leftmost non-empty leaf should generate and broadcast `CommitRemoveTx` -- it should include
+a Remove proposal for the previous node(s) (that failed to submit in time or submitted invalid `CommitRemoveTx`;
 it should be indicated in timeout-committed block
 );
 and include any additional proposals (if any) since the original triggering block;
 (it should take the latest "timeout" block's number as AAD.)
 
-Commit (in `CommitChangeTx` / `SelfUpdateProposal`) should be applied after NACK timeout.
+Commit (in `CommitRemoveTx` / `SelfUpdateProposal`) should be applied after NACK timeout.
 
 ###### NACK
 If the receiver of the `HPKECiphertext` (Welcome message or DirectPath) cannot process it
@@ -224,21 +278,21 @@ reveals `dh` value and provides a proof `DLEQ(dh/kem_output == node_hpke_public_
 If NACK is valid and submitted in time, the Commit-containing message should be considered as invalid
 (even though the corresponding TX was assumed as valid before) -- the punishment logic should be applied
 to the related message submitter;
-the next node's TDBE (next non-empty leaf) should generate and broadcast `CommitChangeTx` 
+the next node's TDBE (next non-empty leaf) should generate and broadcast `CommitRemoveTx` 
 and include Remove proposals as with the "commit timeout" case.
 
 ###### Updates
 After 1/3 of keypackage's lifetime is over, TDBE is allowed to generate and broadcast `SelfUpdateProposal`
 
--- it may happen that there's another committed `SelfUpdateProposal` (from a different sender) or `CommitChangeTx`,
+-- it may happen that there's another committed `SelfUpdateProposal` (from a different sender) or `CommitRemoveTx`,
 which makes TDBE's original `SelfUpdateProposal` -- in which case, it should re-generate and retry.
 
 ###### new obfuscation key
-Once the Commit is applied (or state is reconstructed from Welcome), TDBE should generate a new obfuscation key as:
+Once the Commit is applied after a NACK timeout (or state is reconstructed from Welcome), TDBE should generate a new obfuscation key as:
 
 ```
 new_key = MLS-Exporter(
-    Label="Crypto.com Chain tx validation " + block number where CommitChangeTx is included,
+    Label="Crypto.com Chain tx validation " + block number where CommitRemoveTx/NodeJoinTx/SelfUpdateProposal is included,
     Context=(that updated group's context),
     length=(AES_128_GCM_SIV key length)
 )
@@ -262,9 +316,9 @@ Notably, it needs:
 - to keep track of (MLS) Leaf`<->`staking address mapping in order to execute corresponding updates on stake
 - to keep track of keypackage lifetimes -- to limit frequency / know when `SelfUpdateProposal` are valid; for validators whose corresponding keypackage expires,
 they should be removed from the validator set (similar to liveness fault handling)
-- to keep track if valid `CommitChangeTx` was received in time -- invalid one receive similar treatment as byzantine faults (removal from validator set if a validator + slash)
-- to keep track if valid `NACK` was received after a "valid" `CommitChangeTx` -- NACK invalidating `CommitChangeTx` should treat the `CommitChangeTx` similar to byzantine faults
-- after `CommitChangeTx` -- after block commit and NACK timeout, enquire TVE if it was pushed a new key;
+- to keep track if valid `CommitRemoveTx` was received in time -- invalid one receive similar treatment as byzantine faults (removal from validator set if a validator + slash)
+- to keep track if valid `NACK` was received after a "valid" `CommitRemoveTx` -- NACK invalidating `CommitRemoveTx` should treat the `CommitRemoveTx` similar to byzantine faults
+- after `CommitRemoveTx`/`SelfUpdateProposal`/`NodeJoinTx` -- after block commit and NACK timeout, enquire TVE if it was pushed a new key;
 if not, it is a local node problem (e.g. no running TDBE) -- TODO: block consensus state machine or shutdown?
 
 [[ OPEN ISSUE: 
@@ -272,3 +326,66 @@ https://github.com/mlswg/mls-protocol/issues/21
 
 update the NACK solution here with the official one when it is drafted in the protocol spec
 ]]
+
+##### abci processing sketch
+Inputs:
+- previous block time
+- MLS update state: Available / Awaiting Commit / Pending NACK
+- expected removals: `Option<Vec<(LeafPos, StakingAddress)>>` (expectedR): these track removals that need to be included in the `CommitRemoveTx` message
+- pending removals: `Option<Vec<(LeafPos, StakingAddress)>>` (pendingR): these track removals that happened while waiting for the `CommitRemoveTx` or `NACK`
+- CommitMsg: `Option<MLSPlaintext>` (+ txid?)
+
+Basic transitions are documented in the state diagram below:
+```plantuml
+[*] --> Available
+
+Available : expectedR=None
+Available : pendingR=None
+
+Available --> Available : 1. NodeJoinTX
+Available --> AwaitingCommit : 2. state change (event or unbondtx) or expiration
+Available --> PendingNACK : 3. SelfUpdateProposal
+
+AwaitingCommit : expectedR
+AwaitingCommit : pendingR
+
+AwaitingCommit --> AwaitingCommit : 4. state change (event or unbondtx) or expiration
+AwaitingCommit --> AwaitingCommit : 5. CommitRemoveTx timeout
+AwaitingCommit --> PendingNACK : 6. valid CommitRemoveTx
+
+PendingNACK --> PendingNACK : 7. state change (event or unbondtx) or expiration
+PendingNACK --> Available : 8. NACK timeout (pendingR is None)
+PendingNACK --> AwaitingCommit : 9. valid NACK
+PendingNACK --> AwaitingCommit : 10. NACK timeout (pendingR is Some)
+
+PendingNACK : expectedR
+PendingNACK : pendingR
+```
+
+Transitions:
+1. `NodeJoinTX` can only happen when there is no other MLS update happening;
+as the `Commit` message inside `NodeJoinTX` does not need to populate any paths,
+there is no need to wait for NACK, as everyone can update instantly (provided the `NodeJoinTX` is valid)
+
+2. if state of a node changes (due to unbond tx or some event) or its keypackage expires, the state update (e.g. removal from the validator set) can be done immediately,
+but the TDBE update needs to 1) wait for a valid signed `Commit`, 2) after receiving a valid signed `Commit`, it needs to wait for a potential `NACK`.
+in this transition, `expectedR` will be set to `Some(...)` and the internal vector will contain the node details to be removed
+
+3. if `SelfUpdateProposal` is valid (the proposal comes after 1/3 of validity time, before expiration; is signed correctly, new keypackage is valid, Commit is against a correct epoch...),
+one still needs to wait for a potential `NACK` (as the encrypted secrets in the direct paths may not match for some nodes)
+
+4. during waiting for the removal commit, there may be other changes or expirations, which will be appended to `pendingR`
+
+5. if the removal commit wasn't received in time, `pendingR` is appended to `expectedR` (and `pendingR` is then cleared), and details of the sender that was meant to send the removal commit are added to `expectedR`
+
+6. if a valid `CommitRemoveTx` was received, one still needs to wait for a potential `NACK` (as the encrypted secrets in the direct paths may not match for some nodes)
+
+7. during waiting for the potential NACK, there may be other changes or expirations, which will be appended to `pendingR`
+
+8. if no NACK is received and there are no items in `pendingR`, `expectedR` can be cleared and we can wait for new potential `SelfUpdateProposal` or `NodeJoinTx`
+
+9. if a valid NACK is received, the sender of `CommitMsg` should be punished (slashing + jail), `pendingR` is appended to `expectedR` (and `pendingR` is then cleared), and details of the sender that sent the invalid Commit are added to `expectedR` -- and we need to wait for a new commit
+
+10. if no NACK is received and there are items in `pendingR`, `pendingR` is moved to `expectedR` and we can need for wait for another `CommitRemoveTx`
+
+NOTE: similar logic is applied in TDBE -- they can apply `Commit` (or `Welcome` in 1. for the new joiner) after transitions 1., 8. and 10. 

@@ -34,7 +34,7 @@ The main RPC methods are used `broadcast_tx_(a)sync` and `abci_query`.
 | -------------------- |
 
 
-This method takes “tx” parameter which is application-specific binary data (see [transaction serialization](./serialization) for details on Chain binary format). The transaction binary payload is either hex-encoded (when called with the URI method) or base64-encoded (when called with JSON-RPC).
+This method takes “tx” parameter which is application-specific binary data (see [transaction serialization](./serialization.md) for details on Chain binary format). The transaction binary payload is either hex-encoded (when called with the URI method) or base64-encoded (when called with JSON-RPC).
 
 | abci_query |
 | ---------- |
@@ -49,13 +49,13 @@ The **“application hash”** is a compact representation of the overall ABCI a
 In Crypto.com Chain, the application hash is a [Blake3](https://github.com/BLAKE3-team/BLAKE3) hash of several components:
 
 - Root of a Merkle tree of a valid transaction in a given block;
-- Root of a sparse Merkle trie of staked states (see [accounting details](./transaction-accounting-model));
-- Binary serialized state of rewards pool (see [serialization](./serialization) for details on Chain binary format and [genesis](./genesis) for details on “state”);
+- Root of a sparse Merkle trie of staked states (see [accounting details](./transaction-accounting-model.md));
+- Binary serialized state of rewards pool (see [serialization](./serialization.md) for details on Chain binary format and [genesis](./genesis.md) for details on “state”);
 - Serialised [network parameters](./network-parameters.md).
 
 ## Conventions
 
-As [genesis](./genesis) information is taken from the Ethereum network, the same address format is used (i.e. hexadecimal encoding of 20-bytes from a keccak-256 hash of a secp256k1 public key).
+As [genesis](./genesis.md) information is taken from the Ethereum network, the same address format is used (i.e. hexadecimal encoding of 20-bytes from a keccak-256 hash of a secp256k1 public key).
 
 For Tendermint data, its conventions must be followed:
 
@@ -65,5 +65,5 @@ For Tendermint data, its conventions must be followed:
 For Crypto.com Chain, it has the following conventions:
 
 - _Chain-ID_: this is a string in Tendermint’s genesis.json. In Crypto.com Chain, it should end with two hex digits;
-- [Network-ID](./chain-id-and-network-id): a single byte determined by the two last hex digits of Chain-ID. It is included in metadata of every transaction to specify the network;
-- Transactions, addresses etc.: Please refer to transaction [binary serialization](./serialization), [accounting model](./transaction-accounting-model), [addresses / witness](./signature-schemes) and [format / types](./transaction).
+- [Network-ID](./chain-id-and-network-id.md): a single byte determined by the two last hex digits of Chain-ID. It is included in metadata of every transaction to specify the network;
+- Transactions, addresses etc.: Please refer to transaction [binary serialization](./serialization.md), [accounting model](./transaction-accounting-model.md), [addresses / witness](./signature-schemes.md) and [format / types](./transaction.md).

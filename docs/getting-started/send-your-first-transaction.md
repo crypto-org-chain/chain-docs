@@ -1,10 +1,10 @@
 # Devnet: Send Your First Transaction
 
 ::: warning Caution
-This page is a continuation of [Devnet: Running Latest Development Node](./local-devnet) for development.
+This page is a continuation of [Devnet: Running Latest Development Node](./local-devnet.md) for development.
 
 For anyone interested more on wallet management, getting testing token from the faucet and sending transactions,
-please refer to [ClientCLI](../wallets/client-cli).
+please refer to [ClientCLI](../wallets/client-cli.md).
 :::
 
 Crypto.com Chain uses a hybrid transaction accounting model with different transaction types. Before sending the transaction, please notice that the genesis fund is stored in a _staking_ address at the beginning. You first have to **withdraw** it to UTXO:

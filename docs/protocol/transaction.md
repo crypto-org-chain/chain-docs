@@ -8,22 +8,22 @@ Each transaction has an identifier (typically shortened as TX ID). It is defined
 | -------------------------------------------------- |
 
 
-See [serialization](./serialization) for more details about the transaction binary format.
+See [serialization](./serialization.md) for more details about the transaction binary format.
 
 ## Witness
 
-See [signature-schemes](./signature-schemes) for more details
+See [signature-schemes](./signature-schemes.md) for more details
 
 ## Textual Address Representation
 
-Crypto.com Chain supports threshold / multi-signature addresses that are represented as a single hash (see [signature-schemes](./signature-schemes)) which is different from Ethereum.
+Crypto.com Chain supports threshold / multi-signature addresses that are represented as a single hash (see [signature-schemes](./signature-schemes.md)) which is different from Ethereum.
 
 To represent the underlying byte array in a textual form, [Bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) is used. The convention for the human-readable prefix is the following:
 
 - `cro`: mainnet payment
 - `tcro`: testnet payment
 - `dcro`: local devnet/regtest payment
-- staking addresses (see [accounting](./transaction-accounting-model)) are textually represented in hexadecimal encoding to match the initial Ethereum ones
+- staking addresses (see [accounting](./transaction-accounting-model.md)) are textually represented in hexadecimal encoding to match the initial Ethereum ones
 
 ## Transaction Fees
 
@@ -53,7 +53,7 @@ To verify a [basic transaction](#transaction-types) one would need to check:
 sum(inputs amounts) or account.unbonded/bonded == sum(outputs amounts) + fee
 ```
 
-The transaction fee goes to the [rewards pool](./reward-and-punishments#validator-rewards) to reward the validations.
+The transaction fee goes to the [rewards pool](./reward-and-punishments.md#validator-rewards) to reward the validations.
 
 ## Transaction Types
 

@@ -23,7 +23,7 @@ For this reason, we chose the mixed model where:
 - UTXO is used for payments / value transfers
 - Account-model is used for network operations (“staked state”)
 
-Different types of transactions and how they relate to these accounting are [described in transactions](./transaction).
+Different types of transactions and how they relate to these accounting are [described in transactions](./transaction.md).
 
 ### Staked state
 
@@ -61,7 +61,7 @@ For example, by using [client-cli](../wallets/client-cli.md#staking-operations),
 
   As it may take time for the network evidence of malicious activity (e.g. double signing) to appear, the stake cannot be withdrawn immediately and is first moved to the “unbonded” balance.
 
-- The `Unbonded` balance can be withdrawn (into transaction outputs) after `Unbonded From` time if the account was not jailed / slashed (see [staking](./staking)).
+- The `Unbonded` balance can be withdrawn (into transaction outputs) after `Unbonded From` time if the account was not jailed / slashed (see [punishment](./reward-and-punishments.md#validator-punishments)).
 
 - For slashing related information:
   - `Jailed Until` is the time until which current account is jailed;

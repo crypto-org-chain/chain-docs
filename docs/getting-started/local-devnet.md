@@ -4,7 +4,7 @@
 this page is for building and running the latest development version of the chain for testing purpose only. development branch is under active development and is highly unstable and subject to breaking changes. you should expect a moderate amount of troubleshooting work is required.
 
 for anyone interested in joining the crypto.com chain testnet,
-please refer to our [testnet documentation](./thaler-testnet).
+please refer to our [testnet documentation](./thaler-testnet.md).
 :::
 
 By following this tutorial, you can compile and run the latest development version of Crypto.com Chain from scratch. It is intended for testing purpose only.
@@ -274,4 +274,4 @@ If you need to stop the processes and initialize a new chain
 
 ### Congratulations
 
-Congratulations, now the environment to run Crypto.com Chain is all set. Let's on on and start [sending your first transaction](./send-your-first-transaction).
+Congratulations, now the environment to run Crypto.com Chain is all set. Let's on on and start [sending your first transaction](./send-your-first-transaction.md).

@@ -52,10 +52,10 @@ module.exports = {
           }
         ]
       },
-      {
-        text: "Download",
-        link: "https://crypto-com.github.io/Crypto.com_Chain.pdf"
-      }
+      // {
+      //   text: "Download",
+      //   link: "https://crypto-com.github.io/Crypto.com_Chain.pdf"
+      // }
     ],
     sidebar: {
       "/getting-started/": [

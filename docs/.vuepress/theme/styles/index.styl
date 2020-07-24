@@ -11,7 +11,7 @@ html, body
   background-color $bgColor
 
 body
-  font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
+  font-family -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   font-size 16px
@@ -47,9 +47,9 @@ body
   width $sidebarWidth
   position fixed
   z-index 10
-  margin 0
+  margin 0 16px
   top $navbarHeight + 1rem
-  max-height 100vh - $navbarHeight - $footerHeight - 25%
+  max-height 100% - $navbarHeight - $footerHeight - 28%
   box-sizing border-box
   overflow-y auto
   &::-webkit-scrollbar

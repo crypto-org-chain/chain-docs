@@ -76,7 +76,7 @@
           <div>
             <h3>Developers</h3>
             <p>View our latest chain releases and features</p>
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/crypto-com/chain">
+            <a href="/releases">
               Get involved
               <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
             </a>
@@ -87,9 +87,9 @@
             <img :src="$withBase('/validators.svg')" alt="validators" />
           </div>
           <div>
-            <h3>Validators</h3>
+            <h3>Partners</h3>
             <p>Join the others and be part of our Chain project</p>
-            <a target="_blank" rel="noopener noreferrer" href="https://crypto-com.typeform.com/to/pAc5P4">
+            <a href="/partners">
               Join us
               <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
             </a>
@@ -102,7 +102,7 @@
           <div>
             <h3>Community</h3>
             <p>Connect with our developer community and stay tuned with our Chain development updates</p>
-            <a target="_blank" rel="noopener noreferrer" href="https://gitter.im/crypto-com/community">
+            <a href="/community">
               Connect
               <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
             </a>

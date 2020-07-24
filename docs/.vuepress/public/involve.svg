@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="383" height="287" viewBox="0 0 383 287">
+    <defs>
+        <linearGradient id="prefix__c" x1="50%" x2="50%" y1="89.212%" y2="10.541%">
+            <stop offset="0%" stop-color="#002D72"/>
+            <stop offset="100%" stop-color="#002D72" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="prefix__d" x1="50%" x2="50%" y1="89.212%" y2="10.541%">
+            <stop offset="0%" stop-color="#002D72" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#002D72"/>
+        </linearGradient>
+        <filter id="prefix__a" width="112.4%" height="116.7%" x="-6.2%" y="-6.8%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="shadowSpreadOuter1"/>
+            <feOffset dy="4" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+        </filter>
+        <rect id="prefix__b" width="348" height="257.157" x="0" y="0" rx="8"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(13 9)">
+        <rect width="348" height="257.157" x="22" y="20" fill="#EBEBEB" rx="8"/>
+        <use fill="#000" filter="url(#prefix__a)" xlink:href="#prefix__b"/>
+        <use fill="#FFF" xlink:href="#prefix__b"/>
+        <path fill="#B9B9B9" d="M11.18 0h325.64C342.993 0 348 5.006 348 11.18V26H0V11.18C0 5.007 5.006 0 11.18 0z"/>
+        <rect width="286" height="80" x="31" y="49" fill="#D8D8D8" opacity=".2" rx="8"/>
+        <rect width="120" height="89" x="196" y="149" fill="#D8D8D8" opacity=".2" rx="8"/>
+        <rect width="120" height="7" x="41" y="165" fill="#D8D8D8" opacity=".2" rx="3.5"/>
+        <rect width="120" height="7" x="41" y="182" fill="#D8D8D8" opacity=".2" rx="3.5"/>
+        <rect width="120" height="7" x="41" y="199" fill="#D8D8D8" opacity=".2" rx="3.5"/>
+        <rect width="120" height="7" x="41" y="216" fill="#D8D8D8" opacity=".2" rx="3.5"/>
+        <g>
+            <path fill="#FEFEFE" d="M21.636 0.242L0 12.584 0 37.27 21.636 49.614 43.272 37.27 43.272 12.584z" transform="translate(152.333 64.083)"/>
+            <path fill="#002D72" d="M21.636.242L0 12.584V37.27l21.636 12.344L43.272 37.27V12.584L21.636.242zm-8.542 10.672H30.12l2.053 8.577H11.118l1.976-8.577zM18 25.578l-1.857-4.79h11.026l-1.818 4.79.528 5.352-4.243.02h-4.203L18 25.577zm5.416 11.032v-1.7l3.812-3.612v-5.7l4.985-3.207 5.69 4.23-7.744 13.332h-3.068l-3.675-3.343zM5.372 26.622l5.707-4.193 5.044 3.168v5.7l3.812 3.613v1.7L16.26 39.99h-3.11l-7.78-13.37z" transform="translate(152.333 64.083)"/>
+            <g>
+                <path d="M8.615 39.93H5.546l-3.674-3.343v-1.7l3.812-3.612v-5.7l4.985-3.207 5.69 4.23L8.614 39.93zM.092.219V10.89h8.485l2.053 8.578H.092v1.296h5.533l-1.818 4.79.528 5.352-4.243.02V49.59l21.636-12.343V12.56L.092.22z" style="mix-blend-mode:multiply" fill="url(#prefix__c)" transform="translate(152.333 64.083) translate(0 .023) translate(21.544)"/>
+                <path d="M19.935 36.587l-3.674 3.382h-3.11l-7.78-13.37 5.708-4.192 5.044 3.167v5.7l3.812 3.613v1.7zm-2.502-5.66L18 25.554l-1.857-4.79h5.493v-1.296H11.118l1.976-8.578h8.542V.22L0 12.56v24.687L21.636 49.59V30.926h-4.203z" style="mix-blend-mode:multiply" fill="url(#prefix__d)" transform="translate(152.333 64.083) translate(0 .023)"/>
+            </g>
+        </g>
+        <circle cx="16.5" cy="13.5" r="5.5" fill="#E64B60"/>
+        <circle cx="35.5" cy="13.5" r="5.5" fill="#FFBF00"/>
+        <circle cx="54.5" cy="13.5" r="5.5" fill="#20BCA4"/>
+    </g>
+</svg>

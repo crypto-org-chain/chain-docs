@@ -3,6 +3,7 @@ module.exports = {
   description: "Welcome to Crypto.com Chain's documentation!",
   themeConfig: {
     navbar: true,
+    logo: '/chain_nav_logo.svg',
     nav: [{
         text: "Home",
         link: "/"
@@ -51,10 +52,10 @@ module.exports = {
           }
         ]
       },
-      {
-        text: "Download",
-        link: "https://crypto-com.github.io/Crypto.com_Chain.pdf"
-      }
+      // {
+      //   text: "Download",
+      //   link: "https://crypto-com.github.io/Crypto.com_Chain.pdf"
+      // }
     ],
     sidebar: {
       "/getting-started/": [

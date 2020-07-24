@@ -1,139 +1,221 @@
 <template>
-  <main class="home" aria-labelledby="main-title">
-    <header class="hero">
-      <img class="logo" :src="$withBase('/logo-icon-white.svg')" alt="logo-icon-white" />
-      <p class="description">Welcome to</p>
-      <h1 v-if="data.heroText !== null" id="main-title">Crypto.com Chain Documentation</h1>
-      <p class="action" v-if="data.actionText && data.actionLink">
-        <NavLink class="action-button" :item="actionLink" />
-      </p>
-    </header>
+  <div>
+    <main class="home" aria-labelledby="main-title">
+      <header class="hero">
+        <img
+          class="logo"
+          :src="$withBase('/logo-icon-white.svg')"
+          alt="logo-icon-white"
+        />
+        <p class="description">Welcome to</p>
+        <h1 v-if="data.heroText !== null" id="main-title">
+          Crypto.com Chain Documentation
+        </h1>
+        <p class="action" v-if="data.actionText && data.actionLink">
+          <NavLink class="action-button" :item="actionLink" />
+        </p>
+      </header>
 
-    <h1 class="text-header">
-      Discover Crypto.com Chain
-    </h1>
-    <div class="cards">
-      <div class="card">
-        <div class="up">
-          <img :src="$withBase('/white-paper.svg')" alt="white-paper" />
-          <h2>White Paper</h2>
-        </div>
-        <p class="down">
-          <a target="_blank" rel="noopener noreferrer" href="https://chain.crypto.com/chain_whitepaper.pdf">
-            Read here
-            <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
-          </a>
-        </p>
-      </div>
-      <div class="card">
-        <div class="up">
-          <img :src="$withBase('/technical-white-paper.svg')" alt="technical-white-paper" />
-          <h2>Technical White Paper</h2>
-        </div>
-        <p class="down">
-          <a target="_blank" rel="noopener noreferrer" href="https://chain.crypto.com/chain_technical_whitepaper.pdf">
-            Read here
-            <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
-          </a>
-        </p>
-      </div>
-      <div class="card">
-        <div class="up">
-          <img :src="$withBase('/consultation-paper.svg')" alt="consultation-paper" />
-          <h2>Consultation Paper</h2>
-        </div>
-        <p class="down">
-          <a target="_blank" rel="noopener noreferrer" href="https://chain.crypto.com/chain_consultation_paper.pdf">
-            Read here
-            <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
-          </a>
-        </p>
-      </div>
-      <div class="card">
-        <div class="up">
-          <img :src="$withBase('/design-philosophy.svg')" alt="design-philosophy" />
-          <h2>Design Philosophy</h2>
-        </div>
-        <p class="down">
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/crypto-com/chain/blob/master/PHILOSOPHY.md">
-            Read here
-            <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
-          </a>
-        </p>
-      </div>
-    </div>
-
-    <div class="get-involved">
-      <div class="left">
-        <img class="logo" :src="$withBase('/involve.svg')" alt="get-involved" />
-      </div>
-      <div class="right">
-        <h1 class="text-header">Get Involved</h1>
-        <div class="involve-link">
-          <div>
-            <img :src="$withBase('/developers.svg')" alt="developers" />
+      <h1 class="text-header">
+        Discover Crypto.com Chain
+      </h1>
+      <div class="cards">
+        <div class="card">
+          <div class="up">
+            <img :src="$withBase('/white-paper.svg')" alt="white-paper" />
+            <h2>White Paper</h2>
           </div>
-          <div>
-            <h3>Developers</h3>
-            <p>View our latest chain releases and features</p>
-            <a href="/releases">
-              Get involved
-              <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
+          <p class="down">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://chain.crypto.com/chain_whitepaper.pdf"
+            >
+              Read here
+              <img
+                class="action-arrow"
+                :src="$withBase('/arrow_blue.svg')"
+                alt="arrow"
+              />
             </a>
-          </div>
+          </p>
         </div>
-        <div class="involve-link">
-          <div>
-            <img :src="$withBase('/validators.svg')" alt="validators" />
+        <div class="card">
+          <div class="up">
+            <img
+              :src="$withBase('/technical-white-paper.svg')"
+              alt="technical-white-paper"
+            />
+            <h2>Technical White Paper</h2>
           </div>
-          <div>
-            <h3>Partners</h3>
-            <p>Join the others and be part of our Chain project</p>
-            <a href="/partners">
-              Join us
-              <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
+          <p class="down">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://chain.crypto.com/chain_technical_whitepaper.pdf"
+            >
+              Read here
+              <img
+                class="action-arrow"
+                :src="$withBase('/arrow_blue.svg')"
+                alt="arrow"
+              />
             </a>
-          </div>
+          </p>
         </div>
-        <div class="involve-link">
-          <div>
-            <img :src="$withBase('/community.svg')" alt="community" />
+        <div class="card">
+          <div class="up">
+            <img
+              :src="$withBase('/consultation-paper.svg')"
+              alt="consultation-paper"
+            />
+            <h2>Consultation Paper</h2>
           </div>
-          <div>
-            <h3>Community</h3>
-            <p>Connect with our developer community and stay tuned with our Chain development updates</p>
-            <a href="/community">
-              Connect
-              <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
+          <p class="down">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://chain.crypto.com/chain_consultation_paper.pdf"
+            >
+              Read here
+              <img
+                class="action-arrow"
+                :src="$withBase('/arrow_blue.svg')"
+                alt="arrow"
+              />
             </a>
+          </p>
+        </div>
+        <div class="card">
+          <div class="up">
+            <img
+              :src="$withBase('/design-philosophy.svg')"
+              alt="design-philosophy"
+            />
+            <h2>Design Philosophy</h2>
+          </div>
+          <p class="down">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/crypto-com/chain/blob/master/PHILOSOPHY.md"
+            >
+              Read here
+              <img
+                class="action-arrow"
+                :src="$withBase('/arrow_blue.svg')"
+                alt="arrow"
+              />
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div class="get-involved">
+        <div class="left">
+          <img
+            class="logo"
+            :src="$withBase('/involve.svg')"
+            alt="get-involved"
+          />
+        </div>
+        <div class="right">
+          <h1 class="text-header">Get Involved</h1>
+          <div class="involve-link">
+            <div>
+              <img :src="$withBase('/developers.svg')" alt="developers" />
+            </div>
+            <div>
+              <h3>Developers</h3>
+              <p>View our latest chain releases and features</p>
+              <a href="/releases">
+                Get involved
+                <img
+                  class="action-arrow"
+                  :src="$withBase('/arrow_blue.svg')"
+                  alt="arrow"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="involve-link">
+            <div>
+              <img :src="$withBase('/validators.svg')" alt="validators" />
+            </div>
+            <div>
+              <h3>Partners</h3>
+              <p>Join the others and be part of our Chain project</p>
+              <a href="/partners">
+                Join us
+                <img
+                  class="action-arrow"
+                  :src="$withBase('/arrow_blue.svg')"
+                  alt="arrow"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="involve-link">
+            <div>
+              <img :src="$withBase('/community.svg')" alt="community" />
+            </div>
+            <div>
+              <h3>Community</h3>
+              <p>
+                Connect with our developer community and stay tuned with our
+                Chain development updates
+              </p>
+              <a href="/community">
+                Connect
+                <img
+                  class="action-arrow"
+                  :src="$withBase('/arrow_blue.svg')"
+                  alt="arrow"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="pay-doc">
-      <div class="left">
-        <h1 class="text-header">Crypto.com Pay Documents</h1>
-        <p>Crypto.com Pay Checkout is a feature of Crypto.com Pay, which utilizes Crypto.com Chain as a high performing native blockchain solution.</p>
-        <a target="_blank" rel="noopener noreferrer" href="https://pay-docs.crypto.com/">
-          Learn more
-          <img class="action-arrow" :src="$withBase('/arrow_blue.svg')" alt="arrow" />
-        </a>
+      <div class="pay-doc">
+        <div class="left">
+          <h1 class="text-header">Crypto.com Pay Documents</h1>
+          <p>
+            Crypto.com Pay Checkout is a feature of Crypto.com Pay, which
+            utilizes Crypto.com Chain as a high performing native blockchain
+            solution
+          </p>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://pay-docs.crypto.com/"
+          >
+            Learn more
+            <img
+              class="action-arrow"
+              :src="$withBase('/arrow_blue.svg')"
+              alt="arrow"
+            />
+          </a>
+        </div>
+        <div class="right">
+          <img class="logo" :src="$withBase('/pay_doc.svg')" alt="pay_doc" />
+        </div>
       </div>
-      <div class="right">
-        <img class="logo" :src="$withBase('/pay_doc.svg')" alt="pay_doc" />
-      </div>
-    </div>
 
-    <!-- <Content class="theme-default-content custom" /> -->
-  </main>
+      <!-- <Content class="theme-default-content custom" /> -->
+    </main>
+    <Footer />
+  </div>
 </template>
 
 <script>
 import NavLink from "@theme/components/NavLink.vue";
+import Footer from "@theme/components/Footer.vue";
 
 export default {
-  components: { NavLink },
+  components: { NavLink, Footer },
 
   computed: {
     data() {
@@ -143,10 +225,10 @@ export default {
     actionLink() {
       return {
         link: this.data.actionLink,
-        text: this.data.actionText
+        text: this.data.actionText,
       };
     },
-  }
+  },
 };
 </script>
 

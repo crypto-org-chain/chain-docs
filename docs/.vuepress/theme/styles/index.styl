@@ -16,6 +16,8 @@ body
   -moz-osx-font-smoothing grayscale
   font-size 16px
   color $textColor
+p code
+  word-break break-all!important
 
 .page
   padding-left $sidebarWidth
@@ -41,15 +43,16 @@ body
 
 .sidebar
   font-size 16px
-  background-color white
-  border-radius 8px
-  box-shadow 0 4px 10px 3px rgba(0, 0, 0, 0.05)
+  // background-color white
+  // border-radius 8px
+  // box-shadow 0 4px 10px 3px rgba(0, 0, 0, 0.05)
   width $sidebarWidth
   position fixed
   z-index 10
-  margin 0 16px
+  margin 0
   top $navbarHeight + 1rem
-  max-height 100% - $navbarHeight - $footerHeight - 28%
+  max-height calc(100% - 90px)
+  // max-height 100% - $navbarHeight - $footerHeight - 28%
   box-sizing border-box
   overflow-y auto
   &::-webkit-scrollbar

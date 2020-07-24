@@ -320,10 +320,10 @@ export default {
         font-weight 600;
         border none;
         padding-bottom 0;
-        color lighten($textColor, 10%);
+        color $textColor;
       }
       p {
-        color lighten($textColor, 25%);
+        color $textColor;
       }
     }
     .down {

@@ -64,6 +64,6 @@ For Tendermint data, its conventions must be followed:
 
 For Crypto.com Chain, it has the following conventions:
 
-- _Chain-ID_: this is a string in Tendermint’s genesis.json. In Crypto.com Chain, it should end with two hex digits;
-- [Network-ID](./chain-id-and-network-id.md): a single byte determined by the two last hex digits of Chain-ID. It is included in metadata of every transaction to specify the network;
+- [Chain-ID](./chain-id-and-network-id.md#chain-id): this is a string in Tendermint’s genesis.json. In Crypto.com Chain, it should end with two hex digits;
+- [Network-ID](./chain-id-and-network-id.md#network-id): a single byte determined by the two last hex digits of Chain-ID. It is included in metadata of every transaction to specify the network;
 - Transactions, addresses etc.: Please refer to transaction [binary serialization](./serialization.md), [accounting model](./transaction-accounting-model.md), [addresses / witness](./signature-schemes.md) and [format / types](./transaction.md).

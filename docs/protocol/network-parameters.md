@@ -6,11 +6,10 @@ This section aims to collect and provide brief a description of all the mentione
 
 | Key                           | Description                                           |
 | ----------------------------- | ----------------------------------------------------- |
-| `unbonding_period`            | The time duration of unbonding                        |
 | `max_validators`              | The maximum number of validator                       |
 | `required_council_node_stake` | The minimum staking amount required to be a validator |
 
-#### Reward parameters
+#### `rewards_config`: Reward-related parameters
 
 | Key                        | Description                                                                  |
 | -------------------------- | ---------------------------------------------------------------------------- |
@@ -20,22 +19,20 @@ This section aims to collect and provide brief a description of all the mentione
 | `monetary_expansion_tau`   | Initial value of tau in the reward function                                  |
 | `monetary_expansion_decay` | The decay rate of tau.                                                       |
 
-#### Slashing parameters
+#### `jailing_config` and `slashing_config`: Punishment-related parameters
 
 | Key                       | Description                                                                |
 | ------------------------- | -------------------------------------------------------------------------- |
-| `MAX_EVIDENCE_AGE`        | Maximum age of evidence                                                    |
 | `block_signing_window`    | Window to calculate validators's liveness                                  |
-| `jail_duration`           | The time period for jailing                                                |
 | `missed_block_threshold`  | Threshold of total missed blocks                                           |
 | `byzantine_slash_percent` | Maximum percentage of stake reduction for byzantine validators             |
 | `liveness_slash_percent`  | Maximum percentage of stake reduction for validators with low availability |
 
-#### Transaction fee parameters
+#### `initial_fee_policy`: Transaction fee parameters
 
 | Key           | Description              |
 | ------------- | ------------------------ |
-| `BASE_AMOUNT` | Basic transaction fee    |
-| `PER_BYTE`    | Transaction fee per byte |
+| `constant`    | Basic transaction fee    |
+| `coefficient` | Transaction fee per byte |
 
 TODO: TX that can change them?

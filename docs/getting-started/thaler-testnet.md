@@ -259,7 +259,7 @@ If the created address matches one of the ones listed in the initial _genesis.js
 ### Step 4-B-2. Create a new wallet with staking address
 
 ::: tip Note
-If you have restored your wallet and created a staking address in step 3-b-0, you can skip this step.
+If you have restored your wallet and created a staking address in step 4-B-1, you can skip this step.
 :::
 
 Run the followings to create a new [HD-wallet](../wallets/client-cli.html#wallet-new-create-a-new-wallet) and [staking address](../wallets/client-cli.html#address-new-create-a-new-address):
@@ -316,7 +316,7 @@ please see [production deployment notes](notes-on-production-deployment.md) on h
 
 ### Step 4-B-6. Send a council node join request transaction
 
-As in Step 3-b-1, this can be done, for example, with `client-cli` with the required environment variables.
+As in Step 4-B, this can be done, for example, with `client-cli` with the required environment variables.
 
 ```bash
 $ ./client-cli transaction new --name <WALLET_NAME> --type node-join
@@ -326,7 +326,7 @@ You will be required to insert the following:
 
 - the staking address that holds your bonded funds;
 - a moniker(name) for your validator node; and
-- a base64 encoded tendermint [validator public key](#step-3-b-3-create-a-validator-key-pair).
+- a base64 encoded tendermint [validator public key](#step-4-b-4-create-a-validator-key-pair).
 
 Once the node-join transaction was successfully broadcasted, you should be able to see your Council node one the [testnet explorer](https://chain.crypto.com/explorer/council-nodes).
 

@@ -42,7 +42,7 @@ match tx {
 
 ```rust
 struct ChainInfo {
-    /// minimal fee computed based on tx size expected to be paid
+    /// minimal fee computed for the transaction
     pub min_fee_computed: Fee,
     /// network hexamedical ID
     pub chain_hex_id: u8,
@@ -50,8 +50,8 @@ struct ChainInfo {
     pub block_time: Timespec,
     /// height of current processing block
     pub block_height: BlockHeight,
-    /// related network parameters, used by validation of withdraw tx
-    pub unbonding_period: u32,
+    /// max evidence age in tendermint consensus parameter
+    pub max_evidence_age: Timespec,
 }
 ```
 
@@ -169,7 +169,7 @@ Actions:
 
 - `staking.bonded -= tx.value`
 - `staking.unbonded += tx.value - context.min_fee_computed`
-- `staking.unbonded_from = block_time + unbonding_period`
+- `staking.unbonded_from = block_time + max_evidence_age`
 
 Validations:
 

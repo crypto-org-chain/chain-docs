@@ -182,14 +182,12 @@ period of time, collect rewards etc.
 Below are all the network parameters used to configure the behavior of validator punishments. Details of all these
 parameters and their effect on behavior of validator punishments is discussed later in this document.
 
-1. `UNBONDING_PERIOD`: Unbonding period will be used as jailing period (time for which an account is jailed after it
-   gets punished) and also as slashing period (time to wait before slashing funds from an account). This should be
-   greater than or equal to `MAX_EVIDENCE_AGE` in tendermint.
-1. `BLOCK_SIGNING_WINDOW`: Number of blocks for which the liveness is calculated for uptime tracking.
-1. `MISSED_BLOCK_THRESHOLD`: Maximum number of blocks with faulty/missed validations allowed for an account in last
-   `BLOCK_SIGNING_WINDOW` blocks before it gets jailed.
-1. `LIVENESS_SLASH_PERCENT`: Percentage of funds (bonded + unbonded) slashed when a validator is non-live.
-1. `BYZANTINE_SLASH_PERCENT`: Percentage of funds (bonded + unbonded) slashed when validator makes a byzantine fault.
+
+1. `"block_signing_window"`: Number of blocks for which the liveness is calculated for uptime tracking.
+1. `missed_block_threshold`: Maximum number of blocks with faulty/missed validations allowed for an account in last
+   `block_signing_window` blocks before it gets deactivated.
+1. `liveness_slash_percent`: Percentage of funds (bonded + unbonded) slashed when a validator is non-live.
+1. `byzantine_slash_percent`: Percentage of funds (bonded + unbonded) slashed when validator makes a byzantine fault.
 
 :::warning Important:
 During slashing, funds are slashed from both, bonded and unbonded, amounts.
@@ -201,13 +199,13 @@ Punishments for a validator are triggered when they either make a _byzantine fau
 
 - Liveness Faults (Low availability)
 
-  A validator is said to be **non-live** when they fail to sign at least `MISSED_BLOCK_THRESHOLD` blocks in
-  last `BLOCK_SIGNING_WINDOW` blocks successfully. `BLOCK_SIGNING_WINDOW` and `MISSED_BLOCK_THRESHOLD` are network
+  A validator is said to be **non-live** when they fail to sign at least `missed_block_threshold` blocks in
+  last `block_signing_window` blocks successfully. `block_signing_window` and `missed_block_threshold` are network
   parameters and can be configured during genesis (currently, changing these network parameters at runtime is not
   supported). Tendermint passes signing information to ABCI application as `last_commit_info` in `BeginBlock` request.
 
 :::tip Example:
-For example, if `BLOCK_SIGNING_WINDOW` is `100` blocks and `MISSED_BLOCK_THRESHOLD` is `50` blocks, a validator will
+For example, if `block_signing_window` is `100` blocks and `missed_block_threshold` is `50` blocks, a validator will
 be marked as **non-live** if they fail to successfully sign at least `50` blocks in last `100` blocks.
 :::
 
@@ -220,15 +218,15 @@ be marked as **non-live** if they fail to successfully sign at least `50` blocks
 :::tip Implementation note:
 Tendermint passes `Evidence` of a byzantine validator in `BeginBlock` request. Before jailing any account because of
 byzantine fault, that evidence should be verified. Also, it should be checked that evidence provided by tendermint is
-not older than `MAX_EVIDENCE_AGE` in tendermint.
+not older than `max_age_duration` in tendermint.
 :::
 
 ### Inactivity Slashing
 
 It is important that the validators maintain excellent availability and network connectivity to perform their tasks. A penalty should be imposed on validators' misbehavior to reinforce this.
 
-When a validator fails to successfully sign `MISSED_BLOCK_THRESHOLD` blocks in last `BLOCK_SIGNING_WINDOW` blocks, it is
-immediately punished by deducting funds from their bonded and unbonded amount and removing them from active validator set. The funds to be deducted are calculated based on `LIVENESS_SLASH_PERCENT`.
+When a validator fails to successfully sign `missed_block_threshold` blocks in last `block_signing_window` blocks, it is
+immediately punished by deducting funds from their bonded and unbonded amount and removing them from active validator set. The funds to be deducted are calculated based on `liveness_slash_percent`.
 
 :::tip Note:
 The validator is not **jailed** in this scenario. They can immediately send a `NodeJoinTx` to join back as a validator if they are qualified (have enough bonded amount and not jailed).

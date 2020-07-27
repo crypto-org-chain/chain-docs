@@ -584,7 +584,7 @@ As mentioned before, sender should add the receiver's view-key to the transactio
 
 ### `multisig` - Multi-signature operations
 
-Crypto.com Chain implemented the [threshold Multisig](https://blockstream.com/2019/02/18/en-musig-a-new-multisignature-standard/) for multi-signature related features. Specifically, a threshold multi-signature addresses requires multiple keys to authorize a transaction.
+Crypto.com Chain implemented the [threshold Multisig](https://blockstream.com/2019/02/18/en-musig-a-new-multisignature-standard/) for multi-signature related features. Specifically, a threshold multi-signature address requires multiple keys to authorize a transaction.
 
 #### Create a public key for multi-signature address
 

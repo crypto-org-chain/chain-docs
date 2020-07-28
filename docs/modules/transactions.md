@@ -18,6 +18,10 @@ Public
   Unbond
   Unjail
   NodeJoin
+MLSHandshake
+  CommitRemove
+  SelfUpdateProposal
+  MsgNack
 ```
 
 The enclave transactions are obfuscated in enclave, so they can only be verified completely in the validation enclave,
@@ -209,6 +213,41 @@ Validations:
 - Validator address not used
 - Validator address not banned
 - Used validator address list not full when re-join with new validator key.
+
+## MLSHandshake
+### CommitRemove
+FIXME
+### SelfUpdateProposal
+FIXME
+### MsgNack
+This message is to prevent potential DoS due to malformed paths in `CommitRemove` or `SelfUpdateProposal`.
+The fee (as with other MLSHandshake messages) is zero, as it can't be arbitrarily sent.
+
+Network parameters:
+- nack timeout
+
+Inputs:
+- handshake state
+- last block time
+- tree of public keys: https://github.com/mlswg/mls-protocol/blob/master/draft-ietf-mls-protocol.md#synchronizing-views-of-the-tree
+- "valid" commit message: content + commit_message block time
+
+Action (if valid)
+- original commit message sender staking state punishment
+- transition handshake state to `AwaitingCommit` (to wait for the next commit) and add the original commit sender to the expected removals
+  
+Validation:
+- handshake state is `PendingNACK`
+- last block time <=  commit_message block time + nack timeout
+- nack message refers to a valid commit message
+- sender of MsgNack is not a sender of the original commit message
+- sender is a valid leaf in the tree of public keys
+- the referred encrypted path secret exists in the commit message
+- the attached proof `DLEQ(dh/kem_output == node_hpke_public_key/group_point)` is valid
+- the signature on the MsgNack content is valid
+- with the disclosed `dh` value, the referred encrypted path secret's HPKE ciphertext:
+  - either cannot be decrypted (e.g. authentication tag does not match)
+  - or can be decrypted AND one of public keys on the path from the received commit message do not match public keys derived from the path secret values
 
 ## Appendix
 

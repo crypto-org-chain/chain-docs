@@ -123,13 +123,16 @@ pub struct CommunityNode {
 ```
 
 ### extra network params
-- community node minimal required stake
-- mls handshake commit timeout
-- mls handshake message NACK timeout
-- slash rate for invalid commits?
-- keypackage expiration time (as there are consensus-related rules -- 
-e.g. when to remove nodes with expired keypackages whose TDBE failed to submit update in time;
-when/how often update can be submitted -- it probably should be a consensus parameter)
+
+Following are the TDBE related network parameters (to be configured in `genesis.json`):
+
+- `"required_community_node_stake"`: The minimum staking amount required to become a community node.
+- `"mls_commit_timeout_secs"`: Timeout (in seconds) for MLS handshake commit.
+- `"mls_message_nack_timeout_secs"`: Timeout (in seconds) for MLS handshake message NACK.
+- `"invalid_commit_slash_percent"`: The maximum percent of stake reduction for nodes sending invalid commits.
+- `"keypackage_expiration_secs"`: Time (in seconds) after which, the keypackage for a node will be considered as
+  expired. (as there are consensus related rules -- e.g. when to remove nodes with expired keypackages whose TDBE failed
+  to submit `Update` in time; when/how often `Update` can be submitted -- it probably should be a consensus parameter)
 
 ### genesis.json creation
 The genesis generation ceremony needs to happen in several steps:

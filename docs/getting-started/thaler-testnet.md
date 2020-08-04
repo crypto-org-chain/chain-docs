@@ -17,7 +17,7 @@ If your development machine does not support SGX, we recommend spinning up a clo
 
 #### Supported OS
 
-We officially support Linux only. Other platforms may work buy there is no guarantee. We will extend our support to other platforms after we have stablized our current architecture.
+We officially support Linux only. Other platforms may work but there is no guarantee. We will extend our support to other platforms after we have stablized our current architecture.
 
 ## Prepare your machine
 
@@ -216,6 +216,16 @@ Once you obtained the credentials in the portal, you can check the "_Subscriptio
   $ ./tendermint node
   ```
 
+::: tip Note:
+If you run into the error message
+
+```bash
+Init TX Validation Server Enclave Failed SGX_ERROR_ENCLAVE_FILE_ACCESS!’
+```
+
+Kindly check that if your working directory contains the file `tx_validation_enclave.signed.so`. Otherwise, you can change your directory to `~/chain-abci-HW-debug` before running the chain-abci.
+:::
+
 ## B. Running a council node (validator)
 
 ::: warning CAUTION
@@ -305,7 +315,7 @@ please see [production deployment notes](notes-on-production-deployment.md) on h
 - Start chain-abci, e.g.:
 
   ```bash
-  $ RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5
+  $ RUST_LOG=info ./chain-abci --chain_id testnet-thaler-crypto-com-chain-42 --genesis_app_hash F62DDB49D7EB8ED0883C735A0FB7DE7F2A3FA322FCD2AA832F452A62B38607D5 --enclave_server ipc://$HOME/enclave.socket
   ```
 
 - Finally, start Tendermint:
@@ -314,9 +324,17 @@ please see [production deployment notes](notes-on-production-deployment.md) on h
   $ ./tendermint node
   ```
 
+it should begin fetching blocks from the other peers. Please wait until it is fully synced before moving onto the next step.
+
+For example, one can check the current block height by querying the public full node by:
+
+```bash
+curl -s http://13.90.34.32:26657/commit | jq "{height: .result.signed_header.header.height}"
+```
+
 ### Step 4-B-6. Send a council node join request transaction
 
-As in Step 4-B, this can be done, for example, with `client-cli` with the required environment variables.
+Once your node is fully synced, we are now ready to join the network: As in Step 4-B, this can be done, for example, with `client-cli` with the required environment variables.
 
 ```bash
 $ ./client-cli transaction new --name <WALLET_NAME> --type node-join
@@ -329,6 +347,16 @@ You will be required to insert the following:
 - a base64 encoded tendermint [validator public key](#step-4-b-4-create-a-validator-key-pair).
 
 Once the node-join transaction was successfully broadcasted, you should be able to see your Council node one the [testnet explorer](https://chain.crypto.com/explorer/council-nodes).
+
+To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag ` --pubkey ` to specify the public key of your validator. For example:
+
+```bash
+$ ./check-validator-up.sh --tendermint-url http://13.90.34.32:26657 --pubkey "<YOUR_VALIDATOR_PUBLICKEY>"
+The validator is in the council nodes set under the address <YOUR_VALIDATOR_ADDRESS>
+The validator is signing @ Block#<BLOCK_HEIGHT> 👍
+```
+
+Alternatively, you can run it on this [browser based IDE](https://repl.it/@allthatjazzleo/cryptocomcheckNodeJoinStatus#main.go), by specifying your validator public key in the `"YOUR_PUBKEY"` field.
 
 ## Thaler testnet block explorer and CRO faucet
 

@@ -137,7 +137,7 @@ At the end of each reward epoch, the number of tokens being released at each per
     N = N - N % 10000
 
     N: released coins
-    S: total stakings at current block when
+    S: total staking at current block when
        reward distribution happens
     R0: upper bound for the reward rate p.a.
 ```

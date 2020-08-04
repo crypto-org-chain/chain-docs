@@ -24,7 +24,7 @@ If your development machine does not support SGX, we recommend spinning up a clo
 
 #### Supported OS
 
-We officially support Linux only. Other platforms may work buy there is no guarantee. We will extend our support to other platforms after we have stablized our current architecture.
+We officially support Linux only. Other platforms may work but there is no guarantee. We will extend our support to other platforms after we have stablized our current architecture.
 
 ## Overview
 
@@ -199,7 +199,7 @@ to sign up for the ID and KEY. It won't take you more than 5 minutes.
 
 ## Run chain components
 
-1. Run all the components of Cryto.com Chain with following command:
+1. Run all the components of Crypto.com Chain with following command:
 
     ```bash
     $ make run TX_QUERY_HOSTNAME={YOUR_VM_HOSTNAME}

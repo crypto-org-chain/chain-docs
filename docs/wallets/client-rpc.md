@@ -66,6 +66,6 @@ A list of supported options of ClientRPC is listed below
 | tendermint-url | Tendermint URL | http://localhost:26657/ |
 | websocket-url | Tendermint WebSocket URL | ws://localhost:26657/websocket |
 
-## RPC Methods List
-
-TODO
+## RPC Methods 
+    
+For all the supported JSON RPC API Methods available, refer to [this link](../api/client-rpc).

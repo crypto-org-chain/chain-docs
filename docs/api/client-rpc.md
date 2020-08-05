@@ -24,8 +24,8 @@ curl --header "Content-Type: application/json" --request POST --data '{"method":
 Remember to change your `RPC_HOST_NAME` and `RPC_SERVER_PORT` (if different used).
 
 * If any call fails the response `body` contains an `error` Object: [ErrorResponse](./api-objects.md#errorresponse)
-* For all the API-Objects used here, refer [this page](./api-objects).
-* To download available methods as a **POSTMAN** Collection, [click here](https://github.com/cdc-Hitesh/chain-docs/tree/master/docs/docs/api/client-rpc-methods.postman_collection.json)
+* For all the API-Objects used here, refer [this page](./api-objects.md).
+* To download available methods as a **POSTMAN** Collection, [click here](https://github.com/cdc-Hitesh/chain-docs/tree/master/docs/api/client-rpc-methods.postman_collection.json)
 
 ## INFORMATION
 

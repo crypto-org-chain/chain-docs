@@ -1,4 +1,4 @@
-# CRO JSON-RPC API Reference
+# ClientRPC API Documentation
 
 This documents lists all the RPC methods available on top of the `client-rpc` component.
 
@@ -240,10 +240,12 @@ Retrieve the balances attached with a wallet.
 {
 	"method": "wallet_balance",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}],
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
+    ],
 	"id": "wallet_balance"
 }
 ```
@@ -329,10 +331,12 @@ Create a Staking address.
 {
 	"method": "wallet_createStakingAddress",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}],
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
+    ],
 	"id": "wallet_createStakingAddress"
 }
 ```
@@ -364,11 +368,12 @@ Create multiple staking address in a single call.
 {
 	"method": "wallet_createStakingAddressBatch",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	},
-     5
+	"params": [
+        {
+    		"name": "{{wallet_name}}",
+    		"enckey": "{{wallet_enckey}}"
+    	},
+         5
     ],
 	"id": "wallet_createStakingAddressBatch"
 }
@@ -401,11 +406,12 @@ Create a Watch only Staking address.
 {
 	"method": "wallet_createWatchStakingAddress",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	},
-    "{{your_public_key}}"
+	"params": [
+        {
+    		"name": "{{wallet_name}}",
+    		"enckey": "{{wallet_enckey}}"
+    	},
+        "{{your_public_key}}"
     ],
 	"id": "wallet_createWatchStakingAddress"
 }
@@ -439,10 +445,11 @@ Create a Transfer address.
 {
 	"method": "wallet_createTransferAddress",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
     ],
 	"id": "wallet_createTransferAddress"
 }
@@ -473,11 +480,12 @@ Create multiple `Transfer` type addresses in batch.
 {
 	"method": "wallet_createTransferAddressBatch",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	},
-    5
+	"params": [
+        {
+    		"name": "{{wallet_name}}",
+    		"enckey": "{{wallet_enckey}}"
+    	},
+        5
     ],
 	"id": "wallet_createTransferAddressBatch"
 }
@@ -511,11 +519,12 @@ Create a Watch only Transfer type address.
 {
 	"method": "wallet_createWatchTransferAddress",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	},
-    "{{your_public_key}}"
+	"params": [
+        {
+    		"name": "{{wallet_name}}",
+    		"enckey": "{{wallet_enckey}}"
+    	},
+        "{{your_public_key}}"
     ],
 	"id": "wallet_createWatchTransferAddress"
 }
@@ -571,7 +580,7 @@ Retrieve wallet's View key pair details.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request details.
-* *Boolean* - if `true` returns the `private-key` else `public-key` of the view-key pair. //@Todo: is this understanding correct here?
+* *Boolean* - if `true` returns the `private-key` else `public-key` of the view-key pair. 
 
 #### Returns
 `result` : *String* - `private` or `public` key as requested.
@@ -657,10 +666,12 @@ Retrieve all the Public keys attached to the wallet.
 {
 	"method": "wallet_listPublicKeys",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}],
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
+    ],
 	"id": "wallet_listPublicKeys"
 }
 ```
@@ -697,10 +708,11 @@ Retrieve all the Staking addresses available.
 {
 	"method": "wallet_listStakingAddresses",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
     //2, 100, false
     ],
 	"id": "wallet_listStakingAddresses"
@@ -744,11 +756,13 @@ Retrieve all the Transfer addresses available on the wallet.
 {
 	"method": "wallet_listTransferAddresses",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	},
-    2, 100
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        },
+         2,
+         100
     ],
 	"id": "wallet_listTransferAddresses"
 }
@@ -783,10 +797,12 @@ Retrieve all the available UTXOs for a given wallet.
 {
 	"method": "wallet_listUTxO",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}],
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
+    ],
 	"id": "wallet_listUTxO"
 }
 ```
@@ -1551,15 +1567,17 @@ Starts the `sync` process on the wallet.
 {
     "method": "sync",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-    },
-    {
-        "blocking": false,
-        "reset": false,
-        "do_loop": false
-    }],
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        },
+        {
+            "blocking": false,
+            "reset": false,
+            "do_loop": false
+        }
+    ],
 	"id": "sync"
 }
 ```
@@ -1600,10 +1618,12 @@ Returns current progress of Wallet `sync` process.
 {
     "method": "sync_progress",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}],
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
+    ],
 	"id": "sync_progress"
 }
 ```
@@ -1640,10 +1660,12 @@ Stop the `sync` process (if any).
 {
     "method": "sync_stop",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}],
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
+    ],
 	"id": "sync_stop"
 }
 ```
@@ -1836,10 +1858,12 @@ Alias to the `multiSig_newAddressPublicKey` which lists all the available public
 {
     "method": "wallet_listPublicKeys",
 	"jsonrpc": "2.0",
-	"params": [{
-		"name": "{{wallet_name}}",
-		"enckey": "{{wallet_enckey}}"
-	}],
+	"params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
+    ],
 	"id": "wallet_listPublicKeys"
 }
 ```

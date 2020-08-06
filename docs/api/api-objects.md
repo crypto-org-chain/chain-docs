@@ -1,4 +1,4 @@
-# JSON-RPC API Objects
+# ClientRPC API Objects
 
 This is a list of all the API Objects referenced on the main document as a return or request type.
 

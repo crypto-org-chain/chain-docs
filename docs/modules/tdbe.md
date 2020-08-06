@@ -35,29 +35,68 @@ and obtain old transaction data (if any)
 
 TODO: fetch keypackages/leaf nodes? https://github.com/mlswg/mls-protocol/issues/344
 
-### Obtaining old transaction data
-When a node is started up (before tendermint consensus syncing etc.), it should be provided
-"genesis-skip" (in the case it's one of nodes starting at genesis)
-or one or more connection strings
-that would proxy to some public full node RPC.
+### Catch-up process
 
-Via the Tendermint light-client-verifying connection, it should obtain the list of 
-needed transaction IDs (of withdrawal and transfer transactions):
+When a node starts, it should first check the configuration parameter `perform_catchup`. If `perform_catchup` is `true`,
+the node should perform following catch-up process to fetch all the changes in UTXO set from `last_block_height` of
+curent node to `current_block_height` of remote node. If `perform_catchup` is `false`, it should skip the catch-up
+process and start performing normal operations.
 
-- full node / historical querying: all IDs between its last processed block and the last block on the remote node
-- validator: new IDs in the "UTXO set diff" between its last processed block and the last block on the remote node
-(TODO: https://github.com/crypto-com/chain/issues/794 ; initial implementation here can start with just "all IDs" for both)
+To obtain all the changes in UTXO set from `last_block_height` of current node to `current_block_height` on remote node,
+it can first use Tendemint light client verifying connection to obtain a list of `Withdraw` and `Transfer`
+`transaction_id`s between the two block heights. Once all the transaction IDs are available, it can start establishing
+an enclave-to-enclave mutually attested TLS stream with remote TDBE server to get all the `TxWithOutputs` corresponding
+to above `transaction_id`s. After fetching all the transactions from remote TDBE server it can directly persist them
+using `chain-storage` (using [`chain_storage::store_sealed_log`](https://github.com/crypto-com/chain/blob/e24f29fceabebb979ac4ba1947148040d0be1cc5/chain-storage/src/api.rs#L152);
+TODO: Should this process also include creating and spending UTXOs or should that be done during tendermint
+synchronization process?) and update `last_fetched_block` in `chain-abci`.
 
-From remote node RPC, it should also learn its TDBE connection details
-and then initiate enclave-to-enclave mutually attested TLS: TODO https://github.com/crypto-com/chain/issues/1549
-and fetch the needed transaction payloads and seal them for its host.
+After all the transaction data is persisted, `chain-abci` can start listening to ABCI requests block-by-block and skip
+`tx-validation` for `Transfer` and `Withdraw` transactions until `last_fetched_block`. `chain-abci` should still do
+following basic validations for each transaction in a block:
 
-TODO: handling in abci -- options (probably start with option 1):
-1. record the "fetched up to" block;
-report to TM still the last processed block
-and run normal TM block-by-block syncing and skip tx-validation-enclave until the "fetched up to" block
-2. TM 0.34+ -- run state-sync for jellyfish merkle / staking state https://docs.tendermint.com/master/spec/abci/apps.html#state-sync
-and resume from the "fetched up to" block?
+- If `block_height <= last_fetched_block` **AND** (`tx_type == Transfer` **OR** `tx_type == Withdraw`) **AND**
+  transaction is present in storage, then, check if outputs size matches and all the inputs are unspent.
+- If `block_height <= last_fetched_block` **AND** (`tx_type == Transfer` **OR** `tx_type == Withdraw`) **AND**
+  transaction is not present in storage, then, skip the transaction as it is an invalid transaction.
+- If `block_height <= last_fetched_block` **AND** (`tx_type != Transfer` **AND** `tx_type != Withdraw`), then, perform
+  normal transaction validation.
+- If `block_height > last_fetched_block`, then, perform normal transaction validation.
+
+:::tip Note:
+Starting from Tendermint v0.34, instead of listening to ABCI requests from `last_block_height` to `last_fetched_block`
+and skipping `tx-validation`, it can potentially use Tendermint's [`StateSync`](https://docs.tendermint.com/master/spec/abci/apps.html#state-sync)
+for synchronizing jellyfish merkle and staking state uptil `last_fetched_block`.
+:::
+
+#### How to obtain the list of all the transactions using tendermint light client?
+
+To obtain all the changes in UTXO set from `last_block_height` of current node to `current_block_height` on remote node
+using tendermint light client, we use strategy similar to the one used in `client-core` for synchronizing the client.
+
+- Using `LightClient::verify_to_highest()`, retrieve `current_block_height`, `app_hash` and `block_hash` (of last block)
+  of remote node.
+- Split the block heights into a list of smaller chunks (`chunk_size` can be configurable), starting from
+  `last_block_height` of current node uptil `current_block_height` received from light client, and for each `chunk` of
+  `block_height`s:
+  - Call `block` and `block_results` on remote node's tendermint RPC for each chunk. For each `block` and
+    `block_results` in the response:
+    - Extract all the valid `Transfer` and `Withdraw` `transaction_id`s from `block_results` using code similar to
+      [this](https://github.com/crypto-com/chain/blob/8de5e08ffc6176f7ef2e726a3db1f53e783c461d/client-common/src/tendermint/types/block_results.rs#L37).
+    - Verify the root of the merkle tree of `transaction_id`s with the `app_hash` returned in `block` response. See the
+      note below for changes in `app_hash` computation.
+  - For all the `transaction_id`s in a `chunk`, establish an enclave-to-enclave mutually attested TLS stream with remote
+    TDBE server and fetch transaction data by sending [`GetTransactionsWithOutputs`](https://github.com/crypto-com/chain/blob/8de5e08ffc6176f7ef2e726a3db1f53e783c461d/enclave-protocol/src/tdbe_protocol.rs#L11)
+    request.
+- After fetching and processing all the chunks, it should verify the `app_hash` and `block_hash` of last block received
+  with the one received in light client response.
+
+:::tip Note:
+`app_hash` should be modified to contain root of merkle tree of `transaction_id`s for verifying each block. The new
+`app_hash` format is `"<merkle root of valid transaction IDs (32 bytes)><current way to compute app_hash (32 bytes)>"`.
+After this change, `app_hash` will become 64 bytes long. To see the current way to compute `app_hash` refer
+[here](https://github.com/crypto-com/chain/blob/6a3233ebeae615ad0198308819a1d221c1741cd4/chain-core/src/lib.rs#L42).
+:::
 
 ## Sealing / recovering
 on genesis or when the (add/update) request is committed,

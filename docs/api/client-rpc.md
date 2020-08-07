@@ -1384,7 +1384,7 @@ Depositing the staked amount to a recipient address.
 
 ###  `staking_withdrawAllUnbondedStake`
 
-Withdraws all unbonded tokens to a destination address.
+Withdraws all unbonded tokens to a destination transfer address.
 
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.

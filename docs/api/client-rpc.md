@@ -1345,7 +1345,7 @@ Endpoint used for staking unbonded tokens.
 
 ###  `staking_depositAmountStake`
 
-Depositing the staked amount to a recipient address.
+Depositing the staked amount to a recipient staking address.
 
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.

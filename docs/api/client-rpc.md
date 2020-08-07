@@ -1468,7 +1468,7 @@ Deposit staked tokens to an address.
 ```
 
 ###  `staking_unjail`
-Initiate the unjailing process for the `jailed` tokens.
+Initiate the unjailing process for a `jailed` staking address.
 
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.

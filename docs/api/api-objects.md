@@ -68,7 +68,7 @@ Returned on status query.
 | **latest_block_hash**           | *Data*, String   | Latest block hash (#Hash)   |
 | **latest_app_hash**             |  *Data*, String | Latest app hash (#Hash)  |
 | **latest_block_height**             | *Number*, UnsignedInt64 | Latest block height |
-| **latest_block_time**             |  *TimeStamp*, String | Latest block time [Tendermint timestamps](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/blockchain.md#time)  |
+| **latest_block_time**             |  *TimeStamp*, String | Latest block time [Tendermint timestamps](https://github.com/tendermint/spec/blob/master/spec/core/data_structures.md#time)  |
 | **catching_up**             | *Boolean* | Are we catching up witht the network?  |
 
 ## NodeInfo

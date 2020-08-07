@@ -273,6 +273,6 @@ Wallet information to export and import.
 | **address**             |  *Data*, String  | The address used to check transaction withness against.|
 | **node_meta**             |  *Object*, [NodeState](#NodeState)  | (optional) node metadata|
 | **last_slash**             |  *Object*  | (optional) record the last slash only for query|
-| **last_slash.kind**             |  *Data*, String  | Why reason? Possible Values: `NonLive` or `ByzantineFault`|
+| **last_slash.kind**             |  *Data*, String  |  Last slashing type. Possible Values: `NonLive` or `ByzantineFault`|
 | **last_slash.time**             |  *Timestamp*, String  | Timestamp ISO Format|
 | **last_slash.amount**             |  *Quantity*, Uint64  | How much amount |

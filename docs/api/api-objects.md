@@ -114,7 +114,7 @@ Returned on status query.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
-| **genesis_time**           | *Timestamp*, String   | Time of Genesis. [Tendermint timestamps](https://github.com/tendermint/tendermint/blob/master/docs/spec/blockchain/blockchain.md#time) |
+| **genesis_time**           | *Timestamp*, String   | Time of Genesis. [Tendermint timestamps](https://github.com/tendermint/spec/blob/master/spec/core/data_structures.md#time) |
 | **chain_id**             |  *Data*, String | Tendermint chain ID  |
 | **consensus_params**             | *Object*, [Params](#Params) | Consensus parameters |
 | **validators**             |  *Array*, [ValidatorInfo](#ValidatorInfo) | Array of Validators   |

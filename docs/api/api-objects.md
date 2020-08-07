@@ -119,7 +119,7 @@ Returned on status query.
 | **consensus_params**             | *Object*, [Params](#Params) | Consensus parameters |
 | **validators**             |  *Array*, [ValidatorInfo](#ValidatorInfo) | Array of Validators   |
 | **app_hash**             | *Array*, Bytes 8 | App hash  |
-| **app_state**             | *Data*, String | Validator display names  |
+| **app_state**             | *Data*, String | The application state  |
 
 
 ## Params

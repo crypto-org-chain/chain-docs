@@ -901,7 +901,7 @@ Restores a `HD` or `HW` type wallet. //@Todo: need hyperlink ?
 
 ### `wallet_restoreBasic`
 
-Restore a `Basic` type wallet. //@Todo - hyperlink needed to explain wallet types?
+Restore a `Basic` type wallet. More info [here](https://chain.crypto.com/docs/wallets/client-cli.html#wallet-operations). 
 
 #### Parameters
 * [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet Request Object.
@@ -1287,17 +1287,53 @@ Returns the current state of the Staked Address.
 	"id": "staking_state"
 }
 ```
-@Todo: Body here
 ***Response Body***
+* ex: unbonded
 ```json
 {
     "jsonrpc": "2.0",
     "result": {
-        "nonce": 12,
-        "bonded" : 20020202,
-        "unbonded" : 23423423,
-        .
-        .
+        "address": "0x2dfde2178daa679508828242119dcf2114038ea8",
+        "bonded": "0",
+        "last_slash": null,
+        "node_meta": null,
+        "nonce": 0,
+        "unbonded": "500000000000000000",
+        "unbonded_from": 1596607260
+    },
+    "id": "staking_state"
+}
+```
+
+ex: bonded
+```json
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "address": "0x45c1851c2f0dc6138935857b9e23b173185fea15",
+        "bonded": "500000000000000000",
+        "last_slash": null,
+        "node_meta": {
+            "CouncilNode": {
+                "council_node": {
+                    "confidential_init": {
+                        "init_payload": "AAACAEEEzsqLyBbMQaSMbSFTrnuBH....+Lh5KNEisPE01sAbUqTk2RwuIfc06pU+sMtcxK8Y="
+                    },
+                    "consensus_pubkey": {
+                        "type": "tendermint/PubKeyEd25519",
+                        "value": "FF5JxhRrCUNLj6UZmYdjv/AWgSWUeiomeOMeJG71owE="
+                    },
+                    "name": "node0",
+                    "security_contact": "node0@example.com"
+                },
+                "inactive_block": null,
+                "inactive_time": null,
+                "jailed_until": null
+            }
+        },
+        "nonce": 0,
+        "unbonded": "0",
+        "unbonded_from": 1596607260
     },
     "id": "staking_state"
 }
@@ -1337,7 +1373,7 @@ Endpoint used for staking unbonded tokens.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<tx_id>>",
+    "result": "ddd8d774ddc79e70b1fa08eb91874a6e58fadbf90920a5669d367caf7ecfa3a0",
     "id": "staking_unbondStake"
 }
 ```
@@ -1760,7 +1796,7 @@ Commits a nonce for a multisig transaction.
 ```
 
 ### `multiSig_createAddress`
-It can be used to create a `m-of-n` multisig wallet. Where `m` is the minimum number of signatures required, `n` is the total number of parties.
+It can be used to create a `m-of-n` multisig wallet. Where `m` is the minimum number of signatures required, `n` is the total number of parties. And `n` has to be always greater than or equal to  `m` (i.e **`n>=m`**)
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.

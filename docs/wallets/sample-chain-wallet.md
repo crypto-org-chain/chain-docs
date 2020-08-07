@@ -59,6 +59,7 @@ To send funds to another address, you will have to first obtain the other party'
 <div class = "design_diagram">
     <img src="./sample_chain_wallet_4.png" alt="sample_chain_wallet_4" />
 </div>
+
 ### Receive Funds
 
 To receive funds, you will need to present your address and view key to the sender; these can be obtained by:

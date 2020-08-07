@@ -1,6 +1,6 @@
 # ClientRPC API Documentation
 
-This documents lists all the RPC methods available on top of the `client-rpc` component.
+This document lists all the RPC methods available on top of the `client-rpc` component.
 
 ## Methods
 

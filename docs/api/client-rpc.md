@@ -395,7 +395,7 @@ Imports a watch only staking address.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
-* *String* - Public key used in Crypto.com Chain. [@ToDo - Any technical language to be put here?]
+* *String* - Secp256k1 public key of the staking address in either compressed or uncompressed form.
 
 #### Returns
 `result` : *String* - `Address` Generated Watch staking address.

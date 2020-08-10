@@ -13,7 +13,7 @@ Method: POST
 URL: http://localhost:26659/ 
 Headers: Content-Type: application/json
 ```
-* JSONRPC requests can be `POST`'d to the root RPC endpoint via HTTP. Example below:
+* To call a JSONRPC method, send a HTTP `POST` request to the root RPC endpoint. Example below:
 ```bash
 curl --header "Content-Type: application/json" --request POST --data '{"method": "<<method_name>>", "params": ["5"], "id": 1}' localhost:26659
 ```

@@ -699,9 +699,9 @@ Retrieve all the Staking addresses available.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
-* *UInt32* - Offset value (to indicate the `cursor`).
-* *Uint32* - Maximum number of records to fetch.
-* *Boolean* - if `true` returns in reverse-chronological order.
+* *UInt64* - (Optional) Offset value (to indicate the `cursor`).
+* *Uint64* - (Optional) Maximum number of records to fetch.
+* *Boolean* - (Optional) if `true` returns in reverse-chronological order.
 
 #### Returns
 `result` : *Array(String)* - List of all Staking addresses.
@@ -717,7 +717,6 @@ Retrieve all the Staking addresses available.
             "name": "{{wallet_name}}",
             "enckey": "{{wallet_enckey}}"
         }
-    //2, 100, false
     ],
 	"id": "wallet_listStakingAddresses"
 }
@@ -747,9 +746,9 @@ Retrieve all the Transfer addresses available on the wallet.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
-* *UInt32* - Offset value.
-* *Uint32* - Limit - Max number of records to fetch.
-* *Boolean* - if `true` returns in reverse-chronological order.
+* *UInt64* - (Optional) Offset value (to indicate the `cursor`).
+* *Uint64* - (Optional) Maximum number of records to fetch.
+* *Boolean* - (Optional) if `true` returns in reverse-chronological order.
 
 #### Returns
 `result` : *Array(String)* - List of all Transfer addresses created on the requested wallet.
@@ -764,9 +763,7 @@ Retrieve all the Transfer addresses available on the wallet.
         {
             "name": "{{wallet_name}}",
             "enckey": "{{wallet_enckey}}"
-        },
-         2,
-         100
+        }
     ],
 	"id": "wallet_listTransferAddresses"
 }
@@ -862,7 +859,7 @@ Broadcast a signed Transfer transaction to the blockchain.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<HEX ENCODED TX_ID>>",
+    "result": "<<tx_id>>",
     "id": "wallet_broadcastSignedTransferTx"
 }
 ```
@@ -1121,7 +1118,7 @@ Returns encoded transaction for a `tx_id` requested.
 			"name": "{{wallet_name}}",
 			"enckey": "{{wallet_enckey}}"
 		},
-		"<<TX_ID here>>"
+		"<<tx_id here>>"
 	],
 	"id": "wallet_exportTransaction"
 }
@@ -2166,7 +2163,7 @@ Signs a provided unsigned transaction and broadcast it to the blockchain.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<TX_ID>>",
+    "result": "<<tx_id>>",
     "id": "multiSig_broadcastWithSignature"
 }
 ```

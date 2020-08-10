@@ -395,7 +395,7 @@ Create a Watch only Staking address.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
-* *String* - Public key used in Crypto.com Chain. [@ToDo - Any technical language to be put here?]
+* *String* - Public key used in Crypto.com Chain.
 
 #### Returns
 `result` : *String* - `Address` Generated Watch staking address.
@@ -420,7 +420,7 @@ Create a Watch only Staking address.
 ***Response Body***
 ```json
 {
-    "jsonrpc": "2.0",
+    "jsonrpc": "2.0",    
     "result": "<<Generated Watch Staking addrss>>",
     "id": "wallet_createWatchStakingAddress"
 }
@@ -697,7 +697,7 @@ Retrieve all the Staking addresses available.
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
 * *UInt32* - Offset value (to indicate the `cursor`).
 * *Uint32* - Maximum number of records to fetch.
-* *Boolean* - if `true` returns in reverse-chronological order. //@Todo - wording needs to change or ok?
+* *Boolean* - if `true` returns in reverse-chronological order.
 
 #### Returns
 `result` : *Array(String)* - List of all Staking addresses.
@@ -745,7 +745,7 @@ Retrieve all the Transfer addresses available on the wallet.
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
 * *UInt32* - Offset value.
 * *Uint32* - Limit - Max number of records to fetch.
-* *Boolean* - if `true` returns in reverse-chronological order. //@Todo - wording needs to change or ok?
+* *Boolean* - if `true` returns in reverse-chronological order.
 
 #### Returns
 `result` : *Array(String)* - List of all Transfer addresses created on the requested wallet.
@@ -832,10 +832,10 @@ Broadcast a signed Transfer transaction to the blockchain.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
-* *String* - Signed raw transaction. //@Todo: need to specify something specific here ?
+* *String* - Signed raw transaction.
 
 #### Returns
-`result` : *String* - Transaction ID (Hex Encoded). // @Todo: tx_id needs to be hyperlinked ?
+`result` : *String* - Transaction ID (Hex Encoded).
 
 ***Body:***
 
@@ -871,7 +871,7 @@ Restores a `HD` or `HW` type wallet. //@Todo: need hyperlink ?
 * *String* - valid Mnemonic phrase. (eg. `alpha beta charlie .. . . . .  . zeta`)
 
 #### Returns
-`result` : *String* - Wallet Authentication Token or Secret Key. //@Todo : This is `enckey`, so hyperlink? 
+`result` : *String* - Wallet Authentication Token or Secret Key.
 
 ***Body:***
 
@@ -894,7 +894,7 @@ Restores a `HD` or `HW` type wallet. //@Todo: need hyperlink ?
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<Wallet Authentication Token>>", //@Todo
+    "result": "<<Wallet Authentication Token>>",
     "id": "wallet_restore"
 }
 ```
@@ -1062,7 +1062,7 @@ Retrieves all transactions on the wallet.
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
 * *UInt32* - Offset value.
 * *Uint32* - Limit - Max number of records to fetch.
-* *Boolean* - set `true` to return transactions in *latest-first* fashion. //@Todo - change the sentence ?
+* *Boolean* - set `true` to return transactions in *latest-first* fashion.
 
 #### Returns
 `result` : *Array[ [TransactionChange](./api-objects.md#transactionchange) ]* - List of all transactions on the requested wallet. 
@@ -2139,7 +2139,7 @@ Signs a provided unsigned transaction and broadcast it to the blockchain.
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md##WalletRequest)
 * *String* - Session ID retrieved from [multiSig_newSession](#multiSig_newSession).
-* *Object* - [Tx](./api-objects.md#tx) - Unsigned TX object. //@todo: is it ok?
+* *Object* - [Tx](./api-objects.md#tx) - Unsigned TX object. 
  
 #### Returns
 `result` : *String* - `tx_id` or Transaction ID after submission.

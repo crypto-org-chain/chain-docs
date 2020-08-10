@@ -26,7 +26,7 @@ Remember to change your `RPC_HOST_NAME` and `RPC_SERVER_PORT` (if different used
 * If any call fails the response `body` contains an `error` Object: [ErrorResponse](./api-objects.md#errorresponse)
 * For all API-Objects used here, refer to [this page](./api-objects.md).
  
-
+You can try our API examples here
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/33332df9753fd7f793d4#?env%5BClientRPC%5D=W3sia2V5IjoiY2xpZW50X3JwY19ob3N0IiwidmFsdWUiOiI1MS4xMzIuMjMzLjUwIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJjbGllbnRfcnBjX3BvcnQiLCJ2YWx1ZSI6IjI2NjU5IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJ3YWxsZXRfcGFzc3BocmFzZSIsInZhbHVlIjoiMTIzIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJ3YWxsZXRfZW5ja2V5IiwidmFsdWUiOiI2NDE2OTVhNjk0NDkzY2FkZWM0Y2U0NDliOTkzOTE2OWY5Yjg3N2U5NTQyMjcwZDRjY2JlOWZiMTZiOTFhYjdlIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzdGFraW5nX2FkZHJlc3MiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoidHJhbnNmZXJfYWRkcmVzcyIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwdWJsaWNfa2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InZpZXdfa2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6IndhbGxldF9uYW1lIiwidmFsdWUiOiJoaXRlc2giLCJlbmFibGVkIjp0cnVlfV0=)
 
 or download the collection file [here](https://github.com/cdc-Hitesh/chain-docs/tree/master/docs/api/client-rpc-methods.postman_collection.json)

@@ -1,6 +1,6 @@
 # ClientRPC API Objects
 
-This is a list of all the API Objects referenced on the main document as a return or request type.
+This is a list of all the API Objects referenced [here](./client-rpc.md) as a return or request type.
 
 ## WalletRequest
 

@@ -504,7 +504,7 @@ Create multiple `Transfer` type addresses in batch.
 
 
 ### `wallet_createWatchTransferAddress`
-Create a Watch only Transfer type address.
+Imports a watch only transfer address.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.

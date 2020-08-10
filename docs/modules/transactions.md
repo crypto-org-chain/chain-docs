@@ -202,17 +202,108 @@ The actual paid fee is zero.
 
 Action
 
-- Transit staking state from "clean staking" or "inactive(unjailed) validator" to active validator (refer to  [staking
+- Transit staking state from "clean staking" or "inactive(unjailed) validator" to active validator or community node (refer to  [staking
   state](staking-state.md#node-join))
 
 Validations:
 
 - Not jailed
+
 - Not active
-- `staking.bonded >= minimal_required_staking`
-- Validator address not used
-- Validator address not banned
-- Used validator address list not full when re-join with new validator key.
+
+- `staking.bonded >= minimal_required_staking or minimal_required_staking_for_community_node`
+
+- If join validator:
+
+  - Validator address not used
+
+  - Used validator address list not full
+
+#### verify `MLSInit`
+
+chain-abci state:
+
+```rust
+enum TDBEState {
+    Available,
+    AwaitingCommit,
+    PendingNACK,
+}
+struct TDBEVerifyState {
+    epoch: u64,
+    tree: TreePublicKey,
+    tdbe_state: TDBEState
+}
+```
+
+Verify `MLSInit`:
+
+```rust
+const cs: CipherSuite;
+const ra_verifier: impl AttestedCertVerifier;
+const group_id: Vec<u8>;
+
+fn verify(state: &TDBEVerifyState, MLSInit::NodeJoin { add, commit }) {
+    // verify state machine
+    verify(state.tdbe_state == TDBEState::Available)?;
+
+    // verify epoch
+    verify(state.epoch == commit.content.epoch)?;
+  
+    // verify message signature
+    verify_signature(&tree, commit.sender, &commit)?;
+    verify_signature(&tree, add.sender, &add)?;
+  
+    // verify keypackage in proposal
+    add.key_package.verify()?;
+  
+    // verify no duplicate keypackage identity and hpke pub keys
+  
+    // verify no path secrets
+    verify(commit.path.is_none())?;
+
+    // update tree
+    let updated_tree = update_tree(&self.tree, add);
+  
+    // compute transcript_hash
+    let transcript_hash = compute_transcript_hash(
+        cs, group_id, epoch, sender, commit
+    );
+
+    // construct group context
+    let group_context = {
+        epoch,
+        updated_tree.compute_tree_hash(),
+        transcript_hash,
+    };
+
+    // verify confirmation with TVE
+    TVE.verify_confirmation(epoch, group_context, confirmation)?;
+}
+```
+
+TVE can verify the confirmation like this:
+
+```rust
+fn TVE.verify_confirmation(epoch, input_context, confirmation) {
+    // transfer (init_secret, commit_secret, group_context) of the epoch from TDBE
+    let (init_secret, commit_secret, group_context) = get_from_TDBE(epoch);
+    // verify input context is the same as local cached context.
+    verify(input_context == group_context)?;
+    let epoch_secrets = gen_epoch_secrets(init_secret, commit_secret, group_context);
+    let computed = compute_confirmation(epoch_secrets, group_context.transcript_hash);
+    verify(computed == confirmation)?;
+}
+```
+
+TVE might also delegate the request to TDBE to do the verification.
+
+After validation passed, update the chain-abci state:
+
+```rust
+state.epoch += 1;
+state.tree = updated_tree;
+```
 
 ## MLSHandshake
 ### CommitRemove
@@ -236,6 +327,7 @@ Action (if valid)
 - original commit message sender staking state punishment
 - transition handshake state to `AwaitingCommit` (to wait for the next commit) and add the original commit sender to the expected removals
   
+
 Validation:
 - handshake state is `PendingNACK`
 - last block time <=  commit_message block time + nack timeout

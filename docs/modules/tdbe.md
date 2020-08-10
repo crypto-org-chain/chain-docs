@@ -16,24 +16,97 @@ Transaction Data Bootstrapping Enclave (TDBE):
   - "knows" when it should generate MLSHandshake tx: 1) when in mid-time of keypackage expiration; 2) being "leftmost" node 
   - based on valid block-committed requests, it should update its internal states, derive secrets and push tx obfuscation key to TVE
 
+## New/Rejoining Node Process
 
-## new/rejoining node
-(for non-genesis specified ones)
-- obtain old data (see below) from external node TDBE
-- request "invitation" from the external node TDBE:
-  - request should contain the merkle proof of the new node's associated staking state + keypackage
-  - responding node should verify both -- if correct, it'll generate `Welcome`, `Add` proposal, and `Commit`
-  - requesting node should verify the response -- if incorrect, start again (e.g. with a different external node TDBE on the list)
-- construct council or community node join request TX payload -- get it signed by the node operator
-- submit council or community node join request TX
-- if accepted in a block, a node can start to operate
-(as Commit with Add-only proposal does not need to fill paths -- no need to wait for NACK timeout)
--> requesting node's TDBE can apply `Welcome` to update its state
-+ mark the block where node join tx was committed as the "fetched up to" block
-and obtain old transaction data (if any)
-- if not accepted (e.g. there was another `Commit` in the meantime) restart the procedure
+At any point of time, a new node can join the blockchain network (after genesis). All the nodes joining after genesis
+have to follow below procedure to successfully join the network:
 
-TODO: fetch keypackages/leaf nodes? https://github.com/mlswg/mls-protocol/issues/344
+- First step for all the nodes to to catch-up with current network (See `Catch-up process` section below for details).
+- New node then requests an _invitation_ (by sending `InvitationRequest`) from remote node's TDBE server (see below for
+  more details on **Invitation protocol**):
+  - The request should consist of:
+    - Staking address.
+    - New node's keypackage.
+  - Remote node's TDBE server verifies the details provided in the `InvitationRequest` and generates `Welcome`, `Add`
+    and `Commit` messages to add new node to the network.
+  - New node, after receiving a response from remote TDBE server, verifies (TODO: Define validations on TDBE response)
+    it and starts the whole process again if the verification fails (with a different remote TDBE server). If the
+    verification is successfull, it continues to the next step.
+- New node constructs `NodeJoinTx` (for council or community node) and submits the transaction after getting it signed
+  by the node operator (see below for mode details on **Transaction signing**).
+- If the `NodeJoinTx` is accepted in a block, new node can start to operate normally (as `Commit` with Add-only proposal
+  does not need to fill paths -- node need to wait for NACK timeout).
+  - New node's TDBE server can apply `Welcome` message to update its state.
+- If the `NodeJoinTx` is not accepted (this can happen when there was another `Commit` in the meantime), then restart
+  the proocess.
+
+:::tip Note:
+No need to fetch the leaf nodes as they will be a part of `ratchet_tree` extension of `Welcome` message.
+:::
+
+### Transaction signing
+
+Before submitting `NodeJoinTx`, operator needs to sign the transaction which may happen on a different machine. New
+node's TDBE server will generate a binary transaction file which the operator can copy to different machine, verify its
+details manually and sign in using some CLI tool (maybe devutils?) which generates a new binary file with signed
+transaction. After the operator has signed the transaction, they can copy the signed transaction file back to new node
+and maually signal TDBE server to submit the signed transaction (manual trigger will contain the path to the signed
+transaction file).
+
+### Invitation protocol
+
+To join the network as a validator or community node, it has to initiate "New/Rejoining Node Process" and sending an
+`InvitationRequest` request is the first step a node performs after completing "Catch-up process".
+
+- New node's TDBE sends an `TrustedTdbeRequest::Invitation` to remote node's TDBE:
+
+```rust
+pub enum TrustedTdbeRequest<'a> {
+    // Other variants..
+    /// Invitation request for new/rejoining node
+    Invitation {
+        /// New node's staking address
+        staking_address: StakedStateAddress,
+        /// New node's KeyPackage
+        keypackage: Cow<'a, [u8]>,
+    }
+}
+```
+
+- Remote node's TDBE server looks up for staking state and its merkle proof corresponding to provided `staking_address`,
+  performs all the validation corresponding to "clean staking" mentioned [here](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/staking-state.md#state-transitions)
+  and also perform validations on `keypackage` (e.g., if given keypackage does not already exists, etc. TODO: Define
+  validations on keypackage)
+
+- After validating the invitation request, remote TDBE server responds with `TrustedTdbeResponse` with either
+  `Invitation` variant (if successfull) or `Error` variant if failed:
+
+```rust
+pub enum TrustedTdbeResponse<'a> {
+    // Other variants..
+    /// Invitation response for new/rejoining node
+    Invitation {
+        /// `Add` proposal new node joining
+        add: MLSPlaintext,
+        /// `Commit` message for new node joining
+        commit: MLSPlaintext,
+        /// `Welcome` message for new node joining
+        welcome: MLSPlaintext,
+    },
+}
+```
+
+- After receiving successfull invitation response, new node performs following validations on it:
+  - Try initialising its own state from the `Welcome` message (see [Welcoming New Members](https://github.com/mlswg/mls-protocol/blob/master/draft-ietf-mls-protocol.md#welcoming-new-members)
+    for details).
+  - Check `Add`/`Commit` similar to [this](https://github.com/crypto-com/chain-docs/pull/209/files#diff-8e112651c7b3d2293370b59567ddaddaR253)
+    (minus the "abci state machine" / TVE) against the internal group state (if step 1 was successful) -- for the
+    keypackage perhaps verify that it's the one submitted in the request
+
+
+- After receiving successfull invitation response from remote node's TDBE server, a node can create `NodeJoinTx` using
+  `add` and `commit` messages received in invitation response.
+
 
 ### Catch-up process
 

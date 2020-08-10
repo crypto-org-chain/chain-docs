@@ -7,14 +7,49 @@ struct StakedState {
     bonded: Coin,
     unbonded: Coin,
     unbonded_from: Timespec,
-    validator: Option<Validator>,
+    node_details: Option<NodeDetails>,
+}
+
+enum NodeDetails {
+    Council(Validator),
+    Community(CommunityNode),
+}
+
+struct CommunityNode {
+    /// name / moniker (just for reference / human use)
+    pub name: NodeName,
+    /// optional security@... email address
+    pub security_contact: NodeSecurityContact,
+    /// leaf index in the mls tree
+    pub leaf_index: LeafSize,
 }
 
 struct Validator {
-    council_node: CouncilNode,
+    node_info: CommunityNode,
     jailed_until: Option<Timespec>,
     inactive_time: Option<Timespec>,
     used_validator_keys: Vec<(TendermintValidatorPubKey, Timespec)>,
+}
+
+impl NodeState {
+    fn validator() -> Option<&Validator> {
+        match self {
+            Council(v) => Some(v),
+            _ => None,
+        }
+    }
+    fn community() -> Option<&CommunityNode> {
+        match self {
+            Community(n) => Some(n),
+            _ => None,
+        }
+    }
+    fn node_info(&self) -> &CommunityNode {
+        match self {
+          Community(n) => n,
+          Council(v) => &v.node_info,
+        }
+    }
 }
 ```
 
@@ -22,26 +57,40 @@ struct Validator {
 
 ### Clean staking
 
-`validator.is_none()`
+`node.is_none()`
 
-### Validator
+### Community/Council node
 
-`validator.is_some()`
+`node.is_some()`
+
+One need to join the mls group to run a community or council node.
+
+#### Community node
+
+Community node is a full node but not a validator. it's able to validate transactions but not participate in block generation.
+
+`node?.community().is_some()`
+
+#### Council node
+
+`node?.validator().is_some()`
+
+> We'll use `validator` to refer to `node?.validator()?` from now on.
 
 There are several variants of it:
 
-#### Active
+##### Active
 
 `validator.inactive_time.is_none()`
 
 > **_NOTE:_** Active validator doesn't necessarily mean the final validator take effect in tendermint, please refer to
 > [Choose final validators](#choose-final-validators)
 
-#### Inactive
+##### Inactive
 
 `validator.inactive_time.is_some()`
 
-#### Jailed
+##### Jailed
 
 `validator.jailed_until.is_some()`
 
@@ -49,15 +98,45 @@ There are several variants of it:
 
 ## State transitions
 
+```plantuml
+[*] --> CleanStaking
+
+state InactiveValidator {
+  Unjailed --> Jailed : Byzantine fault
+  Jailed --> Unjailed : Unjail transaction
+}
+
+CleanStaking --> ActiveValidator : NodeJoinTX(Validator)
+Unjailed --> ActiveValidator : NodeJoinTX(Validator)
+
+CleanStaking --> CommunityNode : NodeJoinTX(Community)
+
+ActiveValidator --> Unjailed : Unbonding, Slashing
+ActiveValidator --> Jailed : Byzantine fault
+
+Unjailed --> CleanStaking : Cleanup
+CommunityNode --> CleanStaking : Punishment(TODO)
+```
+
 ### From "clean staking" or "inactive(unjailed) validator" to active validator
 
-#### Node join
+#### Node join(validator)
 
-The only way to transit to active validator is by executing `NodeJoinTx`, the preconditions are:
+The only way to transit to active validator is by executing validator version of `NodeJoinTx`, the preconditions are:
 
 - `bonded >= min_required_staking`
 - The validator pubkey/address is not already used by others, it's ok to re-use the old keys used by itself if it's a re-join from an inactive validator.
 - Not jailed if transiting from inactive validator
+- `MLSInit` is valid, refer to [transactions](#transactions.md#node-join) for detailed validation rules
+
+### From "clean staking" to "community node"
+
+#### Node join(community)
+
+The community node variant of `NodeJoinTx` transit a clean staking state to community node. the preconditions are:
+
+- `bonded >= min_required_community_staking`
+- `MLSInit` is valid, refer to [transactions](#transactions.md#node-join) for detailed validation rules
 
 ### From "active validator" to "inactive validator"
 
@@ -107,6 +186,14 @@ The clean up procedure will remove the validator record if:
 > - `> max_evidence_age`, so we can handle delayed byzantine evidences (inactive validator can still be slashed for
 >   later detected byzantine faults)
 > - `> 2 blocks`, so we don't panic when seeing signing vote of inactivated validators
+
+### From "community node" to "clean staking"
+
+#### Bonded coins become lower than required
+
+Whenever `bonded < min_required_community_staking`, this transition happens. 
+
+The other details are similar to the transition from "active validator" to "inactive validator".
 
 ## Appendix
 

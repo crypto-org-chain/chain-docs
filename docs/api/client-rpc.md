@@ -13,7 +13,7 @@ Method: POST
 URL: http://localhost:26659/ 
 Headers: Content-Type: application/json
 ```
-* JSONRPC requests can be `POST`'d to the root RPC endpoint via HTTP. Example below:
+* To call a JSONRPC method, send a HTTP `POST` request to the root RPC endpoint. Example below:
 ```bash
 curl --header "Content-Type: application/json" --request POST --data '{"method": "<<method_name>>", "params": ["5"], "id": 1}' localhost:26659
 ```
@@ -391,11 +391,11 @@ Create multiple staking address in a single call.
 
 ### `wallet_createWatchStakingAddress`
 
-Create a Watch only Staking address.
+Imports a watch only staking address.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
-* *String* - Public key used in Crypto.com Chain.
+* *String* - Secp256k1 public key of the staking address in either compressed or uncompressed form.
 
 #### Returns
 `result` : *String* - `Address` Generated Watch staking address.
@@ -504,7 +504,7 @@ Create multiple `Transfer` type addresses in batch.
 
 
 ### `wallet_createWatchTransferAddress`
-Create a Watch only Transfer type address.
+Imports a watch only transfer address.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
@@ -541,7 +541,11 @@ Create a Watch only Transfer type address.
 
 ### wallet_getEncKey
 
-Retrieve Wallet Encryption / Authentication token. Keep the token safe and it will be needed for all authorized commands.
+Retrieve Wallet Encryption / Authentication token. The token can be used to unlock all authorized wallet methods.
+
+:::: warning Encryption Token Storage
+Keep the token in a safe place because it can unlock any authorized wallet methods. Exposing your token may result in lost of funds.
+:::
 
 #### Parameters
 * [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet creation Object.
@@ -2162,7 +2166,7 @@ Signs a provided unsigned transaction and broadcast it to the blockchain.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<Tx_ID>>",
+    "result": "<<TX_ID>>",
     "id": "multiSig_broadcastWithSignature"
 }
 ```

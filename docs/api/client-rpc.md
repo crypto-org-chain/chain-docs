@@ -541,7 +541,11 @@ Imports a watch only transfer address.
 
 ### wallet_getEncKey
 
-Retrieve Wallet Encryption / Authentication token. Keep the token safe and it will be needed for all authorized commands.
+Retrieve Wallet Encryption / Authentication token. The token can be used to unlock all authorized wallet methods.
+
+:::: warning Encryption Token Storage
+Keep the token in a safe place because it can unlock any authorized wallet methods. Exposing your token may result in lost of funds.
+:::
 
 #### Parameters
 * [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet creation Object.

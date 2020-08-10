@@ -2130,7 +2130,7 @@ Signs a provided unsigned transaction and broadcast it to the blockchain.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<Tx_ID>>",
+    "result": "<<TX_ID>>",
     "id": "multiSig_broadcastWithSignature"
 }
 ```

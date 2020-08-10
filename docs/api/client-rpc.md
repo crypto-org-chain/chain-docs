@@ -391,7 +391,7 @@ Create multiple staking address in a single call.
 
 ### `wallet_createWatchStakingAddress`
 
-Create a Watch only Staking address.
+Imports a watch only staking address.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.

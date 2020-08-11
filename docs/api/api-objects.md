@@ -97,7 +97,7 @@ Returned on status query.
 | **pub_key.type**             |  *Data*, String | Curve type : `Ed25519`   |
 | **pub_key.value**             |  *Data*, String | Public keys allowed in Tendermint protocols  |
 | **voting_power**             | *Data*, String | Validator voting power  |
-| **proposer_priority**             |  *Data*, String | Validator proposer priority Can be an integer value or `null`   |
+| **proposer_priority**             |  *Data*, String | Validator proposer priority, can be an integer value or `null`   |
 
 
 
@@ -149,7 +149,7 @@ Returned on status query.
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
 | **max_age_num_blocks**           | *Number*, UnsignedInt64  | Maximum allowed age for evidence to be collected  |
-| **max_age_duration**             |  *Nubmer*, UnsignedInt64 | Max age duration |
+| **max_age_duration**             |  *Nubmer*, UnsignedInt64 | Maximum age of evidence ( in nanoseconds)|
 
 ## Tx
 A Transaction containing tx inputs and tx outputs.
@@ -274,5 +274,5 @@ Wallet information to export and import.
 | **node_meta**             |  *Object*, [NodeState](#NodeState)  | (optional) node metadata|
 | **last_slash**             |  *Object*  | (optional) record the last slash only for query|
 | **last_slash.kind**             |  *Data*, String  |  Last slashing type. Possible Values: `NonLive` or `ByzantineFault`|
-| **last_slash.time**             |  *Timestamp*, String  | Timestamp ISO Format|
-| **last_slash.amount**             |  *Quantity*, Uint64  | How much amount |
+| **last_slash.time**             |  *Timestamp*, String  | Last slashing time, in ISO format.|
+| **last_slash.amount**             |  *Quantity*, Uint64  | Last slashing amount. |

@@ -508,7 +508,7 @@ Imports a watch only transfer address.
 
 #### Parameters
 * [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
-* *String* - Public key used in Crypto.com Chain.
+* *String* - Secp256k1 public key of the transfer address in either compressed or uncompressed form.
 
 #### Returns
 `result` : *String* - Generated Watch Transfer address.

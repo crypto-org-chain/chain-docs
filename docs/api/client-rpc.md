@@ -98,7 +98,7 @@ Returns the current details of the network.
 ```
 
 ### `genesis`
-Returns the Genesis information of the network.
+Returns the Crypto.com chain's genesis information. Read more [here](https://chain.crypto.com/docs/protocol/genesis.html). 
 
 #### Parameters
 `None`

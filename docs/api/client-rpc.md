@@ -611,7 +611,7 @@ Retrieve wallet's View key pair details.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "7befc23ec5a9e.......3b995d156e488b3615d9e9e7c4",
+    "result": "<<Wallet View Key>>",
     "id": "wallet_getViewKey"
 }
 ```

@@ -156,9 +156,9 @@ A Transaction containing tx inputs and tx outputs.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
-| **inputs**           | *Array*, [TxoPointer](#TxoPointer)   | previous transaction outputs to be spent  |
-| **outputs**             |  *Array*, [TxOut](#TxOut) | new transaction outputs |
-| **attributes**             | *Data*, String | versioning and network info + access info (who can see the TX content) |
+| **inputs**           | *Array*, [TxoPointer](#TxoPointer)   | previous transaction outputs to be spent.  |
+| **outputs**             |  *Array*, [TxOut](#TxOut) | new transaction outputs. |
+| **attributes**             | *Data*, String | versioning and network info + access info (who can see the TX content). |
 
 ## TxoPointer
 
@@ -174,10 +174,10 @@ Tx Output composed of an address and a coin value
 |----------------------|--------------------------------|--------------------------------------------------------------------|
 | **address**           | *Data*, String   | address to lock the output for. |
 | **value**             |  *QUANTITY*, UInt64 | the amount to lock in base units. |
-| **valid_from**             |  *QUANTITY*, Uint64 | the optional timelock (Timestamp EPOCH in seconds). |
+| **valid_from**             |  *QUANTITY*, Uint64 | the optional timelock (Epoch in seconds). |
 
 ## CreateWalletRequest
-information needed when create/delete a wallet
+Information needed when create/delete a wallet
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
@@ -201,7 +201,7 @@ Array of available UTXOs on a wallet.
 | **outputs**             |  *Array*, [TxOut](#TxOut) | Transaction Outputs.   |
 | **fee_paid**             |  *Quantity*, Uint64 | Fee that was paid  |
 | **balance_change**             | *Enum*, [BalanceChange](#BalanceChange) | Balance change caused by transaction. When no change value is `NoChange`  |
-| **transaction_type**             |  *ENUM*, String | `Transfer`, `Withdraw`, `Unbond`,`Deposit`,`Unjail`,`Nodejoin`  |
+| **transaction_type**             |  *Enum*, String | `Transfer`, `Withdraw`, `Unbond`,`Deposit`,`Unjail`,`Nodejoin`  |
 | **block_height**             | *Quantity*, Uint64 | Height of the block which has this transaction  |
 | **block_time**             |  *Timestamp*, String | Time of the block which has this transaction |
 
@@ -247,32 +247,51 @@ Wallet information to export and import.
 
 
 ## StakedState
-Wallet information to export and import.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
-| **nonce**           | *Quantity*, Uint64  | "from" operations counter. |
-| **bonded**           | *Quantity*, Uint64  | bonded amount used to determine voting power. |
-| **unbonded**             |  *Quantity*, Uint64  | Amount unbonded for future withdrawal.  |
-| **unbonded_from**             |  *TimeStamp*, String  | time when unbonded amount can be withdrawn.|
 | **address**             |  *Data*, String  | The address used to check transaction withness against.|
+| **bonded**           | *Quantity*, Uint64  | Bonded amount used to determine voting power. |
 | **node_meta**             |  *Object*, [NodeState](#NodeState)  | (optional) node metadata|
-| **last_slash**             |  *Object*  | (optional) record the last slash only for query|
+| **last_slash**             |  *Object*  | (optional) record the last slash only for query or `null`|
 | **last_slash.kind**             |  *Data*, String  | Last slashing type. Possible Values: `NonLive` or `ByzantineFault`|
 | **last_slash.time**             |  *Timestamp*, String  | Last slashing time, in ISO format.|
 | **last_slash.amount**             |  *Quantity*, Uint64  | Last slashing amount |
+| **nonce**           | *Quantity*, Uint64  | "from" operations counter. |
+| **unbonded**             |  *Quantity*, Uint64  | Amount unbonded for future withdrawal.  |
+| **unbonded_from**             |  *TimeStamp*, Uint64  | Epoch(seconds) -time when unbonded amount can be withdrawn.|
 
 ## NodeState
+Contains either `CouncilNode` or `CommunityNode` depending on the type of node spawned.
+| Key                  | Type                  | Value                                                              |
+|----------------------|--------------------------------|--------------------------------------------------------------------|
+| **CouncilNode**           | *Object*, [CouncilNode](#Validator)  | Information related to council nodes (validator metadata + keypackage from TDBE). |
+| **CommunityNode**           | *Object*, [CommunityNode](#NodeCommonInfo)  | Information related to community nodes (keypackage from TDBE). |
+
+## Validator
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
-| **nonce**           | *Quantity*, Uint64  | "from" operations counter. |
-| **bonded**           | *Quantity*, Uint64  | bonded amount used to determine voting power. |
-| **unbonded**             |  *Quantity*, Uint64  | Amount unbonded for future withdrawal.  |
-| **unbonded_from**             |  *TimeStamp*, String  | time when unbonded amount can be withdrawn.|
-| **address**             |  *Data*, String  | The address used to check transaction withness against.|
-| **node_meta**             |  *Object*, [NodeState](#NodeState)  | (optional) node metadata|
-| **last_slash**             |  *Object*  | (optional) record the last slash only for query|
-| **last_slash.kind**             |  *Data*, String  |  Last slashing type. Possible Values: `NonLive` or `ByzantineFault`|
-| **last_slash.time**             |  *Timestamp*, String  | Last slashing time, in ISO format.|
-| **last_slash.amount**             |  *Quantity*, Uint64  | Last slashing amount. |
+| **council_node**           | *Object*  | Council node metadata. |
+| **council_node.node_info**           | *Object*, [NodeCommonInfo](#NodeCommonInfo)  | Name, security contact and TDBE/MLS keypackage. |
+| **council_node.consensus_pubkey**           | *Object*, [TendermintValidatorPubKey](#TendermintValidatorPubKey)  | Tendermint consensus validator-associated public key. |
+| **jailed_until**           | *Quantity*, Uint64  | (Optional) Block number to remain jailed or `null`. |
+| **inactive_time**             |  *Quantity*, Uint64  | (Optional)Block time it became inactive (from block time) or `null`.|
+| **inactive_block**             |  *Quantity*, Uint64  | (Optional) Block number since inactivity or `null`.  |
+
+## NodeCommonInfo
+Information common to different node types.
+
+| Key                  | Type                  | Value                                                              |
+|----------------------|--------------------------------|--------------------------------------------------------------------|
+| **name**           | *Data*, String  | Reference name / moniker. |
+| **security_contact**           | *Data*, String  | Optional email address. |
+| **confidential_init**           | *Object*  | Serialized keypackage for MLS. |
+| **confidential_init.init_payload**           | *Data*, String  | MLS credential with attestation payload. |
+
+## TendermintValidatorPubKey
+
+| Key                  | Type                  | Value                                                              |
+|----------------------|--------------------------------|--------------------------------------------------------------------|
+| **type**           | *Data*, String  | [read here](https://docs.tendermint.com/master/spec/blockchain/encoding.html). |
+| **value**           | *Data*, String  | base64 encoded value. |

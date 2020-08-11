@@ -274,5 +274,5 @@ Wallet information to export and import.
 | **node_meta**             |  *Object*, [NodeState](#NodeState)  | (optional) node metadata|
 | **last_slash**             |  *Object*  | (optional) record the last slash only for query|
 | **last_slash.kind**             |  *Data*, String  |  Last slashing type. Possible Values: `NonLive` or `ByzantineFault`|
-| **last_slash.time**             |  *Timestamp*, String  | Timestamp ISO Format|
+| **last_slash.time**             |  *Timestamp*, String  | Last slashing time, in ISO format.|
 | **last_slash.amount**             |  *Quantity*, Uint64  | Last slashing amount. |

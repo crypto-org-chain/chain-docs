@@ -149,7 +149,7 @@ Returned on status query.
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
 | **max_age_num_blocks**           | *Number*, UnsignedInt64  | Maximum allowed age for evidence to be collected  |
-| **max_age_duration**             |  *Nubmer*, UnsignedInt64 | Max age duration |
+| **max_age_duration**             |  *Nubmer*, UnsignedInt64 | Maximum age of evidence ( in nanoseconds)|
 
 ## Tx
 A Transaction containing tx inputs and tx outputs.

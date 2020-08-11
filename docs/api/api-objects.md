@@ -97,7 +97,7 @@ Returned on status query.
 | **pub_key.type**             |  *Data*, String | Curve type : `Ed25519`   |
 | **pub_key.value**             |  *Data*, String | Public keys allowed in Tendermint protocols  |
 | **voting_power**             | *Data*, String | Validator voting power  |
-| **proposer_priority**             |  *Data*, String | Validator proposer priority Can be an integer value or `null`   |
+| **proposer_priority**             |  *Data*, String | Validator proposer priority, can be an integer value or `null`   |
 
 
 

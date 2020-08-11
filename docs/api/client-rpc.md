@@ -713,10 +713,13 @@ Retrieve all the Staking addresses available.
 	"method": "wallet_listStakingAddresses",
 	"jsonrpc": "2.0",
 	"params": [
-        {
-            "name": "{{wallet_name}}",
-            "enckey": "{{wallet_enckey}}"
-        }
+       {
+			"name": "{{wallet_name}}",
+			"enckey": "{{wallet_enckey}}"
+		},
+		0,
+		100,
+		false
     ],
 	"id": "wallet_listStakingAddresses"
 }
@@ -760,11 +763,14 @@ Retrieve all the Transfer addresses available on the wallet.
 	"method": "wallet_listTransferAddresses",
 	"jsonrpc": "2.0",
 	"params": [
-        {
-            "name": "{{wallet_name}}",
-            "enckey": "{{wallet_enckey}}"
-        }
-    ],
+		{
+			"name": "{{wallet_name}}",
+			"enckey": "{{wallet_enckey}}"
+		},
+		0,
+		100,
+		false
+	],
 	"id": "wallet_listTransferAddresses"
 }
 ```
@@ -813,15 +819,39 @@ Retrieve all the available UTXOs for a given wallet.
 {
     "jsonrpc": "2.0",
     "result": [
-        {
-            "id": "17622f7d719e7d7a3a41145b066cef8957c38a57228ac22e62f894ad5d681893",
-            "index": 1
-        },
-        {
-            "address": "tcro1keaw2rlwehw9sqnkq9cfjmj3cut2f0tt3sqy5d9l65hedj48t86s758uku",
-            "valid_from": null,
-            "value": "9999699998146"
-        }
+        [
+            {
+                "id": "64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd",
+                "index": 0
+            },
+            {
+                "address": "dcro19lwlvysk73lyq98ak7cgzwe7s2h7tpr5ng4jqp3h8msrnht6ntds6e2nqc",
+                "valid_from": null,
+                "value": "23232323"
+            }
+        ],
+        [
+            {
+                "id": "a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421",
+                "index": 0
+            },
+            {
+                "address": "dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24",
+                "valid_from": null,
+                "value": "996633"
+            }
+        ],
+        [
+            {
+                "id": "a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421",
+                "index": 1
+            },
+            {
+                "address": "dcro1apx48vm5qeh92tjuw22fde0yndvdzumc4sjugg3ajfmd3tc7259sk38uhk",
+                "valid_from": null,
+                "value": "499999999975771044"
+            }
+        ]
     ],
     "id": "wallet_listUTxO"
 }
@@ -836,7 +866,7 @@ Broadcast a signed Transfer transaction to the blockchain.
 * *String* - Signed raw transaction.
 
 #### Returns
-`result` : *String* - Transaction ID (Hex Encoded).
+`result` : *String* - Transaction ID.
 
 ***Body:***
 
@@ -1038,7 +1068,7 @@ Create a raw transaction to be broadcasted separately at [wallet_broadcastSigned
 			"enckey": "{{wallet_enckey}}"
 		},
 		"dcro1ayhu0665wprxf86letqlv8x4ssppeu6awf7m60qlwds9268vltwsk6ehwa",
-		499999999999994999,
+		"5000000",
 		[]
 	],
 	"id": "wallet_buildRawTransferTx"
@@ -1049,8 +1079,8 @@ Create a raw transaction to be broadcasted separately at [wallet_broadcastSigned
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<Raw transaction HEX string>>",
-    "id": "wallet_sendToAddress"
+    "result": "DGR4OwbnpGauENg3D7ObK92c5917VlxTU+c06NOHhOXdAAAAL932Ehb0fkAU/bewgTs+gq/lhHSaKyAGNz7gOd16mttDf2IBAAAAAACjs3zy5CDNEPfDJQFaf1bSRL4dSQyIT7Xc/6t7aBTUIQAAAGmDKIJ+/LocuU6MdpabE72AuBFKAtzf30vdyncK8mwHGTUPAAAAAAAAo7N88uQgzRD3wyUBWn9W0kS+HUkMiE+13P+re2gU1CEBAADoTVOzdAZuVS5ccpSW5eSbWNFzeKwlxCI9knbYrx5VC6RLQNJZW/AGAACrsAQAAAAAAAAA6S/H61RwRmSfX8rB9hzVhAIc811yfb08H3NgVWjs+t0AfBvreJUbE/xgVhZOQKwnYiHcXE+Sttu6nMWenaRlFgc=",
+    "id": "wallet_buildRawTransferTx"
 }
 ```
 
@@ -1079,19 +1109,101 @@ Retrieves all transactions on the wallet.
 			"name": "{{wallet_name}}",
 			"enckey": "{{wallet_enckey}}"
 		},
-		10,
+		0,
 		100,
 		false
 	],
 	"id": "wallet_transactions"
 }
 ```
-@Todo fill the response
+
 ***Response Body***
 ```json
 {
     "jsonrpc": "2.0",
-    "result": [],
+    "result": [
+        {
+            "block_height": 89,
+            "block_time": "2020-08-11T07:54:55.707526308Z",
+            "fee": "0",
+            "inputs": [],
+            "kind": "Incoming",
+            "outputs": [
+                {
+                    "address": "dcro1kxl8xy6k8twhes6j972mrzurfvgms0e549z852cgqyl796jss89sadlmgd",
+                    "valid_from": 1596607260,
+                    "value": "500000000000000000"
+                }
+            ],
+            "transaction_id": "fab2009511b0634b244e0689a97c60b3bb108aaf85785841c37d8c7a51b837ad",
+            "transaction_type": "Withdraw",
+            "value": "500000000000000000"
+        },
+        {
+            "block_height": 242,
+            "block_time": "2020-08-11T07:57:43.939236623Z",
+            "fee": "0",
+            "inputs": [
+                {
+                    "id": "fab2009511b0634b244e0689a97c60b3bb108aaf85785841c37d8c7a51b837ad",
+                    "index": 0,
+                    "output": {
+                        "address": "dcro1kxl8xy6k8twhes6j972mrzurfvgms0e549z852cgqyl796jss89sadlmgd",
+                        "valid_from": 1596607260,
+                        "value": "500000000000000000"
+                    }
+                }
+            ],
+            "kind": "Outgoing",
+            "outputs": [
+                {
+                    "address": "dcro19lwlvysk73lyq98ak7cgzwe7s2h7tpr5ng4jqp3h8msrnht6ntds6e2nqc",
+                    "valid_from": null,
+                    "value": "23232323"
+                },
+                {
+                    "address": "dcro1raxgsnlemeahk3zusmm3emqyy4pzt29tvdey2u5rue9pppm7p38q4lvx6z",
+                    "valid_from": null,
+                    "value": "499999999976767677"
+                }
+            ],
+            "transaction_id": "64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd",
+            "transaction_type": "Transfer",
+            "value": "0"
+        },
+        {
+            "block_height": 313,
+            "block_time": "2020-08-11T07:59:01.911108863Z",
+            "fee": "0",
+            "inputs": [
+                {
+                    "id": "64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd",
+                    "index": 1,
+                    "output": {
+                        "address": "dcro1raxgsnlemeahk3zusmm3emqyy4pzt29tvdey2u5rue9pppm7p38q4lvx6z",
+                        "valid_from": null,
+                        "value": "499999999976767677"
+                    }
+                }
+            ],
+            "kind": "Outgoing",
+            "outputs": [
+                {
+                    "address": "dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24",
+                    "valid_from": null,
+                    "value": "996633"
+                },
+                {
+                    "address": "dcro1apx48vm5qeh92tjuw22fde0yndvdzumc4sjugg3ajfmd3tc7259sk38uhk",
+                    "valid_from": null,
+                    "value": "499999999975771044"
+                }
+            ],
+            "transaction_id": "a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421",
+            "transaction_type": "Transfer",
+            "value": "0"
+        }
+    ],
     "id": "wallet_transactions"
 }
 ```
@@ -1721,6 +1833,41 @@ Stop the `sync` process (if any).
 All multisignature related RPC Methods.
 :::
 
+### `multiSig_newAddressPublicKey`
+DEPRECATED - Creates a new transfer type address.
+
+#### Parameters
+* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+ 
+#### Returns
+`result` : *String* - 
+
+***Body:***
+
+```json  
+{
+    "method": "multiSig_newAddressPublicKey",
+    "jsonrpc": "2.0",
+    "params": [
+        {
+            "name": "{{wallet_name}}",
+            "enckey": "{{wallet_enckey}}"
+        }
+    ],
+    "id": "multiSig_newAddressPublicKey"
+}
+```
+
+***Response Body***
+```json
+{
+    "jsonrpc": "2.0",
+    "result": "<<public_key>>",
+    "id": "multiSig_addNonce"
+}
+```
+
+
 ### `multiSig_addNonce`
 Adds a nonce to the multisig wallet session.
 
@@ -1843,7 +1990,7 @@ It can be used to create a `m-of-n` multisig wallet. Where `m` is the minimum nu
 ```
 
 ### `multiSig_listAddressPublicKeys`
-Lists all the public keys belonging to a wallet.
+DEPRECATED - Lists all the public keys belonging to a wallet.
 
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest).

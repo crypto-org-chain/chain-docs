@@ -62,7 +62,6 @@ module.exports = {
         "",
         "thaler-testnet",
         "local-devnet",
-        "send-your-first-transaction",
         "notes-on-production-deployment",
         "notes-on-performance"
       ],

@@ -100,7 +100,6 @@ To join the network as a validator, the validator public key is required. To obt
 2009/11/10 23:00:00 Address: 7874d1718d49e31deba591c6971a8be1dd998771
 ```
 
-save your `Pubkey` for later when for the `node-join` transaction. 
 
 
 TODO moniker?

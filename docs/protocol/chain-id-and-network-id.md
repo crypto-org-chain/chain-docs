@@ -6,7 +6,7 @@ Crypto.com Chain has different Chain ID to distinguish between _devnet_, _testne
 
 Different chain has different address prefixes for its corresponding network types, these prefixes are:
 
-| Mainnet | Testnet | Regtest |
+| Mainnet | Testnet | Devnet |
 | ------- | ------- | ------- |
 | `cro`   | `tcro`  | `dcro`  |
 

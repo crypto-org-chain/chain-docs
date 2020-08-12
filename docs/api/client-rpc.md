@@ -33,10 +33,13 @@ or download the collection file [here](https://github.com/cdc-Hitesh/chain-docs/
 
 
 ## INFORMATION
+:::tip 
+All `info` methods.
+:::
 
 ### `status`
 
-Returns the current details of the network.
+Returns the current status of the network.
 
 #### Parameters
 
@@ -103,16 +106,16 @@ Returns the current details of the network.
 ```
 
 ### `genesis`
-Returns the Crypto.com chain's genesis information. Read more [here](https://chain.crypto.com/docs/protocol/genesis.html). 
+Returns chain's genesis information. Read more [here](./api-objects.md#genesis). 
 
 #### Parameters
 `None`
 
 #### Returns
 
-`result` : *Object* - [Genesis](./api-objects.md#genesis)
+`result` : *Object* - [Genesis](./api-objects.md#genesis).
 
-***Request Body***
+***Request Body:***
 
 ```json       
 {
@@ -224,15 +227,16 @@ Returns the Crypto.com chain's genesis information. Read more [here](https://cha
 
 ## WALLET MANAGEMENT
 
-:::tip All Endpoints fall under the wallet management 
+:::tip 
+All `wallet` endpoints.
 :::
 
-### wallet_balance
+### `wallet_balance`
 
-Retrieve the balances attached with a wallet.
+Retrieves the different types of balances.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
 `result` : *Object* - Wallet Balance Object.
@@ -240,7 +244,7 @@ Retrieve the balances attached with a wallet.
 * `result.available` : *Uint64* - The available amount balance that can be currently used.
 * `result.pending` : *Uint64* - The pending amount balance.
 
-***Request Body***
+***Request Body:***
 
 ```json       
 {
@@ -272,24 +276,24 @@ Retrieve the balances attached with a wallet.
 
 ### `wallet_create`
 
-Creates a wallet.
+Creates a new wallet.
 
 #### Parameters
 
-* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet creation Object.
+* *Object* - [CreateWalletRequest](./api-objects.md#createwalletrequest).
 * *String* - Type of wallet to be created. Possible values are:
-    - `Basic` : Basic wallet
-    - `HD` : Creates a Hierarchial Deterministic Wallet (12 word Mnemonic)
-    - `HW` : Hardware Wallet ( eg. Ledger HW wallet series)
-* *Uint32* (Optional)  - Mnemonic word count. Default `12`. 
+    - `Basic` : Single private key based wallet.
+    - `HD` : Hierarchial Deterministic Wallet.
+    - `HW` : Hardware Wallet ( eg. Ledger, Trezor).
+* *Uint32* -  (Optional)  Mnemonic word count. Default `12`. 
 
 #### Returns
 
 `result` : *Array* - Wallet creation result.
 * `result[0]` : *String* - Wallet authentication token.
-* `result[1]` : *String(Optional)* - Generated mnemonic phrase (If `wallet_type` was `HD` or `HW`).
+* `result[1]` : *String* - (Optional) Generated mnemonic phrase.
 
-***Request Body***
+***Request Body:***
 
 ```json       
 {
@@ -323,13 +327,13 @@ Creates a wallet.
 
 ### `wallet_createStakingAddress`
 
-Creates a Staking address. 
+Creates a new Staking address. 
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
-`result` : *String* - Public address for staking account.
+`result` : *String* - Generated staking address.
 
 ***Request Body:***
 
@@ -352,17 +356,17 @@ Creates a Staking address.
 {
     "jsonrpc": "2.0",
     "result": "0x78390b88c29a15dcb6fa0ba786063bfe4d3e74c0",
-    "id": "wallet_create "
+    "id": "wallet_createStakingAddress "
 }
 ```
 
 
 ### `wallet_createStakingAddressBatch`
 
-Creates multiple staking address in a single call.
+Creates multiple staking addresses in a single call.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *UInt32* - Number of staking address to create.
 
 #### Returns
@@ -400,11 +404,11 @@ Creates multiple staking address in a single call.
 Imports a watch only staking address.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Secp256k1 public key of the staking address in either compressed or uncompressed form.
 
 #### Returns
-`result` : *String* - `Address` Generated Watch staking address.
+`result` : *String* - Imported Watch staking address.
 
 ***Request Body:***
 
@@ -412,12 +416,11 @@ Imports a watch only staking address.
 {
 	"method": "wallet_createWatchStakingAddress",
 	"jsonrpc": "2.0",
-	"params": [
-        {
-    		"name": "{{wallet_name}}",
-    		"enckey": "{{wallet_enckey}}"
-    	},
-        "{{your_public_key}}"
+	"params": [{
+		"name": "{{wallet_name}}",
+		"enckey": "{{wallet_enckey}}"
+	},
+    "036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a"
     ],
 	"id": "wallet_createWatchStakingAddress"
 }
@@ -426,21 +429,28 @@ Imports a watch only staking address.
 ***Response Body:***
 ```json
 {
-    "jsonrpc": "2.0",    
-    "result": "<<Generated Watch Staking addrss>>",
+    "jsonrpc": "2.0",
+    "result": "0x7037ea3f59c3755dda652b52220e7d28dc4743bd",
     "id": "wallet_createWatchStakingAddress"
 }
 ```
 
 
 ### `wallet_createTransferAddress`
-Creates a Transfer address.
+Creates a new Transfer address. Read more about transfer type address [here](../protocol/serialization.md#Transfer-key-pair-and-Address).
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
-`result` : *String* - Transfer address generated as per CRO chain format.
+`result` : *String* - Generated Transfer address.
+:::warning Note:
+Different chain has different address prefixes for its corresponding network types, these prefixes are:
+
+| Mainnet | Testnet | Devnet |
+| ------- | ------- | ------- |
+| `cro`   | `tcro`  | `dcro`  |
+:::
  
 ***Request Body:***
 
@@ -468,11 +478,11 @@ Creates a Transfer address.
 ```
 
 ### `wallet_createTransferAddressBatch`
-Creates multiple `Transfer` type addresses in batch.
+Creates multiple `Transfer` type addresses in a single call.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
-* *Uint32* - Number/count of `Transfer` type addresses to create.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *Uint32* - Number of addresses to create.
 
 #### Returns
 `result` : *UInt32* - Number of `Transfer` addresses created successfully.
@@ -504,17 +514,15 @@ Creates multiple `Transfer` type addresses in batch.
 ```
 
 
-
-
 ### `wallet_createWatchTransferAddress`
 Imports a watch only transfer address.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Secp256k1 public key of the transfer address in either compressed or uncompressed form.
 
 #### Returns
-`result` : *String* - Generated Watch Transfer address.
+`result` : *String* - Imported Watch Transfer address.
  
 ***Request Body:***
 
@@ -522,12 +530,11 @@ Imports a watch only transfer address.
 {
 	"method": "wallet_createWatchTransferAddress",
 	"jsonrpc": "2.0",
-	"params": [
-        {
-    		"name": "{{wallet_name}}",
-    		"enckey": "{{wallet_enckey}}"
-    	},
-        "{{your_public_key}}"
+	"params": [{
+		"name": "{{wallet_name}}",
+		"enckey": "{{wallet_enckey}}"
+	},
+    "036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a"
     ],
 	"id": "wallet_createWatchTransferAddress"
 }
@@ -537,14 +544,14 @@ Imports a watch only transfer address.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<Generated Watch Transfer addrss>>",
+    "result": "dcro1raxgsnlemeahk3zusmm3emqyy4pzt29tvdey2u5rue9pppm7p38q4lvx6z",
     "id": "wallet_createWatchTransferAddress"
 }
 ```
 
 ### wallet_getEncKey
 
-Retrieve Wallet Encryption / Authentication token. The token can be used to unlock all authorized wallet methods.
+Retrieves Wallet authentication token. The token can be used to unlock all authorized wallet methods.
 
 ::: warning 
 Encryption Token Storage
@@ -552,7 +559,7 @@ Keep the token in a safe place because it can unlock any authorized wallet metho
 :::
 
 #### Parameters
-* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet creation Object.
+* *Object* - [CreateWalletRequest](./api-objects.md#createwalletrequest).
 
 #### Returns
 `result` : *String* - Wallet authentication token.
@@ -578,8 +585,8 @@ Keep the token in a safe place because it can unlock any authorized wallet metho
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<Wallet Authentication Key>>",
-    "id": "wallet_createTransferAddress"
+    "result": "14d768e8d1dd17c21c5c45793f7328598fe91d590feef219deddf22b0749fbeb",
+    "id": "wallet_getEncKey"
 }
 ```
 
@@ -587,7 +594,7 @@ Keep the token in a safe place because it can unlock any authorized wallet metho
 Retrieve wallet's View key pair details. Read more about a view key [here](../protocol/serialization.md#view-key-pair).
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *Boolean* - if `true` returns the `private-key` else `public-key` of the view-key pair. 
 
 #### Returns
@@ -615,14 +622,14 @@ Retrieve wallet's View key pair details. Read more about a view key [here](../pr
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<Wallet View Key>>",
+    "result": "3aefe25d235b86e2ec25d0a0ee73267e0a0f10f62a4d96df42fc9e7b2f6cbef3",
     "id": "wallet_getViewKey"
 }
 ```
 
 ### `wallet_list`
 
-Retrieves all available wallet names.
+Retrieves the names of all available wallets.
 
 #### Parameters
 `None`
@@ -659,13 +666,13 @@ Retrieves all available wallet names.
 
 ### `wallet_listPublicKeys`
 
-Retrieve all the Public keys attached to the wallet.
+Retrieves all available public keys.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - WalletRequest Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
-`result` : *Array[ String ]* - List of all available public keys.
+`result` : *Array[String]* - List of all available public keys.
 
 
 ***Request Body:***
@@ -707,16 +714,16 @@ Retrieve all the Public keys attached to the wallet.
 
 ### `wallet_listStakingAddresses`
 
-Retrieve all the Staking addresses available.
+Retrieve all available Staking addresses.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
-* *UInt64* - (Optional) Offset value (to indicate the `cursor`).
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *UInt64* - (Optional) Offset value.
 * *Uint64* - (Optional) Maximum number of records to fetch.
-* *Boolean* - If `true` returns the list in *latest-first* fashion.
+* *Boolean* - (Optional) If `true` returns the list in *latest-first* fashion. Default: `false`.
 
 #### Returns
-`result` : *Array[ String ]* - List of all Staking addresses.
+`result` : *Array[String]* - List of all available Staking addresses.
 
 ***Request Body:***
 
@@ -760,13 +767,13 @@ Retrieve all the Staking addresses available.
 Retrieve all the Transfer addresses available on the wallet.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *UInt64* - (Optional) Offset value (to indicate the `cursor`).
 * *Uint64* - (Optional) Maximum number of records to fetch.
-* *Boolean* - If `true` returns the list in *latest-first* fashion.
+* *Boolean* -  (Optional) If `true` returns the list in latest-first fashion. Default: `false`.
 
 #### Returns
-`result` : *Array[ String ]* - List of all available Transfer addresses.
+`result` : *Array[String]* - List of all available Transfer addresses.
 
 ***Request Body:***
 
@@ -810,13 +817,13 @@ Retrieve all the Transfer addresses available on the wallet.
 
 ### `wallet_listUTxO`
 
-Retrieve all the available UTXOs for a given wallet.
+Retrieves all available UTXOs.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
-`result` : *Array[ [UnspentTransactions](./api-objects.md#unspenttransactions) ]* - List of all available UTXOs for the wallet.
+`result` : *Array[ [UnspentTransactions](./api-objects.md#unspenttransactions) ]* - List of all available UTXOs on the wallet.
 
 ***Request Body:***
 
@@ -882,7 +889,7 @@ Retrieve all the available UTXOs for a given wallet.
 Broadcast a signed Transfer transaction to the blockchain.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Signed raw transaction.
 
 #### Returns
@@ -909,7 +916,7 @@ Broadcast a signed Transfer transaction to the blockchain.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<tx_id>>",
+    "result": "a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421",
     "id": "wallet_broadcastSignedTransferTx"
 }
 ```
@@ -918,8 +925,8 @@ Broadcast a signed Transfer transaction to the blockchain.
 Restores a `HD` or `HW` type wallet.
 
 #### Parameters
-* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet Request Object.
-* *String* - valid Mnemonic phrase. (eg. `alpha beta charlie .. . . . .  . zeta`)
+* *Object* - [CreateWalletRequest](./api-objects.md#createwalletrequest).
+* *String* - A valid Mnemonic phrase. (eg. `alpha beta charlie .. . . . .  . zeta`)
 
 #### Returns
 `result` : *String* - Wallet authentication token.
@@ -952,10 +959,10 @@ Restores a `HD` or `HW` type wallet.
 
 ### `wallet_restoreBasic`
 
-Restore a `Basic` type wallet. More info [here](https://chain.crypto.com/docs/wallets/client-cli.html#wallet-operations). 
+Restores a `Basic` type wallet. More info [here](https://chain.crypto.com/docs/wallets/client-cli.html#wallet-operations). 
 
 #### Parameters
-* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet Request Object.
+* *Object* - [CreateWalletRequest](./api-objects.md#createwalletrequest).
 * *String* - Valid secp256k1 Private key.
 
 #### Returns
@@ -989,13 +996,13 @@ Restore a `Basic` type wallet. More info [here](https://chain.crypto.com/docs/wa
 ```
 
 ### `wallet_delete`
-Delete a wallet. 
+Deletes an existing wallet. 
 
 #### Parameters
-* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Create Wallet Request Object.
+* *Object* - [CreateWalletRequest](./api-objects.md#createwalletrequest).
 
 #### Returns
-`result` : *null*
+`result` : *Object* - `null`.
 
 
 ***Request Body:***
@@ -1024,13 +1031,13 @@ Delete a wallet.
 ```
 
 ### `wallet_sendToAddress`
-Send a `Transfer` type transaction from a wallet.
+Creates and sends a `Transfer` type transaction.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
-* *String* - Destination/To Address.
-* *Uint64* - Amount to transfer.
-* *Array[ String ]* - List of View Keys.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *String* - Destination Transfer address.
+* *Uint64* - Sending amount.
+* *Array[String]* - List of View Keys or `[]`.
 
 #### Returns
 `result` : *String* - Transaction ID. 
@@ -1068,13 +1075,13 @@ Send a `Transfer` type transaction from a wallet.
 Creates a *unsigned* raw transaction.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
-* *String* - Destination/To Address.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *String* - Destination Transfer address.
 * *Uint64* - Amount to send.
-* *Array[ String ]* - List of View Keys.
+* *Array[String]* - List of View Keys or `[]`.
 
 #### Returns
-`result` : *String* - Unsigned raw transaction hex. 
+`result` : *String* - Encrypted Unsigned raw transaction. 
 
 ***Request Body:***
 
@@ -1110,9 +1117,9 @@ Creates a *unsigned* raw transaction.
 Retrieves all transactions on the wallet.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *UInt32* - Offset value.
-* *Uint32* - Limit - Max number of records to fetch.
+* *Uint32* - Max number of records to fetch.
 * *Boolean* - If `true` returns the list in *latest-first* fashion.
 
 #### Returns
@@ -1229,14 +1236,14 @@ Retrieves all transactions on the wallet.
 ```
 
 ### `wallet_exportTransaction`
-Returns encoded transaction for a `tx_id`.
+Exports a chain transaction.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Transaction ID.
 
 #### Returns
-`result` : *String* - Encoded Raw Transaction.
+`result` : *String* - Encrypted Raw Transaction.
 
 
 ***Request Body:***
@@ -1266,13 +1273,13 @@ Returns encoded transaction for a `tx_id`.
 ```
 
 ### `wallet_export`
-Returns the Wallet details.
+Returns a wallet export object.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
-`result` : *Object* - [WalletInfo](./api-objects.md#walletinfo) - Wallet related details.
+`result` : *Object* - [WalletInfo](./api-objects.md#walletinfo).
 
 ***Request Body:***
 
@@ -1313,11 +1320,11 @@ Returns the Wallet details.
 Imports a Chain transaction exported from [wallet_exportTransaction](#wallet_exportTransaction).
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.
-* *String* - encoded raw transaction.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *String* - Encrypted raw transaction.
 
 #### Returns
-`result` : *Quantity*, String - Amount of the transaction.
+`result` : *Uint64* - Amount of the transaction.
 
 
 ***Request Body:***
@@ -1348,14 +1355,14 @@ Imports a Chain transaction exported from [wallet_exportTransaction](#wallet_exp
 
 ### `wallet_import`
 
-Imports a [WalletInfo](./api-objects.md#walletinfo) Object on the full node. Use [wallet_export](#wallet_export)
+Imports a [WalletInfo](./api-objects.md#walletinfo).
 
 #### Parameters
-* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Create Wallet Request Object.
-* [WalletInfo](./api-objects.md#walletinfo) - *Object* - Wallet Info Object.
+* *Object* - [CreateWalletRequest](./api-objects.md#createwalletrequest).
+* *Object* - [WalletInfo](./api-objects.md#walletinfo).
 
 #### Returns
-`result` : *Data*, String - Wallet authentication token.
+`result` : *String* - Wallet authentication token.
 
 
 ***Request Body:***
@@ -1389,24 +1396,25 @@ Imports a [WalletInfo](./api-objects.md#walletinfo) Object on the full node. Use
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<< wallet_enckey >>",
+    "result": "195b43f64155c101f2efd16a5d89b2b211a5a083618363ab8b11bb264f208a71",
     "id": "wallet_import"
 }
 ```
 
 ## STAKING
-
+:::tip
 All staking related endpoints. Read more about staking key pair and addresses [here](../protocol/serialization.md#staking-key-pair-and-address).
+:::
 
 ###  `staking_state`
-Returns the current state of the Staked Address.
+Returns the current staking state of a address.
 
 #### Parameters
-* *String* - Name of the wallet.
-* *String* - Staked State Address value.
+* *String* - Wallet name.
+* *String* - Staking Address.
 
 #### Returns
-`result` : *Object*, [StakedState](./api-objects.md#stakedstate) - represents the StakedState (account involved in staking).
+`result` : *Object* - [StakedState](./api-objects.md#stakedstate).
 
 ***Request Body:***
 
@@ -1415,7 +1423,7 @@ Returns the current state of the Staked Address.
 	"method": "staking_state",
 	"jsonrpc": "2.0",
 	"params": [
-        "{{name}}",
+        "{{wallet_name}}",
 		"{{staking_address}}"
 	],
 	"id": "staking_state"
@@ -1439,7 +1447,7 @@ Returns the current state of the Staked Address.
 }
 ```
 
-ex: bonded
+* ex: bonded
 ```json
 {
     "jsonrpc": "2.0",
@@ -1475,15 +1483,15 @@ ex: bonded
 
 
 ###  `staking_unbondStake`
-Endpoint used for staking unbonded tokens.
+Releases bonded token on a staking address.
 
 #### Parameters
-* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Staking Address.
-* *String* - Amount to stake (Max value: `Uint64`).
+* *UInt64* - Amount to unbond.
 
 #### Returns
-`result` : *String* - Transaction ID of the blockchain submitted transaction.
+`result` : *String* - Transaction ID.
 
 ***Request Body:***
 
@@ -1515,15 +1523,15 @@ Endpoint used for staking unbonded tokens.
 
 ###  `staking_depositAmountStake`
 
-Depositing the staked amount to a recipient staking address.
+Deposits tokens to a recipient staking address.
 
 #### Parameters
-* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.
-* *String* - To/recipient Address.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *String* - Recipient staking address.
 * *UInt64* - Amount to deposit.
 
 #### Returns
-`result` : *String* - Transaction ID of the blockchain submitted transaction.
+`result` : *String* - Transaction ID.
 
 ***Request Body:***
 
@@ -1536,7 +1544,7 @@ Depositing the staked amount to a recipient staking address.
 			"name": "{{wallet_name}}",
 			"enckey": "{{wallet_enckey}}"
 		},
-		"{{recipient_address}}",
+		"{{recipient_staking_address}}",
 		"500000000000000000"
 	],
 	"id": "staking_depositAmountStake"
@@ -1547,23 +1555,23 @@ Depositing the staked amount to a recipient staking address.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<tx_id>>",
+    "result": "ddd8d774ddc79e70b1fa08eb91874a6e58fadbf90920a5669d367caf7ecfa3a0",
     "id": "staking_depositAmountStake"
 }
 ```
 
 ###  `staking_withdrawAllUnbondedStake`
 
-Withdraws all unbonded tokens to a destination transfer address.
+Withdraws all unbonded tokens from a staking address to a destination transfer address.
 
 #### Parameters
-* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.
-* *String* - `from` Address.
-* *String* - `to` Address.
-* *Array* - List of view keys.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *String* - Source *Staking* type Address.
+* *String* - Destination *transfer* type Address.
+* *Array [String]* - List of view keys or `[]`.
 
 #### Returns
-`result` : *String* - Transaction ID of the blockchain submitted transaction.
+`result` : *String* - Transaction ID.
 
 
 ***Request Body:***
@@ -1577,9 +1585,9 @@ Withdraws all unbonded tokens to a destination transfer address.
 			"name": "{{wallet_name}}",
 			"enckey": "{{wallet_enckey}}"
 		},
-		"{{from_address}}",
-		"{{to_address}}",
-		[ "{{Optional_view_key_1}}",  "{{Optional_view_key_1}}" ]
+		"0x2dfde2178daa679508828242119dcf2114038ea8",
+		"dcro1kxl8xy6k8twhes6j972mrzurfvgms0e549z852cgqyl796jss89sadlmgd",
+		[]
 	],
 	"id": "staking_withdrawAllUnbondedStake"
 }
@@ -1589,21 +1597,21 @@ Withdraws all unbonded tokens to a destination transfer address.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<tx_id>>",
+    "result": "ddd8d774ddc79e70b1fa08eb91874a6e58fadbf90920a5669d367caf7ecfa3a0",
     "id": "staking_withdrawAllUnbondedStake"
 }
 ```
 
 ###  `staking_depositStake`
-Deposit staked tokens to an address.
+Uses specified UTXO to deposit tokens on a destination staking address.
 
 #### Parameters
-* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.
-* *String* - `to` Address.
-* *Array[ [TxoPointer](./api-objects.md#txopointer) ]* - List of UTXOs.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *String* - Destination staking type address.
+* *Array[ [TxoPointer](./api-objects.md#txopointer) ]* - UTXO Input.
 
 #### Returns
-`result` : *String* - Transaction ID of the blockchain submitted transaction.
+`result` : *String* - Transaction ID.
 
 ***Request Body:***
 
@@ -1616,10 +1624,10 @@ Deposit staked tokens to an address.
 			"name": "{{wallet_name}}",
 			"enckey": "{{wallet_enckey}}"
 		},
-		"{{staking_address}}",
+		"0x2dfde2178daa679508828242119dcf2114038ea8",
 		[
 			{
-				"id": "5c40805013482d6c293a09b0f6aa532cbd338bf127c0954f1960d608262b5115",
+				"id": "64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd",
 				"index": 0
 			}
 		]
@@ -1632,20 +1640,20 @@ Deposit staked tokens to an address.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<tx_id>>",
+    "result": "f1c2b4007911b698d0edac10249e5f5364d93f485b713cb188b9f0b62fe4f68a",
     "id": "staking_depositStake"
 }
 ```
 
 ###  `staking_unjail`
-Initiate the unjailing process for a `jailed` staking address.
+Initiates the unjailing process for a `jailed` staking address.
 
 #### Parameters
-* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Address to be unjailed.
 
 #### Returns
-`result` : *String* - Transaction ID of the blockchain submitted transaction.
+`result` : *String* - Transaction ID.
 
 ***Request Body:***
 
@@ -1678,14 +1686,14 @@ Initiate the unjailing process for a `jailed` staking address.
 Sends a `node-join` request to participate as a validator node in the network.
 
 #### Parameters
-* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Validator Node Name (Display).
-* *String* - Validator Public key.
+* *String* - Validator Public key. Read more [here](../getting-started/thaler-testnet.md#step-4-b-4-create-a-validator-key-pair).
 * *String* - Staking address.
 * *String* - KeyPackage data.
 
 #### Returns
-`result` : *String* - Transaction ID of the blockchain submitted transaction.
+`result` : *String* - Transaction ID.
 
 ***Request Body:***
 
@@ -1718,20 +1726,20 @@ Sends a `node-join` request to participate as a validator node in the network.
 
 ## SYNC
 :::tip
-Wallet synchronization available methods.
+Wallet synchronization methods.
 :::
 
 ###  `sync`
-Starts the `sync` process on the wallet.
+Starts the `sync` process.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
-* [SyncRequest](./api-objects.md#syncrequest) - *Object* - SyncRequest parameters.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *Object* - [SyncRequest](./api-objects.md#syncrequest).
 
 #### Returns
 `result` : *Object* - [RunSyncResult](./api-objects.md#runsyncresult)
 
-***Request Body***
+***Request Body:***
 
 ```json       
 {
@@ -1758,7 +1766,7 @@ Starts the `sync` process on the wallet.
     "jsonrpc": "2.0",
     "result": {
         "message": "started sync wallet",
-        "name": "hitesh",
+        "name": "default",
         "progress": {
             "current": 0,
             "end": 0,
@@ -1777,12 +1785,12 @@ Starts the `sync` process on the wallet.
 Returns current progress of Wallet `sync` process.
 
 #### Parameters
-[WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
 `result` : *Object* - [RunSyncProgressResult](./api-objects.md#runsyncprogressresult)
 
-***Request Body***
+***Request Body:***
 
 ```json       
 {
@@ -1805,8 +1813,8 @@ Returns current progress of Wallet `sync` process.
 	"result": {
         "current": 205880,
         "end": 660789,
-        "message": "sync {{wallet_name}} progress 15.003485 percent  205880 125580~660789",
-        "name": "{{wallet_name}}",
+        "message": "sync default progress 15.003485 percent  205880 125580~660789",
+        "name": "default",
         "percent": 15.003484725952148,
         "start": 125580
     },
@@ -1816,15 +1824,15 @@ Returns current progress of Wallet `sync` process.
 
 ###  `sync_stop`
 
-Stop the `sync` process (if any).
+Stops a running `sync` process.
 
 #### Parameters
-[WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Information.
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
 `result` : *Object* - `null`
 
-***Request Body***
+***Request Body:***
 
 ```json       
 {
@@ -1849,19 +1857,19 @@ Stop the `sync` process (if any).
 }
 ```
 
-## MULTISIG
+## MULTISIG (W.I.P)
 :::tip
-All multisignature related RPC Methods.
+All multisignature Methods.
 :::
 
 ### `multiSig_newAddressPublicKey`
-DEPRECATED - Creates a new transfer type address.
+Creates a new transfer type address.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
+* *Object* -  [WalletRequest](./api-objects.md#walletrequest).
  
 #### Returns
-`result` : *String* - 
+`result` : *String* - secp256k1 Public compressed key.
 
 ***Request Body:***
 
@@ -1890,13 +1898,13 @@ DEPRECATED - Creates a new transfer type address.
 
 
 ### `multiSig_addNonce`
-Adds a nonce to the multisig wallet session.
+Adds other party's nonce to the multisig wallet session.
 
 #### Parameters
 * *String* - multisig session id.
-* *String* - Wallet authentication key.
-* *String* - Nonce value retrieved from [multiSig_nonce](#multiSig_nonce).
-* *String* - Public key of the account.
+* *String* - Wallet authentication token.
+* *String* - Other party's Nonce value.
+* *String* - Other party's Public key.
  
 #### Returns
 `result` : *Object* - `null`
@@ -1928,13 +1936,13 @@ Adds a nonce to the multisig wallet session.
 
 ### `multiSig_addNonceCommitment`
 
-Commits a nonce for a multisig transaction.
+Adds other party's nonce commitment value to current session.
 
 #### Parameters
-* *String* - Session ID retrieved after creating a new session.
+* *String* - Session ID.
 * *String* - Wallet authentication key.
-* *String* - Value retrieved from [multiSig_nonceCommitment](#multiSig_nonceCommitment) 
-* *String* - Signer's public key
+* *String* - Other party's nonce commitment value.
+* *String* - Other party's public key.
  
 #### Returns
 `result` : *Object* - `null`
@@ -1965,18 +1973,18 @@ Commits a nonce for a multisig transaction.
 ```
 
 ### `multiSig_createAddress`
-DEPRECATED - It can be used to create a `m-of-n` multisig wallet. Where `m` is the minimum number of signatures required, `n` is the total number of parties. And `n` has to be always greater than or equal to  `m` (i.e **`n>=m`**)
+It can be used to create a `m-of-n` multisig wallet. Where `m` is the minimum number of signatures required, `n` is the total number of parties. And `n` has to be always greater than or equal to  `m` (i.e **`n>=m`**).
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
-* *Array[ String ]* - An array of valid participating public keys
-* *String* - Requestor's public key
-* *Number* - Positive integer representing the number of minimum signatures required.  
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *Array[String]* - Participating public keys.
+* *String* - Self public key.
+* *UInt32* - Positive integer representing the number of minimum signatures required.  
 
 #### Returns
-`result` : *String* - Multisig Address.
+`result` : *String* - Generated Multisig Address.
 
-***Request Body***
+***Request Body:***
 
 ```json      
 {
@@ -2009,13 +2017,13 @@ DEPRECATED - It can be used to create a `m-of-n` multisig wallet. Where `m` is t
 ```
 
 ### `multiSig_listAddressPublicKeys`
-DEPRECATED - Lists all the public keys belonging to a wallet.
+Lists all the public keys.
 
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest).
 
 #### Returns
-`result` : *Array[ String ]* - List of all available `public_key` available on the requested wallet.
+`result` : *Array[String]* - List of all available public keys.
 
 ***Request Body:***
 
@@ -2047,19 +2055,18 @@ DEPRECATED - Lists all the public keys belonging to a wallet.
 ```
 
 
-
 ### `multiSig_newSession`
 
-Creates a new session ID for a multiSig transaction.
+Creates a new Session ID for a multiSig transaction.
 
 #### Parameters
-* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.
-* *String* - Message to pass
-* *Array[ String ]* - An array of valid participating public keys
-* *String* - Signer's public key
+* *Object* - [WalletRequest](./api-objects.md#walletrequest).
+* *String* - Transaction ID created using [transaction_createRaw](#transaction_createRaw).
+* *Array[String]* - Participating public keys.
+* *String* - Self public key.
 
 #### Returns
-`result` : *String* - session id (To be used as `mulisig_session_id`).
+`result` : *String* - Generated Multisig Session ID.
 
 ***Request Body:***
 
@@ -2093,11 +2100,11 @@ Creates a new session ID for a multiSig transaction.
 ```
 
 ### `multiSig_nonce`
-Requests a new nonce for the multisig transaction.
+Retrieves current nonce value.
 
 #### Parameters
-* *String* - Session ID retrieved after creating a new session.
-* *String* - Wallet authentication key.
+* *String* - Session ID.
+* *String* - Wallet authentication token.
  
 #### Returns
 `result` : *String* - Serialised nonce value.
@@ -2126,11 +2133,11 @@ Requests a new nonce for the multisig transaction.
 ```
 
 ### `multiSig_nonceCommitment`
-Creates a new nonce commitment for a `multisig_session_id`.
+Retrieves nonce commitment value.
 
 #### Parameters
-* *String* - multisig Session ID obtained from [multiSig_newSession](#multiSig_newSession).
-* *String* - Wallet ENC Key.
+* *String* - Session ID.
+* *String* - Wallet authentication token.
 
 #### Returns
 `result` : *String* - Serialised nonce commitment value.
@@ -2160,11 +2167,11 @@ Creates a new nonce commitment for a `multisig_session_id`.
 
 ### `multiSig_partialSign`
 
-Initiate a new multisig partial signature for a multisig_session.
+Retrieves the partial signature value.
 
 #### Parameters
-* *String* - Session ID retrieved after creating a new session.
-* *String* - Wallet authentication key.
+* *String* - Session ID.
+* *String* - Wallet authentication token.
  
 #### Returns
 `result` : *String* - Partial sign serialised value.
@@ -2195,13 +2202,13 @@ Initiate a new multisig partial signature for a multisig_session.
 
 ### `multiSig_addPartialSignature`
 
-Adds a partial signature to a multisig_transaction.
+Adds other party's partial signature.
 
 #### Parameters
-* *String* - Session ID retrieved after creating a new session.
-* *String* - Wallet authentication key.
-* *String* - Partial signature value retrieved from [multiSig_partialSign](#multiSig_partialSign) 
-* *String* - Signer's public key
+* *String* - Session ID.
+* *String* - Wallet authentication token.
+* *String* - Other party's Partial signature value. 
+* *String* - Other party's public key.
  
 #### Returns
 `result` : *Object* - `null`.
@@ -2232,14 +2239,14 @@ Adds a partial signature to a multisig_transaction.
 ```
 
 ### `multiSig_signature`
-Start applying the multisig signature process.
+Retrieves the signature value.
 
 #### Parameters
-* *String* - Session ID retrieved from [multiSig_newSession](#multiSig_newSession).
-* *String* - Wallet authentication key.
+* *String* - Session ID.
+* *String* - Wallet authentication token.
  
 #### Returns
-`result` : *String* - multisig_Signature value.
+`result` : *String* - Serialised multisig signature.
 
 ***Request Body:***
 
@@ -2266,12 +2273,12 @@ Start applying the multisig signature process.
 
 
 ### `multiSig_broadcastWithSignature`
-Signs a provided unsigned transaction and broadcast it to the blockchain.
+Signs and broadcasts a multisig transaction.
 
 #### Parameters
-* *Object* - [WalletRequest](./api-objects.md##WalletRequest)
-* *String* - Session ID retrieved from [multiSig_newSession](#multiSig_newSession).
-* *Object* - [Tx](./api-objects.md#tx) - Unsigned TX object. 
+* *Object* - [WalletRequest](./api-objects.md##WalletRequest).
+* *String* - Session ID.
+* *Object* - [Tx](./api-objects.md#tx). 
  
 #### Returns
 `result` : *String* - Transaction ID.
@@ -2283,8 +2290,12 @@ Signs a provided unsigned transaction and broadcast it to the blockchain.
     "method": "multiSig_broadcastWithSignature",
     "jsonrpc": "2.0",
     "params": [
-    	"{{session_id}}",
-        "{{wallet_enckey}}"
+    	{
+			"name": "{{wallet_name}}",
+			"enckey": "{{wallet_enckey}}"
+		},
+        "{{session_id}}",
+        "{{serialised_Tx_Object}}"
     ],
     "id": "multiSig_broadcastWithSignature"
 }
@@ -2300,7 +2311,9 @@ Signs a provided unsigned transaction and broadcast it to the blockchain.
 ```
 
 ## TRANSACTION CREATOR
-
+:::tip
+Transaction methods.
+:::
 ### `transaction_createRaw`
 
 Creates a unsigned [RawTransaction](./api-objects.md#rawtransaction) with the inputs provided.
@@ -2308,7 +2321,7 @@ Creates a unsigned [RawTransaction](./api-objects.md#rawtransaction) with the in
 #### Parameters
 * *Array[ [TxoPointer](./api-objects.md#txopointer) ]* - UTXO  inputs.
 * *Array[ [TxOut](./api-objects.md#txout) ]* - Expected Outputs.
-* *Array* - List of view keys.
+* *Array[String]* - List of view keys.
  
 #### Returns
 `result` : *Object* - [RawTransaction](./api-objects.md#rawtransaction)

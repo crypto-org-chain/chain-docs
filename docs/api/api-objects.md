@@ -52,7 +52,6 @@ Returns on successful call for ().
 | **start**             |  *Integer*, UnsignedInt64 | block number when the `sync` process started    |
 
 ## StatusResponse
-Returned on status query.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
@@ -61,7 +60,6 @@ Returned on status query.
 | **validator_info**             | *Object*, [ValidatorInfo](#ValidatorInfo)  | Refer to the Object details. |
 
 ## SyncInfo
-Returned on status query.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
@@ -72,7 +70,6 @@ Returned on status query.
 | **catching_up**             | *Boolean* | Are we catching up witht the network?  |
 
 ## NodeInfo
-Returned on status query.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
@@ -88,7 +85,6 @@ Returned on status query.
 | **protocol_version**             | *Object*, [ProtocolVersionInfo](#ProtocolVersionInfo) | Protocol version information |
 
 ## ValidatorInfo
-Returned on status query.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|

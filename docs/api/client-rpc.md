@@ -44,9 +44,9 @@ Returns the current details of the network.
 
 #### Returns
 
-`result` : *Object* - [StatusResponse](./api-objects.md#statusresponse) - target node details.
+`result` : *Object* - [StatusResponse](./api-objects.md#statusresponse).
 
-***Request Body***
+***Request Body:***
 
 ```json
 {
@@ -57,7 +57,7 @@ Returns the current details of the network.
 }
 ```
 
-***Response***
+***Response Body:***
 
 ```json       
 {
@@ -123,7 +123,7 @@ Returns the Crypto.com chain's genesis information. Read more [here](https://cha
 }
 ```
 
-***Response***
+***Response Body:***
 
 ```json       
 {
@@ -331,7 +331,7 @@ Creates a Staking address.
 #### Returns
 `result` : *String* - Public address for staking account.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -347,7 +347,7 @@ Creates a Staking address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -368,7 +368,7 @@ Creates multiple staking address in a single call.
 #### Returns
 `result` : *UInt32* - Number of staking addresses created.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -385,7 +385,7 @@ Creates multiple staking address in a single call.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -406,7 +406,7 @@ Imports a watch only staking address.
 #### Returns
 `result` : *String* - `Address` Generated Watch staking address.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -423,7 +423,7 @@ Imports a watch only staking address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",    
@@ -442,7 +442,7 @@ Creates a Transfer address.
 #### Returns
 `result` : *String* - Transfer address generated as per CRO chain format.
  
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -458,7 +458,7 @@ Creates a Transfer address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -477,7 +477,7 @@ Creates multiple `Transfer` type addresses in batch.
 #### Returns
 `result` : *UInt32* - Number of `Transfer` addresses created successfully.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -494,7 +494,7 @@ Creates multiple `Transfer` type addresses in batch.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -516,7 +516,7 @@ Imports a watch only transfer address.
 #### Returns
 `result` : *String* - Generated Watch Transfer address.
  
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -533,7 +533,7 @@ Imports a watch only transfer address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -558,7 +558,7 @@ Keep the token in a safe place because it can unlock any authorized wallet metho
 `result` : *String* - Wallet authentication token.
 
  
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -574,7 +574,7 @@ Keep the token in a safe place because it can unlock any authorized wallet metho
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -593,7 +593,7 @@ Retrieve wallet's View key pair details. Read more about a view key [here](../pr
 #### Returns
 `result` : *String* - `private` or `public` key.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -611,7 +611,7 @@ Retrieve wallet's View key pair details. Read more about a view key [here](../pr
 ```
 
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -630,7 +630,7 @@ Retrieves all available wallet names.
 #### Returns
 `result` : *Array* - List of all the wallet names created (*case-sensitive*).
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -642,7 +642,7 @@ Retrieves all available wallet names.
 ```
 
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -668,7 +668,7 @@ Retrieve all the Public keys attached to the wallet.
 `result` : *Array[ String ]* - List of all available public keys.
 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -685,7 +685,7 @@ Retrieve all the Public keys attached to the wallet.
 ```
 
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -718,7 +718,7 @@ Retrieve all the Staking addresses available.
 #### Returns
 `result` : *Array[ String ]* - List of all Staking addresses.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -738,7 +738,7 @@ Retrieve all the Staking addresses available.
 ```
 
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -768,7 +768,7 @@ Retrieve all the Transfer addresses available on the wallet.
 #### Returns
 `result` : *Array[ String ]* - List of all available Transfer addresses.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -788,7 +788,7 @@ Retrieve all the Transfer addresses available on the wallet.
 ```
 
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -818,7 +818,7 @@ Retrieve all the available UTXOs for a given wallet.
 #### Returns
 `result` : *Array[ [UnspentTransactions](./api-objects.md#unspenttransactions) ]* - List of all available UTXOs for the wallet.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -834,7 +834,7 @@ Retrieve all the available UTXOs for a given wallet.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -888,7 +888,7 @@ Broadcast a signed Transfer transaction to the blockchain.
 #### Returns
 `result` : *String* - Transaction ID.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -905,7 +905,7 @@ Broadcast a signed Transfer transaction to the blockchain.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -924,7 +924,7 @@ Restores a `HD` or `HW` type wallet.
 #### Returns
 `result` : *String* - Wallet authentication token.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -941,7 +941,7 @@ Restores a `HD` or `HW` type wallet.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -962,7 +962,7 @@ Restore a `Basic` type wallet. More info [here](https://chain.crypto.com/docs/wa
 `result` : *String* - Wallet authentication token.
 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -979,7 +979,7 @@ Restore a `Basic` type wallet. More info [here](https://chain.crypto.com/docs/wa
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -998,7 +998,7 @@ Delete a wallet.
 `result` : *null*
 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1014,7 +1014,7 @@ Delete a wallet.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1036,7 +1036,7 @@ Send a `Transfer` type transaction from a wallet.
 `result` : *String* - Transaction ID. 
 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1055,7 +1055,7 @@ Send a `Transfer` type transaction from a wallet.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1076,7 +1076,7 @@ Creates a *unsigned* raw transaction.
 #### Returns
 `result` : *String* - Unsigned raw transaction hex. 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1095,7 +1095,7 @@ Creates a *unsigned* raw transaction.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1118,7 +1118,7 @@ Retrieves all transactions on the wallet.
 #### Returns
 `result` : *Array[ [TransactionChange](./api-objects.md#transactionchange) ]* - List of all transactions. 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1137,7 +1137,7 @@ Retrieves all transactions on the wallet.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1239,7 +1239,7 @@ Returns encoded transaction for a `tx_id`.
 `result` : *String* - Encoded Raw Transaction.
 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1256,7 +1256,7 @@ Returns encoded transaction for a `tx_id`.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1274,7 +1274,7 @@ Returns the Wallet details.
 #### Returns
 `result` : *Object* - [WalletInfo](./api-objects.md#walletinfo) - Wallet related details.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1290,7 +1290,7 @@ Returns the Wallet details.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1320,7 +1320,7 @@ Imports a Chain transaction exported from [wallet_exportTransaction](#wallet_exp
 `result` : *Quantity*, String - Amount of the transaction.
 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1337,7 +1337,7 @@ Imports a Chain transaction exported from [wallet_exportTransaction](#wallet_exp
 }
 ```
 @ToDo
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1358,7 +1358,7 @@ Imports a [WalletInfo](./api-objects.md#walletinfo) Object on the full node. Use
 `result` : *Data*, String - Wallet authentication token.
 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1385,7 +1385,7 @@ Imports a [WalletInfo](./api-objects.md#walletinfo) Object on the full node. Use
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1408,7 +1408,7 @@ Returns the current state of the Staked Address.
 #### Returns
 `result` : *Object*, [StakedState](./api-objects.md#stakedstate) - represents the StakedState (account involved in staking).
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1421,7 +1421,7 @@ Returns the current state of the Staked Address.
 	"id": "staking_state"
 }
 ```
-***Response Body***
+***Response Body:***
 * ex: unbonded
 ```json
 {
@@ -1485,7 +1485,7 @@ Endpoint used for staking unbonded tokens.
 #### Returns
 `result` : *String* - Transaction ID of the blockchain submitted transaction.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1503,7 +1503,7 @@ Endpoint used for staking unbonded tokens.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1525,7 +1525,7 @@ Depositing the staked amount to a recipient staking address.
 #### Returns
 `result` : *String* - Transaction ID of the blockchain submitted transaction.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1543,7 +1543,7 @@ Depositing the staked amount to a recipient staking address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1566,7 +1566,7 @@ Withdraws all unbonded tokens to a destination transfer address.
 `result` : *String* - Transaction ID of the blockchain submitted transaction.
 
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1585,7 +1585,7 @@ Withdraws all unbonded tokens to a destination transfer address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1605,7 +1605,7 @@ Deposit staked tokens to an address.
 #### Returns
 `result` : *String* - Transaction ID of the blockchain submitted transaction.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1628,7 +1628,7 @@ Deposit staked tokens to an address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1647,7 +1647,7 @@ Initiate the unjailing process for a `jailed` staking address.
 #### Returns
 `result` : *String* - Transaction ID of the blockchain submitted transaction.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1664,7 +1664,7 @@ Initiate the unjailing process for a `jailed` staking address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1687,7 +1687,7 @@ Sends a `node-join` request to participate as a validator node in the network.
 #### Returns
 `result` : *String* - Transaction ID of the blockchain submitted transaction.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1707,7 +1707,7 @@ Sends a `node-join` request to participate as a validator node in the network.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1752,7 +1752,7 @@ Starts the `sync` process on the wallet.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1798,7 +1798,7 @@ Returns current progress of Wallet `sync` process.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1840,7 +1840,7 @@ Stop the `sync` process (if any).
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1863,7 +1863,7 @@ DEPRECATED - Creates a new transfer type address.
 #### Returns
 `result` : *String* - 
 
-***Body:***
+***Request Body:***
 
 ```json  
 {
@@ -1879,7 +1879,7 @@ DEPRECATED - Creates a new transfer type address.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1901,7 +1901,7 @@ Adds a nonce to the multisig wallet session.
 #### Returns
 `result` : *Object* - `null`
 
-***Body:***
+***Request Body:***
 
 ```json  
 {
@@ -1917,7 +1917,7 @@ Adds a nonce to the multisig wallet session.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1939,7 +1939,7 @@ Commits a nonce for a multisig transaction.
 #### Returns
 `result` : *Object* - `null`
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -1955,7 +1955,7 @@ Commits a nonce for a multisig transaction.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -1999,7 +1999,7 @@ DEPRECATED - It can be used to create a `m-of-n` multisig wallet. Where `m` is t
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2017,7 +2017,7 @@ DEPRECATED - Lists all the public keys belonging to a wallet.
 #### Returns
 `result` : *Array[ String ]* - List of all available `public_key` available on the requested wallet.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -2033,7 +2033,7 @@ DEPRECATED - Lists all the public keys belonging to a wallet.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2061,7 +2061,7 @@ Creates a new session ID for a multiSig transaction.
 #### Returns
 `result` : *String* - session id (To be used as `mulisig_session_id`).
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -2083,7 +2083,7 @@ Creates a new session ID for a multiSig transaction.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2102,7 +2102,7 @@ Requests a new nonce for the multisig transaction.
 #### Returns
 `result` : *String* - Serialised nonce value.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -2116,7 +2116,7 @@ Requests a new nonce for the multisig transaction.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2135,7 +2135,7 @@ Creates a new nonce commitment for a `multisig_session_id`.
 #### Returns
 `result` : *String* - Serialised nonce commitment value.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -2149,7 +2149,7 @@ Creates a new nonce commitment for a `multisig_session_id`.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2169,7 +2169,7 @@ Initiate a new multisig partial signature for a multisig_session.
 #### Returns
 `result` : *String* - Partial sign serialised value.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -2183,7 +2183,7 @@ Initiate a new multisig partial signature for a multisig_session.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2206,7 +2206,7 @@ Adds a partial signature to a multisig_transaction.
 #### Returns
 `result` : *Object* - `null`.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -2222,7 +2222,7 @@ Adds a partial signature to a multisig_transaction.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2241,7 +2241,7 @@ Start applying the multisig signature process.
 #### Returns
 `result` : *String* - multisig_Signature value.
 
-***Body:***
+***Request Body:***
 
 ```json       
 {
@@ -2255,7 +2255,7 @@ Start applying the multisig signature process.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2276,7 +2276,7 @@ Signs a provided unsigned transaction and broadcast it to the blockchain.
 #### Returns
 `result` : *String* - Transaction ID.
 
-***Body: ***
+***Request Body:***
 
 ```json       
 {
@@ -2290,7 +2290,7 @@ Signs a provided unsigned transaction and broadcast it to the blockchain.
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
@@ -2313,7 +2313,7 @@ Creates a unsigned [RawTransaction](./api-objects.md#rawtransaction) with the in
 #### Returns
 `result` : *Object* - [RawTransaction](./api-objects.md#rawtransaction)
 
-***Body:***
+***Request Body:***
 
 ```json  
 {
@@ -2348,7 +2348,7 @@ Creates a unsigned [RawTransaction](./api-objects.md#rawtransaction) with the in
 }
 ```
 
-***Response Body***
+***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",

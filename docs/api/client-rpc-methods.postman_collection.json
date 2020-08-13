@@ -232,7 +232,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"method\": \"wallet_createWatchStakingAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t},\n    \"{{your_public_key}}\"\n    ],\n\t\"id\": \"wallet_createWatchStakingAddress\"\n}"
+							"raw": "{\n\t\"method\": \"wallet_createWatchStakingAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t},\n    \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\"\n    ],\n\t\"id\": \"wallet_createWatchStakingAddress\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
@@ -322,7 +322,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"method\": \"wallet_createWatchTransferAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t},\n    \"{{your_public_key}}\"\n    ],\n\t\"id\": \"wallet_createWatchTransferAddress\"\n}"
+							"raw": "{\n\t\"method\": \"wallet_createWatchTransferAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t},\n    \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\"\n    ],\n\t\"id\": \"wallet_createWatchTransferAddress\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
@@ -924,7 +924,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"method\": \"staking_state\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        \"default\",\n\t\t\"0x45c1851c2f0dc6138935857b9e23b173185fea15\"\n\t],\n\t\"id\": \"staking_state\"\n}"
+							"raw": "{\n\t\"method\": \"staking_state\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        \"default\",\n\t\t\"0x2dfde2178daa679508828242119dcf2114038ea8\"\n\t],\n\t\"id\": \"staking_state\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
@@ -984,7 +984,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"method\": \"staking_depositAmountStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"{{recipient_address}}\",\n\t\t\"500000000000000000\"\n\t],\n\t\"id\": \"staking_depositAmountStake\"\n}"
+							"raw": "{\n\t\"method\": \"staking_depositAmountStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"0x2dfde2178daa679508828242119dcf2114038ea8\",\n\t\t\"5000000000\"\n\t],\n\t\"id\": \"staking_depositAmountStake\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
@@ -1044,13 +1044,13 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"method\": \"staking_depositStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"passphrase\": \"{{wallet_passphrase}}\"\n\t\t},\n\t\t\"{{staking_address}}\",\n\t\t[\n\t\t\t{\n\t\t\t\t\"id\": \"5c40805013482d6c293a09b0f6aa532cbd338bf127c0954f1960d608262b5115\",\n\t\t\t\t\"index\": 0\n\t\t\t}\n\t\t]\n\t],\n\t\"id\": \"staking_depositStake\"\n}"
+							"raw": "{\n\t\"method\": \"staking_depositStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"0x2dfde2178daa679508828242119dcf2114038ea8\",\n\t\t[\n\t\t\t{\n\t\t\t\t\"id\": \"64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd\",\n\t\t\t\t\"index\": 0\n\t\t\t}\n\t\t]\n\t],\n\t\"id\": \"staking_depositStake\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:{{client_rpc_port}}/",
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"{{client_rpc_host}}"
 							],
 							"port": "{{client_rpc_port}}",
 							"path": [
@@ -1269,97 +1269,7 @@
 			"name": "multisig",
 			"item": [
 				{
-					"name": "multiSig_addNonce",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"method\": \"multiSig_addNonce\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey or SecKey}}\",\n        \"{{nonce_value}}\",\n        \"02b2a02cb8eacc6a0602a976b6a2dcd6924b68120b42c9843cdd6191606d0a1350\"\n    ],\n    \"id\": \"multiSig_addNonce\"\n}"
-						},
-						"url": {
-							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
-							"protocol": "http",
-							"host": [
-								"{{client_rpc_host}}"
-							],
-							"port": "{{client_rpc_port}}",
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "multiSig_addNonceCommitment",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"method\": \"multiSig_addNonceCommitment\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_passphrase}}\",\n        \"{{nonce commitment value}}\",\n        \"{{merchant_public_key}}\"\n    ],\n    \"id\": \"multiSig_addNonceCommitment\"\n}"
-						},
-						"url": {
-							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
-							"protocol": "http",
-							"host": [
-								"{{client_rpc_host}}"
-							],
-							"port": "{{client_rpc_port}}",
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DEPRECATED - multiSig_createAddress",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"method\": \"multiSig_createAddress\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        [\n        \t\"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n            \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\",\n            \"0320cfdfbca075e693bee5e21c03807f53b614ef1102ac4fd3ed90e64fbc53e13f\"\n        ],\n        \"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n        2 \n    ],\n    \"id\": \"multiSig_createAddress\"\n}"
-						},
-						"url": {
-							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
-							"protocol": "http",
-							"host": [
-								"{{client_rpc_host}}"
-							],
-							"port": "{{client_rpc_port}}",
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DEPRECATED - multiSig_newAddressPublicKey",
+					"name": "multiSig_newAddressPublicKey",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1389,7 +1299,7 @@
 					"response": []
 				},
 				{
-					"name": "DEPRECATED - multiSig_listAddressPublicKeys",
+					"name": "multiSig_listAddressPublicKeys",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1419,7 +1329,7 @@
 					"response": []
 				},
 				{
-					"name": "multiSig_newSession",
+					"name": "multiSig_createAddress",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1432,7 +1342,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"method\": \"multiSig_newSession\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        \"907253450147293b98764987f73163d4ab8e33df1000665c81cefe2529bccb8f\",\n        [\n        \t\"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n            \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\"\n        ],\n        \"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\"\n    ],\n    \"id\": \"multiSig_newSession\"\n}"
+							"raw": "{\n    \"method\": \"multiSig_createAddress\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        [\n        \t\"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n            \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\",\n            \"0320cfdfbca075e693bee5e21c03807f53b614ef1102ac4fd3ed90e64fbc53e13f\"\n        ],\n        \"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n        2 \n    ],\n    \"id\": \"multiSig_createAddress\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
@@ -1449,20 +1359,20 @@
 					"response": []
 				},
 				{
-					"name": "multiSig_nonce",
+					"name": "multiSig_newSession",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"method\": \"multiSig_nonce\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_nonce\"\n}"
+							"raw": "{\n    \"method\": \"multiSig_newSession\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        \"907253450147293b98764987f73163d4ab8e33df1000665c81cefe2529bccb8f\",\n        [\n        \t\"02a732fb6c34812ea5a46547344d63a360e22d0c4815c837af82a09de7b7fd9797\",\n            \"02b57da2eea7b1415ebbf55e92f4eb4a3d57de38709383b57187e1b2cf2bb5cd93\",\n            \"038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675\"\n        ],\n        \"02a732fb6c34812ea5a46547344d63a360e22d0c4815c837af82a09de7b7fd9797\"\n    ],\n    \"id\": \"multiSig_newSession\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
@@ -1509,6 +1419,96 @@
 					"response": []
 				},
 				{
+					"name": "multiSig_addNonceCommitment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_addNonceCommitment\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"d36e039866c62683511d09a488cd9912d4667650c57ed9a07ba07e631bc1046e\",\n        \"038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675\"\n    ],\n    \"id\": \"multiSig_addNonceCommitment\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_nonce",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_nonce\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_nonce\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_addNonce",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_addNonce\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"4c50a36e804424f4df4e62958a08ec641846edc3374b499fc2bde81b20a4124b\",\n        \"02b2a02cb8eacc6a0602a976b6a2dcd6924b68120b42c9843cdd6191606d0a1350\"\n    ],\n    \"id\": \"multiSig_addNonce\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "multiSig_partialSign",
 					"request": {
 						"method": "POST",
@@ -1522,7 +1522,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"method\": \"multiSig_partialSign\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{multisig_session_id}}\",\n        \"{{wallet_enc_key}}\"\n    ],\n    \"id\": \"multiSig_partialSign\"\n}"
+							"raw": "{\n    \"method\": \"multiSig_partialSign\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_partialSign\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
@@ -1552,7 +1552,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"method\": \"multiSig_addPartialSignature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_passphrase}}\",\n        \"{{partial signature value}}\",\n        \"{{signer public key}}\"\n    ],\n    \"id\": \"multiSig_addPartialSignature\"\n}"
+							"raw": "{\n    \"method\": \"multiSig_addPartialSignature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"bb9ef8f4475d687fdfdca6d0a533487150df485caa68e379be10c54c7191f053\",\n        \"038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675\"\n    ],\n    \"id\": \"multiSig_addPartialSignature\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
@@ -1612,7 +1612,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"method\": \"multiSig_broadcastWithSignature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_broadcastWithSignature\"\n}"
+							"raw": "{\n    \"method\": \"multiSig_broadcastWithSignature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        {{session_id}},\n        \"bfc34de977886baef8163ba1cba3cdbe32a9d2911eab7a4f64b7bae122fd91e732dceadcd618397f9f95f471ef99d9567d401f48a0a969f5ba8d92cbb4494e77\"\n    ],\n    \"id\": \"multiSig_broadcastWithSignature\"\n}"
 						},
 						"url": {
 							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",

@@ -1857,19 +1857,21 @@ Stops a running `sync` process.
 }
 ```
 
-## MULTISIG (W.I.P)
+## MULTISIG
 :::tip
-All multisignature Methods.
+All multisignature related  methods.
+
+These methods are marked *EXPERIMENTAL*, please enable them before using.
 :::
 
 ### `multiSig_newAddressPublicKey`
-Creates a new transfer type address.
+Creates a new public key.
 
 #### Parameters
 * *Object* -  [WalletRequest](./api-objects.md#walletrequest).
  
 #### Returns
-`result` : *String* - secp256k1 Public compressed key.
+`result` : *String* - compressed secp256k1 Public key.
 
 ***Request Body:***
 
@@ -1940,7 +1942,7 @@ Adds other party's nonce commitment value to current session.
 
 #### Parameters
 * *String* - Session ID.
-* *String* - Wallet authentication key.
+* *String* - Wallet authentication token.
 * *String* - Other party's nonce commitment value.
 * *String* - Other party's public key.
  
@@ -1956,8 +1958,8 @@ Adds other party's nonce commitment value to current session.
     "params": [
     	"{{session_id}}",
         "{{wallet_enckey}}",
-        "{{nonce commitment value}}",
-        "{{merchant_public_key}}"
+        "d36e039866c62683511d09a488cd9912d4667650c57ed9a07ba07e631bc1046e",
+        "038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675"
     ],
     "id": "multiSig_addNonceCommitment"
 }
@@ -1977,9 +1979,9 @@ It can be used to create a `m-of-n` multisig wallet. Where `m` is the minimum nu
 
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest).
-* *Array[String]* - Participating public keys.
+* *Array[String]* - All participating public keys. 
 * *String* - Self public key.
-* *UInt32* - Positive integer representing the number of minimum signatures required.  
+* *UInt32* - Positive integer representing the number of minimum signatures required (can't be higher than total number of participants). 
 
 #### Returns
 `result` : *String* - Generated Multisig Address.
@@ -2011,7 +2013,7 @@ It can be used to create a `m-of-n` multisig wallet. Where `m` is the minimum nu
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<Multisig Address>>",
+    "result": "dcro1ufekq0vvtt4mrgfux3jwh0fqfmun5gmfzt4nj33847vnatct4cnslzde3c",
     "id": "multiSig_createAddress"
 }
 ```
@@ -2058,6 +2060,10 @@ Lists all the public keys.
 ### `multiSig_newSession`
 
 Creates a new Session ID for a multiSig transaction.
+:::warning 
+Note:
+This Session ID has to be used for other `multisig_**` method calls wherever necessary.
+:::
 
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest).
@@ -2079,12 +2085,13 @@ Creates a new Session ID for a multiSig transaction.
             "name": "{{wallet_name}}",
             "enckey": "{{wallet_enckey}}"
         },
-        "{{transaction_message}}",
+        "907253450147293b98764987f73163d4ab8e33df1000665c81cefe2529bccb8f",
         [
-        	"{{merchant_public_key}}",
-            "{{public_key}}"
+        	"02a732fb6c34812ea5a46547344d63a360e22d0c4815c837af82a09de7b7fd9797",
+            "02b57da2eea7b1415ebbf55e92f4eb4a3d57de38709383b57187e1b2cf2bb5cd93",
+            "038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675"
         ],
-        "{{public_key}}"
+        "02a732fb6c34812ea5a46547344d63a360e22d0c4815c837af82a09de7b7fd9797"
     ],
     "id": "multiSig_newSession"
 }
@@ -2094,7 +2101,7 @@ Creates a new Session ID for a multiSig transaction.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "{{multisig_session_id}}",
+    "result": "9d2818717dcfd46a9b02ddfaa1aa7953f09bf17f179cbc33e566b22b7b78f44a",
     "id": "multiSig_newSession"
 }
 ```
@@ -2127,7 +2134,7 @@ Retrieves current nonce value.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<serialised_nonce>>",
+    "result": "4c50a36e804424f4df4e62958a08ec641846edc3374b499fc2bde81b20a4124b",
     "id": "multiSig_nonce"
 }
 ```
@@ -2149,7 +2156,7 @@ Retrieves nonce commitment value.
     "method": "multiSig_nonceCommitment",
     "jsonrpc": "2.0",
     "params": [
-    	"{{session_id}}",
+    	"9d2818717dcfd46a9b02ddfaa1aa7953f09bf17f179cbc33e566b22b7b78f44a",
         "{{wallet_enckey}}"
     ],
     "id": "multiSig_nonceCommitment"
@@ -2160,7 +2167,7 @@ Retrieves nonce commitment value.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<serialised_nonce_commitment",
+    "result": "d36e039866c62683511d09a488cd9912d4667650c57ed9a07ba07e631bc1046e",
     "id": "multiSig_nonceCommitment"
 }
 ```
@@ -2183,8 +2190,8 @@ Retrieves the partial signature value.
     "method": "multiSig_partialSign",
     "jsonrpc": "2.0",
     "params": [
-    	"{{multisig_session_id}}",
-        "{{wallet_enc_key}}"
+    	"{{session_id}}",
+        "{{wallet_enckey}}"
     ],
     "id": "multiSig_partialSign"
 }
@@ -2194,7 +2201,7 @@ Retrieves the partial signature value.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<serialised_partial_sign",
+    "result": "bb9ef8f4475d687fdfdca6d0a533487150df485caa68e379be10c54c7191f053",
     "id": "multiSig_partialSign"
 }
 ```
@@ -2222,8 +2229,8 @@ Adds other party's partial signature.
     "params": [
     	"{{session_id}}",
         "{{wallet_enckey}}",
-        "{{partial signature value}}",
-        "{{signer public key}}"
+        "bb9ef8f4475d687fdfdca6d0a533487150df485caa68e379be10c54c7191f053",
+        "038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675"
     ],
     "id": "multiSig_addPartialSignature"
 }
@@ -2266,7 +2273,7 @@ Retrieves the signature value.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<serialised multisig signature initiation>>",
+    "result": "bfc34de977886baef8163ba1cba3cdbe32a9d2911eab7a4f64b7bae122fd91e732dceadcd618397f9f95f471ef99d9567d401f48a0a969f5ba8d92cbb4494e77",
     "id": "multiSig_signature"
 }
 ```

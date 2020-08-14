@@ -26,10 +26,7 @@ Remember to change your `RPC_HOST_NAME` and `RPC_SERVER_PORT` (if different used
 * If any call fails the response `body` contains an `error` Object: [ErrorResponse](./api-objects.md#errorresponse)
 * For all API-Objects used here, refer to [this page](./api-objects.md).
  
-You can try our API examples here
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/33332df9753fd7f793d4#?env%5BClientRPC%5D=W3sia2V5IjoiY2xpZW50X3JwY19ob3N0IiwidmFsdWUiOiI1MS4xMzIuMjMzLjUwIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJjbGllbnRfcnBjX3BvcnQiLCJ2YWx1ZSI6IjI2NjU5IiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJ3YWxsZXRfcGFzc3BocmFzZSIsInZhbHVlIjoiMTIzIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJ3YWxsZXRfZW5ja2V5IiwidmFsdWUiOiI2NDE2OTVhNjk0NDkzY2FkZWM0Y2U0NDliOTkzOTE2OWY5Yjg3N2U5NTQyMjcwZDRjY2JlOWZiMTZiOTFhYjdlIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzdGFraW5nX2FkZHJlc3MiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoidHJhbnNmZXJfYWRkcmVzcyIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwdWJsaWNfa2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InZpZXdfa2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6IndhbGxldF9uYW1lIiwidmFsdWUiOiJoaXRlc2giLCJlbmFibGVkIjp0cnVlfV0=)
-
-or download the collection file [here](https://github.com/cdc-Hitesh/chain-docs/tree/master/docs/api/client-rpc-methods.postman_collection.json)
+* Download our *Postman* collection file [here](https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/postman_collection/client-rpc-methods.postman_collection.json).
 
 
 ## INFORMATION
@@ -1343,12 +1340,12 @@ Imports a Chain transaction exported from [wallet_exportTransaction](#wallet_exp
 	"id": "wallet_importTransaction"
 }
 ```
-@ToDo
+
 ***Response Body:***
 ```json
 {
     "jsonrpc": "2.0",
-    "result": 5568,
+    "result": "5568",
     "id": "wallet_importTransaction"
 }
 ```
@@ -2068,7 +2065,7 @@ This Session ID has to be used for other `multisig_**` method calls wherever nec
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Transaction ID created using [transaction_createRaw](#transaction_createRaw).
-* *Array[String]* - Participating public keys.
+* *Array[String]* - Participating Signer's public keys.
 * *String* - Self public key.
 
 #### Returns
@@ -2288,7 +2285,7 @@ Signs and broadcasts a multisig transaction.
 * *Object* - [Tx](./api-objects.md#tx). 
  
 #### Returns
-`result` : *String* - Transaction ID.
+`result` : *String* - Transaction Data.
 
 ***Request Body:***
 
@@ -2312,7 +2309,7 @@ Signs and broadcasts a multisig transaction.
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "<<tx_id>>",
+    "result": "",
     "id": "multiSig_broadcastWithSignature"
 }
 ```

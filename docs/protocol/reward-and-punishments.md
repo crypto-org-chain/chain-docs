@@ -168,7 +168,7 @@ The remainder of division will become rewards of the next period.
 
 ### Rewards: Documentation and its interactions with ABCI
 
-The detailed documentation of the reward mechanism can be found in [here](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/reward.md).
+The detailed documentation of the reward mechanism can be found in [here](../modules/reward.md).
 
 ## Validator Punishments
 
@@ -274,7 +274,7 @@ not jailed when we receive evidence of misbehavior from tendermint.
 
 ### Punishments: Documentation and its interactions with ABCI
 
-The detailed documentation of the slashing mechanism can be found in [here](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/punishment.md)
+The detailed documentation of the slashing mechanism can be found in [here](../modules/punishment.md)
 
 ### Appendix
 

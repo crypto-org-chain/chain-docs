@@ -4,6 +4,13 @@ The Crypto.com Chain Testnet has been named as **“Thaler”**.
 
 This is an early tutorial for the developers and brave and patient super-early adopters.
 
+::: tip Note
+
+This is a detailed documentation for setting up a Council node (Validator) or a full node on Crypto.com Thaler testnet v0.5.
+
+Alternatively, for your convenience, you are welcome to use our image on the Azure market place and set up a node in [1 click](./thaler-testnet-azure-1click.md).
+:::
+
 ## Pre-requisites
 
 #### Intel® Software Guard Extensions (Intel® SGX)
@@ -348,7 +355,7 @@ You will be required to insert the following:
 
 Once the node-join transaction was successfully broadcasted, you should be able to see your Council node one the [testnet explorer](https://chain.crypto.com/explorer/council-nodes).
 
-To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag ` --pubkey ` to specify the public key of your validator. For example:
+To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag `--pubkey` to specify the public key of your validator. For example:
 
 ```bash
 $ ./check-validator-up.sh --tendermint-url http://13.90.34.32:26657 --pubkey "<YOUR_VALIDATOR_PUBLICKEY>"

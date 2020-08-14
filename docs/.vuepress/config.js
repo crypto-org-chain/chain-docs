@@ -61,6 +61,7 @@ module.exports = {
       "/getting-started/": [
         "",
         "thaler-testnet",
+        "thaler-testnet-azure-1click",
         "local-devnet",
         "notes-on-production-deployment",
         "notes-on-performance"

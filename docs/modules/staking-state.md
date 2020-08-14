@@ -110,8 +110,18 @@ state InactiveValidator {
   Jailed --> Unjailed : Unjail transaction
 }
 
-CleanStaking --> ActiveValidator : NodeJoinTX(Validator)
-Unjailed --> ActiveValidator : NodeJoinTX(Validator)
+ActiveValidator: CouncilNode
+ActiveValidator: in MLS group
+
+CommunityNode: in MLS group
+
+Jailed: CouncilNode
+Jailed: not in MLS group
+
+Unjailed: CouncilNode
+Unjailed: maybe in MLS group
+
+Unjailed --> ActiveValidator : NodeJoinTX(Switch) if in MLS group
 
 CleanStaking --> CommunityNode : NodeJoinTX(Community)
 
@@ -119,7 +129,8 @@ ActiveValidator --> Unjailed : Unbonding, Slashing
 ActiveValidator --> Jailed : Byzantine fault
 
 Unjailed --> CleanStaking : Cleanup
-CommunityNode --> CleanStaking : Punishment(TODO)
+CommunityNode --> CleanStaking : Unbonding,slashing(TODO)
+CommunityNode --> ActiveValidator : NodeJoinTX(Switch)
 ```
 
 ### From "clean staking" or "inactive(unjailed) validator" to active validator

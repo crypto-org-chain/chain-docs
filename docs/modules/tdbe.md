@@ -32,13 +32,16 @@ have to follow below procedure to successfully join the network:
   - New node, after receiving a response from remote TDBE server, verifies (TODO: Define validations on TDBE response)
     it and starts the whole process again if the verification fails (with a different remote TDBE server). If the
     verification is successfull, it continues to the next step.
-- New node constructs `NodeJoinTx` (for council or community node) and submits the transaction after getting it signed
+- New node constructs `NodeJoinTx` (for community node) and submits the transaction after getting it signed
   by the node operator (see below for mode details on **Transaction signing**).
 - If the `NodeJoinTx` is accepted in a block, new node can start to operate normally (as `Commit` with Add-only proposal
   does not need to fill paths -- node need to wait for NACK timeout).
   - New node's TDBE server can apply `Welcome` message to update its state.
+  - If one wishes to join as the "council node" (have validator capabilities and responsibilities): once the local node
+  catches up fully with the latest state (i.e. chain-abci gets to the latest block), the operator can submit
+  the second `NodeJoinTx` transaction with its node's consensus public key 
 - If the `NodeJoinTx` is not accepted (this can happen when there was another `Commit` in the meantime), then restart
-  the proocess.
+  the process.
 
 :::tip Note:
 No need to fetch the leaf nodes as they will be a part of `ratchet_tree` extension of `Welcome` message.
@@ -281,14 +284,14 @@ with council node and community node variants.
 represents:
 ```rust
 pub enum MLSInit {
+  CommunityToCouncilNodeSwitch,
   // KeyPackage
   Genesis(Vec<u8>),
-  NodeJoin {
+  CommunityNodeJoin {
     add: Vec<u8>, // MLSPlaintext -- Add
     commit: Vec<u8> // MLSPlaintext -- Commit
 }
 ```
-TODO: extra rules for CouncilNode -> CommunityNode (needs to unbond / become inactive first?)
 
 #### Handshake transactions
 internal `Vec<u8>` payloads are expected to be encoded in the TLS standard binary encodings

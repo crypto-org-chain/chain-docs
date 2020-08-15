@@ -6,7 +6,7 @@ This tutorial will use our Azure 1-click Deployment image to start and create th
 
 ## Azure Account Creation
 
-You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `pay-as-you-go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to charges when you create a virtual machine.
+You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to charges when you create a virtual machine.
 
 Please read `Microsoft Azure` free trial introduction to see if you are eligible for the free-tier.
 
@@ -20,19 +20,19 @@ Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.a
 
 ### Step 2. Create Crypto.com Chain
 
-Choose the image and click "Create" to start creating the Crypto.com testnet chain node.
+Choose the image and click "Create" to start creating the Crypto.com chain testnet node.
 
 #### Step 2-1. Basic
 
 ![](./assets/azure_1click_basics.png)
 
-| Configuration           | Value                                                                                                             |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| _Region_                | DCsv2-series VMs for Azure is available in three regions (East US, Canada Central and UK South)                   |
-| _Size_                  | Select either *DC1s_v2*, *DC2s_v2* (Recommended) or *DC4s_v2*                                                           |
-| _SSH public key source_ | Choose *"existing public key"*                                                                                      |
-| _SSH public key_        | Copy and past your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys). |
-| _Resource group_        | We suggest to create a new and dedicated one so that you can easily manage resources attached to the instance     |
+| Configuration           | Value                                                                                                            |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| _Region_                | DCsv2-series VMs for Azure is currently available in three regions: _East US_, _Canada Central_ and _UK South_   |
+| _Size_                  | Select either _DC1s_v2_, _DC2s_v2_ (Recommended) or _DC4s_v2_                                                    |
+| _SSH public key source_ | Choose _"existing public key"_                                                                                   |
+| _SSH public key_        | Copy and past your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys) |
+| _Resource group_        | We suggest to create a new and dedicated one so that you can easily manage resources attached to the instance    |
 
 #### Step 2-2. Disk
 
@@ -110,7 +110,7 @@ converting consensus key to public key for node join
 public key: P1DxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxQfk=
 ```
 
-The script will also ask you to fill in the `moniker` value which is the display name for tendermint p2p
+The script will also ask you to fill in the `moniker` value which is a human readable display name for tendermint p2p
 
 ```bash
 Replace moniker in /chain/.tendermint/config/config.toml
@@ -119,16 +119,79 @@ Moniker is display name for tendermint p2p
 moniker: YOUR_MONIKER_NAME
 ```
 
-Tendermint and Chain-abci are running at the background. You can check their logs by the command `journalctl`, for example:
+Tendermint and Chain-abci are now running at the background. You can check their logs by the command `journalctl`, for example:
 
 ```bash
 journalctl -u tendermint.service -f
 journalctl -u chain-abci.service -f
 ```
 
-Once the tendermint syncs to the latest block, you can node-join this council node.
+Once the tendermint syncs to the latest block, you can set up follow [this](./thaler-testnet.md#step-4-b-6-send-a-council-node-join-request-transaction) to perform a `node-join` transaction and join the network.
 
-Follow [this](./thaler-testnet.md#step-4-b-6-send-a-council-node-join-request-transaction)
+::: details Joining the network as a Council node
+
+In the following example, we will use the client-cli, a command-line tool to perform the address creation and join as a council node, which is located in the directory `release_binary`:
+
+```bash
+$ cd /chain/release_binary
+```
+
+Once we get there, we would need to set the required environment variables:
+
+```bash
+$ export CRYPTO_CHAIN_ID=testnet-thaler-crypto-com-chain-42
+$ export CRYPTO_CLIENT_TENDERMINT=ws://13.90.34.32:26657/websocket
+```
+
+**Note**: In the above example, we will be connecting to a pulic full node `13.90.34.32`.
+
+- Run the followings to create a new [HD-wallet](../wallets/client-cli.html#wallet-new-create-a-new-wallet) and [staking address](../wallets/client-cli.html#address-new-create-a-new-address):
+
+    ```bash
+      $ ./client-cli wallet new --name <WALLET_NAME> --type hd
+      $ ./client-cli address new --name <WALLET_NAME> --type Staking
+    ```
+
+  Unless you have obtained the CRO testnet token before, simply send a message on [Gitter](https://gitter.im/crypto-com/community),
+  stating who you are and your staking address (@devashishdxt or @lezzokafka would typically reply within a day).
+
+- Afterwards, you can sync your wallet by:
+
+  ```bash
+  $ ./client-cli sync --name <WALLET_NAME>
+  ```
+
+  and check the state of your staking address:
+
+  ```bash
+  $ ./client-cli state --name <WALLET_NAME> --address <STAKING_ADDRESS>
+  ```
+
+- Once your node is fully synced, we are now ready to join the network:
+
+    ```bash
+      $ ./client-cli transaction new --name <WALLET_NAME> --type node-join
+    ```
+
+    You will be required to insert the following:
+
+    - the staking address that holds your bonded funds;
+    - a moniker(name) for your validator node; and
+    - a base64 encoded tendermint validator public key we obtained earlier. 
+
+    Once the node-join transaction was successfully broadcasted, you should be able to see your Council node one the [testnet explorer](https://chain.crypto.com/explorer/council-nodes).
+
+    To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag `--pubkey` to specify the public key of your validator. For example:
+
+    ```bash
+      $ ./check-validator-up.sh --tendermint-url http://13.90.34.32:26657 --pubkey "<YOUR_VALIDATOR_PUBLICKEY>"
+      The validator is in the council nodes set under the address <YOUR_VALIDATOR_ADDRESS>
+      The validator is signing @ Block#<BLOCK_HEIGHT> 👍
+    ```
+
+    Alternatively, you can run it on this [browser based IDE](https://repl.it/@allthatjazzleo/cryptocomcheckNodeJoinStatus#main.go), by specifying your validator public key in the `"YOUR_PUBKEY"` field.
+
+  :::
 
 ## B. Running a full node
 

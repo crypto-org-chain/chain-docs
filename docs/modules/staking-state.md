@@ -83,8 +83,10 @@ There are several variants of it:
 
 `validator.inactive_time.is_none()`
 
-> **_NOTE:_** Active validator doesn't necessarily mean the final validator take effect in tendermint, please refer to
-> [Choose final validators](#choose-final-validators)
+::: tip Note
+Active validator doesn't necessarily mean the final validator take effect in tendermint, please refer to
+[Choose final validators](#choose-final-validators)
+:::
 
 ##### Inactive
 
@@ -94,7 +96,9 @@ There are several variants of it:
 
 `validator.jailed_until.is_some()`
 
-> **_NOTE:_** Jailed implies inactive, but not vice versa
+::: tip Note
+Jailed implies inactive, but not vice versa
+:::
 
 ## State transitions
 
@@ -106,8 +110,18 @@ state InactiveValidator {
   Jailed --> Unjailed : Unjail transaction
 }
 
-CleanStaking --> ActiveValidator : NodeJoinTX(Validator)
-Unjailed --> ActiveValidator : NodeJoinTX(Validator)
+ActiveValidator: CouncilNode
+ActiveValidator: in MLS group
+
+CommunityNode: in MLS group
+
+Jailed: CouncilNode
+Jailed: not in MLS group
+
+Unjailed: CouncilNode
+Unjailed: maybe in MLS group
+
+Unjailed --> ActiveValidator : NodeJoinTX(Switch) if in MLS group
 
 CleanStaking --> CommunityNode : NodeJoinTX(Community)
 
@@ -115,7 +129,8 @@ ActiveValidator --> Unjailed : Unbonding, Slashing
 ActiveValidator --> Jailed : Byzantine fault
 
 Unjailed --> CleanStaking : Cleanup
-CommunityNode --> CleanStaking : Punishment(TODO)
+CommunityNode --> CleanStaking : Unbonding,slashing(TODO)
+CommunityNode --> ActiveValidator : NodeJoinTX(Switch)
 ```
 
 ### From "clean staking" or "inactive(unjailed) validator" to active validator
@@ -151,9 +166,10 @@ The reasons for dropping of bonded coins maybe:
 - Execute `UnbondTx` at `deliver_tx` event
 - Slashed for non-live or byzantine faults at `begin_block` event
 
-> **_NOTE:_** The transition happens immediately in `deliver_tx` or `begin_block` events, won't reverse automatically
-> when bonded coins become enough again even in the same block, so the activeness is always well-defined during the
-> whole process.
+::: tip Note
+The transition happens immediately in `deliver_tx` or `begin_block` events, won't reverse automatically
+when bonded coins become enough again even in the same block, so the activeness is always well-defined during the whole process.
+:::
 
 #### Jailed for byzantine faults
 
@@ -179,19 +195,20 @@ The clean up procedure will remove the validator record if:
 - Not jailed
 - `block_time >= inactive_time + cleanup_period`
 
-> _**NOTE:**_ `cleanup_period`
->
-> Currently `cleanup_period = unbonding_period`, but logically, `cleanup_period` only needs such constraints:
->
-> - `> max_evidence_age`, so we can handle delayed byzantine evidences (inactive validator can still be slashed for
->   later detected byzantine faults)
-> - `> 2 blocks`, so we don't panic when seeing signing vote of inactivated validators
+::: tip Note for `cleanup_period`
+
+ Currently `cleanup_period = unbonding_period`, but logically, `cleanup_period` only needs such constraints:
+
+ - `> max_evidence_age`, so we can handle delayed byzantine evidences (inactive validator can still be slashed for
+   later detected byzantine faults)
+ - `> 2 blocks`, so we don't panic when seeing signing vote of inactivated validators
+   :::
 
 ### From "community node" to "clean staking"
 
 #### Bonded coins become lower than required
 
-Whenever `bonded < min_required_community_staking`, this transition happens. 
+Whenever `bonded < min_required_community_staking`, this transition happens.
 
 The other details are similar to the transition from "active validator" to "inactive validator".
 

@@ -4,6 +4,13 @@ The Crypto.com Chain Testnet has been named as **“Thaler”**.
 
 This is an early tutorial for the developers and brave and patient super-early adopters.
 
+::: tip Note
+
+This is detailed documentation for setting up a Council node (Validator) or a full node on Crypto.com Thaler testnet v0.5.
+
+Alternatively, for your convenience, you are welcome to use our image on the Azure market place and deploy a node in just [1 click](./thaler-testnet-azure-1click.md).
+:::
+
 ## Pre-requisites
 
 #### Intel® Software Guard Extensions (Intel® SGX)
@@ -63,7 +70,7 @@ If you are running on Azure Confidential Computing machines, you will only need 
 
 ### Step 1-1. Install aesmd service
 
-After you have installed Intel SGX PSW 2.9 using the [installation guide](https://download.01.org/intel-sgx/sgx-linux/2.9.1/docs/Intel_SGX_Installation_Guide_Linux_2.9.1_Open_Source.pdf) from [step 0-0](#step-0-0-install-intel-sgx-2-9), run the following command to install aesm service:
+After you have installed Intel SGX PSW 2.9 using the [installation guide](https://download.01.org/intel-sgx/sgx-linux/2.9.1/docs/Intel_SGX_Installation_Guide_Linux_2.9.1_Open_Source.pdf) from [step 1-0](#step-1-0-install-intel-sgx-2-9), run the following command to install aesm service:
 
 ```bash
 $ sudo apt install libsgx-uae-service
@@ -348,7 +355,7 @@ You will be required to insert the following:
 
 Once the node-join transaction was successfully broadcasted, you should be able to see your Council node one the [testnet explorer](https://chain.crypto.com/explorer/council-nodes).
 
-To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag ` --pubkey ` to specify the public key of your validator. For example:
+To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag `--pubkey` to specify the public key of your validator. For example:
 
 ```bash
 $ ./check-validator-up.sh --tendermint-url http://13.90.34.32:26657 --pubkey "<YOUR_VALIDATOR_PUBLICKEY>"

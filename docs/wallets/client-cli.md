@@ -405,7 +405,7 @@ Staking operations involve the interaction between _transfer_ address and _staki
 
   :::
 
-Please also refer to this [diagram](../getting-started/send_your_first_transaction.md#send-your-first-transaction) for interaction between _staking address_ and _transfer address_
+Please also refer to this [diagram](../getting-started/local-devnet.md#send-your-first-transaction) for interaction between _staking address_ and _transfer address_
 
 ### `transaction show` Show transaction details
 

@@ -126,11 +126,11 @@ journalctl -u tendermint.service -f
 journalctl -u chain-abci.service -f
 ```
 
-Once the tendermint syncs to the latest block, you can set up follow [this](./thaler-testnet.md#step-4-b-6-send-a-council-node-join-request-transaction) to perform a `node-join` transaction and join the network.
+Once the tendermint syncs to the latest block, you can follow the instructions below to perform a `node-join` transaction and join the network.
 
 ::: details Joining the network as a Council node
 
-In the following example, we will use the client-cli, a command-line tool to perform the address creation and join as a council node, which is located in the directory `release_binary`:
+In the following example, we will use the `client-cli`, a command-line tool to perform the address creation and join as a council node, which is located in the directory `release_binary`:
 
 ```bash
 $ cd /chain/release_binary
@@ -164,8 +164,15 @@ $ export CRYPTO_CLIENT_TENDERMINT=ws://13.90.34.32:26657/websocket
   and check the state of your staking address:
 
   ```bash
+  $ ./client-cli state  --address <STAKING_ADDRESS>
+  ```
+
+  or 
+
+  ```bash
   $ ./client-cli state --name <WALLET_NAME> --address <STAKING_ADDRESS>
   ```
+  If you are using `client-cli` v0.5.3
 
 - Once your node is fully synced, we are now ready to join the network:
 
@@ -191,6 +198,7 @@ $ export CRYPTO_CLIENT_TENDERMINT=ws://13.90.34.32:26657/websocket
 
     Alternatively, you can run it on this [browser based IDE](https://repl.it/@allthatjazzleo/cryptocomcheckNodeJoinStatus#main.go), by specifying your validator public key in the `"YOUR_PUBKEY"` field.
 
+**Note**: For security purpose, It is strongly suggested that you should run the client-cli on a local machine in the actual production deployment.
   :::
 
 ## B. Running a full node

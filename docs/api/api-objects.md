@@ -100,7 +100,7 @@ Response body received when a RPC call fails.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
-| **p2p**           | *Quantity*, Int64   | default: 7 , P2P protocol Version. |
+| **p2p**           | *Quantity*, Int64   | default: `7` , P2P protocol Version. |
 | **block**             |  *Quantity*, UInt64| Block Version. |
 | **app**             |  *Quantity*, UInt64 | App Version.   |
 

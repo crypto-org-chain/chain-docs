@@ -2111,7 +2111,7 @@ Retrieves current nonce value.
 * *String* - Wallet authentication token.
  
 #### Returns
-`result` : *String* - Serialised nonce value.
+`result` : *String* - Current nonce value.
 
 ***Request Body:***
 

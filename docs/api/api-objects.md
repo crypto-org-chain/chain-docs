@@ -108,7 +108,7 @@ Response body received when a RPC call fails.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
-| **genesis_time**           | *Timestamp*, String   | Time of Genesis. [Tendermint timestamps](https://github.com/tendermint/spec/blob/master/spec/core/data_structures.md#time). |
+| **genesis_time**           | *Timestamp*, String   | Time of Genesis, see [Tendermint timestamps](https://github.com/tendermint/spec/blob/master/spec/core/data_structures.md#time). |
 | **chain_id**             |  *Data*, String | Tendermint chain ID.  |
 | **consensus_params**             | *Object*, [Params](#params) | Consensus parameters. |
 | **validators**             |  *Array*, [ValidatorInfo](#validatorinfo) | Array of Validators.   |

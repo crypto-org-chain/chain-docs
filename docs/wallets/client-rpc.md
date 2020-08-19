@@ -59,13 +59,13 @@ A list of supported options of ClientRPC is listed below
 
 | Option | Description | Default Value |
 | --- | --- | --- | --- |
-| host | Host ClientRPC server listen to | 0.0.0.0 |
-| port | Port ClientRPC server listen to | 9981 |
+| host | Host ClientRPC server listen to | `0.0.0.0` |
+| port | Port ClientRPC server listen to | `9981` |
 | chain-id | Full Chain ID | --- |
-| storage-dir | Wallet storage directory | .storage |
-| tendermint-url | Tendermint URL | http://localhost:26657/ |
-| websocket-url | Tendermint WebSocket URL | ws://localhost:26657/websocket |
+| storage-dir | Wallet storage directory | `.storage` |
+| tendermint-url | Tendermint URL | `http://localhost:26657/` |
+| websocket-url | Tendermint WebSocket URL | `ws://localhost:26657/websocket` |
 
-## RPC Methods List
-
-TODO
+## RPC Methods 
+    
+For all the supported JSON RPC API Methods available, refer to our [ClientRPC API Documentation](../api/client-rpc.md).

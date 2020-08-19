@@ -88,7 +88,8 @@ module.exports = {
         "client-cli",
         "sample-chain-wallet",
         "client-rpc"
-      ]
+      ],
+      "/api/" : "auto"
     },
     displayAllHeaders: true
   },

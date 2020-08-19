@@ -1,0 +1,1740 @@
+{
+	"info": {
+		"_postman_id": "70c0b945-4ada-4560-bf66-f51837a6cd19",
+		"name": "Crypto.com  ClientRPC Methods",
+		"description": "## Getting Started\n\n:::tip\nAll the methods explained in this document assume the following settings.\n:::\n\n```bash\nMethod: POST\nURL: http://localhost:26659/ \nHeaders: Content-Type: application/json\n```\n* To call a JSONRPC method, send a HTTP `POST` request to the root RPC endpoint. Example below:\n```bash\ncurl --header \"Content-Type: application/json\" --request POST --data '{\"method\": \"<<method_name>>\", \"params\": [\"5\"], \"id\": 1}' localhost:26659\n```\n* In the examples used here \n    - `RPC_HOST_NAME` = `localhost`\n    - `RPC_SERVER_PORT` = `26659`\n\nRemember to change your `RPC_HOST_NAME` and `RPC_SERVER_PORT` (if different used).\n\n* If any call fails the response `body` contains an `error` Object: [ErrorResponse](./api-objects.md#errorresponse)\n* For all API-Objects used here, refer to [this page](./api-objects.md).\n* To try our **POSTMAN** Collection, [click here](https://github.com/cdc-Hitesh/chain-docs/tree/master/docs/api/client-rpc-methods.postman_collection.json)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "info",
+			"item": [
+				{
+					"name": "status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"status\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [],\n\t\"id\": \"status\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "genesis",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"genesis\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [],\n\t\"id\": \"genesis\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## INFORMATION\n\n### `status`\n\nReturns the current details of the network.\n\n#### Parameters\n\n`None`\n\n#### Returns\n\n`result` : *Object* - [StatusResponse](./api-objects.md#statusresponse) - target node details.\n\n***Request Body***\n\n```json\n{\n    \"method\": \"status\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [],\n\t\"id\": \"status\"\n}\n```\n\n***Response***\n\n```json       \n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": {\n        \"node_info\": {\n            \"channels\": \"4020212223303800\",\n            \"id\": \"853FBCA4B357420DD617448B14E73E1B59E9AB81\",\n            \"listen_addr\": \"tcp://0.0.0.0:26656\",\n            \"moniker\": \"node0\",\n            \"network\": \"test-chain-y3m1e6-AB\",\n            \"other\": {\n                \"rpc_address\": \"tcp://0.0.0.0:26657\",\n                \"tx_index\": \"on\"\n            },\n            \"protocol_version\": {\n                \"app\": \"1\",\n                \"block\": \"10\",\n                \"p2p\": \"7\"\n            },\n            \"version\": \"0.33.4\"\n        },\n        \"sync_info\": {\n            \"catching_up\": false,\n            \"latest_app_hash\": \"2D742A6764C4E9109F520B27CED5DEB98D7656222E8317C30D19DE3E21265AC9\",\n            \"latest_block_hash\": \"3AE3E08FB7E2A09E747073BF9AFC27DA8AFA466446B27BA85F7927AC0C39CBA8\",\n            \"latest_block_height\": \"556696\",\n            \"latest_block_time\": \"2020-07-27T11:04:19.779027255Z\"\n        },\n        \"validator_info\": {\n            \"address\": \"0D8912E96DAAE332E7393EC1DC4BA2D249A44445\",\n            \"proposer_priority\": null,\n            \"pub_key\": {\n                \"type\": \"tendermint/PubKeyEd25519\",\n                \"value\": \"FF5JxhRrCUNLj6UZmYdjv/AWgSWUeiomeOMeJG71owE=\"\n            },\n            \"voting_power\": \"5000000000\"\n        }\n    },\n    \"id\": \"status\"\n}\n    \n```\n\n### `genesis`\nReturns the Crypto.com chain's genesis information. Read more [here](https://chain.crypto.com/docs/protocol/genesis.html). \n\n#### Parameters\n`None`\n\n#### Returns\n\n`result` : *Object* - [Genesis](./api-objects.md#genesis)\n\n***Request Body***\n\n```json       \n{\n\t\"method\": \"genesis\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [],\n\t\"id\": \"genesis\"\n}\n```\n\n***Response***\n\n```json       \n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": {\n        \"app_hash\": [\n            57,\n            66,\n            51,\n            50,\n            50,\n            70\n        ],\n        \"app_state\": {\n            \"council_nodes\": {\n                \"0x45c1851c2f0dc6138935857b9e23b173185fea15\": [\n                    \"node0\",\n                    \"node0@example.com\",\n                    {\n                        \"type\": \"tendermint/PubKeyEd25519\",\n                        \"value\": \"FF5JxhRrCUNLj6UZmYdjv/AWgSWUeiomeOMeJG71owE=\"\n                    },\n                    {\n                        \"init_payload\": \"AAACAEEEzsqLyBbMQaSMbSFTrnuBH+RYlcRt24qQFH4DIfZkgY+WhAM0f86lgKtIURL.......IcAEgwRgIhAIzkMxxOZ7MtpBCYi4Dr9Px3m4o9PMaVAdkEpUJY2iGWAiEAnDh+Lh5KNEisPE01sAbUqTk2RwuIfc06pU+sMtcxK8Y=\"\n                    }\n                ]\n            },\n            \"distribution\": {\n                \"0x0000000000000000000000000000000000000000\": [\n                    \"UnbondedFromGenesis\",\n                    \"8000000000000000000\"\n                ],\n                \"0x2dfde2178daa679508828242119dcf2114038ea8\": [\n                    \"UnbondedFromGenesis\",\n                    \"500000000000000000\"\n                ],\n                \"0x45c1851c2f0dc6138935857b9e23b173185fea15\": [\n                    \"Bonded\",\n                    \"500000000000000000\"\n                ]\n            },\n            \"network_params\": {\n                \"initial_fee_policy\": {\n                    \"coefficient\": 0,\n                    \"constant\": 0\n                },\n                \"jailing_config\": {\n                    \"block_signing_window\": 100,\n                    \"missed_block_threshold\": 50\n                },\n                \"max_validators\": 50,\n                \"required_council_node_stake\": \"1\",\n                \"rewards_config\": {\n                    \"monetary_expansion_cap\": \"1000000000000000000\",\n                    \"monetary_expansion_decay\": 999860,\n                    \"monetary_expansion_r0\": 450,\n                    \"monetary_expansion_tau\": 14500000000000000,\n                    \"reward_period_seconds\": 86400\n                },\n                \"slashing_config\": {\n                    \"byzantine_slash_percent\": \"0.200\",\n                    \"liveness_slash_percent\": \"0.100\"\n                }\n            }\n        },\n        \"chain_id\": \"test-chain-y3m1e6-AB\",\n        \"consensus_params\": {\n            \"block\": {\n                \"max_bytes\": \"22020096\",\n                \"max_gas\": \"-1\"\n            },\n            \"evidence\": {\n                \"max_age_duration\": \"5000000000\",\n                \"max_age_num_blocks\": \"100000\"\n            },\n            \"validator\": {\n                \"pub_key_types\": [\n                    \"ed25519\"\n                ]\n            }\n        },\n        \"genesis_time\": \"2020-08-05T06:01:00Z\",\n        \"validators\": [\n            {\n                \"address\": \"0D8912E96DAAE332E7393EC1DC4BA2D249A44445\",\n                \"proposer_priority\": null,\n                \"pub_key\": {\n                    \"type\": \"tendermint/PubKeyEd25519\",\n                    \"value\": \"FF5JxhRrCUNLj6UZmYdjv/AWgSWUeiomeOMeJG71owE=\"\n                },\n                \"voting_power\": \"5000000000\"\n            }\n        ]\n    },\n    \"id\": \"genesis\"\n}\n```\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a11b66c-4884-4838-bb8d-d3ba6cb06c56",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "734c26a0-45a7-4b13-86ee-227029cc2d6d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "wallet",
+			"item": [
+				{
+					"name": "wallet_balance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_balance\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t}],\n\t\"id\": \"wallet_balance\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"wallet_create\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        },\n        \"HD\",\n        12 \n    ],\n    \"id\": \"wallet_create\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_createStakingAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_createStakingAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t}],\n\t\"id\": \"wallet_createStakingAddress\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_createStakingAddressBatch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_createStakingAddressBatch\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t},\n     5\n    ],\n\t\"id\": \"wallet_createStakingAddressBatch\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_createWatchStakingAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_createWatchStakingAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t},\n    \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\"\n    ],\n\t\"id\": \"wallet_createWatchStakingAddress\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_createTransferAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_createTransferAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t}\n    ],\n\t\"id\": \"wallet_createTransferAddress\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_createTransferAddressBatch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_createTransferAddressBatch\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t},\n    5\n    ],\n\t\"id\": \"wallet_createTransferAddressBatch\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_createWatchTransferAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_createWatchTransferAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t},\n    \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\"\n    ],\n\t\"id\": \"wallet_createWatchTransferAddress\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_getEncKey",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"wallet_getEncKey\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        }\n    ],\n    \"id\": \"wallet_getEncKey\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_getViewKey",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"wallet_getViewKey\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        true\n    ],\n    \"id\": \"wallet_getViewKey\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"wallet_list\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [],\n    \"id\": \"wallet_list\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_listPublicKeys",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_listPublicKeys\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t}\n\t],\n\t\"id\": \"wallet_listPublicKeys\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_listStakingAddresses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_listStakingAddresses\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t}],\n\t\"id\": \"wallet_listStakingAddresses\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_listTransferAddresses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_listTransferAddresses\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t0,\n\t\t100,\n\t\tfalse\n\t],\n\t\"id\": \"wallet_listTransferAddresses\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_listUTxO",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_listUTxO\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t}],\n\t\"id\": \"wallet_listUTxO\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_broadcastSignedTransferTx",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_broadcastSignedTransferTx\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"DGR4OwbnpGauENg3D7ObK92c5917VlxTU+c06NOHhOXdAAAAL932Ehb0fkAU/bewgTs+gq/lhHSaKyAGNz7gOd16mttDf2IBAAAAAACjs3zy5CDNEPfDJQFaf1bSRL4dSQyIT7Xc/6t7aBTUIQAAAGmDKIJ+/LocuU6MdpabE72AuBFKAtzf30vdyncK8mwHGTUPAAAAAAAAo7N88uQgzRD3wyUBWn9W0kS+HUkMiE+13P+re2gU1CEBAADoTVOzdAZuVS5ccpSW5eSbWNFzeKwlxCI9knbYrx5VC6RLQNJZW/AGAACrsAQAAAAAAAAA6S/H61RwRmSfX8rB9hzVhAIc811yfb08H3NgVWjs+t0AfBvreJUbE/xgVhZOQKwnYiHcXE+Sttu6nMWenaRlFgc=\"\n\t],\n\t\"id\": \"wallet_broadcastSignedTransferTx\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"wallet_restore\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"default\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        },\n        \"ordinary mandate edit father snack mesh history identify print borrow skate unhappy cattle tiny first\"\n    ],\n    \"id\": \"wallet_restore\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_restoreBasic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"wallet_restoreBasic\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        },\n        \"b4518a5a1594816446f9a50390fe2d5a896b91590b794bcd7ff4bee75d2ab601\"\n    ],\n    \"id\": \"wallet_restoreBasic\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"wallet_delete\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        }\n    ],\n    \"id\": \"wallet_delete\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_sendToAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_sendToAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24\",\n\t\t\"996633\",\n\t\t[]\n\t],\n\t\"id\": \"wallet_sendToAddress\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_buildRawTransferTx",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_buildRawTransferTx\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"dcro1ayhu0665wprxf86letqlv8x4ssppeu6awf7m60qlwds9268vltwsk6ehwa\",\n\t\t\"1200\",\n\t\t[]\n\t],\n\t\"id\": \"wallet_buildRawTransferTx\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_transactions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_transactions\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t0,\n\t\t100,\n\t\tfalse\n\t],\n\t\"id\": \"wallet_transactions\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_exportTransaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_exportTransaction\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"fab2009511b0634b244e0689a97c60b3bb108aaf85785841c37d8c7a51b837ad\"\n\t],\n\t\"id\": \"wallet_exportTransaction\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_export",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_export\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t}\n\t],\n\t\"id\": \"wallet_export\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_importTransaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"wallet_importTransaction\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"eyJ0eCI6eyJ0eXBlIjoiV2l0aGRyYXdVbmJvbmRlZFN0YWtlVHJhbnNhY3Rpb24iLCJub25jZSI6MCwib3V0cHV0cyI6W3siYWRkcmVzcyI6ImRjcm8xa3hsOHh5Nms4dHdoZXM2ajk3Mm1yenVyZnZnbXMwZTU0OXo4NTJjZ3F5bDc5Nmpzczg5c2FkbG1nZCIsInZhbHVlIjoiNTAwMDAwMDAwMDAwMDAwMDAwIiwidmFsaWRfZnJvbSI6MTU5NjYwNzI2MH1dLCJhdHRyaWJ1dGVzIjp7ImNoYWluX2hleF9pZCI6IkFCIiwiYWxsb3dlZF92aWV3IjpbeyJ2aWV3X2tleSI6IjAyYjRkYWJmYzg2MmI5Y2I5Zjg2YjhkNDk1MjAwMjNhYTBjY2NiMmFkODk0NDY1NzdkZDBmZWU3YmM5NDZhNzlhMSIsImFjY2VzcyI6IkFsbERhdGEifV0sImFwcF92ZXJzaW9uIjoxfX0sImJsb2NrX2hlaWdodCI6ODl9\"\n\t],\n\t\"id\": \"wallet_importTransaction\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wallet_import",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"wallet_import\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        },\n        {\n            \"hdkey\": \"AQYAAAAKAAAAAQAAAAEBhDXrGMCHEus1urikNB9r5fRqYCEw0MK39e6ICpEpubvGtGZtlWadUwgY9esNnNFSODjSfxL+dg4UhIv1stXilg==\",\n            \"key_chainpath\": \"AA==\",\n            \"key_pairs\": \"KAUBBMQqtIUBmhNlOX+TlIv9a6xAz+I4Jn/2YeEJfh0spPgqdeAiJer68R3xhTD7CwRyIKIpU0RHPf7cFzEaXxLyOH2AjnCSpm8y2Ot3hddeozmyzgZX7aY4vwZkjkxCNNVH9SsFAQRuwentSR8R21o0ijxRiQwr61x8DmYZNT5hTGg6FaVoOlYO7sLEB70bN073SQiJs54T+v22LAFtbml+ZB039c/TgKGIZFkCFgSbBz27iTI0znI2QoE7KWkOiGZXZ0JnVOguBQEEIM/fvKB15pO+5eIcA4B/U7YU7xECrE/T7ZDmT7xT4T/vJuQ9RbtiXj5IFqTCmn+UiOdTW18XrDsJSUl5VdMNAYC1YYkucfIsV+oVrkawTv4Zb+E6dClaPwx5BaKqF19ZHAUBBG6UKkloceGENtFniddtPuLyHeVusqxynuFN7lnEBy1TS0HjXkC/IiGvpo/jQywdpIYVeUWY/Kb/EByamNRr7OOAv8omDWTvVGVRUSJ6rzsaRJE5hp0XOxiwyLR7NuN3jVIFAQRdPDZjzSecRa+wOxr7bSyHIP36jfz7NyMcykASWgYta2MPx9L5PKrb/T4HVa6ub3V4yigU6rpLiEzgCTfdQNUqgA0niuyZs2jVxbkpZQ5jxa/Q6SC+GvyEP+daSEtQCr0CBQEEi4qq+KCuY7aPdrG5uKpHBwJjSBlMlYXnM0Dh+48s1nW6vMC+jeuvDv0OiX0alBMnilr3QHWbBI5jWn61Dalpc4Cxi6oj4nr5ECQ6JeN16+h7UmJiuC0T2HOhcRVIla9eTQUBBKSp8OK9Kw+vRLVM6zPvxnZ7EKqbo0cwQHl4wPh4hDCD8eLbmXv4MVeDK1GmI1D2ljUGcXRBk+r4yGGrqyhY4ciAIcJwgPjX40Gj1v4jRuW/lHxPffkrqHgQ9WkwT1dGOdAFAQS1faLup7FBXrv1XpL060o9V944cJODtXGH4bLPK7XNkzeZtX/7d3BfDgrRoNhyGGBFx1usxrN08n7vJO5vaqM4gEAZ4sqyFwLbR/pXdmwbeXHofdzOuR6Ow2IdGVP3QwN9BQEEpzL7bDSBLqWkZUc0TWOjYOItDEgVyDevgqCd57f9l5dll0H74YpABE3ycOZS4lZIRuFTPNh+QOcf7PyopoCyZoAUwVsG/QrETbZc8buSIkZ6BHvNPzDmNap8m068MaCfFgUBBEYD5EiY3O2FuZUIpaPaEEv1zxJRFeh8/Gp6Rbw2vRSrulyB/F1ClcmZ2O+8INCvrj6swt9HOzqdyVZ8AbJnAJyADFGWOf+ERkEr50DZNprXdo/wLj75A9wtCo/BaQJWFbw=\",\n            \"multisig_address_pair\": \"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\",\n            \"name\": \"default\",\n            \"passphrase\": null,\n            \"private_key\": \"gDrv4l0jW4bi7CXQoO5zJn4KDxD2Kk2W30L8nnsvbL7z\",\n            \"staking_keys\": \"GAUBBCGUa/l1Aw8XnaOQW5WkQ8HAvqLg7xql4RHcfkBxaVd2lVp9PSCvflZCl5Y4sWOaneIO9plHhVxL/+JI89ZaH0EFAQR/UWZnMubod9yrBzc1/AwEuTBtxkuUrN1poItgYC6cTrkpOsUPPVXOdEoIGOtHf+5Go0AXQeOAhG11mJtFFzBnBQEEr10qEOVgmu/GP+78RPzfL0alMOgF4QP1QSc/FEDJZ0QLo8BEFvXdmGUBAx6s73/KZEDpwbYGFv6tG9J+4dk4yAUBBN2FG02MxElwFgCwjz0BX5zwsq/pr09AamSihwns+23VJLHKH7S926yjA6OomnXhI7Ga1Nk9v/uRkfsGPknHEc4FAQTIiXtY3MRFGC/bhscAtyOKZ7o/ktd+S/iIJ2e46VE40TI70PxH2DQRjnbhZqqEpy2TXav8/7gy7u/mtyEYJPZ+BQEEWZ7s0oROxqLeT6pIk44Li4Rzu7A64khZ3+BpHuIdPxFe5Zon9FywcJi0odZFis/SAEEnRCU07T+01S+3LbDrbQ==\",\n            \"wallet\": \"BQEEtNq/yGK5y5+GuNSVIAI6oMzLKtiURld90P7nvJRqeaGDcnYiitx14NQav3WpfCmyGAz9UFrWJgkP2E6324R+EgE=\"\n        }\n    ],\n    \"id\": \"wallet_import\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## WALLET MANAGEMENT\n\n:::tip All Endpoints fall under the wallet management \n:::\n\n### wallet_balance\n\nRetrieve the balances attached with a wallet.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n\n#### Returns\n`result` : *Object* - Wallet Balance Object.\n* `result.total` : *Uint64* - The total amount balance.\n* `result.available` : *Uint64* - The available amount balance that can be currently used.\n* `result.pending` : *Uint64* - The pending amount balance.\n\n***Request Body***\n\n```json       \n{\n\t\"method\": \"wallet_balance\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n\t\"id\": \"wallet_balance\"\n}\n```\n\n***Response Body:***\n\n```json       \n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": {\n        \"available\": \"500000000000000000\",\n        \"pending\": \"0\",\n        \"total\": \"500000000000000000\"\n    },\n    \"id\": \"wallet_balance\"\n}\n```\n\n### `wallet_create`\n\nCreates a wallet.\n\n#### Parameters\n\n* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet creation Object.\n* *String* - Type of wallet to be created. Possible values are:\n    - `Basic` : Basic wallet\n    - `HD` : Creates a Hierarchial Deterministic Wallet (12 word Mnemonic)\n    - `HW` : Hardware Wallet ( eg. Ledger HW wallet series)\n* *Uint32* (Optional)  - Mnemonic word count. Default `12`. \n\n#### Returns\n\n`result` : *Array* - Wallet creation result.\n* `result[0]` : *String* - Wallet authentication token.\n* `result[1]` : *String(Optional)* - Generated mnemonic phrase (If `wallet_type` was `HD` or `HW`).\n\n***Request Body***\n\n```json       \n{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"wallet_create\",\n    \"params\": [\n        {\n            \"name\": \"<<Wallet Name>>\",\n            \"passphrase\": \"<<Your Passphrase>>\"\n        },\n        \"HD\",\n        12 \n    ],\n    \"id\": \"wallet_create\"\n}\n```\n\n***Response Body:***\n\n```json       \n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": [\n        \"49b2188de90d2d635d8615a20d4ceca225a47918871e8465387a55374b99334f\",\n        \"ordinary mandate edit father snack mesh history identify print borrow skate unhappy cattle tiny first\"\n    ],\n    \"id\": \"wallet_create\"\n}\n```\n\n\n### `wallet_createStakingAddress`\n\nCreates a Staking address. \n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n\n#### Returns\n`result` : *String* - Public address for staking account.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_createStakingAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n\t\"id\": \"wallet_createStakingAddress\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"0x78390b88c29a15dcb6fa0ba786063bfe4d3e74c0\",\n    \"id\": \"wallet_create \"\n}\n```\n\n\n### `wallet_createStakingAddressBatch`\n\nCreates multiple staking address in a single call.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n* *UInt32* - Number of staking address to create.\n\n#### Returns\n`result` : *UInt32* - Number of staking addresses created.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_createStakingAddressBatch\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n    \t\t\"name\": \"{{wallet_name}}\",\n    \t\t\"enckey\": \"{{wallet_enckey}}\"\n    \t},\n         5\n    ],\n\t\"id\": \"wallet_createStakingAddressBatch\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": 5,\n    \"id\": \"wallet_createStakingAddressBatch\"\n}\n```\n\n\n### `wallet_createWatchStakingAddress`\n\nImports a watch only staking address.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n* *String* - Secp256k1 public key of the staking address in either compressed or uncompressed form.\n\n#### Returns\n`result` : *String* - `Address` Generated Watch staking address.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_createWatchStakingAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n    \t\t\"name\": \"{{wallet_name}}\",\n    \t\t\"enckey\": \"{{wallet_enckey}}\"\n    \t},\n        \"{{your_public_key}}\"\n    ],\n\t\"id\": \"wallet_createWatchStakingAddress\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",    \n    \"result\": \"<<Generated Watch Staking addrss>>\",\n    \"id\": \"wallet_createWatchStakingAddress\"\n}\n```\n\n\n### `wallet_createTransferAddress`\nCreates a Transfer address.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n\n#### Returns\n`result` : *String* - Transfer address generated as per CRO chain format.\n \n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_createTransferAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n\t\"id\": \"wallet_createTransferAddress\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"dcro1m45k4k366n6rfydpkfr62834t4tx0n63n8alwn99rm35u5he9qsq60hucv\",\n    \"id\": \"wallet_createTransferAddress\"\n}\n```\n\n### `wallet_createTransferAddressBatch`\nCreates multiple `Transfer` type addresses in batch.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n* *Uint32* - Number/count of `Transfer` type addresses to create.\n\n#### Returns\n`result` : *UInt32* - Number of `Transfer` addresses created successfully.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_createTransferAddressBatch\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n    \t\t\"name\": \"{{wallet_name}}\",\n    \t\t\"enckey\": \"{{wallet_enckey}}\"\n    \t},\n        5\n    ],\n\t\"id\": \"wallet_createTransferAddressBatch\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": 5,\n    \"id\": \"wallet_createTransferAddressBatch\"\n}\n```\n\n\n\n\n### `wallet_createWatchTransferAddress`\nImports a watch only transfer address.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n* *String* - Secp256k1 public key of the transfer address in either compressed or uncompressed form.\n\n#### Returns\n`result` : *String* - Generated Watch Transfer address.\n \n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_createWatchTransferAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n    \t\t\"name\": \"{{wallet_name}}\",\n    \t\t\"enckey\": \"{{wallet_enckey}}\"\n    \t},\n        \"{{your_public_key}}\"\n    ],\n\t\"id\": \"wallet_createWatchTransferAddress\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<Generated Watch Transfer addrss>>\",\n    \"id\": \"wallet_createWatchTransferAddress\"\n}\n```\n\n### wallet_getEncKey\n\nRetrieve Wallet Encryption / Authentication token. The token can be used to unlock all authorized wallet methods.\n\n::: warning \nEncryption Token Storage\nKeep the token in a safe place because it can unlock any authorized wallet methods. Exposing your token may result in lost of funds.\n:::\n\n#### Parameters\n* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet creation Object.\n\n#### Returns\n`result` : *String* - Wallet authentication token.\n\n \n***Body:***\n\n```json       \n{\n    \"method\": \"wallet_getEncKey\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        }\n    ],\n    \"id\": \"wallet_getEncKey\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<Wallet Authentication Key>>\",\n    \"id\": \"wallet_createTransferAddress\"\n}\n```\n\n### `wallet_getViewKey`\nRetrieve wallet's View key pair details. Read more about a view key [here](../protocol/serialization.md#view-key-pair).\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *Boolean* - if `true` returns the `private-key` else `public-key` of the view-key pair. \n\n#### Returns\n`result` : *String* - `private` or `public` key.\n\n***Body:***\n\n```json       \n{\n    \"method\": \"wallet_getViewKey\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        false\n    ],\n    \"id\": \"wallet_getViewKey\"\n}\n```\n\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<Wallet View Key>>\",\n    \"id\": \"wallet_getViewKey\"\n}\n```\n\n### `wallet_list`\n\nRetrieves all available wallet names.\n\n#### Parameters\n`None`\n\n#### Returns\n`result` : *Array* - List of all the wallet names created (*case-sensitive*).\n\n***Body:***\n\n```json       \n{\n    \"method\": \"wallet_list\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [],\n    \"id\": \"wallet_list\"\n}\n```\n\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": [\n        \"hd\",\n        \"hitesh\",\n        \"test_account\"\n    ],\n    \"id\": \"wallet_list\"\n}\n```\n\n\n\n### `wallet_listPublicKeys`\n\nRetrieve all the Public keys attached to the wallet.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - WalletRequest Object.\n\n#### Returns\n`result` : *Array[ String ]* - List of all available public keys.\n\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_listPublicKeys\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t}\n\t],\n\t\"id\": \"wallet_listPublicKeys\"\n}\n```\n\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": [\n        \"02a732fb6c34812ea5a46547344d63a360e22d0c4815c837af82a09de7b7fd9797\",\n        \"02b57da2eea7b1415ebbf55e92f4eb4a3d57de38709383b57187e1b2cf2bb5cd93\",\n        \"038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675\",\n        \"02a4a9f0e2bd2b0faf44b54ceb33efc6767b10aa9ba34730407978c0f878843083\",\n        \"0320cfdfbca075e693bee5e21c03807f53b614ef1102ac4fd3ed90e64fbc53e13f\",\n        \"036e942a496871e18436d16789d76d3ee2f21de56eb2ac729ee14dee59c4072d53\",\n        \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\",\n        \"024603e44898dced85b99508a5a3da104bf5cf125115e87cfc6a7a45bc36bd14ab\",\n        \"025d3c3663cd279c45afb03b1afb6d2c8720fdfa8dfcfb37231cca40125a062d6b\",\n        \"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\"\n    ],\n    \"id\": \"wallet_listPublicKeys\"\n}\n```\n\n### `wallet_listStakingAddresses`\n\nRetrieve all the Staking addresses available.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *UInt64* - (Optional) Offset value (to indicate the `cursor`).\n* *Uint64* - (Optional) Maximum number of records to fetch.\n* *Boolean* - If `true` returns the list in *latest-first* fashion.\n\n#### Returns\n`result` : *Array[ String ]* - List of all Staking addresses.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_listStakingAddresses\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n       {\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t0,\n\t\t100,\n\t\tfalse\n    ],\n\t\"id\": \"wallet_listStakingAddresses\"\n}\n```\n\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": [\n        \"0x673bc7f0efbfd9eec54d187f541ff820c26bde56\",\n        \"0x78390b88c29a15dcb6fa0ba786063bfe4d3e74c0\",\n        \"0x6dc72c2d5e581d50ebf50409be162105fee00223\",\n        \"0xfcfa3ac1b2ba90abdb074410724bc9ce9b8735d5\",\n        \"0x59ceeb1d56230dc1574d17feefa464a0a33b44ff\",\n        \"0xaa707e7430b7992246fe7bfc9e031400e48a9cb6\",\n        \"0x6ae047b93a3bea5026a014dcf9413bcc9e0bac45\"\n    ],\n    \"id\": \"wallet_listStakingAddresses\"\n}\n```\n\n\n### `wallet_listTransferAddresses`\nRetrieve all the Transfer addresses available on the wallet.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *UInt64* - (Optional) Offset value (to indicate the `cursor`).\n* *Uint64* - (Optional) Maximum number of records to fetch.\n* *Boolean* - If `true` returns the list in *latest-first* fashion.\n\n#### Returns\n`result` : *Array[ String ]* - List of all available Transfer addresses.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_listTransferAddresses\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t0,\n\t\t100,\n\t\tfalse\n\t],\n\t\"id\": \"wallet_listTransferAddresses\"\n}\n```\n\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": [\n        \"dcro1kxl8xy6k8twhes6j972mrzurfvgms0e549z852cgqyl796jss89sadlmgd\",\n        \"dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24\",\n        \"dcro19lwlvysk73lyq98ak7cgzwe7s2h7tpr5ng4jqp3h8msrnht6ntds6e2nqc\",\n        \"dcro18k8cyn0ynfuapk0hzh37xr2ppu4rd6ssyf7xk67hzkzwtt3hnrcqz3flc6\",\n        \"dcro1lu6zwl7krsjmn8ygxs880hdmjepg7mv7gvgzut9jg7w8072s9ffqdwehd5\",\n        \"dcro188tu7a6m9egl0uw5r9k8e2gzrvt26qrtdgywjavsxk45gd28wlusdf2l4p\",\n        \"dcro1raxgsnlemeahk3zusmm3emqyy4pzt29tvdey2u5rue9pppm7p38q4lvx6z\",\n        \"dcro1feppgfulyftkfupdh96v2jfl5dgkpzjp3r8asugcjjmetrjw24msj6wep8\",\n        \"dcro1apx48vm5qeh92tjuw22fde0yndvdzumc4sjugg3ajfmd3tc7259sk38uhk\",\n        \"dcro10sd7k7y4rvflcczkze8yptp8vgsachz0j2mdhw5uck0fmfr9zcrsm873hu\"\n    ],\n    \"id\": \"wallet_listTransferAddresses\"\n}\n```\n\n### `wallet_listUTxO`\n\nRetrieve all the available UTXOs for a given wallet.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n\n#### Returns\n`result` : *Array[ [UnspentTransactions](./api-objects.md#unspenttransactions) ]* - List of all available UTXOs for the wallet.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_listUTxO\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n\t\"id\": \"wallet_listUTxO\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": [\n        [\n            {\n                \"id\": \"64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd\",\n                \"index\": 0\n            },\n            {\n                \"address\": \"dcro19lwlvysk73lyq98ak7cgzwe7s2h7tpr5ng4jqp3h8msrnht6ntds6e2nqc\",\n                \"valid_from\": null,\n                \"value\": \"23232323\"\n            }\n        ],\n        [\n            {\n                \"id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n                \"index\": 0\n            },\n            {\n                \"address\": \"dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24\",\n                \"valid_from\": null,\n                \"value\": \"996633\"\n            }\n        ],\n        [\n            {\n                \"id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n                \"index\": 1\n            },\n            {\n                \"address\": \"dcro1apx48vm5qeh92tjuw22fde0yndvdzumc4sjugg3ajfmd3tc7259sk38uhk\",\n                \"valid_from\": null,\n                \"value\": \"499999999975771044\"\n            }\n        ]\n    ],\n    \"id\": \"wallet_listUTxO\"\n}\n```\n\n### `wallet_broadcastSignedTransferTx`\n\nBroadcast a signed Transfer transaction to the blockchain.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *String* - Signed raw transaction.\n\n#### Returns\n`result` : *String* - Transaction ID.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_broadcastSignedTransferTx\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n        \"<<YOUR SIGNED HEX>>\"\n\t],\n\t\"id\": \"wallet_broadcastSignedTransferTx\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<tx_id>>\",\n    \"id\": \"wallet_broadcastSignedTransferTx\"\n}\n```\n\n### `wallet_restore`\nRestores a `HD` or `HW` type wallet.\n\n#### Parameters\n* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet Request Object.\n* *String* - valid Mnemonic phrase. (eg. `alpha beta charlie .. . . . .  . zeta`)\n\n#### Returns\n`result` : *String* - Wallet authentication token.\n\n***Body:***\n\n```json       \n{\n    \"method\": \"wallet_restore\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        },\n        \"ordinary mandate edit father snack mesh history identify print borrow skate unhappy cattle tiny first\"\n    ],\n    \"id\": \"wallet_restore\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<Wallet Authentication Token>>\",\n    \"id\": \"wallet_restore\"\n}\n```\n\n### `wallet_restoreBasic`\n\nRestore a `Basic` type wallet. More info [here](https://chain.crypto.com/docs/wallets/client-cli.html#wallet-operations). \n\n#### Parameters\n* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Wallet Request Object.\n* *String* - Valid secp256k1 Private key.\n\n#### Returns\n`result` : *String* - Wallet authentication token.\n\n\n***Body:***\n\n```json       \n{\n    \"method\": \"wallet_restoreBasic\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        },\n        \"b4518a5a1594816446f9a50390fe2d5a896b91590b794bcd7ff4bee75d2ab601\"\n    ],\n    \"id\": \"wallet_restoreBasic\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<Wallet Authentication Token>>\",\n    \"id\": \"wallet_restoreBasic\"\n}\n```\n\n### `wallet_delete`\nDelete a wallet. \n\n#### Parameters\n* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Create Wallet Request Object.\n\n#### Returns\n`result` : *null*\n\n\n***Body:***\n\n```json       \n{\n    \"method\": \"wallet_delete\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        }\n    ],\n    \"id\": \"wallet_delete\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": null,\n    \"id\": \"wallet_delete\"\n}\n```\n\n### `wallet_sendToAddress`\nSend a `Transfer` type transaction from a wallet.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *String* - Destination/To Address.\n* *Uint64* - Amount to transfer.\n* *Array[ String ]* - List of View Keys.\n\n#### Returns\n`result` : *String* - Transaction ID. \n\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_sendToAddress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"dcro1ayhu0665wprxf86letqlv8x4ssppeu6awf7m60qlwds9268vltwsk6ehwa\",\n\t\t\"125\",\n\t\t[]\n\t],\n\t\"id\": \"wallet_sendToAddress\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<tx_id>>\",\n    \"id\": \"wallet_sendToAddress\"\n}\n```\n\n### `wallet_buildRawTransferTx`\nCreates a *unsigned* raw transaction.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *String* - Destination/To Address.\n* *Uint64* - Amount to send.\n* *Array[ String ]* - List of View Keys.\n\n#### Returns\n`result` : *String* - Unsigned raw transaction hex. \n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_buildRawTransferTx\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"dcro1ayhu0665wprxf86letqlv8x4ssppeu6awf7m60qlwds9268vltwsk6ehwa\",\n\t\t\"5000000\",\n\t\t[]\n\t],\n\t\"id\": \"wallet_buildRawTransferTx\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"DGR4OwbnpGauENg3D7ObK92c5917VlxTU+c06NOHhOXdAAAAL932Ehb0fkAU/bewgTs+gq/lhHSaKyAGNz7gOd16mttDf2IBAAAAAACjs3zy5CDNEPfDJQFaf1bSRL4dSQyIT7Xc/6t7aBTUIQAAAGmDKIJ+/LocuU6MdpabE72AuBFKAtzf30vdyncK8mwHGTUPAAAAAAAAo7N88uQgzRD3wyUBWn9W0kS+HUkMiE+13P+re2gU1CEBAADoTVOzdAZuVS5ccpSW5eSbWNFzeKwlxCI9knbYrx5VC6RLQNJZW/AGAACrsAQAAAAAAAAA6S/H61RwRmSfX8rB9hzVhAIc811yfb08H3NgVWjs+t0AfBvreJUbE/xgVhZOQKwnYiHcXE+Sttu6nMWenaRlFgc=\",\n    \"id\": \"wallet_buildRawTransferTx\"\n}\n```\n\n\n### `wallet_transactions`\n\nRetrieves all transactions on the wallet.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *UInt32* - Offset value.\n* *Uint32* - Limit - Max number of records to fetch.\n* *Boolean* - If `true` returns the list in *latest-first* fashion.\n\n#### Returns\n`result` : *Array[ [TransactionChange](./api-objects.md#transactionchange) ]* - List of all transactions. \n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_transactions\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t0,\n\t\t100,\n\t\tfalse\n\t],\n\t\"id\": \"wallet_transactions\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": [\n        {\n            \"block_height\": 89,\n            \"block_time\": \"2020-08-11T07:54:55.707526308Z\",\n            \"fee\": \"0\",\n            \"inputs\": [],\n            \"kind\": \"Incoming\",\n            \"outputs\": [\n                {\n                    \"address\": \"dcro1kxl8xy6k8twhes6j972mrzurfvgms0e549z852cgqyl796jss89sadlmgd\",\n                    \"valid_from\": 1596607260,\n                    \"value\": \"500000000000000000\"\n                }\n            ],\n            \"transaction_id\": \"fab2009511b0634b244e0689a97c60b3bb108aaf85785841c37d8c7a51b837ad\",\n            \"transaction_type\": \"Withdraw\",\n            \"value\": \"500000000000000000\"\n        },\n        {\n            \"block_height\": 242,\n            \"block_time\": \"2020-08-11T07:57:43.939236623Z\",\n            \"fee\": \"0\",\n            \"inputs\": [\n                {\n                    \"id\": \"fab2009511b0634b244e0689a97c60b3bb108aaf85785841c37d8c7a51b837ad\",\n                    \"index\": 0,\n                    \"output\": {\n                        \"address\": \"dcro1kxl8xy6k8twhes6j972mrzurfvgms0e549z852cgqyl796jss89sadlmgd\",\n                        \"valid_from\": 1596607260,\n                        \"value\": \"500000000000000000\"\n                    }\n                }\n            ],\n            \"kind\": \"Outgoing\",\n            \"outputs\": [\n                {\n                    \"address\": \"dcro19lwlvysk73lyq98ak7cgzwe7s2h7tpr5ng4jqp3h8msrnht6ntds6e2nqc\",\n                    \"valid_from\": null,\n                    \"value\": \"23232323\"\n                },\n                {\n                    \"address\": \"dcro1raxgsnlemeahk3zusmm3emqyy4pzt29tvdey2u5rue9pppm7p38q4lvx6z\",\n                    \"valid_from\": null,\n                    \"value\": \"499999999976767677\"\n                }\n            ],\n            \"transaction_id\": \"64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd\",\n            \"transaction_type\": \"Transfer\",\n            \"value\": \"0\"\n        },\n        {\n            \"block_height\": 313,\n            \"block_time\": \"2020-08-11T07:59:01.911108863Z\",\n            \"fee\": \"0\",\n            \"inputs\": [\n                {\n                    \"id\": \"64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd\",\n                    \"index\": 1,\n                    \"output\": {\n                        \"address\": \"dcro1raxgsnlemeahk3zusmm3emqyy4pzt29tvdey2u5rue9pppm7p38q4lvx6z\",\n                        \"valid_from\": null,\n                        \"value\": \"499999999976767677\"\n                    }\n                }\n            ],\n            \"kind\": \"Outgoing\",\n            \"outputs\": [\n                {\n                    \"address\": \"dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24\",\n                    \"valid_from\": null,\n                    \"value\": \"996633\"\n                },\n                {\n                    \"address\": \"dcro1apx48vm5qeh92tjuw22fde0yndvdzumc4sjugg3ajfmd3tc7259sk38uhk\",\n                    \"valid_from\": null,\n                    \"value\": \"499999999975771044\"\n                }\n            ],\n            \"transaction_id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n            \"transaction_type\": \"Transfer\",\n            \"value\": \"0\"\n        }\n    ],\n    \"id\": \"wallet_transactions\"\n}\n```\n\n### `wallet_exportTransaction`\nReturns encoded transaction for a `tx_id`.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *String* - Transaction ID.\n\n#### Returns\n`result` : *String* - Encoded Raw Transaction.\n\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_exportTransaction\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"fab2009511b0634b244e0689a97c60b3bb108aaf85785841c37d8c7a51b837ad\"\n\t],\n\t\"id\": \"wallet_exportTransaction\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"eyJ0eCI6eyJ0eXBlIjoiV2l0aGRyYXdVbmJvbmRlZFN0YWtlVHJhbnNhY3Rpb24iLCJub25jZSI6MCwib3V0cHV0cyI6W3siYWRkcmVzcyI6ImRjcm8xa3hsOHh5Nms4dHdoZXM2ajk3Mm1yenVyZnZnbXMwZTU0OXo4NTJjZ3F5bDc5Nmpzczg5c2FkbG1nZCIsInZhbHVlIjoiNTAwMDAwMDAwMDAwMDAwMDAwIiwidmFsaWRfZnJvbSI6MTU5NjYwNzI2MH1dLCJhdHRyaWJ1dGVzIjp7ImNoYWluX2hleF9pZCI6IkFCIiwiYWxsb3dlZF92aWV3IjpbeyJ2aWV3X2tleSI6IjAyYjRkYWJmYzg2MmI5Y2I5Zjg2YjhkNDk1MjAwMjNhYTBjY2NiMmFkODk0NDY1NzdkZDBmZWU3YmM5NDZhNzlhMSIsImFjY2VzcyI6IkFsbERhdGEifV0sImFwcF92ZXJzaW9uIjoxfX0sImJsb2NrX2hlaWdodCI6ODl9\",\n    \"id\": \"wallet_exportTransaction\"\n}\n```\n\n### `wallet_export`\nReturns the Wallet details.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n\n#### Returns\n`result` : *Object* - [WalletInfo](./api-objects.md#walletinfo) - Wallet related details.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_export\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t}\n\t],\n\t\"id\": \"wallet_export\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": {\n        \"hdkey\": \"AQcAAAACAAAAAQAAAAEBdPhLdcuo8wJPKO3hyKBOQyOKLU2BRUDQoVIOZlI81431Pd6OWNVIAgFx5x5TmioTBAFZLI+xvFztVGSjjWSA/g==\",\n        \"key_chainpath\": \"AA==\",\n        \"key_pairs\": \"CAUBBKNLyL1kIgljmzt7gDZ7fEsfZtFYHnvXZ0iJNCzrvUXdHQXDH6HyPjjX0aUq\",\n        \"multisig_address_pair\": \"CAEBNjU0NDQ5Yjdnz1GZ+/dMpR7jTlL5KCCjS8nZ/7U9WtSYXxB201K8zQrKvalXvCo+SaEkmc1LBgEAAAAAAAAAAAAAAAAAAAA=\",\n        \"name\": \"test_account\",\n        \"passphrase\": null,\n        \"private_key\": \"gHvvwqvI7mV0VbkiLNhXZ6efE\",\n        \"wallet\": \"BQEETqp27JejrjeIjRUPkeH9VuTlfT4S2gX6lBN9F50TdaWraOtT0NJGhskelHjVdVmfPUZn790ylHuNOUvkoIAE=\"\n    },\n    \"id\": \"wallet_export\"\n}\n```\n\n\n### `wallet_importTransaction`\nImports a Chain transaction exported from [wallet_exportTransaction](#wallet_exportTransaction).\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Request Object.\n* *String* - encoded raw transaction.\n\n#### Returns\n`result` : *Quantity*, String - Amount of the transaction.\n\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"wallet_importTransaction\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"eyJ0eCI6eyJ0eXBlIjoiV2l0aGRyYXdVbmJvbmRlZFN0YWtlVHJhbnNhY3Rpb24iLCJub25jZSI6MCwib3V0cHV0cyI6W3siYWRkcmVzcyI6ImRjcm8xa3hsOHh5Nms4dHdoZXM2ajk3Mm1yenVyZnZnbXMwZTU0OXo4NTJjZ3F5bDc5Nmpzczg5c2FkbG1nZCIsInZhbHVlIjoiNTAwMDAwMDAwMDAwMDAwMDAwIiwidmFsaWRfZnJvbSI6MTU5NjYwNzI2MH1dLCJhdHRyaWJ1dGVzIjp7ImNoYWluX2hleF9pZCI6IkFCIiwiYWxsb3dlZF92aWV3IjpbeyJ2aWV3X2tleSI6IjAyYjRkYWJmYzg2MmI5Y2I5Zjg2YhkNDk1MjAwMjNhYTBjY2NiMmFkODk0NDY1NzdkZDBmZWU3YmM5NDZhNzlhMSIsImFjY2VzcyI6IkFsbERhdGEifV0sImFwcF92ZXJzaW9uIjoxfX0sImJsb2NrX2hlaWdodCI6ODl9\"\n\t],\n\t\"id\": \"wallet_importTransaction\"\n}\n```\n@ToDo\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": 5568,\n    \"id\": \"wallet_importTransaction\"\n}\n```\n\n### `wallet_import`\n\nImports a [WalletInfo](./api-objects.md#walletinfo) Object on the full node. Use [wallet_export](#wallet_export)\n\n#### Parameters\n* [CreateWalletRequest](./api-objects.md#createwalletrequest) - *Object* - Create Wallet Request Object.\n* [WalletInfo](./api-objects.md#walletinfo) - *Object* - Wallet Info Object.\n\n#### Returns\n`result` : *Data*, String - Wallet authentication token.\n\n\n***Body:***\n\n```json       \n{\n    \"method\": \"wallet_import\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"passphrase\": \"{{wallet_passphrase}}\"\n        },\n        {\n            \"hdkey\": \"AQYAAAAKAAAAAQAAAAEBhDXrGMCHEus1urikNB9r5fRqYCEw0MK39e6ICpEpubvGtGZtlWadUwgY9esNnNFSODjSfxL+dg4UhIv1stXilg==\",\n            \"key_chainpath\": \"AA==\",\n            \"key_pairs\": \"KAUBBMQqtIUBmhNlOX+TlIv9a6xAz+I4Jn/2YeEJfh0spPgqdeAiJer68R3xhTD7CwRyIKIpU0RHPf7cFzEaXxLyOH2AjnCSpm8y2Ot3hddeozmyzgZX7aY4vwZkjkxCNNVH9SsFAQRuwentSR8R21o0ijxRiQwr61x8DmYZNT5hTGg6FaVoOlYO7sLEB70bN073SQiJs54T+v22LAFtbml+ZB039c/TgKGIZFkCFgSbBz27iTI0znI2QoE7KWkOiGZXZ0JnVOguBQEEIM/fvKB15pO+5eIcA4B/U7YU7xECrE/T7ZDmT7xT4T/vJuQ9RbtiXj5IFqTCmn+UiOdTW18XrDsJSUl5VdMNAYC1YYkucfIsV+oVrkawTv4Zb+E6dClaPwx5BaKqF19ZHAUBBG6UKkloceGENtFniddtPuLyHeVusqxynuFN7lnEBy1TS0HjXkC/IiGvpo/jQywdpIYVeUWY/Kb/EByamNRr7OOAv8omDWTvVGVRUSJ6rzsaRJE5hp0XOxiwyLR7NuN3jVIFAQRdPDZjzSecRa+wOxr7bSyHIP36jfz7NyMcykASWgYta2MPx9L5PKrb/T4HVa6ub3V4yigU6rpLiEzgCTfdQNUqgA0niuyZs2jVxbkpZQ5jxa/Q6SC+GvyEP+daSEtQCr0CBQEEi4qq+KCuY7aPdrG5uKpHBwJjSBlMlYXnM0Dh+48s1nW6vMC+jeuvDv0OiX0alBMnilr3QHWbBI5jWn61Dalpc4Cxi6oj4nr5ECQ6JeN16+h7UmJiuC0T2HOhcRVIla9eTQUBBKSp8OK9Kw+vRLVM6zPvxnZ7EKqbo0cwQHl4wPh4hDCD8eLbmXv4MVeDK1GmI1D2ljUGcXRBk+r4yGGrqyhY4ciAIcJwgPjX40Gj1v4jRuW/lHxPffkrqHgQ9WkwT1dGOdAFAQS1faLup7FBXrv1XpL060o9V944cJODtXGH4bLPK7XNkzeZtX/7d3BfDgrRoNhyGGBFx1usxrN08n7vJO5vaqM4gEAZ4sqyFwLbR/pXdmwbeXHofdzOuR6Ow2IdGVP3QwN9BQEEpzL7bDSBLqWkZUc0TWOjYOItDEgVyDevgqCd57f9l5dll0H74YpABE3ycOZS4lZIRuFTPNh+QOcf7PyopoCyZoAUwVsG/QrETbZc8buSIkZ6BHvNPzDmNap8m068MaCfFgUBBEYD5EiY3O2FuZUIpaPaEEv1zxJRFeh8/Gp6Rbw2vRSrulyB/F1ClcmZ2O+8INCvrj6swt9HOzqdyVZ8AbJnAJyADFGWOf+ERkEr50DZNprXdo/wLj75A9wtCo/BaQJWFbw=\",\n            \"multisig_address_pair\": \"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\",\n            \"name\": \"default\",\n            \"passphrase\": null,\n            \"private_key\": \"gDrv4l0jW4bi7CXQoO5zJn4KDxD2Kk2W30L8nnsvbL7z\",\n            \"staking_keys\": \"GAUBBCGUa/l1Aw8XnaOQW5WkQ8HAvqLg7xql4RHcfkBxaVd2lVp9PSCvflZCl5Y4sWOaneIO9plHhVxL/+JI89ZaH0EFAQR/UWZnMubod9yrBzc1/AwEuTBtxkuUrN1poItgYC6cTrkpOsUPPVXOdEoIGOtHf+5Go0AXQeOAhG11mJtFFzBnBQEEr10qEOVgmu/GP+78RPzfL0alMOgF4QP1QSc/FEDJZ0QLo8BEFvXdmGUBAx6s73/KZEDpwbYGFv6tG9J+4dk4yAUBBN2FG02MxElwFgCwjz0BX5zwsq/pr09AamSihwns+23VJLHKH7S926yjA6OomnXhI7Ga1Nk9v/uRkfsGPknHEc4FAQTIiXtY3MRFGC/bhscAtyOKZ7o/ktd+S/iIJ2e46VE40TI70PxH2DQRjnbhZqqEpy2TXav8/7gy7u/mtyEYJPZ+BQEEWZ7s0oROxqLeT6pIk44Li4Rzu7A64khZ3+BpHuIdPxFe5Zon9FywcJi0odZFis/SAEEnRCU07T+01S+3LbDrbQ==\",\n            \"wallet\": \"BQEEtNq/yGK5y5+GuNSVIAI6oMzLKtiURld90P7nvJRqeaGDcnYiitx14NQav3WpfCmyGAz9UFrWJgkP2E6324R+EgE=\"\n        }\n    ],\n    \"id\": \"wallet_import\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<< wallet_enckey >>\",\n    \"id\": \"wallet_import\"\n}\n```\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c83b157f-c136-45c1-a691-ea488b476acd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "935b7b2b-6d21-45be-8979-28d80dab2eb8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "staking",
+			"item": [
+				{
+					"name": "staking_state",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"staking_state\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        \"default\",\n\t\t\"0x2dfde2178daa679508828242119dcf2114038ea8\"\n\t],\n\t\"id\": \"staking_state\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staking_unbondStake",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"staking_unbondStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"0x45c1851c2f0dc6138935857b9e23b173185fea15\",\n\t\t\"500000\"\n\t],\n\t\"id\": \"staking_unbondStake\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staking_depositAmountStake",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"staking_depositAmountStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"0x2dfde2178daa679508828242119dcf2114038ea8\",\n\t\t\"5000000000\"\n\t],\n\t\"id\": \"staking_depositAmountStake\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staking_withdrawAllUnbondedStake",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"staking_withdrawAllUnbondedStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"0x2dfde2178daa679508828242119dcf2114038ea8\",\n\t\t\"dcro1kxl8xy6k8twhes6j972mrzurfvgms0e549z852cgqyl796jss89sadlmgd\",\n\t\t[]\n\t],\n\t\"id\": \"staking_withdrawAllUnbondedStake\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staking_depositStake",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"staking_depositStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"0x2dfde2178daa679508828242119dcf2114038ea8\",\n\t\t[\n\t\t\t{\n\t\t\t\t\"id\": \"64783b06e7a466ae10d8370fb39b2bdd9ce7dd7b565c5353e734e8d38784e5dd\",\n\t\t\t\t\"index\": 0\n\t\t\t}\n\t\t]\n\t],\n\t\"id\": \"staking_depositStake\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staking_unjail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"staking_unjail\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"{{unjail_address}}\"\n\t],\n\t\"id\": \"staking_unjail\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staking_validatorNodeJoin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"method\": \"staking_validatorNodeJoin\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n        \"{{validator_node_name}}\",\n        \"{{validator_pubkey}}\",\n        \"{{staking_address}}\",\n        \"{{keypackage}}\"\n\t],\n\t\"id\": \"staking_validatorNodeJoin\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## STAKING\n\nAll staking related endpoints. Read more about staking key pair and addresses [here](../protocol/serialization.md#staking-key-pair-and-address).\n\n###  `staking_state`\nReturns the current state of the Staked Address.\n\n#### Parameters\n* *String* - Name of the wallet.\n* *String* - Staked State Address value.\n\n#### Returns\n`result` : *Object*, [StakedState](./api-objects.md#stakedstate) - represents the StakedState (account involved in staking).\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"staking_state\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        \"{{name}}\",\n\t\t\"{{staking_address}}\"\n\t],\n\t\"id\": \"staking_state\"\n}\n```\n***Response Body***\n* ex: unbonded\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": {\n        \"address\": \"0x2dfde2178daa679508828242119dcf2114038ea8\",\n        \"bonded\": \"0\",\n        \"last_slash\": null,\n        \"node_meta\": null,\n        \"nonce\": 0,\n        \"unbonded\": \"500000000000000000\",\n        \"unbonded_from\": 1596607260\n    },\n    \"id\": \"staking_state\"\n}\n```\n\nex: bonded\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": {\n        \"address\": \"0x45c1851c2f0dc6138935857b9e23b173185fea15\",\n        \"bonded\": \"499999999999500000\",\n        \"last_slash\": null,\n        \"node_meta\": {\n            \"CouncilNode\": {\n                \"council_node\": {\n                    \"confidential_init\": {\n                        \"init_payload\": \"AAACAEEEzsqLyBbMQaSMbSFTrnuBH+RYlcRt24qQFH4DIfZkgY+WhAM0f86lgKtIURL.......Z7MtpBCYi4Dr9Px3m4o9PMaVAdkEpUJY2iGWAiEAnDh+Lh5KNEisPE01sAbUqTk2RwuIfc06pU+sMtcxK8Y=\"\n                    },\n                    \"consensus_pubkey\": {\n                        \"type\": \"tendermint/PubKeyEd25519\",\n                        \"value\": \"FF5JxhRrCUNLj6UZmYdjv/AWgSWUeiomeOMeJG71owE=\"\n                    },\n                    \"name\": \"node0\",\n                    \"security_contact\": \"node0@example.com\"\n                },\n                \"inactive_block\": null,\n                \"inactive_time\": null,\n                \"jailed_until\": null\n            }\n        },\n        \"nonce\": 1,\n        \"unbonded\": \"500000\",\n        \"unbonded_from\": 1597132559\n    },\n    \"id\": \"staking_state\"\n}\n```\n\n\n###  `staking_unbondStake`\nEndpoint used for staking unbonded tokens.\n\n#### Parameters\n* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.\n* *String* - Staking Address.\n* *String* - Amount to stake (Max value: `Uint64`).\n\n#### Returns\n`result` : *String* - Transaction ID of the blockchain submitted transaction.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"staking_unbondStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"{{staking_address}}\",\n\t\t\"500000000000000000\"\n\t],\n\t\"id\": \"staking_unbondStake\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"ddd8d774ddc79e70b1fa08eb91874a6e58fadbf90920a5669d367caf7ecfa3a0\",\n    \"id\": \"staking_unbondStake\"\n}\n```\n\n\n###  `staking_depositAmountStake`\n\nDepositing the staked amount to a recipient staking address.\n\n#### Parameters\n* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.\n* *String* - To/recipient Address.\n* *UInt64* - Amount to deposit.\n\n#### Returns\n`result` : *String* - Transaction ID of the blockchain submitted transaction.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"staking_depositAmountStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"{{recipient_address}}\",\n\t\t\"500000000000000000\"\n\t],\n\t\"id\": \"staking_depositAmountStake\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<tx_id>>\",\n    \"id\": \"staking_depositAmountStake\"\n}\n```\n\n###  `staking_withdrawAllUnbondedStake`\n\nWithdraws all unbonded tokens to a destination transfer address.\n\n#### Parameters\n* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.\n* *String* - `from` Address.\n* *String* - `to` Address.\n* *Array* - List of view keys.\n\n#### Returns\n`result` : *String* - Transaction ID of the blockchain submitted transaction.\n\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"staking_withdrawAllUnbondedStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"{{from_address}}\",\n\t\t\"{{to_address}}\",\n\t\t[ \"{{Optional_view_key_1}}\",  \"{{Optional_view_key_1}}\" ]\n\t],\n\t\"id\": \"staking_withdrawAllUnbondedStake\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<tx_id>>\",\n    \"id\": \"staking_withdrawAllUnbondedStake\"\n}\n```\n\n###  `staking_depositStake`\nDeposit staked tokens to an address.\n\n#### Parameters\n* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.\n* *String* - `to` Address.\n* *Array[ [TxoPointer](./api-objects.md#txopointer) ]* - List of UTXOs.\n\n#### Returns\n`result` : *String* - Transaction ID of the blockchain submitted transaction.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"staking_depositStake\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"{{staking_address}}\",\n\t\t[\n\t\t\t{\n\t\t\t\t\"id\": \"5c40805013482d6c293a09b0f6aa532cbd338bf127c0954f1960d608262b5115\",\n\t\t\t\t\"index\": 0\n\t\t\t}\n\t\t]\n\t],\n\t\"id\": \"staking_depositStake\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<tx_id>>\",\n    \"id\": \"staking_depositStake\"\n}\n```\n\n###  `staking_unjail`\nInitiate the unjailing process for a `jailed` staking address.\n\n#### Parameters\n* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.\n* *String* - Address to be unjailed.\n\n#### Returns\n`result` : *String* - Transaction ID of the blockchain submitted transaction.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"staking_unjail\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n\t\t\"{{unjail_address}}\"\n\t],\n\t\"id\": \"staking_unjail\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<tx_id>>\",\n    \"id\": \"staking_unjail\"\n}\n```\n\n###  `staking_validatorNodeJoin`\n\nSends a `node-join` request to participate as a validator node in the network.\n\n#### Parameters\n* *Object* - [WalletRequest](./api-objects.md#walletrequest) - Wallet authentication object.\n* *String* - Validator Node Name (Display).\n* *String* - Validator Public key.\n* *String* - Staking address.\n* *String* - KeyPackage data.\n\n#### Returns\n`result` : *String* - Transaction ID of the blockchain submitted transaction.\n\n***Body:***\n\n```json       \n{\n\t\"method\": \"staking_validatorNodeJoin\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n\t\t{\n\t\t\t\"name\": \"{{wallet_name}}\",\n\t\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t\t},\n        \"{{validator_node_name}}\",\n        \"{{validator_pubkey}}\",\n        \"{{staking_address}}\",\n        \"{{keypackage}}\"\n\t],\n\t\"id\": \"staking_validatorNodeJoin\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<tx_id>>\",\n    \"id\": \"staking_validatorNodeJoin\"\n}\n```\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ee3de752-4ce9-454b-8de0-0cc4977ceb0f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "436379a9-38c5-4f12-b2ed-6ead72376143",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "sync",
+			"item": [
+				{
+					"name": "sync",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"sync\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        {\n            \"blocking\": false,\n            \"reset\": false,\n            \"do_loop\": false\n        }\n    ],\n    \"id\": \"sync\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sync_progress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"sync_progress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t}],\n\t\"id\": \"sync_progress\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sync_stop",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"sync_stop\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [{\n\t\t\"name\": \"{{wallet_name}}\",\n\t\t\"enckey\": \"{{wallet_enckey}}\"\n\t}],\n\t\"id\": \"sync_stop\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## SYNC\n:::tip\nWallet synchronization available methods.\n:::\n\n###  `sync`\nStarts the `sync` process on the wallet.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n* [SyncRequest](./api-objects.md#syncrequest) - *Object* - SyncRequest parameters.\n\n#### Returns\n`result` : *Object* - [RunSyncResult](./api-objects.md#runsyncresult)\n\n***Request Body***\n\n```json       \n{\n    \"method\": \"sync\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        {\n            \"blocking\": false,\n            \"reset\": false,\n            \"do_loop\": false\n        }\n    ],\n\t\"id\": \"sync\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": {\n        \"message\": \"started sync wallet\",\n        \"name\": \"hitesh\",\n        \"progress\": {\n            \"current\": 0,\n            \"end\": 0,\n            \"message\": \"\",\n            \"name\": \"\",\n            \"percent\": 0.0,\n            \"start\": 0\n        }\n    },\n    \"id\": \"sync\"\n}\n```\n\n###  `sync_progress`\n\nReturns current progress of Wallet `sync` process.\n\n#### Parameters\n[WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n\n#### Returns\n`result` : *Object* - [RunSyncProgressResult](./api-objects.md#runsyncprogressresult)\n\n***Request Body***\n\n```json       \n{\n    \"method\": \"sync_progress\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n\t\"id\": \"sync_progress\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n\t\"result\": {\n        \"current\": 205880,\n        \"end\": 660789,\n        \"message\": \"sync {{wallet_name}} progress 15.003485 percent  205880 125580~660789\",\n        \"name\": \"{{wallet_name}}\",\n        \"percent\": 15.003484725952148,\n        \"start\": 125580\n    },\n\t\"id\": \"sync_progress\"\n}\n```\n\n###  `sync_stop`\n\nStop the `sync` process (if any).\n\n#### Parameters\n[WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Information.\n\n#### Returns\n`result` : *Object* - `null`\n\n***Request Body***\n\n```json       \n{\n    \"method\": \"sync_stop\",\n\t\"jsonrpc\": \"2.0\",\n\t\"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n\t\"id\": \"sync_stop\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n\t\"result\": null,\n\t\"id\": \"sync_stop\"\n}\n```\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b8002295-a7b7-40f5-a0f0-e894e44eee71",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "70bb7180-85ea-4ae2-ad09-e2f1b86cfa45",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "multisig",
+			"item": [
+				{
+					"name": "multiSig_newAddressPublicKey",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_newAddressPublicKey\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n    \"id\": \"multiSig_newAddressPublicKey\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_listAddressPublicKeys",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_listAddressPublicKeys\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n    \"id\": \"multiSig_listAddressPublicKeys\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_createAddress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_createAddress\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        [\n        \t\"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n            \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\",\n            \"0320cfdfbca075e693bee5e21c03807f53b614ef1102ac4fd3ed90e64fbc53e13f\"\n        ],\n        \"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n        2 \n    ],\n    \"id\": \"multiSig_createAddress\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_newSession",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_newSession\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        \"907253450147293b98764987f73163d4ab8e33df1000665c81cefe2529bccb8f\",\n        [\n        \t\"02a732fb6c34812ea5a46547344d63a360e22d0c4815c837af82a09de7b7fd9797\",\n            \"02b57da2eea7b1415ebbf55e92f4eb4a3d57de38709383b57187e1b2cf2bb5cd93\",\n            \"038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675\"\n        ],\n        \"02a732fb6c34812ea5a46547344d63a360e22d0c4815c837af82a09de7b7fd9797\"\n    ],\n    \"id\": \"multiSig_newSession\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_nonceCommitment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_nonceCommitment\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_nonceCommitment\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_addNonceCommitment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_addNonceCommitment\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"d36e039866c62683511d09a488cd9912d4667650c57ed9a07ba07e631bc1046e\",\n        \"038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675\"\n    ],\n    \"id\": \"multiSig_addNonceCommitment\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_nonce",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_nonce\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_nonce\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_addNonce",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_addNonce\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"4c50a36e804424f4df4e62958a08ec641846edc3374b499fc2bde81b20a4124b\",\n        \"02b2a02cb8eacc6a0602a976b6a2dcd6924b68120b42c9843cdd6191606d0a1350\"\n    ],\n    \"id\": \"multiSig_addNonce\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_partialSign",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_partialSign\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_partialSign\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_addPartialSignature",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_addPartialSignature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"bb9ef8f4475d687fdfdca6d0a533487150df485caa68e379be10c54c7191f053\",\n        \"038b8aaaf8a0ae63b68f76b1b9b8aa4707026348194c9585e73340e1fb8f2cd675\"\n    ],\n    \"id\": \"multiSig_addPartialSignature\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_signature",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_signature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_signature\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiSig_broadcastWithSignature",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"multiSig_broadcastWithSignature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        {{session_id}},\n        \"bfc34de977886baef8163ba1cba3cdbe32a9d2911eab7a4f64b7bae122fd91e732dceadcd618397f9f95f471ef99d9567d401f48a0a969f5ba8d92cbb4494e77\"\n    ],\n    \"id\": \"multiSig_broadcastWithSignature\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## MULTISIG\n:::tip\nAll multisignature related RPC Methods.\n:::\n\n### `multiSig_newAddressPublicKey`\nDEPRECATED - Creates a new transfer type address.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n \n#### Returns\n`result` : *String* - \n\n***Body:***\n\n```json  \n{\n    \"method\": \"multiSig_newAddressPublicKey\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n    \"id\": \"multiSig_newAddressPublicKey\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<public_key>>\",\n    \"id\": \"multiSig_addNonce\"\n}\n```\n\n\n### `multiSig_addNonce`\nAdds a nonce to the multisig wallet session.\n\n#### Parameters\n* *String* - multisig session id.\n* *String* - Wallet authentication key.\n* *String* - Nonce value retrieved from [multiSig_nonce](#multiSig_nonce).\n* *String* - Public key of the account.\n \n#### Returns\n`result` : *Object* - `null`\n\n***Body:***\n\n```json  \n{\n    \"method\": \"multiSig_addNonce\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"{{nonce_value}}\",\n        \"02b2a02cb8eacc6a0602a976b6a2dcd6924b68120b42c9843cdd6191606d0a1350\"\n    ],\n    \"id\": \"multiSig_addNonce\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": null,\n    \"id\": \"multiSig_addNonce\"\n}\n```\n\n### `multiSig_addNonceCommitment`\n\nCommits a nonce for a multisig transaction.\n\n#### Parameters\n* *String* - Session ID retrieved after creating a new session.\n* *String* - Wallet authentication key.\n* *String* - Value retrieved from [multiSig_nonceCommitment](#multiSig_nonceCommitment) \n* *String* - Signer's public key\n \n#### Returns\n`result` : *Object* - `null`\n\n***Body:***\n\n```json       \n{\n    \"method\": \"multiSig_addNonceCommitment\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"{{nonce commitment value}}\",\n        \"{{merchant_public_key}}\"\n    ],\n    \"id\": \"multiSig_addNonceCommitment\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": null,\n    \"id\": \"multiSig_addNonceCommitment\"\n}\n```\n\n### `multiSig_createAddress`\nDEPRECATED - It can be used to create a `m-of-n` multisig wallet. Where `m` is the minimum number of signatures required, `n` is the total number of parties. And `n` has to be always greater than or equal to  `m` (i.e **`n>=m`**)\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n* *Array[ String ]* - An array of valid participating public keys\n* *String* - Requestor's public key\n* *Number* - Positive integer representing the number of minimum signatures required.  \n\n#### Returns\n`result` : *String* - Multisig Address.\n\n***Request Body***\n\n```json      \n{\n    \"method\": \"multiSig_createAddress\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        [\n        \t\"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n            \"036ec1e9ed491f11db5a348a3c51890c2beb5c7c0e6619353e614c683a15a5683a\",\n            \"0320cfdfbca075e693bee5e21c03807f53b614ef1102ac4fd3ed90e64fbc53e13f\"\n        ],\n        \"03c42ab485019a1365397f93948bfd6bac40cfe238267ff661e1097e1d2ca4f82a\",\n        2 \n    ],\n    \"id\": \"multiSig_createAddress\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<Multisig Address>>\",\n    \"id\": \"multiSig_createAddress\"\n}\n```\n\n### `multiSig_listAddressPublicKeys`\nDEPRECATED - Lists all the public keys belonging to a wallet.\n\n#### Parameters\n* *Object* - [WalletRequest](./api-objects.md#walletrequest).\n\n#### Returns\n`result` : *Array[ String ]* - List of all available `public_key` available on the requested wallet.\n\n***Body:***\n\n```json       \n{\n    \"method\": \"multiSig_listAddressPublicKeys\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        }\n    ],\n    \"id\": \"multiSig_listAddressPublicKeys\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": [   \n        \"pub_key_1\",\n        \"pub_key_2\",\n        \"pub_key_3\"    \n    ],\n    \"id\": \"multiSig_listAddressPublicKeys\"\n}\n```\n\n\n\n### `multiSig_newSession`\n\nCreates a new session ID for a multiSig transaction.\n\n#### Parameters\n* [WalletRequest](./api-objects.md#walletrequest) - *Object* - Wallet Authentication Object.\n* *String* - Message to pass\n* *Array[ String ]* - An array of valid participating public keys\n* *String* - Signer's public key\n\n#### Returns\n`result` : *String* - session id (To be used as `mulisig_session_id`).\n\n***Body:***\n\n```json       \n{\n    \"method\": \"multiSig_newSession\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        {\n            \"name\": \"{{wallet_name}}\",\n            \"enckey\": \"{{wallet_enckey}}\"\n        },\n        \"{{transaction_message}}\",\n        [\n        \t\"{{merchant_public_key}}\",\n            \"{{public_key}}\"\n        ],\n        \"{{public_key}}\"\n    ],\n    \"id\": \"multiSig_newSession\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"{{multisig_session_id}}\",\n    \"id\": \"multiSig_newSession\"\n}\n```\n\n### `multiSig_nonce`\nRequests a new nonce for the multisig transaction.\n\n#### Parameters\n* *String* - Session ID retrieved after creating a new session.\n* *String* - Wallet authentication key.\n \n#### Returns\n`result` : *String* - Serialised nonce value.\n\n***Body:***\n\n```json       \n{\n    \"method\": \"multiSig_nonce\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_nonce\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<serialised_nonce>>\",\n    \"id\": \"multiSig_nonce\"\n}\n```\n\n### `multiSig_nonceCommitment`\nCreates a new nonce commitment for a `multisig_session_id`.\n\n#### Parameters\n* *String* - multisig Session ID obtained from [multiSig_newSession](#multiSig_newSession).\n* *String* - Wallet ENC Key.\n\n#### Returns\n`result` : *String* - Serialised nonce commitment value.\n\n***Body:***\n\n```json       \n{\n    \"method\": \"multiSig_nonceCommitment\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_nonceCommitment\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<serialised_nonce_commitment\",\n    \"id\": \"multiSig_nonceCommitment\"\n}\n```\n\n### `multiSig_partialSign`\n\nInitiate a new multisig partial signature for a multisig_session.\n\n#### Parameters\n* *String* - Session ID retrieved after creating a new session.\n* *String* - Wallet authentication key.\n \n#### Returns\n`result` : *String* - Partial sign serialised value.\n\n***Body:***\n\n```json       \n{\n    \"method\": \"multiSig_partialSign\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{multisig_session_id}}\",\n        \"{{wallet_enc_key}}\"\n    ],\n    \"id\": \"multiSig_partialSign\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<serialised_partial_sign\",\n    \"id\": \"multiSig_partialSign\"\n}\n```\n\n\n### `multiSig_addPartialSignature`\n\nAdds a partial signature to a multisig_transaction.\n\n#### Parameters\n* *String* - Session ID retrieved after creating a new session.\n* *String* - Wallet authentication key.\n* *String* - Partial signature value retrieved from [multiSig_partialSign](#multiSig_partialSign) \n* *String* - Signer's public key\n \n#### Returns\n`result` : *Object* - `null`.\n\n***Body:***\n\n```json       \n{\n    \"method\": \"multiSig_addPartialSignature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\",\n        \"{{partial signature value}}\",\n        \"{{signer public key}}\"\n    ],\n    \"id\": \"multiSig_addPartialSignature\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": null,\n    \"id\": \"multiSig_addPartialSignature\"\n}\n```\n\n### `multiSig_signature`\nStart applying the multisig signature process.\n\n#### Parameters\n* *String* - Session ID retrieved from [multiSig_newSession](#multiSig_newSession).\n* *String* - Wallet authentication key.\n \n#### Returns\n`result` : *String* - multisig_Signature value.\n\n***Body:***\n\n```json       \n{\n    \"method\": \"multiSig_signature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_signature\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<serialised multisig signature initiation>>\",\n    \"id\": \"multiSig_signature\"\n}\n```\n\n\n### `multiSig_broadcastWithSignature`\nSigns a provided unsigned transaction and broadcast it to the blockchain.\n\n#### Parameters\n* *Object* - [WalletRequest](./api-objects.md##WalletRequest)\n* *String* - Session ID retrieved from [multiSig_newSession](#multiSig_newSession).\n* *Object* - [Tx](./api-objects.md#tx) - Unsigned TX object. \n \n#### Returns\n`result` : *String* - Transaction ID.\n\n***Body: ***\n\n```json       \n{\n    \"method\": \"multiSig_broadcastWithSignature\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n    \t\"{{session_id}}\",\n        \"{{wallet_enckey}}\"\n    ],\n    \"id\": \"multiSig_broadcastWithSignature\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": \"<<tx_id>>\",\n    \"id\": \"multiSig_broadcastWithSignature\"\n}\n```\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "25cca166-ba06-487b-83e7-cb339d266bf0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a251e8a1-b1bf-4732-93dc-e8e55c41d65e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "transaction_createRaw",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"method\": \"transaction_createRaw\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        [\n            {\n                \"id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n                \"index\": 1\n            },\n            {\n                \"id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n                \"index\": 0\n            }\n        ],\n        [\n            {\n                \"address\": \"dcro1apx48vm5qeh92tjuw22fde0yndvdzumc4sjugg3ajfmd3tc7259sk38uhk\",\n                \"valid_from\": null,\n                \"value\": \"499999999975771044\"\n            },\n            {\n                \"address\": \"dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24\",\n                \"valid_from\": null,\n                \"value\": \"996633\"\n            }\n        ],\n        []\n    ],\n    \"id\": \"transaction_createRaw\"\n}"
+						},
+						"url": {
+							"raw": "http://{{client_rpc_host}}:{{client_rpc_port}}/",
+							"protocol": "http",
+							"host": [
+								"{{client_rpc_host}}"
+							],
+							"port": "{{client_rpc_port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## TRANSACTION CREATOR\n\n### `transaction_createRaw`\n\nCreates a unsigned [RawTransaction](./api-objects.md#rawtransaction) with the inputs provided.\n\n#### Parameters\n* *Array[ [TxoPointer](./api-objects.md#txopointer) ]* - UTXO  inputs.\n* *Array[ [TxOut](./api-objects.md#txout) ]* - Expected Outputs.\n* *Array* - List of view keys.\n \n#### Returns\n`result` : *Object* - [RawTransaction](./api-objects.md#rawtransaction)\n\n***Body:***\n\n```json  \n{\n    \"method\": \"transaction_createRaw\",\n    \"jsonrpc\": \"2.0\",\n    \"params\": [\n        [\n            {\n                \"id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n                \"index\": 1\n            },\n            {\n                \"id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n                \"index\": 0\n            }\n        ],\n        [\n            {\n                \"address\": \"dcro1apx48vm5qeh92tjuw22fde0yndvdzumc4sjugg3ajfmd3tc7259sk38uhk\",\n                \"valid_from\": null,\n                \"value\": \"499999999975771044\"\n            },\n            {\n                \"address\": \"dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24\",\n                \"valid_from\": null,\n                \"value\": \"996633\"\n            }\n        ],\n        []\n    ],\n    \"id\": \"transaction_createRaw\"\n}\n```\n\n***Response Body***\n```json\n{\n    \"jsonrpc\": \"2.0\",\n    \"result\": {\n        \"tx\": {\n            \"attributes\": {\n                \"allowed_view\": [],\n                \"app_version\": 1,\n                \"chain_hex_id\": \"AB\"\n            },\n            \"inputs\": [\n                {\n                    \"id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n                    \"index\": 1\n                },\n                {\n                    \"id\": \"a3b37cf2e420cd10f7c325015a7f56d244be1d490c884fb5dcffab7b6814d421\",\n                    \"index\": 0\n                }\n            ],\n            \"outputs\": [\n                {\n                    \"address\": \"dcro1apx48vm5qeh92tjuw22fde0yndvdzumc4sjugg3ajfmd3tc7259sk38uhk\",\n                    \"valid_from\": null,\n                    \"value\": \"499999999975771044\"\n                },\n                {\n                    \"address\": \"dcro1dxpj3qn7ljapew2w33mfdxcnhkqtsy22qtwdlh6tmh98wzhjdsrsxg4c24\",\n                    \"valid_from\": null,\n                    \"value\": \"996633\"\n                }\n            ]\n        },\n        \"tx_id\": \"f7b22d92839bc3082acb3442d924bcc107c8fe240bfbf4a885c43fdc7f389918\"\n    },\n    \"id\": \"transaction_createRaw\"\n}\n```\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "06900f20-ba0e-4af8-880e-0e5219d20ef0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d665fa0e-1005-46dd-8362-e81f3422a298",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "882c772d-3b59-4a64-be8c-e275971e1c8c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e771eabd-bcc7-4171-8cfe-da1146b7673c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

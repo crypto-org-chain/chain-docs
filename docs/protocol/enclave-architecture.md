@@ -28,7 +28,7 @@ For a detailed description of how these enclaves work together, please refer to 
 
 ## Transaction validation
 
-The validation of transactions that involve payment obfuscated transaction outputs (see [transaction types](./transaction.md) and [accounting model](./transaction-accounting-model.md)) need to happen inside enclaves. Detailed transaction processing can found [here](https://github.com/crypto-com/chain-docs/blob/master/docs/modules/transactions.md)
+The validation of transactions that involve payment obfuscated transaction outputs (see [transaction types](./transaction.md) and [accounting model](./transaction-accounting-model.md)) need to happen inside enclaves. Detailed transaction processing can found [here](../modules/transactions.md)
 
 For the ease of development, the transaction validation happens in a separate process. The Chain ABCI application process then communicates with this process using a simple request-reply protocol over a 0MQ socket:
 

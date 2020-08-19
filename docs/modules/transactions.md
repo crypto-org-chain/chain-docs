@@ -202,8 +202,10 @@ The actual paid fee is zero.
 
 Action
 
-- Transit staking state from "clean staking" or "inactive(unjailed) validator" to active validator or community node (refer to  [staking
-  state](staking-state.md#node-join))
+-  Transit staking state depending on the option (refer to [staking state](staking-state.md#node-join)):
+  - from "clean staking" to community node
+  - from community node to active validator 
+  - from "inactive(unjailed) validator" (if still in mls group) to active validator 
 
 Validations:
 
@@ -213,7 +215,17 @@ Validations:
 
 - `staking.bonded >= minimal_required_staking or minimal_required_staking_for_community_node`
 
-- If join validator:
+- If join as a community node:
+
+  - verify the state is "clean staking"
+
+  - verify the attached MLSInit (Add + Commit messages) as below
+
+- If join as a council node:
+
+  - verify state is "community node"
+
+  - verify transaction's MLSInit is set to `CommunityToCouncilNodeSwitch`
 
   - Validator address not used
 
@@ -253,6 +265,11 @@ fn verify(state: &TDBEVerifyState, MLSInit::NodeJoin { add, commit }) {
     // verify message signature
     verify_signature(&tree, commit.sender, &commit)?;
     verify_signature(&tree, add.sender, &add)?;
+
+    // verify commit contains only the add proposal
+    commit.updates.is_empty()?;
+    commit.removes.is_empty()?;
+    (commit.adds.len() == 1 && commit.adds[0] == cs.hash(add))?;
   
     // verify keypackage in proposal
     add.key_package.verify()?;
@@ -264,39 +281,25 @@ fn verify(state: &TDBEVerifyState, MLSInit::NodeJoin { add, commit }) {
 
     // update tree
     let updated_tree = update_tree(&self.tree, add);
-  
-    // compute transcript_hash
-    let transcript_hash = compute_transcript_hash(
-        cs, group_id, epoch, sender, commit
-    );
-
-    // construct group context
-    let group_context = {
-        epoch,
-        updated_tree.compute_tree_hash(),
-        transcript_hash,
-    };
 
     // verify confirmation with TVE
-    TVE.verify_confirmation(epoch, group_context, confirmation)?;
+    TVE.verify_confirmation(epoch, add, commit)?;
 }
 ```
 
 TVE can verify the confirmation like this:
 
 ```rust
-fn TVE.verify_confirmation(epoch, input_context, confirmation) {
-    // transfer (init_secret, commit_secret, group_context) of the epoch from TDBE
-    let (init_secret, commit_secret, group_context) = get_from_TDBE(epoch);
-    // verify input context is the same as local cached context.
-    verify(input_context == group_context)?;
-    let epoch_secrets = gen_epoch_secrets(init_secret, commit_secret, group_context);
-    let computed = compute_confirmation(epoch_secrets, group_context.transcript_hash);
-    verify(computed == confirmation)?;
+fn TVE.verify_confirmation(epoch, add, commit) {
+ 
+    check_with_TDBE(epoch, add, commit):
+      - compute updated_tree, `transcript_hash` + `group context`
+      - generate epoch secrets
+      - `computed_confirmation`: compute the confirmation using the secrets
+      - verify(computed_confirmation == commit.confirmation)?;
+
 }
 ```
-
-TVE might also delegate the request to TDBE to do the verification.
 
 After validation passed, update the chain-abci state:
 

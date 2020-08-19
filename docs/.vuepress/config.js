@@ -3,7 +3,7 @@ module.exports = {
   description: "Welcome to Crypto.com Chain's documentation!",
   themeConfig: {
     navbar: true,
-    logo: '/chain_nav_logo.svg',
+    logo: '/chain_doc_nav_logo.svg',
     nav: [{
         text: "Home",
         link: "/"
@@ -61,8 +61,8 @@ module.exports = {
       "/getting-started/": [
         "",
         "thaler-testnet",
+        "thaler-testnet-azure-1click",
         "local-devnet",
-        "send-your-first-transaction",
         "notes-on-production-deployment",
         "notes-on-performance"
       ],

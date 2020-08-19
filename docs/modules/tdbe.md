@@ -145,39 +145,88 @@ and skipping `tx-validation`, it can potentially use Tendermint's [`StateSync`](
 for synchronizing jellyfish merkle and staking state uptil `last_fetched_block`.
 :::
 
-#### How to obtain the list of all the transactions using tendermint light client?
+## Light client
 
 To obtain all the changes in UTXO set from `last_block_height` of current node to `current_block_height` on remote node
-using tendermint light client, we use strategy similar to the one used in `client-core` for synchronizing the client.
-
-- Using `LightClient::verify_to_highest()`, retrieve `current_block_height`, `app_hash` and `block_hash` (of last block)
-  of remote node.
-- Split the block heights into a list of smaller chunks (`chunk_size` can be configurable), starting from
-  `last_block_height` of current node uptil `current_block_height` received from light client, and for each `chunk` of
-  `block_height`s:
-  - Call `block` and `block_results` on remote node's tendermint RPC for each chunk. For each `block` and
-    `block_results` in the response:
-    - Extract all the valid `Transfer` and `Withdraw` `transaction_id`s from `block_results` using code similar to
-      [this](https://github.com/crypto-com/chain/blob/8de5e08ffc6176f7ef2e726a3db1f53e783c461d/client-common/src/tendermint/types/block_results.rs#L37).
-    - Verify the root of the merkle tree of `transaction_id`s with the `app_hash` returned in `block` response. See the
-      note below for changes in `app_hash` computation.
-  - For all the `transaction_id`s in a `chunk`, establish an enclave-to-enclave mutually attested TLS stream with remote
-    TDBE server and fetch transaction data by sending [`GetTransactionsWithOutputs`](https://github.com/crypto-com/chain/blob/8de5e08ffc6176f7ef2e726a3db1f53e783c461d/enclave-protocol/src/tdbe_protocol.rs#L11)
-    request.
-- After fetching and processing all the chunks, it should verify the `app_hash` and `block_hash` of last block received
-  with the one received in light client response.
+using tendermint light client, TDBE need to fetch block data from chain and verify them like a light client.
 
 :::tip Note:
-`app_hash` should be modified to contain root of merkle tree of `transaction_id`s for verifying each block. The new
+to simplify `app_hash` validation, `app_hash` should be modified to contain root of merkle tree of `transaction_id`s for verifying each block. The new
 `app_hash` format is `"<merkle root of valid transaction IDs (32 bytes)><current way to compute app_hash (32 bytes)>"`.
 After this change, `app_hash` will become 64 bytes long. To see the current way to compute `app_hash` refer
 [here](https://github.com/crypto-com/chain/blob/6a3233ebeae615ad0198308819a1d221c1741cd4/chain-core/src/lib.rs#L42).
 :::
 
+We fetch block data from single node one by one, verify each block against the previous one:
+
+```rust
+struct LightBlock {
+  // rpc: /commit
+  signed_header: SignedHeader {
+    header,
+    commit,
+  },
+  // rpc: /validator
+  validator_set,
+  // rpc: /validator
+  next_validator_set,
+}
+
+struct BlockContent {
+  // rpc: /block
+  block: Block,
+  // rpc: /block_results
+  block_result: BlockResult,
+}
+
+fn verify(
+  last_block: LightBlock,
+  last_app_hash: AppHash,  // first 32 bytes
+  untrusted: LightBlock,
+  untrusted_block: BlockContent,
+  options...
+) -> Result<(), Error> {
+  Validate the light block:
+
+  - Ensure the header validator hashes match the given validators
+  - Ensure the header next validator hashes match the given next validators
+  - Ensure the header matches the commit
+  - Check that the untrusted block is more recent than the trusted one
+  - Check that the untrusted block is the very next block of the trusted one
+    - untrusted.height == last_block.height + 1
+    - untrusted.last_block_id == last_block.compute_block_id()
+  - Check that their (next) validator sets hashes match.
+  - Verify that more than 2/3 of the validators correctly committed the block.
+  
+  Validate the block content and app hash:
+  - Check the block content matches the header of LightBlock
+  - Check block_results matches the block_result_hash
+  - Check the first 32 bytes of last_app_hash matches the given last_app_hash
+  - Compute new app hash(first 32 bytes) from block content
+  
+  Store untrusted and new app hash for validation of next block
+}
+```
+
+In standard light client protocol, client use time of now to verify trusting period, since in enclave we don't have time of now, we don't verify trusting period.
+
+For the first block, we need to verify it against genesis information (notabely genesis validator set) which is compiled into enclave.
+
+```rust
+fn verify_first_block(genesis: Genesis, untrusted: LightBlock) -> Result<(), Error>;
+```
+
+After validation succeed, decode the valid transactions and process them:
+
+- Extract all the valid `Transfer` and `Withdraw` `transaction_id`s from `block_results`
+- Establish an enclave-to-enclave mutually attested TLS stream with remote
+  TDBE server and fetch transaction data by sending [`GetTransactionsWithOutputs`](https://github.com/crypto-com/chain/blob/8de5e08ffc6176f7ef2e726a3db1f53e783c461d/enclave-protocol/src/tdbe_protocol.rs#L11)
+  request.
+
 ## Sealing / recovering
+
 on genesis or when the (add/update) request is committed,
-TDBE should seal its init key + credential + "trusted anchor" parts (app hash components, validator identities... block number)
-with app hash (or some state fingerprint?) as AAD.
+TDBE should seal its init key + credential + last trusted `LightBlock` + app hash with app hash as AAD.
 
 Restarted TDBE (that wasn't kicked out) starts off this state via the TM light client
 

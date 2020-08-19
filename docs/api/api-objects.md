@@ -276,5 +276,5 @@ Response body received when a RPC call fails.
 
 | Key                  | Type                  | Value                                                              |
 |----------------------|--------------------------------|--------------------------------------------------------------------|
-| **type**           | *Data*, String  | [read here](https://docs.tendermint.com/master/spec/blockchain/encoding.html). |
+| **type**           | *Data*, String  | [read here](https://docs.tendermint.com/master/spec/core/encoding.html#public-key-cryptography). |
 | **value**           | *Data*, String  | base64 encoded value. |

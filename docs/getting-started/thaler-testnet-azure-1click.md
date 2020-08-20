@@ -29,7 +29,7 @@ Choose the image and click "Create" to start creating the Crypto.com chain testn
 | Configuration           | Value                                                                                                            |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | _Region_                | DCsv2-series VMs for Azure is currently available in three regions: _East US_, _Canada Central_ and _UK South_   |
-| _Size_                  | Select either _DC1s_v2_, _DC2s_v2_ (Recommended) or _DC4s_v2_                                                    |
+| _Size_                  | Select either _DC1s_v2_ (Recommended for test), _DC2s_v2_ or _DC4s_v2_                                                    |
 | _SSH public key source_ | Choose _"existing public key"_                                                                                   |
 | _SSH public key_        | Copy and past your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys) |
 | _Resource group_        | We suggest to create a new and dedicated one so that you can easily manage resources attached to the instance    |
@@ -164,15 +164,8 @@ $ export CRYPTO_CLIENT_TENDERMINT=ws://13.90.34.32:26657/websocket
   and check the state of your staking address:
 
   ```bash
-  $ ./client-cli state  --address <STAKING_ADDRESS>
-  ```
-
-  or 
-
-  ```bash
   $ ./client-cli state --name <WALLET_NAME> --address <STAKING_ADDRESS>
   ```
-  If you are using `client-cli` v0.5.3
 
 - Once your node is fully synced, we are now ready to join the network:
 

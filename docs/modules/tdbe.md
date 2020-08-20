@@ -295,8 +295,8 @@ Following are the TDBE related network parameters (to be configured in `genesis.
 - `"mls_message_nack_timeout_secs"`: Timeout (in seconds) for MLS handshake message NACK.
 - `"invalid_commit_slash_percent"`: The maximum percent of stake reduction for nodes sending invalid commits.
 - `"keypackage_expiration_secs"`: Time (in seconds) after which, the keypackage for a node will be considered as
-  expired. (as there are consensus related rules -- e.g. when to remove nodes with expired keypackages whose TDBE failed
-  to submit `Update` in time; when/how often `Update` can be submitted -- it probably should be a consensus parameter)
+  expired. (refer to [Removes](#removes))
+- `"keypackage_update_secs"`: Time (in seconds) after which, the keypackage for a node is allowed to be updated (refer to [Updates](#updates)), `keypackage_update_secs < keypackage_expiration_secs`.
 
 ### genesis.json creation
 The genesis generation ceremony needs to happen in several steps:
@@ -449,10 +449,21 @@ the next node's TDBE (next non-empty leaf) should generate and broadcast `Commit
 and include Remove proposals as with the "commit timeout" case.
 
 ###### Updates
-After 1/3 of keypackage's lifetime is over, TDBE is allowed to generate and broadcast `SelfUpdateProposal`
+When `keypackage.create_time + keypackage_expiration_secs > block_time >= keypackage.create_time + keypackage_update_secs`, TDBE will generate and broadcast `SelfUpdateProposal`.
 
--- it may happen that there's another committed `SelfUpdateProposal` (from a different sender) or `CommitRemoveTx`,
-which makes TDBE's original `SelfUpdateProposal` -- in which case, it should re-generate and retry.
+If processing of the commit failed (might because of other concurrent commit), TDBE should retry automatically as long as the keypackage not expired.
+
+###### Removes
+
+There are two cases a keypackage should be removed:
+
+- After `block_time >= keypackage.create_time + keypackage_expiration_secs`, the keypackage is expired.
+
+- When the validator becomes inactive ([state transition](/staking-state.md)).
+
+In these cases, the leftmost non-empty leaf node should generate and broadcast `CommitRemove`  to remove it.
+
+When abci process `CommitRemove`, it should also turn the validator inactive if it's still active.
 
 ###### new obfuscation key
 Once the Commit is applied after a NACK timeout (or state is reconstructed from Welcome), TDBE should generate a new obfuscation key as:

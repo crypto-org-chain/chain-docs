@@ -39,10 +39,11 @@ This section aims to collect and provide brief a description of all the mentione
 
 #### TDBE related parameters
 
-| Key                             | Description                                                                            |
-| ------------------------------- | -------------------------------------------------------------------------------------- |
-| `mls_commit_timeout_secs`       | Timeout (in seconds) for MLS handshake commit                                          |
-| `mls_message_nack_timeout_secs` | Timeout (in seconds) for MLS handshake message NACK                                    |
+| Key                             | Description                                                  |
+| ------------------------------- | ------------------------------------------------------------ |
+| `mls_commit_timeout_secs`       | Timeout (in seconds) for MLS handshake commit                |
+| `mls_message_nack_timeout_secs` | Timeout (in seconds) for MLS handshake message NACK          |
 | `keypackage_expiration_secs`    | Time (in seconds) after which, the keypackage for a node will be considered as expired |
+| `keypackage_update_secs`        | Time (in seconds) after which, the keypackage for a node is allowed to update, `keypackage_update_secs < keypackage_expiration_secs` |
 
 TODO: TX that can change them?

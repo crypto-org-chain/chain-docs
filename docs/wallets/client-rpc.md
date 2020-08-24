@@ -10,7 +10,7 @@ ClientRPC is the JSONRPC interface of the wallet client. It can be used to be in
 
 ### Build instructions
 
-ClientCLI is bundled with the Crypto.com chain code. After you have [compile the binaries](https://crypto-com.github.io/getting-started/#compile-chain), it is available under `./bin/client-rpc`.
+ClientCLI is bundled with the Crypto.com chain code. After you have [compile the binaries](../getting-started/local-devnet.md#build-binary-and-docker-images), it is available under `./bin/client-rpc`.
 
 ## How to start?
 
@@ -39,7 +39,7 @@ $ ./bin/client-rpc --storage /my-wallet-storage ...
 
 ## Chain ID
 
-Crypto.com Chain has different [Chain ID](../getting-started/chain-id-and-network-id#chain-id) to distinguish between *devnet*, *testnet* and *mainnet*. Accordingly, you should set up your ClientCLI and use the correct configuration for the node you are connecting to.
+Crypto.com Chain has different [Chain ID](../protocol/chain-id-and-network-id.md#chain-id)   to distinguish between *devnet*, *testnet* and *mainnet*. Accordingly, you should set up your ClientCLI and use the correct configuration for the node you are connecting to.
 
 ### Configure Chain ID
 

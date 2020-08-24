@@ -25,7 +25,7 @@ by dedicated CPU instructions, such as AES-NI.
 ## Background
 ### Crypto.com Chain Basic Background
 Crypto.com Chain contains many parts, the more complete documentation can be found 
-on the [technical documentation website](https://crypto-com.github.io).
+on the [technical documentation website](https://chain.crypto.com/docs/).
 
 We summarize the basic background here:
 

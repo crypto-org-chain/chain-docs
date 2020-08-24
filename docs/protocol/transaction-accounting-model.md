@@ -6,33 +6,70 @@ Crypto.com Chain uses both Unspent Transaction Outputs (UTXOs) and (a form of) a
 
 The native token used in Crypto.com Chain serves two main purposes:
 
-1. Payments
-2. Network operation (staking etc.)
+1. **Payments/value transfers transactions**, which data confidentiality is desired, and
+1. **Network operation**, such as staking related transactions and events that are designed to be publicly visible.
 
 These two realms have different rules and properties. These differences are highlighted in the table below:
 
-|                                  | Transaction Volume | Visibility                                             | State Changes                                                                         | Value Transfer Rules                                                                                                                     |
-| -------------------------------- | ------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Payments                         | High               | Minimal / confidentiality / data protection is desired | UTXO set is the only “state”: changes only by transactions                            | Flexible: new address per invoice, ad-hoc n-of-m address formations (e.g. for escrows); encoding extra information for atomic swaps etc. |
-| Network operation (staking etc.) | Low                | Maximal transparency is desired                        | Both by transactions and network events (e.g. a validator not following the protocol) | Self-contained: same account changes (reward payouts, unbonding…)                                                                        |
+|                                      | Transaction Volume | Visibility                                             | State Changes                                                         | Value Transfer Rules                                                                                                                         |
+| ------------------------------------ | ------------------ | ------------------------------------------------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Payments**                         | High               | Minimal / confidentiality / data protection is desired | UTXO set is the only “state”: changes only by transactions            | **Flexible**: new address per invoice, ad-hoc n-of-m address formations (e.g. for escrows); encoding extra information for atomic swaps etc. |
+| **Network operation** (staking etc.) | Low                | Maximal transparency is desired                        | Both by transactions and network events (e.g. validator misbehaviour) | **Self-contained**: same account changes (reward payouts, unbonding…)                                                                        |
 
-## UTXO+Accounts model
+## Hybrid accounting model
 
-For this reason, we chose the mixed model where:
+To facilitate this, Crypto.com Chain uses a hybrid accounting system which combines the advantages from both **Unspent Transaction Outputs (UTXOs)** and **Account-based model** for its accounting model, where
 
-- UTXO is used for payments / value transfers
-- Account-model is used for network operations (“staked state”)
+- UTXOs is used for payments / value transfers, and
+- Account-model is used for network operations.
 
-Different types of transactions and how they relate to these accounting are [described in transactions](./transaction.md).
+Specifically, there are two different address types, namely the **Transfer Address** and **Staking Address** that handle different kinds of accounting models and transaction:
 
-### Staked state
+- **Transfer Address** -
+  To represent the underlying byte array in a textual form, [Bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) is used. The convention for the human-readable prefix is the following:
+
+  - `cro`: mainnet payment;
+  - `tcro`: testnet payment;
+  - `dcro`: local devnet/regtest payment.
+
+  The following is a sample of a mainnet, transfer address:
+
+  ```
+  cro1h2ukeq63nmcw0l5y7jrkjasfcsmwds87976zqe5levzs068nejjsp4lfdv
+  ```
+
+- **Staking Address** -
+  For backwards-compatibility with the existing [contract on Ethereum](https://etherscan.io/address/0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b), the _Staking Addresses_ would preserve the hexadecimal textual representation. In which, it follows the format of the 20 bytes Ethereum account address in hexadecimal encoding. The following is a sample of a staking address:
+
+  ```
+  0x410afb0ccf51aefd111bceafb6c298acd4decaf6
+  ```
+
+Different types of transactions and how they relate to these addresses are [described in transactions](./transaction.md).
+
+### Transfer address: Balances
+
+For example, by using [client-cli](../wallets/client-cli.md#balance-check-your-transferable-balance), one can check the balance of a wallet, in which, is it the total sum of the transferable balance of the transfer addresses belongs to the wallet:
+
+```bash
+##### EXAMPLE: Balance of a wallet #####
++-----------+----------------------+
+| Total     | 8000000.00000000     |
++-----------+----------------------+
+| Pending   |       0.00000000     |
++-----------+----------------------+
+| Available | 8000000.00000000     |
++-----------+----------------------+
+```
+
+### Staking address: Staked state
 
 The current account usage is self-contained limited. Each account (“staked state”) contains two balances:
 
-- bonded amount
-- unbonded amount
+- **Bonded amount**,
+- **Unbonded amount**,
 
-and its slashing related information.
+and other staking-related information.
 
 For example, by using [client-cli](../wallets/client-cli.md#staking-operations), one can check the staking stake of a _Staking_ type address and obtain the following:
 
@@ -68,6 +105,6 @@ For example, by using [client-cli](../wallets/client-cli.md#staking-operations),
   - `Punishment Type` represents the type of [punishment](./reward-and-punishments.md#validator-punishments) that will be imposed on the account (if any);
   - `Slash Amount` is the amount of penalty.
 
-### Staked State Storage
+#### Staked State Storage
 
 The account state is currently stored in a sparse Merkle trie structure (currently MerkleBIT backed by RocksDB, but it may be migrated to a more robust / better understood structure, e.g. a Patricia Merkle trie or IAVL+).

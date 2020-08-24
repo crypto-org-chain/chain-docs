@@ -10,7 +10,7 @@ ClientCLI is a command line interface for the wallet client. It supports wallet 
 
 ### Build instructions
 
-ClientCLI is bundled with the Crypto.com chain code. After you have [compile the binaries](https://crypto-com.github.io/getting-started/#compile-chain), it is available under `./bin/client-cli`.
+ClientCLI is bundled with the Crypto.com chain code. After you have [compile the binaries](../getting-started/local-devnet.md#build-binary-and-docker-images), it is available under `./bin/client-cli`.
 
 ### How to use
 
@@ -40,7 +40,7 @@ $ CRYPTO_CLIENT_STORAGE=/my-wallet-storage ./bin/client-cli ...
 
 ### Chain ID
 
-Crypto.com Chain has different [Chain ID](../getting-started/chain-id-and-network-id#chain-id) to distinguish between _devnet_, _testnet_ and _mainnet_. Accordingly, you should set up your ClientCLI and use the correct configuration for the node you are connecting to.
+Crypto.com Chain has different [Chain ID](../protocol/chain-id-and-network-id.md#chain-id) to distinguish between _devnet_, _testnet_ and _mainnet_. Accordingly, you should set up your ClientCLI and use the correct configuration for the node you are connecting to.
 
 #### Configure Chain ID
 
@@ -61,10 +61,10 @@ A list of supported environment variables of ClientCLI is listed below:
 | Option                     | Description                                                                  | Type              | Default Value                  |
 | -------------------------- | ---------------------------------------------------------------------------- | ----------------- | ------------------------------ |
 | CRYPTO_CLIENT_DEBUG        | How detail should the debug message be on error                              | Boolean           | false                          |
-| CRYPTO_CHAIN_ID            | Full [Chain ID](../getting-started/chain-id-and-network-id.md#chain-id)      | String            | ---                            |
+| CRYPTO_CHAIN_ID            | Full [Chain ID](../protocol/chain-id-and-network-id.md#chain-id)      | String            | ---                            |
 | CRYPTO_CLIENT_STORAGE      | Wallet storage directory                                                     | Storage directory | .storage                       |
 | CRYPTO_CLIENT_TENDERMINT   | Websocket endpoint for tendermint                                            | String            | ws://localhost:26657/websocket |
-| CRYPTO_GENESIS_FINGERPRINT | [The genesis fingerprint](../getting-started/genesis.md#genesis-fingerprint) | String            | ---                            |
+| CRYPTO_GENESIS_FINGERPRINT | [The genesis fingerprint](../protocol/genesis.md#genesis-fingerprint) | String            | ---                            |
 
 ## Wallet operations
 
@@ -289,6 +289,7 @@ Synchronizing: 2168 / 2168 [=============================================] 100.0
 Synchronization complete!
 ```
 
+Tip: You can configure the synchronization batch size by adding the `--batch-size <BATCH_SIZE>` flag (default value is 20)
 :::
 
 ### `view-key`- Obtain the View Key
@@ -405,7 +406,7 @@ Staking operations involve the interaction between _transfer_ address and _staki
 
   :::
 
-Please also refer to this [diagram](../getting-started/local-devnet.md#send-your-first-transaction) for interaction between _staking address_ and _transfer address_
+Please also refer to this [diagram](../protocol/transaction.md#basic-transaction-types) for interaction between _staking address_ and _transfer address_
 
 ### `transaction show` Show transaction details
 
@@ -487,7 +488,7 @@ It provides you with details such as the **Transaction ID**, **Direction**(In/ou
 
 ### `state` - Check the staking state
 
-Crypto.com Chain uses a mixed [UTXO+Accounts model](../getting-started/transaction-accounting-model.md#utxo-accounts-model), besides checking _transferable_ balance of a _transfer_ type address, we can check the [state](../getting-started/transaction-accounting-model.md#staked-state) of a _staking_ type address.
+Crypto.com Chain uses a hybrid [UTXO+Accounts model](../protocol/transaction-accounting-model.md#hybrid-accounting-model), besides checking _transferable_ balance of a _transfer_ type address, we can check the [state](../protocol/transaction-accounting-model.html#staking-address-staked-state) of a _staking_ type address.
 
 ::: details Example: Check the state of a staking address
 
@@ -524,11 +525,11 @@ Anyone who wishes to become a validator can submit a `NodeJoinTx` by
 $ ./bin/client-cli transaction new --name Default --type node-join
 ```
 
-See [here](../getting-started/staking.md#joining-the-network) for the actual requirement of becoming a validator.
+See [here](../protocol/staking.md#joining-the-network) for the actual requirement of becoming a validator.
 
 ### `unjail` - Unjailing a validator
 
-Validator could be [punished](../getting-started/reward-and-punishments.md#validator-punishments) and [jailed](../getting-started/reward-and-punishments.md#jailing) due to network misbehaviour. After the jailing period has passed, one can broadcast a `UnjailTx` to unjail the validator and resume its normal operations by
+Validator could be [punished](../protocol/reward-and-punishments.md#validator-punishments) and [jailed](../protocol/reward-and-punishments.md#jailing) due to network misbehaviour. After the jailing period has passed, one can broadcast a `UnjailTx` to unjail the validator and resume its normal operations by
 
 ```bash
 $ ./bin/client-cli transaction new --name Default --type unjail

@@ -57,7 +57,7 @@ Rewards are distributed to the validators periodically, the length of the period
 During the reward period, the following sources of funds are accumulated into reward pool:
 
 - [Monetary expansion](#monetary-expansion)
-- [Transaction Fees](../getting-started/transaction.md#transaction-fees)
+- [Transaction Fees](../protocol/transaction.md#transaction-fees)
 - Slashings
 
 The reward pool gets accumulated throughout the whole reward period; it gets distributed once at the end of each reward period.

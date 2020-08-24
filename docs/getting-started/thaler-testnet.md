@@ -107,16 +107,16 @@ version of Crypto.com Chain, you will have to delete all the associated data.
 Also, please note the [released binary changes](https://github.com/crypto-com/chain/releases/tag/v0.5.3).
 :::
 
-- To install Tendermint v0.33.6 on Linux based machine:
+- To install Tendermint v0.33.7 on Linux based machine:
 
   ```bash
   $ sudo apt update
   $ sudo apt install -y unzip
-  $ curl -LOJ https://github.com/tendermint/tendermint/releases/download/v0.33.6/tendermint_v0.33.6_linux_amd64.zip
-  $ unzip tendermint_v0.33.6_linux_amd64.zip
+  $ curl -LOJ https://github.com/tendermint/tendermint/releases/download/v0.33.7/tendermint_v0.33.7_linux_amd64.zip
+  $ unzip tendermint_v0.33.7_linux_amd64.zip
   ```
 
-  Note: Replace `https://github.com/tendermint/tendermint/releases/download/v0.33.6/tendermint_v0.33.6_linux_amd64.zip` to your desired version GitHub release link. Make sure you are downloading 0.33.\* but not the other versions.
+  Note: Replace `https://github.com/tendermint/tendermint/releases/download/v0.33.7/tendermint_v0.33.7_linux_amd64.zip` to your desired version GitHub release link. Make sure you are downloading 0.33.\* but not the other versions.
 
 - To install Chain released binaries (v0.5.3):
   ```bash

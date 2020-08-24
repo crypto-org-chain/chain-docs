@@ -24,7 +24,7 @@ A validator is said to make a byzantine fault when they sign conflicting message
 
 **Chain ID**
 
-A unique identifier for the blockchain. Different [prefixes](./chain-id-and-network-id.md#chain-id) of the Chain ID are used to distinguish between _devnet_, _testnet_ and _mainnet_. For example, the Chain ID of our [testnet](./thaler-testnet.md) is `testnet-thaler-crypto-com-chain-42`
+A unique identifier for the blockchain. Different [prefixes](./chain-id-and-network-id.md#chain-id) of the Chain ID are used to distinguish between _devnet_, _testnet_ and _mainnet_. For example, the Chain ID of our [testnet](../getting-started/thaler-testnet.html) is `testnet-thaler-crypto-com-chain-42`
 
 **Chain-abci**
 
@@ -158,7 +158,7 @@ The participant in the proof of stake (PoS) consensus protocol. They are respons
 
 **Validator keys**
 
-The key pair for signing messages from the validator. The full key pair is located under the tendermint `priv_validator_key.json` folder after the initialization. In production deployment, it is strongly advised not to keep the private key reside on the machine ( see the [deployment notes](./notes-on-production-deployment.md) and [recommendations](https://github.com/iqlusioninc/tmkms#hardware-security-modules-recommended) )
+The key pair for signing messages from the validator. The full key pair is located under the tendermint `priv_validator_key.json` folder after the initialization. In production deployment, it is strongly advised not to keep the private key reside on the machine ( see the [deployment notes](../getting-started/notes-on-production-deployment.md) and [recommendations](https://github.com/iqlusioninc/tmkms#hardware-security-modules-recommended) )
 
 **View key**
 

@@ -210,10 +210,21 @@ fn verify(
 
 In standard light client protocol, client use time of now to verify trusting period, since in enclave we don't have time of now, we don't verify trusting period.
 
-For the first block, we need to verify it against genesis information (notabely genesis validator set) which is compiled into enclave.
+For the first block, we need to verify it against genesis information (notably genesis validator set), which is compiled into enclave.
 
 ```rust
-fn verify_first_block(genesis: Genesis, untrusted: LightBlock) -> Result<(), Error>;
+struct LightGenesis {
+  validators: BTreeMap<TendermintValidatorPubKey, TendermintVotePower>,
+};
+
+// Compile into enclave
+const LIGHT_GENESIS: LightGenesis = ...;
+
+fn verify_first_block(untrusted: LightBlock) -> Result<(), Error> {
+  - Verify untrusted.height == 1
+  - Verify that more than 2/3 of the genesis validators in LIGHT_GENESIS
+    correctly committed the block.
+}
 ```
 
 After validation succeed, decode the valid transactions and process them:

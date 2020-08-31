@@ -1,19 +1,40 @@
 name: chain-docs
 
 on:
+  pull_request:
+    branches: [ master ]
   push:
     branches: [ master ]
     paths:
     - 'docs/**'
     - 'ci/**'
     - '!README.md'
-  issue_comment:
-    types: [created, edited]
 jobs:
-
+  scan:
+    name: Scan
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Perform ShiftLeft Scan
+      uses: ShiftLeftSecurity/scan-action@master
+      env:
+        WORKSPACE: ""
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SCAN_AUTO_BUILD: true
+      with:
+        output: reports
+        # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
+        # type: credscan,java
+        # type: python
+    - name: Upload report
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: reports
   build:
     name: Build
     runs-on: ubuntu-latest
+    needs: scan
     if: github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinlauco' || github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || github.actor == 'cdc-Hitesh'))
     steps:
     - name: Github API Request
@@ -60,18 +81,3 @@ jobs:
         . ci/scripts/prepare
         ci/scripts/build
         ci/scripts/deploy
-    - name: Perform ShiftLeft Scan
-      uses: ShiftLeftSecurity/scan-action@master
-      env:
-        WORKSPACE: ""
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SCAN_AUTO_BUILD: true
-      with:
-        output: reports
-        # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
-        # type: credscan,java
-        # type: python
-    - name: Upload report
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: reports

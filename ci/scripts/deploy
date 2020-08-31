@@ -4,6 +4,7 @@ set -e
 # upload to s3
 
 echo "s3 sync 📡"
+aws s3 sync s3://${S3_BUCKET}/docs/api/ docs/.vuepress/dist/api --region ${REGION}
 aws s3 sync docs/.vuepress/dist s3://${S3_BUCKET}/docs --delete --region ${REGION}
 touch index.html && aws s3 cp index.html s3://${S3_BUCKET} --region ${REGION}
 

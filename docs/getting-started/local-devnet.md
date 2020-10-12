@@ -4,7 +4,7 @@
 this page is for building and running the latest development version of the chain for testing purpose only. development branch is under active development and is highly unstable and subject to breaking changes. you should expect a moderate amount of troubleshooting work is required.
 
 for anyone interested in joining the crypto.com chain testnet,
-please refer to our [testnet documentation](./thaler-testnet.md).
+please refer to our [testnet documentation](./croeseid-testnet.md).
 :::
 
 By following this tutorial, you can compile and run the latest development version of Crypto.com Chain from scratch. It is intended for testing purpose only.
@@ -603,7 +603,7 @@ Enter authentication token:       # Input the Authentication token of Bob
 
 Congratulations! You've successfully transferred `12345678 CRO` to Bob.
 
-If you are interested in contributing or joining our testnet, you can continue reading the following sections about [Joining the Thaler Testnet](./thaler-testnet.md).
+If you are interested in contributing or joining our testnet, you can continue reading the following sections about [Joining the Croeseid Testnet](./thaler-testnet.md).
 
 ### Export & Import Tx
 

@@ -1,17 +1,13 @@
 # Wallets
 
 There are three wallet options available for you to manage your funds and interact with Crypto.com chain. They are
-- ClientCLI
-- Sample Wallet
+- chain-maind
 - ClientRPC
 
-## ClientCLI
+## chain-maind
 
-ClientCLI is a command line interface version of the wallet client. It supports most of the operations including wallet management, funds transfer and basic staking operations.
+chain-maind is a command line interface version of the client. It supports most of the operations including key management, funds transfer and baic staking operations.
 
-## Sample Chain Wallet
-
-Sample Chain Wallet is a sample wallet client with graphical user interface. It supports wallet management and funds transfer.
 
 ## ClientRPC
 

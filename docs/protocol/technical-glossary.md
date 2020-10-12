@@ -24,7 +24,7 @@ A validator is said to make a byzantine fault when they sign conflicting message
 
 **Chain ID**
 
-A unique identifier for the blockchain. Different [prefixes](./chain-id-and-network-id.md#chain-id) of the Chain ID are used to distinguish between _devnet_, _testnet_ and _mainnet_. For example, the Chain ID of our [testnet](../getting-started/thaler-testnet.html) is `testnet-thaler-crypto-com-chain-42`
+A unique identifier for the blockchain. Different [prefixes](./chain-id-and-network-id.md#chain-id) of the Chain ID are used to distinguish between _devnet_, _testnet_ and _mainnet_. For example, the Chain ID of our [testnet](../getting-started/croeseid-testnet.html) is `testnet-thaler-crypto-com-chain-42` (TODO: testnet chain-id update)
 
 **Chain-abci**
 
@@ -76,7 +76,7 @@ The [threshold multi-signature](https://blockstream.com/2019/02/18/en-musig-a-ne
 
 **Network ID**
 
-The last two hex characters of the Chain ID. Using our testnet Chain ID `testnet-thaler-crypto-com-chain-42` as an example, the network ID would be `42`(in hex).
+The last two hex characters of the Chain ID. Using our testnet Chain ID `testnet-thaler-crypto-com-chain-42` (TODO: testnet chain-id update) as an example, the network ID would be `42`(in hex).
 
 **Node-join (Transaction Type: `node-join`)**
 

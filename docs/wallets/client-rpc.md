@@ -43,7 +43,7 @@ Crypto.com Chain has different [Chain ID](../protocol/chain-id-and-network-id.md
 
 ### Configure Chain ID
 
-To customize the Chain ID while running ClientRPC, you can update the option `chain-id` with the chain ID. For example, we can change it to the testnet with Chain ID `testnet-thaler-crypto-com-chain-42` by:
+To customize the Chain ID while running ClientRPC, you can update the option `chain-id` with the chain ID. For example, we can change it to the testnet with Chain ID `testnet-thaler-crypto-com-chain-42` (TODO: testnet chain-id update):
 
 ```bash
 $ ./bin/client-rpc --chain-id=testnet-thaler-crypto-com-chain-42 ...

@@ -2,48 +2,34 @@
 
 This section aims to collect and provide brief a description of all the mentioned network parameters:
 
-#### Staking-related parameters
+#### `staking_params` parameters
 
-| Key                             | Description                                                    |
-| ------------------------------- | -------------------------------------------------------------- |
-| `max_validators`                | The maximum number of validator                                |
-| `required_council_node_stake`   | The minimum staking amount required to be a validator          |
-| `required_community_node_stake` | The minimum staking amount required to become a community node |
+| Key              | Description                                                                                         |
+| ---------------- | --------------------------------------------------------------------------------------------------- |
+| `bond_denom`     | Denomination of the staking token.                                                                  |
+| `max_entries`    | Maximum unbonding delegations and redelegations between a particular pair of delegator / validator. |
+| `max_validators` | Maximum number of active validators.                                                                |
+| `unbonding_time` | Time it takes for tokens to complete unbonding (in nanosecond ).                                    |
 
-#### `rewards_config`: Reward-related parameters
+#### `mint_params`: Reward-related parameters
 
-| Key                        | Description                                                                  |
-| -------------------------- | ---------------------------------------------------------------------------- |
-| `monetary_expansion_cap`   | The total amount of tokens reserved for validator's reward in the basic unit |
-| `reward_period_seconds`    | The period of reward being distributed (unit: seconds)                       |
-| `monetary_expansion_r0`    | The upper bound for the reward rate per annum                                |
-| `monetary_expansion_tau`   | Initial value of tau in the reward function                                  |
-| `monetary_expansion_decay` | The decay rate of tau.                                                       |
+| Key                     | Description                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `inflation`             | Initial yearly percentage of increase in the total supply of staking token, compounded weekly. Value `0.0700` means the target is 7% yearly inflation, compounded weekly. |
+| `blocks_per_year`       | Estimation of the amount of blocks per year.                                                                                                                              |
+| `goal_bonded`           | Percentage of the total supply that is targeted to be bonded.                                                                                                             |
+| `inflation_max`         | Maximum level of inflation.                                                                                                                                               |
+| `inflation_min`         | Minimum level of inflation.                                                                                                                                               |
+| `inflation_rate_change` | Max yearly change in inflation.                                                                                                                                           |
 
-#### `jailing_config` and `slashing_config`: Punishment-related parameters
+#### `slashing_params`: Punishment-related parameters
 
-| Key                            | Description                                                                |
-| ------------------------------ | -------------------------------------------------------------------------- |
-| `block_signing_window`         | Window to calculate validators's liveness                                  |
-| `missed_block_threshold`       | Threshold of total missed blocks                                           |
-| `byzantine_slash_percent`      | Maximum percentage of stake reduction for byzantine validators             |
-| `liveness_slash_percent`       | Maximum percentage of stake reduction for validators with low availability |
-| `invalid_commit_slash_percent` | Maximum percent of stake reduction for nodes sending invalid MLS commits   |
+| Key                          | Description                                                                                                            |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `downtime_jail_duration`     | Jail duration due to downtime                                                                                          |
+| `min_signed_per_window`      | Minimum percentage of `precommits` that must be present in the block window for the validator to be considered online. |
+| `signed_blocks_window`       | Moving window to calculate validators's liveness                                                                       |
+| `slash_fraction_double_sign` | Maximum percentage of stake reduction for byzantine validators                                                         |
+| `slash_fraction_downtime`    | Maximum percentage of stake reduction for validators with low availability                                             |
 
-#### `initial_fee_policy`: Transaction fee parameters
-
-| Key           | Description              |
-| ------------- | ------------------------ |
-| `constant`    | Basic transaction fee    |
-| `coefficient` | Transaction fee per byte |
-
-#### TDBE related parameters
-
-| Key                             | Description                                                  |
-| ------------------------------- | ------------------------------------------------------------ |
-| `mls_commit_timeout_secs`       | Timeout (in seconds) for MLS handshake commit                |
-| `mls_message_nack_timeout_secs` | Timeout (in seconds) for MLS handshake message NACK          |
-| `keypackage_expiration_secs`    | Time (in seconds) after which, the keypackage for a node will be considered as expired |
-| `keypackage_update_secs`        | Time (in seconds) after which, the keypackage for a node is allowed to update, `keypackage_update_secs < keypackage_expiration_secs` |
-
-TODO: TX that can change them?
+(TODO: Uptate to chain-main, gov and distribution)

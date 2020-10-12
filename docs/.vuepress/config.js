@@ -14,13 +14,13 @@ module.exports = {
       },
       {
         text: "Protocol Design",
-        link: "/protocol/enclave-architecture"
+        link: "/protocol/chain-id-and-network-id/"
       },
       {
-        text: "Thaler Testnet",
+        text: "Croeseid Testnet",
         items: [{
             text: "Setup Tutorial",
-            link: "/getting-started/thaler-testnet"
+            link: "/getting-started/croeseid-testnet"
           },
           {
             text: "Testnet Explorer",
@@ -60,14 +60,12 @@ module.exports = {
     sidebar: {
       "/getting-started/": [
         "",
-        "thaler-testnet",
-        "thaler-testnet-azure-1click",
+        "croeseid-testnet",
         "local-devnet",
         "notes-on-production-deployment",
         "notes-on-performance"
       ],
       "/protocol/": [
-        "enclave-architecture",
         "transaction-privacy",
         "genesis",
         "chain-id-and-network-id",
@@ -79,7 +77,6 @@ module.exports = {
         "serialization",
         "signature-schemes",
         "client-flow",
-        "threat-model",
         "network-parameters",
         "technical-glossary"
       ],
@@ -112,7 +109,7 @@ module.exports = {
           var ordering = {
             Home: 0,
             "Getting Started": 1,
-            "Thaler Testnet": 2,
+            "Croeseid Testnet": 2,
             "Devnet": 3,
             "Send Your First Transaction": 4,
             Consensus: 5,

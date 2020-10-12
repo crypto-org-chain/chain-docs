@@ -1,4 +1,4 @@
-# Chain ID and Network ID
+# Chain ID 
 
 ## Chain ID
 
@@ -10,8 +10,6 @@ Different chain has different address prefixes for its corresponding network typ
 | ------- | ------- | ------- |
 | `cro`   | `tcro`  | `dcro`  |
 
-For example, our testnet Chain ID is `testnet-thaler-crypto-com-chain-42`.
+For example, our testnet Chain ID is `testnet-thaler-crypto-com-chain-42`. (TODO: testnet chain-id update)
 
-## Network ID
-
-Network ID is the last two hex characters of the Chain ID. Using our testnet Chain ID `testnet-thaler-crypto-com-chain-42` as an example, the network ID would be `42`.
+(TODO: update chain-id)

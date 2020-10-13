@@ -18,7 +18,7 @@ To run Crypto.com Chain nodes, you will need a machine with the following minimu
 - 4GB RAM;
 - 100GB of storage space. 
 
-## Step 1 Get the Crypto.com Chain binary
+## Step 1. Get the Crypto.com Chain binary
 
 - To install Crypto.com Chain released binaries:
 
@@ -96,10 +96,10 @@ test secure storage of validator keys etc.
 Run the followings to create a [new key](../wallets/client-cli.html#wallet-new-create-a-new-wallet). For example, you can create a key will the name `Default` by:
 
 ```bash
-  $ chain-maind keys add Default --hd-path "44'/394'/0'/0/1"
+  $ chain-maind keys add Default
 ```
 
-You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for normal transactions.
+You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for normal transactions.
 
 ### Step 3-2. Obtain the minimal required stake
 

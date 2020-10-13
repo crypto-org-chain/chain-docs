@@ -31,7 +31,7 @@ To run Crypto.com Chain nodes, you will need a machine with the following minimu
 
 ## Step 2. Configure Chain-maind
 
-Before kick starting your node, we will have to configure your node so that it connects to the Croeseid testnet"
+Before kick starting your node, we will have to configure your node so that it connects to the Croeseid testnet:
 
 ### Step 2-1 Initialize chain-maind
 
@@ -48,7 +48,7 @@ Before kick starting your node, we will have to configure your node so that it c
 
 ### Step 2-2 Configurate chain-maind
 
-- In `~/.chain-maind/config/`, download Croseid Testnet `genesis.json` by:
+- In `~/.chain-maind/config/`, download the Croseid Testnet `genesis.json` by:
 
   ```bash
   $ curl https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/genesis_file/v0.5/genesis.json > ~/.chain-maind/config/genesis.json
@@ -108,7 +108,7 @@ stating who you are and your address (@devashishdxt or @lezzokafka would typical
 
 ### Step 3-3. Obtain the a validator public key
 
-You can obtain you validator public key
+You can obtain you validator public key by:
 
 ```bash
   $ chain-maind tendermint show-validator
@@ -179,8 +179,6 @@ Alternatively, you can run it on this [browser based IDE](https://repl.it/@allth
 (TODO: Signature check has to be updated)
 
 ## Croeseid testnet block explorer and faucet
-
-- You are welcome to utilize the [Crypto.com Chain Explorer](https://chain.crypto.com/explorer) to search and get more information on blocks and transactions on **Croseid** testnet network.
 
 - To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens for performing transactions on the **Croseid** testnet.
   - Note that you will need to create an [address](../wallets/client-cli.md#keys-add-wallet-name-create-a-new-key) before using the faucet.

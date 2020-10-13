@@ -13,10 +13,6 @@ module.exports = {
         link: "/getting-started/"
       },
       {
-        text: "Protocol Design",
-        link: "/protocol/chain-id-and-network-id/"
-      },
-      {
         text: "Croeseid Testnet",
         items: [{
             text: "Setup Tutorial",

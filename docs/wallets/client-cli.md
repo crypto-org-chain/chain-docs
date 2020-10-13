@@ -36,10 +36,9 @@ To specify the chain-maind config and data storage directory, you can update the
 
 Crypto.com Chain has different [Chain ID](../protocol/chain-id-and-network-id.md#chain-id) to distinguish between _devnet_, _testnet_ and _mainnet_ (TODO:TBC). Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag : fe
 
-```bash 
+```bash
 alias chain-maind="chain-maind --chain-id [full-chain-id]"
 ```
-
 
 ### Options
 
@@ -48,7 +47,7 @@ A list of commonly used flags of chain-maind is listed below:
 | Option              | Description                   | Type         | Default Value    |
 | ------------------- | ----------------------------- | ------------ | ---------------- |
 | `--home`            | Directory for config and data | string       | `~/.chain-maind` |
-| `--chain-id`        | Full Chain ID(TODO:Link)      | String       | ---              |
+| `--chain-id`        | Full Chain ID                 | String       | ---              |
 | `--output`          | Output format                 | string       | "text"           |
 | `--keyring-backend` | Select keyring's backend      | os/file/test | os               |
 
@@ -311,7 +310,6 @@ pagination:
 ```
 
 :::
-
 
 ## Advance operations and transactions
 

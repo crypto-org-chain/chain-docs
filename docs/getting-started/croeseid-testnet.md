@@ -142,15 +142,16 @@ Once the node is fully synced, we are now ready to send a `create-validator` tra
 
 ```bash
 $ chain-maind tx staking create-validator \
---amount="100cro" \
---pubkey="crocnclconspub1zcjduepq6jgw5hz44jnmlhnx93dawqx6kwzhp96w5pqsxwryp8nrr5vldmsqu3838p" \
---moniker="<The_id_of your node>" \
---chain-id="croeseid-42" \
---commission-rate="0.10" \
---commission-max-rate="0.20" \
---commission-max-change-rate="0.01" \
---min-self-delegation="1" \
---from=<The_name_of_your_key>
+--from=<name_of_your_key> \
+--amount= <staking_amount i.e. 100tcro> \
+--keyring-backend test \
+--pubkey="crocnclconspub1..."  \
+--moniker="<The_id_of_your_node>" \
+--chain-id=“testnet-croeseid-1" \
+--commission-rate=“0.10” \
+--commission-max-rate=“0.20" \
+--commission-max-change-rate=“0.01” \
+--min-self-delegation=“1"
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
 confirm transaction before signing and broadcasting [y/N]: y

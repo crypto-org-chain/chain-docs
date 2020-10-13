@@ -12,6 +12,7 @@ module.exports = {
         text: "Getting Started",
         link: "/getting-started/"
       },
+
       {
         text: "Croeseid Testnet",
         items: [{
@@ -35,12 +36,8 @@ module.exports = {
             link: "/wallets/#client-cli"
           },
           {
-            text: "Client CLI",
+            text: "chain-maind",
             link: "/wallets/client-cli.html#client-cli"
-          },
-          {
-            text: "Sample Chain Wallet",
-            link: "/wallets/sample-chain-wallet.html#sample-chain-wallet"
           },
           {
             text: "Client RPC",
@@ -58,8 +55,8 @@ module.exports = {
         "",
         "croeseid-testnet",
         "local-devnet",
-        "notes-on-production-deployment",
-        "notes-on-performance"
+//        "notes-on-production-deployment",
+//        "notes-on-performance"
       ],
       "/protocol/": [
         "transaction-privacy",

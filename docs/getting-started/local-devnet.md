@@ -81,8 +81,8 @@ Afterwards, keys will be generated according to the configuration in `chain-main
 
 Kindly save these mnemonics for key recovery later.
 
-Blocks is now being generated! You can view the blockchain data by the rpc port of the `node0` (first node): http://localhost:26657/.
-Futhermore, you can also use the swagger doc of `node0` at http://127.0.0.1:26654/swagger/.
+Blocks is now being generated! You can view the blockchain data by the rpc port of the `node0` (first node): [http://localhost:26657/](http://localhost:26657/).
+Futhermore, you can also use the swagger doc of `node0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
 
 ## Interact with the chain
 

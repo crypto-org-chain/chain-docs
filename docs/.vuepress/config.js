@@ -58,26 +58,10 @@ module.exports = {
 //        "notes-on-production-deployment",
 //        "notes-on-performance"
       ],
-      "/protocol/": [
-        "transaction-privacy",
-        "genesis",
-        "chain-id-and-network-id",
-        "consensus",
-        "transaction-accounting-model",
-        "transaction",
-        "staking",
-        "reward-and-punishments",
-        "serialization",
-        "signature-schemes",
-        "client-flow",
-        "network-parameters",
-        "technical-glossary"
-      ],
       "/wallets/": [
         "",
-        "client-cli",
-        "sample-chain-wallet",
-        "client-rpc"
+        "cli",
+        "rpc"
       ],
       "/api/" : "auto"
     },

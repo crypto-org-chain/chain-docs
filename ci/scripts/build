@@ -8,14 +8,14 @@ echo
 npm install 
 
 echo 
-echo "npm run build 🔧🔨🛠"
+echo "npm run docs:build 🔧🔨🛠"
 echo
 
 npm run docs:build
 
 
 echo 
-echo "export pfd 📚📙📖"
+echo "export pdf 📚📙📖"
 echo
 sed -i -e "/navbar/s/true/false/" docs/.vuepress/config.js
 npm run docs:pdf

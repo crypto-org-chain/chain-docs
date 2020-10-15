@@ -1,14 +1,14 @@
 name: chain-docs
 
 on:
-  pull_request:
-    branches: [ master ]
   push:
     branches: [ master ]
     paths:
     - 'docs/**'
     - 'ci/**'
     - '!README.md'
+  issue_comment:
+    types: [created]
 jobs:
   scan:
     name: Scan

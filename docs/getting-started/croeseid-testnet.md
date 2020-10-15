@@ -16,32 +16,34 @@ To run Crypto.com Chain nodes, you will need a machine with the following minimu
 
 - Dual core cpu;
 - 4GB RAM;
-- 100GB of storage space. 
+- 100GB of storage space.
 
 ## Step 1. Get the Crypto.com Chain binary
+
+To simply the following steps, we will be using Linux for illustration. Binary for
+[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Windows_x86_64.zip) are also available. 
 
 - To install Crypto.com Chain released binaries:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-com/chain/releases/download/v0.5.3/crypto-com-chain-release-0.5.3.tar.gz
-  $ tar -zxvf crypto-com-chain-release-0.5.3.tar.gz
+  $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
   ```
 
-  (TODO: Binary link to be updated)
-
-## Step 2. Configure Chain-maind
+## Step 2. Configure `chain-maind`
 
 Before kick starting your node, we will have to configure your node so that it connects to the Croeseid testnet:
 
-### Step 2-1 Initialize chain-maind
+### Step 2-1 Initialize `chain-maind`
 
-- After placing the `chain-maind` binary the path. You can initialize chain-maind with:
+- After placing the `chain-maind` binary path. You can initialize chain-maind by:
 
   ```bash
-    chain-maind init [moniker] [flags]
+    chain-maind init [moniker] --chain-id testnet-croeseid-1
   ```
 
-  This moniker will be the displayed id of your node when connected to Crypto.com Chain network.
+  This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
+
   ::: tip NOTE
   Depending your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
   :::
@@ -51,12 +53,12 @@ Before kick starting your node, we will have to configure your node so that it c
 - In `~/.chain-maind/config/`, download the Croseid Testnet `genesis.json` by:
 
   ```bash
-  $ curl https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/genesis_file/v0.5/genesis.json > ~/.chain-maind/config/genesis.json
+  $ curl https://raw.githubusercontent.com/crypto-com/chain-docs-nextgen/blob/cli_updates/docs/getting-started/assets/genesis_file/testnet-croeseid-1/genesis.json > ~/.chain-maind/config/genesis.json
   ```
 
   (TODO: Update the gensis flie link when it's ready)
 
-- verify MD5 checksum of the downloaded `genesis.json`. You should see `OK!` if the MD5 checksum matches.
+- Verify MD5 checksum of the downloaded `genesis.json`. You should see `OK!` if the MD5 checksum matches.
 
   ```bash
   $ [ $(md5sum genesis.json | awk '{print $1}') = "1c518490f523153f5a644d47deb1a3c1" ] && echo "OK!" || echo "MISMATCHED"
@@ -65,21 +67,18 @@ Before kick starting your node, we will have to configure your node so that it c
 
   (TODO: Update the gensis flie md5hash when it's ready)
 
-- For network configuration, in `~/.chain-maind/config/config.toml`, you can modify the configurations of `seeds`, `create_empty_blocks_interval` and `index_all_tags` by:
+- For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `seeds` and `create_empty_blocks_interval` by:
 
   ```bash
   $ sed -i '/seeds = /c\seeds = "f3806de90c43f5474c6de2b5edefb81b9011f51f@52.186.66.214:26656,29fab3b66ee6d9a46a4ad0cc1b061fbf02024354@13.71.189.105:26656,2ab2acc873250dccc3eb5f6eb5bd003fe5e0caa7@51.145.98.33:26656"' ~/.chain-maind/config/config.toml
   ```
 
   ```bash
-  $ sed -i '/create_empty_blocks_interval = /c\create_empty_blocks_interval = "5s"' ~/.chain-maind/config/config.toml
+  $ sed -i "" "s/create_empty_blocks_interval = \"0s\"/create_empty_blocks_interval = \"5s\"/" ~/.chain-maind/config/config.toml
   ```
 
-  ```bash
-  $ sed -i '/index_all_tags = /c\index_all_tags = true' ~/.chain-maind/config/config.toml
-  ```
 
-  (TODO: Update the seeds, empty block time and index when it's ready)
+  (TODO: Update the seeds, hash when it's ready)
 
 ## Step 3. Run everything
 
@@ -87,24 +86,24 @@ Before kick starting your node, we will have to configure your node so that it c
 This page only shows the minimal setup.
 
 You may want to run full nodes (see above)
-as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html) and [local notes on production deployment](notes-on-production-deployment.md)), restrict your validator connections to only connect to your full nodes,
+as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html), restrict your validator connections to only connect to your full nodes,
 test secure storage of validator keys etc.
 :::
 
 ### Step 3-1. Create a new key and address
 
-Run the followings to create a [new key](../wallets/client-cli.html#wallet-new-create-a-new-wallet). For example, you can create a key will the name `Default` by:
+Run the followings to create a [new key](../wallets/client-cli.html#keys-add-wallet-name-create-a-new-key). For example, you can create a key will the name `Default` by:
 
 ```bash
   $ chain-maind keys add Default
 ```
 
-You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for normal transactions.
+You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for preforming transactions.
 
-### Step 3-2. Obtain the minimal required stake
+### Step 3-2. Obtain test token
 
 Unless you have obtained the CRO testnet token before, simply send a message on [Gitter](https://gitter.im/crypto-com/community),
-stating who you are and your address (@devashishdxt or @lezzokafka would typically reply within a day).
+stating who you are and your `tcro.....` address (@devashishdxt or @lezzokafka would typically reply within a day).
 
 ### Step 3-3. Obtain the a validator public key
 
@@ -114,11 +113,11 @@ You can obtain you validator public key by:
   $ chain-maind tendermint show-validator
 ```
 
-The public key should begin with the `crocnclconspub` prefix, e.g. `crocnclconspub1zcjduepq6jgw5hz44jnmlhnx93dawqx6kwzhp96w5pqsxwryp8nrr5vldmsqu3838p`.
+The public key should begin with the `tcrocnclconspub` prefix, e.g. `tcrocnclconspub1zcjduepq6jgw5hz44jnmlhnx93dawqx6kwzhp96w5pqsxwryp8nrr5vldmsqu3838p`.
 
 ### Step 3-4. Run everything
 
-Once the chain-maind has been configured, we are ready to start the node and sync the block data:
+Once the `chain-maind` has been configured, we are ready to start the node and sync the blockchain data:
 
 - Start chain-maind, e.g.:
 
@@ -136,16 +135,16 @@ curl -s http://13.90.34.32:26657/commit | jq "{height: .result.signed_header.hea
 
 (TODO: update full node link for latest block height)
 
-### Step 3-5. Send a create-validator transaction
+### Step 3-5. Send a `create-validator` transaction
 
 Once the node is fully synced, we are now ready to send a `create-validator` transaction and join the network, for example:
 
-```bash
+```
 $ chain-maind tx staking create-validator \
 --from=<name_of_your_key> \
 --amount= <staking_amount i.e. 100tcro> \
 --keyring-backend test \
---pubkey="crocnclconspub1..."  \
+--pubkey="tcrocnclconspub1..."  \
 --moniker="<The_id_of_your_node>" \
 --chain-id=“testnet-croeseid-1" \
 --commission-rate=“0.10” \
@@ -159,15 +158,14 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 You will be required to insert the following:
 
-- the address that holds your bonded funds;
+- the `trco...` address that holds your bonded funds;
 - a moniker(name) for your validator node; and
 - [validator public key](#step-3-3-obtain-the-a-validator-public-key) with `crocnclconspub` as the prefix
 
-Once the node-join transaction was successfully broadcasted, you should be able to see your Council node one the [testnet explorer](https://chain.crypto.com/explorer/council-nodes).
 
 To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag `--pubkey` to specify the public key of your validator. For example:
 
-(TODO: Signature check link updated)
+(TODO: Signature check updated)
 
 ```bash
 $ ./check-validator-up.sh --tendermint-url http://13.90.34.32:26657 --pubkey "<YOUR_VALIDATOR_PUBLICKEY>"

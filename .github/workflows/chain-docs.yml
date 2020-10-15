@@ -3,10 +3,6 @@ name: chain-docs
 on:
   push:
     branches: [ master ]
-    paths:
-    - 'docs/**'
-    - 'ci/**'
-    - '!README.md'
   issue_comment:
     types: [created]
 jobs:

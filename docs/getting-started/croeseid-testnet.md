@@ -32,7 +32,7 @@ To simply the following steps, we will be using Linux for illustration. Binary f
 
 ## Step 2. Configure `chain-maind`
 
-Before kick starting your node, we will have to configure your node so that it connects to the Croeseid testnet:
+Before kick-starting your node, we will have to configure your node so that it connects to the Croeseid testnet:
 
 ### Step 2-1 Initialize `chain-maind`
 
@@ -45,7 +45,7 @@ Before kick starting your node, we will have to configure your node so that it c
   This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
 
   ::: tip NOTE
-  Depending your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
+  Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
   :::
 
 ### Step 2-2 Configurate chain-maind
@@ -70,7 +70,7 @@ Before kick starting your node, we will have to configure your node so that it c
 - For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `seeds` and `create_empty_blocks_interval` by:
 
   ```bash
-  $ sed -i '/seeds = /c\seeds = "f3806de90c43f5474c6de2b5edefb81b9011f51f@52.186.66.214:26656,29fab3b66ee6d9a46a4ad0cc1b061fbf02024354@13.71.189.105:26656,2ab2acc873250dccc3eb5f6eb5bd003fe5e0caa7@51.145.98.33:26656"' ~/.chain-maind/config/config.toml
+  $ sed -i "" "s/persistent_peers = \"\"/persistent_peers = \"9bcd515d0f3bac2c7e82c56f27c38d5d317cf894@10.202.3.99:26656,6989460472eb5f65faf4fdfff910f1bea800b10e@10.202.3.121:26656,7d06e2ca8363902b4cd8adb214d2d00b0464f9cd@10.202.3.147:26656\"/" ~/.chain-maind/config/config.toml
   ```
 
   ```bash
@@ -98,7 +98,7 @@ Run the followings to create a [new key](../wallets/client-cli.html#keys-add-wal
   $ chain-maind keys add Default
 ```
 
-You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for preforming transactions.
+You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for performing transactions.
 
 ### Step 3-2. Obtain test token
 
@@ -107,7 +107,7 @@ stating who you are and your `tcro.....` address (@devashishdxt or @lezzokafka w
 
 ### Step 3-3. Obtain the a validator public key
 
-You can obtain you validator public key by:
+You can obtain your validator public key by:
 
 ```bash
   $ chain-maind tendermint show-validator
@@ -163,6 +163,14 @@ You will be required to insert the following:
 - a moniker(name) for your validator node; and
 - [validator public key](#step-3-3-obtain-the-a-validator-public-key) with `crocnclconspub` as the prefix
 
+Now you can check if your validator has been added to the validator set:
+
+```bash
+$ chain-maind tendermint show-validator
+## [tcrocnclconspub... consensus public key] ##
+$ chain-maind query tendermint-validator-set | grep -c [tcrocnclconspub...]
+## 1 = Yes; 0 = Not yet added. 
+```
 
 To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag `--pubkey` to specify the public key of your validator. For example:
 

@@ -90,7 +90,7 @@ test secure storage of validator keys etc.
 
 ### Step 3-1. Create a new key and address
 
-Run the followings to create a [new key](../wallets/client-cli.html#keys-add-wallet-name-create-a-new-key). For example, you can create a key will the name `Default` by:
+Run the followings to create a new key. For example, you can create a key will the name `Default` by:
 
 ```bash
   $ /.chain-maind keys add Default
@@ -164,9 +164,9 @@ You will be required to insert the following:
 Now you can check if your validator has been added to the validator set:
 
 ```bash
-$ chain-maind tendermint show-validator
+$ ./chain-maind tendermint show-validator
 ## [tcrocnclconspub... consensus public key] ##
-$ chain-maind query tendermint-validator-set | grep -c [tcrocnclconspub...]
+$ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclconspub...]
 ## 1 = Yes; 0 = Not yet added. 
 ```
 
@@ -187,4 +187,4 @@ Alternatively, you can run it on this [browser based IDE](https://repl.it/@allth
 ## Croeseid testnet block explorer and faucet
 
 - To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens for performing transactions on the **Croseid** testnet.
-  - Note that you will need to create an [address](../wallets/client-cli.md#keys-add-wallet-name-create-a-new-key) before using the faucet.
+  - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet.

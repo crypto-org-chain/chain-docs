@@ -33,11 +33,11 @@ module.exports = {
         text: "Wallet Management",
         items: [{
             text: "Overview",
-            link: "/wallets/#client-cli"
+            link: "/wallets/#cli"
           },
           {
             text: "chain-maind",
-            link: "/wallets/client-cli.html#client-cli"
+            link: "/wallets/cli.html#chain-maind"
           },
           {
             text: "Client RPC",

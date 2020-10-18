@@ -1,4 +1,4 @@
-![chain-docs](https://github.com/crypto-com/chain-docs/workflows/chain-docs/badge.svg)
+![chain-docs](https://chain.crypto.com/docs/)
 # Crypto.com Chain's documentation
 
 The documentation in this repository site is meant to provide specifications and implementation details that will be useful to third party developers or contributors to the main repository.

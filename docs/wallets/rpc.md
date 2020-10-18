@@ -6,7 +6,7 @@ ClientRPC is the JSONRPC interface of the wallet client. It can be used to be in
 
 ### Build Prerequisites
 
-- Crypto.com Chain: [https://github.com/crypto-com/chain](https://github.com/crypto-com/chain)
+- Crypto.com Chain: [https://github.com/crypto-com/chain-main](https://github.com/crypto-com/chain-main)
 
 ### Build instructions
 

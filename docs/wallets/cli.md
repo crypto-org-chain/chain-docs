@@ -1,16 +1,16 @@
 # chain-maind
 
-`chain-maind` is a command line interface for the wallet client. It supports wallet management, funds transfer and staking operations.
+`chain-maind` is a command-line interface for the wallet client. It supports wallet management, funds transfer and staking operations.
 
 ## Build and configurations
 
 ### Build Prerequisites
 
-- Crypto.com Chain: **(TODO,Link for github repo)**
+- [Crypto.com Chain](https://github.com/crypto-com/chain-main)
 
 ### How to use
 
-`chain-maind`is bundled with the Crypto.com chain code. After you have compiled the Crypto.com chain **(TODO,Link chain compiled )**, run
+`chain-maind`is bundled with the Crypto.com chain code. After you have compiled the Crypto.com chain, run
 
 ```bash
 $ chain-maind [command]
@@ -30,11 +30,11 @@ Make sure you have backed up your wallet storage after creating the wallet or el
 
 #### Configure chain-maind config and data directory
 
-To specify the chain-maind config and data storage directory, you can update the environment variable, you can add a global flag `--home <directory>`
+To specify the chain-maind config and data storage directory; you can add a global flag `--home <directory>`
 
 ### Configure Chain ID
 
-Crypto.com Chain has different [Chain ID](../protocol/chain-id-and-network-id.md#chain-id) to distinguish between _devnet_, _testnet_ and _mainnet_ (TODO:TBC). Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag : fe
+Crypto.com Chain has different [Chain ID](../protocol/chain-id-and-network-id.md#chain-id) to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag :
 
 ```bash
 alias chain-maind="chain-maind --chain-id [full-chain-id]"
@@ -270,7 +270,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 ::: tip
 
-- Once you funds were unbonded, It will be locked until the `unbonding_time` has passed.
+- Once your funds were unbonded, It will be locked until the `unbonding_time` has passed.
 
 :::
 

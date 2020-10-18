@@ -58,16 +58,12 @@ Before kick-starting your node, we will have to configure your node so that it c
   $ curl https://raw.githubusercontent.com/crypto-com/chain-docs-nextgen/blob/cli_updates/docs/getting-started/assets/genesis_file/testnet-croeseid-1/genesis.json > ~/.chain-maind/config/genesis.json
   ```
 
-  (TODO: Confirm the genesis file path)
-
 - Verify MD5 checksum of the downloaded `genesis.json`. You should see `OK!` if the MD5 checksum matches.
 
   ```bash
   $ [ $(md5sum genesis.json | awk '{print $1}') = "1c518490f523153f5a644d47deb1a3c1" ] && echo "OK!" || echo "MISMATCHED"
   OK!
   ```
-
-  (TODO: Update the gensis flie md5hash when it's ready)
 
 - For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `seeds` and `create_empty_blocks_interval` by:
 
@@ -131,8 +127,6 @@ For example, one can check the current block height by querying the public full 
 ```bash
 curl -s http://54.179.111.207:26657/commit | jq "{height: .result.signed_header.header.height}"
 ```
-
-(TODO: update full node link for latest block height)
 
 ### Step 3-5. Send a `create-validator` transaction
 

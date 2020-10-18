@@ -12,15 +12,12 @@ module.exports = {
         text: "Getting Started",
         link: "/getting-started/"
       },
+
       {
-        text: "Protocol Design",
-        link: "/protocol/enclave-architecture"
-      },
-      {
-        text: "Thaler Testnet",
+        text: "Croeseid Testnet",
         items: [{
             text: "Setup Tutorial",
-            link: "/getting-started/thaler-testnet"
+            link: "/getting-started/croeseid-testnet"
           },
           {
             text: "Testnet Explorer",
@@ -34,21 +31,11 @@ module.exports = {
       },
       {
         text: "Wallet Management",
-        items: [{
-            text: "Overview",
-            link: "/wallets/#client-cli"
-          },
+        items: [
+
           {
-            text: "Client CLI",
-            link: "/wallets/client-cli.html#client-cli"
-          },
-          {
-            text: "Sample Chain Wallet",
-            link: "/wallets/sample-chain-wallet.html#sample-chain-wallet"
-          },
-          {
-            text: "Client RPC",
-            link: "/wallets/client-rpc.html#client-rpc"
+            text: "chain-maind",
+            link: "/wallets/cli.html#chain-maind"
           }
         ]
       },
@@ -60,34 +47,15 @@ module.exports = {
     sidebar: {
       "/getting-started/": [
         "",
-        "thaler-testnet",
-        "thaler-testnet-azure-1click",
+        "croeseid-testnet",
         "local-devnet",
-        "notes-on-production-deployment",
-        "notes-on-performance"
-      ],
-      "/protocol/": [
-        "enclave-architecture",
-        "transaction-privacy",
-        "genesis",
-        "chain-id-and-network-id",
-        "consensus",
-        "transaction-accounting-model",
-        "transaction",
-        "staking",
-        "reward-and-punishments",
-        "serialization",
-        "signature-schemes",
-        "client-flow",
-        "threat-model",
-        "network-parameters",
-        "technical-glossary"
+//        "notes-on-production-deployment",
+//        "notes-on-performance"
       ],
       "/wallets/": [
-        "",
-        "client-cli",
-        "sample-chain-wallet",
-        "client-rpc"
+//        "",
+        "cli",
+//        "rpc"
       ],
       "/api/" : "auto"
     },
@@ -112,7 +80,7 @@ module.exports = {
           var ordering = {
             Home: 0,
             "Getting Started": 1,
-            "Thaler Testnet": 2,
+            "Croeseid Testnet": 2,
             "Devnet": 3,
             "Send Your First Transaction": 4,
             Consensus: 5,

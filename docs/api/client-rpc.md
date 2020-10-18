@@ -1685,7 +1685,7 @@ Sends a `node-join` request to participate as a validator node in the network.
 #### Parameters
 * *Object* - [WalletRequest](./api-objects.md#walletrequest).
 * *String* - Validator Node Name (Display).
-* *String* - Validator Public key. Read more [here](../getting-started/thaler-testnet.md#step-4-b-4-create-a-validator-key-pair).
+* *String* - Validator Public key. Read more [here](../getting-started/croeseid-testnet.md#step-4-b-4-create-a-validator-key-pair).
 * *String* - Staking address.
 * *String* - KeyPackage data.
 

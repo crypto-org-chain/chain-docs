@@ -21,7 +21,7 @@ To run Crypto.com Chain nodes, you will need a machine with the following minimu
 ## Step 1. Get the Crypto.com Chain binary
 
 To simply the following steps, we will be using Linux for illustration. Binary for
-[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Windows_x86_64.zip) are also available. 
+[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Windows_x86_64.zip) are also available.
 
 - To install Crypto.com Chain released binaries:
 
@@ -45,9 +45,10 @@ Before kick-starting your node, we will have to configure your node so that it c
   This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
 
   ::: tip NOTE
+
   - Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
   - You can also put the `chain-maind` to your binary path and run it by `chain-maind`
-  :::
+    :::
 
 ### Step 2-2 Configurate chain-maind
 
@@ -128,7 +129,7 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
 For example, one can check the current block height by querying the public full node by:
 
 ```bash
-curl -s http://13.90.34.32:26657/commit | jq "{height: .result.signed_header.header.height}"
+curl -s http://54.179.111.207:26657/commit | jq "{height: .result.signed_header.header.height}"
 ```
 
 (TODO: update full node link for latest block height)
@@ -137,7 +138,7 @@ curl -s http://13.90.34.32:26657/commit | jq "{height: .result.signed_header.hea
 
 Once the node is fully synced, we are now ready to send a `create-validator` transaction and join the network, for example:
 
-``` 
+```
 $ ./chain-maind tx staking create-validator \
 --from=<name_of_your_key> \
 --amount=<staking_amount i.e. 100tcro> \
@@ -167,22 +168,23 @@ Now you can check if your validator has been added to the validator set:
 $ ./chain-maind tendermint show-validator
 ## [tcrocnclconspub... consensus public key] ##
 $ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclconspub...]
-## 1 = Yes; 0 = Not yet added. 
+## 1 = Yes; 0 = Not yet added ##
 ```
 
-To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/tree/master/docs/getting-started/assets/signature_checking/check-validator-up.sh) with the flag `--pubkey` to specify the public key of your validator. For example:
-
-(TODO: Signature check updated)
+To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs-nextgen/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash
-$ ./check-validator-up.sh --tendermint-url http://13.90.34.32:26657 --pubkey "<YOUR_VALIDATOR_PUBLICKEY>"
+$ ./check-validator-up.sh --tendermint-url http://54.179.111.207:26657 --pubkey $(cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value')
+
 The validator is in the council nodes set under the address <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 ```
 
-Alternatively, you can run it on this [browser based IDE](https://repl.it/@allthatjazzleo/cryptocomcheckNodeJoinStatus#main.go), by specifying your validator public key in the `"YOUR_PUBKEY"` field.
+Alternatively, you can run it on this [browser based IDE](https://repl.it/@allthatjazzleo/cryptocomcheckNodeJoinStatus#main.go), by specifying your validator public key in the `"YOUR_PUBKEY"` field, where this key can be obtained by running
 
-(TODO: Signature check has to be updated)
+```bash
+$ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value'
+```
 
 ## Croeseid testnet block explorer and faucet
 

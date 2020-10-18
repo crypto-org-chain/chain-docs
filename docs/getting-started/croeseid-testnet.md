@@ -36,27 +36,28 @@ Before kick-starting your node, we will have to configure your node so that it c
 
 ### Step 2-1 Initialize `chain-maind`
 
-- After placing the `chain-maind` binary path. You can initialize chain-maind by:
+- First of all, you can initialize chain-maind by:
 
   ```bash
-    chain-maind init [moniker] --chain-id testnet-croeseid-1
+    ./chain-maind init [moniker] --chain-id testnet-croeseid-1
   ```
 
   This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
 
   ::: tip NOTE
-  Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
+  - Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
+  - You can also put the `chain-maind` to your binary path and run it by `chain-maind`
   :::
 
 ### Step 2-2 Configurate chain-maind
 
-- In `~/.chain-maind/config/`, download the Croseid Testnet `genesis.json` by:
+- Download the and replace the Croseid Testnet `genesis.json` by:
 
   ```bash
   $ curl https://raw.githubusercontent.com/crypto-com/chain-docs-nextgen/blob/cli_updates/docs/getting-started/assets/genesis_file/testnet-croeseid-1/genesis.json > ~/.chain-maind/config/genesis.json
   ```
 
-  (TODO: Update the gensis flie link when it's ready)
+  (TODO: Confirm the genesis file path)
 
 - Verify MD5 checksum of the downloaded `genesis.json`. You should see `OK!` if the MD5 checksum matches.
 
@@ -70,15 +71,12 @@ Before kick-starting your node, we will have to configure your node so that it c
 - For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `seeds` and `create_empty_blocks_interval` by:
 
   ```bash
-  $ sed -i "" "s/persistent_peers = \"\"/persistent_peers = \"9bcd515d0f3bac2c7e82c56f27c38d5d317cf894@10.202.3.99:26656,6989460472eb5f65faf4fdfff910f1bea800b10e@10.202.3.121:26656,7d06e2ca8363902b4cd8adb214d2d00b0464f9cd@10.202.3.147:26656\"/" ~/.chain-maind/config/config.toml
+  $ sed -i "" "s/persistent_peers = \"\"/persistent_peers = \"66a557b8feef403805eb68e6e3249f3148d1a3f2@54.169.58.229:26656,3246d15d34802ca6ade7f51f5a26785c923fb385@54.179.111.207:26656,69c2fbab6b4f58b6cf1f79f8b1f670c7805e3f43@18.141.107.57:26656\"/" ~/.chain-maind/config/config.toml
   ```
 
   ```bash
   $ sed -i "" "s/create_empty_blocks_interval = \"0s\"/create_empty_blocks_interval = \"5s\"/" ~/.chain-maind/config/config.toml
   ```
-
-
-  (TODO: Update the seeds, hash when it's ready)
 
 ## Step 3. Run everything
 
@@ -95,7 +93,7 @@ test secure storage of validator keys etc.
 Run the followings to create a [new key](../wallets/client-cli.html#keys-add-wallet-name-create-a-new-key). For example, you can create a key will the name `Default` by:
 
 ```bash
-  $ chain-maind keys add Default
+  $ /.chain-maind keys add Default
 ```
 
 You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for performing transactions.
@@ -110,10 +108,10 @@ stating who you are and your `tcro.....` address (@devashishdxt or @lezzokafka w
 You can obtain your validator public key by:
 
 ```bash
-  $ chain-maind tendermint show-validator
+  $ ./chain-maind tendermint show-validator
 ```
 
-The public key should begin with the `tcrocnclconspub` prefix, e.g. `tcrocnclconspub1zcjduepq6jgw5hz44jnmlhnx93dawqx6kwzhp96w5pqsxwryp8nrr5vldmsqu3838p`.
+The public key should begin with the `tcrocnclconspub1` prefix, e.g. `tcrocnclconspub1zcjduepq6jgw5hz44jnmlhnx93dawqx6kwzhp96w5pqsxwryp8nrr5vldmsqu3838p`.
 
 ### Step 3-4. Run everything
 
@@ -122,7 +120,7 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
 - Start chain-maind, e.g.:
 
 ```bash
-  $ chain-maind start
+  $ ./chain-maind start
 ```
 
 It should begin fetching blocks from the other peers. Please wait until it is fully synced before moving onto the next step.
@@ -140,7 +138,7 @@ curl -s http://13.90.34.32:26657/commit | jq "{height: .result.signed_header.hea
 Once the node is fully synced, we are now ready to send a `create-validator` transaction and join the network, for example:
 
 ``` 
-$ chain-maind tx staking create-validator \
+$ ./chain-maind tx staking create-validator \
 --from=<name_of_your_key> \
 --amount=<staking_amount i.e. 100tcro> \
 --keyring-backend test \

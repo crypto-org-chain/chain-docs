@@ -31,17 +31,11 @@ module.exports = {
       },
       {
         text: "Wallet Management",
-        items: [{
-            text: "Overview",
-            link: "/wallets/#cli"
-          },
+        items: [
+
           {
             text: "chain-maind",
             link: "/wallets/cli.html#chain-maind"
-          },
-          {
-            text: "Client RPC",
-            link: "/wallets/client-rpc.html#client-rpc"
           }
         ]
       },
@@ -59,9 +53,9 @@ module.exports = {
 //        "notes-on-performance"
       ],
       "/wallets/": [
-        "",
+//        "",
         "cli",
-        "rpc"
+//        "rpc"
       ],
       "/api/" : "auto"
     },

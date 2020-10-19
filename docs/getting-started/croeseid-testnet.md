@@ -90,7 +90,7 @@ test secure storage of validator keys etc.
 Run the followings to create a new key. For example, you can create a key will the name `Default` by:
 
 ```bash
-  $ /.chain-maind keys add Default
+  $ ./chain-maind keys add Default
 ```
 
 You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for performing transactions.

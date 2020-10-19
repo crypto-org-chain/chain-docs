@@ -69,11 +69,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 - For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `seeds` and `create_empty_blocks_interval` by:
 
   ```bash
-  $ sed -i "" "s/persistent_peers = \"\"/persistent_peers = \"66a557b8feef403805eb68e6e3249f3148d1a3f2@54.169.58.229:26656,3246d15d34802ca6ade7f51f5a26785c923fb385@54.179.111.207:26656,69c2fbab6b4f58b6cf1f79f8b1f670c7805e3f43@18.141.107.57:26656\"/" ~/.chain-maind/config/config.toml
-  ```
-
-  ```bash
-  $ sed -i "" "s/create_empty_blocks_interval = \"0s\"/create_empty_blocks_interval = \"5s\"/" ~/.chain-maind/config/config.toml
+  $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1"66a557b8feef403805eb68e6e3249f3148d1a3f2@54.169.58.229:26656,3246d15d34802ca6ade7f51f5a26785c923fb385@54.179.111.207:26656,69c2fbab6b4f58b6cf1f79f8b1f670c7805e3f43@18.141.107.57:26656"# ; s#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
 
 ## Step 3. Run everything

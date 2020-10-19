@@ -139,7 +139,7 @@ $ ./chain-maind tx staking create-validator \
 --keyring-backend test \
 --pubkey=[tcrocnclconspub1...]  \
 --moniker="[The_id_of_your_node]" \
---security-contact= "[security contact email/contact method]"
+--security-contact="[security contact email/contact method]" \
 --chain-id="testnet-croeseid-1" \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \

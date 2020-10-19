@@ -58,7 +58,7 @@ Before kick-starting your node, we will have to configure your node so that it c
   $ curl https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/genesis_file/testnet-croeseid-1/genesis.json > ~/.chain-maind/config/genesis.json
   ```
 
-- Verify sha256sum checksum of the downloaded `genesis.json`. You should see `OK!` if the MD5 checksum matches.
+- Verify sha256sum checksum of the downloaded `genesis.json`. You should see `OK!` if the sha256sum checksum matches.
 
   ```bash
   $ if [[ $(sha256sum ~/.chain-maind/config/genesis.json | awk '{print $1}') = "55de3738cf6a429d19e234e59e81141af2f0dfa24906d22b949728023c1af382" ]] then echo "OK"; else echo "MISMATCHED"; fi;

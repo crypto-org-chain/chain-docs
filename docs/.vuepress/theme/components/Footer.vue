@@ -14,11 +14,11 @@
         <div class="navLinks">
           <div class="column">
             <h3>Developers</h3>
-            <div class="link">
+            <!-- <div class="link">
               <a href="/explorer">
                 Explorer
               </a>
-            </div>
+            </div> -->
             <div class="link">
               <a href="/docs">
                 Documentation
@@ -28,7 +28,7 @@
           <div class="column">
             <h3>Tools</h3>
             <div class="link">
-              <a href="/docs/wallets/">
+              <a href="/docs/wallets/cli.html">
                 Wallet
               </a>
             </div>

@@ -55,13 +55,13 @@ Before kick-starting your node, we will have to configure your node so that it c
 - Download the and replace the Croseid Testnet `genesis.json` by:
 
   ```bash
-  $ curl https://raw.githubusercontent.com/crypto-com/chain-docs-nextgen/blob/cli_updates/docs/getting-started/assets/genesis_file/testnet-croeseid-1/genesis.json > ~/.chain-maind/config/genesis.json
+  $ curl https://raw.githubusercontent.com/crypto-com/chain-docs-nextgen/master/docs/getting-started/assets/genesis_file/testnet-croeseid-1/genesis.json > ~/.chain-maind/config/genesis.json
   ```
 
 - Verify MD5 checksum of the downloaded `genesis.json`. You should see `OK!` if the MD5 checksum matches.
 
   ```bash
-  $ [ $(md5sum genesis.json | awk '{print $1}') = "1c518490f523153f5a644d47deb1a3c1" ] && echo "OK!" || echo "MISMATCHED"
+  $ [ $(sha256sum genesis.json | awk '{print $1}') = "55de3738cf6a429d19e234e59e81141af2f0dfa24906d22b949728023c1af382" ] && echo "OK!" || echo "MISMATCHED"
   OK!
   ```
 
@@ -90,7 +90,7 @@ test secure storage of validator keys etc.
 Run the followings to create a new key. For example, you can create a key will the name `Default` by:
 
 ```bash
-  $ /.chain-maind keys add Default
+  $ ./chain-maind keys add Default
 ```
 
 You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for performing transactions.
@@ -134,11 +134,12 @@ Once the node is fully synced, we are now ready to send a `create-validator` tra
 
 ```
 $ ./chain-maind tx staking create-validator \
---from=<name_of_your_key> \
---amount=<staking_amount i.e. 100tcro> \
+--from=[name_of_your_key] \
+--amount=[staking_amount i.e. 100tcro] \
 --keyring-backend test \
---pubkey="tcrocnclconspub1..."  \
---moniker="<The_id_of_your_node>" \
+--pubkey=[tcrocnclconspub1...]  \
+--moniker="[The_id_of_your_node]" \
+--security-contact="[security contact email/contact method]" \
 --chain-id="testnet-croeseid-1" \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
@@ -180,7 +181,7 @@ Alternatively, you can run it on this [browser based IDE](https://repl.it/@allth
 $ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value'
 ```
 
-## Croeseid testnet block explorer and faucet
+## Croeseid testnet faucet
 
 - To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens for performing transactions on the **Croseid** testnet.
   - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet.

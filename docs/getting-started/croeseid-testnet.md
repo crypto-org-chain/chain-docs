@@ -43,6 +43,12 @@ Before kick-starting your node, we will have to configure your node so that it c
   ```
 
   This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
+  When providing the moniker value, make sure you drop the square brackets since they are not needed.
+  The example below shows how to initialize a node named `pegasus-node` :
+  
+    ```bash
+      ./chain-maind init pegasus-node --chain-id testnet-croeseid-1
+    ```
 
   ::: tip NOTE
 

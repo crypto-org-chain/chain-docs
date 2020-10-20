@@ -221,7 +221,7 @@ type: secp256k1
 
 Transfer operation involves the transfer of tokens between two addresses.
 
-#### **Send Funds** [`tx bank send <from_key_or_address> <to_address> <amount>`]
+#### **Send Funds** [`tx bank send <from_key_or_address> <to_address> <amount> <network_id>`]
 
 :::details Example: Send 10cro from a transfer address to another.
 

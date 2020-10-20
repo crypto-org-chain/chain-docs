@@ -190,7 +190,7 @@ $ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.va
 ```
 
 ## Step 4. Transactions subcommands
-### Step 4.1. `tx bank send ` - Transfer operation
+### Step 4-1. `tx bank send ` - Transfer operation
 
 Transfer operation involves the transfer of tokens between two addresses.
 

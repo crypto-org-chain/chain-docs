@@ -61,7 +61,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 - Verify sha256sum checksum of the downloaded `genesis.json`. You should see `OK!` if the sha256sum checksum matches.
 
   ```bash
-  $ if [[ $(sha256sum ~/.chain-maind/config/genesis.json | awk '{print $1}') = "55de3738cf6a429d19e234e59e81141af2f0dfa24906d22b949728023c1af382" ]] then echo "OK"; else echo "MISMATCHED"; fi;
+  $ if [[ $(sha256sum ~/.chain-maind/config/genesis.json | awk '{print $1}') = "55de3738cf6a429d19e234e59e81141af2f0dfa24906d22b949728023c1af382" ]]; then echo "OK"; else echo "MISMATCHED"; fi;
 
   OK!
   ```
@@ -169,10 +169,10 @@ $ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclconspub...]
 ## 1 = Yes; 0 = Not yet added ##
 ```
 
-To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs-nextgen/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
+To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash
-$ ./check-validator-up.sh --tendermint-url http://54.179.111.207:26657 --pubkey $(cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value')
+$ ./check-validator-up.sh --tendermint-url https://testnet-croeseid-1.crypto.com:26657 --pubkey $(cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the council nodes set under the address <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍

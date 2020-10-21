@@ -34,7 +34,7 @@ To specify the chain-maind config and data storage directory; you can add a glob
 
 ### Configure Chain ID
 
-Crypto.com Chain has different [Chain ID](../protocol/chain-id-and-network-id.md#chain-id) to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag :
+Crypto.com Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag :
 
 ```bash
 alias chain-maind="chain-maind --chain-id [full-chain-id]"
@@ -77,7 +77,7 @@ spare leopard potato hospital series salt model myself bronze print despair plea
 ```
 
 :::
-The key comes with a "seed phrase", which is serialized into a human-readable 24-word mnemonic. User can [restore](#keys-add-key-name-recover-restore-existing-key-by-seed-phrase) their associated addresses with the mnemonic phrase.
+The key comes with a "seed phrase", which is serialized into a human-readable 24-word mnemonic. User can recover their associated addresses with the mnemonic phrase.
 
 :::danger
 It is important that you keep the mnemonic for address secure, as there is **no way** to recover it. You would not be able to recover and access the funds in the wallet if you forget the mnemonic phrase.
@@ -321,7 +321,6 @@ Anyone who wishes to become a validator can submit a `create-validator` transact
 $ chain-maind tx staking create-validator [flags]
 ```
 
-See [here](../protocol/staking.md#joining-the-network) for the actual requirement of becoming a validator.
 
 ::: details Example: Joining the network as a validator
 
@@ -347,7 +346,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 ### `tx slashing unjail` - Unjailing a validator
 
-Validator could be [punished](../protocol/reward-and-punishments.md#validator-punishments) and [jailed](../protocol/reward-and-punishments.md#jailing) due to network misbehaviour, for example if we check the validator set:
+Validator could be punished and jailed due to network misbehaviour, for example if we check the validator set:
 
 ```bash
 $ chain-maind q staking validators -o json | jq

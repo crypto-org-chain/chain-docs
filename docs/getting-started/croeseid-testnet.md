@@ -199,7 +199,8 @@ Transfer operation involves the transfer of tokens between two addresses.
 :::details Example: Send 10cro from a transfer address to another.
 
 ```bash
-$ chain-maind tx bank send Default cro17waz6n5a4c4z388rvc40n4c402njfjgqmv0qcp 10cro --chain-id cro-test
+$ chain-maind tx bank send Default 
+tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10cro --chain-id cro-test
   ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y

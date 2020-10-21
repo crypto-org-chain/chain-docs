@@ -6,36 +6,41 @@ on:
   issue_comment:
     types: [created]
 jobs:
-  # FIX ME: uncomment scan job when repo is public currently it's not supported for private repo
-  # https://github.blog/2020-09-30-code-scanning-is-now-available/#enable-code-scanning-for-public-and-private-repositories
-  # scan:
-  #   name: Scan
-  #   runs-on: ubuntu-latest
-  #   if: github.event_name == 'push' || github.event_name == 'pull_request' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinlauco' || github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || github.actor == 'cdc-Hitesh'))
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #   - name: Perform ShiftLeft Scan
-  #     uses: ShiftLeftSecurity/scan-action@master
-  #     env:
-  #       WORKSPACE: ""
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       SCAN_AUTO_BUILD: true
-  #     with:
-  #       output: reports
-  #       # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
-  #       # type: credscan,java
-  #       # type: python
-  #   - name: Upload report
-  #     uses: github/codeql-action/upload-sarif@v1
-  #     with:
-  #       sarif_file: reports
+  scan:
+    name: Scan
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'push' || github.event_name == 'pull_request' || (github.event.comment.body == '/staging' && 
+      (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || 
+      github.actor == 'calvinlauco' || github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || 
+      github.actor == 'leejw51crypto' || github.actor == 'cdc-Hitesh' || github.actor == 'eddycpc' ))
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Perform ShiftLeft Scan
+      uses: ShiftLeftSecurity/scan-action@master
+      env:
+        WORKSPACE: ""
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SCAN_AUTO_BUILD: true
+      with:
+        output: reports
+        # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
+        # type: credscan,java
+        # type: python
+    - name: Upload report
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: reports
   build:
     name: Build
     runs-on: ubuntu-latest
-    # FIX ME: uncomment need when scan is available
-    # needs: scan
-    if: github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinlauco' || github.actor == 'calvinaco' || github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || github.actor == 'cdc-Hitesh'))
+    needs: scan
+    if: >- 
+      github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || 
+      github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinlauco' || github.actor == 'calvinaco' || 
+      github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || 
+      github.actor == 'cdc-Hitesh' || github.actor == 'eddycpc' ))
     steps:
     - name: Github API Request
       id: request

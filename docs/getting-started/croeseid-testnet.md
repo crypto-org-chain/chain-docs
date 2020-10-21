@@ -210,7 +210,6 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::
 
-
 ## Croeseid testnet faucet
 
 - To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens for performing transactions on the **Croseid** testnet.

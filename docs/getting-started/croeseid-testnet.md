@@ -156,7 +156,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 You will be required to insert the following:
 
 - `--from`: The `trco...` address that holds your funds;
-- `--pubkey`: The validator public key( See Step [3-3](#step-3-3-obtain-the-a-validator-public-key) above )  with **crocnclconspub** as the prefix;
+- `--pubkey`: The validator public key( See Step [3-3](#step-3-3-obtain-the-a-validator-public-key) above ) with **crocnclconspub** as the prefix;
 - `--moniker`: A moniker (name) for your validator node;
 - `--security-contact`: Security contact email/contact method.
 
@@ -172,7 +172,7 @@ $ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclconspub...]
 To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash
-$ ./check-validator-up.sh --tendermint-url https://testnet-croeseid-1.crypto.com:26657 --pubkey $(cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value')
+$ ./check-validator-up.sh --tendermint-url https://testnet-croeseid-1.crypto.com:26657 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the council nodes set under the address <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍

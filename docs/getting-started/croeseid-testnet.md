@@ -23,11 +23,24 @@ To run Crypto.com Chain nodes, you will need a machine with the following minimu
 To simply the following steps, we will be using Linux for illustration. Binary for
 [Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Windows_x86_64.zip) are also available.
 
-- To install Crypto.com Chain released binaries:
+- To install Crypto.com Chain released binaries from github:
 
   ```bash
   $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
   $ tar -zxvf chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
+  ```
+  OR
+- To install binaries in Homebrew for OSX or Linux
+
+  [Homebrew](https://brew.sh/) is a free and open-source package management system for Mac OS X. Install the official Chain-maind formula from the terminal.
+
+  First, install the `crypto-com` tap, a repository of our Homebrew `chain-maind` package.
+  ```bash
+  $ brew tap crypto-com/chain-maind
+  ```
+  Now, install chain-maind with crypto-com/chain-maind.
+  ```bash
+  $ brew install chain-maind
   ```
 
 ## Step 2. Configure `chain-maind`

@@ -43,6 +43,12 @@ Before kick-starting your node, we will have to configure your node so that it c
   ```
 
   This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
+  When providing the moniker value, make sure you drop the square brackets since they are not needed.
+  The example below shows how to initialize a node named `pegasus-node` :
+  
+    ```bash
+      ./chain-maind init pegasus-node --chain-id testnet-croeseid-1
+    ```
 
   ::: tip NOTE
 
@@ -100,7 +106,8 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 
 ### Step 3-2. Obtain test token
 
-Unless you have obtained the CRO testnet token before, simply send a message on [Gitter](https://gitter.im/crypto-com/community),
+Unless you have obtained the CRO testnet token before, use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens.
+In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Gitter](https://gitter.im/crypto-com/community),
 stating who you are and your `tcro.....` address (@devashishdxt or @lezzokafka would typically reply within a day).
 
 ### Step 3-3. Obtain the a validator public key
@@ -183,6 +190,25 @@ Alternatively, you can run it on this [browser based IDE](https://repl.it/@allth
 ```bash
 $ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value'
 ```
+
+## Step 4. Transactions subcommands
+### Step 4-1. `tx bank send ` - Transfer operation
+
+Transfer operation involves the transfer of tokens between two addresses.
+
+#### **Send Funds** [`tx bank send <from_key_or_address> <to_address> <amount> <network_id>`]
+
+:::details Example: Send 10tcro from a transfer address to another.
+
+```bash
+$ chain-maind tx bank send Default 
+tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-1"
+  ## Transaction payload##
+  {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
+confirm transaction before signing and broadcasting [y/N]: y
+```
+
+:::
 
 ## Croeseid testnet faucet
 

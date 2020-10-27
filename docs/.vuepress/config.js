@@ -43,6 +43,17 @@ module.exports = {
       //   text: "Download",
       //   link: "https://crypto-com.github.io/Crypto.com_Chain.pdf"
       // }
+
+        {
+            text: "Resources",
+            items: [
+                {
+                    text: "gRPC API",
+                    link: "/resources/cosmos-grpc-docs"
+                },
+
+            ]
+        }
     ],
     sidebar: {
       "/getting-started/": [

@@ -50,7 +50,7 @@ if [[ -z "${PUBKEY}" ]]; then
 	exit 1
 fi
 set -u
-ADDRESS=$(curl --max-time 10 -sSL "${TENDERMINT_URL}/validators" | jq -r --arg PUBKEY "${PUBKEY}" '.result.validators[] | select(.pub_key.value == $PUBKEY) | .address')
+ADDRESS=$(curl --max-time 10 -sSL "${TENDERMINT_URL}/validators?per_page=300" | jq -r --arg PUBKEY "${PUBKEY}" '.result.validators[] | select(.pub_key.value == $PUBKEY) | .address')
 if [[ -z "${ADDRESS}" ]]; then
 	echo "The validator is not active ❌"
 	exit 1

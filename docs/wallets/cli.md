@@ -274,22 +274,6 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::
 
-- **Withdraw your unbonded funds** [`--type Withdraw`]
-
-  Once the `unbonding_period` has passed, we can create a `Withdraw` transaction to withdraw the staked funds (view-key required)
-  ::: details Example: Withdraw funds from a staking address
-
-  ```bash
-  $ ./bin/client-cli transaction new --name Default --type Withdraw
-    Enter authentication token: ## Insert your authentication token ##
-    Enter staking address: ## Insert your staking address ##
-    Enter transfer address: ## Insert the target transfer address ##
-    Enter view keys (comma separated) (leave blank if you don't want any additional view keys in transaction):
-    Transaction successfully created!
-  ```
-
-  :::
-
 ## Balance & transaction history
 
 ### `query bank balances` - Check your transferable balance
@@ -320,7 +304,6 @@ Anyone who wishes to become a validator can submit a `create-validator` transact
 ```bash
 $ chain-maind tx staking create-validator [flags]
 ```
-
 
 ::: details Example: Joining the network as a validator
 

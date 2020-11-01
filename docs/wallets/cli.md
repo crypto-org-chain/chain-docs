@@ -344,7 +344,7 @@ $ chain-maind q staking validators -o json | jq
 After the jailing period has passed, one can broadcast a `unjail` transaction to unjail the validator and resume its normal operations by
 
 ```bash
-$ chain-maind tx slashing unjail --from node1 --keyring-backend Default --chain-id cro-test
+$ chain-maind tx slashing unjail --from node1 --chain-id cro-test
   {"body":{"messages":[{"@type":"/cosmos.slashing.v1beta1.MsgUnjail"...}]}
   confirm transaction before signing and broadcasting [y/N]: y
 ```

@@ -7,7 +7,7 @@ The `genesis.json` file defines the initial state of the Crypto.com chain. On to
 Specifically, the genesis file includes the following fields:
 
 - `"genesis_time"`:
-  The time of beginning of the blockchain
+  The time of the beginning of the blockchain
 - `"chain_id"`:
   A unique identifier for the blockchain. See [this](./chain-id.md) for further details.
 - `"initial_height"`: The initial height of the blockchain.
@@ -25,92 +25,89 @@ Specifically, the genesis file includes the following fields:
 - `"app_hash"`: The initial application state defined in the genesis block.
 - `"auth"`
   - `"params"`: Parameters of the auth module defined in the genesis file.
-  - `"max_memo_characters"`: Maximum number of characters in a memo of a transaction.
-  - `"tx_sig_limit"`: The maximum number of signers for a transaction.
-  - `"tx_size_cost_per_byte"`: The amount of gas consumed per byte of a transaction.
-  - `"sig_verify_cost_ed25519"`: Gas cost on `edd2519` signature verification.
-  - `"sig_verify_cost_secp256k1"`: Gas cost on `secp256k1` signature verification.
+    - `"max_memo_characters"`: Maximum number of characters in a memo of a transaction.
+    - `"tx_sig_limit"`: The maximum number of signers for a transaction.
+    - `"tx_size_cost_per_byte"`: The amount of gas consumed per byte of a transaction.
+    - `"sig_verify_cost_ed25519"`: Gas cost on `edd2519` signature verification.
+    - `"sig_verify_cost_secp256k1"`: Gas cost on `secp256k1` signature verification.
   - `"accounts"`: Genesis accounts, which defines the initial allocation of the tokens.
-  - `"@type"`: Account type.
-  - `"address"`: Address of the genesis accounts.
-  - `"pub_key"`: Public key of the genesis accounts.
-  - `"account_number"`: The account number of the account in state.
-  - `"sequence"`: Used to count the number of transactions sent by this account. It is incremented each time a transaction is included in a block, and used to prevent replay attacks.
-  - `"original_vesting"`: Special type of accounting that the token needs to be vested for a period of time before they can be transferred. Tokens can be delegated during the vesting period.
-    - `"denom"`: Denomination of the token.
-    - `"amount"`: Total amount in the vesting account.
-    - `"delegated_free"`: Amount of delegated tokens that can be transferred after they've been vested.
-    - `"delegated_vesting"`: Amount of delegated tokens that are still under vesting.
-    - `"endtime"`: Vesting end time.
-  - `"bank"` The bank module handles tokens.
-    - `"params"`: Parameters of the bank module defined in the genesis file.
-      - `"send_enabled"`: The transfer capability in the genesis.
-      - `"default_send_enabled"`: The default value for "send_enabled" value controls send transfer capability.
-  - `"distribution"`:The module that handles the logic of distribution block provisions and fees to validators and delegators.
-    - `"delegator_starting_infos"`:
-    - `"delegator_withdraw_infos"`: List of delegators withdraw address.
-    - `"fee_pool"`:
-      - `"community_pool"`: Allocated funds in the community pool, if any.
-    - `"outstanding_rewards"`: Uncollected rewards, if any.
-    - `"params"`: Parameters of the distribution module defined in the genesis file.
-      - `"base_proposer_reward"`: Base bonus on transaction fees collected in a valid block.
-      - `"bonus_proposer_reward"`: Max bonus on transaction fees collected in a valid block.
-      - `"community_tax"`: The rate of community tax.
-      - `"withdraw_addr_enabled"`: Whether delegators can set a different address to withdraw their rewards.
-    - `"previous_proposer"`: Proposer of the previous block, if any.
-    - `"validator_accumulated_commissions"`: Uncollected commission of validators, if any.
-    - `"validator_current_rewards"`: Information related to the current rewards of validators, if any.
-    - `"validator_historical_rewards"`: Information related to the historical rewards of validators, if any.
-    - `"validator_slash_events"`: Information related to the historical slashing events of validators, if any.
-  - `"gov"`: The governance module.
-    - `"deposit_params"`: Parameters for deposit required for governance proposal.
-      - `"max_deposit_period"`: The maximum deposit period for governance proposal.
-      - `"min_deposit"`: The minimum deposit required for governance proposal.
-    - `"deposits"`: List of deposits for each proposal ID, if any.
-    - `"proposals"`: List of proposals for proposals, if any.
-    - `"starting_proposal_id"`: The initial proposals id, starting from `"1"`
-    - `"tally_params"`: Parameters for tally.
-      - `"quorum"`: Minimum percentage of bonded staking tokens that needs to vote for the result to be valid.
-      - `"threshold"`: Minimum percentage of votes that need to be `YES` for the result to be valid.
-      - `"veto_threshold"`: Maximum percentage `NO_WITH_VETO` votes for the result to be valid.
-    - `"votes"`: List of votes for each proposal ID, if any.
-    - `"voting_params"`: Parameters for voting.
-      - `"voting_period"`: The voting period for governance proposal.
-  - `"mint"`: The minting module for token minting.
-    - `"minter"`:
-      - `"annual_provisions"`: Annual expected provisions (set to zero in genesis).
-      - `"inflation"`: The target yearly inflation rate, compounded weekly .
-    - `"params":` Parameters of the mint module defined in the genesis file.
-      - `"blocks_per_year"`: The expected number of blocks being produced per year.
-      - `"goal_bonded"`: Target bonded token in percentage.
-      - `"inflation_max"`: Maximum inflation rate.
-      - `"inflation_min"`: Minimum inflation rate.
-      - `"inflation_rate_change"`: Maximum annual change in inflation rate.
-      - `"mint_denom"`: Token type being minted.
-  - `"slashing"`: The slashing module for the punishment of validator's misbehavior.
-    - `"missed_blocks"`: Information related to validators missed blocks, if any.
-    - `"params"`: Parameters of the slashing module defined in the genesis file.
-      - `"downtime_jail_duration"`: The jailing duration for validators with low availability.
-      - `"min_signed_per_window"`: Threshold of total missed blocks, in percentage.
-      - `"signed_blocks_window"`: Window to calculate validators's liveness.
-      - `"slash_fraction_double_sign"`: Maximum percentage of stake reduction for byzantine validators.
-      - `"slash_fraction_downtime"`: Maximum percentage of stake reduction for validators with low availability.
-    - `"signing_infos"`: Information related to each validators for the slashing module, if any.
-  - `"staking"`: The staking module that handles Proof-of-Stake related logics.
-    - `"delegations"`: Information related to the delegation state of validators, if any.
-    - `"exported"`: Wether this genesis file was generated by exporting of a previous state.
-    - `"last_total_power"`: Total voting power in the genesis, if any.
-    - `"last_validator_powers"`: The voting power of each validator in last known state, if any.
-    - `"params"`: Parameters of the staking module defined in the genesis file.
-      - `"bond_denom"`: Coin denomination for staking.
-      - `"historical_entries"`: The number of historical entries to persist.
-      - `"max_entries"`: The max entries for either unbonding delegation or redelegation.
-      - `"max_validators"`: The maximum number of validator.
-      - `"unbonding_time"`: The time duration of unbonding.
-    - `"redelegations"`: List of redelegations for validators, if any.
-    - `"unbonding_delegations"`: List of unbonding delegations for validators, if any.
-    - `"validators"`: List of existing validators, if any.
-    
-
-
-
+    - `"@type"`: Account type.
+    - `"address"`: Address of the genesis accounts.
+    - `"pub_key"`: Public key of the genesis accounts.
+    - `"account_number"`: The account number of the account in state.
+    - `"sequence"`: Used to count the number of transactions sent by this account. It is incremented each time a transaction is included in a block, and used to prevent replay attacks.
+    - `"base_vesting_account"`:
+      - `"original_vesting"`: Special type of accounting that the token needs to be vested for a period of time before they can be transferred. Tokens can be delegated during the vesting period.
+        - `"denom"`: Denomination of the token.
+        - `"amount"`: Total amount in the vesting account.
+        - `"delegated_free"`: Amount of delegated tokens that can be transferred after they've been vested.
+        - `"delegated_vesting"`: Amount of delegated tokens that are still under vesting.
+        - `"endtime"`: Vesting end time.
+- `"bank"` The bank module handles tokens.
+  - `"params"`: Parameters of the bank module defined in the genesis file.
+    - `"send_enabled"`: The transfer capability in the genesis.
+    - `"default_send_enabled"`: The default value for "send_enabled" value controls send transfer capability.
+- `"distribution"`:The module that handles the logic of distribution block provisions and fees to validators and delegators.
+  - `"delegator_starting_infos"`:
+  - `"delegator_withdraw_infos"`: List of delegators withdraw address.
+  - `"fee_pool"`:
+    - `"community_pool"`: Allocated funds in the community pool, if any.
+  - `"outstanding_rewards"`: Uncollected rewards, if any.
+  - `"params"`: Parameters of the distribution module defined in the genesis file.
+    - `"base_proposer_reward"`: Base bonus on transaction fees collected in a valid block.
+    - `"bonus_proposer_reward"`: Max bonus on transaction fees collected in a valid block.
+    - `"community_tax"`: The rate of community tax.
+    - `"withdraw_addr_enabled"`: Whether delegators can set a different address to withdraw their rewards.
+  - `"previous_proposer"`: Proposer of the previous block, if any.
+  - `"validator_accumulated_commissions"`: Uncollected commission of validators, if any.
+  - `"validator_current_rewards"`: Information related to the current rewards of validators, if any.
+  - `"validator_historical_rewards"`: Information related to the historical rewards of validators, if any.
+  - `"validator_slash_events"`: Information related to the historical slashing events of validators, if any.
+- `"gov"`: The governance module.
+  - `"deposit_params"`: Parameters for the deposit required for governance proposal.
+    - `"max_deposit_period"`: The maximum deposit period for governance proposal.
+    - `"min_deposit"`: The minimum deposit required for governance proposal.
+  - `"deposits"`: List of deposits for each proposal ID, if any.
+  - `"proposals"`: List of proposals for proposals, if any.
+  - `"starting_proposal_id"`: The initial proposals id, starting from `"1"`
+  - `"tally_params"`: Parameters for tally.
+    - `"quorum"`: Minimum percentage of bonded staking tokens that needs to vote for the result to be valid.
+    - `"threshold"`: Minimum percentage of votes that need to be `YES` for the result to be valid.
+    - `"veto_threshold"`: Maximum percentage `NO_WITH_VETO` votes for the result to be valid.
+  - `"votes"`: List of votes for each proposal ID, if any.
+  - `"voting_params"`: Parameters for voting.
+    - `"voting_period"`: The voting period for governance proposal.
+- `"mint"`: The minting module for token minting.
+  - `"minter"`:
+    - `"annual_provisions"`: Annual expected provisions (set to zero in genesis).
+    - `"inflation"`: The target yearly inflation rate, compounded weekly.
+  - `"params":` Parameters of the mint module defined in the genesis file.
+    - `"blocks_per_year"`: The expected number of blocks being produced per year.
+    - `"goal_bonded"`: Target bonded token in percentage.
+    - `"inflation_max"`: Maximum inflation rate.
+    - `"inflation_min"`: Minimum inflation rate.
+    - `"inflation_rate_change"`: Maximum annual change in inflation rate.
+    - `"mint_denom"`: Token type being minted.
+- `"slashing"`: The slashing module for the punishment of validator's misbehavior.
+  - `"missed_blocks"`: Information related to validators missed blocks, if any.
+  - `"params"`: Parameters of the slashing module defined in the genesis file.
+    - `"downtime_jail_duration"`: The jailing duration for validators with low availability.
+    - `"min_signed_per_window"`: Threshold of total missed blocks, in percentage.
+    - `"signed_blocks_window"`: Window to calculate validators's liveness.
+    - `"slash_fraction_double_sign"`: Maximum percentage of stake reduction for byzantine validators.
+    - `"slash_fraction_downtime"`: Maximum percentage of stake reduction for validators with low availability.
+  - `"signing_infos"`: Information related to each validator for the slashing module, if any.
+- `"staking"`: The staking module that handles Proof-of-Stake related logics.
+  - `"delegations"`: Information related to the delegation state of validators, if any.
+  - `"exported"`: Wether this genesis file was generated by exporting of a previous state.
+  - `"last_total_power"`: Total voting power in the genesis, if any.
+  - `"last_validator_powers"`: The voting power of each validator in last known state, if any.
+  - `"params"`: Parameters of the staking module defined in the genesis file.
+    - `"bond_denom"`: Coin denomination for staking.
+    - `"historical_entries"`: The number of historical entries to persist.
+    - `"max_entries"`: The max entries for either unbonding delegation or redelegation.
+    - `"max_validators"`: The maximum number of validator.
+    - `"unbonding_time"`: The time duration of unbonding.
+  - `"redelegations"`: List of redelegations for validators, if any.
+  - `"unbonding_delegations"`: List of unbonding delegations for validators, if any.
+  - `"validators"`: List of existing validators, if any.

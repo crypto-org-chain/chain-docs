@@ -1,4 +1,4 @@
-### Introduction: `slashing` module and network parameters
+## Introduction: `slashing` module and network parameters
 
 Validators are responsible for signing or proposing block at each consensus round. A penalty should be imposed on validators' misbehavior to reinforce this.
 
@@ -14,21 +14,9 @@ parameters and their effect on behavior of validator punishments is discussed la
 1. `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
 1. `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
 
-For example, you can query the current slashing parameters by:
 
-```json
-$ chain-maind query slashing params --output json | jq
 
-{
-  "signed_blocks_window": "2000",
-  "min_signed_per_window": "0.500000000000000000",
-  "downtime_jail_duration": "3600s",
-  "slash_fraction_double_sign": "0.050000000000000000",
-  "slash_fraction_downtime": "0.001000000000000000"
-}
-```
-
-### Overview
+## Overview
 
 Punishments for a validator are triggered when they either make a _byzantine fault_ or become _non-live_:
 
@@ -78,9 +66,53 @@ When a jailed validator wishes to resume normal operations (after `downtime_jail
 
  When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validator who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
 
-### Appendix
+## `bank` module: Transactions and Queries
 
-#### `slashing` module network parameters configuration
+### Transaction
+
+#### `tx slashing unjail` - Unjailing a validator
+
+Validator could be punished and jailed due to network misbehaviour, for example if we check the validator set:
+
+```bash
+$ chain-maind q staking validators -o json | jq
+................................
+    "operator_address": "crocncl18prgwae59zdqpwye6t4xftmq3d87vl0h0rj0qq",
+    "consensus_pubkey": "crocnclconspub1zcjduepqg0yml2l63qjnhr2cuw4tvprr72tle0twf3zymrxllmr0sj9uv3tqmpcrhs",
+    "jailed": true,
+    "status": 1,
+................................
+```
+
+After the jailing period has passed, one can broadcast a `unjail` transaction to unjail the validator and resume its normal operations by
+
+```bash
+$ chain-maind tx slashing unjail --from node1 --chain-id cro-test
+  {"body":{"messages":[{"@type":"/cosmos.slashing.v1beta1.MsgUnjail"...}]}
+  confirm transaction before signing and broadcasting [y/N]: y
+```
+
+### Query
+
+#### Query the current slashing parameters
+
+We can query the current slashing parameters by 
+
+```json
+$ chain-maind q slashing params --output json | jq
+{
+  "signed_blocks_window": "2000",
+  "min_signed_per_window": "0.500000000000000000",
+  "downtime_jail_duration": "3600s",
+  "slash_fraction_double_sign": "0.050000000000000000",
+  "slash_fraction_downtime": "0.001000000000000000"
+}
+```
+
+
+## Appendix
+
+#### `slashing` module: Network Parameters and configuration
 
 The following tables show overall effects on different configuration of the slashing related network parameters:
 

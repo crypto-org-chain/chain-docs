@@ -1,4 +1,4 @@
-## Introduction to Crypto.com Chain
+## Introduction
 
 Current traditional payment infrastructure and existing blockchain-powered payment networks have failed to provide a wide-spread, easy-to-integrate and fast settlement of cryptocurrency in the real world. In particular, the key limitations of existing payment network infrastructures are that they:
 
@@ -13,7 +13,7 @@ The development of blockchain technology and cryptocurrencies represents a crypt
 We believe that enabling cryptocurrency spending in the real world will constitute an adoption catalyst. Current traditional payment institutions and existing blockchains have failed to provide a secure, scalable and decentralized solution to support cryptocurrency payment. The key limitations of existing blockchain-powered payment networks are that they are:
 
 - Too complex to setup and use;
-- Not friendly to crypto first timers;
+- Not friendly to crypto first timers; and
 - Rarely supported beyond their own blockchain;
 
 Accordingly, we propose Crypto.com Chain, the next generation decentralized mobile payment protocol, the most efficient and secure way to pay and be paid in crypto, anywhere, any crypto at little to no cost. Crypto.com Chain will deliver on its vision by developing innovative technology components and processes catered specifically to cryptocurrency payment, while leveraging proven blockchain technology structural design elements.

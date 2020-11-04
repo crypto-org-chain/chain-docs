@@ -211,7 +211,7 @@ Transfer operation involves the transfer of tokens between two addresses.
 
 #### **Send Funds** [`tx bank send <from_key_or_address> <to_address> <amount> <network_id>`]
 
-:::details Example: Send 10tcro from a transfer address to another.
+:::details Example: Send 10tcro from an address to another.
 
 ```bash
 $ chain-maind tx bank send Default 

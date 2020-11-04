@@ -1,13 +1,17 @@
 ### Introduction: `slashing` module and network parameters
 
+Validators are responsible for signing or proposing block at each consensus round. A penalty should be imposed on validators' misbehavior to reinforce this.
+
+
+
 Below are all the network parameters used to configure the behavior of validator punishments. Details of all these
 parameters and their effect on behavior of validator punishments is discussed later in this document.
 
-1. `"signed_blocks_window"`: Number of blocks for which the liveness is calculated for uptime tracking.
-1. `min_signed_per_window`: Maximum percentage of blocks with faulty/missed validations allowed for an account in last
-   `signed_blocks_window` blocks before it gets deactivated.
-1. `downtime_jail_duration`: Duration for [jailing](#jailing).
-1. `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault.
+1. `"signed_blocks_window"`: Number of blocks for which the liveness is calculated for uptime tracking;
+1. `min_signed_per_window`: Maximum percentage of blocks with faulty/missed validations allowed for an account in last;
+   `signed_blocks_window` blocks before it gets deactivated;
+1. `downtime_jail_duration`: Duration for [jailing](#jailing);
+1. `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
 1. `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
 
 For example, you can query the current slashing parameters by:
@@ -72,7 +76,7 @@ When a jailed validator wishes to resume normal operations (after `downtime_jail
 
 ### Slashing for Byzantine Fault
 
-Validators are responsible for signing or proposing block at each consensus round. A penalty should be imposed on validators' misbehavior to reinforce this. When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validator who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
+ When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validator who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
 
 ### Appendix
 

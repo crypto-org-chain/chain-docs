@@ -52,16 +52,16 @@ Before kick-starting your node, we will have to configure your node so that it c
 - First of all, you can initialize chain-maind by:
 
   ```bash
-    ./chain-maind init [moniker] --chain-id testnet-croeseid-1
+    $ ./chain-maind init [moniker] --chain-id testnet-croeseid-1
   ```
 
   This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
   When providing the moniker value, make sure you drop the square brackets since they are not needed.
   The example below shows how to initialize a node named `pegasus-node` :
   
-    ```bash
-      ./chain-maind init pegasus-node --chain-id testnet-croeseid-1
-    ```
+  ```bash
+    $ ./chain-maind init pegasus-node --chain-id testnet-croeseid-1
+  ```
 
   ::: tip NOTE
 
@@ -142,6 +142,39 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
 ```bash
   $ ./chain-maind start
 ```
+
+- (Optional for Linux) Start chain-maind with systemd service, e.g.:
+
+```bash
+  $ git clone https://github.com/crypto-com/chain-main.git && cd chain-main
+  $ ./networks/create-service.sh
+  $ sudo systemctl start chain-maind
+  # view log
+  $ journalctl -u chain-maind -f
+```
+
+:::details Example: /etc/systemd/system/chain-maind.service created by script
+
+```bash
+# /etc/systemd/system/chain-maind.service
+[Unit]
+Description=Chain-maind
+ConditionPathExists=/usr/local/bin/chain-maind
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/usr/local/bin
+ExecStart=/usr/local/bin/chain-maind start --home /home/ubuntu/.chain-maind
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+```
+:::
 
 It should begin fetching blocks from the other peers. Please wait until it is fully synced before moving onto the next step.
 

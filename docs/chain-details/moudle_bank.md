@@ -1,5 +1,5 @@
-### Introduction: `bank` module
-
+## `bank` module
+### Introduction
 `bank` module tracks and provides query support for the total supply of all assets used in the application. Specifically, the total supply is updated whenever a token is
 - **Minted**, e.g. Token created by the `mint` module; or
 - **Burned**, e.g. Token distorted by the `slashing` module.
@@ -16,7 +16,7 @@ The `bank` module maintains the state of two primary objects:
 
 You can transfer of tokens between to a designated address by the `tx bank send` command:
 
-#### **Send Funds** `tx bank send [from_key_or_address] [to_address] [amount] [network_id]`
+#### `tx bank send [from_key_or_address] [to_address] [amount] [network_id]` - **Send Funds** 
 
 :::details Example: Send 10cro from an address to another.
 

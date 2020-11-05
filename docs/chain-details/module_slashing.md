@@ -1,9 +1,14 @@
-## Introduction: `slashing` module and network parameters
+## `slashing` module
+
+### Introduction
 
 Validators are responsible for signing or proposing block at each consensus round. A penalty should be imposed on validators' misbehavior to reinforce this.
 
-Below are all the network parameters used to configure the behavior of validator punishments. Details of all these
-parameters and their effect on behavior of validator punishments is discussed later in this document.
+### Overview
+
+#### Network parameters
+
+Below are all the network parameters used to configure the behavior of validator punishments. Details of all these parameters and their effect on behavior of validator punishments is discussed later in this document.
 
 1. `"signed_blocks_window"`: Number of blocks for which the liveness is calculated for uptime tracking;
 1. `min_signed_per_window`: Maximum percentage of blocks with faulty/missed validations allowed for an account in last;
@@ -12,7 +17,7 @@ parameters and their effect on behavior of validator punishments is discussed la
 1. `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
 1. `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
 
-## Overview
+#### Slashing mechanism
 
 Punishments for a validator are triggered when they either make a _byzantine fault_ or become _non-live_:
 
@@ -109,7 +114,7 @@ $ chain-maind query slashing params --output json | jq
 
 #### `slashing` module: Network Parameters and configuration
 
-The following tables show overall effects on different configuration of the slashing related network parameters:
+The following tables show overall effects on different configurations of the slashing related network parameters:
 
 |                      | `signed_blocks_window`                      | `min_signed_per_window`         | `downtime_jail_duration`           |
 | -------------------- | ------------------------------------------- | ------------------------------- | ---------------------------------- |

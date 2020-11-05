@@ -22,7 +22,6 @@ This section aims to collect and provide brief a description of all the mentione
 | `inflation_rate_change` | string (dec)   | Maximum annual change in inflation rate               |
 | `mint_denom`            | string         | Token type being minted                               |
 
-
 #### Staking-related parameters - `staking` module
 
 | Key                  | Type   | Description                                                     |
@@ -32,8 +31,6 @@ This section aims to collect and provide brief a description of all the mentione
 | `max_entries`        | uint16 | The max entries for either unbonding delegation or redelegation |
 | `max_validators`     | uint16 | The maximum number of validator                                 |
 | `unbonding_time`     | string | The time duration of unbonding                                  |
-
-
 
 #### Punishment-related parameters - `slashing` module
 
@@ -45,4 +42,13 @@ This section aims to collect and provide brief a description of all the mentione
 | `slash_fraction_double_sign` | string (dec)   | Maximum percentage of stake reduction for byzantine validators             |
 | `slash_fraction_downtime`    | string (dec)   | Maximum percentage of stake reduction for validators with low availability |
 
+#### Punishment-related parameters - `gov` module
 
+| Key                  | Type                 | Description                                                                                             |
+| -------------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
+| `min_deposit`        | array (coins)        | Minimum deposit for a proposal to enter voting period                                                   |
+| `max_deposit_period` | string (time in ns)  | Maximum period for Cro holders to deposit on a proposal                                                 |
+| `voting_period`      | string (time in ns)) | The length of voting period                                                                             |
+| `quorum`             | string (dec)         | The minimum percentage of voting power that needs to be casted on a proposal for the result to be valid |
+| `threshold`          | string (dec)         | Minimum proportion of `Yes` votes (excluding `Abstain` votes) for the proposal to be accepted.          |
+| `veto`               | string (dec)         | Minimum proportion of `Veto` votes to Total votes ratio for proposal to be vetoed.                        |

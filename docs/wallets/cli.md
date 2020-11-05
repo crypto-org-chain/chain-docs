@@ -332,7 +332,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 Validator could be punished and jailed due to network misbehaviour, for example if we check the validator set:
 
 ```bash
-$ chain-maind q staking validators -o json | jq
+$ chain-maind query staking validators -o json | jq
 ................................
     "operator_address": "crocncl18prgwae59zdqpwye6t4xftmq3d87vl0h0rj0qq",
     "consensus_pubkey": "crocnclconspub1zcjduepqg0yml2l63qjnhr2cuw4tvprr72tle0twf3zymrxllmr0sj9uv3tqmpcrhs",

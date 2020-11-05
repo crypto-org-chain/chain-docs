@@ -2,8 +2,6 @@
 
 Validators are responsible for signing or proposing block at each consensus round. A penalty should be imposed on validators' misbehavior to reinforce this.
 
-
-
 Below are all the network parameters used to configure the behavior of validator punishments. Details of all these
 parameters and their effect on behavior of validator punishments is discussed later in this document.
 
@@ -13,8 +11,6 @@ parameters and their effect on behavior of validator punishments is discussed la
 1. `downtime_jail_duration`: Duration for [jailing](#jailing);
 1. `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
 1. `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
-
-
 
 ## Overview
 
@@ -64,9 +60,9 @@ When a jailed validator wishes to resume normal operations (after `downtime_jail
 
 ### Slashing for Byzantine Fault
 
- When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validator who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
+When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validator who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
 
-## `bank` module: Transactions and Queries
+## `slashing` module: Transactions and Queries
 
 ### Transaction
 
@@ -75,7 +71,7 @@ When a jailed validator wishes to resume normal operations (after `downtime_jail
 Validator could be punished and jailed due to network misbehaviour, for example if we check the validator set:
 
 ```bash
-$ chain-maind q staking validators -o json | jq
+$ chain-maind query staking validators -o json | jq
 ................................
     "operator_address": "crocncl18prgwae59zdqpwye6t4xftmq3d87vl0h0rj0qq",
     "consensus_pubkey": "crocnclconspub1zcjduepqg0yml2l63qjnhr2cuw4tvprr72tle0twf3zymrxllmr0sj9uv3tqmpcrhs",
@@ -96,10 +92,10 @@ $ chain-maind tx slashing unjail --from node1 --chain-id cro-test
 
 #### Query the current slashing parameters
 
-We can query the current slashing parameters by 
+We can query the current slashing parameters by
 
 ```json
-$ chain-maind q slashing params --output json | jq
+$ chain-maind query slashing params --output json | jq
 {
   "signed_blocks_window": "2000",
   "min_signed_per_window": "0.500000000000000000",
@@ -109,20 +105,19 @@ $ chain-maind q slashing params --output json | jq
 }
 ```
 
-
 ## Appendix
 
 #### `slashing` module: Network Parameters and configuration
 
 The following tables show overall effects on different configuration of the slashing related network parameters:
 
-|                      | `signed_blocks_window`                       | `min_signed_per_window`         | `downtime_jail_duration`           |
-| -------------------- | -------------------------------------------- | ------------------------------- | ---------------------------------- |
-| Type                 | string (int64)                               | string (dec)                    | string (int64)                     |
+|                      | `signed_blocks_window`                      | `min_signed_per_window`         | `downtime_jail_duration`           |
+| -------------------- | ------------------------------------------- | ------------------------------- | ---------------------------------- |
+| Type                 | string (int64)                              | string (dec)                    | string (int64)                     |
 | Higher               | Larger window for calculating the downtime  | Higher availability is required | Longer jailing duration            |
 | Lower                | Smaller window for calculating the downtime | Lower availability is required  | Longer jailing duration            |
-| Constraints          | Value has to be a positive integer           | Value has to be positive        | Value has to be a positive integer |
-| Sample configuration | `2000` (2000 blocks)                         | `0.5` (50%)                     | `3600s` (1 hour)                   |
+| Constraints          | Value has to be a positive integer          | Value has to be positive        | Value has to be a positive integer |
+| Sample configuration | `2000` (2000 blocks)                        | `0.5` (50%)                     | `3600s` (1 hour)                   |
 
 ---
 

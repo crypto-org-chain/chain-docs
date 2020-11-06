@@ -95,7 +95,7 @@ $ chain-maind tx slashing unjail --from node1 --chain-id cro-test
 
 ### Query
 
-#### Query the current slashing parameters
+#### `query slashing params ` - Query the current slashing parameters
 
 We can query the current slashing parameters by
 

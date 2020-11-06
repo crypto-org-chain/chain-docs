@@ -55,7 +55,7 @@ Specifically, the genesis file includes the following fields:
   - `"outstanding_rewards"`: Uncollected rewards, if any.
   - `"params"`: Parameters of the distribution module defined in the genesis file.
     - `"base_proposer_reward"`: Base bonus on transaction fees collected in a valid block.
-    - `"bonus_proposer_reward"`: Max bonus on transaction fees collected in a valid block.
+    - `"bonus_proposer_reward"`: Maximum bonus on transaction fees collected in a valid block.
     - `"community_tax"`: The rate of community tax.
     - `"withdraw_addr_enabled"`: Whether delegators can set a different address to withdraw their rewards.
   - `"previous_proposer"`: Proposer of the previous block, if any.

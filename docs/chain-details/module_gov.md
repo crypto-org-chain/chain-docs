@@ -151,9 +151,9 @@ Similarly, we can check the details of a proposal with a given `"proposal_id"`.
 
 We can also the tally of a proposal with a given `"proposal_id"`.
 
-#### Query the current gov parameters
+#### `query gov params` - Query the current gov parameters
 
-We can query the current slashing parameters by
+We can query the current gov parameters by
 
 ```json
 $ chain-maind query gov params --output json | jq
@@ -182,7 +182,7 @@ $ chain-maind query gov params --output json | jq
 
 #### `gov` module: Network Parameters and configuration
 
-The following tables show overall effects on different configurations of the slashing related network parameters:
+The following tables show overall effects on different configurations of the gov related network parameters:
 
 |                      | `min_deposit`                               | `max_deposit_period`         | `voting_period`              |
 | -------------------- | ------------------------------------------- | ---------------------------- | ---------------------------- |

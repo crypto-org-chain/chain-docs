@@ -1,4 +1,4 @@
-## `distribution` module and
+## `distribution` module
 
 ### Introduction
 
@@ -33,7 +33,7 @@ For the validator operator, the distribution information is updated if:
 - any delegator withdraws from a validator, or
 - the validator withdraws it's commission.
 
-For delegators, once they have delegated to a validator, they will be entitled for a portion of the total reward obtained by the validators. The reward is proportional to their delegated amount, and the commission charged by the validator operator (if any).
+For delegators, once they have delegated to a validator, they will be entitled to a portion of the total reward obtained by the validators. The reward is proportional to their delegated amount, and the commission charged by the validator operator (if any).
 
 #### Transaction Fees Bonus
 
@@ -65,7 +65,7 @@ Delegator can set a different address to withdraw their rewards.
 
 Users can make a contribution to the community pool with a specific amount.
 
-### Query
+### Queries
 
 #### `query distribution commission [validator]` - Query distribution validator commission
 
@@ -93,12 +93,12 @@ We can query the current distribution parameters by
 
 ```json
 $ chain-maind query distribution params --output json | jq
-{
-  "community_tax": "0.000000000000000000",
-  "base_proposer_reward": "0.010000000000000000",
-  "bonus_proposer_reward": "0.040000000000000000", 
-  "withdraw_addr_enabled": true
-}
+  {
+    "community_tax": "0.000000000000000000",
+    "base_proposer_reward": "0.010000000000000000",
+    "bonus_proposer_reward": "0.040000000000000000", 
+    "withdraw_addr_enabled": true
+  }
 ```
 
 ## Appendix

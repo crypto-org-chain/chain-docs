@@ -93,7 +93,7 @@ $ chain-maind tx slashing unjail --from node1 --chain-id cro-test
   confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-### Query
+### Queries
 
 #### `query slashing params ` - Query the current slashing parameters
 
@@ -101,13 +101,13 @@ We can query the current slashing parameters by
 
 ```json
 $ chain-maind query slashing params --output json | jq
-{
-  "signed_blocks_window": "2000",
-  "min_signed_per_window": "0.500000000000000000",
-  "downtime_jail_duration": "3600s",
-  "slash_fraction_double_sign": "0.050000000000000000",
-  "slash_fraction_downtime": "0.001000000000000000"
-}
+  {
+    "signed_blocks_window": "2000",
+    "min_signed_per_window": "0.500000000000000000",
+    "downtime_jail_duration": "3600s",
+    "slash_fraction_double_sign": "0.050000000000000000",
+    "slash_fraction_downtime": "0.001000000000000000"
+  }
 ```
 
 ## Appendix

@@ -14,7 +14,7 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 To run Crypto.com Chain nodes, you will need a machine with the following minimum requirements:
 
-- Dual core cpu;
+- Dual core, x86_64 architecture processor;
 - 4GB RAM;
 - 100GB of storage space.
 
@@ -29,16 +29,21 @@ To simply the following steps, we will be using Linux for illustration. Binary f
   $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
   $ tar -zxvf chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
   ```
+
   OR
+
 - To install binaries in Homebrew for OSX or Linux
 
   [Homebrew](https://brew.sh/) is a free and open-source package management system for Mac OS X. Install the official Chain-maind formula from the terminal.
 
   First, install the `crypto-com` tap, a repository of our Homebrew `chain-maind` package.
+
   ```bash
   $ brew tap crypto-com/chain-maind
   ```
+
   Now, install chain-maind with crypto-com/chain-maind.
+
   ```bash
   $ brew install chain-maind
   ```
@@ -58,10 +63,10 @@ Before kick-starting your node, we will have to configure your node so that it c
   This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
   When providing the moniker value, make sure you drop the square brackets since they are not needed.
   The example below shows how to initialize a node named `pegasus-node` :
-  
-    ```bash
-      ./chain-maind init pegasus-node --chain-id testnet-croeseid-1
-    ```
+
+  ```bash
+    ./chain-maind init pegasus-node --chain-id testnet-croeseid-1
+  ```
 
   ::: tip NOTE
 
@@ -102,9 +107,8 @@ Before kick-starting your node, we will have to configure your node so that it c
 ::: warning CAUTION
 This page only shows the minimal setup.
 
-You may want to run full nodes (see above)
-as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html), restrict your validator connections to only connect to your full nodes,
-test secure storage of validator keys etc.
+You may want to run full nodes
+as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.
 :::
 
 ### Step 3-1. Create a new key and address
@@ -205,6 +209,7 @@ $ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.va
 ```
 
 ## Step 4. Transactions subcommands
+
 ### Step 4-1. `tx bank send ` - Transfer operation
 
 Transfer operation involves the transfer of tokens between two addresses.
@@ -214,7 +219,7 @@ Transfer operation involves the transfer of tokens between two addresses.
 :::details Example: Send 10tcro from an address to another.
 
 ```bash
-$ chain-maind tx bank send Default 
+$ chain-maind tx bank send Default
 tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-1"
   ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}

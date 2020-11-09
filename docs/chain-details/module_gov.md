@@ -1,4 +1,4 @@
-## `gov` module and
+## `gov` module
 
 ### Introduction
 
@@ -91,7 +91,7 @@ Users can submit a deposit transaction to fund and support an active proposal.
 
 Users can vote for an active proposal. Valid value of `"option"` field can be `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"`
 
-### Query
+### Queries
 
 #### `query gov proposals [proposal-id]` - Query proposals with optional filters
 
@@ -99,46 +99,46 @@ We can check the proposal with optional filters by:
 
 ```json
 $ chain-maind query gov proposals -o json | jq
-{
-  "proposals": [
-    {
-      "proposal_id": "1",
-      "content": {
-        "@type": "/cosmos.params.v1beta1.ParameterChangeProposal",
-        "title": "Staking Param Change",
-        "description": "Update max validators",
-        "changes": [
+  {
+    "proposals": [
+      {
+        "proposal_id": "1",
+        "content": {
+          "@type": "/cosmos.params.v1beta1.ParameterChangeProposal",
+          "title": "Staking Param Change",
+          "description": "Update max validators",
+          "changes": [
+            {
+              "subspace": "staking",
+              "key": "MaxValidators",
+              "value": "151"
+            }
+          ]
+        },
+        "status": "PROPOSAL_STATUS_PASSED",
+        "final_tally_result": {
+          "yes": "50040000000000",
+          "abstain": "0",
+          "no": "0",
+          "no_with_veto": "0"
+        },
+        "submit_time": "2020-10-15T10:05:49.996956080Z",
+        "deposit_end_time": "2020-10-15T22:05:49.996956080Z",
+        "total_deposit": [
           {
-            "subspace": "staking",
-            "key": "MaxValidators",
-            "value": "151"
+            "denom": "basecro",
+            "amount": "100000000000"
           }
-        ]
-      },
-      "status": "PROPOSAL_STATUS_PASSED",
-      "final_tally_result": {
-        "yes": "50040000000000",
-        "abstain": "0",
-        "no": "0",
-        "no_with_veto": "0"
-      },
-      "submit_time": "2020-10-15T10:05:49.996956080Z",
-      "deposit_end_time": "2020-10-15T22:05:49.996956080Z",
-      "total_deposit": [
-        {
-          "denom": "basecro",
-          "amount": "100000000000"
-        }
-      ],
-      "voting_start_time": "2020-10-15T10:14:56.958963929Z",
-      "voting_end_time": "2020-10-15T22:14:56.958963929Z"
+        ],
+        "voting_start_time": "2020-10-15T10:14:56.958963929Z",
+        "voting_end_time": "2020-10-15T22:14:56.958963929Z"
+      }
+    ],
+    "pagination": {
+      "next_key": null,
+      "total": "0"
     }
-  ],
-  "pagination": {
-    "next_key": null,
-    "total": "0"
   }
-}
 ```
 
 In the above example, there is only one proposal with `"proposal_id": "1"`, with the title: `"Staking Param Change"` that change the `MaxValidators` parameter of the `staking` module to `151`. We can also see that the status of the proposal is `"PROPOSAL_STATUS_PASSED"`, which means that this proposal has bee passed.
@@ -157,25 +157,25 @@ We can query the current gov parameters by
 
 ```json
 $ chain-maind query gov params --output json | jq
-{
-  "voting_params": {
-    "voting_period": "43200000000000"
-  },
-  "tally_params": {
-    "quorum": "0.334000000000000000",
-    "threshold": "0.500000000000000000",
-    "veto_threshold": "0.334000000000000000"
-  },
-  "deposit_params": {
-    "min_deposit": [
-      {
-        "denom": "basetcro",
-        "amount": "10000000"
-      }
-    ],
-    "max_deposit_period": "43200000000000"
+  {
+    "voting_params": {
+      "voting_period": "43200000000000"
+    },
+    "tally_params": {
+      "quorum": "0.334000000000000000",
+      "threshold": "0.500000000000000000",
+      "veto_threshold": "0.334000000000000000"
+    },
+    "deposit_params": {
+      "min_deposit": [
+        {
+          "denom": "basetcro",
+          "amount": "10000000"
+        }
+      ],
+      "max_deposit_period": "43200000000000"
+    }
   }
-}
 ```
 
 ## Appendix

@@ -17,8 +17,8 @@ This section aims to collect and provide brief a description of all the mentione
 | ----------------------- | -------------- | ----------------------------------------------------- |
 | `blocks_per_year`       | string (int64) | The expected number of blocks being produced per year |
 | `goal_bonded`           | string (dec)   | Goal of bonded token in percentage                    |
-| `inflation_max`         | string (dec)   | Maximum inflation rate                                |
-| `inflation_min`         | string (dec)   | Minimum inflation rate                                |
+| `inflation_max`         | string (dec)   | Maximum annual inflation rate                                |
+| `inflation_min`         | string (dec)   | Minimum annual inflation rate                                |
 | `inflation_rate_change` | string (dec)   | Maximum annual change in inflation rate               |
 | `mint_denom`            | string         | Token type being minted                               |
 

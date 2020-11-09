@@ -21,13 +21,13 @@ To run Crypto.com Chain nodes, you will need a machine with the following minimu
 ## Step 1. Get the Crypto.com Chain binary
 
 To simply the following steps, we will be using Linux for illustration. Binary for
-[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Windows_x86_64.zip) are also available.
+[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc1/chain-main_0.7.0-rc1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc1/chain-main_0.7.0-rc1_Windows_x86_64.zip) are also available.
 
 - To install Crypto.com Chain released binaries from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc1/chain-main_0.7.0-rc1_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_0.7.0-rc1_Linux_x86_64.tar.gz
   ```
   OR
 - To install binaries in Homebrew for OSX or Linux

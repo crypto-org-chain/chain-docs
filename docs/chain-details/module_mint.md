@@ -1,4 +1,4 @@
-## `mint` module and
+## `mint` module
 
 ### Introduction
 

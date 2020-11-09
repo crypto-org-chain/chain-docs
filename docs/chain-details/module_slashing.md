@@ -4,6 +4,8 @@
 
 Validators are responsible for signing or proposing block at each consensus round. A penalty should be imposed on validators' misbehavior to reinforce this.
 
+Specifically, `slashing` functionality that aims to dis-incentivize network-observable actions, such as faulty validations. The penalties may include losing some amount of their stake, losing their ability to perform the network functionality for a period of time, collect rewards etc.
+
 ### Overview
 
 #### Network parameters

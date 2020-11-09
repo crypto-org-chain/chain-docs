@@ -19,7 +19,7 @@ We will be using [pystarport](https://github.com/crypto-com/chain-main/tree/mast
 - 4GB RAM;
 - 100GB of storage space;
 - Python > 3.7.3;
-- [chain-maind](https://github.com/crypto-com/chain-main)
+- [chain-maind](https://github.com/crypto-com/chain-main).
 
 ### Install pystarport
 

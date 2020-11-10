@@ -1,4 +1,4 @@
-## `distribution` module
+### `distribution` module
 
 ### Introduction
 
@@ -43,7 +43,7 @@ This bonus reward is dependent linearly on the precommits from the other validat
 
 This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refers to this [link](https://hub.cosmos.network/master/validators/validator-faq.html).
 
-## `distribution` module: Transactions and Queries
+## Transactions and Queries
 
 ### Transactions
 
@@ -93,6 +93,7 @@ We can query the current distribution parameters by
 
 ```json
 $ chain-maind query distribution params --output json | jq
+
   {
     "community_tax": "0.000000000000000000",
     "base_proposer_reward": "0.010000000000000000",
@@ -101,7 +102,7 @@ $ chain-maind query distribution params --output json | jq
   }
 ```
 
-## Appendix
+### Appendix
 
 #### `distribution` module: Network Parameters and configuration
 

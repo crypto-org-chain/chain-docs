@@ -1,4 +1,4 @@
-## `slashing` module
+### `slashing` module
 
 ### Introduction
 
@@ -12,12 +12,11 @@ Specifically, `slashing` functionality that aims to dis-incentivize network-obse
 
 Below are all the network parameters used to configure the behavior of validator punishments. Details of all these parameters and their effect on behavior of validator punishments is discussed later in this document.
 
-1. `"signed_blocks_window"`: Number of blocks for which the liveness is calculated for uptime tracking;
-1. `min_signed_per_window`: Maximum percentage of blocks with faulty/missed validations allowed for an account in last;
-   `signed_blocks_window` blocks before it gets deactivated;
-1. `downtime_jail_duration`: Duration for [jailing](#jailing);
-1. `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
-1. `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
+- `signed_blocks_window`: Number of blocks for which the liveness is calculated for uptime tracking;
+- `min_signed_per_window`: Maximum percentage of blocks with faulty/missed validations allowed for an account in last; `signed_blocks_window` blocks before it gets deactivated;
+- `downtime_jail_duration`: Duration for [jailing](#jailing);
+-  `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
+-  `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
 
 #### Slashing mechanism
 
@@ -69,7 +68,7 @@ When a jailed validator wishes to resume normal operations (after `downtime_jail
 
 When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validator who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
 
-## `slashing` module: Transactions and Queries
+## Transactions and Queries
 
 ### Transaction
 
@@ -103,6 +102,7 @@ We can query the current slashing parameters by
 
 ```json
 $ chain-maind query slashing params --output json | jq
+
   {
     "signed_blocks_window": "2000",
     "min_signed_per_window": "0.500000000000000000",
@@ -112,7 +112,7 @@ $ chain-maind query slashing params --output json | jq
   }
 ```
 
-## Appendix
+### Appendix
 
 #### `slashing` module: Network Parameters and configuration
 

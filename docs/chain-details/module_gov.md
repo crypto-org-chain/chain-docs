@@ -1,11 +1,11 @@
-## `gov` module
+### `gov` module
 
 ### Introduction
 
 The `gov` module enables on-chain governance which allows Crypto.com Chain token holder to participate in the decision-making processes. For example, users can:
 
 - Submit a proposal along with an initial deposit;
-- Deposit tokens and fund an active proposat;
+- Deposit tokens and fund an active proposal;
 - Vote for an active proposal...
 
 ### Overview
@@ -47,7 +47,7 @@ After the `voting_period` has passed, there are several scenarios that a proposa
 
 Otherwise, the proposal will be accepted and changes will be implemented according to the proposal.
 
-## `gov` module: Transactions and Queries
+## Transactions and Queries
 
 ### Transaction
 
@@ -99,6 +99,7 @@ We can check the proposal with optional filters by:
 
 ```json
 $ chain-maind query gov proposals -o json | jq
+
   {
     "proposals": [
       {
@@ -157,6 +158,7 @@ We can query the current gov parameters by
 
 ```json
 $ chain-maind query gov params --output json | jq
+
   {
     "voting_params": {
       "voting_period": "43200000000000"
@@ -178,7 +180,7 @@ $ chain-maind query gov params --output json | jq
   }
 ```
 
-## Appendix
+### Appendix
 
 #### `gov` module: Network Parameters and configuration
 

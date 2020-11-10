@@ -1,16 +1,17 @@
-## Introduction: `staking` module
+###  `staking` module
 
+### Introduction
 The `staking` module handles Proof-of-Stake related logics, which plays a very import part to the underneath consensus protocol.
 
 ### Overview
 
 Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
 
-1. `unbonding_time`: The time duration of unbonding;
-1. `max_validators`: The maximum number of validator;
-1. `max_entries`: The max entries for either unbonding delegation or redelegation;
-1. `historical_entries`: The number of historical entries to persist; and
-1. `bond_denom`: Coin denomination for staking.
+- `unbonding_time`: The time duration of unbonding;
+-  `max_validators`: The maximum number of validator;
+-  `max_entries`: The max entries for either unbonding delegation or redelegation;
+-  `historical_entries`: The number of historical entries to persist; and
+-  `bond_denom`: Coin denomination for staking.
 
 ### Validator
 
@@ -25,7 +26,7 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 
 
-## `staking` module: Transactions and Queries
+## Transactions and Queries
 
 ### Transaction
 
@@ -104,6 +105,7 @@ With a given delegator address and the validator account that it is associated w
 
 ```json
 $ chain-maind query chain-maind query staking delegation [delegator-addr] [validator-addr] --output json | jq
+
   {
     "delegation": {
       "delegator_address": "[delegator-addr]",
@@ -122,7 +124,8 @@ $ chain-maind query chain-maind query staking delegation [delegator-addr] [valid
 We can check all the delegations made to a specific validator:
 
 ```json
-$ chain-maind query staking delegations-to [validator-addr] --output json  |jq
+$ chain-maind query staking delegations-to [validator-addr] --output json  | jq
+
   {
     "delegation_responses": [
       {
@@ -162,6 +165,7 @@ We can check the amount of bonded and unbonded amount in the staking pool:
 
 ```json
 $ chain-maind query staking pool --output json | jq
+
   {
     "not_bonded_tokens": "[not_bonded_amount]",
     "bonded_tokens": "[bonded_amount]",
@@ -172,6 +176,7 @@ $ chain-maind query staking pool --output json | jq
 
 ```json
 $ chain-maind query staking unbonding-delegation [delegator-addr] [validator-addr] --output json | jq
+
   {
     "delegator_address": "[delegator-addr]",
     "validator_address": "[validator-addr]",
@@ -192,6 +197,7 @@ We can query the details of a specific validator with its validator address (cro
 
 ```json
 $ chain-maind query staking validator [validator-addr] --output json | jq
+
   {
     "operator_address": "[validator_address (crocncl...)]",
     // address of the validator's operator
@@ -242,6 +248,7 @@ Finally, we can query the current staking parameters by
 
 ```json
 $ chain-maind query staking params --output json | jq
+
   {
     "unbonding_time": "1814400s",
     "max_validators": 100,
@@ -251,7 +258,7 @@ $ chain-maind query staking params --output json | jq
   }
 ```
 
-## Appendix
+### Appendix
 
 #### `staking` module: Network Parameters Configuration
 

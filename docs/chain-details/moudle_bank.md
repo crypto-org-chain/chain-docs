@@ -4,8 +4,8 @@
 
 `bank` module tracks and provides query support for the total supply of all assets used in the application. Specifically, the total supply is updated whenever a token is
 
-- **Minted**, e.g. Token created by the `mint` module; or
-- **Burned**, e.g. Token distorted by the `slashing` module.
+- **Minted**, e.g. Token created by the [mint](./module_mint) module; or
+- **Burned**, e.g. Token distorted by the [slashing](./module_slashing) module.
 
 The `bank` module maintains the state of two primary objects:
 
@@ -21,33 +21,33 @@ You can transfer of tokens between to a designated address by the `tx bank send`
 
 #### `tx bank send [from_key_or_address] [to_address] [amount] [network_id]` - **Send Funds**
 
-:::details Example: Send 10cro from an address to another.
+For example, we can send 10cro from an address to another by
 
 ```bash
 $ chain-maind tx bank send Default cro17waz6n5a4c4z388rvc40n4c402njfjgqmv0qcp 10cro --chain-id cro-test
+
 ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-:::
 
 **Remarks**: You can also send a "batch payment", from one account to multiple outputs by using the command
 `tx bank multisend-1tomany [from_key_or_address] [to_address1] [amount1] [to_address2] [amount2]...[network_id]`
 
 ### Queries
 
-#### Check the balance of a specified account
+#### `query bank balances [address]` - Check the balance of a specified account
 
 One can check the current balance of a specified account by:
 
 ```json
-$ chain-maind query bank  balances cro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q --output json | jq
+$ chain-maind query bank balances [address] --output json | jq
     {
     "balances": [
         {
         "denom": "basecro",
-        "amount": "1996637260214296256"
+        "amount": "[token_balance]"
         }
     ],
     "pagination": {
@@ -57,7 +57,7 @@ $ chain-maind query bank  balances cro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q --
     }
 ```
 
-#### Check total supply of the token
+#### `query bank total` - Check total supply of the token
 
 You can also check the current total supply of the token by:
 
@@ -67,7 +67,7 @@ $ chain-maind query bank total --output json | jq
     "supply": [
         {
         "denom": "basecro",
-        "amount": "8004733316545727291"
+        "amount": "[total_supply_amount]"
         }
     ]
     }

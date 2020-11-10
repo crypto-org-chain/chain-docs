@@ -1,4 +1,4 @@
-## `mint` module
+### `mint` module
 
 ### Introduction
 
@@ -51,6 +51,7 @@ We can query the current query parameters by
 
 ```json
 $ chain-maind query mint params --output json | jq
+
   {
     "mint_denom": "basetcro",
     "inflation_rate_change": "0.013000000000000000",
@@ -61,7 +62,7 @@ $ chain-maind query mint params --output json | jq
   }
 ```
 
-## Appendix
+### Appendix
 
 #### `gov` module: Network Parameters and configuration
 

@@ -1,4 +1,4 @@
-## Introduction
+### Introduction
 
 Current traditional payment infrastructure and existing blockchain-powered payment networks have failed to provide a wide-spread, easy-to-integrate and fast settlement of cryptocurrency in the real world. In particular, the key limitations of existing payment network infrastructures are that they:
 
@@ -9,6 +9,8 @@ Current traditional payment infrastructure and existing blockchain-powered payme
 - Give low limits on cryptocurrency spending by default.
 
 The development of blockchain technology and cryptocurrencies represents a cryptography and security breakthrough as significant as that created by the internet in the 1990s. This technology, however, is still at a very nascent stage; in order to generate mass adoption, it will therefore be necessary to find compelling real-life use cases that can appeal to an audience larger than the small group of industry professionals and experts.
+
+### Crypto.com Chain - the next generation decentralized mobile payment protocol
 
 We believe that enabling cryptocurrency spending in the real world will constitute an adoption catalyst. Current traditional payment institutions and existing blockchains have failed to provide a secure, scalable and decentralized solution to support cryptocurrency payment. The key limitations of existing blockchain-powered payment networks are that they are:
 

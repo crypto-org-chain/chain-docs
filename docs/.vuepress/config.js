@@ -30,6 +30,15 @@ module.exports = {
         ]
       },
       {
+        text: "Design & Specifications",
+        items: [
+          {
+            text: "Introduction",
+            link: "/chain-details/introduction.md"
+          }
+        ]
+      },      
+      {
         text: "Wallet Management",
         items: [
 
@@ -63,10 +72,18 @@ module.exports = {
 //        "notes-on-production-deployment",
 //        "notes-on-performance"
       ],
+      "/chain-details/": [
+        "introduction",
+        "architecture",
+        "genesis_file",
+        "module_distribution",
+        "module_gov",
+        "module_mint",
+        "module_slashing",
+        "module_staking",
+      ],
       "/wallets/": [
-//        "",
         "cli",
-//        "rpc"
       ],
       "/api/" : "auto"
     },

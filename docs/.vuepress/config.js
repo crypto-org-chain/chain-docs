@@ -32,10 +32,13 @@ module.exports = {
       {
         text: "Wallet Management",
         items: [
-
           {
             text: "chain-maind",
             link: "/wallets/cli.html#chain-maind"
+          },
+          {
+            text: "Ledger Hardware Wallets",
+            link: "/wallets/ledger.html#ledger-hardware-wallets"
           }
         ]
       },
@@ -55,6 +58,7 @@ module.exports = {
       "/wallets/": [
 //        "",
         "cli",
+        "ledger",
 //        "rpc"
       ],
       "/api/" : "auto"

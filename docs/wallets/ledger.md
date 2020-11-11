@@ -11,10 +11,10 @@ You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely 
 
 ## Install the Ledger app
 
-There is currently two ways to install the Ledger app for Crypto.com Chain:
+There are currently two ways to install the Ledger app for Crypto.com Chain:
 
-1. Ledger Live (Preferred)
-1. Build from source code
+1. [Ledger Live (Preferred)](#1-install-via-ledger-live)
+1. [Build from source code](#2-build-from-source-code)
 
 ### 1. Install via Ledger Live
 
@@ -41,7 +41,7 @@ You can follow the [instructions](https://github.com/crypto-com/ledger-crypto#us
 ## Generate Address
 
 1. Connect and unlock your Ledger device
-1. Open "Crypto.com Chain" app on the device
+1. Open "Cosmos" or "Crypto.com Chain" app on the device
 1. Run in your terminal
     ```bash
     $ ./chain-maind keys add [name] --coin-type=[coin-type] --account=[account-index] --ledger --keyring-backend=test
@@ -81,7 +81,7 @@ $ ./chain-maind keys list
 In this tutorial we will send a `MsgSend` transaction securely signed by your Ledger device to the chain.
 
 1. Connect and unlock your Ledger device
-1. Open "Crypto.com Chain" app on the device
+1. Open "Cosmos" or "Crypto.com Chain" app on the device
 1. Run in your terminal
     ```bash
     $ ./chain-maind tx bank send [from-address] [to-address] 1tcro --chain-id=testnet-croeseid-1 --ledger --keyring-backend=test  --sign-mode=amino-json

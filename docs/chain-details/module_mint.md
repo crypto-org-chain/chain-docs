@@ -19,7 +19,7 @@ Below are all the network parameters for the `mint` module:
 
 The target annual inflation rate is recalculated for each previsions cycle. The inflation is also subject to a rate change (positive or negative) depending on the distance from the desired ratio (`"goal_bonded"`). The maximum rate change possible is defined to be `"inflation_rate_change"` per year, where the annual inflation is capped as between `"inflation_min"` and `"inflation_max"`.
 
-## `mint` module: Queries
+### `mint` module: Queries
 
 ### Queries
 

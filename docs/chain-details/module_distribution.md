@@ -24,7 +24,7 @@ There are two main types of rewards
 
 #### Block reward
 
-Block rewards are distributed proportionally to all validators relative to their voting power. This means that even though each validator gains atoms with each reward, all validators will maintain equal weight over time.
+Block rewards are distributed proportionally to all validators relative to their voting power. This means that even though each validator gains cro with each reward, all validators will maintain equal weight over time.
 
 For the validator operator, the distribution information is updated if:
 
@@ -43,7 +43,7 @@ This bonus reward is dependent linearly on the precommits from the other validat
 
 This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refers to this [link](https://hub.cosmos.network/master/validators/validator-faq.html).
 
-## Transactions and Queries
+### Transactions and Queries
 
 ### Transactions
 

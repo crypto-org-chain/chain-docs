@@ -68,7 +68,7 @@ When a jailed validator wishes to resume normal operations (after `downtime_jail
 
 When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validator who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
 
-## Transactions and Queries
+### Transactions and Queries
 
 ### Transaction
 

@@ -1,8 +1,10 @@
-## `bank` module
+### `bank` module
 
 ### Introduction
 
-`bank` module tracks and provides query support for the total supply of all assets used in the application. Specifically, the total supply is updated whenever a token is
+`bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities
+
+Specifically, the total supply is updated whenever a token is
 
 - **Minted**, e.g. Token created by the [mint](./module_mint) module; or
 - **Burned**, e.g. Token distorted by the [slashing](./module_slashing) module.
@@ -13,7 +15,7 @@ The `bank` module maintains the state of two primary objects:
 
 - Total supply of tokens of the chain
 
-## `bank` module: Transactions and Queries
+### Transactions and Queries
 
 ### Transaction
 
@@ -30,7 +32,6 @@ $ chain-maind tx bank send Default cro17waz6n5a4c4z388rvc40n4c402njfjgqmv0qcp 10
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
-
 
 **Remarks**: You can also send a "batch payment", from one account to multiple outputs by using the command
 `tx bank multisend-1tomany [from_key_or_address] [to_address1] [amount1] [to_address2] [amount2]...[network_id]`

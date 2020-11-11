@@ -47,7 +47,7 @@ After the `voting_period` has passed, there are several scenarios that a proposa
 
 Otherwise, the proposal will be accepted and changes will be implemented according to the proposal.
 
-## Transactions and Queries
+### Transactions and Queries
 
 ### Transaction
 

@@ -26,7 +26,7 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 
 
-## Transactions and Queries
+### Transactions and Queries
 
 ### Transaction
 

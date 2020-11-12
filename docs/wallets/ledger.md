@@ -1,6 +1,6 @@
 # Ledger Hardware Wallets
 
-You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely manage your Testnet CRO assets. Ledger devices are hardware wallets which stores your private keys safely in the device and can be used in even unsafe PCs.
+You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely manage your Testnet CRO assets. Ledger devices are hardware wallets which store your private keys safely in the device and can be used in even unsafe PCs.
 
 ## Pre-requisites
 

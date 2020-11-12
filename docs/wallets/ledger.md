@@ -7,7 +7,7 @@ You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely 
 - An initialized Ledger Nano device
 - Install the latest firmware on your device
 - Install Ledger Live on your PC
-- Download our latest [release binary](https://chain.crypto.com/docs/getting-started/croeseid-testnet.html)
+- Download our latest [release binary](https://github.com/crypto-com/chain-main/releases)
 
 ## Install the Ledger app
 

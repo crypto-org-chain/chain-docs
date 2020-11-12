@@ -64,7 +64,7 @@ You can follow the [instructions](https://github.com/crypto-com/ledger-crypto#us
 
 ## Query account balance
 
-After you have [generated an address](#generate-address), you can query its balance by running in terminal:
+After you have [generated an address](#generate-address), kindly use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens. Once the transaction is completed, you can query its balance by running in terminal:
 
 ```bash
 $ ./chain-maind query bank balances [address]

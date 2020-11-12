@@ -14,7 +14,7 @@ You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely 
 There are currently two ways to install the Ledger app for Crypto.com Chain:
 
 1. [Ledger Live (Preferred)](#_1-install-via-ledger-live)
-1. [Build from source code](#2-build-from-source-code)
+1. [Build from source code](#_2-build-from-source-code)
 
 ### 1. Install via Ledger Live
 

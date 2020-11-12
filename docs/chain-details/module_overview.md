@@ -6,7 +6,7 @@ Crypto.com Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tend
 In this documentation, we will be focusing on some of the important modules we used, for example:
 
 - [Bank](./module_bank) - Token transfer functionalities and query support for the total supply of all assets; 
-- [Distribution](./module_module_distribution) - Fee distribution, and staking rewards to the validators and delegator; 
+- [Distribution](./module_distribution) - Fee distribution, and staking rewards to the validators and delegator; 
 - [Governance](./module_gov) - On-chain proposals and voting;
 - [Mint](./module_mint) - Creation of new units of staking token;
 - [Slashing](./module_slashing) - Validator punishment mechanisms;

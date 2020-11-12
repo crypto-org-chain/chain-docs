@@ -83,6 +83,7 @@ module.exports = {
       "/chain-details/": [
         "introduction",
         "architecture",
+        "chain-id",
         "genesis_file",
         "module_overview",
         "module_bank",

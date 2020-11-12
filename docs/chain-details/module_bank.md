@@ -2,39 +2,39 @@
 
 ### Introduction
 
-`bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities
-
-Specifically, the total supply is updated whenever a token is
+`bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities. Specifically, the total supply is updated whenever a token is:
 
 - **Minted**, e.g. Token created by the [mint](./module_mint) module; or
 - **Burned**, e.g. Token distorted by the [slashing](./module_slashing) module.
 
 The `bank` module maintains the state of two primary objects:
 
-- Account balances by address
-
+- Account balances by address;
 - Total supply of tokens of the chain
 
 ### Transactions and Queries
 
-### Transaction
-
-You can transfer of tokens between to a designated address by the `tx bank send` command:
+### Transactions
 
 #### `tx bank send [from_key_or_address] [to_address] [amount] [network_id]` - **Send Funds**
 
-For example, we can send 10cro from an address to another by
+You can transfer of tokens between to a designated address by the `tx bank send` command. For example, we can send 10 cro from `address_a` to `address_b` by
 
 ```bash
-$ chain-maind tx bank send Default cro17waz6n5a4c4z388rvc40n4c402njfjgqmv0qcp 10cro --chain-id cro-test
+$ chain-maind tx bank send <address_a> <address_b> 10cro --chain-id <chain-id>
 
 ## Transaction payload##
-  {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
+{"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-**Remarks**: You can also send a "batch payment", from one account to multiple outputs by using the command
-`tx bank multisend-1tomany [from_key_or_address] [to_address1] [amount1] [to_address2] [amount2]...[network_id]`
+:::tip Remarks
+You can also send a "batch payment", from one account to multiple outputs by using the command
+```
+tx bank multisend-1tomany [from_key_or_address] [to_address1] [amount1] [to_address2] [amount2]...[network_id]
+```
+:::
+
 
 ### Queries
 
@@ -43,7 +43,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 One can check the current balance of a specified account by:
 
 ```json
-$ chain-maind query bank balances [address] --output json | jq
+$ chain-maind query bank balances <address> --output json | jq
     {
     "balances": [
         {
@@ -58,7 +58,7 @@ $ chain-maind query bank balances [address] --output json | jq
     }
 ```
 
-#### `query bank total` - Check total supply of the token
+#### `query bank total` - Check the total supply of the token
 
 You can also check the current total supply of the token by:
 

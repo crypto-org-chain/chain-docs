@@ -19,8 +19,8 @@ Below are all the network parameters for the `distribution` module:
 
 There are two main types of rewards
 
-- Block rewards, governed by the `mint` module; and
-- Transaction fees bonus.
+- Block rewards, governed by the [mint](./module_mint) module; and
+- [Transaction fees bonus](#transaction-fees-bonus).
 
 #### Block reward
 
@@ -28,8 +28,8 @@ Block rewards are distributed proportionally to all validators relative to their
 
 For the validator operator, the distribution information is updated if:
 
-- the amount of delegation to a validator is updated (delegation, unbond, slashing etc.)
-- a validator successfully proposes a block and receives reward,
+- the amount of delegation to a validator is updated (delegation, unbond, slashing etc.);
+- a validator successfully proposes a block and receives the reward;
 - any delegator withdraws from a validator, or
 - the validator withdraws it's commission.
 
@@ -51,11 +51,13 @@ This mechanism aims to incentivize non-empty block proposals, better networking 
 
 Delegator can withdraw their reward(s) from the validator(s) that they have delegated all at once.
 
-#### `tx distribution withdraw-rewards [validator-addr]` - Withdraw rewards from a given delegation address
+#### `tx distribution withdraw-rewards [validator-addr]` - Withdraw rewards from a given validator address
 
 Delegator can withdraw their reward from a specific validator.
 
-**Remark**: Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`.
+:::tip Remark: 
+Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`.
+:::
 
 #### `tx distribution set-withdraw-addr [withdraw-addr]` - Change the default withdraw address for rewards associated with an address
 
@@ -97,7 +99,7 @@ $ chain-maind query distribution params --output json | jq
   {
     "community_tax": "0.000000000000000000",
     "base_proposer_reward": "0.010000000000000000",
-    "bonus_proposer_reward": "0.040000000000000000", 
+    "bonus_proposer_reward": "0.040000000000000000",
     "withdraw_addr_enabled": true
   }
 ```

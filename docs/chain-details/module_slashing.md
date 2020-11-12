@@ -70,7 +70,7 @@ When there is byzantine fault detected, they are immediately slashed other than 
 
 ### Transactions and Queries
 
-### Transaction
+### Transactions
 
 #### `tx slashing unjail` - Unjailing a validator
 

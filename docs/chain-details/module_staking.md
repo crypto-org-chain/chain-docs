@@ -28,7 +28,7 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 ### Transactions and Queries
 
-### Transaction
+### Transactions
 
 #### `tx staking create-validator` - Create new validator initialized with a self-delegation
 

@@ -49,7 +49,7 @@ Otherwise, the proposal will be accepted and changes will be implemented accordi
 
 ### Transactions and Queries
 
-### Transaction
+### Transactions
 
 #### `tx gov submit-proposal` - Submit a proposal along with an initial deposit
 
@@ -89,7 +89,7 @@ Users can submit a deposit transaction to fund and support an active proposal.
 
 #### `tx gov vote [proposal-id] [option]` - Vote for an active proposal
 
-Users can vote for an active proposal. Valid value of `"option"` field can be `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"`
+Users can vote for an active proposal. Valid value of `"option"` field can be `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"`.
 
 ### Queries
 

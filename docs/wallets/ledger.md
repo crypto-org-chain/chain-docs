@@ -73,7 +73,7 @@ $ ./chain-maind query bank balances [address]
 `address` is the address you have generated. If you didn't copy your address, you can query the address by running in terminal:
 
 ```bash
-$ ./chain-maind keys list
+$ ./chain-maind keys list --keyring-backend=test
 ```
 
 ## Sign a transaction

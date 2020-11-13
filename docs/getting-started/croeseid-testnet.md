@@ -96,6 +96,30 @@ Before kick-starting your node, we will have to configure your node so that it c
   ```bash
   $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1"66a557b8feef403805eb68e6e3249f3148d1a3f2@54.169.58.229:26656,3246d15d34802ca6ade7f51f5a26785c923fb385@54.179.111.207:26656,69c2fbab6b4f58b6cf1f79f8b1f670c7805e3f43@18.141.107.57:26656"# ; s#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
+::: tip STATE-SYNC
+[STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
+
+With state sync your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator.
+
+However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network.
+For validator, it will be amazingly fast to sync the near head of the chain and join the network.
+
+Follow the below optional steps to enable state-sync.
+:::
+
+- (Optional)For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
+
+  ```bash
+  $ LASTEST_HEIGHT=$(curl -s https://testnet-croeseid-1.crypto.com:26657/block | jq -r .result.block.header.height); \
+  BLOCK_HEIGHT=$((LASTEST_HEIGHT - 1000)); \
+  TRUST_HASH=$(curl -s "https://testnet-croeseid-1.crypto.com:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+  $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+  s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-1.crypto.com:26657,https://testnet-croeseid-1.crypto.com:26657\"| ; \
+  s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+  s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/.chain-maind/config/config.toml
+  ```
+  Consider add `statesync:debug` to `log_level` if you want to view precise logs of discovering snapshots from state-sync.
 
 ## Step 3. Run everything
 

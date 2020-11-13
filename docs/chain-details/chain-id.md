@@ -4,12 +4,7 @@
 
 Crypto.com Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_. When running the Crypto.com Chain in your local environment, you will also need to decide your own Chain ID.
 
-
 For example, our testnet Chain ID is `testnet-croeseid-1`.
-
-
-
-
 
 ## Address prefix
 
@@ -19,18 +14,15 @@ For example, our testnet Chain ID is `testnet-croeseid-1`.
 | ------- | ------- | ------ |
 | `cro`   | `tcro`  | `dcro` |
 
-Crypto.com chain uses the Bech32 address format wherever users must handle binary data. Bech32 encoding provides robust integrity checks on data and the human readable part(HRP) that provides contextual hints that can assist UI developers with providing informative error messages.  Specifically, we have the following HRP prefix for different addresses types in the mainnet:
+Crypto.com chain uses the Bech32 address format wherever users must handle binary data. Bech32 encoding provides robust integrity checks on data and the human readable part(HRP) that provides contextual hints that can assist UI developers with providing informative error messages. Specifically, we have the following HRP prefix for different addresses types in the mainnet:
 
-| Prefix           | Description                            |
-| ---------------- | -------------------------------------- |
-| `cro`            | Account Address                        |
-| `cropub`         | Account Address Public Key             |
-| `crocncl`        | Validator Address ("Operator Address") |
-| `crocnclpub`     | Validator Public Key                   |
-| `crocnclcons`    | Validator Consensus Address            |
-| `crocnclconspub` | Validator Consensus Public Key         |
+|                    | Address bech32 Prefix | Pubkey bech32 Prefix |
+| ------------------ | --------------------- | -------------------- | 
+| Account            | `cro`                 | `cropub`             | 
+| Validator Operator | `crocncl`             | `crocnclpub`         |
+| Consensus Nodes    | `crocnclcons`         | `crocnclconspub`     |
 
-We can use the `keys show` command of `chain-maind` with the flag `--bech <type>  (acc|val|cons) ` to obtain the addresses and keys as mentioned above: for example,
+We can use the `keys show` command of `chain-maind` with the flag `--bech <type> (acc|val|cons) ` to obtain the addresses and keys as mentioned above: for example,
 
 ```
 $ chain-maind keys show test --bech acc
@@ -57,3 +49,4 @@ $ chain-maind keys show test --bech cons
     mnemonic: ""
     threshold: 0
     pubkeys: []
+```

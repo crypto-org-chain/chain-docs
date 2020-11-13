@@ -57,7 +57,7 @@ before `downtime_jail_duration`. This `downtime_jail_duration` is a
 network parameter which can be configured during genesis.
 
 :::warning Important:
-When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/v0.40/modules/slashing/07_tombstone.html)
+When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07_tombstone.html)
 :::
 
 #### Un-jailing

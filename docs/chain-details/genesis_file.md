@@ -1,6 +1,6 @@
 # Genesis
 
-The `genesis.json` file defines the initial state of the Crypto.com chain. On top of the standard [tendermint genesis](https://docs.tendermint.com/master/tendermint-core/using-tendermint.html#genesis) format, we customize our own genesis file that includes different [modules](./module_overview) and facilitate the special features of the Crypto.com chain. Sample genesis file can be found [here](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/genesis_file/testnet-croeseid-1/genesis.json).
+The `genesis.json` file defines the initial state of the Crypto.com chain. On top of the standard [tendermint genesis](https://docs.tendermint.com/master/tendermint-core/using-tendermint.html#genesis) format, we customize our own genesis file that includes different [modules](./module_overview) and facilitates the special features of the Crypto.com chain. Sample genesis file can be found [here](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/genesis_file/testnet-croeseid-1/genesis.json).
 
 ## Fields in genesis
 

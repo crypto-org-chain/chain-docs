@@ -2,15 +2,15 @@
 
 ### Introduction
 
-`bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities. Specifically, the total supply is updated whenever a token is:
-
-- **Minted**, e.g. Token created by the [mint](./module_mint) module; or
-- **Burned**, e.g. Token distorted by the [slashing](./module_slashing) module.
-
 The `bank` module maintains the state of two primary objects:
 
 - Account balances by address;
 - Total supply of tokens of the chain
+
+`bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities. Specifically, the total supply is updated whenever a token is:
+
+- **Minted**, e.g. Token created by the [mint](./module_mint) module; or
+- **Burned**, e.g. Token distorted by the [slashing](./module_slashing) module.
 
 ### Transactions and Queries
 
@@ -30,11 +30,12 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::tip Remarks
 You can also send a "batch payment", from one account to multiple outputs by using the command
+
 ```
 tx bank multisend-1tomany [from_key_or_address] [to_address1] [amount1] [to_address2] [amount2]...[network_id]
 ```
-:::
 
+:::
 
 ### Queries
 
@@ -69,6 +70,36 @@ $ chain-maind query bank total --output json | jq
         {
         "denom": "basecro",
         "amount": "[total_supply_amount]"
+        }
+    ]
+    }
+```
+
+We can also use the `query` command of the `supply` module to check the current total supply:
+
+```json
+$ chain-maind query supply total
+    {
+    "supply": [
+        {
+        "denom": "basecro",
+        "amount": "[total_supply_amount]"
+        }
+    ]
+    }
+```
+
+#### `query supply liquid` - Check the circulating supply of the token
+
+We can also query the circulating supply, which is the total supply bonded subtracted by the non-circulating supply such as bonded amount, unvested amounts, and uncollected reward etc.
+
+```json
+$ chain-maind query supply total
+    {
+    "supply": [
+        {
+        "denom": "basecro",
+        "amount": "[total_circulating_amount]"
         }
     ]
     }

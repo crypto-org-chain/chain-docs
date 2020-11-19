@@ -16,11 +16,11 @@ For example, our testnet Chain ID is `testnet-croeseid-1`.
 
 Crypto.com chain uses the Bech32 address format wherever users must handle binary data. Bech32 encoding provides robust integrity checks on data and the human readable part(HRP) that provides contextual hints that can assist UI developers with providing informative error messages. Specifically, we have the following HRP prefix for different addresses types in the mainnet:
 
-|                    | Address bech32 Prefix | Pubkey bech32 Prefix |
-| ------------------ | --------------------- | -------------------- | 
-| Account            | `cro`                 | `cropub`             | 
-| Validator Operator | `crocncl`             | `crocnclpub`         |
-| Consensus Nodes    | `crocnclcons`         | `crocnclconspub`     |
+|                    | Address bech32 Prefix |
+| ------------------ | --------------------- |
+| Account            | `cro`                 |
+| Validator Operator | `crocncl`             |
+| Consensus Nodes    | `crocnclcons`         |
 
 We can use the `keys show` command of `chain-maind` with the flag `--bech <type> (acc|val|cons) ` to obtain the addresses and keys as mentioned above: for example,
 
@@ -33,6 +33,7 @@ $ chain-maind keys show test --bech acc
     mnemonic: ""
     threshold: 0
     pubkeys: []
+
 $ chain-maind keys show test --bech val
     - name: test0
     type: local
@@ -41,6 +42,7 @@ $ chain-maind keys show test --bech val
     mnemonic: ""
     threshold: 0
     pubkeys: []
+
 $ chain-maind keys show test --bech cons
     - name: test0
     type: local

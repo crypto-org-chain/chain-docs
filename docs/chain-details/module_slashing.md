@@ -33,15 +33,27 @@ For example, if `block_signing_window` is `2000` blocks and `min_signed_per_wind
 be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in last `2000` blocks.
 :::
 
-- Byzantine Faults (Double signing)
+- Byzantine Faults 
 
-  A validator is said to make a byzantine fault when they sign conflicting messages/blocks at the same height and
-  round. Tendermint has mechanisms to publish evidence of validators that signed conflicting votes so they can be punished by the slashing module.
+  A validator is said to make a byzantine fault when they sign conflicting messages/blocks at the same height and round. Tendermint has mechanisms to publish evidence of validators that signed conflicting votes so they can be punished by the slashing module. For example:
+  
+
+  - Validator who votes for two different blocks within a single round (*"Equivocation validator"*/ *"Double signing"*);
+
+
+  - Validator who signs commit messages for arbitrary application state ( *"Lunatic validator"*).
+
+
+**Remark**: The evidence of a set of validators attempting to mislead a light client can also be detected and captured. However, even the [Amnesia attack](https://github.com/tendermint/tendermint/blob/master/docs/architecture/adr-056-light-client-amnesia-attacks.md#amnesia-attack) can be detected, punishment can not be applied at this stage, as we can not deduce the malicious validators.
 
 :::tip Implementation note:
 Tendermint passes `Evidence` of a byzantine validator in `BeginBlock` request. Before jailing any account due to byzantine fault, that evidence should be verified. Also, it should be checked that evidence provided by tendermint is
 not older than `max_age` in tendermint.
 :::
+
+
+
+
 
 ### Inactivity Slashing
 

@@ -43,6 +43,12 @@ This bonus reward is dependent linearly on the precommits from the other validat
 
 This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refers to this [link](https://hub.cosmos.network/master/validators/validator-faq.html).
 
+#### Community tax
+
+The `community_tax` is the tax rate to the reward obtained by the validator. Specifically, part of the reward will be taxed and send to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](./module_gov).
+
+Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntary, and there could be funds allocated to the community pool in the [genesis](./genesis_file).
+
 ### Transactions and Queries
 
 ### Transactions
@@ -55,7 +61,7 @@ Delegator can withdraw their reward(s) from the validator(s) that they have dele
 
 Delegator can withdraw their reward from a specific validator.
 
-:::tip Remark: 
+:::tip Remark:
 Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`.
 :::
 

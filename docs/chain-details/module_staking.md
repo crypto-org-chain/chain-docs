@@ -1,6 +1,7 @@
-###  `staking` module
+### `staking` module
 
 ### Introduction
+
 The `staking` module handles Proof-of-Stake related logics, which plays a very import part to the underneath consensus protocol.
 
 ### Overview
@@ -8,10 +9,10 @@ The `staking` module handles Proof-of-Stake related logics, which plays a very i
 Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
 
 - `unbonding_time`: The time duration of unbonding;
--  `max_validators`: The maximum number of validator;
--  `max_entries`: The max entries for either unbonding delegation or redelegation;
--  `historical_entries`: The number of historical entries to persist; and
--  `bond_denom`: Coin denomination for staking.
+- `max_validators`: The maximum number of validator;
+- `max_entries`: The max entries for either unbonding delegation or redelegation;
+- `historical_entries`: The number of historical entries to persist; and
+- `bond_denom`: Coin denomination for staking.
 
 ### Validator
 
@@ -19,12 +20,9 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 ### Delegator
 
-  The `staking` module enables CRO owners to delegate their toke to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](./module_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
+The `staking` module enables CRO owners to delegate their toke to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](./module_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
-  It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](./module_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate.  Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
-
-
-
+It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](./module_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
 ### Transactions and Queries
 
@@ -74,15 +72,13 @@ $ chain-maind tx staking unbond [validator-addr] [amount]
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
 ```
 
-*Remark:* Note that funds will only be available after the `unbonding_time` has passed.
-
-
+_Remark:_ Note that funds will only be available after the `unbonding_time` has passed.
 
 #### `tx staking redelegate [src-validator-addr] [dst-validator-addr] [amount]` - Redelegate illiquid tokens from one validator to another
 
 We can also move our staked tokens from one validator to another by:
 
-``` bash
+```bash
 $ chain-maind tx staking redelegate [src-validator-addr] [dst-validator-addr] [amount]
 
 ## Transactions payload##
@@ -264,13 +260,13 @@ $ chain-maind query staking params --output json | jq
 
 The following tables show overall effects on different configurations of the staking related network parameters:
 
-|                      | `bond_denom` | `historical_entries`               | `max_entries`                                                |
-| -------------------- | ------------ | ---------------------------------- | ------------------------------------------------------------ |
-| Type                 | string       | uint16                             | uint16                                                       |
-| Higher               | N/A          | More historical entries to persist | More entries for either unbonding delegation or redelegation |
+|                      | `bond_denom` | `historical_entries`               | `max_entries`                                                 |
+| -------------------- | ------------ | ---------------------------------- | ------------------------------------------------------------- |
+| Type                 | string       | uint16                             | uint16                                                        |
+| Higher               | N/A          | More historical entries to persist | More entries for either unbonding delegation or redelegation  |
 | Lower                | N/A          | Less historical entries to persist | Fewer entries for either unbonding delegation or redelegation |
-| Constraints          | N/A          | Value has to be positive           | Value has to be a positive                                   |
-| Sample configuration | `basecro`    | `100` (50%)                        | `7`                                                          |
+| Constraints          | N/A          | Value has to be positive           | Value has to be a positive                                    |
+| Sample configuration | `basecro`    | `100` (50%)                        | `7`                                                           |
 
 ---
 
@@ -278,6 +274,6 @@ The following tables show overall effects on different configurations of the sta
 | -------------------- | ------------------------------------ | ------------------------------------ |
 | Type                 | uint16                               | string                               |
 | Higher               | More active validators               | Longer waiting period for unbonding  |
-| Lower                | Fewer active validators               | Shorter waiting period for unbonding |
+| Lower                | Fewer active validators              | Shorter waiting period for unbonding |
 | Constraints          | Value has to be less or equal to `1` | Positive value in seconds            |
 | Sample configuration | `100` (maximum 100 active validator) | `"1814400s"` (3 weeks)               |

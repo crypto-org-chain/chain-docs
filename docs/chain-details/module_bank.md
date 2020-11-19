@@ -75,35 +75,6 @@ $ chain-maind query bank total --output json | jq
     }
 ```
 
-We can also use the `query` command of the `supply` module to check the current total supply:
-
-```json
-$ chain-maind query supply total
-    {
-    "supply": [
-        {
-        "denom": "basecro",
-        "amount": "[total_supply_amount]"
-        }
-    ]
-    }
-```
-
-#### `query supply liquid` - Check the circulating supply of the token
-
-We can also query the circulating supply, which is the total supply bonded subtracted by the non-circulating supply such as bonded amount, unvested amounts, and uncollected reward etc.
-
-```json
-$ chain-maind query supply total
-    {
-    "supply": [
-        {
-        "denom": "basecro",
-        "amount": "[total_circulating_amount]"
-        }
-    ]
-    }
-```
 
 ### Appendix
 

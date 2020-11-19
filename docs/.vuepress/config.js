@@ -91,6 +91,7 @@ module.exports = {
         "module_gov",
         "module_mint",
         "module_slashing",
+        "module_supply",
         "module_staking",
         "parameters"
       ],

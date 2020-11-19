@@ -10,4 +10,5 @@ In this documentation, we will be focusing on some of the important modules we u
 - [Governance](./module_gov) - On-chain proposals and voting;
 - [Mint](./module_mint) - Creation of new units of staking token;
 - [Slashing](./module_slashing) - Validator punishment mechanisms;
+- [Supply](./module_supply) - Retrieve total and liquid supply;
 - [Staking](./module_staking) - Proof-of-Stake layer for public blockchains.

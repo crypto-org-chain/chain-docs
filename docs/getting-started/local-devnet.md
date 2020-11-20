@@ -100,7 +100,7 @@ You can also specify some of the network parameters in the genesis file of your 
 
 Once we finish with the configuration, we are ready to start the chain: in the repository root directory, run
 
-```
+```sh
 $ pystarport serve --config examples/devnet.yaml
 ```
 
@@ -121,6 +121,12 @@ Kindly save these mnemonics for key recovery later.
 
 Blocks is now being generated! You can view the blockchain data by the rpc port of the `awesome0` (first node): [http://localhost:26657/](http://localhost:26657/).
 Futhermore, you can also use the swagger doc of `awesome0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
+
+It is worth mentioning that the `serve` command would truncate all the blocks previously generated and regenerate a new genesis block, which means you'll also lose all of your transaction records. If you wish to restart the chain with the existing blocks, please run `pystarport` with `start` command:
+
+```sh
+$ pystarport start
+```
 
 ## Interact with the chain
 

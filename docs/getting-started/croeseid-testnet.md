@@ -264,7 +264,7 @@ $ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.va
 ## Step 4. Perform Transactions
 ### Step 4-1. `query bank balances` - Check your transferable balance
 
-You can check your _transferable_ balance with the `balances ` command under the bank module.
+You can check your _transferable_ balance with the `balances` command under the bank module.
 :::details Example: Check your address balance
 
 ```bash
@@ -305,7 +305,7 @@ Staking operations involve the interaction between an address and a validator. I
 
 #### **Delegate you funds to a validator** [`tx staking delegate <validator-addr> <amount>`]
 
-To bond funds for staking, you can delegate funds  to a validator by the `delegate` command
+To bond funds for staking, you can delegate funds to a validator by the `delegate` command
 
 ::: details Example: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
 

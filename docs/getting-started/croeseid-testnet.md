@@ -305,7 +305,7 @@ Staking operations involve the interaction between an address and a validator. I
 
 #### **Delegate you funds to a validator** [`tx staking delegate <validator-addr> <amount>`]
 
-To bond funds for staking, you can deposit funds (an unspent transaction) to a _staking_ address by the `Deposit` operation.
+To bond funds for staking, you can delegate funds  to a validator by the `delegate` command
 
 ::: details Example: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
 

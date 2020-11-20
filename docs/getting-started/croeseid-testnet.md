@@ -264,7 +264,7 @@ $ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.va
 ## Step 4. Perform Transactions
 ### Step 4-1. `query bank balances` - Check your transferable balance
 
-You can check your _transferable_ balance with the `balance` command under the bank module.
+You can check your _transferable_ balance with the `balances ` command under the bank module.
 :::details Example: Check your address balance
 
 ```bash

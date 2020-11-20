@@ -322,7 +322,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 On the other hand, we can create a `Unbond` transaction to unbond the delegated funds
 
-::: details Example: Unbond funds from a staking address
+::: details Example: Unbond funds from a validator under the address `tcrocncl16k...edcer`
 
 ```bash
 $ chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-1"

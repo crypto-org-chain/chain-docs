@@ -13,53 +13,86 @@ By following this tutorial, you can compile and run the latest development versi
 
 We will be using [pystarport](https://github.com/crypto-com/chain-main/tree/master/pystarport), a dedicated script similar to [cosmos starport](https://github.com/tendermint/starport) without the scaffolding feature to build a local development network with multiple validators.
 
-## Pre-requisites
+## Install with Nix
 
-- Dual core, x86_64 architecture processor;
-- 4GB RAM;
-- 100GB of storage space;
-- Python > 3.7.3;
-- [chain-maind](https://github.com/crypto-com/chain-main).
+
+
+### Install nix
+
+Follow official instructions: https://nixos.org/download.html
+
+### Use binary cache
+
+If you are using linux, enable the cachix binary cache:
+
+```
+$ nix-env -iA cachix -f https://cachix.org/api/v1/install
+$ cachix use crypto-com
+```
+
 
 ### Install pystarport
 
-Firstly, we would have to install pystarport, please go to `chain-main/pystarport` and run
+Install the binded version, which install chain-maind together, and find it by absolute path:
 
 ```
-$ pip install .
+$ nix-env -iA pystarport -f https://github.com/crypto-com/chain-main/archive/master.tar.gz
 ```
 
-## Configure your devnet
+Install the unbinded version of pystarport, which find whatever version of chain-maind it finds in `PATH`:
 
-Next,kindly create a file `chain-main/config.yaml` and configure the devnet that we are going to create, for example (see `chain-main/config.yaml.example`):
+```
+$ nix-env -iA pystarport-unbind -f https://github.com/crypto-com/chain-main/archive/master.tar.gz
+```
+
+## Install pystarport manually
+
+### Pre-requisites
+
+- Python > 3.7.3
+- [chain-maind](https://github.com/crypto-com/chain-main)
+
+To install pystarport manually, run:
+
+```
+$ git clone https://github.com/crypto-com/chain-main.git
+$ cd chain-main
+$ pip3 install pystarport
+```
+
+## Customize your devnet
+
+Jump to next section to start it without customization.
+
+You can customize your devnet based on `examples/devnet.yaml`:
 
 ```yaml
-chain_id: chainmaind # The chain-id
-validators:
-  - coins: 10cro # Tokens allocated for the first validator
-    staked: 10cro # Tokens that were staked by the validator in the genesis
-    moniker: awesome0 # Optional, default to node{i}
-    hostname: localhost # Optional, default to localhost
-    base_port: 26650 # Optional, default to BASE_PROT + i * 10
-  - coins: 10cro
-    staked: 10cro
-    moniker: awesome1
-    base_port: 26660
-accounts:
-  - name: community
-    coins: 100cro
-  - name: ecosystem
-    coins: 200cro
-  - name: reserve
-    coins: 200cro
-    vesting: "1d" # Optional, vesting period of the account
-  - name: launch
-    coins: 100cro
-genesis: # Network parameters in the genesis can be specified in here
-  app_state:
-    staking:
-      params:
-        unbonding_time: "10s"
+chainmaind:  # The chain-id
+  validators:
+    - coins: 10cro # Tokens allocated for the first validator
+      staked: 10cro # Tokens that were staked by the validator in the genesis
+      moniker: awesome0 # Optional, default to node{i}
+      hostname: localhost # Optional, default to localhost
+      base_port: 26650 # Optional, default to BASE_PROT(26650) + i * 10
+    - coins: 10cro
+      staked: 10cro
+      moniker: awesome1
+      base_port: 26660
+  accounts:
+    - name: community
+      coins: 100cro
+    - name: ecosystem
+      coins: 200cro
+    - name: reserve
+      coins: 200cro
+      vesting: "1d" # Optional, vesting period of the account
+    - name: launch
+      coins: 100cro
+  genesis: # Network parameters in the genesis can be specified in here
+    app_state:
+      staking:
+        params:
+          unbonding_time: "10s"
 ```
 
 This configuration will give us a 2 validators devnet with the chain-id `chainmaind`; 4 accounts under the name of `community`, `ecosystem` `reserve` and `launch` with some allocated funds at the genesis.
@@ -68,27 +101,35 @@ You can also specify some of the network parameters in the genesis file of your 
 
 ## Start the devnet
 
-Once we finish with the configuration, we are ready to start the chain: in the `chain-main` directory, run
+Once we finish with the configuration, we are ready to start the chain: in the repository root directory, run
 
-```
-$ pystarport serve
+```sh
+$ pystarport serve --config examples/devnet.yaml
 ```
 
-Afterwards, keys will be generated according to the configuration in `chain-main/config.toml`, for example:
+Afterwards, keys will be generated according to the configuration specified, the accounts information is generated in `data/chainmaind/accounts.json`, for example:
 
-```
-{‘name’: ‘validator’, ‘type’: ‘local’, ‘address’: ‘cro1ytd4m6n6mnf6u74y36uke7slu2p593f7rl7c0y’, ‘pubkey’: ‘cropub1addwnpepq2nf4v2nnscc37rt4a5neegvujqktlfztrwatkp0ha0q0rz59rrryn9s9pg’, ‘mnemonic’: ‘music ring yellow artist happy apple basic unknown sick desert start cruise mouse undo frozen glue raw basic critic matter exotic tribe raise outside’}
-{‘name’: ‘validator’, ‘type’: ‘local’, ‘address’: ‘cro1699grykdg2hdg4jaz6dwtzxkv9tkv66suunl0t’, ‘pubkey’: ‘cropub1addwnpepq2nkv25ckp5szahewtehxvpm76hrfu9fwkjcwwtuyht8nvulw9y6jp7kn40’, ‘mnemonic’: ‘pig enroll borrow silver power mass spare allow then utility famous attend cross first disagree wool pole sniff physical cherry wire flip impact siege’}
-{‘name’: ‘community’, ‘type’: ‘local’, ‘address’: ‘cro1qgk8l90syh7y6erxq6cmm5jg53dvyg26nfwcas’, ‘pubkey’: ‘cropub1addwnpepq0a7nqjtyyvdhha7tyhj9tn6vdddjgrv93rjj07gmvupdev2j0kwxetrjxj’, ‘mnemonic’: ‘retire drill service clog mouse usage reward off tuition situate tone employ when pull input piano emotion ordinary build where tool spare torch water’}
-{‘name’: ‘ecosystem’, ‘type’: ‘local’, ‘address’: ‘cro15ytky55j0npav2584tde4tcnej73c9nwl5ahkv’, ‘pubkey’: ‘cropub1addwnpepqf874063srt54936l2mpyc5jfxqc7lwdfy8avjrde93ag2wl9chlg2f5u2a’, ‘mnemonic’: ‘hire clog elephant pencil shallow unable idle chat later fiscal party pudding describe sure december uniform grab modify clutch inner group spin fancy congress’}
-{‘name’: ‘reserve’, ‘type’: ‘local’, ‘address’: ‘cro19x027pxmdsg2luthunlypkedwx45qm8hnyjxe0’, ‘pubkey’: ‘cropub1addwnpepqds6cdv67f6xqw2trqe5a7l3znmt600ht7legm4m6rarf0drf9r273v2rzf’, ‘mnemonic’: ‘employ frozen skill uphold piece sudden gain buddy large pupil donate double must shoot curtain couch boil bundle render comic depend calm donor link’}
-{‘name’: ‘launch’, ‘type’: ‘local’, ‘address’: ‘cro1jyd8ul8ze2eyppet3ajl3t9sjfglf76l0ukgns’, ‘pubkey’: ‘cropub1addwnpepqtapys5eyeg28nak7xurka7phugp8m5fyzcc92d2sz86hgf7s85lqw6jgqv’, ‘mnemonic’: ‘beef pistol fury work kick thumb delay side cement suggest tenant blind inform copy cross pull clinic arrow curtain laugh item oven clinic add’}
+```json
+[
+  {"name": "validator", "type": "local", "address": "cro1u6w6hurleq6nxxdhn4p3avunkak6rm8t5dvk2q", "pubkey": "cropub1addwnpepqgn4qt0h0zvu6t9t05jwh7vedxwe4s8p5rv3jmq36v6l0c44falusftpgqm", "mnemonic": "off giggle census three heavy below balance vehicle useless reflect safe gym vivid fault fee connect miracle release material volume note coast laundry federal"},
+  {"name": "validator", "type": "local", "address": "cro1yjvw6pwj7vvhg2j4rrxawcjevdqeqn5p4ujfds", "pubkey": "cropub1addwnpepqvc9kw0ntnny6u57g72pmecuvzy2k07y3xf9r0w4vjxhseg6ujwjuqq780g", "mnemonic": "fork security naive turtle bring pill imitate suffer clerk final century shock account pulp suffer gas runway punch extra spatial else solar mango explain"},
+  {"name": "community", "type": "local", "address": "cro1f8hjnj8wv9rf2vy57gx80fs5f00nyczxuuelwj", "pubkey": "cropub1addwnpepqfr8zzx85yjw83uh33uhjajm8v3rr5lww6er6ysu7g6e3xendwsy7zadp4e", "mnemonic": "kangaroo session warrior echo make amount pear series random gas pizza cheap artefact senior lumber unknown beef rigid lemon dignity boss lesson cash innocent"},
+  {"name": "ecosystem", "type": "local", "address": "cro1vfwelxg7yvgu0dhl3mcd9d8qf8g3q4zvknyhzk", "pubkey": "cropub1addwnpepqvz3hnk30qxx8z5n00zsq28ax0fhv057unqgnetunaxsdrj3y735qff30tn", "mnemonic": "result unable ball shove city high cook ignore rally student jaguar sound tiny duck nest yellow neglect people noodle crazy lazy evolve wheel machine"},
+  {"name": "reserve", "type": "local", "address": "cro1krckx5esmlz3ga7gq9vkha92nqcw8u6w382s0u", "pubkey": "cropub1addwnpepqt4exeghsgsl2wrxp4atk63xj5ylnm95z3dkxevp8jrldvgy824duchdwky", "mnemonic": "bird best thank chalk agree buzz apple lens strike help eyebrow valley winner section protect panther april bright keen reunion burst episode obtain hockey"},
+  {"name": "launch", "type": "local", "address": "cro1tgjt434qqr9y3ugmumwez5rule0ak86f2vdceg", "pubkey": "cropub1addwnpepqwn06cqy4895k5yhp0v5nx897c3s2psu4kzx4qq2r5eck2ljw557jx9e4pr", "mnemonic": "picture walnut banner glide once refuse cradle engage bike follow mistake clutch powder pencil ring walnut pigeon kind decade dutch tank immune coconut notable"}
+]
 ```
 
 Kindly save these mnemonics for key recovery later.
 
 Blocks is now being generated! You can view the blockchain data by the rpc port of the `awesome0` (first node): [http://localhost:26657/](http://localhost:26657/).
 Futhermore, you can also use the swagger doc of `awesome0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
+
+It is worth mentioning that the `serve` command would truncate all the blocks previously generated and regenerate a new genesis block, which means you'll also lose all of your transaction records. If you wish to restart the chain with the existing blocks, please run `pystarport` with `start` command:
+
+```sh
+$ pystarport start
+```
 
 ## Interact with the chain
 

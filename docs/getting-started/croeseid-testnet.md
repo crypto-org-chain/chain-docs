@@ -21,13 +21,13 @@ To run Crypto.com Chain nodes, you will need a machine with the following minimu
 ## Step 1. Get the Crypto.com Chain binary
 
 To simply the following steps, we will be using Linux for illustration. Binary for
-[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Windows_x86_64.zip) are also available.
+[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc1/chain-main_0.7.0-rc1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc1/chain-main_0.7.0-rc1_Windows_x86_64.zip) are also available.
 
 - To install Crypto.com Chain released binaries from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc0/chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_0.7.0-rc0_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc1/chain-main_0.7.0-rc1_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_0.7.0-rc1_Linux_x86_64.tar.gz
   ```
 
   OR
@@ -57,7 +57,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 - First of all, you can initialize chain-maind by:
 
   ```bash
-    ./chain-maind init [moniker] --chain-id testnet-croeseid-1
+    $ ./chain-maind init [moniker] --chain-id testnet-croeseid-1
   ```
 
   This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
@@ -65,7 +65,7 @@ Before kick-starting your node, we will have to configure your node so that it c
   The example below shows how to initialize a node named `pegasus-node` :
 
   ```bash
-    ./chain-maind init pegasus-node --chain-id testnet-croeseid-1
+    $ ./chain-maind init pegasus-node --chain-id testnet-croeseid-1
   ```
 
   ::: tip NOTE
@@ -101,6 +101,30 @@ Before kick-starting your node, we will have to configure your node so that it c
   ```bash
   $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1"66a557b8feef403805eb68e6e3249f3148d1a3f2@54.169.58.229:26656,3246d15d34802ca6ade7f51f5a26785c923fb385@54.179.111.207:26656,69c2fbab6b4f58b6cf1f79f8b1f670c7805e3f43@18.141.107.57:26656"# ; s#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
+::: tip STATE-SYNC
+[STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
+
+With state sync your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator.
+
+However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network.
+For validator, it will be amazingly fast to sync the near head of the chain and join the network.
+
+Follow the below optional steps to enable state-sync.
+:::
+
+- (Optional)For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
+
+  ```bash
+  $ LASTEST_HEIGHT=$(curl -s https://testnet-croeseid-1.crypto.com:26657/block | jq -r .result.block.header.height); \
+  BLOCK_HEIGHT=$((LASTEST_HEIGHT - 1000)); \
+  TRUST_HASH=$(curl -s "https://testnet-croeseid-1.crypto.com:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+  $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+  s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-1.crypto.com:26657,https://testnet-croeseid-1.crypto.com:26657\"| ; \
+  s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+  s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/.chain-maind/config/config.toml
+  ```
+  Consider add `statesync:debug` to `log_level` if you want to view precise logs of discovering snapshots from state-sync.
 
 ## Step 3. Run everything
 
@@ -146,6 +170,39 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
 ```bash
   $ ./chain-maind start
 ```
+
+- (Optional for Linux) Start chain-maind with systemd service, e.g.:
+
+```bash
+  $ git clone https://github.com/crypto-com/chain-main.git && cd chain-main
+  $ ./networks/create-service.sh
+  $ sudo systemctl start chain-maind
+  # view log
+  $ journalctl -u chain-maind -f
+```
+
+:::details Example: /etc/systemd/system/chain-maind.service created by script
+
+```bash
+# /etc/systemd/system/chain-maind.service
+[Unit]
+Description=Chain-maind
+ConditionPathExists=/usr/local/bin/chain-maind
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/usr/local/bin
+ExecStart=/usr/local/bin/chain-maind start --home /home/ubuntu/.chain-maind
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+```
+:::
 
 It should begin fetching blocks from the other peers. Please wait until it is fully synced before moving onto the next step.
 

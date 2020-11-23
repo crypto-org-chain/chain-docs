@@ -15,6 +15,8 @@ We will be using [pystarport](https://github.com/crypto-com/chain-main/tree/mast
 
 ## Install with Nix
 
+
+
 ### Install nix
 
 Follow official instructions: https://nixos.org/download.html
@@ -27,6 +29,7 @@ If you are using linux, enable the cachix binary cache:
 $ nix-env -iA cachix -f https://cachix.org/api/v1/install
 $ cachix use crypto-com
 ```
+
 
 ### Install pystarport
 
@@ -214,48 +217,48 @@ Firstly, we can check the details of the current validator set by the query comm
 
 ```json
 $ chain-maind query staking validators -o json | jq
-[
-  {
-    "operator_address": "crocncl1h9037fa3rn2hpudj5p088574pcfh47sy8tu52q",
-    "consensus_pubkey": "crocnclconspub1zcjduepq0etg4wk302r0h08fuvpep4vlu4mhv9xk8s0qp5vgae7u5cw296yqqmkc9m",
-    "status": 3,
-    "tokens": "1000000000",
-    "delegator_shares": "1000000000.000000000000000000",
-    "description": {
-      "moniker": "awesome1"
-    },
-    "unbonding_time": "1970-01-01T00:00:00Z",
-    "commission": {
-      "commission_rates": {
-        "rate": "0.100000000000000000",
-        "max_rate": "0.200000000000000000",
-        "max_change_rate": "0.010000000000000000"
+  [
+    {
+      "operator_address": "crocncl1h9037fa3rn2hpudj5p088574pcfh47sy8tu52q",
+      "consensus_pubkey": "crocnclconspub1zcjduepq0etg4wk302r0h08fuvpep4vlu4mhv9xk8s0qp5vgae7u5cw296yqqmkc9m",
+      "status": 3,
+      "tokens": "1000000000",
+      "delegator_shares": "1000000000.000000000000000000",
+      "description": {
+        "moniker": "awesome1"
       },
-      "update_time": "2020-10-27T06:37:18.419202Z"
-    },
-    "min_self_delegation": "1"
-  },
-  {
-    "operator_address": "crocncl173q6r8kc3gl8lccma23qe62q5c7v9h5q9mtx2j",
-    "consensus_pubkey": "crocnclconspub1zcjduepq9zfvkh8m282xdv8h4fraqfudc9uc57g85nrga54ryc2fg577lweqyy97pu",
-    "status": 3,
-    "tokens": "1000000000",
-    "delegator_shares": "1000000000.000000000000000000",
-    "description": {
-      "moniker": "awesome0"
-    },
-    "unbonding_time": "1970-01-01T00:00:00Z",
-    "commission": {
-      "commission_rates": {
-        "rate": "0.100000000000000000",
-        "max_rate": "0.200000000000000000",
-        "max_change_rate": "0.010000000000000000"
+      "unbonding_time": "1970-01-01T00:00:00Z",
+      "commission": {
+        "commission_rates": {
+          "rate": "0.100000000000000000",
+          "max_rate": "0.200000000000000000",
+          "max_change_rate": "0.010000000000000000"
+        },
+        "update_time": "2020-10-27T06:37:18.419202Z"
       },
-      "update_time": "2020-10-27T06:37:18.419202Z"
+      "min_self_delegation": "1"
     },
-    "min_self_delegation": "1"
-  }
-]
+    {
+      "operator_address": "crocncl173q6r8kc3gl8lccma23qe62q5c7v9h5q9mtx2j",
+      "consensus_pubkey": "crocnclconspub1zcjduepq9zfvkh8m282xdv8h4fraqfudc9uc57g85nrga54ryc2fg577lweqyy97pu",
+      "status": 3,
+      "tokens": "1000000000",
+      "delegator_shares": "1000000000.000000000000000000",
+      "description": {
+        "moniker": "awesome0"
+      },
+      "unbonding_time": "1970-01-01T00:00:00Z",
+      "commission": {
+        "commission_rates": {
+          "rate": "0.100000000000000000",
+          "max_rate": "0.200000000000000000",
+          "max_change_rate": "0.010000000000000000"
+        },
+        "update_time": "2020-10-27T06:37:18.419202Z"
+      },
+      "min_self_delegation": "1"
+    }
+  ]
 ```
 
 and we can see that there are two active validators `awesome0` and `awesome1` at the moment.

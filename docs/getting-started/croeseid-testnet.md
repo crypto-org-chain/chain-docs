@@ -265,9 +265,29 @@ Alternatively, you can run it on this [browser based IDE](https://repl.it/@allth
 $ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value'
 ```
 
-## Step 4. Transactions subcommands
 
-### Step 4-1. `tx bank send ` - Transfer operation
+## Step 4. Perform Transactions
+### Step 4-1. `query bank balances` - Check your transferable balance
+
+You can check your _transferable_ balance with the `balances` command under the bank module.
+:::details Example: Check your address balance
+
+```bash
+$ chain-maind query bank balances tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
+
+balances:
+- amount: "10005471622381693"
+  denom: basetcro
+pagination:
+  next_key: null
+  total: "0"
+
+```
+
+:::
+
+### Step 4-2. `tx bank send ` - Transfer operation
+
 
 Transfer operation involves the transfer of tokens between two addresses.
 
@@ -285,7 +305,49 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::
 
+### Step 4-3. `tx staking ` - Staking operations
+
+Staking operations involve the interaction between an address and a validator. It allows you to create a validator and lock/unlocking funds for staking purposes.
+
+#### **Delegate you funds to a validator** [`tx staking delegate <validator-addr> <amount>`]
+
+To bond funds for staking, you can delegate funds to a validator by the `delegate` command
+
+::: details Example: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
+
+```bash
+$ chain-maind tx staking delegate tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-1"
+## Transactions payload##
+{"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgDelegate"....}
+confirm transaction before signing and broadcasting [y/N]: y
+```
+
+:::
+
+#### **Unbond your delegated funds** [`tx staking unbond <validator-addr> <amount>`]
+
+On the other hand, we can create a `Unbond` transaction to unbond the delegated funds
+
+::: details Example: Unbond funds from a validator under the address `tcrocncl16k...edcer`
+
+```bash
+$ chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-1"
+## Transaction payload##
+{"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
+confirm transaction before signing and broadcasting [y/N]: y
+```
+
+:::
+
+::: tip
+
+- Once your funds were unbonded, It will be locked until the `unbonding_time` has passed.
+
+:::
+
+Congratulations! You've successfully setup a Testnet node and performed some of the basic transactions! You may refer to [Wallet Management](https://chain.crypto.com/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
+
 ## Croeseid testnet faucet
 
 - To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens for performing transactions on the **Croseid** testnet.
-  - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet.
+  - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet. 

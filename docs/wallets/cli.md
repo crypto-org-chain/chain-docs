@@ -240,7 +240,7 @@ Staking operations involve the interaction between an address and a validator. I
 
 #### **Delegate you funds to a validator** [`tx staking delegate <validator-addr> <amount>`]
 
-To bond funds for staking, you can deposit funds (an unspent transaction) to a _staking_ address by the `Deposit` operation.
+To bond funds for staking, you can delegate funds to a validator by the `delegate` command
 
 ::: details Example: Delegate funds from `Default` to a validator under the address `crocncl1zd...rz35z`
 
@@ -257,7 +257,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 On the other hand, we can create a `Unbond` transaction to unbond the delegated funds
 
-::: details Example: Unbond funds from a staking address
+::: details Example: Unbond funds from a validator under the address `crocncl1zdl...rz35z`
 
 ```bash
 $ chain-maind tx staking unbond crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z 100cro --from Default --chain-id cro-test
@@ -278,7 +278,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 ### `query bank balances` - Check your transferable balance
 
-You can check your _transferable_ balance with the `balance` command under the bank module.
+You can check your _transferable_ balance with the `balances` command under the bank module.
 :::details Example: Check your address balance
 
 ```bash

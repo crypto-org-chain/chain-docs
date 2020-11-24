@@ -53,7 +53,7 @@ A list of commonly used flags of chain-maind is listed below:
 
 ## Command list
 
-A list of chain-maind commands.
+A list of commonly used `chain-maind` commands.
 
 | Command | Description                                             | List                                                         |
 | ------- | ------------------------------------------------------- | ------------------------------------------------------------ |

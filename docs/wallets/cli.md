@@ -16,7 +16,7 @@
 $ chain-maind [command]
 ```
 
-There is also a help command available at
+There is also a `-h, --help` command available
 
 ```bash
 $ chain-maind -h
@@ -50,6 +50,45 @@ A list of commonly used flags of chain-maind is listed below:
 | `--chain-id`        | Full Chain ID                 | String       | ---              |
 | `--output`          | Output format                 | string       | "text"           |
 | `--keyring-backend` | Select keyring's backend      | os/file/test | os               |
+
+## Command list
+
+A list of commonly used `chain-maind` commands.
+
+| Command | Description                                             | List                                                         |
+| ------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| `keys`  | [Key managements](#keys-managements-chain-maind-keys)   | [`add <wallet_name>`](#keys-add-wallet-name-create-a-new-key)<br /><br />[`add <key_name> --recover`](#keys-add-key-name-recover-restore-existing-key-by-seed-phrase)<br /><br />[`list`](#keys-list-list-your-keys)<br /><br />[`show <key_name>`](#keys-show-key-name-retrieve-key-information)<br /><br />[`delete <key_name>`](#keys-delete-key-name-delete-a-key)<br /><br />[`export <key_name>`](#keys-export-key-name-export-private-keys) |
+| `tx`    | [Transactions subcommands](#transactions-subcommands-chain-maind-tx)| [`bank send`](#tx-bank-send-transfer-operation)<br /><br />[`staking delegate`](#delegate-you-funds-to-a-validator-tx-staking-delegate-validator-addr-amount)<br /><br />[`staking unbond`](#unbond-your-delegated-funds-tx-staking-unbond-validator-addr-amount)<br /><br />[`staking create-validator`](#tx-staking-create-validator-joining-the-network-as-a-validator)<br /><br />[`slashing unjail`](#tx-slashing-unjail-unjailing-a-validator) |
+| `query` | [Query subcommands](#balance-transaction-history)                   | [`query bank balance`](#query-bank-balances-check-your-transferable-balance)                                         |
+
+You may also add the flag `-h, --help` on `chain-maind [command]` to get more available commands and details.
+
+::: details Example: More details of subcommand - tx staking 
+
+```bash
+$ chain-maind tx staking --help
+Staking transaction subcommands
+
+Usage:
+  chain-maind tx staking [flags]
+  chain-maind tx staking [command]
+
+Available Commands:
+  create-validator create new validator initialized with a self-delegation to it
+  delegate         Delegate liquid tokens to a validator
+  edit-validator   edit an existing validator account
+  redelegate       Redelegate illiquid tokens from one validator to another
+  unbond           Unbond shares from a validator
+
+Flags:
+  -h, --help   help for staking
+
+Global Flags:
+      --chain-id string   The network chain ID
+      --home string       directory for config and data (default "/Users/[username]/.chain-maind")
+      --trace             print out full stack trace on errors
+```
+:::
 
 ## Keys managements - `chain-maind keys`
 

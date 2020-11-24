@@ -13,7 +13,7 @@ Crypto.com Chain is open to the public to join, participate and scrutinise relat
 
 Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
 
-Specifically, council Nodes run a Byzantine Fault Tolerant (BFT) consensus protocol among themselves which resolves the final order of transaction sequences. Crypto.com Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tendermint](https://tendermint.com/) Core consensus engine underneath. Tendermint works well for PoS / DPos networks, allows high transaction throughputs, and provides instant transaction finality on block commitment. It was chosen as the consensus engine for the Chain prototype due to the following additional reasons:
+Specifically, validators run a Byzantine Fault Tolerant (BFT) consensus protocol among themselves which resolves the final order of transaction sequences. Crypto.com Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tendermint](https://tendermint.com/) Core consensus engine underneath. Tendermint works well for PoS / DPos networks, allows high transaction throughputs, and provides instant transaction finality on block commitment. It was chosen as the consensus engine for the Chain prototype due to the following additional reasons:
 
 - Backed by [formal research](https://eprint.iacr.org/2018/574.pdf);
 - Robustly tested [implementation](http://jepsen.io/analyses/tendermint-0-10-2);

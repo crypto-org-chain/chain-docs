@@ -2,7 +2,7 @@
 
 The latest Crypto.com Chain Testnet has been named as **Croeseid**.
 
-This is detailed documentation for setting up a Council node (Validator) or a full node on Crypto.com Croeseid testnet.
+This is detailed documentation for setting up a Validator or a full node on Crypto.com Croeseid testnet.
 
 ## Pre-requisites
 
@@ -250,12 +250,12 @@ $ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclconspub...]
 ## 1 = Yes; 0 = Not yet added ##
 ```
 
-To further check if the council node is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
+To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash
 $ ./check-validator-up.sh --tendermint-url https://testnet-croeseid-1.crypto.com:26657 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
-The validator is in the council nodes set under the address <YOUR_VALIDATOR_ADDRESS>
+The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 ```
 

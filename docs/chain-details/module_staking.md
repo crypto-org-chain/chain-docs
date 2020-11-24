@@ -16,7 +16,7 @@ Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a 
 
 ### Validator
 
-Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the Council nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](./module_distribution.md) and [mint](./module_mint.md)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](./module_slashing.md)).
+Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](./module_distribution.md) and [mint](./module_mint.md)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](./module_slashing.md)).
 
 ### Delegator
 

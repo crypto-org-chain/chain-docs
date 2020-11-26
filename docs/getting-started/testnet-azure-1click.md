@@ -59,7 +59,7 @@ Choose the image and click "Create" to start creating the Crypto.com chain testn
 
 - Click "create" to create your instance
 
-### Step 2-3. Running the reconfiguration script
+### Step 2-3. Connect to your instance
 
 Once the deployment is completed, you can connect to your instance via SSH. Afterwards, go to the `chain` directory, and you will find all the essential binaries for setting up your node:
 

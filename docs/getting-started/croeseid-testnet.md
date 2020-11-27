@@ -229,7 +229,6 @@ $ ./chain-maind tx staking create-validator \
 --commission-max-change-rate="0.01" \
 --min-self-delegation="1"
 
-## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
 confirm transaction before signing and broadcasting [y/N]: y
 ```

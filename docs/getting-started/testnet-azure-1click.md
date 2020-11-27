@@ -26,7 +26,6 @@ Choose the image and click "Create" to start creating the Crypto.com chain testn
 
 | Configuration           | Value                                                                                                            |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| _Region_                | DCsv2-series VMs for Azure are widely available in regions like _East US_, _Canada Central_, _UK South_, etc     |
 | _Size_                  | Select a recommended one or _DC2s_v3_                                                                            |
 | _SSH public key source_ | Choose _"existing public key"_                                                                                   |
 | _SSH public key_        | Copy and past your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys) |
@@ -150,6 +149,11 @@ Nov 25 09:27:48 crypto-chain-test-node chain-maind[3209]: I[2020-11-25|09:27:48.
 ...
 ```
 
+The latest block height can be found by:
+```bash
+$ curl -s https://testnet-croeseid-1.crypto.com:26657/block | jq -r .result.block.header.height
+569328
+```
 Once the tendermint syncs to the latest block, the setup is done! You may move on to the next step if you want to join the network as a validator.
 
 ## Step 4. Join as a validator

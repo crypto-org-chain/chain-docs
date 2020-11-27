@@ -16,7 +16,7 @@ Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.a
 
 ![](./assets/azure_marketplace.png)
 
-### Step 2-2. Create Crypto.com Chain
+### Step 2-2. Create a Virtual Machine
 
 Choose the image and click "Create" to start creating the Crypto.com chain testnet node.
 

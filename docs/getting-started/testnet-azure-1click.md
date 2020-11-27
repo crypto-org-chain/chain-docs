@@ -85,7 +85,7 @@ drwxr-xr-x  2 crypto crypto    4096 Aug 10 10:30 sockets/
 
 ## Step 3. Running a full node
 ### Step 3-1. Use the reconfiguration script
-Now we use the reconfiguration script `reconfig.sh` to clean up the old data(if any) and obtain a fresh consensus public key, which is necessary for running a validator.
+Now we use the reconfiguration script `reconfig.sh` to clean up the old data (if any) and obtain a fresh consensus public key, which is necessary for running a validator.
 ```bash
 $ sudo -u crypto ./reconfig.sh
 ....

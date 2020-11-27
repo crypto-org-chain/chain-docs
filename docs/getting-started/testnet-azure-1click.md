@@ -66,19 +66,17 @@ Once the deployment is completed, you can connect to your instance via SSH. Afte
 ```bash
 $ cd /chain/
 $ ll
-total 2344
-drwxr-xr-x 10 root   root      4096 Aug 10 10:36 ./
-drwxr-xr-x 27 root   root      4096 Aug 13 14:30 ../
-drwxr-xr-x  2 crypto crypto    4096 Aug 10 10:35 .chain-abci/
-drwxr-xr-x  4 crypto crypto    4096 Aug 10 10:36 .tendermint/
-drwxr-xr-x  2 crypto crypto    4096 Aug 10 10:30 .tmkms/
-drwxr-xr-x  2 crypto crypto    4096 Aug 10 10:33 .tx-query-enclave/
-drwxr-xr-x  4 crypto crypto    4096 Aug 10 10:36 bin/
--rwxr-xr-x  1 crypto crypto 2334994 Aug 10 10:28 convert_to_pubkey*
-drwx------  2 root   root     16384 Aug 10 10:20 lost+found/
--rwxr-xr-x  1 crypto crypto    7334 Aug 10 10:28 reconfig.sh*
-drwxr-xr-x  4 root   root      4096 Aug 10 10:28 release_binary/
-drwxr-xr-x  2 crypto crypto    4096 Aug 10 10:30 sockets/
+total 44
+drwxr-xr-x  8 root   root   4096 Nov 23 14:11 ./
+drwxr-xr-x 24 root   root   4096 Nov 27 03:30 ../
+drwxr-xr-x  4 crypto crypto 4096 Nov 23 14:11 .chain-maind/
+drwxr-xr-x  5 crypto crypto 4096 Nov 23 14:10 .tmkms/
+drwxr-xr-x  2 crypto crypto 4096 Nov 23 14:12 bin/
+-rwxr-xr-x  1 crypto crypto  316 Nov 23 14:03 cleanForAMI.sh*
+drwxr-xr-x  2   3434   3434 4096 Jun  4  2019 node_exporter-0.18.1.linux-amd64/
+-rwxr-xr-x  1 crypto crypto 5858 Nov 23 14:03 reconfig.sh*
+drwxr-xr-x  2 root   root   4096 Nov 23 14:03 release_binary/
+drwxr-xr-x  2 crypto crypto 4096 Nov 23 14:09 sockets/
 ```
 
 

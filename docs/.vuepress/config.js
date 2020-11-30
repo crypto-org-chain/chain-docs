@@ -90,13 +90,6 @@ module.exports = {
         "chain-id",
         "genesis_file",
         "module_overview",
-        "module_bank",
-        "module_distribution",
-        "module_gov",
-        "module_mint",
-        "module_slashing",
-        "module_supply",
-        "module_staking",
         "parameters"
       ],
       "/wallets/": [

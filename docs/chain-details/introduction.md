@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 
 
@@ -23,7 +23,7 @@ We believe that enabling cryptocurrency spending in the real world will constitu
 
 On the technical side, Crypto.com chain has the following design goals:
 
-1. **"_Security_"**: robust and well-understood primitives and implementation are favoured
+1. **"Security"**: robust and well-understood primitives and implementation are favoured
 
 1. **"Scalability"**: parts that hinder overall latency, throughput, lightweight client support, etc. should be mitigated
 

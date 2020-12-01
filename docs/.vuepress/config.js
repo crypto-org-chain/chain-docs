@@ -79,6 +79,7 @@ module.exports = {
       "/getting-started/": [
         "",
         "croeseid-testnet",
+        "testnet-aws-1click",
         "testnet-azure-1click",
         "local-devnet",
 //        "notes-on-production-deployment",

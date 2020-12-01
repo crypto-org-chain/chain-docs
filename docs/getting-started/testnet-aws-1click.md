@@ -1,68 +1,65 @@
-# Croeseid Testnet: Running Nodes using Azure 1-click Deployment
+# Croeseid Testnet: Running Nodes using AWS 1-click Deployment
 
-This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
+This tutorial will use our AWS 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
-## Step 1. Azure Account Creation
+## Step 1. AWS Account Creation
 
-You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to charges when you create a virtual machine.
+You will first need to create an [AWS](https://aws.amazon.com/) account. This will require providing your credit card information to `AWS` and you may be subject to charges when you create a virtual machine. More details for account creation, check this [link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 
-Please read `Microsoft Azure` free trial introduction to see if you are eligible for the free-tier.
+Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) to see if you are eligible for the free-tier.
 
 ## Step 2. Common Setup
 
-### Step 2-1. Search for Crypto.com Chain on Marketplace
+### Step 2-0. Go to EC2 page and change the region
+Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance"
+![](./assets/aws_ec2_dashboard.png)
 
-Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.com testnet-croeseid-1".
+### Step 2-1. Search for Crypto.com on AWS Marketplace
+Search for "Crypto.com" in **Choose an Amazon Machine Image (AMI)** section.
+Select "Crypto.com Croeseid Testnet node" from search results.
+![](./assets/aws_marketplace.png)
 
-![](./assets/azure_marketplace.png)
+### Step 2-2. Choose an instance type
+By default, it will choose the recommended instance type (**m5a.large**) for you. But you can choose other instance type as you wish.
+![](./assets/aws_instance.png)
 
-### Step 2-2. Create a Virtual Machine
+### Step 2-3. Configure instance details
 
-Choose the image and click "Create" to start creating the Crypto.com chain testnet node.
-
-#### 1. Basic
-
-![](./assets/azure_1click_basics.png)
+![](./assets/aws_config_instance.png)
 
 | Configuration           | Value                                                                                                            |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| _Size_                  | Select a recommended one or _DC2s_v3_                                                                            |
-| _SSH public key source_ | Choose _"existing public key"_                                                                                   |
-| _SSH public key_        | Copy and past your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys) |
-| _Resource group_        | We suggest to create a new and dedicated one so that you can easily manage resources attached to the instance    |
+| _Network_               | Select an existing one or default vpc if you don't have any                                                       |
+| _Subnet_                | Choose a subnet or default sebnet if you don't have any                                                          |
+| _Auto-assign Public IP_ | Enable                                                                                                           |
+| _Other fields_          | Follow default setting                                                                                           |
 
-#### 2. Disk
-
+### Step 2-4. Add Storage
 - Follow default setting
 
-#### 3. Networking
-
-![](./assets/azure_1click_networking.png)
-
-- _Virtual network_, _Subnet_, _Public IP_ and _NIC_: "Create new" if you don't have any in that region
-
-#### 4. Management
-
-- Follow default setting
-- _Boot diagnostics_: default is "On". Set to "Off" if it is not required.
-
-#### 5. Advanced
-
-- Follow default setting
-
-#### 6. Tags
-
+### Step 2-5. Add Tags
 - Create Tag if needed
+  
+### Step 2-6. Configure Security Group
+By default, the image create a new security group for you allowing ssh and p2p ports.
+You can add more rules for example: rpc (26657), lcd (1317), prometheus (26660), etc.
+| Default Port            | Description                                                                                                      |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| _22_                    | ssh                                                                                                              |
+| _26656_                 | p2p                                                                                                              |
+You may consider updating your security group rules to allow access from known IP addresses only.
 
-#### 7. Review + Create
+### Step 2-7. Review Instance Launch
+Click "Lanuch" once you finish the review
+![](./assets/aws_launch.png)
 
-- Click "create" to create your instance
+You can either create a new key pair or import a key pair. Follow this [instruction](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#prepare-key-pair)
 
-### Step 2-3. Connect to your instance
+### Step 2-8. Connect to your instance
 
-Once the deployment is completed, you can connect to your instance via SSH. 
+Once the deployment is completed, you can connect to your instance via SSH.
 ```
-$ ssh ubuntu@PUBLIC_IP
+$ ssh ubuntu@PUBLIC_IP -i YOUR_KEY.pem
 ```
 Afterwards, go to the `chain` directory, and you will find all the essential binaries for setting up your node:
 
@@ -81,7 +78,6 @@ drwxr-xr-x  2   3434   3434 4096 Jun  4  2019 node_exporter-0.18.1.linux-amd64/
 drwxr-xr-x  2 root   root   4096 Nov 23 14:03 release_binary/
 drwxr-xr-x  2 crypto crypto 4096 Nov 23 14:09 sockets/
 ```
-
 
 
 ## Step 3. Running a full node

@@ -79,6 +79,7 @@ module.exports = {
       "/getting-started/": [
         "",
         "croeseid-testnet",
+        "testnet-aws-1click",
         "testnet-azure-1click",
         "local-devnet",
 //        "notes-on-production-deployment",
@@ -90,13 +91,6 @@ module.exports = {
         "chain-id",
         "genesis_file",
         "module_overview",
-        "module_bank",
-        "module_distribution",
-        "module_gov",
-        "module_mint",
-        "module_slashing",
-        "module_supply",
-        "module_staking",
         "parameters"
       ],
       "/wallets/": [

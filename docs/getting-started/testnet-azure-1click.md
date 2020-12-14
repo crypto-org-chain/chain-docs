@@ -187,8 +187,8 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 ### Step 4-2. Obtain test token
 
 Unless you have obtained the CRO testnet token before, use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens.
-In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Gitter](https://gitter.im/crypto-com/community),
-stating who you are and your `tcro.....` address (@devashishdxt or @lezzokafka would typically reply within a day).
+In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4),
+stating who you are and your `tcro.....` address.
 
 ### Step 4-3. Running a validator node
 ```bash

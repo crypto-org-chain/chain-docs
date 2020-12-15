@@ -82,7 +82,8 @@ module.exports = {
         "testnet-aws-1click",
         "testnet-azure-1click",
         "local-devnet",
-//        "notes-on-production-deployment",
+        "advanced-tmkms-integration",
+        // "notes-on-production-deployment",
 //        "notes-on-performance"
       ],
       "/chain-details/": [

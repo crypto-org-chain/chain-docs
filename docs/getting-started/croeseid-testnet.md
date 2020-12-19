@@ -219,7 +219,7 @@ Once the node is fully synced, we are now ready to send a `create-validator` tra
 ```
 $ ./chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
---amount=1tcro \
+--amount=500000tcro \
 --pubkey=[tcrocnclconspub...]  \
 --moniker="[The_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \

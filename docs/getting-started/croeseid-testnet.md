@@ -228,7 +228,8 @@ $ ./chain-maind tx staking create-validator \
 --commission-max-rate="0.20" \
 --commission-max-change-rate="0.01" \
 --min-self-delegation="1" \
---gas-prices 0.1basetcro
+--gas auto \
+--gas-adjustment=1.5
 
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
 confirm transaction before signing and broadcasting [y/N]: y

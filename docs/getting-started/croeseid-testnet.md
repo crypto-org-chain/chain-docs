@@ -227,7 +227,9 @@ $ ./chain-maind tx staking create-validator \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
 --commission-max-change-rate="0.01" \
---min-self-delegation="1"
+--min-self-delegation="1" \ 
+--gas auto \
+--gas-adjustment=1.5
 
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -236,7 +238,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 You will be required to insert the following:
 
 - `--from`: The `trco...` address that holds your funds;
-- `--pubkey`: The validator public key( See Step [3-3](#step-3-3-obtain-the-a-validator-public-key) above ) with **crocnclconspub** as the prefix;
+- `--pubkey`: The validator public key( See Step [3-3](#step-3-3-obtain-the-a-validator-public-key) above ) with **tcrocnclconspub** as the prefix;
 - `--moniker`: A moniker (name) for your validator node;
 - `--security-contact`: Security contact email/contact method.
 

@@ -263,7 +263,7 @@ The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 Alternatively, you can run it on this [browser based IDE](https://repl.it/@allthatjazzleo/cryptocomcheckNodeJoinStatus#main.go), by specifying your validator public key in the `"YOUR_PUBKEY"` field, where this key can be obtained by running
 
 ```bash
-$ cat ~/.chain-maind_testnet/config/priv_validator_key.json | jq -r '.pub_key.value'
+$ cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value'
 ```
 
 

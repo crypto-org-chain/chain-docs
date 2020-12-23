@@ -51,7 +51,7 @@ enable = false
 You can now run the chain node manually:
 
 ```shell
-$ chain-maind start
+$ chain-maind start --home $CHAINHOME
 ```
 
 Or setup systemd service on linux:
@@ -66,6 +66,12 @@ and create validator.
 
 ## Isolated installation
 
-One of the strengths of nix package manager is you can have multiple isolated installations, it would be important when you want to manage both testnet and mainnet chains on a single machine.
+One of the strengths of nix package manager is you can have multiple isolated installations, it would be important when
+you want to manage both testnet and mainnet chains or different versions of them on a single machine.
 
-TODO
+```shell
+$ nix build -f https://github.com/crypto-com/chain-main/archive/f53418d87b8fede4fcee59078c996ee000eae4d2.tar.gz chain-utils-testnet -o testnet
+$ export CHAINHOME=$PWD/testnet_data
+$ MONIKER=testnode ./testnet/bin/init-node
+$ ./testnet/bin/chain-main start --home $CHAINHOME
+```

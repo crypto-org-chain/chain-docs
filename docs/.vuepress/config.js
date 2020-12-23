@@ -81,6 +81,7 @@ module.exports = {
         "croeseid-testnet",
         "testnet-aws-1click",
         "testnet-azure-1click",
+        "croeseid-testnet-nix",
         "local-devnet",
         "advanced-tmkms-integration",
         // "notes-on-production-deployment",

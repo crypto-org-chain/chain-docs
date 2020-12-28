@@ -171,7 +171,7 @@ You can retrieve key information by its name:
 ::: details Example: Retrieve key information - Account Address and its public key
 
 ```bash
-$ chain-maind show Default --bech acc
+$ chain-maind keys show Default --bech acc
 - name: Default
   type: local
   address: cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
@@ -186,7 +186,7 @@ $ chain-maind show Default --bech acc
 ::: details Example: Retrieve key information - Validator Address and its public key
 
 ```bash
-$ chain-maind show Default --bech val
+$ chain-maind keys show Default --bech val
 - name: Default
   type: local
   address: crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z
@@ -201,7 +201,7 @@ $ chain-maind show Default --bech val
 ::: details Example: Retrieve key information - Consensus nodes Address and its public key
 
 ```bash
-$ chain-maind show Default --bech cons
+$ chain-maind keys show Default --bech cons
 - name: Default
   type: local
   address: crocnclcons1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s34pfmlc

@@ -156,12 +156,12 @@ Create `tmkms.toml` under `~/.tmkms` directory
 ```toml
 # Tendermint KMS configuration file
 [[chain]]
-id = "testnet-croeseid-1"
+id = "testnet-croeseid-2"
 key_format = { type = "bech32", account_key_prefix = "tcropub", consensus_key_prefix = "tcrocnclconspub" }
 state_vsock_port = 6666
 
 [[providers.softsign]]
-chain_ids = ["testnet-croeseid-1"]
+chain_ids = ["testnet-croeseid-2"]
 key_type = "consensus"
 encrypted_key_b64 = "<encrypted validator signing key>"
 aws_region = "<AWS region to use for KMS>"
@@ -169,7 +169,7 @@ aws_region = "<AWS region to use for KMS>"
 
 ## Validator configuration
 [[validator]]
-chain_id = "testnet-croeseid-1"
+chain_id = "testnet-croeseid-2"
 addr = { port = 5555 }
 protocol_version = "v0.34"
 reconnect = true

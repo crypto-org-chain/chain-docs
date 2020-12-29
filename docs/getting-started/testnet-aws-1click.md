@@ -2,6 +2,14 @@
 
 This tutorial will use our AWS 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
+:::warning Important:
+
+The AWS 1-click Deployment is temporarily unavailable.
+
+If you have a node started earlier with the version v.0.7.\* (testnet-croeseid-1), kindly follow this [instructions](https://github.com/crypto-com/testnets/tree/main/testnet-croeseid-2/1-click-reconfig) and upgrade to v.0.8 (testnet-croeseid-2) with the new configuration script.
+
+:::
+
 ## Step 1. AWS Account Creation
 
 You will first need to create an [AWS](https://aws.amazon.com/) account. This will require providing your credit card information to `AWS` and you may be subject to charges when you create a virtual machine. More details for account creation, check this [link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
@@ -151,7 +159,7 @@ Nov 25 09:27:48 crypto-chain-test-node chain-maind[3209]: I[2020-11-25|09:27:48.
 
 The latest block height can be found by:
 ```bash
-$ curl -s https://testnet-croeseid-1.crypto.com:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid.crypto.com:26657/block | jq -r .result.block.header.height
 569328
 ```
 Once the tendermint syncs to the latest block, the setup is done! You may move on to the next step if you want to join the network as a validator.
@@ -194,14 +202,14 @@ $ chain-maind tx staking create-validator \
 --pubkey=[tcrocnclconspub...]  \
 --moniker="[The_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \
---chain-id="testnet-croeseid-1" \
+--chain-id="testnet-croeseid-2" \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
 --gas 800000 \
 --commission-max-change-rate="0.01" \
---min-self-delegation="1" \
---gas-prices 0.1basetcro \
---node https://testnet-croeseid-1.crypto.com:26657
+--gas auto \
+--gas-adjustment=1.5\
+--node https://testnet-croeseid.crypto.com:26657
 
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
@@ -219,7 +227,7 @@ You will be required to insert the following:
 Now you can check if your validator has been added to the validator set:
 
 ```bash
-$ chain-maind query tendermint-validator-set --node https://testnet-croeseid-1.crypto.com:26657 | grep -c [tcrocnclconspub...]
+$ chain-maind query tendermint-validator-set --node https://testnet-croeseid.crypto.com:26657 | grep -c [tcrocnclconspub...]
 ## 1 = Yes; 0 = Not yet added ##
 ```
 

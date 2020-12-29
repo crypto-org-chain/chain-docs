@@ -171,7 +171,7 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
   $ ./chain-maind start
 ```
 
-- (Optional for Linux) Start chain-maind with systemd service, e.g.:
+- *(Optional for Linux)* Start chain-maind with systemd service, e.g.:
 
 ```bash
   $ git clone https://github.com/crypto-com/chain-main.git && cd chain-main
@@ -228,8 +228,8 @@ $ ./chain-maind tx staking create-validator \
 --commission-max-rate="0.20" \
 --commission-max-change-rate="0.01" \
 --min-self-delegation="1" \
---gas auto \
---gas-adjustment=1.8
+--gas 80000000 \
+--gas-prices 0.1basetcro
 
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -242,7 +242,7 @@ You will be required to insert the following:
 - `--moniker`: A moniker (name) for your validator node;
 - `--security-contact`: Security contact email/contact method.
 
-Now you can check if your validator has been added to the validator set:
+Once the `create-validator` transaction completes, you can check if your validator has been added to the validator set:
 
 ```bash
 $ ./chain-maind tendermint show-validator

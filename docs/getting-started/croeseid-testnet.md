@@ -6,6 +6,11 @@ This is detailed documentation for setting up a Validator or a full node on Cryp
 
 ## Pre-requisites
 
+**Remarks**: 
+Please follow this [guide](https://github.com/crypto-com/testnets/tree/main/testnet-croeseid-2#network-upgrade-guide). If you are upgrading from `testnet-croeseid-1` (v0.7.) to `testnet-croeseid-2` (v0.8.)
+
+
+
 ### Supported OS
 
 We officially support macOS, Windows and Linux only. Other platforms may work but there is no guarantee. We will extend our support to other platforms after we have stablized our current architecture.
@@ -244,12 +249,12 @@ You will be required to insert the following:
 
 Once the `create-validator` transaction completes, you can check if your validator has been added to the validator set:
 
-```bash
-$ ./chain-maind tendermint show-validator
-## [tcrocnclconspub... consensus public key] ##
-$ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclconspub...]
-## 1 = Yes; 0 = Not yet added ##
-```
+  ```bash
+  $ ./chain-maind tendermint show-address
+  ## [tcrocnclcons... address] ##
+  $ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclcons...]
+  ## 1 = Yes; 0 = Not yet added ##
+  ```
 
 To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 

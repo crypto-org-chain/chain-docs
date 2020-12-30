@@ -20,7 +20,7 @@ $ cachix use crypto-com
 ## Install chain utils for testnet
 
 ```shell
-$ nix-env -iA chain-utils-testnet -f https://github.com/crypto-com/chain-main/archive/f53418d87b8fede4fcee59078c996ee000eae4d2.tar.gz
+$ nix-env -iA chain-utils-testnet -f https://github.com/crypto-com/chain-main/archive/52d537481caf591066a2426d6bd3ef6c6b97e0db.tar.gz
 ```
 
 After installation, you'll have these commands in your `PATH`:
@@ -70,8 +70,8 @@ One of the strengths of nix package manager is you can have multiple isolated in
 you want to manage both testnet and mainnet chains or different versions of them on a single machine.
 
 ```shell
-$ nix build -f https://github.com/crypto-com/chain-main/archive/f53418d87b8fede4fcee59078c996ee000eae4d2.tar.gz chain-utils-testnet -o testnet
+$ nix build -f https://github.com/crypto-com/chain-main/archive/52d537481caf591066a2426d6bd3ef6c6b97e0db.tar.gz chain-utils-testnet -o testnet
 $ export CHAINHOME=$PWD/testnet_data
 $ MONIKER=testnode ./testnet/bin/init-node
-$ ./testnet/bin/chain-main start --home $CHAINHOME
+$ ./testnet/bin/chain-maind start --home $CHAINHOME
 ```

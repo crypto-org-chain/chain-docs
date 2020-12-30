@@ -2,6 +2,14 @@
 
 This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
+:::warning Important:
+
+The Azure 1-click Deployment is temporarily unavailable.
+
+If you have a node started earlier with the version v.0.7.\* (testnet-croeseid-1), kindly follow this [instructions](https://github.com/crypto-com/testnets/tree/main/testnet-croeseid-2/1-click-reconfig) and upgrade to v.0.8 (testnet-croeseid-2) with the new configuration script.
+
+:::
+
 ## Step 1. Azure Account Creation
 
 You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to charges when you create a virtual machine.
@@ -12,7 +20,7 @@ Please read `Microsoft Azure` free trial introduction to see if you are eligible
 
 ### Step 2-1. Search for Crypto.com Chain on Marketplace
 
-Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.com testnet-croeseid-1".
+Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.com testnet-croeseid".
 
 ![](./assets/azure_marketplace.png)
 
@@ -60,10 +68,12 @@ Choose the image and click "Create" to start creating the Crypto.com chain testn
 
 ### Step 2-3. Connect to your instance
 
-Once the deployment is completed, you can connect to your instance via SSH. 
+Once the deployment is completed, you can connect to your instance via SSH.
+
 ```
 $ ssh ubuntu@PUBLIC_IP
 ```
+
 Afterwards, go to the `chain` directory, and you will find all the essential binaries for setting up your node:
 
 ```bash
@@ -82,11 +92,12 @@ drwxr-xr-x  2 root   root   4096 Nov 23 14:03 release_binary/
 drwxr-xr-x  2 crypto crypto 4096 Nov 23 14:09 sockets/
 ```
 
-
-
 ## Step 3. Running a full node
+
 ### Step 3-1. Use the reconfiguration script
+
 Now we use the reconfiguration script `reconfig.sh` to clean up the old data (if any) and obtain a fresh consensus public key, which is necessary for running a validator.
+
 ```bash
 $ sudo -u crypto ./reconfig.sh
 ....
@@ -123,11 +134,13 @@ moniker: YOUR_MONIKER_NAME
 
 You may also enable [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) to speed up the block syncing process.
 _p2p gossip_ will allow you to connect with more nodes (data sources).
+
 ```bash
 Do you want to enable state-sync? (Y/N): y
 Do you want to add the public IP of this node for p2p gossip? (Y/N): y
 ✅ Added public IP to external_address in chain-maind config.toml for p2p gossip
 ```
+
 _node_id_ and _node_key_ are the unique identity of your node. Save them for later use.
 
 ```
@@ -139,7 +152,8 @@ node_id: 62cf74XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 node_key: LyQiGlL4HsdHsPXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
-`chain-maind` is now running at the background. 
+
+`chain-maind` is now running at the background.
 
 You can check its log by the command `journalctl`, for example:
 
@@ -154,25 +168,30 @@ Nov 25 09:27:48 crypto-chain-test-node chain-maind[3209]: I[2020-11-25|09:27:48.
 ```
 
 The latest block height can be found by:
+
 ```bash
-$ curl -s https://testnet-croeseid-1.crypto.com:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid.crypto.com:26657/block | jq -r .result.block.header.height
 569328
 ```
+
 Once the tendermint syncs to the latest block, the setup is done! You may move on to the next step if you want to join the network as a validator.
 
 ## Step 4. Join as a validator
+
 We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server.
 If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.com Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-com-chain-binary).
 :::tip NOTE
 
 - Check whether your chain-maind is the testnet binary (end with `-rc2`)
+
 ```bash
 $ chain-maind version
 0.7.0-rc2
 ```
+
 - Testnet binary for
-[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc2/chain-main_0.7.0-rc2_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc2/chain-main_0.7.0-rc2_Windows_x86_64.zip) are also available.
-:::
+  [Mac](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc2/chain-main_0.7.0-rc2_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.7.0-rc2/chain-main_0.7.0-rc2_Windows_x86_64.zip) are also available.
+  :::
 
 ### Step 4-1. Create a new key and address
 
@@ -191,6 +210,7 @@ In case you have reached the daily limit on faucet airdrop, you can simply send 
 stating who you are and your `tcro.....` address.
 
 ### Step 4-3. Running a validator node
+
 ```bash
 $ chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
@@ -198,20 +218,21 @@ $ chain-maind tx staking create-validator \
 --pubkey=[tcrocnclconspub...]  \
 --moniker="[The_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \
---chain-id="testnet-croeseid-1" \
+--chain-id="testnet-croeseid-2" \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
 --gas 800000 \
 --commission-max-change-rate="0.01" \
 --min-self-delegation="1" \
 --gas-prices 0.1basetcro \
---node https://testnet-croeseid-1.crypto.com:26657
+--node https://testnet-croeseid.crypto.com:26657
 
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
 confirm transaction before signing and broadcasting [y/N]: y
 {"height":"545811","txhash":"89314DB8492B14EE35991A9880FF6C89B02FA04880EB33A2DADF25F419F0E59E","codespace":"",...}
 ```
+
 You will be required to insert the following:
 
 - `--from`: The `trco...` address or name of your key in [Step 4-1](#step-4-join-as-a-validator) that holds your funds;
@@ -220,10 +241,11 @@ You will be required to insert the following:
 - `--security-contact`: Security contact email/contact method.
 
 ### Step 4-4. Check if the validator has been set
+
 Now you can check if your validator has been added to the validator set:
 
 ```bash
-$ chain-maind query tendermint-validator-set --node https://testnet-croeseid-1.crypto.com:26657 | grep -c [tcrocnclconspub...]
+$ chain-maind query tendermint-validator-set --node https://testnet-croeseid.crypto.com:26657 | grep -c [tcrocnclconspub...]
 ## 1 = Yes; 0 = Not yet added ##
 ```
 

@@ -22,6 +22,16 @@ check_chain_maind() {
     RET_VALUE=$?
     set -e
 }
+helpFunction() {
+    cat << EOF
+Flags:
+    --help                help for the script
+    --tendermint-url      tendermint rpc interface for this chain (default "http://127.0.0.1:26657" if omitted)
+    --pubkey              tendermint Ed25519 PubKey; can be found in ".chain-maind/config/priv_validator_key.json"
+    --bechpubkey          bech32 consensus PubKey; converted to tendermint Ed25519 PubKey automatically; useful for node using tmkms.
+EOF
+    exit 1 # Exit script after printing help
+}
 check_curl
 if [[ "${RET_VALUE}" != 0 ]]; then
     echoerr "curl is not installed. Please install it first."
@@ -47,8 +57,12 @@ while [[ $# > 0 ]]; do
             BECH_PUBKEY="$1"
             shift 1
         ;;
+        --help)
+            helpFunction
+        ;;
         *)
-            echoerr "Unknown argument: $1"
+            echo "Unknown argument: $1"
+            helpFunction
         ;;
     esac
 done
@@ -56,7 +70,7 @@ set +u
 if [[ ! -z "${BECH_PUBKEY}" ]]; then
     check_chain_maind
     if [[ "${RET_VALUE}" != 0 ]]; then
-        echoerr "curl is not installed. Please install it first for key conversion"
+        echoerr "chain-maind is not installed or not in PATH. Please install it first or check chain-maind is added to PATH for pubkey key conversion."
     fi
     PUBKEY=$(chain-maind debug pubkey ${BECH_PUBKEY} 2>&1 | grep "tendermint/PubKeyEd25519" | cut -d : -f2- | jq -r .value || echoerr "Decode Pubkey Failed ❌")
 fi

@@ -101,7 +101,7 @@ Before kick-starting your node, we will have to configure your node so that it c
   $ sed -i.bak -E 's#^(minimum-gas-prices[[:space:]]+=[[:space:]]+)""$#\1"0.025basetcro"#' ~/.chain-maind/config/app.toml
   ```
 
-- For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `seeds` and `create_empty_blocks_interval` by:
+- For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `persistent_peers` and `create_empty_blocks_interval` by:
 
   ```bash
   $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"b2c6657096aa30c5fafa5bd8ced48ea8dbd2b003@52.76.189.200:26656,ef472367307808b242a0d3f662d802431ed23063@175.41.186.255:26656,d3d2139a61c2a841545e78ff0e0cd03094a5197d@18.136.230.70:26656"# ; s#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
@@ -259,7 +259,9 @@ Once the `create-validator` transaction completes, you can check if your validat
 To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash
-$ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- --tendermint-url https://testnet-croeseid.crypto.com:26657 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
+$ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
+--tendermint-url https://testnet-croeseid.crypto.com:26657 \
+--pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
@@ -267,7 +269,9 @@ The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 
 For those who are using tmkms in background([AWS](./testnet-aws-1click.html)/[Azure](./testnet-azure-1click.html) 1-click deployment are using tmkms), you should use `--bechpubkey` the consensus pubkey with prefix `tcrocnclconspub1....` directly instead of `--pubkey` tendermint pubkey since the node is not using `~/.chain-maind/config/priv_validator_key.json` for signing.
 ```bash
-$ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- --tendermint-url https://testnet-croeseid.crypto.com:26657 --bechpubkey [tcrocnclconspub1....]
+$ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
+--tendermint-url https://testnet-croeseid.crypto.com:26657 \
+--bechpubkey [tcrocnclconspub1....]
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍

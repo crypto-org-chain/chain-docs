@@ -19,10 +19,10 @@ module.exports = {
             text: "Setup Tutorial",
             link: "/getting-started/croeseid-testnet"
           },
-          // {
-          //   text: "Testnet Explorer",
-          //   link: "https://chain.crypto.com/explorer"
-          // },
+           {
+             text: "Testnet Explorer",
+             link: "https://chain.crypto.com/explorer"
+           },
           {
             text: "Testnet Faucet",
             link: "https://chain.crypto.com/faucet"

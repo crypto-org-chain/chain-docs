@@ -30,7 +30,7 @@ module.exports = {
         ]
       },
       {
-        text: "Design & Specifications",
+        text: "Design",
         items: [
           {
             text: "Introduction",
@@ -47,7 +47,7 @@ module.exports = {
         ]
       },      
       {
-        text: "Wallet Management",
+        text: "Wallet",
         items: [
           {
             text: "chain-maind",

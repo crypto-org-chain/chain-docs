@@ -15,23 +15,23 @@
       @click="toggleSidebar(false)"
     ></div>
 
+    <Sidebar
+      :items="sidebarItems"
+      @toggle-sidebar="toggleSidebar"
+    >
+      <slot
+        name="sidebar-top"
+        slot="top"
+      />
+      <slot
+        name="sidebar-bottom"
+        slot="bottom"
+      />
+    </Sidebar>
+
     <Home v-if="$page.frontmatter.home"/>
 
     <div v-else class="docs-layout">
-
-      <Sidebar
-        :items="sidebarItems"
-        @toggle-sidebar="toggleSidebar"
-      >
-        <slot
-          name="sidebar-top"
-          slot="top"
-        />
-        <slot
-          name="sidebar-bottom"
-          slot="bottom"
-        />
-      </Sidebar>
 
       <Page
         :sidebar-items="sidebarItems"

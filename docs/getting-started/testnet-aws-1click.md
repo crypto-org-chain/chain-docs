@@ -231,4 +231,4 @@ $ chain-maind query tendermint-validator-set --node https://testnet-croeseid.cry
 ## 1 = Yes; 0 = Not yet added ##
 ```
 
-Congraduations! You've sucessfully joined the network as a validator!
+Congratulations! You've successfully joined the network as a validator!

@@ -44,7 +44,7 @@ $ nitro-cli build-enclave --docker-uri cryptocom/nitro-enclave-tmkms:latest --ou
 ```
 After building the enclave image, you should obtain 3 [enclave's measurements(PCRs)](https://docs.aws.amazon.com/enclaves/latest/user/set-up-attestation.html#where): PCR0 (SHA384 hash of the image), PCR1 (SHA384 hash of the OS kernel and the bootstrap process), and PCR2 (SHA384 hash of the application). Take a note of the **PCR0** value.
 
-And also create and take a note of **PCR4** manually which is uniqure across ec2.
+And also create and take a note of **PCR4** manually which is unique across ec2.
 ```bash
 $ printf "PCR4: %s\n" $(INSTANCE_ID="$(curl http://169.254.169.254/latest/meta-data/instance-id -s)"; python -c"import hashlib, sys; h=hashlib.sha384(); h.update(b'\0'*48); h.update(\"$INSTANCE_ID\".encode('utf-8')); print(h.hexdigest())")
 ```
@@ -67,7 +67,7 @@ Attach this role to the previously created EC2. Check this [guide](https://docs.
 - Edit key policy to allow only TMKMS inside nitro enclave to decrypt instead of entire EC2
   You should have a generated policy shown in the console.
 
-  For the decryption action, you should add following snippet in "Statement" as:
+  For the decryption action, you should add the following snippet in "Statement" as:
 ```json
 {
     "Id": "key-consolepolicy-3",

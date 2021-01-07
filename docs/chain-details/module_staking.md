@@ -52,7 +52,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 #### `tx staking delegate [validator-addr] [amount]` - Delegate liquid tokens to a validator
 
-As discussed in the delegator section, one can delegate their toke to an active validators by:
+As discussed in the delegator section, one can delegate their toke to an active validator by:
 
 ```bash
 $ tx staking delegate [validator-addr] [amount]

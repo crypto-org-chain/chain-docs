@@ -38,7 +38,7 @@ $ MONIKER=testnode init-node
 
 Change the value of `MONIKER` to your node's name.
 
-state sync is initialized and enabled by `init-node` automatically, if you don't want that, you can disable it by edit
+state sync is initialized and enabled by `init-node` automatically, if you don't want that to happen, you can disable it by edit
 `$CHAINHOME/config/config.toml` manually, set `enable` field to `false` under section `[statesync]` like this:
 
 ```

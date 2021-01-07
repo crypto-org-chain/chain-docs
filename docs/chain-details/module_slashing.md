@@ -64,7 +64,7 @@ immediately jailed and punished by deducting funds from their bonded and unbonde
 
 ### Jailing
 
-A validator is jailed when they make liveness or Byzantine fault, when a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Futhermore, it cannot be un-jailed
+A validator is jailed when they make liveness or Byzantine fault, when a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Furthermore, it cannot be un-jailed
 before `downtime_jail_duration`. This `downtime_jail_duration` is a
 network parameter which can be configured during genesis.
 

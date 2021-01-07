@@ -279,4 +279,4 @@ $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 ```
-Congraduations! You've sucessfully joined the network as a validator!
+Congratulations! You've successfully joined the network as a validator!

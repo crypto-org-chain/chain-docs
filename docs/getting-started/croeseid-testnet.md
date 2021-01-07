@@ -13,19 +13,19 @@ Please follow this [guide](https://github.com/crypto-com/testnets/tree/main/test
 
 ### Supported OS
 
-We officially support macOS, Windows and Linux only. Other platforms may work but there is no guarantee. We will extend our support to other platforms after we have stablized our current architecture.
+We officially support macOS, Windows and Linux only. Other platforms may work but there is no guarantee. We will extend our support to other platforms after we have stabilized our current architecture.
 
 ### Prepare your machine
 
 To run Crypto.com Chain nodes, you will need a machine with the following minimum requirements:
 
-- Dual core, x86_64 architecture processor;
+- Dual-core, x86_64 architecture processor;
 - 4GB RAM;
 - 100GB of storage space.
 
 ## Step 1. Get the Crypto.com Chain binary
 
-To simply the following steps, we will be using **Linux** for illustration. Binary for
+To simplify the following step, we will be using **Linux** for illustration. Binary for
 [Mac](https://github.com/crypto-com/chain-main/releases/download/v0.8.0-rc1/chain-main_0.8.0-rc1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.8.0-rc1/chain-main_0.8.0-rc1_Windows_x86_64.zip) are also available.
 
 - To install Crypto.com Chain released binaries from github:
@@ -81,7 +81,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 
 ### Step 2-2 Configurate chain-maind
 
-- Download the and replace the Croseid Testnet `genesis.json` by:
+- Download the and replace the Croeseid Testnet `genesis.json` by:
 
   ```bash
   $ curl https://raw.githubusercontent.com/crypto-com/testnets/main/testnet-croeseid-2/genesis.json > ~/.chain-maind/config/genesis.json
@@ -153,10 +153,10 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 ### Step 3-2. Obtain test token
 
 Unless you have obtained the CRO testnet token before, use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens.
-In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4),
+In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel ,
 stating who you are and your `tcro.....` address.
 
-### Step 3-3. Obtain the a validator public key
+### Step 3-3. Obtain the validator public key
 
 You can obtain your validator public key by:
 
@@ -367,5 +367,5 @@ Congratulations! You've successfully setup a Testnet node and performed some of 
 
 ## Croeseid testnet faucet
 
-- To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens for performing transactions on the **Croseid** testnet.
+- To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
   - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet. 

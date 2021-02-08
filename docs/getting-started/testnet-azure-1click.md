@@ -205,7 +205,7 @@ $ chain-maind version
 ```
 
 - Testnet binary for
-  [Mac](https://github.com/crypto-com/chain-main/releases/download/v0.8.0-croeseid/chain-main_0.8.0-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.8.0-croeseid/chain-main_0.8.0-croeseid_Windows_x86_64.zip) are also available.
+  [Mac](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Windows_x86_64.zip) are also available.
   :::
 
 ### Step 4-1. Create a new key and address

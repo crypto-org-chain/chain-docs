@@ -1,6 +1,6 @@
 # Getting Started
 
-Thanks for your interest in Crypto.com Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Crypto.com Chain.
+Thanks for your interest in Crypto.org Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Crypto.org Chain.
 
 ### What's next?
 

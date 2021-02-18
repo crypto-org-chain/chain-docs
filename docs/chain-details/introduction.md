@@ -4,9 +4,9 @@
 
 The development of blockchain technology and cryptocurrencies represents a cryptography and security breakthrough as significant as that created by the internet in the 1990s. This technology, however, is still at a very nascent stage; in order to generate mass adoption, it will therefore be necessary to find compelling real-life use cases that can appeal to an audience larger than the small group of industry professionals and experts.
 
-### Crypto.com Chain
+### Crypto.org Chain
 
-Accordingly, we propose Crypto.com Chain, the next-generation public blockchain that enables transactions worldwide between people and businesses. It is also the technology that powers Crypto.com Pay, our mobile payment solution, and will be used to power our trading & financial
+Accordingly, we propose Crypto.org Chain, the next-generation public blockchain that enables transactions worldwide between people and businesses. It is also the technology that powers Crypto.com Pay, our mobile payment solution, and will be used to power our trading & financial
 services offerings in the near future.
 
 We believe that enabling cryptocurrency spending in the real world will constitute an adoption catalyst. Current traditional payment institutions and existing blockchains have failed to provide a secure, scalable and decentralized solution to support cryptocurrency payment. The key limitations of existing blockchain-powered payment networks are that they are:
@@ -21,7 +21,7 @@ We believe that enabling cryptocurrency spending in the real world will constitu
 
 ## Design Goals
 
-On the technical side, Crypto.com chain has the following design goals:
+On the technical side, Crypto.org Chain has the following design goals:
 
 1. **"Security"**: robust and well-understood primitives and implementation are favoured
 

@@ -1,6 +1,6 @@
 # Croeseid Testnet: Running Nodes
 
-The latest Crypto.com Chain Testnet has been named as **Croeseid**.
+The latest Crypto.org Chain Testnet has been named as **Croeseid**.
 
 This is detailed documentation for setting up a Validator or a full node on Crypto.com Croeseid testnet.
 
@@ -17,18 +17,18 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 ### Prepare your machine
 
-To run Crypto.com Chain nodes, you will need a machine with the following minimum requirements:
+To run Crypto.org Chain nodes, you will need a machine with the following minimum requirements:
 
 - Dual-core, x86_64 architecture processor;
 - 4GB RAM;
 - 100GB of storage space.
 
-## Step 1. Get the Crypto.com Chain binary
+## Step 1. Get the Crypto.org Chain binary
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
 [Mac](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Windows_x86_64.zip) are also available.
 
-- To install Crypto.com Chain released binaries from github:
+- To install Crypto.org Chain released binaries from github:
 
   ```bash
   $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Linux_x86_64.tar.gz
@@ -65,7 +65,7 @@ Before kick-starting your node, we will have to configure your node so that it c
     $ ./chain-maind init [moniker] --chain-id testnet-croeseid-2
   ```
 
-  This `moniker` will be the displayed id of your node when connected to Crypto.com Chain network.
+  This `moniker` will be the displayed id of your node when connected to Crypto.org Chain network.
   When providing the moniker value, make sure you drop the square brackets since they are not needed.
   The example below shows how to initialize a node named `pegasus-node` :
 

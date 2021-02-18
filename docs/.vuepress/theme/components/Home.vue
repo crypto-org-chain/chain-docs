@@ -9,7 +9,7 @@
         />
         <p class="description">Welcome to</p>
         <h1 v-if="data.heroText !== null" id="main-title">
-          Crypto.com Chain Documentation
+          Crypto.org Chain Documentation
         </h1>
         <p class="action" v-if="data.actionText && data.actionLink">
           <NavLink class="action-button" :item="actionLink" />
@@ -89,7 +89,7 @@
           <h1 class="text-header">Crypto.com Pay Documents</h1>
           <p>
             Crypto.com Pay Checkout is a feature of Crypto.com Pay, which
-            utilizes Crypto.com Chain as a high performing native blockchain
+            utilizes Crypto.org Chain as a high performing native blockchain
             solution
           </p>
           <a

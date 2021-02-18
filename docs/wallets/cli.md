@@ -6,11 +6,11 @@
 
 ### Build Prerequisites
 
-- [Crypto.com Chain](https://github.com/crypto-com/chain-main)
+- [Crypto.org Chain](https://github.com/crypto-com/chain-main)
 
 ### How to use
 
-`chain-maind`is bundled with the Crypto.com chain code. After you have compiled the Crypto.com chain, run
+`chain-maind`is bundled with the Crypto.org Chain code. After you have compiled the Crypto.org Chain, run
 
 ```bash
 $ chain-maind [command]
@@ -34,7 +34,7 @@ To specify the chain-maind config and data storage directory; you can add a glob
 
 ### Configure Chain ID
 
-Crypto.com Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag :
+Crypto.org Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag :
 
 ```bash
 alias chain-maind="chain-maind --chain-id [full-chain-id]"

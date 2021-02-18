@@ -10,15 +10,15 @@ Please read `Microsoft Azure` free trial introduction to see if you are eligible
 
 ## Step 2. Common Setup
 
-### Step 2-1. Search for Crypto.com Chain on Marketplace
+### Step 2-1. Search for Crypto.org Chain on Marketplace
 
-Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.com Chain Testnet Node".
+Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.org Chain Testnet Node".
 
 ![](./assets/azure_marketplace.png)
 
 ### Step 2-2. Create a Virtual Machine
 
-Choose the image and click "Create" to start creating the Crypto.com chain testnet node.
+Choose the image and click "Create" to start creating the Crypto.org Chain testnet node.
 
 #### 1. Basic
 
@@ -194,7 +194,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 ## Step 4. Join as a validator
 
 We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server.
-If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.com Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-com-chain-binary).
+If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-com-chain-binary).
 :::tip NOTE
 
 - Check whether your chain-maind is the testnet binary

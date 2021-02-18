@@ -44,14 +44,7 @@ $ chain-maind tx bank send <address_a> <address_b> 10cro --chain-id <chain-id>
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-:::tip Remarks
-You can also send a "batch payment", from one account to multiple outputs by using the command
 
-```
-tx bank multisend-1tomany [from_key_or_address] [to_address1] [amount1] [to_address2] [amount2]...[network_id]
-```
-
-:::
 
 ### Queries
 
@@ -258,7 +251,7 @@ Below are all the network parameters for the `gov` module:
 
 **Phase 0 - Submit a proposal along with an initial deposit:**
 
-Users can submit proposal with an initial deposit. The proposal will then become "active" and entre the _deposit period_.
+Users can submit a proposal with an initial deposit. The proposal will then become "active" and entre the _deposit period_.
 
 **Phase 1 - Deposit period**
 
@@ -268,7 +261,7 @@ During the _deposit period_, users can deposit and support an active proposal. O
 
 During the _voting period_, staked (bonded) token will be able to participate in the voting. Users can choose one of the following option: `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"`
 
-After the `voting_period` has passed, there are several scenarios that a proposal will consider to be fail, for example, if
+After the `voting_period` has passed, there are several scenarios that a proposal will consider to be "Rejected", for example, if
 
 - No one votes (everyone `"abstain"`);
 - Votes did not reach the `quorum`;
@@ -307,7 +300,7 @@ Otherwise, the proposal will be accepted and changes will be implemented accordi
 
 - Submit a software upgrade proposal- `software-upgrade [name] (--upgrade-height [height] | --upgrade-time [time]) (--upgrade-info [info])`
 
-  Users can submit a upgrade proposal and suggest a software upgrade at a specific block height.
+  Users can submit an upgrade proposal and suggest a software upgrade at a specific block height.
 
 - Cancel the current software upgrade proposal - `cancel-software-upgrade`
 

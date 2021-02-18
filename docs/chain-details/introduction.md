@@ -12,7 +12,7 @@ services offerings in the near future.
 We believe that enabling cryptocurrency spending in the real world will constitute an adoption catalyst. Current traditional payment institutions and existing blockchains have failed to provide a secure, scalable and decentralized solution to support cryptocurrency payment. The key limitations of existing blockchain-powered payment networks are that they are:
 
 - Too complex to setup and use;
-- Not friendly to crypto first timers; and
+- Not friendly to crypto first-timers; and
 - Rarely supported beyond their own blockchain;
 
 

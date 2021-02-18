@@ -19,10 +19,10 @@ module.exports = {
             text: "Setup Tutorial",
             link: "/getting-started/croeseid-testnet"
           },
-          // {
-          //   text: "Testnet Explorer",
-          //   link: "https://chain.crypto.com/explorer"
-          // },
+           {
+             text: "Testnet Explorer",
+             link: "https://chain.crypto.com/explorer"
+           },
           {
             text: "Testnet Faucet",
             link: "https://chain.crypto.com/faucet"
@@ -30,7 +30,7 @@ module.exports = {
         ]
       },
       {
-        text: "Design & Specifications",
+        text: "Design",
         items: [
           {
             text: "Introduction",
@@ -47,7 +47,7 @@ module.exports = {
         ]
       },      
       {
-        text: "Wallet Management",
+        text: "Wallet",
         items: [
           {
             text: "chain-maind",
@@ -81,8 +81,10 @@ module.exports = {
         "croeseid-testnet",
         "testnet-aws-1click",
         "testnet-azure-1click",
+        "croeseid-testnet-nix",
         "local-devnet",
-//        "notes-on-production-deployment",
+        "advanced-tmkms-integration",
+        // "notes-on-production-deployment",
 //        "notes-on-performance"
       ],
       "/chain-details/": [

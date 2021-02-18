@@ -57,7 +57,7 @@ A list of commonly used `chain-maind` commands.
 
 | Command | Description                                             | List                                                         |
 | ------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| `keys`  | [Key managements](#keys-managements-chain-maind-keys)   | [`add <wallet_name>`](#keys-add-wallet-name-create-a-new-key)<br /><br />[`add <key_name> --recover`](#keys-add-key-name-recover-restore-existing-key-by-seed-phrase)<br /><br />[`list`](#keys-list-list-your-keys)<br /><br />[`show <key_name>`](#keys-show-key-name-retrieve-key-information)<br /><br />[`delete <key_name>`](#keys-delete-key-name-delete-a-key)<br /><br />[`export <key_name>`](#keys-export-key-name-export-private-keys) |
+| `keys`  | [Keys management](#keys-management-chain-maind-keys)   | [`add <wallet_name>`](#keys-add-wallet-name-create-a-new-key)<br /><br />[`add <key_name> --recover`](#keys-add-key-name-recover-restore-existing-key-by-seed-phrase)<br /><br />[`list`](#keys-list-list-your-keys)<br /><br />[`show <key_name>`](#keys-show-key-name-retrieve-key-information)<br /><br />[`delete <key_name>`](#keys-delete-key-name-delete-a-key)<br /><br />[`export <key_name>`](#keys-export-key-name-export-private-keys) |
 | `tx`    | [Transactions subcommands](#transactions-subcommands-chain-maind-tx)| [`bank send`](#tx-bank-send-transfer-operation)<br /><br />[`staking delegate`](#delegate-you-funds-to-a-validator-tx-staking-delegate-validator-addr-amount)<br /><br />[`staking unbond`](#unbond-your-delegated-funds-tx-staking-unbond-validator-addr-amount)<br /><br />[`staking create-validator`](#tx-staking-create-validator-joining-the-network-as-a-validator)<br /><br />[`slashing unjail`](#tx-slashing-unjail-unjailing-a-validator) |
 | `query` | [Query subcommands](#balance-transaction-history)                   | [`query bank balance`](#query-bank-balances-check-your-transferable-balance)                                         |
 
@@ -90,7 +90,7 @@ Global Flags:
 ```
 :::
 
-## Keys managements - `chain-maind keys`
+## Keys management - `chain-maind keys`
 
 First of all, you will need an address to store and spend your CRO.
 
@@ -171,7 +171,7 @@ You can retrieve key information by its name:
 ::: details Example: Retrieve key information - Account Address and its public key
 
 ```bash
-$ chain-maind show delete Default --bech acc
+$ chain-maind keys show Default --bech acc
 - name: Default
   type: local
   address: cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
@@ -186,7 +186,7 @@ $ chain-maind show delete Default --bech acc
 ::: details Example: Retrieve key information - Validator Address and its public key
 
 ```bash
-$ chain-maind show delete Default --bech val
+$ chain-maind keys show Default --bech val
 - name: Default
   type: local
   address: crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z
@@ -201,7 +201,7 @@ $ chain-maind show delete Default --bech val
 ::: details Example: Retrieve key information - Consensus nodes Address and its public key
 
 ```bash
-$ chain-maind show delete Default --bech cons
+$ chain-maind keys show Default --bech cons
 - name: Default
   type: local
   address: crocnclcons1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s34pfmlc
@@ -253,6 +253,27 @@ type: secp256k1
 ```
 
 :::
+
+### The keyring `--keyring-backend` option
+Interacting with a node requires a public-private keypair. Keyring is the place holding the keys. The keys can be stored in different locations with specified backend type. 
+```
+$ chain-maind keys [subcommands] --keyring-backend [backend type]
+```
+### `os` backend
+The default `os` backend stores the keys in operating system's credential sub-system, which are comfortable to most users, yet without compromising on security. 
+
+Here is a list of the corresponding password managers in different operating systems: 
+- macOS (since Mac OS 8.6): [Keychain](https://support.apple.com/en-gb/guide/keychain-access/welcome/mac)
+- Windows: [Credentials Management API](https://docs.microsoft.com/en-us/windows/win32/secauthn/credentials-management)
+- GNU/Linux:
+  - [libsecret](https://gitlab.gnome.org/GNOME/libsecret)
+  - [kwallet](https://api.kde.org/frameworks/kwallet/html/index.html)
+
+### `file` backend
+The `file` backend stores the encrypted keys inside the app's configuration directory. A password entry is required everytime a user access it, which may also occur multiple times of repeated password prompts in one single command. 
+
+### `test` backend
+The `test` backend is a password-less variation of the `file` backend. It stores unencrypted keys inside the app's configuration directory. It should only be used in testing environments and never be used in production.
 
 ## Transactions subcommands - `chain-maind tx`
 

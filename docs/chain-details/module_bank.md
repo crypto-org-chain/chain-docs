@@ -28,14 +28,7 @@ $ chain-maind tx bank send <address_a> <address_b> 10cro --chain-id <chain-id>
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-:::tip Remarks
-You can also send a "batch payment", from one account to multiple outputs by using the command
 
-```
-tx bank multisend-1tomany [from_key_or_address] [to_address1] [amount1] [to_address2] [amount2]...[network_id]
-```
-
-:::
 
 ### Queries
 

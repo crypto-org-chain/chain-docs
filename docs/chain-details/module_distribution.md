@@ -37,7 +37,7 @@ For delegators, once they have delegated to a validator, they will be entitled t
 
 #### Transaction Fees Bonus
 
-When a validator is selected to propose the next block, they must include at least 66% precommits of the previous block. To incentivise validators to include more than 66% precommits, the module provide a bonus reward (portion of the transaction fee in the block) to the proposer.
+When a validator is selected to propose the next block, they must include at least 66% precommits of the previous block. To incentivise validators to include more than 66% precommits, the module provide a bonus reward (a portion of the transaction fee in the block) to the proposer.
 
 This bonus reward is dependent linearly on the precommits from the other validators. Stating from 66% of the precommits, the basic bonus will be `base_proposer_reward` and increase linearly to `bonus_proposer_reward` when the validator includes 100% of the precommits.
 
@@ -85,7 +85,7 @@ We can check the balance of the community pool.
 
 #### `query distribution rewards [delegator-addr] [validator-addr]` - Query all distribution delegator rewards or rewards from a particular validator
 
-we can check the current rewards for a delegation on a specific validator.
+We can check the current rewards for a delegation on a specific validator.
 
 #### `query distribution slashes [validator] [start-height] [end-height]` - Query distribution validator slashes
 
@@ -119,7 +119,7 @@ The following tables show overall effects on different configurations of the dis
 |                      | `community_tax`                               | `base_proposer_reward`                               | `bonus_proposer_reward`              |
 | -------------------- | --------------------------------------------- | ---------------------------------------------------- | ------------------------------------ |
 | Type                 | string (dec)                                  | string (dec)                                         | string (dec)                         |
-| Higher               | More reward will goes into the community pool | Higher basic transaction fees bonus for the proposer | Easier for a proposal to be passed   |
-| Lower                | Less reward will goes into the community pool | Lower basic transaction fees bonus for the proposer  | Harder for a proposal to be passed   |
+| Higher               | More reward will go into the community pool | Higher basic transaction fees bonus for the proposer | Easier for a proposal to be passed   |
+| Lower                | Less reward will go into the community pool | Lower basic transaction fees bonus for the proposer  | Harder for a proposal to be passed   |
 | Constraints          | Value has to be less or equal to `1`          | Value has to be less or equal to `1`                 | Value has to be less or equal to `1` |
 | Sample configuration | `0` (0%)                                      | `0.01` (1%)                                          | `0.04` (4%)                          |

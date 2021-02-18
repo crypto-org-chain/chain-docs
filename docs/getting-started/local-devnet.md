@@ -1,7 +1,7 @@
 # Devnet: Running Latest Development Node
 
 ::: warning caution
-this page is for building and running the latest development version of the chain for testing purpose only. Development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work is required.
+this page is for building and running the latest development version of the chain for testing purpose only. The development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work is required.
 
 For anyone interested in joining the crypto.com chain testnet,
 please refer to our [testnet documentation](./croeseid-testnet.md).
@@ -122,8 +122,8 @@ Afterwards, keys will be generated according to the configuration specified, the
 
 Kindly save these mnemonics for key recovery later.
 
-Blocks is now being generated! You can view the blockchain data by the rpc port of the `awesome0` (first node): [http://localhost:26657/](http://localhost:26657/).
-Futhermore, you can also use the swagger doc of `awesome0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
+Blocks are now being generated! You can view the blockchain data by the rpc port of the `awesome0` (first node): [http://localhost:26657/](http://localhost:26657/).
+Furthermore, you can also use the swagger doc of `awesome0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
 
 It is worth mentioning that the `serve` command would truncate all the blocks previously generated and regenerate a new genesis block, which means you'll also lose all of your transaction records. If you wish to restart the chain with the existing blocks, please run `pystarport` with `start` command:
 
@@ -135,13 +135,13 @@ $ pystarport start
 
 After the chain has been started, we may open up another terminal and start interacting with the chain by `chain-maind`.
 
-### Key management
+### Keys management
 
 #### Restore the key
 
 As in the last section, pre-created Hierarchical Deterministic (HD) mnemonic with genesis funds inside are prepared for you in the Devnet. To gain access to the funds, kindly restore the key by using the mnemonic before moving on to the next step.
 
-**Note**: The keys are stored in your operating system by default, we will use `--keyring-backend test` for simplicity
+**Note**: The keys are stored in your operating system by default, we will use `--keyring-backend test` for simplicity. You may refer to a more detailed explaination [here](../wallets/cli.md#the-keyring-keyring-backend-option). 
 
 - Firstly, restore the key name as `launch`:
 

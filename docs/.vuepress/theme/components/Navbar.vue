@@ -7,13 +7,13 @@
         class="home-link"
       >
         <img
-          class="logotype can-hide"
+          class="logotype narrow-hide"
           v-if="$site.themeConfig.logo"
           :src="$withBase($site.themeConfig.logo)"
           :alt="$siteTitle"
         >
         <img
-          class="logoicon desktop-hide"
+          class="logoicon wide-hide"
           v-if="$site.themeConfig.logo"
           :src="$withBase('/logo-icon.svg')"
           :alt="$siteTitle"
@@ -37,7 +37,11 @@
           v-if="isAlgoliaSearch"
           :options="algolia"
         />
-        <SearchBox v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"/>
+        <SearchBox
+          v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
+          @alignRight=true
+          :alignRight=true
+        />
       </div>
     </div>
   </header>
@@ -101,6 +105,9 @@ $headerTextColor = #0b1426
 .navbar
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height 2.5rem
+  .search-box
+    .suggestions
+      right 0 !important
   .desktop-hide
     display none
   .inner
@@ -144,6 +151,20 @@ $headerTextColor = #0b1426
         border none
         border-radius 4px
         box-shadow 0 2px 10px 4px rgba(0, 0, 0, 0.05)
+
+@media (min-width: $MQWide)
+  .navbar
+    .narrow-hide
+      display inline
+    .wide-hide
+      display none
+
+@media (max-width: $MQWide)
+  .navbar
+    .narrow-hide
+      display none
+    .wide-hide
+      display inline
 
 @media (max-width: $MQMobile)
   .navbar

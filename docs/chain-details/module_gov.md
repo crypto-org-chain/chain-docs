@@ -28,7 +28,7 @@ Below are all the network parameters for the `gov` module:
 
 **Phase 0 - Submit a proposal along with an initial deposit:**
 
-Users can submit proposal with an initial deposit. The proposal will then become "active" and entre the _deposit period_.
+Users can submit a proposal with an initial deposit. The proposal will then become "active" and entre the _deposit period_.
 
 **Phase 1 - Deposit period**
 
@@ -77,7 +77,7 @@ Otherwise, the proposal will be accepted and changes will be implemented accordi
 
 - Submit a software upgrade proposal- `software-upgrade [name] (--upgrade-height [height] | --upgrade-time [time]) (--upgrade-info [info])`
 
-  Users can submit a upgrade proposal and suggest a software upgrade at a specific block height.
+  Users can submit an upgrade proposal and suggest a software upgrade at a specific block height.
 
 - Cancel the current software upgrade proposal - `cancel-software-upgrade`
 

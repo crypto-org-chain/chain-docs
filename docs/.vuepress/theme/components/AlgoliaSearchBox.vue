@@ -84,6 +84,7 @@ export default {
     .algolia-docsearch-suggestion--highlight
       color #2c815b
     .algolia-docsearch-suggestion
+      backgroud-color black
       border-color $borderColor
       padding 0
       .algolia-docsearch-suggestion--category-header

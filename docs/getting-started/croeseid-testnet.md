@@ -2,7 +2,7 @@
 
 The latest Crypto.org Chain Testnet has been named as **Croeseid**.
 
-This is detailed documentation for setting up a Validator or a full node on Crypto.com Croeseid testnet.
+This is detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet.
 
 ## Pre-requisites
 
@@ -152,7 +152,7 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 
 ### Step 3-2. Obtain test token
 
-Unless you have obtained the CRO testnet token before, use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens.
+Unless you have obtained the CRO testnet token before, use the [CRO faucet](https://crypto.org/faucet) to obtain test CRO tokens.
 In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel ,
 stating who you are and your `tcro.....` address.
 
@@ -363,9 +363,9 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::
 
-Congratulations! You've successfully setup a Testnet node and performed some of the basic transactions! You may refer to [Wallet Management](https://chain.crypto.com/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
+Congratulations! You've successfully setup a Testnet node and performed some of the basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
 
 ## Croeseid testnet faucet
 
-- To interact with the blockchain, simply use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
+- To interact with the blockchain, simply use the [CRO faucet](https://crypto.org/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
   - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet. 

@@ -88,7 +88,7 @@
         </div>
       </div>
       <p class="copyright">
-        Copyright © 2018 - {{ currentYear }} Crypto.com. All rights reserved.
+        Copyright © {{ currentYear }} Crypto.org. All rights reserved.
       </p>
     </div>
   </footer>

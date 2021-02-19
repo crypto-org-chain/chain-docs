@@ -21,11 +21,11 @@ module.exports = {
           },
            {
              text: "Testnet Explorer",
-             link: "https://chain.crypto.com/explorer"
+             link: "https://crypto.org/explorer"
            },
           {
             text: "Testnet Faucet",
-            link: "https://chain.crypto.com/faucet"
+            link: "https://crypto.org/faucet"
           }
         ]
       },

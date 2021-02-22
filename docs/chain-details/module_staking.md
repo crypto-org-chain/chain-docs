@@ -6,7 +6,7 @@ The `staking` module handles Proof-of-Stake related logics, which plays a very i
 
 ### Overview
 
-Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
+Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
 
 - `unbonding_time`: The time duration of unbonding;
 - `max_validators`: The maximum number of validator;

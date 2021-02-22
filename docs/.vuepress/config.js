@@ -1,6 +1,6 @@
 module.exports = {
-  title: "Crypto.com Chain",
-  description: "Welcome to Crypto.com Chain's documentation!",
+  title: "Crypto.org Chain",
+  description: "Welcome to Crypto.org Chain's documentation!",
   themeConfig: {
     navbar: true,
     logo: '/chain_doc_nav_logo.svg',
@@ -21,11 +21,11 @@ module.exports = {
           },
            {
              text: "Testnet Explorer",
-             link: "https://chain.crypto.com/explorer"
+             link: "https://crypto.org/explorer"
            },
           {
             text: "Testnet Faucet",
-            link: "https://chain.crypto.com/faucet"
+            link: "https://crypto.org/faucet"
           }
         ]
       },

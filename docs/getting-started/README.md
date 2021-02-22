@@ -1,6 +1,6 @@
 # Getting Started
 
-Thanks for your interest in Crypto.com Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Crypto.com Chain.
+Thanks for your interest in Crypto.org Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Crypto.org Chain.
 
 ### What's next?
 
@@ -13,7 +13,7 @@ Thanks for your interest in Crypto.com Chain. In this technical documentation, w
 - [Build Latest Development Version](./local-devnet.md): Try running latest development network (Devnet)
 
 #### Useful links
-- [Project Website](http://chain.crypto.com/)
+- [Project Website](http://crypto.org/)
 - [Project Repository](https://github.com/crypto-com/chain-main)
 - Community chatrooms (non-technical): [Discord](https://discord.gg/nsp9JTC) [Telegram](https://t.me/CryptoComOfficial)
 - Developer community channel (technical): [![Support Server](https://img.shields.io/discord/783264383978569728.svg?color=7289da&label=Crypto.com-Chain&logo=discord&style=flat-square)](https://discord.gg/pahqHz26q4)

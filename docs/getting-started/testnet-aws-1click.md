@@ -17,7 +17,7 @@ Sign in to your AWS account and go to EC2 Dashboard and change to your favourite
 
 ### Step 2-1. Search for Crypto.com on AWS Marketplace
 Search for "Crypto.com" in **Choose an Amazon Machine Image (AMI)** section.
-Select "Crypto.com Chain Testnet Node" from search results.
+Select "Crypto.org Chain Testnet Node" from search results.
 ![](./assets/aws_marketplace.png)
 
 ### Step 2-2. Choose an instance type
@@ -191,7 +191,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 ## Step 4. Join as a validator
 
 We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server.
-If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.com Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-com-chain-binary).
+If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-com-chain-binary).
 :::tip NOTE
 
 - Check whether your chain-maind is the testnet binary
@@ -207,7 +207,7 @@ $ chain-maind version
 
 ### Step 4-1. Create a new key and address
 
-Run the followings to create a new key. For example, you can create a key will the name `Default` by:
+Run the followings to create a new key. For example, you can create a key with the name `Default` by:
 
 ```bash
   $ chain-maind keys add Default
@@ -217,7 +217,7 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 
 ### Step 4-2. Obtain test token
 
-Unless you have obtained the CRO testnet token before, use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens.
+Unless you have obtained the CRO testnet token before, use the [CRO faucet](https://crypto.org/faucet) to obtain test CRO tokens.
 In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel,
 stating who you are and your `tcro.....` address.
 

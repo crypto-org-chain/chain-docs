@@ -17,11 +17,17 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 ### Prepare your machine
 
-To run Crypto.org Chain nodes, you will need a machine with the following minimum requirements:
+To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements:
 
 - Dual-core, x86_64 architecture processor;
 - 4GB RAM;
 - 100GB of storage space.
+
+For Crypto.org Chain mainnet in the future, you will need a machine with the following minimum requirements:
+
+- 4-core, x86_64 architecture processor;
+- 16GB RAM;
+- 1TB of storage space.
 
 ## Step 1. Get the Crypto.org Chain binary
 
@@ -95,7 +101,7 @@ Before kick-starting your node, we will have to configure your node so that it c
   OK!
   ```
 
-- For Cosmos configuration, in `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
+- In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
 
   ```bash
   $ sed -i.bak -E 's#^(minimum-gas-prices[[:space:]]+=[[:space:]]+)""$#\1"0.025basetcro"#' ~/.chain-maind/config/app.toml
@@ -117,7 +123,7 @@ For validator, it will be amazingly fast to sync the near head of the chain and 
 Follow the below optional steps to enable state-sync.
 :::
 
-- (Optional)For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
+- (Optional) For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
   Also, we suggest using `persistent_peers` instead of `seeds` to to provide stable state-sync experience.
   ```bash
   $ LASTEST_HEIGHT=$(curl -s https://testnet-croeseid.crypto.com:26657/block | jq -r .result.block.header.height); \
@@ -142,7 +148,7 @@ as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core
 
 ### Step 3-1. Create a new key and address
 
-Run the followings to create a new key. For example, you can create a key will the name `Default` by:
+Run the followings to create a new key. For example, you can create a key with the name `Default` by:
 
 ```bash
   $ ./chain-maind keys add Default
@@ -323,7 +329,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::
 
-### Step 4-3. `tx staking ` - Staking operations
+### Step 4-3. `tx staking` - Staking operations
 
 Staking operations involve the interaction between an address and a validator. It allows you to create a validator and lock/unlocking funds for staking purposes.
 
@@ -367,5 +373,5 @@ Congratulations! You've successfully setup a Testnet node and performed some of 
 
 ## Croeseid testnet faucet
 
-- To interact with the blockchain, simply use the [CRO faucet](https://crypto.org/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
+- To interact with the blockchain, simply use the [test-token faucet](https://crypto.org/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
   - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet. 

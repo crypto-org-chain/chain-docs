@@ -210,7 +210,7 @@ $ chain-maind version
 
 ### Step 4-1. Create a new key and address
 
-Run the followings to create a new key. For example, you can create a key will the name `Default` by:
+Run the followings to create a new key. For example, you can create a key with the name `Default` by:
 
 ```bash
   $ chain-maind keys add Default

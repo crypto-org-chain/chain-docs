@@ -182,7 +182,7 @@ Jan 04 03:53:14 chain-testnet-node chain-maind[9078]:     A5C13EBB579079788A095C
 The latest block height can be found by:
 
 ```bash
-$ curl -s https://testnet-croeseid.crypto.com:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height
 168783
 ```
 
@@ -237,7 +237,7 @@ $ chain-maind tx staking create-validator \
 --commission-max-change-rate="0.01" \
 --min-self-delegation="1" \
 --gas-prices 0.1basetcro \
---node https://testnet-croeseid.crypto.com:26657
+--node https://testnet-croeseid.crypto.org:26657
 
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
@@ -261,7 +261,7 @@ Now you can check if your validator has been added to the validator set:
 $ TM_PUBKEY=$(chain-maind debug pubkey tcrocnclconspub1zcjduepq8g83jlgycutqfsgc8e42x23ex6wgjzy5t46zl94ey0kunxm9zwcsuzkxpr 2>&1 \
 | grep "tendermint/PubKeyEd25519" \
 | cut -d : -f2- | jq -r .value)
-$ chain-maind query tendermint-validator-set --node https://testnet-croeseid.crypto.com:26657 | grep -c $TM_PUBKEY
+$ chain-maind query tendermint-validator-set --node https://testnet-croeseid.crypto.org:26657 | grep -c $TM_PUBKEY
 ## 1 = Yes; 0 = Not yet added ##
 ```
 
@@ -270,7 +270,7 @@ To further check if the validator is signing blocks, kindly run this [script](ht
 ```bash
 # change tcrocnclconspub1.... to what you got from the Step 3-1
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid.crypto.com:26657 \
+--tendermint-url https://testnet-croeseid.crypto.org:26657 \
 --bechpubkey tcrocnclconspub1zcjduepq8g83jlgycutqfsgc8e42x23ex6wgjzy5t46zl94ey0kunxm9zwcsuzkxpr
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>

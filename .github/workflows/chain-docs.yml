@@ -8,7 +8,7 @@ on:
 jobs:
   scan:
     name: Scan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: >-
       github.event_name == 'push' || github.event_name == 'pull_request' || (github.event.comment.body == '/staging' && 
       (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || 
@@ -35,7 +35,7 @@ jobs:
         sarif_file: reports
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     needs: scan
     if: >- 
       github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || 

@@ -12,8 +12,7 @@ jobs:
     if: >-
       github.event_name == 'push' || github.event_name == 'pull_request' || (github.event.comment.body == '/staging' && 
       (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || 
-      github.actor == 'calvinlauco' || github.actor == 'calvinaco' || github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || 
-      github.actor == 'devashishdxt' || 
+      github.actor == 'calvinlauco' || github.actor == 'calvinaco' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || 
       github.actor == 'leejw51crypto' || github.actor == 'cdc-Hitesh' || github.actor == 'eddycpc' || github.actor == 'crypto-matto' ))
     steps:
     - name: Checkout
@@ -40,7 +39,7 @@ jobs:
     if: >- 
       github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || 
       github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinlauco' || github.actor == 'calvinaco' || 
-      github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || 
+      github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || 
       github.actor == 'cdc-Hitesh' || github.actor == 'eddycpc' || github.actor == 'crypto-matto'))
     steps:
     - name: Github API Request

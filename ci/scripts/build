@@ -13,13 +13,5 @@ echo
 
 npm run docs:build
 
-
-echo 
-echo "export pdf 📚📙📖"
-echo
-sed -i -e "/navbar/s/true/false/" docs/.vuepress/config.js
-npm run docs:pdf
-mv docs/'Crypto.com Chain.pdf' docs/.vuepress/dist/Crypto.com_Chain.pdf
-
 echo
 echo "done 🎉"

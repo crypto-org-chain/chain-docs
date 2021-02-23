@@ -11,7 +11,7 @@ You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely 
 
 ## Install the Ledger app
 
-There are currently two ways to install the Ledger app for Crypto.com Chain:
+There are currently two ways to install the Ledger app for Crypto.org Chain:
 
 1. [Ledger Live (Preferred)](#_1-install-via-ledger-live)
 1. [Build from source code](#_2-build-from-source-code)
@@ -19,7 +19,7 @@ There are currently two ways to install the Ledger app for Crypto.com Chain:
 ### 1. Install via Ledger Live
 
 :::tip
-Crypto.com Chain Ledger application is being reviewed at the moment. Please use the Cosmos application for the time being, which has the same functionalities except for the supported address derivation path.
+Crypto.org Chain Ledger application is being reviewed at the moment. Please use the Cosmos application for the time being, which has the same functionalities except for the supported address derivation path.
 :::
 
 1. Open "Manager" in Ledger Live.
@@ -41,7 +41,7 @@ You can follow the [instructions](https://github.com/crypto-com/ledger-crypto#us
 ## Generate Address
 
 1. Connect and unlock your Ledger device
-1. Open "Cosmos" or "Crypto.com Chain" app on the device
+1. Open "Cosmos" or "Crypto.org Chain" app on the device
 1. Run in your terminal
     ```bash
     $ ./chain-maind keys add [name] --coin-type=[coin-type] --account=[account-index] --ledger --keyring-backend=test
@@ -52,7 +52,7 @@ You can follow the [instructions](https://github.com/crypto-com/ledger-crypto#us
         | App | Coin type |
         | --- | --- |
         | Cosmos| `118` |
-        | Crypto.com Chain | `394` |
+        | Crypto.org Chain | `394` |
     - `account-index` can be any integer inclusively starting from `0` to `2147483648`
     - For example, the following command will work for Cosmos application
     ```bash
@@ -64,7 +64,7 @@ You can follow the [instructions](https://github.com/crypto-com/ledger-crypto#us
 
 ## Query account balance
 
-After you have [generated an address](#generate-address), kindly use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens. Once the transaction is completed, you can query its balance by running in terminal:
+After you have [generated an address](#generate-address), kindly use the [CRO faucet](https://crypto.org/faucet) to obtain test CRO tokens. Once the transaction is completed, you can query its balance by running in terminal:
 
 ```bash
 $ ./chain-maind query bank balances [address]
@@ -81,7 +81,7 @@ $ ./chain-maind keys list --keyring-backend=test
 In this tutorial we will send a `MsgSend` transaction securely signed by your Ledger device to the chain.
 
 1. Connect and unlock your Ledger device
-1. Open "Cosmos" or "Crypto.com Chain" app on the device
+1. Open "Cosmos" or "Crypto.org Chain" app on the device
 1. Run in your terminal
     ```bash
     $ ./chain-maind tx bank send [from-address] [to-address] 1tcro --chain-id=testnet-croeseid-2 --ledger --keyring-backend=test  --sign-mode=amino-json

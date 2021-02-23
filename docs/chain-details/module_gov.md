@@ -2,7 +2,7 @@
 
 ### Introduction
 
-The `gov` module enables on-chain governance which allows Crypto.com Chain token holder to participate in the decision-making processes. For example, users can:
+The `gov` module enables on-chain governance which allows Crypto.org Chain token holder to participate in the decision-making processes. For example, users can:
 
 - Submit a proposal along with an initial deposit;
 - Deposit tokens and fund an active proposal;

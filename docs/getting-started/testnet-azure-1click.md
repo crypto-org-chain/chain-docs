@@ -10,15 +10,15 @@ Please read `Microsoft Azure` free trial introduction to see if you are eligible
 
 ## Step 2. Common Setup
 
-### Step 2-1. Search for Crypto.com Chain on Marketplace
+### Step 2-1. Search for Crypto.org Chain on Marketplace
 
-Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.com Chain Testnet Node".
+Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.org Chain Testnet Node".
 
 ![](./assets/azure_marketplace.png)
 
 ### Step 2-2. Create a Virtual Machine
 
-Choose the image and click "Create" to start creating the Crypto.com chain testnet node.
+Choose the image and click "Create" to start creating the Crypto.org Chain testnet node.
 
 #### 1. Basic
 
@@ -185,7 +185,7 @@ Jan 04 03:53:14 chain-testnet-node chain-maind[9078]:     A5C13EBB579079788A095C
 The latest block height can be found by:
 
 ```bash
-$ curl -s https://testnet-croeseid.crypto.com:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height
 168783
 ```
 
@@ -194,7 +194,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 ## Step 4. Join as a validator
 
 We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server.
-If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.com Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-com-chain-binary).
+If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-com-chain-binary).
 :::tip NOTE
 
 - Check whether your chain-maind is the testnet binary
@@ -210,7 +210,7 @@ $ chain-maind version
 
 ### Step 4-1. Create a new key and address
 
-Run the followings to create a new key. For example, you can create a key will the name `Default` by:
+Run the followings to create a new key. For example, you can create a key with the name `Default` by:
 
 ```bash
   $ chain-maind keys add Default
@@ -220,7 +220,7 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 
 ### Step 4-2. Obtain test token
 
-Unless you have obtained the CRO testnet token before, use the [CRO faucet](https://chain.crypto.com/faucet) to obtain test CRO tokens.
+Unless you have obtained the CRO testnet token before, use the [TCRO faucet](https://crypto.org/faucet) to obtain test CRO tokens.
 In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4),
 stating who you are and your `tcro.....` address.
 
@@ -240,7 +240,7 @@ $ chain-maind tx staking create-validator \
 --commission-max-change-rate="0.01" \
 --min-self-delegation="1" \
 --gas-prices 0.1basetcro \
---node https://testnet-croeseid.crypto.com:26657
+--node https://testnet-croeseid.crypto.org:26657
 
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
@@ -264,7 +264,7 @@ Now you can check if your validator has been added to the validator set:
 $ TM_PUBKEY=$(chain-maind debug pubkey tcrocnclconspub1zcjduepq8g83jlgycutqfsgc8e42x23ex6wgjzy5t46zl94ey0kunxm9zwcsuzkxpr 2>&1 \
 | grep "tendermint/PubKeyEd25519" \
 | cut -d : -f2- | jq -r .value)
-$ chain-maind query tendermint-validator-set --node https://testnet-croeseid.crypto.com:26657 | grep -c $TM_PUBKEY
+$ chain-maind query tendermint-validator-set --node https://testnet-croeseid.crypto.org:26657 | grep -c $TM_PUBKEY
 ## 1 = Yes; 0 = Not yet added ##
 ```
 
@@ -273,7 +273,7 @@ To further check if the validator is signing blocks, kindly run this [script](ht
 ```bash
 # change tcrocnclconspub1.... to what you got from the Step 3-1
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid.crypto.com:26657 \
+--tendermint-url https://testnet-croeseid.crypto.org:26657 \
 --bechpubkey tcrocnclconspub1zcjduepq8g83jlgycutqfsgc8e42x23ex6wgjzy5t46zl94ey0kunxm9zwcsuzkxpr
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>

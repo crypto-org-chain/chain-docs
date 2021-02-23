@@ -1,12 +1,12 @@
 <br />
 <p align="center">
-  <img src="https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/.vuepress/public/chain_doc_nav_logo.svg" alt="Crypto.com Chain" width="400">
+  <img src="https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/.vuepress/public/chain_doc_nav_logo.svg" alt="Crypto.org Chain" width="400">
 </p>
 <br />
 
 
 
-# Crypto.com Chain's documentation
+# Crypto.org Chain's documentation
 
 The documentation in this repository site is meant to provide specifications and implementation details that will be useful to third party developers or contributors to the main repository.
 

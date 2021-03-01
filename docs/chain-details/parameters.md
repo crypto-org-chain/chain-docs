@@ -58,5 +58,5 @@ This section aims to collect and provide brief a description of all the mentione
 | `unbonding_time`     | string | The time duration of unbonding                                  |
 
 
-**Please note: Denominations can be 3 ~ 128 characters long and support letters, followed by either a letter, a number or a separator ('/').
+** Please note: Denominations can be 3 ~ 128 characters long and support letters, followed by either a letter, a number or a separator ('/').
 

@@ -11,7 +11,7 @@ By following this tutorial, you can compile and run the latest development versi
 
 ## Overview
 
-We will be using [pystarport](https://github.com/crypto-com/chain-main/tree/master/pystarport), a dedicated script similar to [cosmos starport](https://github.com/tendermint/starport) without the scaffolding feature to build a local development network with multiple validators.
+We will be using [pystarport](https://github.com/crypto-org-chain/chain-main/tree/master/pystarport), a dedicated script similar to [cosmos starport](https://github.com/tendermint/starport) without the scaffolding feature to build a local development network with multiple validators.
 
 ## Install with Nix
 
@@ -50,12 +50,12 @@ $ nix-env -iA pystarport-unbind -f https://github.com/crypto-com/chain-main/arch
 ### Pre-requisites
 
 - Python > 3.7.3
-- [chain-maind](https://github.com/crypto-com/chain-main)
+- [chain-maind](https://github.com/crypto-org-chain/chain-main)
 
 To install pystarport manually, run:
 
 ```
-$ git clone https://github.com/crypto-com/chain-main.git
+$ git clone https://github.com/crypto-org-chain/chain-main.git
 $ cd chain-main
 $ pip3 install pystarport
 ```

@@ -6,7 +6,7 @@
 
 ### Build Prerequisites
 
-- [Crypto.org Chain](https://github.com/crypto-com/chain-main)
+- [Crypto.org Chain](https://github.com/crypto-org-chain/chain-main)
 
 ### How to use
 

@@ -7,7 +7,7 @@ This is detailed documentation for setting up a Validator or a full node on Cryp
 ## Pre-requisites
 
 **Remarks**: 
-Please follow this [guide](https://github.com/crypto-com/testnets/tree/main/testnet-croeseid-2#network-upgrade-guide). If you are upgrading from `testnet-croeseid-1` (v0.7.) to `testnet-croeseid-2` (v0.8.)
+Please follow this [guide](https://github.com/crypto-com/testnets/tree/main/testnet-croeseid-2#network-upgrade-guide). If you are upgrading from `v0.8.1` to `v0.9.1`
 
 
 
@@ -32,13 +32,13 @@ For Crypto.org Chain mainnet in the future, you will need a machine with the fol
 ## Step 1. Get the Crypto.org Chain binary
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Windows_x86_64.zip) are also available.
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Windows_x86_64.zip) are also available.
 
 - To install Crypto.org Chain released binaries from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_0.8.1-croeseid_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_0.9.1-croeseid_Linux_x86_64.tar.gz
   ```
 
   OR
@@ -50,10 +50,10 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
   First, install the `crypto-com` tap, a repository of our Homebrew `chain-maind` package.
 
   ```bash
-  $ brew tap crypto-com/chain-maind
+  $ brew tap crypto-org-chain/chain-main
   ```
 
-  Now, install chain-maind with crypto-com/chain-maind.
+  Now, install chain-maind with crypto-org-chain/chain-main.
 
   ```bash
   $ brew install chain-maind
@@ -185,7 +185,7 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
 - *(Optional for Linux)* Start chain-maind with systemd service, e.g.:
 
 ```bash
-  $ git clone https://github.com/crypto-com/chain-main.git && cd chain-main
+  $ git clone https://github.com/crypto-org-chain/chain-main.git && cd chain-main
   $ ./networks/create-service.sh
   $ sudo systemctl start chain-maind
   # view log

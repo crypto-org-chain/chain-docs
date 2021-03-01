@@ -50,10 +50,10 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
   First, install the `crypto-com` tap, a repository of our Homebrew `chain-maind` package.
 
   ```bash
-  $ brew tap crypto-org-chain/chain-main
+  $ brew tap crypto-com/chain-maind
   ```
 
-  Now, install chain-maind with crypto-org-chain/chain-main.
+  Now, install chain-maind with crypto-com/chain-maind.
 
   ```bash
   $ brew install chain-maind

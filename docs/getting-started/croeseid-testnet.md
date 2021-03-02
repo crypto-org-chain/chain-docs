@@ -30,7 +30,7 @@ For Crypto.org Chain mainnet in the future, you will need a machine with the fol
 ## Step 1. Get the Crypto.org Chain binary
 
 ::: tip Remarks:
-Since there was a network upgrade of `testnet-croeseid-2`, If you would like to build a full node will complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
+The following is the minimal setup for a **validator node**. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
 :::
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
@@ -121,7 +121,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 
 With state sync your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator.
 
-However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network. If you would like to build a **full node** will complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
+However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
 
 
 For **validator**, it will be amazingly fast to sync the near head of the chain and join the network.
@@ -148,7 +148,7 @@ Follow the below optional steps to enable state-sync.
 ::: warning CAUTION
 This page only shows the minimal setup for validator node.
 
-If you would like to build a **full node** will complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
+If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
 
 Futhermore, you may want to run full nodes
 as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.

@@ -2,7 +2,7 @@
 
 The latest Crypto.org Chain Testnet has been named as **Croeseid**.
 
-This is detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet.
+This is a detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet.
 
 ## Pre-requisites
 
@@ -18,14 +18,14 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements:
 
 - Dual-core, x86_64 architecture processor;
-- 4GB RAM;
-- 100GB of storage space.
+- 4 GB RAM;
+- 100 GB of storage space.
 
 For Crypto.org Chain mainnet in the future, you will need a machine with the following minimum requirements:
 
 - 4-core, x86_64 architecture processor;
-- 16GB RAM;
-- 1TB of storage space.
+- 16 GB RAM;
+- 1 TB of storage space.
 
 ## Step 1. Get the Crypto.org Chain binary
 
@@ -87,7 +87,7 @@ Before kick-starting your node, we will have to configure your node so that it c
   - You can also put the `chain-maind` to your binary path and run it by `chain-maind`
     :::
 
-### Step 2-2 Configurate chain-maind
+### Step 2-2 Configure chain-maind
 
 - Download and replace the Croeseid Testnet `genesis.json` by:
 
@@ -115,7 +115,7 @@ Before kick-starting your node, we will have to configure your node so that it c
   $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"b2c6657096aa30c5fafa5bd8ced48ea8dbd2b003@52.76.189.200:26656,ef472367307808b242a0d3f662d802431ed23063@175.41.186.255:26656,d3d2139a61c2a841545e78ff0e0cd03094a5197d@18.136.230.70:26656"# ; s#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
 
-**Note**: We suggest using `persistent_peers` instead of `seeds` to to provide stable state-sync experience.
+**Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
 ### Step 2-3 Enable STATE-SYNC
   [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
 
@@ -150,7 +150,7 @@ This page only shows the minimal setup for validator node.
 
 If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
 
-Futhermore, you may want to run full nodes
+Furthermore, you may want to run full nodes
 as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.
 :::
 
@@ -378,7 +378,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::
 
-Congratulations! You've successfully setup a Testnet node and performed some of the basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
+Congratulations! You've successfully set up a Testnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
 
 ## Croeseid testnet faucet
 

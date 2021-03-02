@@ -5,7 +5,7 @@ This tutorial will use our AWS 1-click Deployment image to start and create the 
 
 ## Step 1. AWS Account Creation
 
-You will first need to create an [AWS](https://aws.amazon.com/) account. This will require providing your credit card information to `AWS` and you may be subject to charges when you create a virtual machine. More details for account creation, check this [link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
+You will first need to create an [AWS](https://aws.amazon.com/) account. This will require providing your credit card information to `AWS` and you may be subject to getting charged when you create a virtual machine. More details for account creation, check this [link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 
 Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) to see if you are eligible for the free-tier.
 
@@ -31,7 +31,7 @@ By default, it will choose the recommended instance type (**m5a.large**) for you
 | Configuration           | Value                                                                                                            |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | _Network_               | Select an existing one or default vpc if you don't have any                                                       |
-| _Subnet_                | Choose a subnet or default sebnet if you don't have any                                                          |
+| _Subnet_                | Choose a subnet or default subnet if you don't have any                                                          |
 | _Auto-assign Public IP_ | Enable                                                                                                           |
 | _Other fields_          | Follow default setting                                                                                           |
 
@@ -51,7 +51,7 @@ You can add more rules for example: rpc (26657), lcd (1317), prometheus (26660),
 You may consider updating your security group rules to allow access from known IP addresses only.
 
 ### Step 2-7. Review Instance Launch
-Click "Lanuch" once you finish the review
+Click "Launch" once you finish the review
 ![](./assets/aws_launch.png)
 
 You can either create a new key pair or import a key pair. Follow this [instruction](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#prepare-key-pair)
@@ -120,7 +120,7 @@ Restart tmkms service
 Consensus public key for node join: tcrocnclconspub1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-The script will also ask you to fill in the `moniker` value which is a human readable display name for tendermint p2p.
+The script will also ask you to fill in the `moniker` value which is a human-readable display name for tendermint p2p.
 
 ```bash
 Replace moniker in /chain/.tendermint/config/config.toml

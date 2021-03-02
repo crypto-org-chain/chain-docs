@@ -387,7 +387,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 (TODO: details of each flag )
 
-### `tx slashing unjail` - Unjailing a validator
+### `tx slashing unjail` - Unjail a validator
 
 Validator could be punished and jailed due to network misbehaviour, for example if we check the validator set:
 

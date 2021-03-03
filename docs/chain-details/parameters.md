@@ -2,6 +2,7 @@
 
 This section aims to collect and provide brief a description of all the mentioned network parameters:
 
+
 #### Distribution-related parameters - `distribution` module
 
 | Key                     | Type         | Description                                                              |
@@ -32,7 +33,7 @@ This section aims to collect and provide brief a description of all the mentione
 | `inflation_max`         | string (dec)   | Maximum annual inflation rate                         |
 | `inflation_min`         | string (dec)   | Minimum annual inflation rate                         |
 | `inflation_rate_change` | string (dec)   | Maximum annual change in inflation rate               |
-| `mint_denom`            | string         | Token type being minted                               |
+| `mint_denom`            | string         | Token type being minted. Denominations can be 3 ~ 128 characters long and support letters, followed by either a letter, a number or a separator ('/')                              |
 
 #### Punishment-related parameters - `slashing` module
 
@@ -46,14 +47,12 @@ This section aims to collect and provide brief a description of all the mentione
 
 
 
-
 #### Staking-related parameters - `staking` module
 
 | Key                  | Type   | Description                                                     |
 | -------------------- | ------ | --------------------------------------------------------------- |
-| `bond_denom`         | string | Coin denomination for staking                                   |
+| `bond_denom`         | string | Coin denomination for staking. Denominations can be 3 ~ 128 characters long and support letters, followed by either a letter, a number or a separator ('/').                                  |
 | `historical_entries` | uint16 | The number of historical entries to persist                     |
 | `max_entries`        | uint16 | The max entries for either unbonding delegation or redelegation |
 | `max_validators`     | uint16 | The maximum number of validator                                 |
 | `unbonding_time`     | string | The time duration of unbonding                                  |
-

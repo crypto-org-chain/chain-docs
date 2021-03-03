@@ -9,7 +9,7 @@
     "docs:pdf": "cd docs && vuepress export"
   },
   "dependencies": {
-    "vuepress": "^1.5.0",
-    "vuepress-plugin-export": "https://github.com/foreseaz/vuepress-plugin-export.git"
+    "vuepress": "1.5.0",
+    "vuepress-plugin-export": "https://github.com/calvinaco/vuepress-plugin-export.git"
   }
 }

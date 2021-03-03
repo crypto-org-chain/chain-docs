@@ -56,6 +56,14 @@ module.exports = {
           {
             text: "Ledger Hardware Wallets",
             link: "/wallets/ledger.html#ledger-hardware-wallets"
+          },
+          {
+            text: "Mainnet Address Generation",
+            link: "/wallets/mainnet-address-generation.md"
+          },
+          {
+            text: "Mainnet Address Verification",
+            link: "/wallets/mainnet-address-verification.md"
           }
         ]
       },
@@ -98,6 +106,8 @@ module.exports = {
       "/wallets/": [
         "cli",
         "ledger",
+        "mainnet-address-generation",
+        "mainnet-address-verification",
 //        "rpc"
       ],
       "/api/" : "auto"

@@ -2,14 +2,12 @@
 
 The latest Crypto.org Chain Testnet has been named as **Croeseid**.
 
-This is detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet.
+This is a detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet.
 
 ## Pre-requisites
 
-**Remarks**: 
-Please follow this [guide](https://github.com/crypto-com/testnets/tree/main/testnet-croeseid-2#network-upgrade-guide). If you are upgrading from `testnet-croeseid-1` (v0.7.) to `testnet-croeseid-2` (v0.8.)
-
-
+**Remarks**:
+Please follow this [guide](https://github.com/crypto-com/testnets/tree/main/testnet-croeseid-2#network-upgrade-guide). If you are upgrading from `v0.8.1` to `v0.9.1`
 
 ### Supported OS
 
@@ -20,25 +18,29 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements:
 
 - Dual-core, x86_64 architecture processor;
-- 4GB RAM;
-- 100GB of storage space.
+- 4 GB RAM;
+- 100 GB of storage space.
 
 For Crypto.org Chain mainnet in the future, you will need a machine with the following minimum requirements:
 
 - 4-core, x86_64 architecture processor;
-- 16GB RAM;
-- 1TB of storage space.
+- 16 GB RAM;
+- 1 TB of storage space.
 
 ## Step 1. Get the Crypto.org Chain binary
 
+::: tip Remarks:
+The following is the minimal setup for a **validator node**. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
+:::
+
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Windows_x86_64.zip) are also available.
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Windows_x86_64.zip) are also available.
 
 - To install Crypto.org Chain released binaries from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_0.8.1-croeseid_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_0.9.1-croeseid_Linux_x86_64.tar.gz
   ```
 
   OR
@@ -85,9 +87,9 @@ Before kick-starting your node, we will have to configure your node so that it c
   - You can also put the `chain-maind` to your binary path and run it by `chain-maind`
     :::
 
-### Step 2-2 Configurate chain-maind
+### Step 2-2 Configure chain-maind
 
-- Download the and replace the Croeseid Testnet `genesis.json` by:
+- Download and replace the Croeseid Testnet `genesis.json` by:
 
   ```bash
   $ curl https://raw.githubusercontent.com/crypto-com/testnets/main/testnet-croeseid-2/genesis.json > ~/.chain-maind/config/genesis.json
@@ -112,19 +114,23 @@ Before kick-starting your node, we will have to configure your node so that it c
   ```bash
   $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"b2c6657096aa30c5fafa5bd8ced48ea8dbd2b003@52.76.189.200:26656,ef472367307808b242a0d3f662d802431ed23063@175.41.186.255:26656,d3d2139a61c2a841545e78ff0e0cd03094a5197d@18.136.230.70:26656"# ; s#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
-::: tip STATE-SYNC
-[STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
+
+**Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
+### Step 2-3 Enable STATE-SYNC
+  [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
 
 With state sync your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator.
 
-However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network.
-For validator, it will be amazingly fast to sync the near head of the chain and join the network.
+However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
+
+
+For **validator**, it will be amazingly fast to sync the near head of the chain and join the network.
 
 Follow the below optional steps to enable state-sync.
-:::
 
-- (Optional) For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
-  Also, we suggest using `persistent_peers` instead of `seeds` to to provide stable state-sync experience.
+
+- For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
+
   ```bash
   $ LASTEST_HEIGHT=$(curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height); \
   BLOCK_HEIGHT=$((LASTEST_HEIGHT - 1000)); \
@@ -140,9 +146,11 @@ Follow the below optional steps to enable state-sync.
 ## Step 3. Run everything
 
 ::: warning CAUTION
-This page only shows the minimal setup.
+This page only shows the minimal setup for validator node.
 
-You may want to run full nodes
+If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
+
+Furthermore, you may want to run full nodes
 as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.
 :::
 
@@ -182,10 +190,10 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
   $ ./chain-maind start
 ```
 
-- *(Optional for Linux)* Start chain-maind with systemd service, e.g.:
+- _(Optional for Linux)_ Start chain-maind with systemd service, e.g.:
 
 ```bash
-  $ git clone https://github.com/crypto-com/chain-main.git && cd chain-main
+  $ git clone https://github.com/crypto-org-chain/chain-main.git && cd chain-main
   $ ./networks/create-service.sh
   $ sudo systemctl start chain-maind
   # view log
@@ -213,6 +221,7 @@ LimitNOFILE=4096
 [Install]
 WantedBy=multi-user.target
 ```
+
 :::
 
 It should begin fetching blocks from the other peers. Please wait until it is fully synced before moving onto the next step.
@@ -255,12 +264,12 @@ You will be required to insert the following:
 
 Once the `create-validator` transaction completes, you can check if your validator has been added to the validator set:
 
-  ```bash
-  $ ./chain-maind tendermint show-address
-  ## [tcrocnclcons... address] ##
-  $ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclcons...]
-  ## 1 = Yes; 0 = Not yet added ##
-  ```
+```bash
+$ ./chain-maind tendermint show-address
+## [tcrocnclcons... address] ##
+$ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclcons...]
+## 1 = Yes; 0 = Not yet added ##
+```
 
 To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
@@ -274,6 +283,7 @@ The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 ```
 
 For those who are using tmkms in background([AWS](./testnet-aws-1click.html)/[Azure](./testnet-azure-1click.html) 1-click deployment are using tmkms), you should use `--bechpubkey` the consensus pubkey with prefix `tcrocnclconspub1....` directly instead of `--pubkey` tendermint pubkey since the node is not using `~/.chain-maind/config/priv_validator_key.json` for signing.
+
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
 --tendermint-url https://testnet-croeseid.crypto.org:26657 \
@@ -289,8 +299,8 @@ Alternatively, you can run it on this [browser based IDE](https://repl.it/@allth
 $ cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value'
 ```
 
-
 ## Step 4. Perform Transactions
+
 ### Step 4-1. `query bank balances` - Check your transferable balance
 
 You can check your _transferable_ balance with the `balances` command under the bank module.
@@ -310,8 +320,7 @@ pagination:
 
 :::
 
-### Step 4-2. `tx bank send ` - Transfer operation
-
+### Step 4-2. `tx bank send` - Transfer operation
 
 Transfer operation involves the transfer of tokens between two addresses.
 
@@ -369,9 +378,9 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::
 
-Congratulations! You've successfully setup a Testnet node and performed some of the basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
+Congratulations! You've successfully set up a Testnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
 
 ## Croeseid testnet faucet
 
 - To interact with the blockchain, simply use the [test-token faucet](https://crypto.org/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
-  - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet. 
+  - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet.

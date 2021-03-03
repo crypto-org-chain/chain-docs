@@ -7,7 +7,7 @@ You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely 
 - An initialized Ledger Nano device
 - Install the latest firmware on your device
 - Install Ledger Live on your PC
-- Download our latest [release binary](https://github.com/crypto-com/chain-main/releases)
+- Download our latest [release binary](https://github.com/crypto-org-chain/chain-main/releases)
 
 ## Install the Ledger app
 
@@ -100,4 +100,4 @@ In this tutorial we will send a `MsgSend` transaction securely signed by your Le
 1. Transaction details will be displayed on your Ledger device, you can click the right button to read the different details.
 1. Read the transaction details carefully and confirm ONLY when you have reviewed all the details are correct.
 1. The transaction is signed and will be broadcasted.
-1. Wait for a while and the broadcast result will be shown in your terminal.
+1. Wait for a while, and the broadcast result will be shown in your terminal.

@@ -4,7 +4,7 @@ This tutorial will use our Azure 1-click Deployment image to start and create th
 
 ## Step 1. Azure Account Creation
 
-You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to charges when you create a virtual machine.
+You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to getting charged when you create a virtual machine.
 
 Please read `Microsoft Azure` free trial introduction to see if you are eligible for the free-tier.
 
@@ -123,7 +123,7 @@ Restart tmkms service
 Consensus public key for node join: tcrocnclconspub1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-The script will also ask you to fill in the `moniker` value which is a human readable display name for tendermint p2p.
+The script will also ask you to fill in the `moniker` value which is a human-readable display name for tendermint p2p.
 
 ```bash
 Replace moniker in /chain/.tendermint/config/config.toml
@@ -201,11 +201,11 @@ If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypt
 
 ```bash
 $ chain-maind version
-0.8.0-croeseid
+0.9.1-croeseid
 ```
 
 - Testnet binary for
-  [Mac](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-com/chain-main/releases/download/v0.8.1-croeseid/chain-main_0.8.1-croeseid_Windows_x86_64.zip) are also available.
+  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Windows_x86_64.zip) are also available.
   :::
 
 ### Step 4-1. Create a new key and address

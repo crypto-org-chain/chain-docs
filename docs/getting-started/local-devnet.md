@@ -11,7 +11,7 @@ By following this tutorial, you can compile and run the latest development versi
 
 ## Overview
 
-We will be using [pystarport](https://github.com/crypto-com/chain-main/tree/master/pystarport), a dedicated script similar to [cosmos starport](https://github.com/tendermint/starport) without the scaffolding feature to build a local development network with multiple validators.
+We will be using [pystarport](https://github.com/crypto-org-chain/chain-main/tree/master/pystarport), a dedicated script similar to [cosmos starport](https://github.com/tendermint/starport) without the scaffolding feature to build a local development network with multiple validators.
 
 ## Install with Nix
 
@@ -33,7 +33,7 @@ $ cachix use crypto-com
 
 ### Install pystarport
 
-Install the binded version, which install chain-maind together, and find it by absolute path:
+Install the binded version, which install chain-maind together, and find it by the absolute path:
 
 ```
 $ nix-env -iA pystarport -f https://github.com/crypto-com/chain-main/archive/master.tar.gz
@@ -50,12 +50,12 @@ $ nix-env -iA pystarport-unbind -f https://github.com/crypto-com/chain-main/arch
 ### Pre-requisites
 
 - Python > 3.7.3
-- [chain-maind](https://github.com/crypto-com/chain-main)
+- [chain-maind](https://github.com/crypto-org-chain/chain-main)
 
 To install pystarport manually, run:
 
 ```
-$ git clone https://github.com/crypto-com/chain-main.git
+$ git clone https://github.com/crypto-org-chain/chain-main.git
 $ cd chain-main
 $ pip3 install pystarport
 ```
@@ -97,7 +97,7 @@ chainmaind:  # The chain-id
 
 This configuration will give us a 2 validators devnet with the chain-id `chainmaind`; 4 accounts under the name of `community`, `ecosystem` `reserve` and `launch` with some allocated funds at the genesis.
 
-You can also specify some of the network parameters in the genesis file of your devnet under `genesis:` for different testing purpose. As in the above example, we have specified the `unbonding_time` to be `10` seconds.
+You can also specify some network parameters in the genesis file of your devnet under `genesis:` for different testing purpose. As in the above example, we have specified the `unbonding_time` to be `10` seconds.
 
 ## Start the devnet
 
@@ -107,7 +107,7 @@ Once we finish with the configuration, we are ready to start the chain: in the r
 $ pystarport serve --config examples/devnet.yaml
 ```
 
-Afterwards, keys will be generated according to the configuration specified, the accounts information is generated in `data/chainmaind/accounts.json`, for example:
+Afterwards, keys will be generated according to the configuration specified, the accounts' information is generated in `data/chainmaind/accounts.json`, for example:
 
 ```json
 [
@@ -215,8 +215,11 @@ Crypto.org Chain is based on tendermint with the Proof of Stake (PoS) consensus 
 
 Firstly, we can check the details of the current validator set by the query command of chain-maind, for example:
 
-```json
+```
 $ chain-maind query staking validators -o json | jq
+```
+will result in
+```json
   [
     {
       "operator_address": "crocncl1h9037fa3rn2hpudj5p088574pcfh47sy8tu52q",
@@ -261,7 +264,7 @@ $ chain-maind query staking validators -o json | jq
   ]
 ```
 
-and we can see that there are two active validators `awesome0` and `awesome1` at the moment.
+then we can see that there are two active validators `awesome0` and `awesome1` at the moment.
 
 For each validator, we can see that it comes with an address and a public key:
 

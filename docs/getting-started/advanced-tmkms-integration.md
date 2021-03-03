@@ -7,7 +7,7 @@
 ::: warning CAUTION
 The setup isn't yet ready for production use: 
 1) It is not yet audited
-2) The [tmkms prototype fork](https://github.com/tomtau/tmkms/tree/feature/nitro-enclave) isn't meant to be maintained in the long term
+2) The [tmkms prototype fork](https://github.com/crypto-com/tmkms-light) isn't meant to be maintained in the long term
 :::
 
 ### Background
@@ -23,8 +23,7 @@ Note that this is still work in progress and this document only describes a basi
 ![](./assets/tmkms_vsock_enclave.png)
 
 ### Step 1. Set up supported EC2 instance types
-AWS Nitro Enclaves support (to name a few) the M5, C5, R5, T3, I3, A1, P3dn, z1d, and High Memory instances.
-There are no additional charges on top of the cost of running supported EC2 instance types (with 4 vCPUs and above).
+Virtualized Nitro-based instances with at least four vCPUs. t3, t3a, t4g, a1, c6g, c6gd, m6g, m6gd, r6g, and r6gd instances are not supported.
 
 We recommend `m5a.xlarge` and `Amazon Linux 2 AMI` for easier installation for AWS Nitro Enclaves CLI.
 
@@ -43,6 +42,7 @@ $ mkdir ~/.tmkms
 $ nitro-cli build-enclave --docker-uri cryptocom/nitro-enclave-tmkms:latest --output-file ~/.tmkms/tmkms.eif
 ```
 After building the enclave image, you should obtain 3 [enclave's measurements(PCRs)](https://docs.aws.amazon.com/enclaves/latest/user/set-up-attestation.html#where): PCR0 (SHA384 hash of the image), PCR1 (SHA384 hash of the OS kernel and the bootstrap process), and PCR2 (SHA384 hash of the application). Take a note of the **PCR0** value.
+One can also use PCR3 and PCR8, for more details, please find this [link](https://docs.aws.amazon.com/enclaves/latest/user/enclaves-user.pdf)
 
 And also create and take a note of **PCR4** manually which is unique across ec2.
 ```bash
@@ -64,7 +64,7 @@ Attach this role to the previously created EC2. Check this [guide](https://docs.
 
 ![](./assets/aws_kms_admin.png)
 
-- Edit key policy to allow only TMKMS inside nitro enclave to decrypt instead of entire EC2
+- Edit key policy to allow only TMKMS inside nitro enclave to decrypt instead of entire EC2 and encrypt on EC2
   You should have a generated policy shown in the console.
 
   For the decryption action, you should add the following snippet in "Statement" as:
@@ -88,7 +88,16 @@ Attach this role to the previously created EC2. Check this [guide](https://docs.
                     "kms:RecipientAttestation:PCR0": "<PCR0>"
                 }
             }
-       	}
+       	},
+        {
+            "Sid": "Enable encrypt from instance only",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/<EC2_IAM_ROLE>"
+            },
+            "Action": "kms:Encrypt",
+            "Resource": "*"
+        }
     ]
 }
 ```
@@ -98,100 +107,71 @@ If you plan to run the tmkms enclave in the debug mode, set the recipient attest
 
 ### Step 5. Prepare encrypted validator signing key on your local machine
 
-#### Step 5.1. Install tmkms on your local or other trusted machine
-Install generic tmkms with the [cargo install command](https://github.com/iqlusioninc/tmkms/blob/develop/README.md#installing-with-the-cargo-install-command)
-```bash
-cargo install tmkms --features=softsign
-```
-#### Step 5.2. Generate a new validator signing key
-```bash
-tmkms softsign keygen -t consensus signing.key
-```
-#### Step 5.3. Encrypt the validator signing key
-```bash
-aws kms encrypt --key-id "<AWS KMS KEY ARN>" \
---plaintext fileb://signing.key \
---query CiphertextBlob \
---output text \
---region <YOUR_KMS_REGION> > ciphertext
-```
-Take a note of the **encrypted validator signing key** from `ciphertext`
+#### Step 5.1. Install tmkms-nitro-helper on EC2
 
-#### Step 5.4. Obtain the consensus / validator public key
-If you plan to run the tmkms enclave without debug mode, you will not able to access to the tmkms log. Normally, you shall obtain the `consensus / validator public key` from the tmkms log. Therefore, before running the tmkms enclave, you shall obtain the consensus / validator public key in advance from the local or trusted machine where you also keep the generated `signing.key`.
+Install tmkms-nitro-helper from source code.
+```bash
+$ git clone https://github.com/crypto-com/tmkms-light.git && cd tmkms-light
+$ sudo yum install -y openssl-devel
+$ cargo build --release -p tmkms-nitro-helper
+$ cp ./target/release/tmkms-nitro-helper /usr/local/bin/
+```
+
+#### Step 5.2. Generate a new encrypted validator signing key
+
+`bech32-prefix` is `crocnclconspub` for mainnet and `tcrocnclconspub` for testnet
 
 ```bash
-curl https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/resources/obtain-tmkms-consensus-key.sh -s | bash
+$ tmkms-nitro-helper init -a <KMS_REGION> -k <KMS_KEY_ID> -p bech32 -b <bech32-prefix>
 ```
-Take a note of the **consensus / validator public key** with the prefix `tcrocnclconspub....` for joining the network as a validator later.
-
+It should generate a `bech32 public key` to stdout and an encrypted private key in relative path `secrets/secret.key`. We need bech32 public key for node join and secret.key to decrypt inside enclave.
 ### Step 6. Configure tmkms.toml for enclave TMKMS on EC2
-The configuration file is modified from the standard one due to the fact that one cannot access host files or networking directly in NE, and must do so via "vsock" connection proxies.
+
+Move above generated `secrets/secret.key` to `~/.tmkms` directory
+
+Create `tmkms.toml` under `~/.tmkms` directory as:
+
 ```toml
-[[chain]]
-id = "..."
-key_format = { type = "bech32", account_key_prefix = "...", consensus_key_prefix = "..." }
-state_vsock_port = <vsock port for state persistence proxy>
-
-[[providers.softsign]]
-chain_ids = [...]
-key_type = "consensus"
-encrypted_key_b64 = "<the key encrypted with AWS KMS>"
-aws_region = "<AWS region to use for KMS>"
-## You can also specify AWS credentials, but if you don't, they will be obtained from IAM role on the host instance
-
-[[validator]]
-chain_id = "..."
-addr = { port = <port for proxy to Tendermint "privval" connection> }
-# you can also specify whether to use the secret connection (if "privval" over proxy is listening on TCP)
-# in which case you'd need to bundle the identity key in the deployment Docker/enclave image
-# (retrieving this from AWS KMS is a TODO item)
-protocol_version = "..."
-reconnect = true
+address = 'unix:///tmp/sockets/validator.socket'
+chain_id = '<chain id>'
+sealed_consensus_key_path = 'secrets/secret.key'
+state_file_path = 'state/priv_validator_state.json'
+enclave_config_cid = 15 #overridden by flag
+enclave_config_port = 5050
+enclave_state_port = 5555
+enclave_tendermint_conn = 5000
+aws_region = '<AWS region to use for KMS>'
 ```
-Create `tmkms.toml` under `~/.tmkms` directory
 
 :::details Example: tmkms.toml for testnet
 
 ```toml
-# Tendermint KMS configuration file
-[[chain]]
-id = "testnet-croeseid-2"
-key_format = { type = "bech32", account_key_prefix = "tcropub", consensus_key_prefix = "tcrocnclconspub" }
-state_vsock_port = 6666
-
-[[providers.softsign]]
-chain_ids = ["testnet-croeseid-2"]
-key_type = "consensus"
-encrypted_key_b64 = "<encrypted validator signing key>"
-aws_region = "<AWS region to use for KMS>"
-
-
-## Validator configuration
-[[validator]]
-chain_id = "testnet-croeseid-2"
-addr = { port = 5555 }
-protocol_version = "v0.34"
-reconnect = true
+address = 'unix:///home/ec2-user/sockets/validator.socket'
+chain_id = 'testnet-croeseid-2'
+sealed_consensus_key_path = '/home/ec2-user/.tmkms/secrets/secret.key'
+state_file_path = '/home/ec2-user/.tmkms/state/priv_validator_state.json'
+enclave_config_cid = 15 #overridden by flag
+enclave_config_port = 5050
+enclave_state_port = 5555
+enclave_tendermint_conn = 5000
+aws_region = 'ap-southeast-1'
 ```
+
 :::
 
-### Step 7. Compiling tmkms for the host instance
-Unless you have all the AWS C dependencies and musl ready on the host instance, you may not be able to run the tmkms binary previously compiled for the enclave image. In that case, you can compile the tmkms on the host as follows:
-```bash
-git clone https://github.com/tomtau/tmkms.git -b feature/nitro-enclave
-cd tmkms
-sudo yum install gcc gcc-c++  -y
-cargo build --features=nitro-enclave,softsign --release
-cp ./target/release/tmkms /usr/local/bin/
-```
-### Step 8. Create TMKMS enclave service
+### Step 7. Create TMKMS enclave service
 To launch the TMKMS enclave, one needs to execute several commands to make it work.
-One can follow this [RUN it](https://github.com/tomtau/tmkms/blob/feature/nitro-enclave/README.nitro.md#run-it).
+
+```bash
+$ nitro-cli run-enclave --cpu-count 2 --memory 512 --eif-path /home/ec2-user/.tmkms/tmkms.eif
+# run in background with specific kms region
+$ vsock-proxy 8000 kms.<KMS_REGION>.amazonaws.com 443 & 
+$ tmkms-nitro-helper start -c /home/ec2-user/.tmkms/tmkms.toml --cid $(nitro-cli describe-enclaves | jq -r .[0].EnclaveCID)
+```
 
 In order to have a resilient validator, one should run the TMKMS enclave as a service.
 
-#### Step 8.1. Create a script to run TMKMS enclave
+#### Step 7.1. Create a script to run TMKMS enclave
 
 ```bash
 #!/bin/bash
@@ -201,37 +181,29 @@ set -e
 TRAP_FUNC ()
 {
   nitro-cli terminate-enclave --enclave-id $(nitro-cli describe-enclaves | jq -r .[0].EnclaveID) || echo "no existing enclave"
-  kill -TERM $PID1
-  kill -TERM $PID2
+  sudo kill -TERM $(pidof vsock-proxy)
+  exit 1
 }
 
-nitro-cli run-enclave --cpu-count 2 --memory 512 --eif-path /home/ec2-user/.tmkms/tmkms.eif # [--debug-mode]
+nitro-cli run-enclave --cpu-count 2 --memory 512 --eif-path /home/ec2-user/.tmkms/tmkms.eif || TRAP_FUNC
 
-vsock-proxy 8000 kms.ap-southeast-1.amazonaws.com 443 &
-PID1=$!
+vsock-proxy 8000 kms.<KMS_REGION>.amazonaws.com 443 &
 echo "[vsock-proxy] Running in background ..."
 
+trap TRAP_FUNC TERM INT SIGKILL
 
 sleep 1
-tmkms nitro persist -p 6666 -s /home/ec2-user/.tmkms/priv_validator_state.json &
-PID2=$!
-echo "[tmkms nitro persist] Running in background ..."
-trap TRAP_FUNC TERM INT EXIT
+/home/ec2-user/bin/tmkms-nitro-helper start -c /home/ec2-user/.tmkms/tmkms.toml --cid $(nitro-cli describe-enclaves | jq -r .[0].EnclaveCID)
 
-sleep 1
-tmkms nitro push-config -p 5050 -i $(nitro-cli describe-enclaves | jq -r .[0].EnclaveCID) -c /home/ec2-user/.tmkms/tmkms.toml
-echo "[tmkms nitro push-config] push config to nitro-enclave tmkms ..."
-
-tmkms nitro proxy -p 5555 -u /home/ec2-user/sockets/validator.socket
 ```
-One should adjust the port in the script if set differently in `tmkms.toml`
+One should adjust the `<KMS_REGION>` in the script if set differently in `tmkms.toml` eg. `us-east-1`
 
-Create the script `run_nitro_enclave_tmkms.sh` with executable permissions under `~/.tmkms` directory
+Create the script `run_tmkms_nitro_helper.sh` with executable permissions under `~/.tmkms` directory
 ```bash
-$ chmod +x run_nitro_enclave_tmkms.sh
+$ chmod +x run_tmkms_nitro_helper.sh
 ```
 
-#### Step 8.2. Create systemd service for TMKMS enclave
+#### Step 7.2. Create systemd service for TMKMS enclave
 
 ```toml
 [Unit]
@@ -253,9 +225,9 @@ WorkingDirectory=/home/ec2-user/.tmkms
 # make sure log directory exists
 PermissionsStartOnly=true
 
-ExecStartPre=/bin/mkdir -p /home/ec2-user/sockets
-ExecStartPre=/bin/chown ec2-user:ec2-user /home/ec2-user/sockets
-ExecStart=/home/ec2-user/.tmkms/run_nitro_enclave_tmkms.sh
+ExecStartPre=/bin/mkdir -p /home/ec2-user/sockets /home/ec2-user/state
+ExecStartPre=/bin/chown ec2-user:ec2-user /home/ec2-user/sockets /home/ec2-user/state
+ExecStart=/home/ec2-user/.tmkms/run_tmkms_nitro_helper.sh
 
 [Install]
 WantedBy=multi-user.target
@@ -270,10 +242,10 @@ sudo systemctl enable tmkms.service
 sudo systemctl start tmkms.service
 ```
 
-### Step 9. Running chain-maind
+### Step 8. Running chain-maind
 
 One should follow the same steps in [Croeseid Testnet: Running Nodes](./croeseid-testnet.md)
 
 Except for one last thing one needs to further configure `~/.chain-maind/config/config.toml` to enable enclave tmkm to sign.
 
-In `~/.chain-maind/config/config.toml`, `priv_validator_key_file` and `priv_validator_state_file` should be commented and uncomment `priv_validator_laddr` to value `unix://[path]` which should match the path in command `tmkms nitro proxy -p 5555 -u [path]` in [script](./advanced-tmkms-integration.md#step-8-1-create-a-script-to-run-tmkms-enclave). e.g. `unix:///home/ec2-user/sockets/validator.socket`
+In `~/.chain-maind/config/config.toml`, `priv_validator_key_file` and `priv_validator_state_file` should be commented and uncomment `priv_validator_laddr` to value `unix://...` which should match the `address` in `tmkms.toml`. e.g. `unix:///home/ec2-user/sockets/validator.socket`

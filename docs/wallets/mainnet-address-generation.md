@@ -65,7 +65,7 @@ Run the following command to create a new address. For example, you can create a
 $ ./chain-maind keys add Default 
 ```
 
-You can find the generated address after running the command. Please make sure that you have safely backed up the mnemonic words that appear on the last line.
+You can find the generated address after running the command. **Please make sure that you have safely backed up the mnemonic words that appear on the last line.**
 ```bash
 - name: Default
   type: local

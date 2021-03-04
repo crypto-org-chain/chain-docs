@@ -4,7 +4,7 @@ This document contains the information of account address for Crypto.org Chain m
 
 ## Address prefix
 
-Account address for mainnet start with prefix `cro`. For example: `cro1y8ua5laceufhqtwzyhahq0qk7rm87hhugtsfey`.
+Account address for mainnet starts with prefix `cro`. For example: `cro1y8ua5laceufhqtwzyhahq0qk7rm87hhugtsfey`.
 
 ## Hierarchical Deterministic Wallet (HD Wallet) Derivation Path
 
@@ -13,12 +13,12 @@ Crypto.org Chain has [registered](https://github.com/satoshilabs/slips/blob/mast
 Coin Type: 394 <br />
 Derivation Path: `44'/394'/0'/0/{index}`  where index starts from 0.
 
-i.e. the first address is derived at path `44'/394'/0'/0/0` and second one at path `44'/394'/0'/0/1`.
+i.e. the first address is derived at path `44'/394'/0'/0/0` and the second one at path `44'/394'/0'/0/1`.
 
 ## How to generate address
 
-::: warning MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS
-Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backup your address's mnemonic words in a safe place and the mnemonic words are correct such that it can restore to your wallet address.
+::: warning: MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS
+Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backup your address's mnemonic words correctly in a safe place which are use to restore to your wallet address in future.
 
 You are the sole owner of your wallet mnemonic words and there is no way for Crypto.org to restore your wallet or recover your funds if you lost the mnemonic words.
 :::
@@ -27,7 +27,7 @@ You are the sole owner of your wallet mnemonic words and there is no way for Cry
 We recommend you to generate an address only on a trusted and secure computer. To further enhance the security, you should consider to run on a air-gapped (offline) machine.
 :::
 
-::: warning ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS
+::: warning: ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS
 To make sure you have backed up the mnemonic words correctly, we recommend you to try to restore your wallet with the mnemonic words and verify the address derived is the same.
 
 For more details on how to verify your mnemonic words and addresses, please check [Mainnet Address Verification](./mainnet-address-verification.md)

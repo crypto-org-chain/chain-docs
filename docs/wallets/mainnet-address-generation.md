@@ -32,7 +32,11 @@ To make sure you have backed up the mnemonic words correctly, we recommend you t
 
 For more details on how to verify your mnemonic words and addresses, please check [Mainnet Address Verification](./mainnet-address-verification.md)
 :::
-
+There are four ways to generate the mainnet address by using: 
+- [Release Binary (CLI)](#a-release-binary-cli);
+- [Ledger Wallet](#b-ledger-wallet);
+- [Programmatically via Crypto.org Chain JavaScript Library](#c-programmatically); and
+- [Crypto.org Chain Desktop Wallet (Beta version)](#d-crypto-org-chain-desktop-wallet-beta).
 ## A. Release Binary (CLI)
 
 Supported OS: Linux, Mac OS and Windows

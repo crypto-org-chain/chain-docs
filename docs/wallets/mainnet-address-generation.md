@@ -225,7 +225,7 @@ Download the latest version of the Crypto.org Chain Desktop Wallet [here](https:
 
 #### Step 1. Open the Crypto.com Chain application on your Ledger device
 
-#### Step 2. Open the application and click "Get Started" to setup an application password.
+#### Step 2. Open the application and click "Get Started" to set up an application password.
 
 <img src="./assets/mainnet-address-generation/desktop-get-started.png" />
 

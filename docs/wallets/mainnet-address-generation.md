@@ -39,14 +39,14 @@ Supported OS: Linux, Mac OS and Windows
 
 #### Step 1. Get the Crypto.org Chain binary
 
-Download the Crypto.org Chain Binary from Crossfire from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v0.9.1-crossfire) and extract the binary. Here we used Linux as an example:
+Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v1.0.0) and extract the binary. Here we used Linux as an example:
 
 ```bash
-$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-crossfire/chain-main_0.9.1-crossfire_Linux_x86_64.tar.gz
-$ tar -zxvf chain-main_0.9.1-crossfire_Linux_x86_64.tar.gz
+$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.0.0/chain-main_1.0.0_Linux_x86_64.tar.gz
+$ tar -zxvf chain-main_1.0.0_Linux_x86_64.tar.gz
 ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v0.9.1-crossfire`.
+If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0`, which is the version targeting for mainnet.
 
 #### Step 2. Create a new key and address
 
@@ -104,14 +104,14 @@ The Crypto.org Chain Ledger Application is available on Ledger Live under develo
 
 #### Step 1. Get the Crypto.org Chain binary
 
-Download the Crypto.org Chain Binary from Crossfire from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v0.9.1-crossfire) and extract the binary. Here we used Linux as an example:
+Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v1.0.0) and extract the binary. Here we used Linux as an example:
 
 ```bash
-$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-crossfire/chain-main_0.9.1-crossfire_Linux_x86_64.tar.gz
-$ tar -zxvf chain-main_0.9.1-crossfire_Linux_x86_64.tar.gz
+$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.0.0/chain-main_1.0.0_Linux_x86_64.tar.gz
+$ tar -zxvf chain-main_1.0.0_Linux_x86_64.tar.gz
 ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v0.9.1-crossfire`.
+If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0`, which is the version targeting for mainnet.
 
 #### Step 2. Open the Crypto.com Chain application on your Ledger device
 #### Step 3. Create a new key and address

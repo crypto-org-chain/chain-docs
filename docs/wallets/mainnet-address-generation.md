@@ -52,6 +52,11 @@ $ tar -zxvf chain-main_1.0.0_Linux_x86_64.tar.gz
 
 If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0`, which is the version targeting for mainnet.
 
+Before moving to the next step, kindly check your `chain-maind` version by 
+
+```bash
+$ ./chain-maind version
+1.0.0
 #### Step 2. Create a new key and address
 
 Run the following command to create a new address. For example, you can create a key with the name "Default" by:

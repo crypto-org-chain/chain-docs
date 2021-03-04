@@ -170,7 +170,7 @@ Desktop wallet is in beta testing. Please be aware of the [potential risks](http
 <img src="./assets/mainnet-address-generation/ledger-desktop-create-wallet.png" />
 <img src="./assets/mainnet-address-generation/desktop-create-success.png" />
 
-#### Step 5. Upon successful wallet creation, a warning message will be shown on top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
+#### Step 5. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
 
 ::: tip Cannot Connect To Your Ledger Device?
 If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Also make sure your Ledger device is unlocked and you have opened the "Crypto.com Chain" application on your Ledger.

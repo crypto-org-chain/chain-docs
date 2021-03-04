@@ -191,7 +191,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 ## Step 4. Join as a validator
 
 We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server.
-If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-com-chain-binary).
+If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary).
 :::tip NOTE
 
 - Check whether your chain-maind is the testnet binary

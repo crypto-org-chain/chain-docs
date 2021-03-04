@@ -308,4 +308,5 @@ $ chain-maind tx distribution withdraw-rewards crocncl173q6r8kc3gl8lccma23qe62q5
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 ____
-If you are interested in contributing to or joining our testnet, you can continue reading the following sections about [Joining the Croeseid Testnet](./thaler-testnet.md).
+
+If you are interested in contributing to or joining our testnet, you can continue reading the following sections about [Joining the Croeseid Testnet](./croeseid-testnet.md).

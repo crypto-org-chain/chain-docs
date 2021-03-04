@@ -242,7 +242,7 @@ Download the latest version of the Crypto.org Chain Desktop Wallet [here](https:
 
 <img src="./assets/mainnet-address-generation/desktop-backup-mnemonic.png" />
 
-#### Step 5. A warning message will be shown on top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
+#### Step 5. A warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
 
 <img src="./assets/mainnet-address-generation/desktop-main-page.png" />
 

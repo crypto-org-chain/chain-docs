@@ -137,13 +137,13 @@ When a validator is selected to propose the next block, they must include at lea
 
 This bonus reward is dependent linearly on the precommits from the other validators. Stating from 66% of the precommits, the basic bonus will be `base_proposer_reward` and increase linearly to `bonus_proposer_reward` when the validator includes 100% of the precommits.
 
-This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refers to this [link](https://hub.cosmos.network/master/validators/validator-faq.html).
+This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refers to this [link](https://hub.cosmos.network/main/validators/validator-faq.html).
 
 #### Community tax
 
 The `community_tax` is the tax rate to the reward obtained by the validator. Specifically, part of the reward will be taxed and send to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](#gov).
 
-Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntary, and there could be funds allocated to the community pool in the [genesis](./genesis_file).
+Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntary, and there could be funds allocated to the community pool in the [genesis](./genesis_file.md).
 
 ### Transactions and Queries
 

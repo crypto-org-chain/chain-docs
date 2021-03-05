@@ -87,7 +87,7 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 - Supported OS: Linux, Mac OS and Windows
 - Pre-requisite: Ledger Hardware Wallet
 
-::: tip Crypto.org Chain Ledger Application Is In Development Mode
+::: tip: Crypto.org Chain Ledger Application Is In Development Mode
 The Crypto.org Chain Ledger Application is available on Ledger Live under development mode only. It is under review by the Ledger team.
 :::
 
@@ -125,7 +125,7 @@ If you are downloading the binary for other operating systems, make sure you are
 #### Step 2. Open the Crypto.com Chain application on your Ledger device
 #### Step 3. Create a new key and address
 
-Run the followings to create a new address. For example, you can create a key with the name "Default" by:
+Run the following command to create a new address. For example, you can create a key with the name "Default" by:
 
 ```bash
 $ ./chain-maind keys add Ledger --ledger
@@ -133,11 +133,11 @@ $ ./chain-maind keys add Ledger --ledger
 
 You will be prompted with the address on your Ledger device screen. Read it carefully and write it down. Afterward, confirm the address on your Ledger device.
 
-::: tip Cannot Connect To Your Ledger Device?
-If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Also make sure your Ledger device is unlocked and you have opened the "Crypto.com Chain" application on your Ledger.
+::: tip: Cannot Connect To Your Ledger Device?
+If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.com Chain" application on your Ledger.
 :::
 
-#### Step 4. Verify the address displayed on the terminal matches the address you saw on Ledger device
+#### Step 4. Verify the address displayed on the terminal, and make sure it matches the address you saw on Ledger device
 
 ```bash
 - name: Ledger
@@ -153,7 +153,7 @@ If you encounter connection error when creating a wallet, you can try to unplug 
 
 ## B-ii. Ledger Wallet via Crypto.org Chain Desktop Wallet
 
-::: warning DESKTOP WALLET IS IN BETA
+::: warning: DESKTOP WALLET IS IN BETA
 Desktop wallet is in beta testing. Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address.
 :::
 Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
@@ -170,15 +170,15 @@ Download the latest version of the Crypto.org Chain Desktop Wallet [here](https:
 <img src="./assets/mainnet-address-generation/ledger-desktop-create-wallet.png" />
 <img src="./assets/mainnet-address-generation/desktop-create-success.png" />
 
-#### Step 5. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
+#### Step 4. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
 
 ::: tip Cannot Connect To Your Ledger Device?
-If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Also make sure your Ledger device is unlocked and you have opened the "Crypto.com Chain" application on your Ledger.
+If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.com Chain" application on your Ledger.
 :::
 
 <img src="./assets/mainnet-address-generation/desktop-main-page.png" />
 
-#### Step 6. You can check the wallet address by click the "Receive" tab on the left navigation menu. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
+#### Step 5. You can check the wallet address by click the "Receive" tab on the left navigation menu. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
 
 <img src="./assets/mainnet-address-generation/ledger-desktop-address.png" />
 
@@ -217,7 +217,7 @@ console.log(address);
 
 Supported OS: Ubuntu, Mac OS and Windows
 
-::: warning DESKTOP WALLET IS IN BETA
+::: warning: DESKTOP WALLET IS IN BETA
 Desktop wallet is in beta testing. Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address.
 :::
 
@@ -242,10 +242,10 @@ Download the latest version of the Crypto.org Chain Desktop Wallet [here](https:
 
 <img src="./assets/mainnet-address-generation/desktop-backup-mnemonic.png" />
 
-#### Step 5. A warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
+#### Step 6. A warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
 
 <img src="./assets/mainnet-address-generation/desktop-main-page.png" />
 
-#### Step 6. You can check the wallet address by click the "Receive" tab on the left navigation menu.
+#### Step 7. You can check the wallet address by click the "Receive" tab on the left navigation menu.
 
 <img src="./assets/mainnet-address-generation/desktop-address.png" />

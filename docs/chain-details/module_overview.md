@@ -137,13 +137,13 @@ When a validator is selected to propose the next block, they must include at lea
 
 This bonus reward is dependent linearly on the precommits from the other validators. Stating from 66% of the precommits, the basic bonus will be `base_proposer_reward` and increase linearly to `bonus_proposer_reward` when the validator includes 100% of the precommits.
 
-This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refers to this [link](https://hub.cosmos.network/master/validators/validator-faq.html).
+This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refers to this [link](https://hub.cosmos.network/main/validators/validator-faq.html).
 
 #### Community tax
 
 The `community_tax` is the tax rate to the reward obtained by the validator. Specifically, part of the reward will be taxed and send to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](#gov).
 
-Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntary, and there could be funds allocated to the community pool in the [genesis](./genesis_file).
+Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntary, and there could be funds allocated to the community pool in the [genesis](./genesis_file.md).
 
 ### Transactions and Queries
 
@@ -726,7 +726,7 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 ### Delegator
 
-The `staking` module enables CRO owners to delegate their toke to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](#distribution) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
+The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](#distribution) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
 It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](#slashing)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
@@ -758,7 +758,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 #### `tx staking delegate [validator-addr] [amount]` - Delegate liquid tokens to a validator
 
-As discussed in the delegator section, one can delegate their toke to an active validators by:
+As discussed in the delegator section, one can delegate their tokens to an active validators by:
 
 ```bash
 $ tx staking delegate [validator-addr] [amount]

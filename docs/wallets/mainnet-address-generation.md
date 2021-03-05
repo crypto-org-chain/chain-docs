@@ -18,7 +18,7 @@ i.e. the first address is derived at path `44'/394'/0'/0/0` and the second one a
 ## How to generate address
 
 ::: warning: MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS
-Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backup your address's mnemonic words correctly in a safe place which are use to restore to your wallet address in future.
+Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backup your address's mnemonic words correctly in a safe place and the mnemonic words are correct such that it can restore to you wallet address in future.
 
 You are the sole owner of your wallet mnemonic words and there is no way for Crypto.org to restore your wallet or recover your funds if you lost the mnemonic words.
 :::

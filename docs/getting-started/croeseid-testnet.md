@@ -15,17 +15,17 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 ### Prepare your machine
 
-To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements:
+- To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements:
 
-- Dual-core, x86_64 architecture processor;
-- 4 GB RAM;
-- 100 GB of storage space.
+  - Dual-core, x86_64 architecture processor;
+  - 4 GB RAM;
+  - 100 GB of storage space.
 
-For Crypto.org Chain mainnet in the future, you will need a machine with the following minimum requirements:
+- For Crypto.org Chain mainnet in the future, you will need a machine with the following minimum requirements:
 
-- 4-core, x86_64 architecture processor;
-- 16 GB RAM;
-- 1 TB of storage space.
+  - 4-core, x86_64 architecture processor;
+  - 16 GB RAM;
+  - 1 TB of storage space.
 
 ## Step 1. Get the Crypto.org Chain binary
 
@@ -226,11 +226,23 @@ WantedBy=multi-user.target
 
 It should begin fetching blocks from the other peers. Please wait until it is fully synced before moving onto the next step.
 
-For example, one can check the current block height by querying the public full node by:
+- You can query the node syncing status by
+  ```bash
+  $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
+  ```
+  If the above command returns `false`, It means that your node **is fully synced**; otherwise, it returns `true` and implies your node is still catching up.
 
-```bash
-curl -s https://testnet-croeseid.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
-```
+- One can check the current block height by querying the public full node by:
+
+  ```bash
+  curl -s https://testnet-croeseid.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
+  ```
+
+  and you can check your node's progress (in terms of block height) by
+
+  ```bash 
+  $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
+  ```
 
 ### Step 3-5. Send a `create-validator` transaction
 
@@ -307,7 +319,7 @@ You can check your _transferable_ balance with the `balances` command under the 
 :::details Example: Check your address balance
 
 ```bash
-$ chain-maind query bank balances tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
+$ ./chain-maind query bank balances tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
 
 balances:
 - amount: "10005471622381693"
@@ -329,8 +341,7 @@ Transfer operation involves the transfer of tokens between two addresses.
 :::details Example: Send 10tcro from an address to another.
 
 ```bash
-$ chain-maind tx bank send Default
-tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-2"
+$ ./chain-maind tx bank send Default tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-2"
   ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -364,7 +375,7 @@ On the other hand, we can create a `Unbond` transaction to unbond the delegated 
 ::: details Example: Unbond funds from a validator under the address `tcrocncl16k...edcer`
 
 ```bash
-$ chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-2"
+$ ./chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-2"
 ## Transaction payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
 confirm transaction before signing and broadcasting [y/N]: y

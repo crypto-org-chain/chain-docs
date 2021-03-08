@@ -100,7 +100,7 @@ to check all the supported sub-commands.
 With a given delegator address and the validator account that it is associated with, we can check the by:
 
 ```json
-$ chain-maind query chain-maind query staking delegation [delegator-addr] [validator-addr] --output json | jq
+$ chain-maind query staking delegation [delegator-addr] [validator-addr] --output json | jq
 
   {
     "delegation": {

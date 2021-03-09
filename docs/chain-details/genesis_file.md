@@ -9,7 +9,6 @@ Specifically, the genesis file includes the following fields:
 - `"genesis_time"`:
   The time of the beginning of the blockchain.
 - `"genutil"`: A variety of genesis utility functionality for usage including genesis transactions creation (gentx) and genesis file validation command as well as Tendermint related initialization.
-- `"gentx"`: Generation of genesis transaction carrying a self-delegation.
 - `"ibc"`: Inter-Blockchain Communication across different chains.
 - `"chain_id"`:
   A unique identifier for the blockchain. See [this](./chain-id.md) for further details.
@@ -25,7 +24,6 @@ Specifically, the genesis file includes the following fields:
     - `"max_num"`: The maximum age of evidence (in number of blocks).
   - `"validator"`:
     - `"pub_key_types"`: The supported validator public key types.
-    - `"validate-genesis"`: Genesis file validation at the default/assigned location.
 - `"app_hash"`: The initial application state defined in the genesis block.
 - `"auth"`
   - `"params"`: Parameters of the auth module defined in the genesis file.

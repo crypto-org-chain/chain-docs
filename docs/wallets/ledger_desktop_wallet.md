@@ -11,10 +11,12 @@ The following are the step-by-step instructions for the use of Ledger devices wi
 - [Crypto.org Chain desktop wallet](https://github.com/crypto-com/chain-desktop-wallet/releases).
 
 
-We will use Ledger Nano S for this illustration.
+### Technical support and enquiries
+In case you have any enquiries about using Ledger device with desktop wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
+
 
 ## Install the Crypto.com app and create the wallet  
-
+We will use Ledger Nano S for this illustration:
 ### Step 1 - Install the Crypto.com app on your Ledger device
 
 First of all, you will need to install the Crypto.com Chain app on your Ledger device. Kindly make sure your Ledger Live app is updated to the latest version. 

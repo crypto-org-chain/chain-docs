@@ -12,7 +12,7 @@ The following are the step-by-step instructions for the use of Ledger devices wi
 
 
 ### Technical support and enquiries
-In case you have any enquiries about using Ledger device with desktop wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
+In case you have any enquiry about using Ledger device with desktop wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
 
 
 ## Install the Crypto.com app and create the wallet  

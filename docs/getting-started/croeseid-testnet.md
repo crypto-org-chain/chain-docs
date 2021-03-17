@@ -27,7 +27,7 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
   - 16 GB RAM;
   - 1 TB of storage space.
 
-## Step 1. Get the Crypto.org Chain binary
+## Step 1. Get the Crypto.org Chain Testnet binary
 
 ::: tip Remarks:
 The following is the minimal setup for a **validator node**. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
@@ -36,29 +36,11 @@ The following is the minimal setup for a **validator node**. If you would like t
 To simplify the following step, we will be using **Linux** for illustration. Binary for
 [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Windows_x86_64.zip) are also available.
 
-- To install Crypto.org Chain released binaries from github:
+- To install Crypto.org Chain released **testnet binaries** from github:
 
   ```bash
   $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Linux_x86_64.tar.gz
   $ tar -zxvf chain-main_0.9.1-croeseid_Linux_x86_64.tar.gz
-  ```
-
-  OR
-
-- To install binaries in Homebrew for Mac OSX or Linux
-
-  [Homebrew](https://brew.sh/) is a free and open-source package management system for Mac OS X. Install the official Chain-maind formula from the terminal.
-
-  First, install the `crypto-com` tap, a repository of our Homebrew `chain-maind` package.
-
-  ```bash
-  $ brew tap crypto-com/chain-maind
-  ```
-
-  Now, install chain-maind with crypto-com/chain-maind.
-
-  ```bash
-  $ brew install chain-maind
   ```
 
 ## Step 2. Configure `chain-maind`

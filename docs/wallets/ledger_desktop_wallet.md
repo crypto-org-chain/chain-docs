@@ -4,7 +4,7 @@
 Crypto.org Chain Desktop Wallet Beta supports sending and staking operations, latest version can be found on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases). 
 
 
-The following are the step-by-step instructions for the use of Ledger devices with Crypto.com Chain desktop wallet. Before starting the process, you will need:
+The following are the step-by-step instructions for the use of Ledger devices with Crypto.org Chain desktop wallet. Before starting the process, you will need:
  
 - An initialized Ledger device (Nano S / Nano X) with latest firmware;
 - Latest version of [Ledger Live](https://www.ledger.com/ledger-live);
@@ -15,11 +15,11 @@ The following are the step-by-step instructions for the use of Ledger devices wi
 In case you have any enquiry about using Ledger device with desktop wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
 
 
-## Install the Crypto.com app and create the wallet  
+## Install the Crypto.org app for Ledger and create the wallet  
 We will use Ledger Nano S for this illustration:
-### Step 1 - Install the Crypto.com app on your Ledger device
+### Step 1 - Install the Crypto.org app on your Ledger device
 
-First of all, you will need to install the Crypto.com Chain app on your Ledger device. Kindly make sure your Ledger Live app is updated to the latest version. 
+First of all, you will need to install the Crypto.org Chain app on your Ledger device. Kindly make sure your Ledger Live app is updated to the latest version. 
 
 - **Step 1.1** - On the Ledger Live, under "*Experimental Features*", enable "*Developer mode*" to show developer and testnet apps in the manager settings as below:
 
@@ -29,16 +29,16 @@ First of all, you will need to install the Crypto.com Chain app on your Ledger d
 
 - **Step 1.3** - On your Ledger device, go to "*install app*", It should show "*Open Ledger live to install apps*"
 
-- **Step 1.4** - On the Ledger Live, find and install Crypto.com Chain in the app catalog as below:
+- **Step 1.4** - On the Ledger Live, find and install Crypto.org Chain in the app catalog as below:
         <img src="./assets/ledger_desktop_wallet/s1-4.png" />
 
 - **Step 1.5** - Your Ledger device will display "*Processing…*". Once the installation is completed, you should see "*Installed*" on your Ledger Live as below:
         <img src="./assets/ledger_desktop_wallet/s1-5.png" />
 
-    You can confirm the installation by checking if the Crypto.com App shows up in the main menu of your Ledger device:
+    You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:
             <img src="./assets/ledger_desktop_wallet/s1-5-1.jpeg" />
 
-**Remark**: Once the Crypto.com App is successfully installed, please close the Ledger Live app before proceeding to the next step .
+**Remark**: Once the Crypto.org App is successfully installed, please close the Ledger Live app before proceeding to the next step .
 
 ### Step 2 - Create wallet in Desktop Wallet with Ledger device
 
@@ -71,7 +71,7 @@ In order to start with the sending transaction/performing staking operations, we
 
 - **Step 3.1** - Go to the "*Receive*" option in the desktop wallet and your wallet address will be displayed. Verify the address by clicking "*Verify address on Ledger*", you should see the same address being displayed on your ledger device as well.
 
-- **Step 3.2** - Once the address has been confirmed, copy this address and request some funds from the [testnet faucet](https://chain.crypto.com/faucet)
+- **Step 3.2** - Once the address has been confirmed, copy this address and request some funds from the [testnet faucet](https://crypto.org/faucet)
 
 - **Step 3.3** - Your current balance will be available on the Home page. If you would like to view the transaction details, simply hit the hash link under Transaction Hash and it will direct you to the [explorer](https://crypto.org/explorer/) where different details related to transactions will be displayed:
             <img src="./assets/ledger_desktop_wallet/s3-3.png" />
@@ -99,7 +99,7 @@ Chain-id, Account number, sequence, Type of the transaction, the amount in "base
 
 ## Staking operation with Ledger device
 
-Crypto.com Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol who are responsible for committing new blocks in the blockchain. Token holders might stake their token to validators to secure the network and earn rewards. Particularly, we can:
+Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol who are responsible for committing new blocks in the blockchain. Token holders might stake their token to validators to secure the network and earn rewards. Particularly, we can:
 
 - [Delegate to a validator](#delegate-to-a-validator-with-ledger-device);
 - [Withdraw staking rewards from a validator](#withdraw-the-reward-from-a-validator-with-ledger-device);

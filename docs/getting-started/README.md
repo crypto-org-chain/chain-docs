@@ -6,11 +6,14 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
 
 #### Try Running a Node
 
+- [Join Crypto.org Chain Mainnet](./mainnet.md)
+    - As a validator;
+    - Build a Full node
 - [Join Croeseid Testnet](./croeseid-testnet.md): Try running Full Nodes or Validators connected to our Croeseid Testnet.
-- [Deploy testnet on AWS with 1 click](./testnet-aws-1click.md): Try running Full Nodes or Validators connected to our Croeseid Testnet on AWS.
-- [Deploy testnet on Azure with 1 click](./testnet-azure-1click.md): Try running Full Nodes or Validators connected to our Croeseid Testnet on Azure.
+- [Deploy testnet node on AWS with 1 click](./testnet-aws-1click.md): Try running Full Nodes or Validators connected to our Croeseid Testnet on AWS.
+- [Deploy testnet node on Azure with 1 click](./testnet-azure-1click.md): Try running Full Nodes or Validators connected to our Croeseid Testnet on Azure.
 - [Deploy testnet with nix](./croeseid-testnet-nix.md): Install and run full nodes or validators connected to our Croeseid Testnet with nix.
-- [Build Latest Development Version](./local-devnet.md): Try running latest development network (Devnet)
+- [Build latest development version](./local-devnet.md): Try running latest development network (Devnet)
 
 #### Useful links
 - [Project Website](http://crypto.org/)

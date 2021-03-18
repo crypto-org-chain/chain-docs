@@ -164,10 +164,27 @@ as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core
 Run the followings to create a new key. For example, you can create a key with the name `Default` by:
 
 ```bash
-  $ ./chain-maind keys add Default
-```
+  $ chain-maind keys add Default 
+- name: Default
+  type: local
+  address: cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
+  pubkey: cropub1addwnpepqdct05khsxvtaaj0stuvayrpw0j8t6styr7vu05k3y63d5540ftuz8x6tsq
+  mnemonic: ""
+  threshold: 0
+  pubkeys: []
 
-You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for performing transactions.
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+spare leopard potato hospital series salt model myself bronze print despair please mutual rival battle lumber crater brain food artwork goose west talent ritual
+```
+You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. The key comes with a "mnemonic phrase", which is serialized into a human-readable bip39 mnemonic. User can recover their associated addresses with the mnemonic phrase.
+
+:::danger
+It is important that you keep the mnemonic for address secure, as there is **no way** to recover it. You would not be able to recover and access the funds in the wallet if you forget the mnemonic phrase.
+:::
+
+Furthermore, you can check [here](../wallets/cli.md#keys-management-chain-maind-keys) for advanced key recovering and management.
 
 
 ### Step 3-2. Obtain the validator public key

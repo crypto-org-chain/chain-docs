@@ -58,7 +58,7 @@ module.exports = {
             link: "/wallets/cli.html#chain-maind"
           },
           {
-            text: "Ledger Hardware Wallets",
+            text: "Ledger Hardware Wallets with chain-maind",
             link: "/wallets/ledger.html#ledger-hardware-wallets"
           },
           {

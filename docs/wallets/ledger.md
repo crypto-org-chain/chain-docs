@@ -1,78 +1,78 @@
-# Mainnet Address Generation
+# Ledger Hardware Wallets with chain-maind
 
-# Ledger Hardware Wallets
-
-You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely manage your Testnet CRO assets. Ledger devices are hardware wallets which store your private keys safely in the device and can be used in even unsafe PCs.
+You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely manage your CRO assets. Ledger devices are hardware wallets which store your private keys safely in the device and can be used in even unsafe PCs.
 
 ## Pre-requisites
 
-- An initialized Ledger Nano device
-- Install the latest firmware on your device
-- Install Ledger Live on your PC
-- Download our latest [release binary](https://github.com/crypto-org-chain/chain-main/releases)
+- An initialized Ledger Nano device;
+- Install the latest firmware on your device;
+- [Ledger Live](https://www.ledger.com/ledger-live);
+- Download our latest released `chain-maind` [ binary](https://github.com/crypto-org-chain/chain-main/releases).
 
-## Install the Ledger app
 
-There are currently two ways to install the Ledger app for Crypto.org Chain:
+### Technical support and enquiries
+In case you have any enquiry about using Ledger device with desktop wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
 
-1. [Ledger Live (Preferred)](#_1-install-via-ledger-live)
-1. [Build from source code](#_2-build-from-source-code)
 
-### 1. Install via Ledger Live
+## Install the Crypto.org app on your Ledger device
+We will use Ledger Nano S for this illustration:
 
-:::tip
-Crypto.org Chain Ledger application is being reviewed at the moment. Please use the Cosmos application for the time being, which has the same functionalities except for the supported address derivation path.
-:::
+First of all, you will need to install the Crypto.org Chain app on your Ledger device. Kindly make sure your Ledger Live is updated to the latest version. 
 
-1. Open "Manager" in Ledger Live.
-1. Connect and unlock your Ledger devices.
-1. If asked, allow Ledger manager on your Ledger device.
-1. Search for Cosmos (ATOM) in the app catalog in Ledger Live.
-1. Click the Install button to install the app.
-1. Your device will display "Processing". Wait until the installing completed.
-1. Your device will have a new app named "Cosmos"
+- **Step 1** - On the Ledger Live, under "*Experimental Features*", enable "*Developer mode*" to show developer and testnet apps in the manager settings as below:
 
-### 2. Build from source code
+    <img src="./assets/ledger_desktop_wallet/s1-1.png" />
 
-:::danger
-We HIGHLY DISCOURAGED using this method to install the Ledger app because it requires putting your Ledger device into development mode and loaded with an unsafe mnemonics. NEVER use this on a Ledger with funds and NEVER use the development Ledger devices on any production blockchain network.
-:::
+- **Step 2** - Connect and unlock your Ledger device
 
-You can follow the [instructions](https://github.com/crypto-com/ledger-crypto#using-a-real-device) to build from source code and install the application to your development purpose ONLY Ledger device.
+- **Step 3** - On your Ledger device, go to "*install app*", It should show "*Open Ledger live to install apps*"
 
-## Generate Address
+- **Step 4** - On the Ledger Live, find and install Crypto.org Chain in the app catalog as below:
+        <img src="./assets/ledger_desktop_wallet/s1-4.png" />
+
+- **Step 5** - Your Ledger device will display "*Processing…*". Once the installation is completed, you should see "*Installed*" on your Ledger Live as below:
+        <img src="./assets/ledger_desktop_wallet/s1-5.png" />
+
+    You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:
+            <img src="./assets/ledger_desktop_wallet/s1-5-1.jpeg" />
+
+**Remark**: Once the Crypto.org App is successfully installed, please close the Ledger Live app before proceeding to the next step .
+
+## Generate Address with Ledger device
 
 1. Connect and unlock your Ledger device
-1. Open "Cosmos" or "Crypto.org Chain" app on the device
+1. Open "Crypto.org Chain" app on the device
 1. Run in your terminal
     ```bash
-    $ ./chain-maind keys add [name] --coin-type=[coin-type] --account=[account-index] --ledger --keyring-backend=test
+    $ ./chain-maind keys add [name] --ledger --keyring-backend=test
     ```
 
     - `name` is an arbitrary name for your new key
-    - `coin-type` is the Coin type. Depends on the application you installed, please use different types:
-        | App | Coin type |
-        | --- | --- |
-        | Cosmos| `118` |
-        | Crypto.org Chain | `394` |
-    - `account-index` can be any integer inclusively starting from `0` to `2147483648`
-    - For example, the following command will work for Cosmos application
+
+1. An address will be displayed on your Ledger device, for example:
+            <img src="./assets/ledger_desktop_wallet/s9.png" />
+1. Confirm the address on your Ledger device and verify the address displayed on the terminal. They should match with each other, for example, of we create a wallet named `ledger_test`, you should see the same address displayed on you terminal after confirming and pressing "*Ok*" on your ledger device:
     ```bash
-    $ ./chain-maind keys add Ledger --coin-type=118 --account=0 --ledger --keyring-backend=test
+    - name: ledger_test
+    type: ledger
+    address: cro1v2uvz32f98kvf2k6tec7pqp4t5hhen6vr5a8ms
+    pubkey: cropub1addwnpepq09tkjulrexy0r8atsjknpemk7nelswr3vj8p78hdag62phdhwgzgnpxrmg
+    mnemonic: ""
+    threshold: 0
+    pubkeys: []
     ```
-1. An address will be displayed on your Ledger device
-1. Confirm the address on your Ledger device and verify the address displayed on the terminal. They should match with each other.
+
 1. Your address is generated successfully. You can now use the address for any chain operations.
 
 ## Query account balance
 
-After you have [generated an address](#generate-address), kindly use the [CRO faucet](https://crypto.org/faucet) to obtain test CRO tokens. Once the transaction is completed, you can query its balance by running in terminal:
+You can query its balance by running in terminal
 
 ```bash
 $ ./chain-maind query bank balances [address]
 ```
 
-`address` is the address you have generated. If you didn't copy your address, you can query the address by running in terminal:
+`address` is the address you have generated. If you didn't copy your address, you can query the address listing it in terminal:
 
 ```bash
 $ ./chain-maind keys list --keyring-backend=test
@@ -83,13 +83,13 @@ $ ./chain-maind keys list --keyring-backend=test
 In this tutorial we will send a `MsgSend` transaction securely signed by your Ledger device to the chain.
 
 1. Connect and unlock your Ledger device
-1. Open "Cosmos" or "Crypto.org Chain" app on the device
-1. Run in your terminal
+1. Open "Crypto.org Chain" app on the device
+1. For example, if you would like to send `1cro` in the mainnet, in your terminal, you can run:
     ```bash
-    $ ./chain-maind tx bank send [from-address] [to-address] 1tcro --chain-id=testnet-croeseid-2 --ledger --keyring-backend=test  --sign-mode=amino-json
+    $ ./chain-maind tx bank send [from-address] [to-address] 1cro --chain-id="crypto-org-chain-mainnet-1" --ledger --keyring-backend=test  --sign-mode=amino-json
     ```
 
-    - `from-address` is the from address [generated](#generate-address) by your Ledger device
+    - `from-address` is the from address [generated](#generate-address-with-ledger-device) by your Ledger device
     - `to-address` is the destination address
     - In this command, we are sending `1trco` from the from address, you can specify other amounts you want.
 1. You will be asked to confirm the details of transaction in your terminal, input `y` to confirm:
@@ -103,3 +103,4 @@ In this tutorial we will send a `MsgSend` transaction securely signed by your Le
 1. Read the transaction details carefully and confirm ONLY when you have reviewed all the details are correct.
 1. The transaction is signed and will be broadcasted.
 1. Wait for a while, and the broadcast result will be shown in your terminal.
+

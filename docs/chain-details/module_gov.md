@@ -171,7 +171,7 @@ $ chain-maind query gov params --output json | jq
     "deposit_params": {
       "min_deposit": [
         {
-          "denom": "basetcro",
+          "denom": "basecro",
           "amount": "10000000"
         }
       ],

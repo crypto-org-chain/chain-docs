@@ -394,7 +394,7 @@ $ chain-maind query gov params --output json | jq
     "deposit_params": {
       "min_deposit": [
         {
-          "denom": "basetcro",
+          "denom": "basecro",
           "amount": "10000000"
         }
       ],
@@ -481,7 +481,7 @@ We can query the current query parameters by
 $ chain-maind query mint params --output json | jq
 
   {
-    "mint_denom": "basetcro",
+    "mint_denom": "basecro",
     "inflation_rate_change": "0.013000000000000000",
     "inflation_max": "0.020000000000000000",
     "inflation_min": "0.007000000000000000",

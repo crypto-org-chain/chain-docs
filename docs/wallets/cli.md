@@ -1,16 +1,25 @@
 # chain-maind
 
-`chain-maind` is a command-line interface for the wallet client. It supports wallet management, funds transfer and staking operations.
+`chain-maind` is the all-in-one command-line interface. It supports wallet management, funds transfer and staking operations.
 
 ## Build and configurations
 
 ### Build Prerequisites
 
-- [Crypto.org Chain](https://github.com/crypto-org-chain/chain-main)
+- Yuo can get the  latest `chain-maind` binary here from the [release page](https://github.com/crypto-org-chain/chain-main/releases);
+- Alternatively, you can instal `chain-maind` by [homebrew](https://brew.sh/)
+  ```bash 
+  # tap the repo
+  brew tap crypto-org-chain/chain-maind
+  # install the CLI tool
+  brew install chain-maind
+  # get a list of all the commands
+  chain-maind
+  ```
 
-### How to use
+### Using `chain-maind`
 
-`chain-maind`is bundled with the Crypto.org Chain code. After you have compiled the Crypto.org Chain, run
+`chain-maind`is bundled with the Crypto.org Chain code. After you have obtain the latest `chain-maind` binary, run
 
 ```bash
 $ chain-maind [command]
@@ -34,10 +43,10 @@ To specify the chain-maind config and data storage directory; you can add a glob
 
 ### Configure Chain ID
 
-Crypto.org Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag :
+Crypto.org Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag, for example, `crypto-org-chain-mainnet-1` is the chain-id for the Crypto.com Chain mainnet:
 
 ```bash
-alias chain-maind="chain-maind --chain-id [full-chain-id]"
+alias chain-maind="chain-maind --chain-id crypto-org-chain-mainnet-1"
 ```
 
 ### Options
@@ -84,9 +93,11 @@ Flags:
   -h, --help   help for staking
 
 Global Flags:
-      --chain-id string   The network chain ID
-      --home string       directory for config and data (default "/Users/[username]/.chain-maind")
-      --trace             print out full stack trace on errors
+      --chain-id string     The network chain ID
+      --home string         directory for config and data (default "/Users/.chain-maind")
+      --log_format string   The logging format (json|plain) (default "plain")
+      --log_level string    The logging level (trace|debug|info|warn|error|fatal|panic) (default "info")
+      --trace   
 ```
 :::
 
@@ -100,7 +111,7 @@ You can create a new key with the name `Default` as in the following example:
 ::: details Example: Create a new address
 
 ```bash
-$ chain-maind keys add Default --hd-path "44'/394'/0'/0/1"
+$ chain-maind keys add Default 
 - name: Default
   type: local
   address: cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
@@ -116,7 +127,7 @@ spare leopard potato hospital series salt model myself bronze print despair plea
 ```
 
 :::
-The key comes with a "seed phrase", which is serialized into a human-readable 24-word mnemonic. User can recover their associated addresses with the mnemonic phrase.
+The key comes with a "mnemonic phrase", which is serialized into a human-readable 24-word mnemonic. User can recover their associated addresses with the mnemonic phrase.
 
 :::danger
 It is important that you keep the mnemonic for address secure, as there is **no way** to recover it. You would not be able to recover and access the funds in the wallet if you forget the mnemonic phrase.
@@ -129,14 +140,13 @@ You can restore an existing key with the mnemonic.
 ::: details Example: Restore an existing key
 
 ```bash
-$ chain-maind keys add Default_restore --recover --hd-path "44'/394'/0'/0/1"
+$ chain-maind keys add Default_restore --recover 
 > Enter your bip39 mnemonic
 ## Enter your 24-word mnemonic here ##
 ```
 
 :::
 
-(TODO: Reminder on the HD-path, and the concept of [HD-wallet](https://hub.cosmos.network/master/resources/hd-wallets.html))
 
 ### `keys list` - List your keys
 
@@ -213,7 +223,6 @@ $ chain-maind keys show Default --bech cons
 
 :::
 
-(TODO: addr definitions )
 
 ### `keys delete <key_name>` - Delete a key
 
@@ -286,7 +295,7 @@ Transfer operation involves the transfer of tokens between two addresses.
 :::details Example: Send 10cro from an address to another.
 
 ```bash
-$ chain-maind tx bank send Default cro17waz6n5a4c4z388rvc40n4c402njfjgqmv0qcp 10cro --chain-id cro-test
+$ chain-maind tx bank send Default cro17waz6n5a4c4z388rvc40n4c402njfjgqmv0qcp 10cro --chain-id crypto-org-chain-mainnet-1
   ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -305,7 +314,7 @@ To bond funds for staking, you can delegate funds to a validator by the `delegat
 ::: details Example: Delegate funds from `Default` to a validator under the address `crocncl1zd...rz35z`
 
 ```bash
-$ chain-maind tx staking delegate crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z 100cro --from Default --chain-id cro-test
+$ chain-maind tx staking delegate crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z 100cro --from Default --chain-id crypto-org-chain-mainnet-1
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgDelegate"....}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -320,7 +329,7 @@ On the other hand, we can create a `Unbond` transaction to unbond the delegated 
 ::: details Example: Unbond funds from a validator under the address `crocncl1zdl...rz35z`
 
 ```bash
-$ chain-maind tx staking unbond crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z 100cro --from Default --chain-id cro-test
+$ chain-maind tx staking unbond crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z 100cro --from Default --chain-id crypto-org-chain-mainnet-1
 ## Transaction payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -404,7 +413,7 @@ $ chain-maind query staking validators -o json | jq
 After the jailing period has passed, one can broadcast a `unjail` transaction to unjail the validator and resume its normal operations by
 
 ```bash
-$ chain-maind tx slashing unjail --from node1 --chain-id cro-test
+$ chain-maind tx slashing unjail --from node1 --chain-id crypto-org-chain-mainnet-1
   {"body":{"messages":[{"@type":"/cosmos.slashing.v1beta1.MsgUnjail"...}]}
   confirm transaction before signing and broadcasting [y/N]: y
 ```

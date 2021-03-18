@@ -1,8 +1,7 @@
-# Croeseid Testnet: Running Nodes
+# Crypto.com Mainnet: Running Nodes
 
-The latest Crypto.org Chain Testnet has been named as **Croeseid**.
 
-This is a detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet.
+This is a detailed documentation for setting up a **validator** or a **full node** on Crypto.org mainnet.
 
 ## Pre-requisites
 
@@ -19,54 +18,66 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
   - 16 GB RAM;
   - 1 TB of storage space.
 
-## Step 1. Get the Crypto.org Chain binary
+## Step 1. Get the Crypto.org Chain Mainnet binary
 
 
 
 ::: tip Remarks:
-The following is the minimal setup for a **validator node**. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
+The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see Tendermint), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc
 :::
-
-
-
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Windows_x86_64.zip) are also available.
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Windows_x86_64.zip) are also available.
+### Sept 1-a) Install `chain-maind` released binaries from github
 
-- To install Crypto.org Chain released binaries from github:
+
+- To install Crypto.org Chain binaries from github:
 
   ```bash
   $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Linux_x86_64.tar.gz
   $ tar -zxvf chain-main_1.1.0_Linux_x86_64.tar.gz
   ```
 
-  OR
-##############################[TODO]- update homebrew - [TODO]##############################
-- To install binaries in Homebrew for Mac OSX or Linux
+- You can verify the installation by checking the version of the chain-maind
+  ```bash 
+  # check the version of chain-maind
+  $ ./chain-maind version
+  1.1.0
+**OR**
 
-  [Homebrew](https://brew.sh/) is a free and open-source package management system for Mac OS X. Install the official Chain-maind formula from the terminal.
+### Sept 1-b) Install `chain-maind` by homebrew
+ To install binaries in Homebrew for macOS X or Linux
 
-  First, install the `crypto-com` tap, a repository of our Homebrew `chain-maind` package.
+  [Homebrew](https://brew.sh/) is a free and open-source package management system for macOS X. Install the official Chain-maind formula from the terminal.
+
+ -  First, install the `crypto-org-chain` tap, a repository of our Homebrew `chain-maind` package"
+
+    ```bash
+      # tap the repo
+      $ brew tap crypto-org-chain/chain-maind
+    ```
+
+- Now, install chain-maind with crypto-com/chain-maind"
 
   ```bash
-  $ brew tap crypto-com/chain-maind
+    # install the chain-maind CLI tool
+    $ brew install chain-maind
   ```
-
-  Now, install chain-maind with crypto-com/chain-maind.
-
-  ```bash
-  $ brew install chain-maind
+- You can verify the installation by checking the version of the `chain-maind`
+  ```bash 
+  # check the version of chain-maind
+  $ chain-maind version
+  1.1.0
   ```
-##############################[TODO]- update homebrew - [TODO]##############################
 ## Step 2. Configure `chain-maind`
 
-Before kick-starting your node, we will have to configure your node so that it connects to the Croeseid testnet:
+Before kick-starting your node, we will have to configure your node so that it connects to the Crypto.org mainnet:
 
-### Step 2-1 Initialize `chain-maind`
+### Step 2-1. Initialize `chain-maind`
 
 - First of all, you can initialize chain-maind by:
 
   ```bash
-    $ ./chain-maind init [moniker] --chain-id testnet-croeseid-2
+    $ ./chain-maind init [moniker] --chain-id crypto-org-chain-mainnet-1
   ```
 
   This `moniker` will be the displayed id of your node when connected to Crypto.org Chain network.
@@ -74,18 +85,18 @@ Before kick-starting your node, we will have to configure your node so that it c
   The example below shows how to initialize a node named `pegasus-node` :
 
   ```bash
-    $ ./chain-maind init pegasus-node --chain-id testnet-croeseid-2
+    $ ./chain-maind init pegasus-node --chain-id crypto-org-chain-mainnet-1
   ```
 
   ::: tip NOTE
 
-  - Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
-  - You can also put the `chain-maind` to your binary path and run it by `chain-maind`
+  - Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
+  - You can also put the `chain-maind` to your binary path and run it directly by `chain-maind`
     :::
 
-### Step 2-2 Configure chain-maind
-
-- Download and replace the Croeseid Testnet `genesis.json` by:
+### Step 2-2. Configure chain-maind
+##############################[TODO]- seed,genesis - [TODO]##############################
+- Download and replace the Crypto.org mainnet `genesis.json` by:
 
   ```bash
   $ curl https://raw.githubusercontent.com/crypto-com/testnets/main/testnet-croeseid-2/genesis.json > ~/.chain-maind/config/genesis.json
@@ -102,7 +113,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 - In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
 
   ```bash
-  $ sed -i.bak -E 's#^(minimum-gas-prices[[:space:]]+=[[:space:]]+)""$#\1"0.025basetcro"#' ~/.chain-maind/config/app.toml
+  $ sed -i.bak -E 's#^(minimum-gas-prices[[:space:]]+=[[:space:]]+)""$#\1"0.025basecro"#' ~/.chain-maind/config/app.toml
   ```
 
 - For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `persistent_peers` and `create_empty_blocks_interval` by:
@@ -113,24 +124,23 @@ Before kick-starting your node, we will have to configure your node so that it c
   ```
 
 **Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
-### Step 2-3 Enable STATE-SYNC
-  [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
+##############################[TODO]- seed,genesis - [TODO]##############################
 
-With state sync your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator.
+##############################[TODO]- seed,genesis - [TODO]##############################
+### Step 2-3. (**Optional**) Enable STATE-SYNC
 
-However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
+This is an option step If you would like to build a node with complete blockchain data, jump to [Step 3](#step-3-run-everything).
 
-
-For **validator**, it will be amazingly fast to sync the near head of the chain and join the network.
-
-Follow the below optional steps to enable state-sync.
-
-
-- For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
+With  [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html)  your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network.
+::: warning CAUTION
+Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. 
+:::
+Follow the below optional steps to enable state-sync:
+- For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations under [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
 
   ```bash
-  $ LASTEST_HEIGHT=$(curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height); \
-  BLOCK_HEIGHT=$((LASTEST_HEIGHT - 1000)); \
+  $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height); \
+  BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
   TRUST_HASH=$(curl -s "https://testnet-croeseid.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
   $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
@@ -139,16 +149,14 @@ Follow the below optional steps to enable state-sync.
   s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
   ```
-
+##############################[TODO]- update seed,genesis - [TODO]##############################
 ## Step 3. Run everything
 
 ::: warning CAUTION
 This page only shows the minimal setup for validator node.
 
-If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
-
-Furthermore, you may want to run full nodes
-as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.
+In production, you may want to run full nodes
+as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys with [tmkms](https://github.com/iqlusioninc/tmkms) etc.
 :::
 
 ### Step 3-1. Create a new key and address
@@ -159,35 +167,30 @@ Run the followings to create a new key. For example, you can create a key with t
   $ ./chain-maind keys add Default
 ```
 
-You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for performing transactions.
+You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. This will be the address for performing transactions.
 
-### Step 3-2. Obtain test token
 
-Unless you have obtained the CRO testnet token before, use the [TCRO faucet](https://crypto.org/faucet) to obtain test CRO tokens.
-In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel ,
-stating who you are and your `tcro.....` address.
+### Step 3-2. Obtain the validator public key
 
-### Step 3-3. Obtain the validator public key
-
-You can obtain your validator public key by:
+Validator is identified by the "*validator public key*". You can obtain your validator public key by:
 
 ```bash
   $ ./chain-maind tendermint show-validator
 ```
 
-The public key should begin with the `tcrocnclconspub1` prefix, e.g. `tcrocnclconspub1zcjduepq6jgw5hz44jnmlhnx93dawqx6kwzhp96w5pqsxwryp8nrr5vldmsqu3838p`.
+The public key should begin with the `crocnclconspub1` prefix, e.g. `crocnclconspub1zcjduepq6jgw5hz44jnmlhnx93dawqx6kwzhp96w5pqsxwryp8nrr5vldmsqu3838p`.
 
-### Step 3-4. Run everything
+### Step 3-3. Run everything
 
 Once the `chain-maind` has been configured, we are ready to start the node and sync the blockchain data:
 
-- Start chain-maind, e.g.:
+- Start `chain-maind`, e.g.:
 
 ```bash
   $ ./chain-maind start
 ```
-
-- _(Optional for Linux)_ Start chain-maind with systemd service, e.g.:
+**OR**
+- _(Optional for Linux)_ If you would like to have it running at the background, you can start `chain-maind` with `systemd` service, e.g.:
 
 ```bash
   $ git clone https://github.com/crypto-org-chain/chain-main.git && cd chain-main
@@ -222,18 +225,21 @@ WantedBy=multi-user.target
 :::
 
 It should begin fetching blocks from the other peers. Please wait until it is fully synced before moving onto the next step.
+### Step 3-4. Check the status of your node
 
 - You can query the node syncing status by
   ```bash
   $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
   ```
-  If the above command returns `false`, It means that your node **is fully synced**; otherwise, it returns `true` and implies your node is still catching up.
+  If the above command returns `false`, It means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
 
+##############################[TODO]- public node - [TODO]##############################
 - One can check the current block height by querying the public full node by:
 
   ```bash
   curl -s https://testnet-croeseid.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
   ```
+##############################[TODO]- public node - [TODO]##############################
 
   and you can check your node's progress (in terms of block height) by
 
@@ -243,22 +249,22 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
 
 ### Step 3-5. Send a `create-validator` transaction
 
-Once the node is fully synced, we are now ready to send a `create-validator` transaction and join the network, for example:
+Once the node is synced, we are now ready to send a `create-validator` transaction and join the network, for example:
 
 ```
 $ ./chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
---amount=500000tcro \
---pubkey=[tcrocnclconspub...]  \
+--amount=[amount of cro, i.e. 1000cro] \
+--pubkey=[crocnclconspub...]  \
 --moniker="[The_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \
---chain-id="testnet-croeseid-2" \
+--chain-id="crypto-org-chain-mainnet-1" \
 --commission-rate="0.10" \
 --commission-max-rate="0.20" \
 --commission-max-change-rate="0.01" \
 --min-self-delegation="1" \
 --gas 80000000 \
---gas-prices 0.1basetcro
+--gas-prices 0.1basecro
 
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -267,16 +273,20 @@ confirm transaction before signing and broadcasting [y/N]: y
 You will be required to insert the following:
 
 - `--from`: The `trco...` address that holds your funds;
-- `--pubkey`: The validator public key( See Step [3-3](#step-3-3-obtain-the-validator-public-key) above ) with **tcrocnclconspub** as the prefix;
+- `--pubkey`: The validator public key( See Step [3-2](#step-3-2-obtain-the-validator-public-key) above ) with **crocnclconspub** as the prefix;
 - `--moniker`: A moniker (name) for your validator node;
-- `--security-contact`: Security contact email/contact method.
+- `--security-contact`: Security contact email/contact method, it is **strongly recommended** to provide an email address for receiving important messages related to validator operation in the future;
+- `--commission-rate`: The commission rate charge on the delegator;
+- `--commission-max-rate`: The upper bound of the commission rate;
+- `--commission-max-change-rate`: The maximum daily increase of the validator commission. Please note this parameter cannot be changed after create-validator is processed.
+
 
 Once the `create-validator` transaction completes, you can check if your validator has been added to the validator set:
 
 ```bash
 $ ./chain-maind tendermint show-address
-## [tcrocnclcons... address] ##
-$ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclcons...]
+## [crocnclcons... address] ##
+$ ./chain-maind query tendermint-validator-set | grep -c [crocnclcons...]
 ## 1 = Yes; 0 = Not yet added ##
 ```
 
@@ -291,12 +301,12 @@ The validator is in the active validator set under the address  <YOUR_VALIDATOR_
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 ```
 
-For those who are using tmkms in background([AWS](./testnet-aws-1click.html)/[Azure](./testnet-azure-1click.html) 1-click deployment are using tmkms), you should use `--bechpubkey` the consensus pubkey with prefix `tcrocnclconspub1....` directly instead of `--pubkey` tendermint pubkey since the node is not using `~/.chain-maind/config/priv_validator_key.json` for signing.
+For those who are using tmkms in background([AWS](./testnet-aws-1click.html)/[Azure](./testnet-azure-1click.html) 1-click deployment are using tmkms), you should use `--bechpubkey` the consensus pubkey with prefix `crocnclconspub1....` directly instead of `--pubkey` tendermint pubkey since the node is not using `~/.chain-maind/config/priv_validator_key.json` for signing.
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
 --tendermint-url https://testnet-croeseid.crypto.org:26657 \
---bechpubkey [tcrocnclconspub1....]
+--bechpubkey [crocnclconspub1....]
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
@@ -316,11 +326,11 @@ You can check your _transferable_ balance with the `balances` command under the 
 :::details Example: Check your address balance
 
 ```bash
-$ ./chain-maind query bank balances tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
+$ ./chain-maind query bank balances cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
 
 balances:
 - amount: "10005471622381693"
-  denom: basetcro
+  denom: basecro
 pagination:
   next_key: null
   total: "0"
@@ -335,10 +345,10 @@ Transfer operation involves the transfer of tokens between two addresses.
 
 #### **Send Funds** [`tx bank send <from_key_or_address> <to_address> <amount> <network_id>`]
 
-:::details Example: Send 10tcro from an address to another.
+:::details Example: Send 10cro from an address to another.
 
 ```bash
-$ ./chain-maind tx bank send Default tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-2"
+$ ./chain-maind tx bank send Default cro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10cro --chain-id="crypto-org-chain-mainnet-1"
   ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -354,10 +364,10 @@ Staking operations involve the interaction between an address and a validator. I
 
 To bond funds for staking, you can delegate funds to a validator by the `delegate` command
 
-::: details Example: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
+::: details Example: Delegate funds from `Default` to a validator under the address `crocncl16k...edcer`
 
 ```bash
-$ chain-maind tx staking delegate tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-2"
+$ chain-maind tx staking delegate crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100cro --from Default --chain-id "crypto-org-chain-mainnet-1"
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgDelegate"....}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -369,10 +379,10 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 On the other hand, we can create a `Unbond` transaction to unbond the delegated funds
 
-::: details Example: Unbond funds from a validator under the address `tcrocncl16k...edcer`
+::: details Example: Unbond funds from a validator under the address `crocncl16k...edcer`
 
 ```bash
-$ ./chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-2"
+$ ./chain-maind tx staking unbond crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100cro --from Default --chain-id "crypto-org-chain-mainnet-1"
 ## Transaction payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -386,9 +396,5 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 :::
 
-Congratulations! You've successfully set up a Testnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
+Congratulations! You've successfully set up a mainnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
 
-## Croeseid testnet faucet
-
-- To interact with the blockchain, simply use the [test-token faucet](https://crypto.org/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
-  - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet.

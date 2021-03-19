@@ -1,7 +1,7 @@
 # Crypto.com Mainnet: Running Nodes
 
 
-This is a detailed documentation for setting up a **validator** or a **full node** on Crypto.org mainnet.
+This is a detailed documentation for setting up a **Validator** or a **Full Node** on Crypto.org mainnet.
 
 ## Pre-requisites
 
@@ -23,11 +23,11 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 
 ::: tip Remarks:
-The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see Tendermint), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc
+The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc
 :::
 To simplify the following step, we will be using **Linux** for illustration. Binary for
 [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Windows_x86_64.zip) are also available.
-### Sept 1-a) Install `chain-maind` released binaries from github
+### Sept 1-a). Install `chain-maind` released binaries from github
 
 
 - To install Crypto.org Chain binaries from github:
@@ -37,19 +37,19 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
   $ tar -zxvf chain-main_1.1.0_Linux_x86_64.tar.gz
   ```
 
-- You can verify the installation by checking the version of the chain-maind
+- You can verify the installation by checking the version of the chain-maind, the current version is `1.1.0`.
   ```bash 
   # check the version of chain-maind
   $ ./chain-maind version
   1.1.0
 **OR**
 
-### Sept 1-b) Install `chain-maind` by homebrew
+### Sept 1-b). Install `chain-maind` by homebrew
  To install binaries in Homebrew for macOS X or Linux
 
   [Homebrew](https://brew.sh/) is a free and open-source package management system for macOS X. Install the official Chain-maind formula from the terminal.
 
- -  First, install the `crypto-org-chain` tap, a repository of our Homebrew `chain-maind` package"
+ -  First, install the `crypto-org-chain` tap, a repository of our Homebrew `chain-maind` package
 
     ```bash
       # tap the repo
@@ -139,12 +139,12 @@ Follow the below optional steps to enable state-sync:
 - For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations under [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
 
   ```bash
-  $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height); \
+  $ LATEST_HEIGHT=$(curl -s https://mainnet.crypto.org:26657/block | jq -r .result.block.header.height); \
   BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-  TRUST_HASH=$(curl -s "https://testnet-croeseid.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+  TRUST_HASH=$(curl -s "https://mainnet.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
   $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-  s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid.crypto.org:26657,https://testnet-croeseid.crypto.org:26657\"| ; \
+  s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://mainnet.crypto.org:26657,https://mainnet.crypto.org:26657\"| ; \
   s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
   s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
@@ -184,7 +184,7 @@ You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65
 It is important that you keep the mnemonic for address secure, as there is **no way** to recover it. You would not be able to recover and access the funds in the wallet if you forget the mnemonic phrase.
 :::
 
-Furthermore, you can check [here](../wallets/cli.md#keys-management-chain-maind-keys) for advanced key recovering and management.
+Furthermore, you can check [here](../wallets/cli.md#keys-management-chain-maind-keys) for advanced key operations and management with `chain-maind`.
 
 
 ### Step 3-2. Obtain the validator public key
@@ -250,13 +250,13 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
   ```
   If the above command returns `false`, It means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
 
-##############################[TODO]- public node - [TODO]##############################
+
 - One can check the current block height by querying the public full node by:
 
   ```bash
-  curl -s https://testnet-croeseid.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
+  curl -s https://mainnet.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
   ```
-##############################[TODO]- public node - [TODO]##############################
+
 
   and you can check your node's progress (in terms of block height) by
 
@@ -264,7 +264,8 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
   $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
   ```
 
-### Step 3-5. Send a `create-validator` transaction
+You are all set, if you would like to run a **Full Node** -- For **Validator**, please continue to the next step. 
+### Step 3-5. Joining the network as a validator: Send a `create-validator` transaction
 
 Once the node is synced, we are now ready to send a `create-validator` transaction and join the network, for example:
 
@@ -287,17 +288,20 @@ $ ./chain-maind tx staking create-validator \
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-You will be required to insert the following:
-
-- `--from`: The `trco...` address that holds your funds;
-- `--pubkey`: The validator public key( See Step [3-2](#step-3-2-obtain-the-validator-public-key) above ) with **crocnclconspub** as the prefix;
-- `--moniker`: A moniker (name) for your validator node;
-- `--security-contact`: Security contact email/contact method, it is **strongly recommended** to provide an email address for receiving important messages related to validator operation in the future;
-- `--commission-rate`: The commission rate charge on the delegator;
-- `--commission-max-rate`: The upper bound of the commission rate;
-- `--commission-max-change-rate`: The maximum daily increase of the validator commission. Please note this parameter cannot be changed after create-validator is processed.
 
 
+  ::: tip You will be required to insert the following:
+  - `--from`: The `trco...` address that holds your funds;
+  - `--pubkey`: The validator public key( See Step [3-2](#step-3-2-obtain-the-validator-public-key) above ) with **crocnclconspub** as the prefix;
+  - `--moniker`: A moniker (name) for your validator node;
+  - `--security-contact`: Security contact email/contact method, it is **strongly recommended** to provide an email address for receiving important messages related to validator operation in the future;
+  - `--commission-rate`: The commission rate charge on the delegator;
+  - `--commission-max-rate`: The upper bound of the commission rate;
+  - `--commission-max-change-rate`: The maximum daily increase of the validator commission. Please note this parameter cannot be changed after create-validator is processed.
+  :::
+
+
+### Step 3-6. Check your validator status
 Once the `create-validator` transaction completes, you can check if your validator has been added to the validator set:
 
 ```bash
@@ -310,24 +314,15 @@ $ ./chain-maind query tendermint-validator-set | grep -c [crocnclcons...]
 To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash
-$ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid.crypto.org:26657 \
+$ curl -sSL https://raw.githubusercontent.com/crypto-org-chain/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
+--tendermint-url https://mainnet.crypto.org:26657 \
 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 ```
 
-For those who are using tmkms in background([AWS](./testnet-aws-1click.html)/[Azure](./testnet-azure-1click.html) 1-click deployment are using tmkms), you should use `--bechpubkey` the consensus pubkey with prefix `crocnclconspub1....` directly instead of `--pubkey` tendermint pubkey since the node is not using `~/.chain-maind/config/priv_validator_key.json` for signing.
 
-```bash
-$ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid.crypto.org:26657 \
---bechpubkey [crocnclconspub1....]
-
-The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
-The validator is signing @ Block#<BLOCK_HEIGHT> 👍
-```
 
 Alternatively, you can run it on this [browser based IDE](https://repl.it/@allthatjazzleo/cryptocomcheckNodeJoinStatus#main.go), by specifying your validator public key in the `"YOUR_PUBKEY"` field, where this key can be obtained by running
 
@@ -345,13 +340,12 @@ You can check your _transferable_ balance with the `balances` command under the 
 ```bash
 $ ./chain-maind query bank balances cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
 
-balances:
-- amount: "10005471622381693"
-  denom: basecro
-pagination:
-  next_key: null
-  total: "0"
-
+  balances:
+  - amount: "10005471622381693"
+    denom: basecro
+  pagination:
+    next_key: null
+    total: "0"
 ```
 
 :::
@@ -379,9 +373,10 @@ Staking operations involve the interaction between an address and a validator. I
 
 #### **Delegate you funds to a validator** [`tx staking delegate <validator-addr> <amount>`]
 
-To bond funds for staking, you can delegate funds to a validator by the `delegate` command
+To bond funds for staking, you can delegate funds to a validator by the `delegate` command. 
+Note that you can look up validators and their operator address by the validator list on the [explorer](https://crypto.org/explorer/validators).
 
-::: details Example: Delegate funds from `Default` to a validator under the address `crocncl16k...edcer`
+::: details Example: Delegate funds from `Default` to a validator under the operator address `crocncl16k...edcer`
 
 ```bash
 $ chain-maind tx staking delegate crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100cro --from Default --chain-id "crypto-org-chain-mainnet-1"

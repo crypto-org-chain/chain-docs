@@ -6,7 +6,7 @@
 
 ### Build Prerequisites
 
-- Yuo can get the  latest `chain-maind` binary here from the [release page](https://github.com/crypto-org-chain/chain-main/releases);
+- You can get the  latest `chain-maind` binary here from the [release page](https://github.com/crypto-org-chain/chain-main/releases);
 - Alternatively, you can instal `chain-maind` by [homebrew](https://brew.sh/)
   ```bash 
   # tap the repo
@@ -19,7 +19,7 @@
 
 ### Using `chain-maind`
 
-`chain-maind`is bundled with the Crypto.org Chain code. After you have obtain the latest `chain-maind` binary, run
+`chain-maind`is bundled with the Crypto.org Chain code. After you have obtained the latest `chain-maind` binary, run
 
 ```bash
 $ chain-maind [command]
@@ -264,7 +264,7 @@ type: secp256k1
 :::
 
 ### The keyring `--keyring-backend` option
-Interacting with a node requires a public-private keypair. Keyring is the place holding the keys. The keys can be stored in different locations with specified backend type. 
+Interacting with a node requires a public-private key pair. Keyring is the place holding the keys. The keys can be stored in different locations with specified backend type. 
 ```
 $ chain-maind keys [subcommands] --keyring-backend [backend type]
 ```

@@ -741,7 +741,7 @@ First of all, we can create a validator with the `create-validator` transaction,
 ```bash
 $ chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
---amount=[staking_abount] \
+--amount=[staking_amount] \
 --pubkey=[trocnclconspub...]  \
 --moniker="[moniker_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \

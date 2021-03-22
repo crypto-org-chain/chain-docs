@@ -91,7 +91,7 @@ In this tutorial we will send a `MsgSend` transaction securely signed by your Le
 
     - `from-address` is the from address [generated](#generate-address-with-ledger-device) by your Ledger device
     - `to-address` is the destination address
-    - In this command, we are sending `1trco` from the from address, you can specify other amounts you want.
+    - In this command, we are sending `1tcro` from the from address, you can specify other amounts you want.
 1. You will be asked to confirm the details of transaction in your terminal, input `y` to confirm:
     ```bash
     $ ./chain-maind tx bank send tcro1tzhdkuc328cgh2hycyfddtdpqfwwu42ywyfvkj tcro1aaah6juc9n6wvkkkr4zdn073n8gt7waha39xsv 1tcro --chain-id=testnet-croeseid-2 --ledger --keyring-backend=test  --sign-mode=amino-json

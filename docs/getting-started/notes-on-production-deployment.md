@@ -32,7 +32,7 @@ priv_validator_laddr = "unix:///<TMKMS_SOCKET_PATH>"
 
 ### Obtaining the consensus / validator public key
 
-#### Step 0. generate / initialize the keypair or seed
+#### Step 0. generate / initialize the key pair or seed
 Step 0 depends on the signing provider -- e.g. for Ledger devices, one may need to enable *developer mode* in Ledger Live settings and install the Tendermint validator app.
 
 #### Step 1. obtain the public key in the correct encoding

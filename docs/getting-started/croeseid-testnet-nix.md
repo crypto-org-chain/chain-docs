@@ -26,7 +26,7 @@ $ nix-env -iA chain-utils-testnet -f https://github.com/crypto-org-chain/chain-m
 After installation, you'll have these commands in your `PATH`:
 
 - `chain-maind`, the chain binary for testnet
-- `init-node`, the script to iniailize the chain data directory with state sync enabled
+- `init-node`, the script to initialize the chain data directory with state sync enabled
 - `print-systemd-config`, print a systemd config file to stdout
 
 ## Initialization

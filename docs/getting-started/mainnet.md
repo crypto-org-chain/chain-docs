@@ -23,11 +23,16 @@ We officially support macOS, Windows and Linux only. Other platforms may work, b
 
 
 ::: tip Remarks:
-The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.
+The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)),  restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys etc.
 :::
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Windows_x86_64.zip) are also available.
-### Sept 1-a). Install `chain-maind` released binaries from Github
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Windows_x86_64.zip) are also available. 
+There are two options to install `chain-maind`: 
+- [Directly from Github](#option-1-install-chain-maind-released-binaries-from-github); or
+- [Homebrew](#option-2-install-chain-maind-by-homebrew)
+
+
+### Option 1 - Install `chain-maind` released binaries from Github
 
 
 - To install Crypto.org Chain binaries from Github:
@@ -44,7 +49,7 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
   1.1.0
 **OR**
 
-### Sept 1-b). Install `chain-maind` by homebrew
+### Option 2 - Install `chain-maind` by homebrew
  To install binaries in Homebrew for macOS X or Linux
 
   [Homebrew](https://brew.sh/) is a free and open-source package management system for macOS X. Install the official Chain-maind formula from the terminal.
@@ -70,8 +75,13 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
   ```
 ## Step 2. Configure `chain-maind`
 
-Before kick-starting your node, we will have to configure your node so that it connects to the Crypto.org mainnet:
+Before kick-starting your node, we will have to configure the node so that it connects to the Crypto.org mainnet
 
+::: tip NOTE
+
+- Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
+- You can also put the `chain-maind` to your binary path and run it directly by `chain-maind`
+:::
 ### Step 2-1. Initialize `chain-maind`
 
 - First of all, you can initialize chain-maind by:
@@ -84,24 +94,20 @@ Before kick-starting your node, we will have to configure your node so that it c
   When providing the moniker value, make sure you drop the square brackets since they are not needed.
 
 
-  ::: tip NOTE
 
-  - Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
-  - You can also put the `chain-maind` to your binary path and run it directly by `chain-maind`
-    :::
 
 ### Step 2-2. Configure chain-maind
 ##############################[TODO]- seed,genesis - [TODO]##############################
 - Download and replace the Crypto.org mainnet `genesis.json` by:
 
   ```bash
-  $ curl https://raw.githubusercontent.com/crypto-com/testnets/main/testnet-croeseid-2/genesis.json > ~/.chain-maind/config/genesis.json
+  $ curl https://raw.githubusercontent.com/crypto-org-chain/mainnet/main/crypto-org-chain-mainnet-1/genesis.json > ~/.chain-maind/config/genesis.json
   ```
 
 - Verify sha256sum checksum of the downloaded `genesis.json`. You should see `OK!` if the sha256sum checksum matches.
 
   ```bash
-  $ if [[ $(sha256sum ~/.chain-maind/config/genesis.json | awk '{print $1}') = "af7c9828806da4945b1b41d434711ca233c89aedb5030cf8d9ce2d7cd46a948e" ]]; then echo "OK"; else echo "MISMATCHED"; fi;
+  $ if [[ $(sha256sum ~/.chain-maind/config/genesis.json | awk '{print $1}') = "79b47dcd64aa4deb8405925073dc4e155f5848761389838706e69ea3eb562f34" ]]; then echo "OK"; else echo "MISMATCHED"; fi;
 
   OK!
   ```
@@ -125,7 +131,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 ##############################[TODO]- seed,genesis - [TODO]##############################
 ### Step 2-3. (**Optional**) Enable STATE-SYNC
 
-This is an optional step, If you would like to build a node with complete blockchain data, jump to [Step 3](#step-3-run-everything).
+This is an **optional** step, If you would like to build a node with complete blockchain data, jump to [Step 3](#step-3-run-everything).
 
 With  [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html)  your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network.
 ::: warning CAUTION
@@ -148,33 +154,16 @@ Follow the below optional steps to enable state-sync:
 ##############################[TODO]- update seed,genesis - [TODO]##############################
 ## Step 3. Run everything
 
-::: warning CAUTION
-This page only shows the minimal setup for validator node.
-
-In production, you may want to run full nodes
-as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys with [tmkms](https://github.com/iqlusioninc/tmkms) etc.
-:::
-
 ### Step 3-1. Create a new key and address
 
-Run the followings to create a new key. For example, you can create a key with the name `Default` by:
+There are four ways to generate the mainnet address by using:
 
-```bash
-  $ chain-maind keys add Default 
-- name: Default
-  type: local
-  address: cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
-  pubkey: cropub1addwnpepqdct05khsxvtaaj0stuvayrpw0j8t6styr7vu05k3y63d5540ftuz8x6tsq
-  mnemonic: ""
-  threshold: 0
-  pubkeys: []
+- [Release Binary (CLI)](../wallets/mainnet-address-generation.html/#step-2-create-a-new-key-and-address);
+- [Ledger Wallet](../wallets/mainnet-address-generation.html/#b-ledger-wallet);
+- [Programmatically via Crypto.org Chain JavaScript Library](../wallets/mainnet-address-generation.html/#c-programmatically); and
+- [Crypto.org Chain Desktop Wallet (Beta version)](../wallets/mainnet-address-generation.html/#d-crypto-org-chain-desktop-wallet-beta).
 
-**Important** write this mnemonic phrase in a safe place.
-It is the only way to recover your account if you ever forget your password.
-
-spare leopard potato hospital series salt model myself bronze print despair please mutual rival battle lumber crater brain food artwork goose west talent ritual
-```
-You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. The key comes with a "mnemonic phrase", which is serialized into a human-readable bip39 mnemonic. User can recover their associated addresses with the mnemonic phrase.
+You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. The key comes with a "mnemonic phrase", which is serialized into a human-readable [bip-39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) mnemonic. User can recover their associated addresses with the mnemonic phrase.
 
 :::danger
 It is important that you keep the mnemonic for address secure, as there is **no way** to recover it. You would not be able to recover and access the funds in the wallet if you forget the mnemonic phrase.
@@ -413,7 +402,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 After you have delegated or create a validator, reward will be accumulated, you can check/withdraw it by: 
 #### `query distribution validator-outstanding-rewards ` - Query un-withdrawn rewards for a validator
 
-We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operatoraddress.
+We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.
 
 ::: details Example: Check all outstanding rewards under the operator address crocncl1...zrf8
 

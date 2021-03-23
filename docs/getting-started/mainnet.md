@@ -1,4 +1,4 @@
-# Crypto.com Mainnet: Running Nodes
+# Crypto.org Mainnet: Running Nodes
 
 
 This is a detailed documentation for setting up a **Validator** or a **Full Node** on Crypto.org mainnet.
@@ -97,7 +97,7 @@ Before kick-starting your node, we will have to configure the node so that it co
 
 
 ### Step 2-2. Configure chain-maind
-##############################[TODO]- seed,genesis - [TODO]##############################
+
 - Download and replace the Crypto.org mainnet `genesis.json` by:
 
   ```bash
@@ -118,17 +118,20 @@ Before kick-starting your node, we will have to configure the node so that it co
   $ sed -i.bak -E 's#^(minimum-gas-prices[[:space:]]+=[[:space:]]+)""$#\1"0.025basecro"#' ~/.chain-maind/config/app.toml
   ```
 
+
+
 - For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `persistent_peers` and `create_empty_blocks_interval` by:
 
   ```bash
-  $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"b2c6657096aa30c5fafa5bd8ced48ea8dbd2b003@52.76.189.200:26656,ef472367307808b242a0d3f662d802431ed23063@175.41.186.255:26656,d3d2139a61c2a841545e78ff0e0cd03094a5197d@18.136.230.70:26656"#' ~/.chain-maind/config/config.toml
+  $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"87c3adb7d8f649c51eebe0d3335d8f9e28c362f2@seed-0.crypto.org:26656,e1d7ff02b78044795371beb1cd5fb803f9389256@seed-1.crypto.org:26656,2c55809558a4e491e9995962e10c026eb9014655@seed-2.crypto.org:26656"#' ~/.chain-maind/config/config.toml
   $ sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
+:::tip Reminder:
+The `persistent_peers` list is subjected to change.
+:::
 
 **Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
-##############################[TODO]- seed,genesis - [TODO]##############################
 
-##############################[TODO]- seed,genesis - [TODO]##############################
 ### Step 2-3. (**Optional**) Enable STATE-SYNC
 
 This is an **optional** step, If you would like to build a node with complete blockchain data, jump to [Step 3](#step-3-run-everything).
@@ -151,17 +154,17 @@ Follow the below optional steps to enable state-sync:
   s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
   ```
-##############################[TODO]- update seed,genesis - [TODO]##############################
+
 ## Step 3. Run everything
 
 ### Step 3-1. Create a new key and address
 
 There are four ways to generate the mainnet address by using:
 
-- [Release Binary (CLI)](../wallets/mainnet-address-generation.html/#step-2-create-a-new-key-and-address);
-- [Ledger Wallet](../wallets/mainnet-address-generation.html/#b-ledger-wallet);
-- [Programmatically via Crypto.org Chain JavaScript Library](../wallets/mainnet-address-generation.html/#c-programmatically); and
-- [Crypto.org Chain Desktop Wallet (Beta version)](../wallets/mainnet-address-generation.html/#d-crypto-org-chain-desktop-wallet-beta).
+- [Release Binary (CLI)](../wallets/mainnet-address-generation.md/#step-2-create-a-new-key-and-address);
+- [Ledger Wallet](../wallets/mainnet-address-generation.md/#b-ledger-wallet);
+- [Programmatically via Crypto.org Chain JavaScript Library](../wallets/mainnet-address-generation.md/#c-programmatically); and
+- [Crypto.org Chain Desktop Wallet (Beta version)](../wallets/mainnet-address-generation.md/#d-crypto-org-chain-desktop-wallet-beta).
 
 You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. The key comes with a "mnemonic phrase", which is serialized into a human-readable [bip-39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) mnemonic. User can recover their associated addresses with the mnemonic phrase.
 
@@ -257,16 +260,16 @@ Once the node is synced, we are now ready to send a `create-validator` transacti
 ```
 $ ./chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
---amount=[amount of cro, i.e. 1000cro] \
+--amount=[amount of cro, e.g. 1000cro] \
 --pubkey=[crocnclconspub...]  \
 --moniker="[The_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \
 --chain-id="crypto-org-chain-mainnet-1" \
---commission-rate="0.10" \
---commission-max-rate="0.20" \
---commission-max-change-rate="0.01" \
+--commission-rate="[The_commission_rate_of_your_node, e.g. 0.1 (10%)]" \
+--commission-max-rate="[The_maximum_commission_rate_of_your_node e.g. 0.2 (20%)]" \
+--commission-max-change-rate="[The_maximum_change_of_commission_rate_per_day e.g. 0.01 (1%)]" \
 --min-self-delegation="1" \
---gas 80000000 \
+--gas 8000000 \
 --gas-prices 0.1basecro
 
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
@@ -307,13 +310,6 @@ The validator is in the active validator set under the address  <YOUR_VALIDATOR_
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 ```
 
-
-
-Alternatively, you can run it on this [browser based IDE](https://repl.it/@allthatjazzleo/cryptocomcheckNodeJoinStatus#main.go), by specifying your validator public key in the `"YOUR_PUBKEY"` field, where this key can be obtained by running
-
-```bash
-$ cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value'
-```
 Congratulations! You've successfully set up a mainnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
 
 

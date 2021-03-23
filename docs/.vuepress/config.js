@@ -14,9 +14,13 @@ module.exports = {
       },
 
       {
-        text: "Croeseid Testnet",
-        items: [{
-            text: "Setup Tutorial",
+        text: "Crypto.org Chain",
+        items: [
+          {
+            text: "Crypto.org Chain Mainnet",
+            link: "/getting-started/mainnet"
+          },{
+            text: "Croeseid Testnet",
             link: "/getting-started/croeseid-testnet"
           },
            {
@@ -54,7 +58,7 @@ module.exports = {
             link: "/wallets/cli.html#chain-maind"
           },
           {
-            text: "Ledger Hardware Wallets",
+            text: "Ledger Hardware Wallets with chain-maind",
             link: "/wallets/ledger.html#ledger-hardware-wallets"
           },
           {
@@ -90,6 +94,7 @@ module.exports = {
     sidebar: {
       "/getting-started/": [
         "",
+        "mainnet",
         "croeseid-testnet",
         "testnet-aws-1click",
         "testnet-azure-1click",

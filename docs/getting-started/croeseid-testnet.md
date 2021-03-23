@@ -21,13 +21,8 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
   - 4 GB RAM;
   - 100 GB of storage space.
 
-- For Crypto.org Chain mainnet in the future, you will need a machine with the following minimum requirements:
 
-  - 4-core, x86_64 architecture processor;
-  - 16 GB RAM;
-  - 1 TB of storage space.
-
-## Step 1. Get the Crypto.org Chain Testnet binary
+## Step 1. Get the Crypto.org Chain testnet binary
 
 ::: tip Remarks:
 The following is the minimal setup for a **validator node**. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).

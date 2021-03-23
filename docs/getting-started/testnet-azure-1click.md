@@ -250,7 +250,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 You will be required to insert the following:
 
-- `--from`: The `trco...` address or name of your key in [Step 4-1](#step-4-join-as-a-validator) that holds your funds;
+- `--from`: The `tcro...` address or name of your key in [Step 4-1](#step-4-join-as-a-validator) that holds your funds;
 - `--pubkey`: The consensus public key in [Step 3-1](#step-3-1-use-the-reconfiguration-script) with **tcrocnclconspub** as the prefix;
 - `--moniker`: A moniker (name) for your validator node in [Step 4-1](#step-4-join-as-a-validator);
 - `--security-contact`: Security contact email/contact method.

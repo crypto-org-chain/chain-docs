@@ -22,15 +22,7 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
   - 100 GB of storage space.
 
 
-<<<<<<< HEAD
-  - 4-core, x86_64 architecture processor;
-  - 16 GB RAM;
-  - 1 TB of storage space.
-
-## Step 1. Get the Crypto.org Chain Testnet binary
-=======
 ## Step 1. Get the Crypto.org Chain testnet binary
->>>>>>> 30d4d26 (mainnetdoc_1)
 
 ::: tip Remarks:
 The following is the minimal setup for a **validator node**. If you would like to build a **full node** with complete blockchain data from scratch, kindly follow this [guide](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/croeseid-v0.9.1-fullnode.md#running-a-fullnode-of-croeseid-testnet).
@@ -46,10 +38,6 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
   $ tar -zxvf chain-main_0.9.1-croeseid_Linux_x86_64.tar.gz
   ```
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 30d4d26 (mainnetdoc_1)
 ## Step 2. Configure `chain-maind`
 
 Before kick-starting your node, we will have to configure your node so that it connects to the Croeseid testnet:
@@ -259,7 +247,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 You will be required to insert the following:
 
-- `--from`: The `tcro...` address that holds your funds;
+- `--from`: The `trco...` address that holds your funds;
 - `--pubkey`: The validator public key( See Step [3-3](#step-3-3-obtain-the-validator-public-key) above ) with **tcrocnclconspub** as the prefix;
 - `--moniker`: A moniker (name) for your validator node;
 - `--security-contact`: Security contact email/contact method.

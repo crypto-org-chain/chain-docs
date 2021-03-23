@@ -161,10 +161,10 @@ Follow the below optional steps to enable state-sync:
 
 There are four ways to generate the mainnet address by using:
 
-- [Release Binary (CLI)](../wallets/mainnet-address-generation.md/#step-2-create-a-new-key-and-address);
-- [Ledger Wallet](../wallets/mainnet-address-generation.md/#b-ledger-wallet);
-- [Programmatically via Crypto.org Chain JavaScript Library](../wallets/mainnet-address-generation.md/#c-programmatically); and
-- [Crypto.org Chain Desktop Wallet (Beta version)](../wallets/mainnet-address-generation.md/#d-crypto-org-chain-desktop-wallet-beta).
+- [Release Binary (CLI)](../wallets/mainnet-address-generation.md#step-2-create-a-new-key-and-address);
+- [Ledger Wallet](../wallets/mainnet-address-generation.md#b-ledger-wallet);
+- [Programmatically via Crypto.org Chain JavaScript Library](../wallets/mainnet-address-generation.md#c-programmatically); and
+- [Crypto.org Chain Desktop Wallet (Beta version)](../wallets/mainnet-address-generation.md#d-crypto-org-chain-desktop-wallet-beta).
 
 You should obtain an address with `cro` prefix, e.g. `cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n`. The key comes with a "mnemonic phrase", which is serialized into a human-readable [bip-39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) mnemonic. User can recover their associated addresses with the mnemonic phrase.
 

@@ -11,7 +11,7 @@ The Migration Web Tool targets for advance crypto user. It requires more complic
 ## Preparation
 
 To use the web tool, you must first fulfill the following requirements
-- [MetaMask Wallet](https://metamask.io/) (Right now we only support connecting with MetaMask browser wallet)
+- [MetaMask Wallet](https://metamask.io/) (Right now we only support connecting with MetaMask browser wallet);
 - ERC20 CRO on your MetaMask Account;
 - Small amount of Ethereum on your MetaMask Account (For paying Ethereum transaction fee).
 

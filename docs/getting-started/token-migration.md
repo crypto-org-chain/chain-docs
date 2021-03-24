@@ -115,7 +115,7 @@ If you encountered an error during the registration, but you have already burnt 
 
 To use the re-submission tool, make sure:
 - Your ERC20 CRO burn request is confirmed and succeeded on the Ethereum network
-- The burn ERC20 CRO belongs to you current MetaMask account
+- The burn ERC20 CRO belongs to your current MetaMask account
 
 ### 1. Make Sure Your Migration Request Is Not Submitted
 

@@ -123,7 +123,7 @@ To do so, you can check the record at the [Migration Records Status Page](https:
 
 ### 2. Open Re-submission Tool
 
-Go to [Token Migration Re-submission Tool](https://chain.3ona.co/migration/resubmit).
+Go to [Token Migration Re-submission Tool](https://crypto.org/migration/resubmit).
 
 Alternatively, you can go to [Token Migration website](https://crypto.org/migration) and click "Open Web Tool", you will see a text saying "Proceed to Re-submit Tool.".
 

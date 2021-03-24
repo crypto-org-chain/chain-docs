@@ -90,7 +90,7 @@ If you could not see the MetaMask popups, you can check the MetaMask browser ico
 
 ### 8. Successful Submission
 
-If you migration request is submitted, you will see the following page.
+If your migration request is submitted, you will see the following page.
 
 <img src="./assets/token-migration/complete.png" />
 

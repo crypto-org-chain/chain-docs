@@ -18,7 +18,7 @@ To use the web tool, you must first fulfill the following requirements
 ## How to migrate
 
 :::warning You Will Need to Burn Your ERC20 CRO
-To use the migration web tool to migrate your CRO, you will have to first burn the ERC20 CRO and then submit the migration request. There will be a period of time before the CRO appears on your mainnet address. During this migration period you will not be able to access your funds.
+To use the migration web tool to migrate your CRO, you will have to first burn the ERC20 CRO and then submit the migration request. There will be a period of time before the CRO appears on your mainnet address. You will not be able to access your funds during this migration period.
 :::
 
 ### Table of Content

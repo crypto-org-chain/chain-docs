@@ -166,7 +166,7 @@ An MetaMask popup will appear and ask for your signature. By signing this messag
 <img src="./assets/token-migration/sign-metamask-popup.png" />
 
 :::tip Could Not See MetaMask Popup?
-If you could not see the MetaMask popups, you can check the MetaMask browser icon on your top right hand corner. You should see a pending action on the icon and you can click the icon to continue the operations on MetaMask.
+If you could not see the MetaMask popups, you can check the MetaMask browser icon on your top right-hand corner. You should see a pending action on the icon and you can click the icon to continue the operations on MetaMask.
 :::
 
 <img src="./assets/token-migration/metamask-icon.png" />

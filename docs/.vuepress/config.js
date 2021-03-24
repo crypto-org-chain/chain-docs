@@ -17,16 +17,20 @@ module.exports = {
         text: "Crypto.org Chain",
         items: [
           {
-            text: "Crypto.org Chain Mainnet",
+            text: "Mainnet",
             link: "/getting-started/mainnet"
           },{
             text: "Croeseid Testnet",
             link: "/getting-started/croeseid-testnet"
           },
-           {
-             text: "Testnet Explorer",
+          {
+            text: "Token Migration",
+            link: "/getting-started/token-migration"
+          },
+          {
+             text: "Block Explorer",
              link: "https://crypto.org/explorer"
-           },
+          },
           {
             text: "Testnet Faucet",
             link: "https://crypto.org/faucet"
@@ -62,7 +66,7 @@ module.exports = {
             link: "/wallets/ledger.html#ledger-hardware-wallets"
           },
           {
-            text: "Ledger Hardware Wallets with desktop wallet",
+            text: "Ledger Hardware Wallets with Desktop Wallet",
             link: "/wallets/ledger_desktop_wallet.html#ledger-hardware-wallets"
           },
           {
@@ -101,6 +105,7 @@ module.exports = {
         "croeseid-testnet-nix",
         "local-devnet",
         "advanced-tmkms-integration",
+        "token-migration",
         // "notes-on-production-deployment",
 //        "notes-on-performance"
       ],

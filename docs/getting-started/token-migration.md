@@ -49,7 +49,7 @@ Go to [Token Migration](https://crypto.org/migration) website and click "Open We
 ### 3. Fill-in Your Mainnet Address
 
 :::tip How to Generate Mainnet Address
-To generate an mainnet address, please refer to the [mainnet address generation guide](../wallets/mainnet-address-generation)
+To generate an mainnet address, please refer to the [mainnet address generation guide](../wallets/mainnet-address-generation.md)
 :::
 
 Fill-in the mainnet address you want to receive the migrated CRO. If the address is valid, you will see a green tick next to the address. After you have completed, click "Continue".
@@ -136,7 +136,7 @@ Alternatively, you can go to [Token Migration website](https://crypto.org/migrat
 ### 4. Fill-in Your Mainnet Address
 
 :::tip How to Generate Mainnet Address
-To generate an mainnet address, please refer to the [mainnet address generation guide](./mainnet-address-generation.html)
+To generate an mainnet address, please refer to the [mainnet address generation guide](../wallets/mainnet-address-generation.md)
 :::
 
 Fill-in the mainnet address you want to receive the migrated CRO. If the address is valid, you will see a green tick next to the address. After you have completed, click "Continue".

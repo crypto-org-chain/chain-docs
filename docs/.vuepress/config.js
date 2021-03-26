@@ -19,7 +19,8 @@ module.exports = {
           {
             text: "Mainnet",
             link: "/getting-started/mainnet"
-          },{
+          },
+          {
             text: "Croeseid Testnet",
             link: "/getting-started/croeseid-testnet"
           },
@@ -28,8 +29,8 @@ module.exports = {
             link: "/getting-started/token-migration"
           },
           {
-             text: "Block Explorer",
-             link: "https://crypto.org/explorer"
+              text: "Block Explorer",
+              link: "https://crypto.org/explorer"
           },
           {
             text: "Testnet Faucet",
@@ -100,8 +101,8 @@ module.exports = {
         "",
         "mainnet",
         "croeseid-testnet",
-        "testnet-aws-1click",
-        "testnet-azure-1click",
+        "aws-1click",
+        "azure-1click",
         "croeseid-testnet-nix",
         "local-devnet",
         "advanced-tmkms-integration",

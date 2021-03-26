@@ -143,8 +143,8 @@ Follow the below optional steps to enable state-sync:
 - For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations under [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` and add `persistent_peers` by:
 
   ```bash
-  $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"8dc1863d1d23cf9ad7cbea215c19bcbe8bf39702@p2p.baaa7e56-cc71-4ae4-b4b3-c6a9d4a9596a.cryptodotorg.bison.run:26656,dc2540dabadb8302da988c95a3c872191061aed2@p2p.7d1b53c0-b86b-44c8-8c02-e3b0e88a4bf7.cryptodotorg.herd.run:26656,d2862ef8f86f9976daa0c6f59455b2b1452dc53b@p2p.a088961f-5dfd-4007-a15c-3a706d4be2c0.cryptodotorg.herd.run:26656,87c3adb7d8f649c51eebe0d3335d8f9e28c362f2@seed-0.crypto.org:26656,e1d7ff02b78044795371beb1cd5fb803f9389256@seed-1.crypto.org:26656,2c55809558a4e491e9995962e10c026eb9014655@seed-2.crypto.org:26656"#' ~/.chain-maind/config/config.toml
-
+  $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"87c3adb7d8f649c51eebe0d3335d8f9e28c362f2@seed-0.crypto.org:26656,e1d7ff02b78044795371beb1cd5fb803f9389256@seed-1.crypto.org:26656,2c55809558a4e491e9995962e10c026eb9014655@seed-2.crypto.org:26656"#' ~/.chain-maind/config/config.toml
+  $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1""#' ~/.chain-maind/config/config.toml  
   $ LATEST_HEIGHT=$(curl -s https://mainnet.crypto.org:26657/block | jq -r .result.block.header.height); \
   BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
   TRUST_HASH=$(curl -s "https://mainnet.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)

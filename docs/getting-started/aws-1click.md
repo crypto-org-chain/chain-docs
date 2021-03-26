@@ -98,7 +98,12 @@ The genesis does not exit or the sha256sum does not match the target one. Downlo
 💾 Downloading crypto-org-chain-mainnet-1 genesis
 ```
 
-You may also enable [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) to speed up the block syncing process.
+You may also enable (**Optional**)[STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html). Your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network.
+
+::: warning CAUTION
+Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. 
+:::
+
 ```bash
 ...
 Do you want to enable state-sync? (Y/N): Y

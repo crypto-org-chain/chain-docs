@@ -9,6 +9,12 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
 - [**Join Crypto.org Chain Mainnet**](./mainnet.md)
   - As a validator;
   - Build a Full node
+  
+- Deploy mainnet node with [1 click](./aws-1click.md):
+
+    Try running Full Nodes or Validators connected to our mainnet on 
+    - [AWS](./aws-1click.md); or 
+    - [Azure](./azure-1click.md).
 
 #### Testnet
 
@@ -16,11 +22,11 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
 
     Try running Full Nodes or Validators connected to our Croeseid Testnet.
 
-- Deploy testnet node with 1 click](./testnet-aws-1click.md):
+- Deploy testnet node with [1 click](./aws-1click.md):
 
     Try running Full Nodes or Validators connected to our Croeseid Testnet on 
-    - [AWS](./testnet-aws-1click.md); or 
-    - [Azure](./testnet-azure-1click.md).
+    - [AWS](./aws-1click.md); or 
+    - [Azure](./azure-1click.md).
 
 - [Deploy testnet with nix](./croeseid-testnet-nix.md): 
 

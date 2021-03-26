@@ -28,8 +28,8 @@ Choose the image and click "Create" to start creating the Crypto.org Chain 1-Cli
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | _Size_                  | Select a recommended one or _DC2s_v3_                                                                            |
 | _SSH public key source_ | Choose _"existing public key"_                                                                                   |
-| _SSH public key_        | Copy and past your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys) |
-| _Resource group_        | We suggest to create a new and dedicated one so that you can easily manage resources attached to the instance    |
+| _SSH public key_        | Copy and paste your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys)|
+| _Resource group_        | We suggest creating a new and dedicated one so that you can easily manage resources attached to the instance     |
 
 #### 2. Disk
 

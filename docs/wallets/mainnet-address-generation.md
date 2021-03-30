@@ -92,9 +92,6 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 - Supported OS: Linux, Mac OS and Windows
 - Pre-requisite: Ledger Hardware Wallet
 
-::: tip Crypto.org Chain Ledger Application Is In Development Mode
-The Crypto.org Chain Ledger Application is available on Ledger Live under development mode only. It is under review by the Ledger team.
-:::
 
 ### Step 1. Install Ledger Application
 

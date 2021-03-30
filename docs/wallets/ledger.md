@@ -14,23 +14,19 @@ You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely 
 In case you have any enquiry about using Ledger device with desktop wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
 
 
-## Install the Crypto.org app on your Ledger device
+## Install the Crypto.org Chain app on your Ledger device
 We will use Ledger Nano S for this illustration:
 
 First of all, you will need to install the Crypto.org Chain app on your Ledger device. Kindly make sure your Ledger Live is updated to the latest version. 
 
-- **Step 1** - On the Ledger Live, under "*Experimental Features*", enable "*Developer mode*" to show developer and testnet apps in the manager settings as below:
+- **Step 1** - Connect and unlock your Ledger device
 
-    <img src="./assets/ledger_desktop_wallet/s1-1.png" />
+- **Step 2** - On your Ledger device, go to "*Install app*", It should show "*Open Ledger live to install apps*"
 
-- **Step 2** - Connect and unlock your Ledger device
-
-- **Step 3** - On your Ledger device, go to "*install app*", It should show "*Open Ledger live to install apps*"
-
-- **Step 4** - On the Ledger Live, find and install Crypto.org Chain in the app catalog as below:
+- **Step 3** - On the Ledger Live, find and install Crypto.org Chain in the app catalog under "*Manger*" as below:
         <img src="./assets/ledger_desktop_wallet/s1-4.png" />
 
-- **Step 5** - Your Ledger device will display "*Processing…*". Once the installation is completed, you should see "*Installed*" on your Ledger Live as below:
+- **Step 4** - Your Ledger device will display "*Processing…*". Once the installation is completed, you should see "*Installed*" on your Ledger Live as below:
         <img src="./assets/ledger_desktop_wallet/s1-5.png" />
 
     You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:

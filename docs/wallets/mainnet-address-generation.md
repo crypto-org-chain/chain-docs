@@ -100,19 +100,22 @@ The Crypto.org Chain Ledger Application is available on Ledger Live under develo
 
 #### Step 1-1. Plug in your Ledger device to your computer. If you are using Ledger Nano X, please connect to your computer using the USB-C cable.
 
-#### Step 1-2. Toggle "Developer mode" inside Ledger Live Settings. You should see the "Experiment" tag in the bottom left hand corner after successfully enable developer mode.
-
-<img src="./assets/mainnet-address-generation/ledger-live-settings.png" />
-
-#### Step 1-3. Click "Manager" on the left navigation menu. Confirm to "Allow Ledger Manager" on your Ledger device.
+#### Step 1-2. Click "Manager" on the left navigation menu. Confirm to "Allow Ledger Manager" on your Ledger device.
 
 <img src="./assets/mainnet-address-generation/ledger-live-manager.png" />
 
-#### Step 1-4. Search for "Crypto.com Chain" and install the application to your Ledger.
+#### Step 1-3. Search for "Crypto.com Chain" and install the application to your Ledger.
 
-<img src="./assets/mainnet-address-generation/ledger-live-cryptocom-app.png" />
+<img src="./assets/ledger_desktop_wallet/s1-5.png" />
+
+#### Step 1-4. Confirm the installation
+
+You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:
+
+<img src="./assets/ledger_desktop_wallet/s1-5-1.jpeg" />
 
 ---
+
 
 ## B-i. Ledger Wallet via Release Binary (CLI)
 

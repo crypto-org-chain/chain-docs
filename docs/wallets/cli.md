@@ -43,7 +43,7 @@ To specify the chain-maind config and data storage directory; you can add a glob
 
 ### Configure Chain ID
 
-Crypto.org Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag, for example, `crypto-org-chain-mainnet-1` is the chain-id for the Crypto.com Chain mainnet:
+Crypto.org Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the follow aliases and add the global `--chain-id` flag, for example, `crypto-org-chain-mainnet-1` is the chain-id for the Crypto.org Chain mainnet:
 
 ```bash
 alias chain-maind="chain-maind --chain-id crypto-org-chain-mainnet-1"

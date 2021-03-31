@@ -52,7 +52,7 @@ $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.
 $ tar -zxvf chain-main_1.1.0_Linux_x86_64.tar.gz
 ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0`, which is the version targeting for mainnet.
+If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0` or newer version that are targeting for mainnet.
 
 Before moving to the next step, kindly check your `chain-maind` version by
 
@@ -101,7 +101,7 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 
 <img src="./assets/mainnet-address-generation/ledger-live-manager.png" />
 
-#### Step 1-3. Search for "Crypto.com Chain" and install the application to your Ledger.
+#### Step 1-3. Search for "Crypto.org Chain" and install the application to your Ledger.
 
 <img src="./assets/ledger_desktop_wallet/s1-5.png" />
 
@@ -127,7 +127,7 @@ $ tar -zxvf chain-main_1.0.0_Linux_x86_64.tar.gz
 
 If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0`, which is the version targeting for mainnet.
 
-#### Step 2. Open the Crypto.com Chain application on your Ledger device
+#### Step 2. Open the Crypto.org Chain application on your Ledger device
 
 #### Step 3. Create a new key and address
 
@@ -140,7 +140,7 @@ $ ./chain-maind keys add Ledger --ledger
 You will be prompted with the address on your Ledger device screen. Read it carefully and write it down. Afterward, confirm the address on your Ledger device.
 
 ::: tip Cannot Connect To Your Ledger Device?
-If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.com Chain" application on your Ledger.
+If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger.
 :::
 
 #### Step 4. Verify the address displayed on the terminal, and make sure it matches the address you saw on Ledger device
@@ -180,7 +180,7 @@ Download the latest version of the Crypto.org Chain Desktop Wallet [here](https:
 #### Step 4. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
 
 ::: tip Cannot Connect To Your Ledger Device?
-If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.com Chain" application on your Ledger.
+If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger.
 :::
 
 <img src="./assets/mainnet-address-generation/desktop-main-page.png" />
@@ -230,7 +230,7 @@ Desktop wallet is in beta testing. Please be aware of the [potential risks](http
 
 Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
 
-#### Step 1. Open the Crypto.com Chain application on your Ledger device
+#### Step 1. Open the Crypto.org Chain application on your Ledger device
 
 #### Step 2. Open the application and click "Get Started" to set up an application password.
 

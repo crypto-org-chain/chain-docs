@@ -15,7 +15,7 @@ Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.s
 Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance"
 ![](./assets/aws_ec2_dashboard.png)
 
-### Step 2-1. Search for Crypto.com on AWS Marketplace
+### Step 2-1. Search for Crypto.org Chain 1-Click Node on AWS Marketplace
 Search for "Crypto.org Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section.
 Select "Crypto.org Chain 1-Click Node" from search results.
 ![](./assets/aws_marketplace.png)

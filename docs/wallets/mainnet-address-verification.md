@@ -19,7 +19,7 @@ $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.
 $ tar -zxvf chain-main_1.0.0_Linux_x86_64.tar.gz
 ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0`, which is the version targeting for mainnet.
+If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0` or newer version avaliable for mainnet.
 
 #### Step 2. Recover a new key and derive the address
 

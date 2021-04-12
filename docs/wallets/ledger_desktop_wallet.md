@@ -55,7 +55,7 @@ After the app is set, please conducting the following steps to create a wallet w
     In this demonstration, we will be creating a testnet address and connecting to the current Croeseid testnet, therefore, we select "**Testnet**" as the network option. 
 
 - **Step 2.5** - Before clicking "*Create Wallet*", make sure you have unlocked and started your Crypto.org Chain App on your Ledger device. Also, you should be able to see "*Crypto.org Chain ready*" displayed on your device as follow: 
-        <img src="./assets/ledger_desktop_wallet/s2-5.jpeg" />    
+        <img src="./assets/ledger_desktop_wallet/s2-5.jpg" />    
     At this step, your wallet should be successfully created:
             <img src="./assets/ledger_desktop_wallet/s2-5-1.png" />
 

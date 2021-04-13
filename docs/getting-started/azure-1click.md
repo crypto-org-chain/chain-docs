@@ -214,10 +214,10 @@ If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypt
 Mainnet
 ```bash
 $ chain-maind version
-1.1.0
+1.2.1
 ```
 - Mainnet binary for
-  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Windows_x86_64.zip) are also available. 
+  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Windows_x86_64.zip) are also available. 
 
 Or
 Testnet

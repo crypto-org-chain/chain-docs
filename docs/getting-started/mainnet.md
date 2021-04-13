@@ -5,6 +5,8 @@ This is a detailed documentation for setting up a **Validator** or a **Full Node
 
 ## Pre-requisites
 
+**Remarks**:
+Please follow this [guide](./upgrade_guide.md). If you are upgrade from `v1.1.0`/`v1.2.0` to `v1.2.1`
 
 ### Supported OS
 
@@ -26,7 +28,7 @@ We officially support macOS, Windows and Linux only. Other platforms may work, b
 The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)),  restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys etc.
 :::
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Windows_x86_64.zip) are also available. 
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Windows_x86_64.zip) are also available. 
 There are two options to install `chain-maind`: 
 - [Directly from Github](#option-1-install-chain-maind-released-binaries-from-github); or
 - [Homebrew](#option-2-install-chain-maind-by-homebrew)
@@ -38,15 +40,16 @@ There are two options to install `chain-maind`:
 - To install Crypto.org Chain binaries from Github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_1.1.0_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_1.2.1_Linux_x86_64.tar.gz
   ```
 
-- You can verify the installation by checking the version of the chain-maind, the current version is `1.1.0`.
+- You can verify the installation by checking the version of the chain-maind, the current version is `1.2.1`.
   ```bash 
   # check the version of chain-maind
   $ ./chain-maind version
-  1.1.0
+  1.2.1
+  ```
 **OR**
 
 ### Option 2 - Install `chain-maind` by homebrew
@@ -71,7 +74,7 @@ There are two options to install `chain-maind`:
   ```bash 
   # check the version of chain-maind
   $ chain-maind version
-  1.1.0
+  1.2.1
   ```
 ## Step 2. Configure `chain-maind`
 

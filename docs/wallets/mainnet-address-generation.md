@@ -47,10 +47,10 @@ Supported OS: Linux, Mac OS and Windows
 
 Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v1.0.0) and extract the binary. Here we used Linux as an example:
 
-```bash
-$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.1.0/chain-main_1.1.0_Linux_x86_64.tar.gz
-$ tar -zxvf chain-main_1.1.0_Linux_x86_64.tar.gz
-```
+ ```bash
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_1.2.1_Linux_x86_64.tar.gz
+  ```
 
 If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0` or newer version that are targeting for mainnet.
 
@@ -58,7 +58,7 @@ Before moving to the next step, kindly check your `chain-maind` version by
 
 ```bash
 $ ./chain-maind version
-1.1.0
+1.2.1
 ```
 
 #### Step 2. Create a new key and address

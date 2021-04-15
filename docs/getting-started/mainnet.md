@@ -28,8 +28,8 @@ We officially support macOS, Windows and Linux only. Other platforms may work, b
 The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)),  restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys etc.
 :::
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Windows_x86_64.zip) are also available. 
-There are two options to install `chain-maind`: 
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Windows_x86_64.zip) are also available.
+There are two options to install `chain-maind`:
 - [Directly from Github](#option-1-install-chain-maind-released-binaries-from-github); or
 - [Homebrew](#option-2-install-chain-maind-by-homebrew)
 
@@ -45,7 +45,7 @@ There are two options to install `chain-maind`:
   ```
 
 - You can verify the installation by checking the version of the chain-maind, the current version is `1.2.1`.
-  ```bash 
+  ```bash
   # check the version of chain-maind
   $ ./chain-maind version
   1.2.1
@@ -71,7 +71,7 @@ There are two options to install `chain-maind`:
     $ brew install chain-maind
   ```
 - You can verify the installation by checking the version of the `chain-maind`
-  ```bash 
+  ```bash
   # check the version of chain-maind
   $ chain-maind version
   1.2.1
@@ -126,7 +126,7 @@ Before kick-starting your node, we will have to configure the node so that it co
 - For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `persistent_peers` and `create_empty_blocks_interval` by:
 
   ```bash
-  $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1"8dc1863d1d23cf9ad7cbea215c19bcbe8bf39702@p2p.baaa7e56-cc71-4ae4-b4b3-c6a9d4a9596a.cryptodotorg.bison.run:26656,494d860a2869b90c458b07d4da890539272785c9@p2p.fabc23d9-e0a1-4ced-8cd7-eb3efd6d9ef3.cryptodotorg.bison.run:26656,8a7922f3fb3fb4cfe8cb57281b9d159ca7fd29c6@p2p.aef59b2a-d77e-4922-817a-d1eea614aef4.cryptodotorg.bison.run:26656,dc2540dabadb8302da988c95a3c872191061aed2@p2p.7d1b53c0-b86b-44c8-8c02-e3b0e88a4bf7.cryptodotorg.herd.run:26656,33b15c14f54f71a4a923ac264761eb3209784cf2@p2p.0d20d4b3-6890-4f00-b9f3-596ad3df6533.cryptodotorg.herd.run:26656,d2862ef8f86f9976daa0c6f59455b2b1452dc53b@p2p.a088961f-5dfd-4007-a15c-3a706d4be2c0.cryptodotorg.herd.run:26656,87c3adb7d8f649c51eebe0d3335d8f9e28c362f2@seed-0.crypto.org:26656,e1d7ff02b78044795371beb1cd5fb803f9389256@seed-1.crypto.org:26656,2c55809558a4e491e9995962e10c026eb9014655@seed-2.crypto.org:26656"#' ~/.chain-maind/config/config.toml  
+  $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1"8dc1863d1d23cf9ad7cbea215c19bcbe8bf39702@p2p.baaa7e56-cc71-4ae4-b4b3-c6a9d4a9596a.cryptodotorg.bison.run:26656,494d860a2869b90c458b07d4da890539272785c9@p2p.fabc23d9-e0a1-4ced-8cd7-eb3efd6d9ef3.cryptodotorg.bison.run:26656,8a7922f3fb3fb4cfe8cb57281b9d159ca7fd29c6@p2p.aef59b2a-d77e-4922-817a-d1eea614aef4.cryptodotorg.bison.run:26656,dc2540dabadb8302da988c95a3c872191061aed2@p2p.7d1b53c0-b86b-44c8-8c02-e3b0e88a4bf7.cryptodotorg.herd.run:26656,33b15c14f54f71a4a923ac264761eb3209784cf2@p2p.0d20d4b3-6890-4f00-b9f3-596ad3df6533.cryptodotorg.herd.run:26656,d2862ef8f86f9976daa0c6f59455b2b1452dc53b@p2p.a088961f-5dfd-4007-a15c-3a706d4be2c0.cryptodotorg.herd.run:26656,87c3adb7d8f649c51eebe0d3335d8f9e28c362f2@seed-0.crypto.org:26656,e1d7ff02b78044795371beb1cd5fb803f9389256@seed-1.crypto.org:26656,2c55809558a4e491e9995962e10c026eb9014655@seed-2.crypto.org:26656"#' ~/.chain-maind/config/config.toml
   $ sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
 :::tip Reminder:
@@ -140,14 +140,14 @@ The next step is an **optional** step, If you would like to build a node with co
 
 With  [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html)  your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network.
 ::: warning CAUTION
-Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. 
+Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync.
 :::
 Follow the below optional steps to enable state-sync:
 - For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations under [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` and add `persistent_peers` by:
 
   ```bash
   $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"87c3adb7d8f649c51eebe0d3335d8f9e28c362f2@seed-0.crypto.org:26656,e1d7ff02b78044795371beb1cd5fb803f9389256@seed-1.crypto.org:26656,2c55809558a4e491e9995962e10c026eb9014655@seed-2.crypto.org:26656"#' ~/.chain-maind/config/config.toml
-  $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1""#' ~/.chain-maind/config/config.toml  
+  $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1""#' ~/.chain-maind/config/config.toml
   $ LATEST_HEIGHT=$(curl -s https://mainnet.crypto.org:26657/block | jq -r .result.block.header.height); \
   BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
   TRUST_HASH=$(curl -s "https://mainnet.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -252,11 +252,11 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
 
   and you can check your node's progress (in terms of block height) by
 
-  ```bash 
+  ```bash
   $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
   ```
 
-You are all set, if you would like to run a **Full Node** -- For **Validator**, please continue to the next step. 
+You are all set, if you would like to run a **Full Node** -- For **Validator**, please continue to the next step.
 ### Step 3-5. Joining the network as a validator: Send a `create-validator` transaction
 
 Once the node is synced, we are now ready to send a `create-validator` transaction and join the network, for example:
@@ -360,13 +360,13 @@ Staking operations involve the interaction between an address and a validator. I
 
 #### **Delegate you funds to a validator** [`tx staking delegate <validator-addr> <amount>`]
 
-To bond funds for staking, you can delegate funds to a validator by the `delegate` command. 
+To bond funds for staking, you can delegate funds to a validator by the `delegate` command.
 Note that you can look up validators and their operator address by the validator list on the [explorer](https://crypto.org/explorer/validators).
 
 ::: details Example: Delegate funds from `Default` to a validator under the operator address `crocncl16k...edcer`
 
 ```bash
-$ chain-maind tx staking delegate crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100cro --from Default --chain-id "crypto-org-chain-mainnet-1"
+$ ./chain-maind tx staking delegate crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100cro --from Default --chain-id "crypto-org-chain-mainnet-1"
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgDelegate"....}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -399,7 +399,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 ### Reward related  transactions and queries
 
-After you have delegated or create a validator, reward will be accumulated, you can check/withdraw it by: 
+After you have delegated or create a validator, reward will be accumulated, you can check/withdraw it by:
 #### `query distribution validator-outstanding-rewards ` - Query un-withdrawn rewards for a validator
 
 We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.
@@ -448,7 +448,7 @@ $ ./chain-maind query staking validators -o json | jq
 Where `"jailed": true` implies that the validator has been jailed. After the jailing period has passed, one can broadcast a `unjail` transaction to unjail the validator and resume its normal operations by
 
 ```bash
-$ chain-maind tx slashing unjail --from [key_name] --chain-id crypto-org-chain-mainnet-1
+$ ./chain-maind tx slashing unjail --from [key_name] --chain-id crypto-org-chain-mainnet-1
 
   {"body":{"messages":[{"@type":"/cosmos.slashing.v1beta1.MsgUnjail"...}]}
   confirm transaction before signing and broadcasting [y/N]: y

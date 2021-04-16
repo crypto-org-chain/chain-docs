@@ -80,6 +80,15 @@ Before kick-starting your node, we will have to configure your node so that it c
   OK!
   ```
 
+  ::: tip NOTE
+
+  - For Mac environment, `sha256sum` was not installed by default.  In this case, you may setup `sha256sum` with this command:
+
+    ```bash
+    function sha256sum() { shasum -a 256 "$@" ; } && export -f sha256sum
+    ```
+    :::
+
 - In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
 
   ```bash
@@ -120,6 +129,11 @@ Follow the below optional steps to enable state-sync.
   s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
   s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
   ```
+
+  ::: tip NOTE
+
+  - For Mac environment, if `jq` is missing, you may install it by: `brew install jq`
+    :::
 
 ## Step 3. Run everything
 
@@ -319,7 +333,7 @@ Transfer operation involves the transfer of tokens between two addresses.
 :::details Example: Send 10tcro from an address to another.
 
 ```bash
-$ ./chain-maind tx bank send Default tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-2"
+$ ./chain-maind tx bank send Default tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-2" --gas-prices 0.1basetcro
   ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -338,7 +352,7 @@ To bond funds for staking, you can delegate funds to a validator by the `delegat
 ::: details Example: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
 
 ```bash
-$ ./chain-maind tx staking delegate tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-2"
+$ ./chain-maind tx staking delegate tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-2" --gas-prices 0.1basetcro
 ## Transactions payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgDelegate"....}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -353,7 +367,7 @@ On the other hand, we can create a `Unbond` transaction to unbond the delegated 
 ::: details Example: Unbond funds from a validator under the address `tcrocncl16k...edcer`
 
 ```bash
-$ ./chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-2"
+$ ./chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-2" --gas-prices 0.1basetcro
 ## Transaction payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
 confirm transaction before signing and broadcasting [y/N]: y
@@ -364,6 +378,65 @@ confirm transaction before signing and broadcasting [y/N]: y
 ::: tip
 
 - Once your funds were unbonded, It will be locked until the `unbonding_time` has passed.
+
+:::
+
+### Reward related transactions and queries
+
+After you have delegated or create a validator, reward will be accumulated, you can check/ withdraw it by:
+#### `query distribution validator-outstanding-rewards` - Query un-withdrawn rewards for a validator
+
+We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.
+
+::: details Example: Check all outstanding rewards under the operator address `tcrocncl1...zrf8`
+
+```bash
+$ ./chain-maind q distribution validator-outstanding-rewards tcrocncl1kkqxv3szgh099xezt7y38t5anqzue4s326zrf8
+  rewards:
+  - amount: "1920761912.927067330419141688"
+    denom: basetcro
+```
+:::
+
+#### `tx distribution validator-outstanding-rewards` - Query un-withdrawn rewards for a validator
+
+We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.
+
+::: details Example: Withdraw all outstanding under a delegation address:
+
+```bash
+$ ./chain-maind tx distribution withdraw-all-rewards --from [key_name] --chain-id "testnet-croeseid-2" --gas-prices 0.1basetcro
+
+{"body":{"messages":[{"@type":"/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward"...}]}
+confirm transaction before signing and broadcasting [y/N]: y
+```
+:::
+
+### Slashing related transaction
+### `tx slashing unjail` - Unjail a validator
+
+Validator could be punished and jailed due to network misbehaviour, we can check the jailing status of a validator, for example:
+
+```bash
+$ ./chain-maind query staking validators -o json | jq
+................................
+      "operator_address": "tcrocncl1hct8ye56gk80qjxvrx299yu9v98aqaxe0y5kvg",
+      "consensus_pubkey": {
+        "@type": "/cosmos.crypto.ed25519.PubKey",
+        "key": "P1/aHuScW5myVs+xH10R8yFT2u0wwaCKXfDKSuVTl60="
+      },
+      "jailed": true,
+................................
+```
+
+Where `"jailed": true` implies that the validator has been jailed. After the jailing period has passed, one can broadcast a `unjail` transaction to unjail the validator and resume its normal operations by
+
+```bash
+$ ./chain-maind tx slashing unjail --from [key_name] --chain-id "testnet-croeseid-2" --gas-prices 0.1basetcro
+
+  {"body":{"messages":[{"@type":"/cosmos.slashing.v1beta1.MsgUnjail"...}]}
+  confirm transaction before signing and broadcasting [y/N]: y
+```
 
 :::
 

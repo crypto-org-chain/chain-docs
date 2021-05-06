@@ -16,7 +16,7 @@ Please ensure to include the following information in your proposal:
 - The impact brings to the chain of the proposal
 - Timeline, if applicable
 - How can the quality of the deliverables be assessed, if applicable.
-&nbsp;
+
 
 Proposal Types:
 You may choose to put your proposal in any of the following formats:
@@ -24,6 +24,8 @@ You may choose to put your proposal in any of the following formats:
 Creating a parameter-change governance proposal involves two kinds of risk: losing proposal deposit amounts and potentially altering the function of the network in an undesirable way. Some of the examples are:
   - SoftwareUpgradeProposal: for breaking changes and binary updates
   - CancelSoftwareUpgradeProposal: for revoking the plained upgraded proposal 
+- Community Pool Spend Proposal<br/>
+It unlocks the potential for token-holders to vote to approve spending from the Community Pool. Engaging publicly with the community is the opportunity to develop relationships with stakeholders and to educate them about the importance of your work. If your the proposal passes, your account will be credited the supported amount of your proposal request.
 - Text Proposal  
 You can also choose to submit the proposal in plaintext format.
 
@@ -62,5 +64,8 @@ The voting period is currently 14 days, and the vote can be changed anytime befo
 - A majority (greater than 50%) of the participating voting power must back the 'yes' vote during the required voting period
 - Less than 33.4% of participating voting power votes 'no-with-veto'
 
+&nbsp;
+
+Please note that it is a WIP. The govenance will further be explored down the line and some parts in this documentation are in development, so please use this document as a reference and seek feedback when using this information.
 
 For more details about governance transaction, queries, and relevant network parameters, please visit the [gov section](https://crypto.org/docs/chain-details/module_overview.html#gov).

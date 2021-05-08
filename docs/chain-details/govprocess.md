@@ -23,7 +23,7 @@ You may choose to put your proposal in any of the following formats:
 - Parameter Change Proposal<br/>
 Creating a parameter-change governance proposal involves two kinds of risk: losing proposal deposit amounts and potentially altering the function of the network in an undesirable way. Some of the examples are:
   - SoftwareUpgradeProposal: for breaking changes and binary updates
-  - CancelSoftwareUpgradeProposal: for revoking the plained upgraded proposal 
+  - CancelSoftwareUpgradeProposal: for revoking the planned upgraded proposal 
 - Community Pool Spend Proposal<br/>
 It unlocks the potential for token-holders to vote to approve spending from the Community Pool. Engaging publicly with the community is the opportunity to develop relationships with stakeholders and to educate them about the importance of your work. If your the proposal passes, your account will be credited the supported amount of your proposal request.
 - Text Proposal  

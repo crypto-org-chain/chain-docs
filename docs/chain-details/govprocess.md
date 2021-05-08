@@ -25,7 +25,7 @@ Creating a parameter-change governance proposal involves two kinds of risk: losi
   - SoftwareUpgradeProposal: for breaking changes and binary updates
   - CancelSoftwareUpgradeProposal: for revoking the planned upgraded proposal 
 - Community Pool Spend Proposal<br/>
-It unlocks the potential for token-holders to vote to approve spending from the Community Pool. Engaging publicly with the community is the opportunity to develop relationships with stakeholders and to educate them about the importance of your work. If your the proposal passes, your account will be credited the supported amount of your proposal request.
+It unlocks the potential for token-holders to vote to approve spending from the Community Pool. Engaging publicly with the community is the opportunity to develop relationships with stakeholders and to educate them about the importance of your work. If the proposal passes, your account will be credited the supported amount of your proposal request.
 - Text Proposal  
 You can also choose to submit the proposal in plaintext format.
 

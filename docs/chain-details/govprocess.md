@@ -66,6 +66,6 @@ The voting period is currently 14 days, and the vote can be changed anytime befo
 
 &nbsp;
 
-Please note that it is a WIP. The govenance will further be explored down the line and some parts in this documentation are in development, so please use this document as a reference and seek feedback when using this information.
+Please note that it is a WIP. The governance will further be explored down the line and some parts in this documentation are in development, so please use this document as a reference and seek feedback when using this information.
 
 For more details about governance transaction, queries, and relevant network parameters, please visit the [gov section](https://crypto.org/docs/chain-details/module_overview.html#gov).

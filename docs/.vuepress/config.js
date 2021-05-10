@@ -116,7 +116,8 @@ module.exports = {
         "chain-id",
         "genesis_file",
         "module_overview",
-        "parameters"
+        "parameters",
+        "govprocess"
       ],
       "/wallets/": [
         "cli",
@@ -169,6 +170,7 @@ module.exports = {
             "Notes on Production Deployment": 19,
             "Threat Model": 20,
             "technical_glossary": 21
+            
           };
           return ordering[a["title"]] - ordering[b["title"]];
         }

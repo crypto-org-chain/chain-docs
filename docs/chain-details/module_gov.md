@@ -4,9 +4,13 @@
 
 The `gov` module enables on-chain governance which allows Crypto.org Chain token holder to participate in the decision-making processes. For example, users can:
 
+- Form an idea and seek the feedback;
+- Create the proposal and adjust according to feedback as needed;
 - Submit a proposal along with an initial deposit;
 - Deposit tokens and fund an active proposal;
-- Vote for an active proposal...
+- Vote for an active proposal.
+
+The details about the governance proposal process are available on [The Proposal Process page](https://crypto.org/docs/chain-details/govprocess.html). 
 
 ### Overview
 

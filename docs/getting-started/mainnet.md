@@ -6,7 +6,7 @@ This is a detailed documentation for setting up a **Validator** or a **Full Node
 ## Pre-requisites
 
 **Remarks**:
-Please follow this [guide](./upgrade_guide.md). If you are upgrade from `v1.1.0`/`v1.2.0` to `v1.2.1`
+Please follow this [guide](./upgrade_guide.md#chain-maind-binary-upgrade-guide-v1-1-0-v1-2-0-to-v1-2-1). If you are upgrade from `v1.1.0`/`v1.2.0` to `v1.2.1`
 
 ### Supported OS
 

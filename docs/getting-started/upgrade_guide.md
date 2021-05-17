@@ -11,6 +11,7 @@ At the point of proposed upgrade, user will see the following error message on t
 `ERR BINARY UPDATED BEFORE TRIGGER! UPGRADE "v2.0.0" - in binary but not executed on chain`
 
 Don't panic - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Crypto.org Chain nodes to the latest release binary.
+
 ## Step 1 - Get the `v2.0.0` binary
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
@@ -131,4 +132,3 @@ Sit back and wait for the syncing process. You can query the node syncing status
   $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
   ```
   If the above command returns `false`, It means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
-

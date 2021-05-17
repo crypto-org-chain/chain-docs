@@ -6,7 +6,7 @@ The chain-maind `v2.0.0` - Canis Major upgrade is proposed to be scheduled on 2n
 **DO NOT UPGRADE to the binary `v2.0.0` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
 :::
 ## Step 0 - Don't panic 
-At the point of proposed upgrade, user will the following error message on the `chain-maind`: 
+At the point of proposed upgrade, user will see the following error message on the `chain-maind`: 
 
 `ERR BINARY UPDATED BEFORE TRIGGER! UPGRADE "v2.0.0" - in binary but not executed on chain`
 
@@ -131,5 +131,4 @@ Sit back and wait for the syncing process. You can query the node syncing status
   $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
   ```
   If the above command returns `false`, It means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
-
 

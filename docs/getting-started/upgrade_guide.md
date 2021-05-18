@@ -1,4 +1,4 @@
-# The "Canis Major" upgrade upgrade guide (`v1.*` to `v2.0.0`) : 
+# The "Canis Major" upgrade guide (`v1.*` to `v2.0.0`) : 
 
 :::warning
 The chain-maind `v2.0.0` - Canis Major upgrade is proposed to be scheduled on 2nd of June, 2021. 

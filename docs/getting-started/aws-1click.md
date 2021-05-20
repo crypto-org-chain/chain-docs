@@ -198,7 +198,7 @@ $ curl -s https://mainnet.crypto.org:26657/block | jq -r .result.block.header.he
 ```
 Testnet
 ```bash
-$ curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid-3.crypto.org:26657/block | jq -r .result.block.header.height
 8525
 ```
 

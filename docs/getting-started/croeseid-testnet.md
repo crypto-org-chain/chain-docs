@@ -49,7 +49,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 ### Step 2-0 (Optional) Clean up the old blockchain data
 If you have joined `testnet-croeseid-2` before, you would have to clean up the old blockchain data and start over again, it can be done by running:
   ``` bash
-  ./chain-maind ./chain-maind unsafe-reset-all
+  $ ./chain-maind unsafe-reset-all
   ```
 and remove the old genesis file by
   ```
@@ -171,7 +171,7 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 
 ### Step 3-2. Obtain test token
 
-Unless you have obtained the CRO testnet token before, use the [TCRO faucet](https://crypto.org/faucet) to obtain test CRO tokens.
+Unless you have obtained the CRO testnet token before, use the [tcro faucet](https://crypto.org/faucet) to obtain test CRO tokens.
 In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel ,
 stating who you are and your `tcro.....` address.
 
@@ -455,7 +455,9 @@ $ ./chain-maind tx slashing unjail --from [key_name] --chain-id "testnet-croesei
 
 Congratulations! You've successfully set up a Testnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
 
-## Croeseid testnet faucet
+## Croeseid testnet faucet and explorer
+
+- You can lookup data within the `testnet-croeseid-3` network by the [explorer](https://crypto.org/explorer/croeseid3/);
 
 - To interact with the blockchain, simply use the [test-token faucet](https://crypto.org/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
   - Note that you will need to create an [address](#step-3-1-create-a-new-key-and-address) before using the faucet.

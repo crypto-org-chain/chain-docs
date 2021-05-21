@@ -7,7 +7,7 @@ This is a detailed documentation for setting up a Validator or a full node on Cr
 ## Pre-requisites
 
 **Remarks**:
-`testnet-croeseid-3` is the latest Crypto.org Chain testnet. If you have joined `testnet-croeseid-2` and received test token before, you should be able to access the test token with the same key. Otherwise, you can request test token by sending send a message on [Discord](https://discord.gg/pahqHz26q4) **#request-tcro** channel.
+`testnet-croeseid-3` is the latest Crypto.org Chain testnet. If you have joined `testnet-croeseid-2` and received test tokens before, you should be able to access the test token with the same key. Otherwise, you can request test tokens by sending a message on [Discord](https://discord.gg/pahqHz26q4) **#request-tcro** channel.
 ### Supported OS
 
 We officially support macOS, Windows and Linux only. Other platforms may work but there is no guarantee. We will extend our support to other platforms after we have stabilized our current architecture.

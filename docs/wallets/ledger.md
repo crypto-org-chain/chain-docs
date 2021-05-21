@@ -90,7 +90,7 @@ In this tutorial we will send a `MsgSend` transaction securely signed by your Le
     - In this command, we are sending `1tcro` from the from address, you can specify other amounts you want.
 1. You will be asked to confirm the details of transaction in your terminal, input `y` to confirm:
     ```bash
-    $ ./chain-maind tx bank send tcro1tzhdkuc328cgh2hycyfddtdpqfwwu42ywyfvkj tcro1aaah6juc9n6wvkkkr4zdn073n8gt7waha39xsv 1tcro --chain-id=testnet-croeseid-2 --ledger --keyring-backend=test  --sign-mode=amino-json
+    $ ./chain-maind tx bank send tcro1tzhdkuc328cgh2hycyfddtdpqfwwu42ywyfvkj tcro1aaah6juc9n6wvkkkr4zdn073n8gt7waha39xsv 1tcro --chain-id=testnet-croeseid-3 --ledger --keyring-backend=test  --sign-mode=amino-json
     {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address":"tcro1tzhdkuc328cgh2hycyfddtdpqfwwu42ywyfvkj","to_address":"tcro1aaah6juc9n6wvkkkr4zdn073n8gt7waha39xsv","amount":[{"denom":"basetcro","amount":"100000000"}]}],"memo":"","timeout_height":"0","extension_options":[],"non_critical_extension_options":[]},"auth_info":{"signer_infos":[],"fee":{"amount":[],"gas_limit":"200000","payer":"","granter":""}},"signatures":[]}
 
     confirm transaction before signing and broadcasting [y/N]: y

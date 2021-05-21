@@ -1,9 +1,9 @@
-# The "Canis Major" upgrade guide (`v1.*` to `v2.0.0`) : 
+# The "Canis Major" upgrade guide (`v1.*` to `v2.0.1`) : 
 
 :::warning
-The chain-maind `v2.0.0` - Canis Major upgrade is proposed to be scheduled on 2nd of June, 2021. 
+The chain-maind `v2.0.1` - Canis Major upgrade is proposed to be scheduled on 1 Jun 2021, 23:59:00 UTC, 2021. 
 
-**DO NOT UPGRADE to the binary `v2.0.0` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
+**DO NOT UPGRADE to the binary `v2.0.1` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
 :::
 ## Step 0 - Don't panic 
 At the point of proposed upgrade, user will see the following error message on the `chain-maind`: 
@@ -12,16 +12,16 @@ At the point of proposed upgrade, user will see the following error message on t
 
 Don't panic - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Crypto.org Chain nodes to the latest release binary.
 
-## Step 1 - Get the `v2.0.0` binary
+## Step 1 - Get the `v2.0.1` binary
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.0/chain-main_2.0.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.0/chain-main_2.0.0_Windows_x86_64.zip) are also available. 
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
 
 - Terminate the `chain-maind`; afterwards, download the `v2.0.0` released binaries from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.0/chain-main_2.0.0_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_2.0.0_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_2.0.1_Linux_x86_64.tar.gz
   ```
 
 
@@ -44,12 +44,12 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
 
 ### Step 1.1 -  Verify the version
 
-You can verify the installation by checking the version of `chain-maind`, the latest version is `2.0.0`.
+You can verify the installation by checking the version of `chain-maind`, the latest version is `2.0.1`.
 
   ```bash 
   # check the version of chain-maind
   $ ./chain-maind version
-  2.0.0
+  2.0.1
   ```
 
 ## Step 2. - Run everything

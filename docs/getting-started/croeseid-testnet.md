@@ -132,8 +132,8 @@ Follow the below optional steps to enable state-sync.
 - For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of [statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` by:
 
   ```bash
-  $ LASTEST_HEIGHT=$(curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height); \
-  BLOCK_HEIGHT=$((LASTEST_HEIGHT - 1000)); \
+  $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid.crypto.org:26657/block | jq -r .result.block.header.height); \
+  BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
   TRUST_HASH=$(curl -s "https://testnet-croeseid.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
   $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \

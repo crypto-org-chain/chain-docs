@@ -5,6 +5,9 @@ The chain-maind `v2.0.1` - Canis Major upgrade is proposed to be scheduled on 1 
 
 **DO NOT UPGRADE to the binary `v2.0.1` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
 :::
+
+For those who want to enjoy the automatic upgrade managed by [cosmovisor](https://docs.cosmos.network/master/run-node/cosmovisor.html), please follow this [cosmovisor guide](./cosmovisor.md) for the coming "Canis Major" network upgrade. Otherwise, please continue below manual upgrade steps.
+
 ## Step 0 - Don't panic 
 At the point of proposed upgrade, user will see the following error message on the `chain-maind`: 
 
@@ -31,7 +34,8 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
     ```bash 
     $ sudo systemctl stop chain-maind
     ```
-
+    And replace the binary in the location where the `ExecStart` states in Systemd Unit file.
+    
     :::
 
 
@@ -41,7 +45,6 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
     ```bash 
     $ brew upgrade chain-maind
     ```
-
 ### Step 1.1 -  Verify the version
 
 You can verify the installation by checking the version of `chain-maind`, the latest version is `2.0.1`.

@@ -3,11 +3,16 @@
 
 This is a detailed documentation for setting up a **Validator** or a **Full Node** on Crypto.org mainnet.
 
+## Network upgrade for "Canis Major"
+
+::: tip Remarks: 
+
+For network upgrade from `v1.*.*` to `v2.0.1`, please follow this [guide](./upgrade_guide.md#the-canis-major-upgrade-guide-v1-to-v2-0-1).
+
+:::
+
+
 ## Pre-requisites
-
-**Remarks**:
-Please follow this [guide](./upgrade_guide.md#chain-maind-binary-upgrade-guide-v1-1-0-v1-2-0-to-v1-2-1). If you are upgrade from `v1.1.0`/`v1.2.0` to `v1.2.1`
-
 ### Supported OS
 
 We officially support macOS, Windows and Linux only. Other platforms may work, but there is no guarantee. We will extend our support to other platforms after we have stabilized our current architecture.

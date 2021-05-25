@@ -1,0 +1,104 @@
+# Running "Canis Major" network upgrade with cosmovisor
+
+## Step 0 - Install cosmosviosr
+
+One can follow this [link](https://docs.cosmos.network/master/run-node/cosmovisor.html#installation) to install.
+
+Or, run below command
+```
+$ git clone https://github.com/cosmos/cosmos-sdk.git
+$ cd cosmos-sdk/cosmovisor
+$ make cosmovisor
+```
+
+## Step 1 - Set up Environment Variables
+
+Set your [Environment Variables](https://docs.cosmos.network/master/run-node/cosmovisor.html#command-line-arguments-and-environment-variables) for cosmovisor to run
+
+```
+export DAEMON_NAME=chain-maind
+export DAEMON_HOME=/home/ubuntu/.chain-maind
+export DAEMON_RESTART_AFTER_UPGRADE=true
+export DAEMON_ALLOW_DOWNLOAD_BINARIES=true
+export DAEMON_LOG_BUFFER_SIZE=512
+```
+
+
+### Step 1.1 - Create cosmovisor folder structure
+
+One can follow this [folder structure](https://docs.cosmos.network/master/run-node/cosmovisor.html#data-folder-layout)
+```
+.chain-maind/
+├── config
+│ 
+├── cosmovisor
+│   ├── current -> genesis or upgrades/v2.0.0
+│   ├── genesis
+│   │   └── bin
+│   │       └── chain-maind
+│   └── upgrades
+│       └── v2.0.0
+│           └── bin
+│               └── chain-maind
+└── data
+```
+
+For `.chain-maind/cosmovisor/genesis/bin/chain-maind`, it is the binary before the upgrade proceeds. In our case of the "Canis Major" upgrade, it should be chain-maind with version `1.2.1`. Kindly, prepare this binary before run cosmovisor.
+
+## Step 2. - Run everything
+
+- Start `cosmovisor`, e.g.:
+
+```bash
+$ ./cosmovisor start
+```
+
+Since we enable `DAEMON_ALLOW_DOWNLOAD_BINARIES=true`, cosmovisor will automatically download binary with `2.0.1` in `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` and update `./cosmovisor/current` directory symlink to `upgrades/v2.0.0` instead when proposed upgrade log is found. cosmovisor will create `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` for you.
+
+:::warning Important:
+If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` mamually before upgrade time.
+[Linux](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz), [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
+:::
+
+:::tip Tip:
+Example of running cosmovisor with systemd
+```toml
+# /lib/systemd/system/chain-maind.service
+[Unit]
+Description=Chain-maind
+ConditionPathExists=/chain/bin/cosmovisor
+After=network.target
+
+[Service]
+Type=simple
+User=crypto
+Group=crypto
+LimitNOFILE=12288
+
+Restart=always
+RestartSec=10
+
+Environment="DAEMON_NAME=chain-maind"
+Environment="DAEMON_HOME=/chain/.chain-maind"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=true"
+Environment="DAEMON_LOG_BUFFER_SIZE=512"
+
+WorkingDirectory=/chain/bin
+ExecStart=/chain/bin/cosmovisor start --home /chain/.chain-maind
+
+# make sure log directory exists and owned by syslog
+PermissionsStartOnly=true
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=chain-maind
+
+TimeoutStartSec=3min
+
+[Install]
+WantedBy=multi-user.target
+```
+:::
+
+

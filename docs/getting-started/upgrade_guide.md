@@ -17,7 +17,7 @@ Don't panic - The Chain will be paused to allow the majority of validators to up
 To simplify the following step, we will be using **Linux** for illustration. Binary for
 [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
 
-- Terminate the `chain-maind`; afterwards, download the `v2.0.0` released binaries from github:
+- Terminate the `chain-maind`; afterwards, download the `v2.0.1` released binaries from github:
 
   ```bash
   $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz
@@ -66,7 +66,7 @@ Sit back and wait for the syncing process. You can query the node syncing status
   ```bash
   $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
   ```
-  If the above command returns `false`, It means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
+  If the above command returns `false`, it means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
 
 
 

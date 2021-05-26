@@ -4,7 +4,7 @@
 
 One can follow this [link](https://docs.cosmos.network/master/run-node/cosmovisor.html#installation) to install.
 
-Or, run below command
+Alternatively, run the below commands instead
 ```
 $ git clone https://github.com/cosmos/cosmos-sdk.git
 $ cd cosmos-sdk/cosmovisor
@@ -43,7 +43,7 @@ One can follow this [folder structure](https://docs.cosmos.network/master/run-no
 └── data
 ```
 
-For `.chain-maind/cosmovisor/genesis/bin/chain-maind`, it is the binary before the upgrade proceeds. In our case of the "Canis Major" upgrade, it should be chain-maind with version `1.2.1`. Kindly, prepare this binary before run cosmovisor.
+For `.chain-maind/cosmovisor/genesis/bin/chain-maind`, it is the binary before the upgrade proceeds. In our case of the "Canis Major" upgrade, it should be chain-maind with version `1.2.1`. Kindly have this binary ready before running cosmovisor.
 
 ## Step 2. - Run everything
 
@@ -56,7 +56,7 @@ $ ./cosmovisor start
 Since we enable `DAEMON_ALLOW_DOWNLOAD_BINARIES=true`, cosmovisor will automatically download binary with `2.0.1` in `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` and update `./cosmovisor/current` directory symlink to `upgrades/v2.0.0` instead when proposed upgrade log is found. cosmovisor will create `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` for you.
 
 :::warning Important:
-If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` mamually before upgrade time.
+If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` manually before upgrade time.
 [Linux](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz), [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
 :::
 
@@ -100,5 +100,4 @@ TimeoutStartSec=3min
 WantedBy=multi-user.target
 ```
 :::
-
 

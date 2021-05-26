@@ -1,5 +1,11 @@
 # Running "Canis Major" network upgrade with cosmovisor
 
+:::warning
+
+It is recommended that cosmovisor is better to be used on full nodes rather than validators as currently there's a potential race condition: [cosmos/cosmos-sdk#9384](https://github.com/cosmos/cosmos-sdk/pull/9384)
+
+:::
+
 ## Step 0 - Install cosmosviosr
 
 One can follow this [link](https://docs.cosmos.network/master/run-node/cosmovisor.html#installation) to install.

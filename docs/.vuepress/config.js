@@ -123,6 +123,8 @@ module.exports = {
         "cli",
         "ledger",
         "ledger_desktop_wallet",
+        "keplr_ledger_guide",
+        "keplr_IBC_guide",
         "mainnet-address-generation",
         "mainnet-address-verification",
 //        "rpc"

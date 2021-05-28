@@ -227,9 +227,13 @@ The following tables show overall effects on different configurations of the dis
 
 The `gov` module enables on-chain governance which allows Crypto.org Chain token holder to participate in the decision-making processes. For example, users can:
 
+- Form an idea and seek the feedback;
+- Create the proposal and adjust according to feedback as needed;
 - Submit a proposal along with an initial deposit;
 - Deposit tokens and fund an active proposal;
-- Vote for an active proposal...
+- Vote for an active proposal.
+
+The details about the governance proposal process are available on [The Proposal Process page](https://crypto.org/docs/chain-details/govprocess.html).
 
 ### Overview
 
@@ -394,7 +398,7 @@ $ chain-maind query gov params --output json | jq
     "deposit_params": {
       "min_deposit": [
         {
-          "denom": "basetcro",
+          "denom": "basecro",
           "amount": "10000000"
         }
       ],
@@ -481,7 +485,7 @@ We can query the current query parameters by
 $ chain-maind query mint params --output json | jq
 
   {
-    "mint_denom": "basetcro",
+    "mint_denom": "basecro",
     "inflation_rate_change": "0.013000000000000000",
     "inflation_max": "0.020000000000000000",
     "inflation_min": "0.007000000000000000",
@@ -726,7 +730,7 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 ### Delegator
 
-The `staking` module enables CRO owners to delegate their toke to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](#distribution) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
+The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](#distribution) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
 It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](#slashing)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
@@ -741,7 +745,7 @@ First of all, we can create a validator with the `create-validator` transaction,
 ```bash
 $ chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
---amount=[staking_abount] \
+--amount=[staking_amount] \
 --pubkey=[trocnclconspub...]  \
 --moniker="[moniker_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \
@@ -758,7 +762,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 #### `tx staking delegate [validator-addr] [amount]` - Delegate liquid tokens to a validator
 
-As discussed in the delegator section, one can delegate their toke to an active validators by:
+As discussed in the delegator section, one can delegate their tokens to an active validators by:
 
 ```bash
 $ tx staking delegate [validator-addr] [amount]

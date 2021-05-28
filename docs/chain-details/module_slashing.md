@@ -74,7 +74,7 @@ When a validator is jailed because of a byzantine fault, their validator public 
 
 #### Un-jailing
 
-When a jailed validator wishes to resume normal operations (after `downtime_jail_duration` has passed), they can create an`unjail` transaction which marks them as un-jailed. Validator will then rejoin the validator set once it has bee successful un-jailed.
+When a jailed validator wishes to resume normal operations (after `downtime_jail_duration` has passed), they can create an`unjail` transaction which marks them as un-jailed. Validator will then rejoin the validator set once it has been successful un-jailed.
 
 ### Slashing for Byzantine Fault
 

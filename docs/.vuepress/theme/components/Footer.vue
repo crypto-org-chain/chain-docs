@@ -24,17 +24,17 @@
                 Documentation
               </a>
             </div>
-          </div>
-          <div class="column">
-            <h3>Tools</h3>
-            <div class="link">
-              <a href="/docs/wallets/cli.html">
-                Wallet
-              </a>
-            </div>
             <div class="link">
               <a href="/faucet">
                 Faucet
+              </a>
+            </div>
+          </div>
+          <div class="column">
+            <h3>Wallets</h3>
+            <div class="link">
+              <a href="/wallets">
+                Wallets
               </a>
             </div>
           </div>
@@ -76,7 +76,7 @@
           <a target="_blank" rel="noopener noreferrer" href="https://www.reddit.com/r/Crypto_com/">
             <img :src="$withBase('/social/reddit.svg')" alt="reddit" />
           </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/nsp9JTC">
+          <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/pahqHz26q4">
             <img :src="$withBase('/social/discord.svg')" alt="discord" />
           </a>
           <a target="_blank" rel="noopener noreferrer" href="https://t.me/CryptoComOfficial">

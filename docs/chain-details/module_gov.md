@@ -4,9 +4,13 @@
 
 The `gov` module enables on-chain governance which allows Crypto.org Chain token holder to participate in the decision-making processes. For example, users can:
 
+- Form an idea and seek the feedback;
+- Create the proposal and adjust according to feedback as needed;
 - Submit a proposal along with an initial deposit;
 - Deposit tokens and fund an active proposal;
-- Vote for an active proposal...
+- Vote for an active proposal.
+
+The details about the governance proposal process are available on [The Proposal Process page](https://crypto.org/docs/chain-details/govprocess.html). 
 
 ### Overview
 
@@ -32,7 +36,7 @@ Users can submit a proposal with an initial deposit. The proposal will then beco
 
 **Phase 1 - Deposit period**
 
-During the _deposit period_, users can deposit and support an active proposal. Once the deposit of the proposal reached `min_deposit`, it will enter the _voting period_. Otherwise, if the proposal is not successfully funded within `max_deposit_period`, It will become inactive and all the deposit will be refunded.
+During the _deposit period_, users can deposit and support an active proposal. Once the deposit of the proposal reached `min_deposit`, it will enter the _voting period_. Otherwise, if the proposal is not successfully funded within `max_deposit_period`, it will become inactive and the deposit will not be refunded.
 
 **Phase 2 - Voting period**
 
@@ -55,7 +59,7 @@ Otherwise, the proposal will be accepted and changes will be implemented accordi
 
 - Submit a parameter change proposal - `param-change [proposal-file]`
 
-  Users can submit a proposal to modify network parameters during run time, Here is a demon proposal if we would like to change the parameter `MaxValidators` (maximum number of validator) in the `staking` module,
+  Users can submit a proposal to modify network parameters during run time, here is a demon proposal if we would like to change the parameter `MaxValidators` (maximum number of validator) in the `staking` module,
 
   ```json
   {
@@ -171,7 +175,7 @@ $ chain-maind query gov params --output json | jq
     "deposit_params": {
       "min_deposit": [
         {
-          "denom": "basetcro",
+          "denom": "basecro",
           "amount": "10000000"
         }
       ],

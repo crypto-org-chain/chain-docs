@@ -20,7 +20,7 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 ### Delegator
 
-The `staking` module enables CRO owners to delegate their toke to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](./module_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
+The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](./module_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
 It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](./module_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
@@ -35,7 +35,7 @@ First of all, we can create a validator with the `create-validator` transaction,
 ```bash
 $ chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
---amount=[staking_abount] \
+--amount=[staking_amount] \
 --pubkey=[trocnclconspub...]  \
 --moniker="[moniker_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \
@@ -52,7 +52,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 #### `tx staking delegate [validator-addr] [amount]` - Delegate liquid tokens to a validator
 
-As discussed in the delegator section, one can delegate their toke to an active validator by:
+As discussed in the delegator section, one can delegate their tokens to an active validator by:
 
 ```bash
 $ tx staking delegate [validator-addr] [amount]
@@ -100,7 +100,7 @@ to check all the supported sub-commands.
 With a given delegator address and the validator account that it is associated with, we can check the by:
 
 ```json
-$ chain-maind query chain-maind query staking delegation [delegator-addr] [validator-addr] --output json | jq
+$ chain-maind query staking delegation [delegator-addr] [validator-addr] --output json | jq
 
   {
     "delegation": {

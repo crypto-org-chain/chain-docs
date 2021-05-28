@@ -20,13 +20,13 @@ $ cachix use crypto-com
 ## Install chain utils for testnet
 
 ```shell
-$ nix-env -iA chain-utils-testnet -f https://github.com/crypto-com/chain-main/archive/95674386b63f6dba1aa4a5c6f16e8755be8408bc.tar.gz
+$ nix-env -iA chain-utils-testnet -f https://github.com/crypto-org-chain/chain-main/archive/v0.9.1-croeseid.tar.gz
 ```
 
 After installation, you'll have these commands in your `PATH`:
 
 - `chain-maind`, the chain binary for testnet
-- `init-node`, the script to iniailize the chain data directory with state sync enabled
+- `init-node`, the script to initialize the chain data directory with state sync enabled
 - `print-systemd-config`, print a systemd config file to stdout
 
 ## Initialization
@@ -70,7 +70,7 @@ One of the strengths of nix package manager is you can have multiple isolated in
 you want to manage both testnet and mainnet chains or different versions of them on a single machine.
 
 ```shell
-$ nix build -f https://github.com/crypto-com/chain-main/archive/95674386b63f6dba1aa4a5c6f16e8755be8408bc.tar.gz chain-utils-testnet -o testnet
+$ nix build -f https://github.com/crypto-org-chain/chain-main/archive/v0.9.1-croeseid.tar.gz chain-utils-testnet -o testnet
 $ export CHAINHOME=$PWD/testnet_data
 $ MONIKER=testnode ./testnet/bin/init-node
 $ ./testnet/bin/chain-maind start --home $CHAINHOME

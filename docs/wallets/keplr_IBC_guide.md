@@ -4,7 +4,9 @@ The Inter-Blockchain Communication protocol (IBC) is an inter-module communicati
 
 In the following step-by-step guide, you will learn how to make IBC transfers with Keplr, and IBC transfers between Crypto.org Chain and Cosmos are demonstrated as an example in this guide.  
 
-*Please note: we recommend using this Keplr’s feature only after careful research and awareness of the risks associated with its improper use, and Crypto.org does not take any liability related to the potential loss of funds due to the IBC Transfers service.*
+::: warning
+*We recommend using this Keplr’s feature only after careful research and awareness of the risks associated with its improper use, and Crypto.org does not take any liability related to the potential loss of funds due to the IBC Transfers service.*
+:::
 
 ### Pre-requisites
 - Make sure you have CRO under Crypto.org Chain and ATOM under the Cosmos network in Keplr. 
@@ -14,10 +16,12 @@ In the following step-by-step guide, you will learn how to make IBC transfers wi
 Open your Keplr Extension, select “Cosmos” in the network drop-down bar.
 You will find “IBC Transfer” at the bottom and click “Transfer”. 
 
+<img src="./assets/keplr_wallet/IBC-s1-1.png" />
+
 Under “Destination Chain”, select “New IBC Transfer Channel”.
 Under the “Add IBC Channel” pop-up window, select “Crypto.org”, fill the “Channel ID” with **channel-109** (*Incorrect Channel ID will lead to the failure of this transaction*), and hit “Save”.
 
-<img src="./assets/keplr_wallet/IBC-s1-1.png" />
+
 <img src="./assets/keplr_wallet/IBC-s1-2.png" />
 <img src="./assets/keplr_wallet/IBC-s1-3.png" />
 

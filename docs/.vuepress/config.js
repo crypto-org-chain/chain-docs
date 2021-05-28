@@ -71,6 +71,14 @@ module.exports = {
             link: "/wallets/ledger_desktop_wallet.html#ledger-hardware-wallets"
           },
           {
+            text: "Keplr Wallet: Using Ledger Device with Keplr",
+            link: "/wallets/keplr_ledger_guide.html#using-ledger-device-with-keplr"
+          },
+          {
+            text: "Keplr Wallet: Conducting IBC Transfer with ",
+            link: "/wallets/keplr_IBC_guide.html#conducting-ibc-transfer-with-keplr-wallet"
+          },                    
+          {
             text: "Mainnet Address Generation",
             link: "/wallets/mainnet-address-generation.md"
           },

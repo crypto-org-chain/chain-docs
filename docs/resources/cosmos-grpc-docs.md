@@ -8871,7 +8871,7 @@ and a possible frozen height.
 | ----- | ---- | ----- | ----------- |
 | chain_id | [string](#string) |  |  |
 | trust_level | [Fraction](#ibc.lightclients.tendermint.v1.Fraction) |  |  |
-| trusting_period | [google.protobuf.Duration](#google.protobuf.Duration) |  | duration of the period since the LastestTimestamp during which the submitted headers are valid for upgrade |
+| trusting_period | [google.protobuf.Duration](#google.protobuf.Duration) |  | duration of the period since the LatestTimestamp during which the submitted headers are valid for upgrade |
 | unbonding_period | [google.protobuf.Duration](#google.protobuf.Duration) |  | duration of the staking unbonding period |
 | max_clock_drift | [google.protobuf.Duration](#google.protobuf.Duration) |  | defines how much new (untrusted) header&#39;s Time can drift into the future. |
 | frozen_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | Block height when the client was frozen due to a misbehaviour |

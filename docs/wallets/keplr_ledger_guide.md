@@ -8,7 +8,7 @@ In the following step-by-step guide, you will learn how to stake your CROs using
 In case you have any inquiries about using the Ledger device with Keplr, kindly refer to the [Keplr FAQ list](https://faq.keplr.app/) or send a message to the Crypto.org Chain [Discord Channel](https://discord.com/invite/pahqHz26q4) *#browser-extension-wallet* channel for assistance. Using Keplr with a Ledger Nano on Windows sometimes causes some issues, if you encounter such issues, please reach out to the Keplr team.
 
 ## Set up Keplr Wallet and connect with your Ledger device
-*The browser may ask for permission to access your Ledger device, please make sure to grant this permission in your browser during this process. Note that the permission is strictly used to allow Keplr extension to communitcate with the front-ends, and all sensitive data remains locally on your device.*
+*The browser may ask for permission to access your Ledger device, please make sure to grant this permission in your browser during this process. Note that the permission is strictly used to allow Keplr extension to communicate with the front-ends, and all sensitive data remain locally on your device.*
 
 ### Step 1: Set up Keplr Wallet
 Install the [Keplr Browser Extension for Chrome](https://github.com/chainapsis/keplr-extension/releases/tag/v0.8.8-rc.0). Once it is installed, you can open the extension and choose one of the options that best suit your preferences. Since we are using a ledger device for this tutorial, you can select the last option “Import ledger”.

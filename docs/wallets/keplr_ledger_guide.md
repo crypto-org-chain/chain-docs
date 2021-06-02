@@ -8,7 +8,7 @@ In the following step-by-step guide, you will learn how to stake your CROs using
 In case you have any inquiries about using the Ledger device with Keplr, kindly refer to the [Keplr FAQ list](https://faq.keplr.app/) or send a message to the Crypto.org Chain [Discord Channel](https://discord.com/invite/pahqHz26q4) *#browser-extension-wallet* channel for assistance. Using Keplr with a Ledger Nano on Windows sometimes causes some issues, if you encounter such issues, please reach out to the Keplr team.
 
 ## Set up Keplr Wallet and connect with your Ledger device
-*The browser may ask for permission to access your Ledger device, please make sure to grant this permission in your browser during this process.*
+*The browser may ask for permission to access your Ledger device, please make sure to grant this permission in your browser during this process. Note that the permission is strictly used to allow Keplr extension to communicate with the front-ends, and all sensitive data remain locally on your device.*
 
 ### Step 1: Set up Keplr Wallet
 Install the [Keplr Browser Extension for Chrome](https://github.com/chainapsis/keplr-extension/releases/tag/v0.8.8-rc.0). Once it is installed, you can open the extension and choose one of the options that best suit your preferences. Since we are using a ledger device for this tutorial, you can select the last option “Import ledger”.
@@ -58,7 +58,7 @@ Then you can view a list of all the validators in the Keplr Web Wallet. It is im
 
 <img src="./assets/keplr_wallet/s3-4.png" />
 
-Choose the number of CROs you want to stake and click “Delegate”. Please do not stake all of your available funds as there are also transaction fees. In this demo, we will go with "Average". In the following window, the details will be displayed and at the bottom, it will say “Waiting for Ledger to Confirm” at the bottom.
+Choose the number of CROs you want to stake and click “Delegate”. Please do not stake all of your available funds and leave a small amount of CROs for future transaction fees. In this demo, we will go with "Average". In the following window, the details will be displayed and at the bottom, it will say “Waiting for Ledger to Confirm” at the bottom.
 
 Now you can check the information displayed on your ledger, make sure the information is correct, then you can click “Sign Transaction” on your Ledger device.
 Please always double-check on your ledger what you are signing!

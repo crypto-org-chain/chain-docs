@@ -1,6 +1,6 @@
 # Technical glossary
 
-A | [B](#b) | [C](#c) | [D](#d) | E | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [J](#j) | K | [L](#l) | [M](#m) | [N](#n) | O | [P](#p) | [Q](#q) | [R](#r) | [S](#s) | [T](#t) | [U](#u) | [V](#v) | [W](#w) | X | Y | Z
+A | [B](#b) | [C](#c) | [D](#d) | E | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [J](#j) | K | [L](#l) | [M](#m) | [N](#n) | O | [P](#p) | [Q](#q) | [R](#r) | [S](#s) | [T](#t) | [U](#u) | [V](#v) | W | X | Y | Z
 
 ---
 
@@ -9,7 +9,7 @@ A | [B](#b) | [C](#c) | [D](#d) | E | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [J
 
 **Block Explorer**
 
-An application that allows a user to explore the different blocks on a blockchain. It has a record of all the transactions in each block and is often made public to increase blockchain visibility and transparency.  
+An application that allows a user to explore the different blocks on a blockchain. It has a record of all the transactions in each block and is often made public to increase blockchain visibility and transparency. Here are our explorers: [Crypto.org Chain Explorer](https://crypto.org/explorer/) and [Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid3/).
 
 **Bonded (staking state)**
 
@@ -46,7 +46,7 @@ The maximum daily increase of the validator’s commission. This parameter canno
 
 The process of a group of entities to agree on a particular data value, and there are a variety of algorithms used for determining consensus.
 
-**CosmWasm**
+**[CosmWasm](https://cosmwasm.com/)**
 
 It is a new smart contracting platform built for the cosmos ecosystem. It is written as a module that can plug into the Cosmos SDK. 
 
@@ -59,7 +59,7 @@ The transaction for joining the network as a validator.
 
 **Delegate (Transaction type: `delegate`)**
 
-The transaction that transfers funds from a transfer address to a staking address for staking purposes. Delegators should perform due diligence on validator candidates before delegating, as well as spreading their stake over multiple validators. It will also help keep the network decentralized.
+The transaction that delagate funds to a validator for staking purposes. Delegators should perform due diligence on validator candidates before delegating, as well as spreading their stake over multiple validators. It will also help keep the network decentralized.
 
 **Delegator**
 
@@ -70,7 +70,7 @@ CRO holders who do not run validator operations themselves. Users can delegate C
 
 **[Faucet](https://crypto.org/faucet)**
 
-Service carried out that dispenses funds in the form of free test ether that can be used on a testnet.
+Service carried out that dispenses funds in the form of free test token that can be used on a testnet.
 
 **Full Node**
 
@@ -81,7 +81,7 @@ A full node is a node that participates in the network but will not help secure 
 
 **Genesis**
 
-The origin of a blockchain, also known as block 0. It can also be used to reference the initial state of the blockchain at origination.
+The origin of a blockchain, also known as block 1. It can also be used to reference the initial state of the blockchain at origination.
 
 **Governance**
 
@@ -113,7 +113,7 @@ The annualized rate at which CRO supply grows.
 
 The commission rate on revenue charged to any delegator by the validator.
 
-**Inter-Blockchain Communication Protocol (IBC)**
+**[Inter-Blockchain Communication Protocol (IBC)](https://ibcprotocol.org/)**
 
 IBC enables self-sovereign blockchains to connect and build strong network ecosystems, intending to end ‘network tribalism’.
 
@@ -122,7 +122,7 @@ IBC enables self-sovereign blockchains to connect and build strong network ecosy
 
 **Jailing**
 
-A validator is jailed when they make a byzantine fault. When a validator gets jailed, they cannot perform any staking related operations relating to their account.
+A validator is jailed when they make a byzantine fault. Jailing also happens to low uptime. When a validator gets jailed, they cannot perform any staking related operations relating to their account.
 
 
 #### L
@@ -169,9 +169,6 @@ The last two hex characters of the Chain ID. Using our testnet Chain ID `testnet
 
 NFT represents uniquely identifiable tokens with common use cases such as art, gaming, and asset ownership. NFTs are tokenized versions of digital or real-world assets. They function as verifiable proofs of authenticity and ownership within a blockchain network. 
 
-**Nonce (of a staking address)**
-
-The nonce is the number of transactions that have the witness of the staking address. It also serves as an important safety precaution for preventing [replay attacks](https://en.wikipedia.org/wiki/Replay_attack).
 
 
 #### P
@@ -220,9 +217,6 @@ The penalty imposed on validators' misbehavior such as byzantine faults or liven
 - Double signing: If someone reports on chain A that a validator signed two blocks at the same height.
 - Unavailability: If a validator signature has not been included in the last X blocks, the validator will get slashed by a marginal amount proportional to X. If X is above a certain limit Y, then the validator will get unbonded.
 
-**Staking Address**
-
-The address is for staking related operations and follows the format of the 20 bytes [Ethereum](https://en.wikipedia.org/wiki/Ethereum#Addresses) account address. 
 
 **State (of a staking address)**
 
@@ -230,10 +224,6 @@ The general state of a staking address that includes _nonce_, _bounded/unbonded_
 
 
 #### T
-
-**TDBE**
-
-**T**ransaction **d**ata **b**ootstrapping **e**nclave responsible for fetching current UTXO set transaction data; and handling periodic key generation operations.
 
 **Tendermint**
 
@@ -251,9 +241,6 @@ The threshold is defined as the minimum proportion of Yes votes (excluding Absta
 
 The number of transactions that a blockchain network is capable of processing each second.
 
-**TQE**
-
-**T**ransaction **q**uery **e**nclave serves the encryption and decryption requests from wallets/clients. It allows semi-trusted client querying of sealed tx payloads.
 
 **Transfer (Transaction type:`transfer`)**
 
@@ -289,10 +276,6 @@ The role of validators is to run a full-node and participate in consensus by bro
 
 The key pair for signing messages from the validator. The full key pair is located under the tendermint `priv_validator_key.json` folder after the initialization. In a production deployment, it is strongly advised not to keep the private key reside on the machine (see the [deployment notes](https://github.com/crypto-org-chain/chain-docs/blob/master/docs/getting-started/notes-on-production-deployment.md) and [recommendations](https://github.com/iqlusioninc/tmkms#hardware-security-modules-recommended) )
 
-**View Key**
-
-The key pair to enforce access to the confidential transaction data.
-
 **Voting**
 
 The process of stakeholders determining whether or not a referendum should pass. 
@@ -302,8 +285,3 @@ The process of stakeholders determining whether or not a referendum should pass.
 The voting power is determined by the bonded amount in the validator's staking address. The probability of a validator being selected as the proposer for a round is proportional to their voting power.
 
 
-#### W
-
-**Withdraw (Transaction type:`withdraw`)**
-
-The transaction for withdrawing funds from a staking address to a transfer address.

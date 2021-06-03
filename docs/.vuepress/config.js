@@ -100,7 +100,10 @@ module.exports = {
                     text: "gRPC API",
                     link: "/resources/cosmos-grpc-docs"
                 },
-
+                {
+                    text: "Technical Glossary",
+                    link: "/resources/technical-glossary"
+                }
             ]
         }
     ],

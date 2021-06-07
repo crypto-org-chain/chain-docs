@@ -305,12 +305,15 @@ confirm transaction before signing and broadcasting [y/N]: y
 
   ::: tip You will be required to insert the following:
   - `--from`: The `cro...` address or the key name that holds your funds for initial delegation;
+  - `--amount`: The amount of self-delegation provided to the validator as an initial staking;
   - `--pubkey`: The validator public key ( See Step [3-2](#step-3-2-obtain-the-validator-public-key) above ) with **crocnclconspub** as the prefix;
   - `--moniker`: A moniker (name) for your validator node;
   - `--security-contact`: Security contact email/contact method, it is **strongly recommended** to provide an email address for receiving important messages related to validator operation in the future;
+  - `--chain-id=`: The chain-id of mainnet - *crypto-org-chain-mainnet-1*
   - `--commission-rate`: The commission rate charge on the delegator;
   - `--commission-max-rate`: The upper bound of the commission rate;
-  - `--commission-max-change-rate`: The maximum daily increase of the validator commission. Please note this parameter cannot be changed after create-validator is processed.
+  - `--commission-max-change-rate`: The maximum daily increase of the validator commission. Please note this parameter cannot be changed after create-validator is processed;
+  - `--min-self-delegation`: The lower threshold of validator's self-delegation amount, if the self-delegation drops below this number, the all staked funds to the validator will be automatically unbonded and the validator will be inactive.
   :::
 
 

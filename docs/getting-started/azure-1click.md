@@ -2,6 +2,11 @@
 
 This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
+::: warning CAUTION
+We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution!
+Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`.
+You may consider running validator with [tmkms on AWS nitro-enclave](./advanced-tmkms-integration.html)
+:::
 ## Step 1. Azure Account Creation
 
 You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to getting charged when you create a virtual machine.
@@ -214,10 +219,10 @@ If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypt
 Mainnet
 ```bash
 $ chain-maind version
-1.2.1
+2.0.1
 ```
 - Mainnet binary for
-  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Windows_x86_64.zip) are also available. 
+  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
 
 Or
 Testnet
@@ -230,11 +235,7 @@ $ chain-maind version
 
 :::
 
-::: warning CAUTION
-We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution!
-Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`.
-You may consider running validator with [tmkms on AWS nitro-enclave](./advanced-tmkms-integration.html)
-:::
+
 
 :::details Mainnet 
 

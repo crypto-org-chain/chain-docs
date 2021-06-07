@@ -313,7 +313,7 @@ confirm transaction before signing and broadcasting [y/N]: y
   - `--commission-rate`: The commission rate charge on the delegator;
   - `--commission-max-rate`: The upper bound of the commission rate;
   - `--commission-max-change-rate`: The maximum daily increase of the validator commission. Please note this parameter cannot be changed after create-validator is processed;
-  - `--min-self-delegation`: The lower threshold of validator's self-delegation amount, if the self-delegation drops below this number, the all staked funds to the validator will be automatically unbonded and the validator will be inactive.
+  - `--min-self-delegation`: The lower threshold of validator's self-delegation amount, if the self-delegation drops below this number, all staked funds to the validator will be automatically unbonded and the validator will be inactive.
   :::
 
 

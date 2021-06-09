@@ -29,6 +29,10 @@ module.exports = {
             link: "/getting-started/token-migration"
           },
           {
+            text: "NFT",
+            link: "/getting-started/nft-guide"
+          },
+          {
               text: "Block Explorer",
               link: "https://crypto.org/explorer"
           },
@@ -118,6 +122,7 @@ module.exports = {
         "local-devnet",
         "advanced-tmkms-integration",
         "token-migration",
+        "nft-guide"
         // "notes-on-production-deployment",
 //        "notes-on-performance"
       ],

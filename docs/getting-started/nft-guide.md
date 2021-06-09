@@ -88,12 +88,13 @@ Check all issued nft denom information.
 
   ```bash
 $ ./chain-maind q nft denoms  --node https://mainnet.crypto.org:26657/
-
+  .....
   creator: cro1nk4rq3q46ltgjghxz80hy385p9uj0tf58apkcd
   id: canismajor1
   name: 'Crypto.org Chain Phase 1: Canis Major'
   schema: '{"name":"string","description":"string","image":"string","mimeType":"string"}'
   schema: '{"title":"string","blockHeight":"string"}'
+  .....
 ```
 :::
 

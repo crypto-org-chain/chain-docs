@@ -174,7 +174,7 @@ pagination:
  
 **check specified nft**
   
-Check the specific nft based on Denom ID and Token ID .
+Check the specific nft based on Denom ID and Token ID.
   
 [`chain-maind q nft token <denom-id> <token-id>`]
 

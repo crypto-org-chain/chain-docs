@@ -84,7 +84,7 @@ Check all issued nft denom information.
 [`chain-maind q nft denoms`]
 
 
-::: details Example: 
+::: details Example: Display all of the issued nft denom information.
 
   ```bash
 $ ./chain-maind q nft denoms  --node https://mainnet.crypto.org:26657/
@@ -104,7 +104,7 @@ Check the details of the nft by Denom ID.
 
 [`chain-maind q nft denom <denom-id>`]
 
-::: details Example: 
+::: details Example: Check the nft details by Denom ID 'canismajor1'.
 
 ```bash
 $ ./chain-maind q nft denom canismajor1  --node https://mainnet.crypto.org:26657/
@@ -123,7 +123,7 @@ Check the total supply of nft according to Denom ID.
   
 [`chain-maind q nft supply <denom-id> --owner=<owner>`]
 
-::: details Example:  
+::: details Example: Check the total supply of nft by Denom ID 'canismajor1'. 
 
 ```bash
 $ ./chain-maind q nft supply  canismajor1  --node https://mainnet.crypto.org:26657/
@@ -139,7 +139,7 @@ Check all nft owned by an account, and you can specify the Denom ID parameter.
   
 [`chain-maind q nft owner <address> --denom-id=<denom-id>`]
 
-:::
+
 
 **check all nft of a specified denom**
   
@@ -147,10 +147,10 @@ Check all nft according to Denom ID.
   
 [`chain-maind q nft collection <denom-id>`]
 
-::: details Example: 
+::: details Example: Check all nft based on Denom ID 'canismajor1'.
   
 ``` bash 
-$./chain-maind q nft collection  canismajor1  --node https://mainnet.crypto.org:26657/
+$ ./chain-maind q nft collection canismajor1  --node https://mainnet.crypto.org:26657/
   
 collection:
   denom:
@@ -178,7 +178,7 @@ Check the specific nft based on Denom ID and Token ID.
   
 [`chain-maind q nft token <denom-id> <token-id>`]
 
-:::details Example: 
+:::details Example: Check the specific nft based on Denom ID 'anismajor1' and Token ID 'beginning'.
   
 ```bash
 $ ./chain-maind q nft token canismajor1 beginning --node https://mainnet.crypto.org:26657/

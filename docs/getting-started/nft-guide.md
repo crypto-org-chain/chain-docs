@@ -150,7 +150,7 @@ Check all nft according to Denom ID.
 ::: details Example: Check all nft based on Denom ID 'canismajor1'.
   
 ``` bash 
-$./chain-maind q nft collection canismajor1  --node https://mainnet.crypto.org:26657/
+$ ./chain-maind q nft collection canismajor1  --node https://mainnet.crypto.org:26657/
   
 collection:
   denom:

@@ -7,10 +7,6 @@ This is a description of the Crypto.org Chain NFT properties and transactions, a
 
 ## Properties
 
-**Deno**
-
-The category of the nft
-
 **Denom**
 
 The denomination of the NFT. It is the globally unique nft category name

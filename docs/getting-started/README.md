@@ -6,9 +6,9 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
 
 #### Crypto.org Mainnet
 
-- [**Join Crypto.org Chain Mainnet**](./mainnet.md)
-  - As a validator;
-  - Build a Full node
+- **Join Crypto.org Chain Mainnet**
+  - [As a validator](./mainnet_validator.md);
+  - [Build a Full node](./mainnet.md)
   
 - Deploy mainnet node with [1 click](./aws-1click.md):
 
@@ -16,7 +16,7 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
     - [AWS](./aws-1click.md); or 
     - [Azure](./azure-1click.md).
 
-#### Testnet
+#### Crypto.org Croeseid Testnet
 
 - [Join Croeseid Testnet](./croeseid-testnet.md):
 

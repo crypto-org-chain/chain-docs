@@ -115,6 +115,7 @@ module.exports = {
       "/getting-started/": [
         "",
         "mainnet",
+        "mainnet_validator",
         "croeseid-testnet",
         "aws-1click",
         "azure-1click",

@@ -282,7 +282,7 @@ If the above command returns `false`, it means that your node **is synced**; oth
     ```
 
 
-    and you can check your node's progress (in terms of block height) by
+and you can check your node's progress (in terms of block height) by:
 
     ```bash
     $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'

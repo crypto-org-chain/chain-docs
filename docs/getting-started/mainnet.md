@@ -257,7 +257,7 @@ You can verify the installation by checking the version of `chain-maind`, the la
   2.0.1
   ```
 
-#### Step 3-2-3. - Restart `chain-maind` with version `v2.0.1`
+#### Step 3-2-3 - Restart `chain-maind` with version `v2.0.1`
 
 We are ready to start the node join the network again with the new binary:
 

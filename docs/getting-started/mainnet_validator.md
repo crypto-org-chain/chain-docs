@@ -242,7 +242,7 @@ It should begin fetching blocks from the other peers. Please wait until it is sy
     ```bash
     $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
     ```
-    If the above command returns `false`, It means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
+    If the above command returns `false`, it means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
 
 :::
 
@@ -448,6 +448,5 @@ $ ./chain-maind tx slashing unjail --from [key_name] --chain-id crypto-org-chain
   {"body":{"messages":[{"@type":"/cosmos.slashing.v1beta1.MsgUnjail"...}]}
   confirm transaction before signing and broadcasting [y/N]: y
 ```
-
 
 

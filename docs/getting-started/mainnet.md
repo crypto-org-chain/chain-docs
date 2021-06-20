@@ -1,4 +1,4 @@
-# Crypto.org Mainnet: Running a Full node
+# Crypto.org Mainnet: Running a Full Node
 
 
 This is a detailed documentation for setting up a **Full Node** on Crypto.org mainnet.
@@ -287,4 +287,3 @@ If the above command returns `false`, it means that your node **is synced**; oth
     ```bash
     $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
     ```
-

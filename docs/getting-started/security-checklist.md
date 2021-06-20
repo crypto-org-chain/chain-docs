@@ -18,7 +18,7 @@ For example, your hosting data centre should have following features
 
 ## Part 2 - Current Status of Node Setup
 
-Description: Perform a survey on your current status of node setup , and compare your result with the best practice belo
+Description: Perform a survey on your current status of node setup, and compare your result with the best practice suggested below
 
 | Controls Category                       | Description of Best Practice                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

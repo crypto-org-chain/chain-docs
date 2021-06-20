@@ -116,6 +116,7 @@ module.exports = {
         "",
         "mainnet",
         "mainnet_validator",
+        "security-checklist.md",
         "croeseid-testnet",
         "aws-1click",
         "azure-1click",

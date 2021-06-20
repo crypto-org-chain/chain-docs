@@ -203,7 +203,7 @@ It should begin fetching blocks from the other peers. Please wait until it is sy
     ```bash
     $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
     ```
-    If the above command returns `false`, It means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
+If the above command returns `false`, it means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
 
 :::
 
@@ -287,5 +287,4 @@ If the above command returns `false`, it means that your node **is synced**; oth
     ```bash
     $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
     ```
-
 

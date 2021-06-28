@@ -135,7 +135,7 @@ In every block, CRO is minted and offered to the active validators and their del
 
 Minted tokens are distributed as block and proposer rewards in the same block. However, since Cosmos SDK do the [lazy rewards calculation and collection](https://docs.cosmos.network/master/modules/distribution/), the minted tokens are first sent to "Distribution" module account and is later transferred to an account when a deleagtor withdraws the rewards or commissions by sending a [MsgWithdrawDelegatorReward](#_2-msgwithdrawdelegatorreward) or [MsgWithdrawValidatorCommission](#_3-msgwithdrawvalidatorcommission).
 
-So [Block Rewards](#_2-block-rewards), [Proposer Rewards](#_3-proposer-rewards) and [Commissions](#_4-commissions) events are for record keeping only and does not represent any actual token transfer between accounts.
+So [Block Rewards](#_2-block-rewards), [Proposer Rewards](#_3-proposer-rewards) and [Commissions](#_4-commissions) events are for record-keeping only and do not represent any actual token transfer between accounts.
 
 To get the minted token every block:
 

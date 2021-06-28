@@ -100,14 +100,18 @@ module.exports = {
         {
             text: "Resources",
             items: [
-                {
-                    text: "gRPC API",
-                    link: "/resources/cosmos-grpc-docs"
-                },
+              {
+                text: "Integrating Crypto.org Chain ",
+                link: "/resources/chain-integration"
+            },              
                 {
                     text: "Technical Glossary",
                     link: "/resources/technical-glossary"
-                }
+                },
+                {
+                  text: "gRPC API",
+                  link: "/resources/cosmos-grpc-docs"
+              }               
             ]
         }
     ],
@@ -145,7 +149,11 @@ module.exports = {
         "keplr_IBC_guide",
         "mainnet-address-generation",
         "mainnet-address-verification",
-//        "rpc"
+      ],
+      "/resources/": [
+        "chain-integration",
+        "node-and-rpc-setup-notes",
+        "blocks-and-transactions",
       ],
       "/api/" : "auto"
     },

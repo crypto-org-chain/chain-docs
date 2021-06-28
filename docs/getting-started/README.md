@@ -28,7 +28,7 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
     - [AWS](./aws-1click.md); or 
     - [Azure](./azure-1click.md).
 
-- [Deploy testnet with nix](./croeseid-testnet-nix.md): 
+- [Deploy testnet node with nix](./croeseid-testnet-nix.md): 
 
     Install and run full nodes or validators connected to our Croeseid Testnet with nix.
 

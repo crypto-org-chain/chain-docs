@@ -89,7 +89,7 @@ There are few clients our team has used before
     grpcurl -proto ./cosmos/staking/v1beta1/query.proto -plaintext localhost:9090 cosmos.staking.v1beta1.Query.Validators
     ```
 
-    The reason we have to go to the `grpc/proto` directory is because gRPC will look for proto files dependency, and they expect that to be udner the path you are currently at. To avoid this limitations, we can specify the porto import path.
+    The reason we have to go to the `grpc/proto` directory is that gRPC will look for proto files dependency, and they expect that to be under the path you are currently at. To avoid this limitation, we can specify the proto import path.
 
     ```bash
     grpcurl -import-path ./grpc/proto -proto ./grpc/proto/cosmos/staking/v1beta1/query.proto -plaintext localhost:9090 cosmos.staking.v1beta1.Query.Validators

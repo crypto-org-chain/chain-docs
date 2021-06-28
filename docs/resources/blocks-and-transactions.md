@@ -147,7 +147,7 @@ To get the minted token every block:
 
 In every block, mint tokens and transaction fees are distributed to every active validator in the network. As a result, there will be multiple events, each corresponding to a validator and the rewards it receives.
 
-Block rewards are **not** credited to the delegator account directly. This event serve as record keeping purpose only. Each delegator account must explicitly send a [MsgWithdrawDelegatorReward](#_2-msgwithdrawdelegatorreward) message transaction to collect the rewards.
+Block rewards are **not** credited to the delegator account directly. This event serves as a record-keeping purpose only. Each delegator account must explicitly send a [MsgWithdrawDelegatorReward](#_2-msgwithdrawdelegatorreward) message transaction to collect the rewards.
 
 To get the reward **per validator**:
 

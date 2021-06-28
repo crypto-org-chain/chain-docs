@@ -2,7 +2,7 @@
 
 ## Node minimum setup
 
-Here I will be using a local `chain-maind` folder as the home directory. By default chain data are stored in your home directory `~/.chain-maind`. For example, when joining the testnet `testnet-croeseid-3`: 
+Here we will be using a local `chain-maind` folder as the home directory. By default chain data are stored in your home directory `~/.chain-maind`. For example, when joining the testnet `testnet-croeseid-3`: 
 
 ```bash
 ./chain-maind init mynode --chain-id testnet-croeseid-3 --home ./chain-maind

@@ -1469,7 +1469,7 @@ Note that there may be multiple depositors of a proposal, so the event may appea
 
 ### 2c. Burn Proposal's Deposit
 
-There are a few cases where a proposal deposits will be burnt. For details, plesae refer to [Proposal Result](#4-proposal-result) for more details.
+There are a few cases where proposal deposits will be burnt. For details, please refer to [Proposal Result](#4-proposal-result) for more details.
 
 If a proposal does not get enough votes that exceed the "quorum" or has the "No with Veto" votes exceed the "veto_threshold", the deposit will **NOT** be returned to the depositors. Those deposits **will be burnt** from the "gov" module account as well.
 

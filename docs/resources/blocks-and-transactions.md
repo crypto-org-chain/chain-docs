@@ -171,7 +171,7 @@ Similar to block rewards, proposer rewards are **not** credited to the account d
 
 Validator can charge commission to the block rewards received by delegators. Commissions is already included in [Block Rewards](#_2-block-rewards) and [Proposer Rewards](#_3-proposer-rewards)
 
-Similar to block rewards, commission rewards are **not** credited to the account directly. This event serve as record keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawValidatorCommission](#msg-withdraw-validator-commission) message transaction to collect the rewards.
+Similar to block rewards, commission rewards are **not** credited to the account directly. This event serves as a record-keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawValidatorCommission](#msg-withdraw-validator-commission) message transaction to collect the rewards.
 
 To get the commission received by **each validator**:
 

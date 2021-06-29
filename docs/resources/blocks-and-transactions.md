@@ -689,7 +689,7 @@ Cosmos Transaction Query API: [https://mainnet.crypto.org:1317/cosmos/tx/v1beta1
 | Auto Withdraw Rewards Amount #                                                  | `tx_response.logs[message_index].events[event_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"`.    | String                        |
 
 ::: tip Note
-Tthere may be multiple auto rewards withdrawal happen. In such a case the `transfer` event will have the multiple `{"recipient":"","sender":"","amount":""}`. An example is
+There may be multiple auto rewards withdrawals happen. In such a case, the `transfer` event will have the multiple `{"recipient":"","sender":"","amount":""}`. An example is
 
 ```
 {

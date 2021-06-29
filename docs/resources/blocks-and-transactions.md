@@ -648,7 +648,7 @@ Cosmos Transaction Query API: [https://mainnet.crypto.org:1317/cosmos/tx/v1beta1
 
     Note that the redelegation is just a record update of the internal state of a delegator's staked funds. The delegator account won't have any funds movement based on the redelegation except.
 
-    There is a side effect of `MsgBeginRedelegate`, upon successful execution of this message, all the rewards of the delegator from previous (source) validator will be withdrew automatically to the delegator account.
+    There is a side effect of `MsgBeginRedelegate`, upon successful execution of this message, all the rewards of the delegator from the previous (source) validator will be withdrawn automatically to the delegator account.
 
 - Funds movement: Yes
 

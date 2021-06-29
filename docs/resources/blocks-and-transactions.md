@@ -1471,7 +1471,7 @@ Note that there may be multiple depositors of a proposal, so the event may appea
 
 There are a few cases where a proposal deposits will be burnt. For details, plesae refer to [Proposal Result](#4-proposal-result) for more details.
 
-If a proposal does not get enought votes that exceed the "quorum" or has the "No with Veto" votes exceed the "veto_threshold", the deposit will **NOT** be returned to the depositors. Those deposits **will be burnt** from the "gov" module account as well.
+If a proposal does not get enough votes that exceed the "quorum" or has the "No with Veto" votes exceed the "veto_threshold", the deposit will **NOT** be returned to the depositors. Those deposits **will be burnt** from the "gov" module account as well.
 
 To monitor a proposal that got rejected and deposits got burned, it can be detected by monitoring the `end_block_events` in Tendermint Block Results API. There will be a "proposal_result" event marking the proposal as rejected, and different from [Return Proposal's Deposit](#2b-return-proposals-depsoit), there will be **NO** transfer event in the `end_block_results`, which means the deposits is **NOT** returned and is burnt.
 

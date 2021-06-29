@@ -160,7 +160,7 @@ To get the reward **per validator**:
 
 Block proposers can get extra transaction fees bonus for the block they have successfully proposed. More details can be found [here](https://crypto.org/docs/chain-details/module_overview.html#transaction-fees-bonus) for reference.
 
-Similar to block rewards, proposer rewards are **not** credited to the account directly. This event serve as record keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawDelegatorReward](#_3-msgwithdrawvalidatorcommission) message transaction to collect the rewards.
+Similar to block rewards, proposer rewards are **not** credited to the account directly. This event serves as a record-keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawDelegatorReward](#_3-msgwithdrawvalidatorcommission) message transaction to collect the rewards.
 
 | Detail            | Accessor                                                                                                                                                                                                                                                                                           | Type                          |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |

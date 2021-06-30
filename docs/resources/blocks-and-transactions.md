@@ -38,7 +38,7 @@ This document describes the block and transaction structure of the Crypto.org Ch
     - [3. MsgDelegate](#_3-msgdelegate)
     - [4. MsgBeginRedelegate](#_4-msgbeginredelegate)
     - [5. MsgUndelegate](#_5-msgundelegate)
-    - [5b. Upon MsgUndelegate completed](#_5b-upon-msgundelegate-completed)
+      - [5a. Upon MsgUndelegate completed](#_5a-upon-msgundelegate-completed)
   - [Slashing](#slashing)
     - [1. MsgUnjail](#_1-msgunjail)
     - [2. Being Jailed and Slashed](#_2-being-jailed-and-slashed)
@@ -47,11 +47,11 @@ This document describes the block and transaction structure of the Crypto.org Ch
       - [Limitations](#limitations)
   - [Governance](#governance)
     - [1. MsgSubmitProposal](#_1-msgsubmitproposal)
-    - [1b. Community Pool Spend Proposal](#_1b-community-pool-spend-proposal)
+      - [1a. Community Pool Spend Proposal](#_1a-community-pool-spend-proposal)
     - [2. MsgDeposit](#_2-msgdeposit)
-    - [2a. Burn Proposal's Deposit if Proposal does not Get Enough Deposit](#_2a-burn-proposals-deposit-if-proposal-does-not-get-enough-deposit)
-    - [2b. Return Proposal's Deposit](#_2b-return-proposals-deposit)
-    - [2c. Burn Proposal's Deposit](#_2c-burn-proposals-deposit)
+      - [2a. Burn Proposal's Deposit if Proposal does not Get Enough Deposit](#_2a-burn-proposals-deposit-if-proposal-does-not-get-enough-deposit)
+      - [2b. Return Proposal's Deposit](#_2b-return-proposals-deposit)
+      - [2c. Burn Proposal's Deposit](#_2c-burn-proposals-deposit)
     - [3. MsgVote](#_3-msgvote)
     - [4. Proposal Result](#_4-proposal-result)
   - [Appendix: Module Accounts on Mainnet](#appendix-module-accounts-on-mainnet)
@@ -66,7 +66,7 @@ This document describes the block and transaction structure of the Crypto.org Ch
 
 ### 1. Tendermint Block API
 
-- URL: https://mainnet.crypto.org:26657/block?height=[height]
+- **URL format:** https://mainnet.crypto.org:26657/block?height=[height]
 - This API returns block details, a list of _transaction bytes_ and _consensus commits_.
 ::: tip Example: Checking the block at height `10000` of the mainnet:
 
@@ -76,7 +76,7 @@ This document describes the block and transaction structure of the Crypto.org Ch
 
 ### 2. Tendermint Block Results API
 
-- URL: https://mainnet.crypto.org:26657/block_results?height=[height]
+- **URL format:** https://mainnet.crypto.org:26657/block_results?height=[height]
 - This API returns the events of the block. These events include the outcomes from transactions, and block changes such as block rewards minted (`"mint"`) and distributed as well as consensus state updates such as validator missing block counts (`"liveness"`)
 
 ::: tip Example: Checking the block result of height `10000` of the mainnet:
@@ -89,13 +89,13 @@ This document describes the block and transaction structure of the Crypto.org Ch
 
 ### 3. Cosmos Transaction Query API
 
-- [URL format:] https://mainnet.crypto.org:1317/comsos/tx/v1beta1/txs/[Transaction_Hash]
+- **URL format:** https://mainnet.crypto.org:1317/comsos/tx/v1beta1/txs/[Transaction_Hash]
 - This API returns the parsed transaction details and events of a particular transaction hash
 - **Example**: https://mainnet.crypto.org:1317/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660
 
 ### 4. Cosmos Transaction Search API
 
-- URL: https://mainnet.crypto.org:1317/comsos/tx/v1beta1/txs
+- **URL format:** https://mainnet.crypto.org:1317/comsos/tx/v1beta1/txs
 - This API support event based query and returns parsed transactions. Common events include:
 
 | Event                           | Description                                                                                                                                            | Example                                                                                                                                                                                                     |
@@ -730,7 +730,7 @@ There may be multiple auto rewards withdrawals happen. In such a case, the `tran
 
 - **Descriptions:** : Perform an undelegation from a delegate and a validator.
 
-    Note that the funds is moved between module accounts upon a `MsgUndelegate` message execute. The funds movement to the user account happens only when the unbond completes. For details you can refer to the [next section](#_5b-upon-msgundelegate-completed).
+    Note that the funds is moved between module accounts upon a `MsgUndelegate` message execute. The funds movement to the user account happens only when the unbond completes. For details you can refer to the [next section](#_5a-upon-msgundelegate-completed).
 
 - Funds movement: Yes
 
@@ -772,7 +772,7 @@ Similar to MsgBeginRedelegate, there may be multiple auto rewards withdrawal hap
 
 [Top](#table-of-content)
 
-### 5b. Upon MsgUndelegate completed
+### 5a. Upon MsgUndelegate completed
 
 - **Descriptions:** : The undelegation is completed on the first block after the "Unbond Completion Time", in which there will be a special event in the Tendermint Block Results API.
 
@@ -993,7 +993,7 @@ Cosmos Transaction Query API: https://mainnet.crypto.org:1317/cosmos/tx/v1beta1/
 | Deposit From Address | `tx.body.messages[message_index].porposer`                                             | String                      |
 | Deposit Amount       | `tx.body.messages[message_index].initial_deposit`                                      | [Asset Array](#_2-array) |
 
-### 1b. Community Pool Spend Proposal
+### 1a. Community Pool Spend Proposal
 
 One sub-type of proposal is to spend community pool. The community has to pre-funded using [MsgFundCommunityPool](#4-msgfundcommunitypool).
 

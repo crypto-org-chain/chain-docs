@@ -62,16 +62,23 @@ As mention before, in order to run a full node with complete blockchain data, we
 **OR**
 
 ### Option 2 - Install `chain-maind` by homebrew
- To install binaries in Homebrew for macOS X or Linux
 
-  [Homebrew](https://brew.sh/) is a free and open-source package management system for macOS X. Install the official Chain-maind formula from the terminal.
+::: tip Reminder:
+- If you plan to play around with different networks (mainnet and testnet), we suggest you to follow the `Option 1` to download the binary directly.
 
- -  First, install the `crypto-org-chain` tap, a repository of our Homebrew `chain-maind` package:
+- The binary downloaded from homebrew is **only for interacting with mainnet**. You cannot use it to interact with testnet.
+:::
 
-    ```bash
-      # tap the repo
-      $ brew tap crypto-org-chain/chain-maind
-    ```
+To install binaries in Homebrew for macOS X or Linux
+
+[Homebrew](https://brew.sh/) is a free and open-source package management system for macOS X. Install the official Chain-maind formula from the terminal.
+
+-  First, install the `crypto-org-chain` tap, a repository of our Homebrew `chain-maind` package:
+
+  ```bash
+    # tap the repo
+    $ brew tap crypto-org-chain/chain-maind
+  ```
 
 - Now, install the `chain-maind` version `1.2.1` with crypto-org-chain/chain-maind
 

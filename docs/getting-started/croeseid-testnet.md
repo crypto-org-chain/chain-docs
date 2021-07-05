@@ -27,6 +27,10 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 The following is the minimal setup for a **validator node**. 
 :::
 
+::: tip Reminder:
+The binary for testnet and the binary for mainnet are two **different** binaries. Please make sure you are using the correct binary.
+:::
+
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for
 **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.0-croeseid/chain-main_2.0.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.0-croeseid/chain-main_2.0.0-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.0-croeseid/chain-main_2.0.0-croeseid_Windows_x86_64.zip) are also available.
 
@@ -47,14 +51,21 @@ To simplify the following step, we will be using **Linux** (Intel x86) for illus
 Before kick-starting your node, we will have to configure your node so that it connects to the Croeseid testnet:
 
 ### Step 2-0 (Optional) Clean up the old blockchain data
-If you have joined `testnet-croeseid-2` before, you would have to clean up the old blockchain data and start over again, it can be done by running:
-  ``` bash
-  $ ./chain-maind unsafe-reset-all
-  ```
-and remove the old genesis file by
-  ```
+- If you have joined `testnet-croeseid-2` before, you would have to clean up the old blockchain data and start over again, it can be done by running:
+    ``` bash
+    $ ./chain-maind unsafe-reset-all
+    ```
+  and remove the old genesis file by
+    ```
     $ rm ~/.chain-maind/config/genesis.json
-  ```
+    ```
+
+- You cannnot override the previous validator through `chain-maind init`. If you want to have a new validator, you need to manually remove the `priv_validator_key.json`:
+    ``` bash
+    rm ~/.chain-maind/config/priv_validator_key.json
+    ```
+  Then, in Step 2-1, `chain-maind init` should help you to generate a new validator key file. 
+
 ### Step 2-1 Initialize `chain-maind`
 
 - First of all, you can initialize chain-maind by:
@@ -195,6 +206,19 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
 ```bash
   $ ./chain-maind start
 ```
+::: tip Remarks:
+If you see errors saying `too many files opened...`, then you need to set a higher number for maximum open file descriptors in your OS.
+
+If you are on OSX or Linux, then the following could be useful:
+  ``` bash
+  # Check current max fd
+  $ ulimit -n
+  # Set a new max fd
+  $ ulimit -Sn [NEW_MAX_FILE_DESCRIPTOR]
+  # Example
+  $ ulimit -Sn 4096 
+  ```
+:::
 
 - _(Optional for Linux)_ Start chain-maind with systemd service, e.g.:
 

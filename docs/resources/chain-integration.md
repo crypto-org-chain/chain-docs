@@ -33,10 +33,10 @@ There are a few ways to access to the Crypto.org Chain
 2. **gRPC Based**
   - Processed chain information. Old state maybe pruned from time-to-time. To avoid state pruning, update `pruning = "nothing"` in `~/.chain-maind/config/app.toml`
   - There are two query methods based on gRPC:
-    1. [gRPC Server](./grpc/README.md)
-    2. [gRPC Proxy RESTful Server](./grpc-proxy-rest/README.md)
-       - [Swagger UI](https://cosmos.network/rpc)
-       - [Swagger file](./grpc-proxy-rest/swagger.yml)
+    1. [gRPC Server](https://github.com/crypto-org-chain/chain-integration/blob/master/grpc/README.md)
+    2. [gRPC Proxy RESTful Server](https://github.com/crypto-org-chain/chain-integration/blob/master/grpc-proxy-rest/README.md)
+       - [Swagger UI](https://v1.cosmos.network/rpc/v0.41.4)
+       - [Swagger file](https://github.com/crypto-org-chain/chain-integration/blob/master/grpc-proxy-rest/swagger.yml)
 
 ## API Clients and libraries
 

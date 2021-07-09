@@ -5,14 +5,14 @@ This is a detailed documentation for setting up a **Validator** on Crypto.org ma
 
 ## Step 0 : Notes on  "Canis Major" Network upgrade 
 
-Before we start, please note that there was a "*Canis Major*" network upgrade at the block height `922,363`, which requires node operator to update their Crypto.org Chain Mainnet binary `chain-maind` from `v1.*.*` to `v2.0.1`. 
+Before we start, please note that there was a "*Canis Major*" network upgrade at the block height `922,363`, which requires the node operator to update their Crypto.org Chain Mainnet binary `chain-maind` from `v1.*.*` to `v2.0.1`. 
 
-- For host who would like to build a **Validator with complete blockchain data** from scratch, one would need to:
+- For the host who would like to build a **Validator with complete blockchain data** from scratch, one would need to:
   1. Start the node with the older binary version `v1.2.1`; 
   1. Sync-up with the blockchain until it reaches the target upgrade block height `922,363`;
   1. Update the binary to `v2.0.1` and start the node again.
 
-- For host who would like to **join the network and start validating quickly**, one can:
+- For the host who would like to **join the network and start validating quickly**, one can:
   1. Begin with the binary `v2.0.1` and join the network by *"STATE-SYNC"*
 
 
@@ -256,7 +256,7 @@ It should begin fetching blocks from the other peers. Please wait until it is sy
 
 
 
-### Step 3-5. Joining the network as a validator: Send a `create-validator` transaction
+### Step 3-2. Joining the network as a validator: Send a `create-validator` transaction
 
 Once the node is synced, we are now ready to send a `create-validator` transaction and join the network, for example:
 
@@ -295,7 +295,7 @@ confirm transaction before signing and broadcasting [y/N]: y
   :::
 
 
-### Step 3-6. Check your validator status
+### Step 3-3. Check your validator status
 Once the `create-validator` transaction completes, you can check if your validator has been added to the validator set:
 
 ```bash
@@ -395,7 +395,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 ::: tip
 
-- Once your funds were unbonded, It will be locked until the `unbonding_time` has passed.
+- Once your funds were unbonded, they will be locked until the `unbonding_time` has passed.
 
 :::
 
@@ -447,7 +447,7 @@ $ ./chain-maind query staking validators -o json | jq
 ................................
 ```
 
-Where `"jailed": true` implies that the validator has been jailed. After the jailing period has passed, one can broadcast a `unjail` transaction to unjail the validator and resume its normal operations by
+Where `"jailed": true` implies that the validator has been jailed. After the jailing period has passed, one can broadcast an `unjail` transaction to unjail the validator and resume its normal operations by
 
 ```bash
 $ ./chain-maind tx slashing unjail --from [key_name] --chain-id crypto-org-chain-mainnet-1 --gas-prices 0.1basecro

@@ -5,9 +5,9 @@ This is a detailed documentation for setting up a **Full Node** on Crypto.org ma
 
 ## Step 0 : Notes on  "Canis Major" Network upgrade 
 
-Before we start, please note that there was a "*Canis Major*" network upgrade at the block height `922,363`, which requires node operator to update their Crypto.org Chain Mainnet binary `chain-maind` from `v1.*.*` to `v2.0.1`. 
+Before we start, please note that there was a "*Canis Major*" network upgrade at the block height `922,363`, which requires the node operator to update their Crypto.org Chain Mainnet binary `chain-maind` from `v1.*.*` to `v2.0.1`. 
 
-For host who would like to build a **Full Node** with complete blockchain data from scratch, one would need to:
+For the host who would like to build a **Full Node** with complete blockchain data from scratch, one would need to:
 1. Start the node with the older binary version `v1.2.1`; 
 1. Sync-up with the blockchain until it reaches the target upgrade block height `922,363`;
 1. Update the binary to `v2.0.1` and start the node again.
@@ -64,9 +64,9 @@ As mention before, in order to run a full node with complete blockchain data, we
 ### Option 2 - Install `chain-maind` by homebrew
 
 ::: tip Reminder:
-- If you plan to play around with different networks (mainnet and testnet), we suggest you to follow the `Option 1` to download the binary directly.
+- If you plan to play around with different networks (mainnet and testnet), we suggest you to follow `Option 1` to download the binary directly.
 
-- The binary downloaded from homebrew is **only for interacting with mainnet**. You cannot use it to interact with testnet.
+- The binary downloaded from homebrew is **only for interacting with the mainnet**. You cannot use it to interact with testnet.
 :::
 
 To install binaries in Homebrew for macOS X or Linux
@@ -217,7 +217,7 @@ If the above command returns `false`, it means that your node **is synced**; oth
 
 ### Step 3-2. Upgrade the `chain-maind` binary to `v2.0.1`
 
-At the upgrade height `922,363`, user will see the following error message on the `chain-maind`: 
+At the upgrade height of `922,363`, users will see the following error message on the `chain-maind`: 
 
 ```bash
 `ERR UPGRADE "v2.0.0" NEEDED at time: 2021-06-01T23:59:00Z:...`
@@ -282,7 +282,7 @@ You've successfully performed the new binary upgrade! Sit back and wait for the 
   ```
 If the above command returns `false`, it means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
 
-  - One can check the current block height by querying the public full node by:
+  - You can check the current block height by querying the public full node by:
 
     ```bash
     curl -s https://mainnet.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"

@@ -28,7 +28,7 @@ The following is the minimal setup for a **validator node**.
 :::
 
 ::: tip Reminder:
-The binary for testnet and the binary for mainnet are two **different** binaries. Please make sure you are using the correct binary.
+The binary for _testnet_ and the binary for _mainnet_ are two **different** binaries. Please make sure you are using the correct binary.
 :::
 
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for

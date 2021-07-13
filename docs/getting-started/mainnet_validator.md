@@ -305,6 +305,13 @@ $ ./chain-maind query tendermint-validator-set | grep -c [crocnclcons...]
 ## 1 = Yes; 0 = Not yet added ##
 ```
 
+You can also check your public key by:
+
+```bash
+$ ./chain-maind tendermint show-validator
+## [crocnclconspub... address] ##
+```
+
 To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash

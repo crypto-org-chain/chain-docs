@@ -7,7 +7,7 @@
 ### Build Prerequisites
 
 - You can get the  latest `chain-maind` binary here from the [release page](https://github.com/crypto-org-chain/chain-main/releases);
-- Alternatively, you can instal `chain-maind` by [homebrew](https://brew.sh/)
+- Alternatively, you can install `chain-maind` by [homebrew](https://brew.sh/)
   ```bash 
   # tap the repo
   brew tap crypto-org-chain/chain-maind

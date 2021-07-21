@@ -365,6 +365,15 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 ### `tx staking` - Staking operations
 
+::: tip NOTE
+
+- To get the 'validator-addr' with bech32 prefix, you can run with this command:
+
+  ```bash
+  ./chain-maind keys show Default --bech val
+  ```
+  :::
+
 Staking operations involve the interaction between an address and a validator. It allows you to create a validator and lock/unlocking funds for staking purposes.
 
 #### **Delegate you funds to a validator** [`tx staking delegate <validator-addr> <amount>`]

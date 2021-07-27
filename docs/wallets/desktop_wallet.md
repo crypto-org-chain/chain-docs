@@ -132,3 +132,42 @@ Now you should see a success message on the Desktop Wallet, and your rewards wit
         <img src="./assets/desktop_wallet/3-3-3.png" />
 
 Now you should see a success message on the Desktop Wallet, and your undelegation transaction was successfully processed!
+
+## 4 Governance
+Governance proposals potentially impact many stakeholders. You are able to view all the concurrent voting, finished or rejected proposals, and cast your votes here. 
+        <img src="./assets/desktop_wallet/4.png" />
+
+### 4.1 - Cast your vote to a proposal
+- **Step 1** - Choose a proposal which is in its Voting Period. You’re able to see the description of this proposal, with the current ratios of different vote options. Pick your desired vote option to this proposal and then click "*Send Vote*":
+        <img src="./assets/desktop_wallet/4-1.png" />
+
+- **Step 2** - Make sure you have reviewed and confirmed the transaction details, then click "*Confirm*"
+        <img src="./assets/desktop_wallet/4-2.png" />
+
+## 5 NFT Support
+The "*My NFT*" page is where you could manage your NFTs which exist on the Crypto.org Chain, no matter browsing around your NFTs collections, transfer any NFTs to your friend, or even mint your very own unique NFT. 
+        <img src="./assets/desktop_wallet/5.png" />
+
+### 5.1 - Transfer an NFT
+- **Step 1** - Under "*NFT Collection*", select the NFT you would like to transfer. Click "*Transfer NFT*":
+        <img src="./assets/desktop_wallet/5-1-1.png" />
+
+- **Step 2** - Enter the Recipient Address. Please make sure that the recipient address is compatible with the Crypto.org Chain NFT token standard. Click "*Continue*":
+        <img src="./assets/desktop_wallet/5-1-2.png" />
+
+- **Step 3** - Review the NFT transaction details in the confirmation window, then click "*Confirm Transfer*": 
+        <img src="./assets/desktop_wallet/5-1-3.png" />
+
+### 5.2 - Mint an NFT with your own Artwork
+- **Step 1** - Under "*Mint NFT*", you are required to fill up the below NFT information:
+        <img src="./assets/desktop_wallet/5-2-1.png" />
+- **Step 2.1** - You are able to upload your Artwork as either Image(.jpg, .png), or Video (.mp4):
+        <img src="./assets/desktop_wallet/5-2-2-1.png" />
+- **Step 2.2** - Do not forget to upload a Thumbnail as well if you are minting a Video NFT:
+        <img src="./assets/desktop_wallet/5-2-2-2.png" />
+- **Step 3** - It will manage to upload the files directly to the IPFS network. Please wait until the file upload process finishes, then click "*Review*":
+        <img src="./assets/desktop_wallet/5-2-3.png" />
+- **Step 4** - Review the details of the NFT. Click "*Confirm*" to approve the minting transaction:
+        <img src="./assets/desktop_wallet/5-2-4-1.png" />
+        <img src="./assets/desktop_wallet/5-2-4-2.png" />
+

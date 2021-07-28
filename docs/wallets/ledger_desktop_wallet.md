@@ -72,58 +72,20 @@ In order to start with the sending transaction/performing staking operations, we
 
 **Remark**: In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel.
 
-## Sending transaction with Ledger device
+## Confirm transactions in Desktop Wallet with Ledger device
+Desktop Wallet supports all sorts of transactions for both normal wallets and wallets created with Ledger device. In this demonstration, we will be confirming a fund sending transaction with a Ledger device.
 
-### Step 4 - Send funds in Desktop Wallet with Ledger device 
-
-- **Step 4.1** - Sending funds is easy with the desktop wallet. Once you obtain some fund from the testnet faucet, go to the "*Send*" page, fill up the request information: recipient address, amount to be sent and optional memo as needed:
+- **Step 1** - Sending funds is easy with the desktop wallet. Once you obtain some fund from the testnet faucet, go to the "*Send*" page, fill up the request information: recipient address, amount to be sent and optional memo as needed:
             <img src="./assets/ledger_desktop_wallet/s4-1.png" />
 
-- **Step 4.2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the desktop wallet and proceed to the next step by clicking "*Confirm*":
+- **Step 2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the desktop wallet and proceed to the next step by clicking "*Confirm*":
             <img src="./assets/ledger_desktop_wallet/s4-2.png" />
 
-- **Step 4.3** - Now, your transaction details will be shown on your ledger device, which includes: 
-Chain-id, Account number, sequence, Type of the transaction, the amount in "basetcro", Sender address, Receiver address, memo message, Transaction fee and gas:
+- **Step 3** - Now, your transaction details will be shown on your ledger device, which includes: 
+Chain-id, Account number, sequence, Type of the transaction, the amount in "*basetcro*", Sender address, Receiver address, memo message, Transaction fee and gas:
             <img src="./assets/ledger_desktop_wallet/s4-3-1.jpeg" />
     - You can confirm the details and approve the transaction on the ledger device:
                 <img src="./assets/ledger_desktop_wallet/s4-3-2.jpeg" />
     - Once the transaction has been approved on you ledger device, you should see a success message on your Desktop Wallet:
                 <img src="./assets/ledger_desktop_wallet/s4-3-3.png" />
-    - You can then check the transaction history at the "*Home* page. 
-
-## Staking operation with Ledger device
-
-Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol who are responsible for committing new blocks in the blockchain. Token holders might stake their token to validators to secure the network and earn rewards. Particularly, we can:
-
-- [Delegate to a validator](#delegate-to-a-validator-with-ledger-device);
-- [Withdraw staking rewards from a validator](#withdraw-the-reward-from-a-validator-with-ledger-device);
-- [Undelegate from a validator](#undelegate-the-staking-from-a-validator-with-ledger-device).
-
-
-### Delegate to a validator with Ledger device
-
-- To begin staking, please direct to "*Delegate Funds*" under the *Staking* option. You can choose one of the active validators that you would like to delegate to, copy their validator’s "*Operator Address*" (begin with `tcrocncl...` for testnet), put it under "*Validator address*" and specify the amount that you would like to delegate:
-            <img src="./assets/ledger_desktop_wallet/s6.png" />
-    Note that you can look up validators and their operator address by the validator list on the [explorer](https://crypto.org/explorer/validators).
-- Similar to sending a [transaction](#step-4-send-funds-in-desktop-wallet-with-ledger-device), you can review and confirm the transaction details on the Desktop Wallet first shown as below, click "*Confirm*" and then approve it on your ledger device. 
-            <img src="./assets/ledger_desktop_wallet/s6-2.png" />
-- Once the transaction has been approved on you ledger device, you should able to see a success message on your Desktop Wallet:
-            <img src="./assets/ledger_desktop_wallet/s6-3.png" />
-
-### Withdraw the reward from a validator with Ledger device
-
-- Under "*Staking Rewards*" on the Staking page, your staking reward amount from different validators will be displayed as below:
-            <img src="./assets/ledger_desktop_wallet/s7-1.png" />
-- Similar to sending a [transaction](#step-4-send-funds-in-desktop-wallet-with-ledger-device), you can review and confirm the transaction details on the Desktop Wallet first, click "*Confirm*" and approve it on your ledger device:
-            <img src="./assets/ledger_desktop_wallet/s7-2.png" />
-**Remark**: Please note that all of your available reward from a validator will be withdrawn in the transaction.
-
-- Once the transaction has been approved on you ledger device, you should see a success message on your Desktop Wallet:
-            <img src="./assets/ledger_desktop_wallet/s7-3.png" />
-
-### Undelegate the staking from a validator with Ledger device
-
-Similarly, you can undelegate your staked funds from a validator, and check your current delegation status under the page "*Home-Delegation*", for example: 
-            <img src="./assets/ledger_desktop_wallet/s8-1.png" />
-- You can undelegate your staked tokens from a validator by clicking "*Undelegate Stake*". Afterwards, you can specify the amount of token that you would like to undelegate from a validator, review and confirm the transaction details on the Desktop Wallet, click "*Confirm*" and approve it on your Ledger device 
-            <img src="./assets/ledger_desktop_wallet/s8-2.png" />
+    - You can then check the transaction history at the "*Home*" page. 

@@ -3,41 +3,44 @@
 Crypto.org Chain Desktop Wallet (Beta) supports staking operations, validator selections, and governance voting. Users can also view, send and mint NFTs directly, and much more from the Desktop Wallet. The latest version can be found on the [Desktop Wallet page](https://crypto.org/desktopwallet), and the previous releases are also available on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases).
 
 ### Technical support and enquiries
-In case you have any enquiry about using the Desktop Wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #desktop-wallet channel for assistance.
+Hope this guide gives you a better understanding of the use of Crypto.org Chain Desktop Wallet! 
 
-## 1 Wallet Menu
+In case you have any enquiries about using the Desktop Wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #desktop-wallet channel or [chain@crypto.org](mailto:chain@crypto.org) for assistance.
+
+## Using Desktop Wallet for the first time
+- **Step 1** - [Download](https://crypto.org/desktopwallet) the latest Crypto.org Chain Desktop Wallet.
+- **Step 2** - Run the Desktop Wallet you just installed and and click "*Get Started*". 
+        <img src="./assets/desktop_wallet/0-2.png" />
+- **Step 3** - Before creating or restoring your wallet, you would need to create an App password to protect your desktop wallet. The password is required to be at least 8 characters, containing a letter, a number, and a special character.
+        <img src="./assets/desktop_wallet/0-3.png" />
+**Remark**: It is recommended to create a stronger and unguessable password. A password labeled as "*safe*" and "*strong*" means that a person would have an extremely low probability to guess it correctly.
+- **Step 4** - Choose between "*Restore Wallet*" and "*Create Wallet*"
+        <img src="./assets/desktop_wallet/0-4.png" />
+
+## 1. Wallet Menu
 This is where you could manage all your wallets, including Create, Restore, Delete, and switch between wallets.
+        <img src="./assets/desktop_wallet/1.png" />
 
 ### 1.1 - Create Wallet
-Open the Desktop Wallet you just installed and conduct the following steps to create a wallet:
-- **Step 1** - [Download](https://crypto.org/desktopwallet) the latest Crypto.org Chain Desktop Wallet.
-
-- **Step 2** - Run the Crypto.org Chain Desktop Wallet and click "*Get Started*". 
-        <img src="./assets/desktop_wallet/1-1-2.png" />
-
-- **Step 3** - Before creating your wallet, you would need to create an App password to protect your desktop wallet. The password is required to be at least 8 characters, containing a letter, a number, and a special character.
-        <img src="./assets/desktop_wallet/1-1-3.png" />
-**Remark**: It is recommended to create a stronger and unguessable password. A password labeled as "*safe*" and "*strong*" means that a person would have an extremely low probability to guess it correctly.
-
-- **Step 4** - Afterwards, your wallet is ready to be created. Please make sure you select the following options accordingly:
+- **Step 1** - Before your wallet is ready to be created, please make sure you select the following options accordingly:
     - Input the wallet name of your choice.
     - For the network, three options of "*TESNET CROESEID 3*", "*MAINNET*", and "*CUSTOM DEVNET*" are given: 
         - "*TESNET CROESEID 3*" is our Cosmos-based `testnet-croeseid-3`.
         - "*MAINNET*" is referring to Crypto.org Chain mainnet. 
         - Other than these, you may fill up the custom configuration to your own network. 
     - In this demonstration, we will be creating a testnet address and connecting to the current `testnet-croeseid-3`, therefore, we select "*TESNET CROESEID 3*" as the network option.
+                <img src="./assets/desktop_wallet/1-1-1.png" />
+
+- **Step 2** - After inputting the information, please hit "*Create Wallet*", and the success window will pop up. 
+                <img src="./assets/desktop_wallet/1-1-2.png" />
+
+- **Step 3** - Once you click "*Continue*", the wallet will automatically generate the recovery phrase for users. Please make sure you record down all the phrases in order to restore your wallet in the future.
+                <img src="./assets/desktop_wallet/1-1-3.png" />
+
+- **Step 4** - After you input the app password again, hit "*Go to Home*", and it will bring you to the main dashboard.
                 <img src="./assets/desktop_wallet/1-1-4.png" />
 
-- **Step 5** - After inputting the information, please hit "*Create Wallet*", and the success window will pop up. 
-                <img src="./assets/desktop_wallet/1-1-5.png" />
-
-- **Step 6** - Once you click "*Continue*", the wallet will automatically generate the recovery phrase for users. Please make sure you record down all the phrases in order to restore your wallet in the future.
-                <img src="./assets/desktop_wallet/1-1-6.png" />
-
-- **Step 7** - After you input the app password again, hit "*Go to Home*", and it will bring you to the main dashboard.
-                <img src="./assets/desktop_wallet/1-1-7.png" />
-
-### 1.2 - Restore Wallet
+### 1.2 - Restore Wallet from Mnemonic Phrases
 When you select the option of "*Restore Wallet*", it brings you to the following window that allows you to input the wallet name and mnemonic phrase that was previously created. 
 - **Step 1** - Input all the required information (make sure you input the correct information of your wallet) and then hit "*Restore Wallet*".
         <img src="./assets/desktop_wallet/1-2-1.png" />
@@ -63,7 +66,7 @@ When you select the option of "*Restore Wallet*", it brings you to the following
 You can find the list of all your wallets by clicking the bottom left button and selecting the "*Wallet List*", and then all the inputted wallets will be displayed on the right interface. You can select any wallet you would like to access by hitting "*Select*" under "*Action*".
         <img src="./assets/desktop_wallet/1-4.png" />
 
-## 2 Transactions
+## 2. Transactions
 
 ### 2.1 - Sending Transactions
 Sending funds is easy with the Desktop Wallet. Ensure that you have enough funds before you perform the sending operation (do not forget that you can always request some testing tokens in [faucet](https://crypto.org/faucet)). In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord #request-tcro channel](https://discord.gg/c7vSX4TSrf).
@@ -88,7 +91,7 @@ Sending funds is easy with the Desktop Wallet. Ensure that you have enough funds
 If someone is sending funds or you are sending funds from your other account to the current account, you can simply show the bar code or the address of your current account.
         <img src="./assets/desktop_wallet/2-2.png" />
 
-## 3 Staking Operations
+## 3. Staking Operations
 Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol who are responsible for committing new blocks in the blockchain. Token holders might stake their tokens to validators to secure the network and earn rewards. Particularly, we can:
 - Delegate to a validator;
 - Withdraw staking rewards from a validator;
@@ -133,7 +136,7 @@ Now you should see a success message on the Desktop Wallet, and your rewards wit
 
 Now you should see a success message on the Desktop Wallet, and your undelegation transaction was successfully processed!
 
-## 4 Governance
+## 4. Governance
 Governance proposals potentially impact many stakeholders. You are able to view all the concurrent voting, finished or rejected proposals, and cast your votes here. 
         <img src="./assets/desktop_wallet/4.png" />
 
@@ -144,7 +147,7 @@ Governance proposals potentially impact many stakeholders. You are able to view 
 - **Step 2** - Make sure you have reviewed and confirmed the transaction details, then click "*Confirm*"
         <img src="./assets/desktop_wallet/4-2.png" />
 
-## 5 NFT Support
+## 5. NFT Support
 The "*My NFT*" page is where you could manage your NFTs which exist on the Crypto.org Chain, no matter browsing around your NFTs collections, transfer any NFTs to your friend, or even mint your very own unique NFT. 
         <img src="./assets/desktop_wallet/5.png" />
 
@@ -171,3 +174,44 @@ The "*My NFT*" page is where you could manage your NFTs which exist on the Crypt
         <img src="./assets/desktop_wallet/5-2-4-1.png" />
         <img src="./assets/desktop_wallet/5-2-4-2.png" />
 
+## 6. Settings
+
+### 6.1 - Custom your node configuration
+You are able to change the node connection settings for every different wallet specifically. 
+        <img src="./assets/desktop_wallet/6-1.png" />
+- Check the "*Propagate the settings…*" box if you would like to apply the current settings to all wallets with the same network type. 
+- Here are the default node configurations of different network types:
+
+| Network | Mainnet | Testnet Croeseid 3 |
+| :---: | --- | --- |
+| Node URL  | https://mainnet.crypto.org | https://testnet-croeseid-3.crypto.org |
+| Chain Indexing URL  | https://crypto.org/explorer/api/v1/ | https://crypto.org/explorer/croeseid3/api/v1/ |
+| Chain ID  | crypto-org-chain-mainnet-1 | testnet-croeseid-3 |
+| Network Fee  | 10000 | 10000 |
+| Gas Limit  | 300000 | 300000 |
+
+### 6.2 - Change your App Language
+Since v0.4.0, we support languages other than English. You’re able to choose your preferred language under Tab "*General Configuration*":
+        <img src="./assets/desktop_wallet/6-2.png" />
+While we’re planning to bring more languages to the app, we also welcome your contribution on perfecting the translations. You may refer to [Content Management](https://github.com/crypto-com/chain-desktop-wallet/blob/dev/CONTENT_MANAGEMENT.md) for more details. 
+
+### 6.3 - Export your Wallet Recovery Phrase
+Since v0.3.8, you are able to export your wallet recovery phrase. All the wallets in Desktop Wallet are encrypted with the app password, therefore you are required to enter the correct app password to decrypt and export the wallet properly. 
+
+- **Step 1** - Under Tab "*General Configuration*", click "*Export*" in "*Export your Recovery Phrase*":
+        <img src="./assets/desktop_wallet/6-3-1.png" />
+- **Step 2** - Enter the app password and decrypt the wallet.
+- **Step 3** - Please swipe through and write down all the Recovery Phrases in the correct order:
+        <img src="./assets/desktop_wallet/6-3-2.png" />
+
+### 6.4 - Clear your Storage
+You may come across occasions when you’ve forgotten your app password, or you would like to clean up the access of all the existing wallets inside the Desktop Wallet. You are able to safely reset the Desktop Wallet’s storage with the following steps:
+
+- **Step 1** - Under Tab "*Clear Storage*", click "*Clear Storage*"
+        <img src="./assets/desktop_wallet/6-4-1.png" />
+- **Step 2** - Make sure you’ve checked the checkbox and understood the consequences:
+        <img src="./assets/desktop_wallet/6-4-2.png" />
+- **Step 3** - Enter "*CLEAR*", then click "*Clear Storage*":
+        <img src="./assets/desktop_wallet/6-4-3.png" />
+When the Clear Storage process finishes, it brings you back to the Welcome Page and the Desktop Wallet becomes a brand new installed state again:
+        <img src="./assets/desktop_wallet/6-4-4.png" />

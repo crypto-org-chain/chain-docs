@@ -71,6 +71,10 @@ module.exports = {
             link: "/wallets/ledger.html#ledger-hardware-wallets"
           },
           {
+            text: "Desktop Wallet",
+            link: "/wallets/desktop_wallet.html#desktop-wallet"
+          },
+          {
             text: "Ledger Hardware Wallets with Desktop Wallet",
             link: "/wallets/ledger_desktop_wallet.html#ledger-hardware-wallets"
           },
@@ -144,6 +148,7 @@ module.exports = {
       "/wallets/": [
         "cli",
         "ledger",
+        "desktop_wallet",
         "ledger_desktop_wallet",
         "keplr_ledger_guide",
         "keplr_IBC_guide",

@@ -14,7 +14,7 @@ In case you have any enquiries about using the Desktop Wallet, kindly send a mes
 - **Step 3** - Before creating or restoring your wallet, you would need to create an App password to protect your desktop wallet. The password is required to be at least 8 characters, containing a letter, a number, and a special character.
         <img src="./assets/desktop_wallet/0-3.png" />
 **Remark**: It is recommended to create a stronger and unguessable password. A password labeled as "*safe*" and "*strong*" means that a person would have an extremely low probability to guess it correctly.
-- **Step 4** - Choose between "*Restore Wallet*" and "*Create Wallet*"
+- **Step 4** - Choose between ["*Restore Wallet*"](#_1-2-restore-wallet-from-mnemonic-phrases) and ["*Create Wallet*"](#_1-1-create-wallet)
         <img src="./assets/desktop_wallet/0-4.png" />
 
 ## 1. Wallet Menu
@@ -95,6 +95,7 @@ If someone is sending funds or you are sending funds from your other account to 
 Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol who are responsible for committing new blocks in the blockchain. Token holders might stake their tokens to validators to secure the network and earn rewards. Particularly, we can:
 - Delegate to a validator;
 - Withdraw staking rewards from a validator;
+- Redelegate from a validator.
 - Undelegate from a validator.
 
 ### 3.1 - Delegate to a validator
@@ -126,13 +127,23 @@ Please note that all of your available rewards from a validator will be withdraw
 Now you should see a success message on the Desktop Wallet, and your rewards withdrawal transaction was broadcasted successfully!
         <img src="./assets/desktop_wallet/3-2-3.png" />
 
-### 3.3 - Undelegate the staking from a validator
-- **Step 1** - In the case that you plan to undelegate your staked funds from a validator, you can check your current delegation status at the bottom "*Delegation*" section under the "*Home*" page:
+### 3.3 - Redelegate the staking from a validator
+- **Step 1** - In the case that you plan to redelegate your staked funds from a validator, you can check your current relegation status at the bottom "*Relegation*" section under the "*Home*" page:
         <img src="./assets/desktop_wallet/3-3-1.png" />
 
-- **Step 2** - You can undelegate your staked tokens from a validator by clicking "*Undelegate Stake*". Afterwards, you can specify the amount of token that you would like to undelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
+- **Step 2** - You can redelegate your staked tokens from a validator by clicking "*Redelegate Stake*". Likewise to [delegating to a validator](#_3-1-delegate-to-a-validator), you can either choose your preferred validator from the validator list or input its complete address. Specify the amount of token that you would like to redelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
         <img src="./assets/desktop_wallet/3-3-2.png" />
         <img src="./assets/desktop_wallet/3-3-3.png" />
+
+Now you should see a success message on the Desktop Wallet, and your funds are redelegated to another preferred validator!
+
+### 3.4 - Undelegate the staking from a validator
+- **Step 1** - In the case that you plan to undelegate your staked funds from a validator, you can check your current delegation status at the bottom "*Delegation*" section under the "*Home*" page:
+        <img src="./assets/desktop_wallet/3-4-1.png" />
+
+- **Step 2** - You can undelegate your staked tokens from a validator by clicking "*Undelegate Stake*". Afterwards, you can specify the amount of token that you would like to undelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
+        <img src="./assets/desktop_wallet/3-4-2.png" />
+        <img src="./assets/desktop_wallet/3-4-3.png" />
 
 Now you should see a success message on the Desktop Wallet, and your undelegation transaction was successfully processed!
 

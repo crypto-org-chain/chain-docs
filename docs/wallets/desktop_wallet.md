@@ -107,7 +107,7 @@ You can input the validator’s information either by:
 
     - Copying the complete address of your preferred validator, and pasting the validator’s "*Operator Address*" (begin with `tcrocncl...` for testnet) under "*Validator address*". Then specify the amount that you would like to delegate.
 
-**Remark**: You can look up validators and their operator address by the validator list on the explorer.
+**Remark**: You can look up validators and their operator address by the validator list on the [explorer](https://crypto.org/explorer/validators).
 
 - **Step 2** - Similar to sending a transaction, you can review and confirm the transaction details on the Desktop Wallet first shown below, click "*Review*" and enter your app password.
         <img src="./assets/desktop_wallet/3-1-2.png" />

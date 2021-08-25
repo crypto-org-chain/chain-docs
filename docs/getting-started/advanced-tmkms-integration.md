@@ -147,7 +147,7 @@ aws_region = '<AWS region to use for KMS>'
 
 ```toml
 address = 'unix:///home/ec2-user/sockets/validator.socket'
-chain_id = 'testnet-croeseid-3'
+chain_id = 'testnet-croeseid-4'
 sealed_consensus_key_path = '/home/ec2-user/.tmkms/secrets/secret.key'
 state_file_path = '/home/ec2-user/.tmkms/state/priv_validator_state.json'
 enclave_config_cid = 15 #overridden by flag

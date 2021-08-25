@@ -4,7 +4,7 @@
 
 Crypto.org Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_. When running the Crypto.org Chain in your local environment, you will also need to decide your own Chain ID.
 
-For example, our testnet Chain ID is `testnet-croeseid-3`.
+For example, our testnet Chain ID is `testnet-croeseid-4`.
 
 ## Address prefix
 

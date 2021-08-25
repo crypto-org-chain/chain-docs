@@ -2,10 +2,10 @@
 
 ## Node minimum setup
 
-Here we will be using a local `chain-maind` folder as the home directory. By default chain data are stored in your home directory `~/.chain-maind`. For example, when joining the testnet `testnet-croeseid-3`: 
+Here we will be using a local `chain-maind` folder as the home directory. By default chain data are stored in your home directory `~/.chain-maind`. For example, when joining the testnet `testnet-croeseid-4`: 
 
 ```bash
-./chain-maind init mynode --chain-id testnet-croeseid-3 --home ./chain-maind
+./chain-maind init mynode --chain-id testnet-croeseid-4 --home ./chain-maind
 
 sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"b2a4c8db43b815e1ed83ab4723a6af84ccb8e3e4@13.213.110.242:26656,c76d7d28141daf037bec919268d0f38e64fd8389@3.1.240.30:26656"#' ~/.chain-maind/config/config.toml
 sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
@@ -116,7 +116,7 @@ There are few clients our team has used before
     --pubkey=[tcrocnclconspub...]  \
     --moniker="[The_id_of_your_node]" \
     --security-contact="[security contact email/contact method]" \
-    --chain-id="testnet-croeseid-3" \
+    --chain-id="testnet-croeseid-4" \
     --commission-rate="0.10" \
     --commission-max-rate="0.20" \
     --commission-max-change-rate="0.01" \

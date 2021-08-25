@@ -60,10 +60,10 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 - [Tendermint](https://mainnet.crypto.org:26657/)
 - [Cosmos RESTful gRPC](https://mainnet.crypto.org:1317/)
 
-### Croeseid Testnet - `testnet-croeseid-3`
+### Croeseid Testnet - `testnet-croeseid-4`
 
-- [Tendermint](https://testnet-croeseid-3.crypto.org:26657/)
-- [Cosmos RESTful gRPC](https://testnet-croeseid-3.crypto.org:1317/)
+- [Tendermint](https://testnet-croeseid-4.crypto.org:26657/)
+- [Cosmos RESTful gRPC](https://testnet-croeseid-4.crypto.org:1317/)
 
 ## Block Explorer
 
@@ -73,7 +73,7 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 
 ### Croeseid Testnet
 
-[https://crypto.org/explorer/croeseid3/](https://crypto.org/explorer/croeseid3/)
+[https://crypto.org/explorer/croeseid4/](https://crypto.org/explorer/croeseid4/)
 
 ## Community
 

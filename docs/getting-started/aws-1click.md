@@ -202,7 +202,7 @@ $ curl -s https://mainnet.crypto.org:26657/block | jq -r .result.block.header.he
 ```
 Testnet
 ```bash
-$ curl -s https://testnet-croeseid-3.crypto.org:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid-4.crypto.org:26657/block | jq -r .result.block.header.height
 8525
 ```
 
@@ -229,10 +229,10 @@ Or
 Testnet
 ```bash
 $ chain-maind version
-0.9.1-croeseid
+3.0.0-croeseid
 ```
 - Testnet binary for
-  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v0.9.1-croeseid/chain-main_0.9.1-croeseid_Windows_x86_64.zip) are also available.
+**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.0.0-croeseid/chain-main_3.0.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.0.0-croeseid/chain-main_3.0.0-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.0.0-croeseid/chain-main_3.0.0-croeseid_Windows_x86_64.zip) are also available.
 
 :::
 

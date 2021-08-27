@@ -288,7 +288,6 @@ Once the node is fully synced, we are now ready to send a `create-validator` tra
 $ ./chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
 --amount=500000tcro \
---pubkey=[tcrocnclconspub...]  \
 --pubkey='{"@type":"/cosmos.crypto.ed25519.PubKey","key":"PUBLIC_KEY"}'  \
 --security-contact="[security contact email/contact method]" \
 --chain-id="testnet-croeseid-4" \
@@ -306,7 +305,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 You will be required to insert the following:
 
 - `--from`: The `trco...` address that holds your funds;
-- `--pubkey`: The validator public key( See Step [3-3](#step-3-3-obtain-the-validator-public-key) above ) with **tcrocnclconspub** as the prefix;
+- `--pubkey`: The validator public key( See Step [3-3](#step-3-3-obtain-the-validator-public-key) above );
 - `--moniker`: A moniker (name) for your validator node;
 - `--security-contact`: Security contact email/contact method.
 

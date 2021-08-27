@@ -107,13 +107,13 @@ There are few clients our team has used before
 
 2. Gas price error
 
-    As discussed in the metting, sometimes the `create-valiator` may fail because of the gas. You can use the following command instead (notice we have provide `--gas` and `--gas-price`) 
+    Sometimes the `create-valiator` may fail because of the gas. You can use the following command instead (notice we have provide `--gas` and `--gas-price`) 
 
     ```bash
     $ ./chain-maind tx staking create-validator \
     --from=[name_of_your_key] \
     --amount=500000tcro \
-    --pubkey=[tcrocnclconspub...]  \
+    --pubkey='{"@type":"/cosmos.crypto.ed25519.PubKey","key":"PUBLIC_KEY"}'  \
     --moniker="[The_id_of_your_node]" \
     --security-contact="[security contact email/contact method]" \
     --chain-id="testnet-croeseid-4" \

@@ -62,3 +62,9 @@ At this stage, the following three digital key schemes for creating digital sign
 - `secp256k1`, as implemented in the [SDK's crypto/keys/secp256k1 package](https://github.com/cosmos/cosmos-sdk/blob/v0.42.1/crypto/keys/secp256k1/secp256k1.go)
 - `secp256r1`, as implemented in the [SDK's crypto/keys/secp256r1 package](https://github.com/cosmos/cosmos-sdk/blob/master/crypto/keys/secp256r1/pubkey.go) 
 - `tm-ed25519`, as implemented in the [SDK crypto/keys/ed25519 package](https://github.com/cosmos/cosmos-sdk/blob/v0.42.1/crypto/keys/ed25519/ed25519.go)  (supported only for the consensus validation)
+
+| Key schemes | Address length in bytes | Public key length in bytes | Used for transaction authentication | Used for consensus (Tendermint) | 
+| --- | --- | --- | --- | --- |
+| `secp256k1` | 20 | 33 | yes | no|
+| `secp256r1` | 32 | 33 | yes | no|
+| `tm-ed25519` | not used | 32 | no | yes |

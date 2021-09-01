@@ -1,4 +1,4 @@
-# Chain ID and Address Format
+# Chain ID, Address Format and Signatures
 
 ## Chain ID
 
@@ -52,3 +52,13 @@ $ chain-maind keys show test --bech cons
     threshold: 0
     pubkeys: []
 ```
+
+## Signatures
+[Digital signature](https://en.wikipedia.org/wiki/Digital_signature) has been the main way to authenticate users, by allowing users to sign transactions using their own private key. The public key and other data that are required for proper transaction validation are stored in an `Account` object. 
+
+Since the [`chain-maind`](https://github.com/crypto-org-chain/chain-main/releases) v3.0.0, the new types of public keys and signing algorithms are supported, including secp256r1/NIST P-256. Secp256r1 is commonly applied in HSMs, [macOS/iOS/watchOS Secure Enclave](https://support.apple.com/en-ca/guide/security/sec59b0b31ff/web) and [Android hardware-backed Keystore](https://source.android.com/security/keystore/features), which allows the devices to function as hardware wallets. Based on secp256r1, the chosen parameters are supposed to be random numbers, while secp256k1 has had its parameters chosen [relatively rigidly](http://safecurves.cr.yp.to/rigid.html). Also, the address length (in bytes) in secp256k1 is 20 versus secp256r1 of 32.
+
+At this stage, the following three digital key schemes for creating digital signatures are supported in Cosmos SDK. You can learn more at the [Cosmos SDK website](https://docs.cosmos.network/master/basics/accounts.html#keys-accounts-addresses-and-signatures).
+- `secp256k1`, as implemented in the [SDK's crypto/keys/secp256k1 package](https://github.com/cosmos/cosmos-sdk/blob/v0.42.1/crypto/keys/secp256k1/secp256k1.go)
+- `secp256r1`, as implemented in the [SDK's crypto/keys/secp256r1 package](https://github.com/cosmos/cosmos-sdk/blob/master/crypto/keys/secp256r1/pubkey.go) 
+- `tm-ed25519`, as implemented in the [SDK crypto/keys/ed25519 package](https://github.com/cosmos/cosmos-sdk/blob/v0.42.1/crypto/keys/ed25519/ed25519.go)  (supported only for the consensus validation)

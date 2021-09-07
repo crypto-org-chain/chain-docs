@@ -5,7 +5,7 @@ The Inter-Blockchain Communication protocol (IBC) is an inter-module communicati
 In the following step-by-step guide, you will learn how to make IBC transfers with Keplr, and IBC transfers between Crypto.org Chain and Cosmos are demonstrated as an example in this guide.  
 
 ::: warning
-*We recommend using this Keplr’s feature only after careful research and awareness of the risks associated with its improper use, and Crypto.org does not take any liability related to the potential loss of funds due to the IBC Transfers service.*
+*We recommend using this Keplr’s feature only after careful research and awareness of the risks associated with its improper use, and also verifying if the IBC channel is active prior to performing the IBC transactions. One way to view such IBC relayers information is to check out the [Mintscan explorer Crypto.org relayer page](https://www.mintscan.io/crypto-org/relayers). Crypto.org does not take any liability related to the potential loss of funds due to the IBC Transfers service.*
 :::
 
 ### Pre-requisites

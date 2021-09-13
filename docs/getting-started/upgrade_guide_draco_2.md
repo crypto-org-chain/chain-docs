@@ -23,7 +23,7 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
 - Terminate the `chain-maind`; afterwards, download the `3.1.1` released binaries from github:
 
   ```bash
-  $ https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Linux_x86_64.tar.gz
   $ tar -zxvf chain-main_3.1.1_Linux_x86_64.tar.gz
   ```
 

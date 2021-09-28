@@ -41,6 +41,10 @@ To simplify the following step, we will be using **Linux** (Intel x86) for illus
   ```
 - You can verify the installation by checking the version of the chain-maind, the current version is `3.0.0-croeseid`.
 
+::: tip Reminder:
+For macOS users: the binary is not signed, you have to follow the steps [here](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac) to make the binary runnable.
+:::
+
   ```bash
   $./chain-maind version
   3.0.0-croeseid

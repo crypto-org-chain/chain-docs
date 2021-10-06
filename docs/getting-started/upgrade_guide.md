@@ -73,6 +73,6 @@ If the above command returns `false`, it means that your node **is synced**; oth
 
 ## Getting ready - "DRACO II" second netwrok upgrade 
 
-At last step, you've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II"** ,the second network upgrade  ( from `v2.*` to `v3.1.1` at block height `2,472,800` ) by following this [guide](./upgrade_guide_draco_2).
+At last step, you've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II"** ,the second network upgrade  ( from `v2.*` to `v3.1.1` at block height `2,472,800` ) by following this [guide](./upgrade_guide_draco_2.html).
 
 

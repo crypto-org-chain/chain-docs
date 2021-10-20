@@ -102,7 +102,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 - Verify sha256sum checksum of the downloaded `genesis.json`. You should see `OK!` if the sha256sum checksum matches.
 
   ```bash
-  $ if [[ $(sha256sum ~/.chain-maind/config/genesis.json | awk '{print $1}') = "24eeb466be03f14f589adbd262d85ab818413740a3d0198007a25cf7028e92fc" ]]; then echo "OK"; else echo "MISMATCHED"; fi;
+  $ if [[ $(sha256sum ~/.chain-maind/config/genesis.json | awk '{print $1}') = "cf20fb923be3bc565e49a57e81a47ca969e8a973be7b3ed44e2734e369118b6c" ]]; then echo "OK"; else echo "MISMATCHED"; fi;
 
   OK!
   ```

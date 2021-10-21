@@ -2,6 +2,10 @@
 
 Crypto.org Chain Desktop Wallet (Beta) supports staking operations, validator selections, and governance voting. Users can also view, send and mint NFTs directly, and much more from the Desktop Wallet. The latest version can be found on the [Desktop Wallet page](https://crypto.org/desktopwallet), and the previous releases are also available on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases).
 
+### Geo-Restrictions
+
+Information about [restricted locations](https://crypto.org/desktopwallet/geo-restrictions) from downloading [Crypto.org](https://crypto.org/) Chain Desktop Wallet.
+
 ### Technical support and enquiries
 Hope this guide gives you a better understanding of the use of Crypto.org Chain Desktop Wallet! 
 

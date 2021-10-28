@@ -11,7 +11,7 @@ In case you have any inquiries about using the Ledger device with Keplr, kindly 
 *The browser may ask for permission to access your Ledger device, please make sure to grant this permission in your browser during this process. Note that the permission is strictly used to allow Keplr extension to communicate with the front-ends, and all sensitive data remain locally on your device.*
 
 ### Step 1: Set up Keplr Wallet
-Install the [Keplr Browser Extension for Chrome](https://github.com/chainapsis/keplr-extension/releases/tag/v0.8.8-rc.0). Once it is installed, you can open the extension and choose one of the options that best suit your preferences. Since we are using a ledger device for this tutorial, you can select the last option “Import ledger”.
+Install the Keplr Browser Extension for Chrome from the [Keplr's website](https://www.keplr.app/) or [its release page](https://github.com/chainapsis/keplr-extension/releases). Once it is installed, you can open the extension and choose one of the options that best suit your preferences. Since we are using a ledger device for this tutorial, you can select the last option “Import ledger”.
 
 <img src="./assets/keplr_wallet/s1-1.png" />
 

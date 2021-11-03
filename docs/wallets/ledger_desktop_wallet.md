@@ -52,6 +52,7 @@ After the app is set, please conducting the following steps to create a wallet w
 
     - Input your wallet name of your choice;
     - Tick "*Want to create with hardware wallet*" and choose "*Ledger*" as the wallet type. 
+    - "**Address Index**" is the last value of the Derivation Path (e.g. `44'/394'/0'/0/{address_index}`), which used to derive different addresses from the same key based on different number input. You will need to input the same "**Address Index**" if you want to restore the Ledger wallet address on another device.
     - For the network, three options of "**Testnet Croeseid 4**", "**Mainnet**", and "**Custom Devnet**" are given. **Testnet Croeseid 4** is Croeseid testnet which is our Cosmos-based testnet that has been running since last October. **Mainnet** is refers to Crypto.org Chain mainnet. Other than these, you may fill up the custom configuration to your own network.
         <img src="./assets/ledger_desktop_wallet/s2-4.png" />
     In this demonstration, we will be creating a testnet address and connecting to the current Croeseid Testnet, therefore, we select "**Testnet Croeseid 4**" as the network option. 
@@ -114,3 +115,8 @@ Chain-id, Account number, sequence, Type of the transaction, the amount in "*bas
     - Once the transaction has been approved on you ledger device, you should see a success message on your Desktop Wallet:
                 <img src="./assets/ledger_desktop_wallet/s4-3-3.png" />
     - You can then check the transaction history in "*Transaction*" Tab. 
+
+## Restoring a Ledger wallet 
+Since the private key of Ledger wallets are always stored inside the Ledger device, you don't need the **Mnemonic Phrases** to restore a Ledger wallet on the Desktop Wallet. You may just follow our [*Create wallet in Desktop Wallet with Ledger device Guide*](#step-2-create-wallet-in-desktop-wallet-with-ledger-device) once again to restore your previously created Ledger wallet. 
+
+Please note that you may still need to input the correct **Address Index** to derive your desired Ledger wallet address.

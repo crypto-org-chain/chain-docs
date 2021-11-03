@@ -73,27 +73,42 @@ You can find the list of all your wallets by clicking the bottom left button and
 ## 2. Transactions
 
 ### 2.1 - Sending Transactions
-Sending funds is easy with the Desktop Wallet. Ensure that you have enough funds before you perform the sending operation (do not forget that you can always request some testing tokens in [faucet](https://crypto.org/faucet)). In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord #request-tcro channel](https://discord.gg/c7vSX4TSrf).
+Sending funds is easy with the Desktop Wallet. Ensure that you have enough funds before you perform the sending operation.
+Do not forget that you can always request some testing tokens in faucet: 
 
-- **Step 1** - Select the "*Send*" on the left panel, fill up the request information: 
+| Asset | Faucet |
+| :---: | --- | --- |
+| CRO (Crypto.org Chain) | [https://crypto.org/faucet](https://crypto.org/faucet) |
+| CRO (Cronos Chain) | [https://cronos.crypto.org/faucet](https://cronos.crypto.org/faucet) |
+
+In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord #request-tcro channel](https://discord.gg/c7vSX4TSrf).
+
+- **Step 1** - Select the "*Assets*" on the left panel, and you will see the "*Send*" and "*Receive*" options on the left right of each asset. 
+        <img src="./assets/desktop_wallet/2-1-1.png" />
+After you click the "*Send*", fill up the request information:
     - recipient address
     - amount to be sent 
     - optional memo
-        <img src="./assets/desktop_wallet/2-1-1.png" />
-
-- **Step 2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the Desktop Wallet and proceed to the next step by clicking "*Confirm*". Then enter your app password and hit "*Decrypt Wallet*".
         <img src="./assets/desktop_wallet/2-1-2.png" />
 
-- **Step 3** - In the "*Confirm Transaction*" page, please double-check the information and make sure the information you entered is correct. Now you can go with "*Confirm*" and click "*OK*" on the next page.
+- **Step 2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the Desktop Wallet and proceed to the next step by clicking "Confirm". Then enter your app password and hit "*Decrypt Wallet*".
         <img src="./assets/desktop_wallet/2-1-3.png" />
 
-- **Step 4** - Now your funds have been transferred successfully to your selected address! You can then check the transaction history under “Transaction” at the “Home” page.
+- **Step 3** - In the "*Confirm Transaction*" section, please double-check the information and make sure the information you entered is correct. Now you can go with "*Confirm*" and click "*OK*" on the next page.
         <img src="./assets/desktop_wallet/2-1-4.png" />
+
+- **Step 4** - Now your funds have been transferred successfully to your selected address! You can then check the transaction history by clicking "*Transaction*" tab under any of your Assets.
         <img src="./assets/desktop_wallet/2-1-5.png" />
+        <img src="./assets/desktop_wallet/2-1-6.png" />
 
 ### 2.2 - Receive Transactions
-If someone is sending funds or you are sending funds from your other account to the current account, you can simply show the bar code or the address of your current account.
+If someone is sending funds to you or you are sending funds from your other address to the current address, you can: 
+- **Step 1** - Under the "*Assets*" page, you will see the “Send” and “Receive” tabs on the left-right of each asset. Click "*Receive*".
+        <img src="./assets/desktop_wallet/2-1-1.png" />
+        
+- **Step 2** - You will find the QR code and the address of your current wallet account.
         <img src="./assets/desktop_wallet/2-2.png" />
+
 
 ## 3. Staking Operations
 Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol who are responsible for committing new blocks in the blockchain. Token holders might stake their tokens to validators to secure the network and earn rewards. Particularly, we can:
@@ -103,7 +118,7 @@ Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a 
 - Undelegate from a validator.
 
 ### 3.1 - Delegate to a validator
-- **Step 1** - To begin staking, please direct to "*Delegate Funds*" under the Staking option. You can choose one of the active validators that you would like to delegate to: 
+- **Step 1** - To begin staking, go to "*Staking*" page and direct to the second tab "*Delegate Funds*". You can choose one of the active validators that you would like to delegate to, and enter the delegation amount. 
         <img src="./assets/desktop_wallet/3-1-1-1.png" />
 You can input the validator’s information either by:
     - Clicking the list button under "*Validator address*", and selecting your preferred validators. 
@@ -111,38 +126,37 @@ You can input the validator’s information either by:
 
     - Copying the complete address of your preferred validator, and pasting the validator’s "*Operator Address*" (begin with `tcrocncl...` for testnet) under "*Validator address*". Then specify the amount that you would like to delegate.
 
-**Remark**: You can look up validators and their operator address by the validator list on the [explorer](https://crypto.org/explorer/validators).
+**Remark**: To help better improve our network’s decentralization, we suggest you delegate your funds to validators with fewer shares..
 
 - **Step 2** - Similar to sending a transaction, you can review and confirm the transaction details on the Desktop Wallet first shown below, click "*Review*" and enter your app password.
         <img src="./assets/desktop_wallet/3-1-2.png" />
 
-- **Step 3** - Now you will proceed to the confirmation page. Make sure you input the correct information of your wallet and then hit "*Confirm*". 
+- **Step 3** - Now you will proceed to the confirmation section. Make sure you input the correct information of your wallet and then hit "*Confirm*". 
         <img src="./assets/desktop_wallet/3-1-3-1.png" />
         <img src="./assets/desktop_wallet/3-1-3-2.png" />
 Now you’ve successfully staked the desired amount to your selected validator!
 
 ### 3.2 - Withdraw the reward from a validator
-- **Step 1** - Under "*Staking Rewards*" on the Staking page, your staking reward amount from different validators will be displayed as below:
+- **Step 1** - Under "*Staking Rewards*" on the "*Staking*" page, your staking reward amount from different validators will be displayed as below:
         <img src="./assets/desktop_wallet/3-2-1.png" />
 - **Step 2** - Click the "*Withdraw Reward*" under "*Action*", and input your app password. Similar to other transaction operations, you should review and double-check the transaction details "*Confirm*" before processing "*Confirm*". 
         <img src="./assets/desktop_wallet/3-2-2.png" />
 Please note that all of your available rewards from a validator will be withdrawn in the transaction.
 
 Now you should see a success message on the Desktop Wallet, and your rewards withdrawal transaction was broadcasted successfully!
-        <img src="./assets/desktop_wallet/3-2-3.png" />
 
 ### 3.3 - Redelegate the staking from a validator
-- **Step 1** - In the case that you plan to redelegate your staked funds from a validator, you can check your current relegation status at the bottom "*Relegation*" section under the "*Home*" page:
+- **Step 1** - In the case that you plan to redelegate your staked funds from a validator, you can go to Delegation Management under the "*Staking*" page. The "*Redelegate Stake*" option is highlighted in green color. 
         <img src="./assets/desktop_wallet/3-3-1.png" />
 
-- **Step 2** - You can redelegate your staked tokens from a validator by clicking "*Redelegate Stake*". Likewise to [delegating to a validator](#_3-1-delegate-to-a-validator), you can either choose your preferred validator from the validator list or input its complete address. Specify the amount of token that you would like to redelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
+- **Step 2** - You can click "*Redelegate Stake*" to redelegate your staked tokens from a validator now. On the popup window, likewise to [delegating to a validator](#_3-1-delegate-to-a-validator), you will be required to fill in the validator’s address(you can either choose your preferred validator from the validator list or input its complete address), and the amount that you would like to redelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
         <img src="./assets/desktop_wallet/3-3-2.png" />
         <img src="./assets/desktop_wallet/3-3-3.png" />
 
 Now you should see a success message on the Desktop Wallet, and your funds are redelegated to another preferred validator!
 
 ### 3.4 - Undelegate the staking from a validator
-- **Step 1** - In the case that you plan to undelegate your staked funds from a validator, you can check your current delegation status at the bottom "*Delegation*" section under the "*Home*" page:
+- **Step 1** - If you plan to undelegate your staked funds from a validator, you can go to Delegation Management under the "*Staking*" page. "*Undelegate Stake*" option is highlighted in red color. 
         <img src="./assets/desktop_wallet/3-4-1.png" />
 
 - **Step 2** - You can undelegate your staked tokens from a validator by clicking "*Undelegate Stake*". Afterwards, you can specify the amount of token that you would like to undelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
@@ -150,6 +164,14 @@ Now you should see a success message on the Desktop Wallet, and your funds are r
         <img src="./assets/desktop_wallet/3-4-3.png" />
 
 Now you should see a success message on the Desktop Wallet, and your undelegation transaction was successfully processed!
+
+
+  ::: tip NOTE
+
+  - You can review your undelegation process by clicking "*View Unbonding Delegation*" at the top right corner in the "*Delegation Management*" section. 
+<img src="./assets/desktop_wallet/3-4-4.png" />
+
+  :::
 
 ## 4. Governance
 Governance proposals potentially impact many stakeholders. You are able to view all the concurrent voting, finished or rejected proposals, and cast your votes here. 

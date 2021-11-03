@@ -85,7 +85,7 @@ Verify the address by clicking "*Verify address on Ledger*", you should see the 
 
 - **Step 3.2** - Once the address has been confirmed, copy this address and request some funds from the [testnet faucet](https://crypto.org/faucet)
 
-| App | Supported Assets |
+| Asset | Faucet |
 | :---: | --- | --- |
 | CRO (Crypto.org Chain) | [https://crypto.org/faucet](https://crypto.org/faucet) |
 | CRO (Cronos Chain) | [https://cronos.crypto.org/faucet](https://cronos.crypto.org/faucet) |

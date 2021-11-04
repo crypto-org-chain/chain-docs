@@ -209,7 +209,6 @@ The "*My NFT*" page is where you could manage your NFTs which exist on the Crypt
         <img src="./assets/desktop_wallet/5-2-3.png" />
 - **Step 4** - Review the details of the NFT. Click "*Confirm*" to approve the minting transaction:
         <img src="./assets/desktop_wallet/5-2-4-1.png" />
-        <img src="./assets/desktop_wallet/5-2-4-2.png" />
 
 ## 6. Cronos Bridge
 Our Cronos Mainnet, an EVM Compatible chain built with Etheremint, is live on 8th November 2021. You could easily convert and transfer your Crypto.org Native CRO and Cronos CRO between each other seamlessly with the Cronos Bridge we provide. 

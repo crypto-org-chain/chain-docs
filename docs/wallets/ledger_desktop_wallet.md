@@ -71,7 +71,7 @@ Before you click "Connect", make sure you are able to see "*Crypto.org Chain rea
 
 
 ### Step 3 - Before you perform transactions with Ledger device
-Before start with the sending transaction/performing staking operations, we would need some funds to begin with:
+Before starting with the sending transaction/performing staking operations, we would need some funds to begin with:
 
 - **Step 3.1** - Go to "*Assets*" and pick the asset you would like to transfer. Go to "*Receive*" tab in the desktop wallet and your wallet address will be displayed. Depending on which asset you choose, you might need to open different App on your ledger. 
 

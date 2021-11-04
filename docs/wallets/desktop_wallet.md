@@ -126,7 +126,7 @@ You can input the validator’s information either by:
 
     - Copying the complete address of your preferred validator, and pasting the validator’s "*Operator Address*" (begin with `tcrocncl...` for testnet) under "*Validator address*". Then specify the amount that you would like to delegate.
 
-**Remark**: To help better improve our network’s decentralization, we suggest you delegate your funds to validators with fewer shares..
+**Remark**: To support the decentralization of the network, we suggest all users delegate your funds to validators with fewer shares, but please make you've done research into the validators you selected before the delegation to minimize your risk of unnecessary fund loss.
 
 - **Step 2** - Similar to sending a transaction, you can review and confirm the transaction details on the Desktop Wallet first shown below, click "*Review*" and enter your app password.
         <img src="./assets/desktop_wallet/3-1-2.png" />

@@ -34,7 +34,7 @@ In case you have any enquiry about using Ledger device with desktop wallet, kind
     You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:
             <img src="./assets/ledger_desktop_wallet/s1-5-3.jpeg" />
 
-**Remark**: Once Crypto.org App & Ethereum successfully installed, please close the Ledger Live app before proceeding to the next step .
+**Remark**: Once Crypto.org App & Ethereum successfully installed, please remember to close the *Ledger Live* app before proceeding to the next step .
 
 ### Step 2 - Create wallet in Desktop Wallet with Ledger device
 
@@ -57,7 +57,7 @@ For the network, three options of "**Testnet Croeseid 4**", "**Mainnet**", and "
         <img src="./assets/ledger_desktop_wallet/s2-4.png" />
     In this demonstration, we will be creating a testnet address and connecting to the current Croeseid Testnet, therefore, we select "**Testnet Croeseid 4**" as the network option. 
 
-- **Step 2.5** - Click "*Create Wallet*" and you will be asked to open Crypto.org Chain App on your Ledger device. 
+- **Step 2.5** - After click "*Create Wallet*", and you will be asked to open Crypto.org Chain App on your Ledger device. 
         <img src="./assets/ledger_desktop_wallet/s2-5-1.png" />    
 Before you click "Connect", make sure you are able to see "*Crypto.org Chain ready*" displayed on your device as follow: 
         <img src="./assets/ledger_desktop_wallet/s2-5-2.jpg" />    
@@ -90,7 +90,7 @@ Verify the address by clicking "*Verify address on Ledger*", you should see the 
 | CRO (Crypto.org Chain) | [https://crypto.org/faucet](https://crypto.org/faucet) |
 | CRO (Cronos Chain) | [https://cronos.crypto.org/faucet](https://cronos.crypto.org/faucet) |
 
-- **Step 3.3** - Your current balance will be available in "*Assets*" page. If you would like to view the transaction details, go to "*Transaction*" Tab and simply hit the hash link under Transaction Hash and it will direct you to the corresponding explorer where different details related to transactions will be displayed:
+- **Step 3.3** - Your current balance will be available on the "Assets" page. If you would like to view the transaction details, go to the "Transaction" Tab and simply hit the hash link under Transaction Hash, and it will direct you to the corresponding explorer where different details related to transactions will be displayed:
             <img src="./assets/ledger_desktop_wallet/s3-3.png" />
 
 **Remark**: In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel.

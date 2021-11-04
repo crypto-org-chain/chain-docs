@@ -53,7 +53,7 @@ After the app is set, please conducting the following steps to create a wallet w
     - Input your wallet name of your choice;
     - Tick "*Want to create with hardware wallet*" and choose "*Ledger*" as the wallet type. 
     - "**Address Index**" is the last value of the Derivation Path (e.g. `44'/394'/0'/0/{address_index}`), which used to derive different addresses from the same key based on different number input. You will need to input the same "**Address Index**" if you want to restore the Ledger wallet address on another device.
-    - For the network, three options of "**Testnet Croeseid 4**", "**Mainnet**", and "**Custom Devnet**" are given. **Testnet Croeseid 4** is Croeseid testnet which is our Cosmos-based testnet that has been running since last October. **Mainnet** is refers to Crypto.org Chain mainnet. Other than these, you may fill up the custom configuration to your own network.
+For the network, three options of "**Testnet Croeseid 4**", "**Mainnet**", and "**Custom Devnet**" are given. **Testnet Croeseid 4** is Croeseid testnet which is our Cosmos-based testnet that has been running since October 2020. **Mainnet** refers to Crypto.org Chain mainnet. Other than these, you can also fill up the custom configuration to your own network.
         <img src="./assets/ledger_desktop_wallet/s2-4.png" />
     In this demonstration, we will be creating a testnet address and connecting to the current Croeseid Testnet, therefore, we select "**Testnet Croeseid 4**" as the network option. 
 

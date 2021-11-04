@@ -211,11 +211,71 @@ The "*My NFT*" page is where you could manage your NFTs which exist on the Crypt
         <img src="./assets/desktop_wallet/5-2-4-1.png" />
         <img src="./assets/desktop_wallet/5-2-4-2.png" />
 
-## 6. Settings
+## 6. Cronos Bridge
+Our Cronos Mainnet, an EVM Compatible chain built with Etheremint, is live on 8th November 2021. You could easily convert and transfer your Crypto.org Native CRO and Cronos CRO between each other seamlessly with the Cronos Bridge we provide. 
+        <img src="./assets/desktop_wallet/6.png" />
 
-### 6.1 - Custom your node configuration
-You are able to change the node connection settings for every different wallet specifically. 
+### 6.1 - Before the bridge transfer
+First, you need to decide your desired bridge direction. You can also customize the config settings of a specific bridge direction, by clicking the config icon at the top-right corner. 
         <img src="./assets/desktop_wallet/6-1.png" />
+
+Here are the default settings of certain bridge directions:
+
+**MAINNET** - *Crypto.org Chain* to *Cronos Chain*
+| Field | Value |
+| :---: | --- | --- |
+| Prefix | crc |
+| Bridge Channel | channel-0 |
+| Bridge Port | transfer |
+| Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
+
+**MAINNET** - *Cronos Chain* to *Crypto.org Chain*
+| Field | Value |
+| :---: | --- | --- |
+| Cronos Bridge Contract Address | TO_BE_DECIDED |
+| Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
+| Gas Limit | 30000 |
+
+**TESTNET** - *Crypto.org Chain* to *Cronos Chain*
+| Field | Value |
+| :---: | --- | --- |
+| Prefix | tcrc |
+| Bridge Channel | channel-131 |
+| Bridge Port | transfer |
+| Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
+
+**TESTNET** - *Cronos Chain* to *Crypto.org Chain*
+| Field | Value |
+| :---: | --- | --- |
+| Cronos Bridge Contract Address | 0x44b8c54d95906D6b223dAE5E038cB8EF4ef45aE5 |
+| Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
+| Gas Limit | 30000 |
+
+NOTE: A misconfiguration may lead to a bridge transfer failure.
+
+### 6.2 - Initiate a bridge transfer transaction
+- **Step 1** - Once a valid bridge direction is selected, you are able to choose your desired transferring asset and enter the amount for the transferral. Then click "Transfer Asset" & enter your App Password to proceed.
+        <img src="./assets/desktop_wallet/6-2-1.png" />
+
+- **Step 2** - Please confirm the transfer details. You may modify your transfer by clicking the back button on the top-left corner as needed. Please note that once you’ve clicked the "Confirm" button, there will be no going back.
+        <img src="./assets/desktop_wallet/6-2-2.png" />
+
+- **Step 3** - After the transfer is initiated, the corresponding tokens will be transferred to our dedicated Cronos bridge smart contract. 
+        <img src="./assets/desktop_wallet/6-2-3-1.png" />
+
+The process may take up to a few minutes to finish. Once it’s done, you will see an updated balance in your receiving address. 
+        <img src="./assets/desktop_wallet/6-2-3-2.png" />
+
+### 6.3 - Check your Bridger Transfer History
+You can always review your latest bridge transfer history at the top-right corner. 
+        <img src="./assets/desktop_wallet/6-3.png" />
+If you found your bridge transfer history failed to get latest transferrals, please make sure your Bridge Indexing URL is correct with the value [mentioned above](#_6-1-before-the-bridge-transfer)
+
+## 7. Settings
+
+### 7.1 - Custom your node configuration
+You are able to change the node connection settings for every different wallet specifically. 
+        <img src="./assets/desktop_wallet/7-1.png" />
 - Check the "*Propagate the settings…*" box if you would like to apply the current settings to all wallets with the same network type. 
 - Here are the default node configurations of different network types:
 
@@ -227,28 +287,28 @@ You are able to change the node connection settings for every different wallet s
 | Network Fee  | 10000 | 10000 |
 | Gas Limit  | 300000 | 300000 |
 
-### 6.2 - Change your App Language
+### 7.2 - Change your App Language
 Since v0.4.0, we support languages other than English. You’re able to choose your preferred language under Tab "*General Configuration*":
-        <img src="./assets/desktop_wallet/6-2.png" />
+        <img src="./assets/desktop_wallet/7-2.png" />
 While we’re planning to bring more languages to the app, we also welcome your contribution on perfecting the translations. You may refer to [Content Management](https://github.com/crypto-com/chain-desktop-wallet/blob/dev/CONTENT_MANAGEMENT.md) for more details. 
 
-### 6.3 - Export your Wallet Recovery Phrase
+### 7.3 - Export your Wallet Recovery Phrase
 Since v0.3.8, you are able to export your wallet recovery phrase. All the wallets in Desktop Wallet are encrypted with the app password, therefore you are required to enter the correct app password to decrypt and export the wallet properly. 
 
 - **Step 1** - Under Tab "*General Configuration*", click "*Export*" in "*Export your Recovery Phrase*":
-        <img src="./assets/desktop_wallet/6-3-1.png" />
+        <img src="./assets/desktop_wallet/7-3-1.png" />
 - **Step 2** - Enter the app password and decrypt the wallet.
 - **Step 3** - Please swipe through and write down all the Recovery Phrases in the correct order:
-        <img src="./assets/desktop_wallet/6-3-2.png" />
+        <img src="./assets/desktop_wallet/7-3-2.png" />
 
-### 6.4 - Clear your Storage
+### 7.4 - Clear your Storage
 You may come across occasions when you’ve forgotten your app password, or you would like to clean up the access of all the existing wallets inside the Desktop Wallet. You are able to safely reset the Desktop Wallet’s storage with the following steps:
 
 - **Step 1** - Under Tab "*Clear Storage*", click "*Clear Storage*"
-        <img src="./assets/desktop_wallet/6-4-1.png" />
+        <img src="./assets/desktop_wallet/7-4-1.png" />
 - **Step 2** - Make sure you’ve checked the checkbox and understood the consequences:
-        <img src="./assets/desktop_wallet/6-4-2.png" />
+        <img src="./assets/desktop_wallet/7-4-2.png" />
 - **Step 3** - Enter "*CLEAR*", then click "*Clear Storage*":
-        <img src="./assets/desktop_wallet/6-4-3.png" />
+        <img src="./assets/desktop_wallet/7-4-3.png" />
 When the Clear Storage process finishes, it brings you back to the Welcome Page and the Desktop Wallet becomes a brand new installed state again:
-        <img src="./assets/desktop_wallet/6-4-4.png" />
+        <img src="./assets/desktop_wallet/7-4-4.png" />

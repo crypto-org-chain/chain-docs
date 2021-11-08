@@ -294,7 +294,3 @@ and you can check your node's progress (in terms of block height) by:
     ```bash
     $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
     ```
-
-## Getting ready - "DRACO II" second network upgrade 
-
-At last step, you've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II"** ,the second network upgrade  ( from `v2.*` to `v3.1.1` at block height `2,472,800` ) by following this [guide](./upgrade_guide_draco_2).

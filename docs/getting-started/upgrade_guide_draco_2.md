@@ -1,9 +1,9 @@
 # The "DRACO II" upgrade guide (`v2.*` to `v3.1.1`) : 
 
 :::warning
-The chain-maind `v3.1.1` - DRACO II upgrade is proposed to be scheduled at the block height of `2,472,800` ( *Estimated time ~Wednesday, 22 September 2021 22:00 GMT*, but this depends on the actual time taken when the blocks is being processed).
+The chain-maind `v3.1.1` - DRACO II upgrade is pending.
 
-**DO NOT UPGRADE to the binary `v3.1.1` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
+**DO NOT UPGRADE to the binary `v3.1.1` before that suggested upgrade schedule.**
 :::
 
 For **full node host** who want to enjoy the automatic upgrade managed by [cosmovisor](https://docs.cosmos.network/master/run-node/cosmovisor.html), please follow this [cosmovisor guide](./cosmovisor.md) for the coming "DRACO II" network upgrade. Otherwise, please continue below manual upgrade steps. Please also note that cosmovisor **is NOT** suggested for validators. 

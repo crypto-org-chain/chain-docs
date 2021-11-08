@@ -224,7 +224,7 @@ Here are the default settings of certain bridge directions:
 | Field | Value |
 | :---: | --- | --- |
 | Prefix | crc |
-| Bridge Channel | channel-0 |
+| Bridge Channel | channel-44 |
 | Bridge Port | transfer |
 | Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
 

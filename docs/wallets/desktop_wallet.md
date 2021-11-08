@@ -231,7 +231,7 @@ Here are the default settings of certain bridge directions:
 **MAINNET BETA** - *Cronos Chain* to *Crypto.org Chain*
 | Field | Value |
 | :---: | --- | --- |
-| Cronos Bridge Contract Address | TO_BE_DECIDED |
+| Cronos Bridge Contract Address | [0x6b1b50c2223eb31E0d4683b046ea9C6CB0D0ea4F](https://cronos.crypto.org/explorer/address/0x6b1b50c2223eb31E0d4683b046ea9C6CB0D0ea4F/transactions) |
 | Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
 | Gas Limit | 30000 |
 
@@ -241,13 +241,13 @@ Here are the default settings of certain bridge directions:
 | Prefix | tcrc |
 | Bridge Channel | channel-131 |
 | Bridge Port | transfer |
-| Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
+| Bridge Indexing URL | https://cronos.crypto.org/testnet3/indexing/api/v1/bridges |
 
 **TESTNET** - *Cronos Chain* to *Crypto.org Chain*
 | Field | Value |
 | :---: | --- | --- |
-| Cronos Bridge Contract Address | 0x44b8c54d95906D6b223dAE5E038cB8EF4ef45aE5 |
-| Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
+| Cronos Bridge Contract Address | [0x44b8c54d95906D6b223dAE5E038cB8EF4ef45aE5](https://cronos.crypto.org/explorer/testnet3/address/0x44b8c54d95906D6b223dAE5E038cB8EF4ef45aE5/transactions) |
+| Bridge Indexing URL | https://cronos.crypto.org/testnet3/indexing/api/v1/bridges |
 | Gas Limit | 30000 |
 
 NOTE: A misconfiguration may lead to a bridge transfer failure.

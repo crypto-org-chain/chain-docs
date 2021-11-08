@@ -211,7 +211,7 @@ The "*My NFT*" page is where you could manage your NFTs which exist on the Crypt
         <img src="./assets/desktop_wallet/5-2-4-1.png" />
 
 ## 6. Cronos Bridge
-Our Cronos Mainnet, an EVM Compatible chain built with Etheremint, is live on 8th November 2021. You could easily convert and transfer your Crypto.org Native CRO and Cronos CRO between each other seamlessly with the Cronos Bridge we provide. 
+Our Cronos Mainnet Beta, an EVM Compatible chain built with Etheremint, is live on 8th November 2021. You could easily convert and transfer your Crypto.org Native CRO and Cronos CRO between each other seamlessly with the Cronos Bridge we provide. 
         <img src="./assets/desktop_wallet/6.png" />
 
 ### 6.1 - Before the bridge transfer
@@ -220,7 +220,7 @@ First, you need to decide your desired bridge direction. You can also customize 
 
 Here are the default settings of certain bridge directions:
 
-**MAINNET** - *Crypto.org Chain* to *Cronos Chain*
+**MAINNET BETA** - *Crypto.org Chain* to *Cronos Chain*
 | Field | Value |
 | :---: | --- | --- |
 | Prefix | crc |
@@ -228,7 +228,7 @@ Here are the default settings of certain bridge directions:
 | Bridge Port | transfer |
 | Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
 
-**MAINNET** - *Cronos Chain* to *Crypto.org Chain*
+**MAINNET BETA** - *Cronos Chain* to *Crypto.org Chain*
 | Field | Value |
 | :---: | --- | --- |
 | Cronos Bridge Contract Address | TO_BE_DECIDED |

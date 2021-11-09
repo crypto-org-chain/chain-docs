@@ -73,27 +73,42 @@ You can find the list of all your wallets by clicking the bottom left button and
 ## 2. Transactions
 
 ### 2.1 - Sending Transactions
-Sending funds is easy with the Desktop Wallet. Ensure that you have enough funds before you perform the sending operation (do not forget that you can always request some testing tokens in [faucet](https://crypto.org/faucet)). In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord #request-tcro channel](https://discord.gg/c7vSX4TSrf).
+Sending funds is easy with the Desktop Wallet. Ensure that you have enough funds before you perform the sending operation.
+Do not forget that you can always request some testing tokens in faucet: 
 
-- **Step 1** - Select the "*Send*" on the left panel, fill up the request information: 
+| Asset | Faucet |
+| :---: | --- | --- |
+| CRO (Crypto.org Chain) | [https://crypto.org/faucet](https://crypto.org/faucet) |
+| CRO (Cronos Chain) | [https://cronos.crypto.org/faucet](https://cronos.crypto.org/faucet) |
+
+In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord #request-tcro channel](https://discord.gg/c7vSX4TSrf).
+
+- **Step 1** - Select the "*Assets*" on the left panel, and you will see the "*Send*" and "*Receive*" options on the left right of each asset. 
+        <img src="./assets/desktop_wallet/2-1-1.png" />
+After you click the "*Send*", fill up the request information:
     - recipient address
     - amount to be sent 
     - optional memo
-        <img src="./assets/desktop_wallet/2-1-1.png" />
-
-- **Step 2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the Desktop Wallet and proceed to the next step by clicking "*Confirm*". Then enter your app password and hit "*Decrypt Wallet*".
         <img src="./assets/desktop_wallet/2-1-2.png" />
 
-- **Step 3** - In the "*Confirm Transaction*" page, please double-check the information and make sure the information you entered is correct. Now you can go with "*Confirm*" and click "*OK*" on the next page.
+- **Step 2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the Desktop Wallet and proceed to the next step by clicking "Confirm". Then enter your app password and hit "*Decrypt Wallet*".
         <img src="./assets/desktop_wallet/2-1-3.png" />
 
-- **Step 4** - Now your funds have been transferred successfully to your selected address! You can then check the transaction history under “Transaction” at the “Home” page.
+- **Step 3** - In the "*Confirm Transaction*" section, please double-check the information and make sure the information you entered is correct. Now you can go with "*Confirm*" and click "*OK*" on the next page.
         <img src="./assets/desktop_wallet/2-1-4.png" />
+
+- **Step 4** - Now your funds have been transferred successfully to your selected address! You can then check the transaction history by clicking "*Transaction*" tab under any of your Assets.
         <img src="./assets/desktop_wallet/2-1-5.png" />
+        <img src="./assets/desktop_wallet/2-1-6.png" />
 
 ### 2.2 - Receive Transactions
-If someone is sending funds or you are sending funds from your other account to the current account, you can simply show the bar code or the address of your current account.
+If someone is sending funds to you or you are sending funds from your other address to the current address, you can: 
+- **Step 1** - Under the "*Assets*" page, you will see the “Send” and “Receive” tabs on the left-right of each asset. Click "*Receive*".
+        <img src="./assets/desktop_wallet/2-1-1.png" />
+        
+- **Step 2** - You will find the QR code and the address of your current wallet account.
         <img src="./assets/desktop_wallet/2-2.png" />
+
 
 ## 3. Staking Operations
 Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol who are responsible for committing new blocks in the blockchain. Token holders might stake their tokens to validators to secure the network and earn rewards. Particularly, we can:
@@ -103,7 +118,7 @@ Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a 
 - Undelegate from a validator.
 
 ### 3.1 - Delegate to a validator
-- **Step 1** - To begin staking, please direct to "*Delegate Funds*" under the Staking option. You can choose one of the active validators that you would like to delegate to: 
+- **Step 1** - To begin staking, go to "*Staking*" page and direct to the second tab "*Delegate Funds*". You can choose one of the active validators that you would like to delegate to, and enter the delegation amount. 
         <img src="./assets/desktop_wallet/3-1-1-1.png" />
 You can input the validator’s information either by:
     - Clicking the list button under "*Validator address*", and selecting your preferred validators. 
@@ -111,38 +126,37 @@ You can input the validator’s information either by:
 
     - Copying the complete address of your preferred validator, and pasting the validator’s "*Operator Address*" (begin with `tcrocncl...` for testnet) under "*Validator address*". Then specify the amount that you would like to delegate.
 
-**Remark**: You can look up validators and their operator address by the validator list on the [explorer](https://crypto.org/explorer/validators).
+**Remark**: To support the decentralization of the network, we suggest all users delegate your funds to validators with fewer shares, but please make you've done research into the validators you selected before the delegation to minimize your risk of unnecessary fund loss.
 
 - **Step 2** - Similar to sending a transaction, you can review and confirm the transaction details on the Desktop Wallet first shown below, click "*Review*" and enter your app password.
         <img src="./assets/desktop_wallet/3-1-2.png" />
 
-- **Step 3** - Now you will proceed to the confirmation page. Make sure you input the correct information of your wallet and then hit "*Confirm*". 
+- **Step 3** - Now you will proceed to the confirmation section. Make sure you input the correct information of your wallet and then hit "*Confirm*". 
         <img src="./assets/desktop_wallet/3-1-3-1.png" />
         <img src="./assets/desktop_wallet/3-1-3-2.png" />
 Now you’ve successfully staked the desired amount to your selected validator!
 
 ### 3.2 - Withdraw the reward from a validator
-- **Step 1** - Under "*Staking Rewards*" on the Staking page, your staking reward amount from different validators will be displayed as below:
+- **Step 1** - Under "*Staking Rewards*" on the "*Staking*" page, your staking reward amount from different validators will be displayed as below:
         <img src="./assets/desktop_wallet/3-2-1.png" />
 - **Step 2** - Click the "*Withdraw Reward*" under "*Action*", and input your app password. Similar to other transaction operations, you should review and double-check the transaction details "*Confirm*" before processing "*Confirm*". 
         <img src="./assets/desktop_wallet/3-2-2.png" />
 Please note that all of your available rewards from a validator will be withdrawn in the transaction.
 
 Now you should see a success message on the Desktop Wallet, and your rewards withdrawal transaction was broadcasted successfully!
-        <img src="./assets/desktop_wallet/3-2-3.png" />
 
 ### 3.3 - Redelegate the staking from a validator
-- **Step 1** - In the case that you plan to redelegate your staked funds from a validator, you can check your current relegation status at the bottom "*Relegation*" section under the "*Home*" page:
+- **Step 1** - In the case that you plan to redelegate your staked funds from a validator, you can go to Delegation Management under the "*Staking*" page. The "*Redelegate Stake*" option is highlighted in green color. 
         <img src="./assets/desktop_wallet/3-3-1.png" />
 
-- **Step 2** - You can redelegate your staked tokens from a validator by clicking "*Redelegate Stake*". Likewise to [delegating to a validator](#_3-1-delegate-to-a-validator), you can either choose your preferred validator from the validator list or input its complete address. Specify the amount of token that you would like to redelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
+- **Step 2** - You can click "*Redelegate Stake*" to redelegate your staked tokens from a validator now. On the popup window, likewise to [delegating to a validator](#_3-1-delegate-to-a-validator), you will be required to fill in the validator’s address(you can either choose your preferred validator from the validator list or input its complete address), and the amount that you would like to redelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
         <img src="./assets/desktop_wallet/3-3-2.png" />
         <img src="./assets/desktop_wallet/3-3-3.png" />
 
 Now you should see a success message on the Desktop Wallet, and your funds are redelegated to another preferred validator!
 
 ### 3.4 - Undelegate the staking from a validator
-- **Step 1** - In the case that you plan to undelegate your staked funds from a validator, you can check your current delegation status at the bottom "*Delegation*" section under the "*Home*" page:
+- **Step 1** - If you plan to undelegate your staked funds from a validator, you can go to Delegation Management under the "*Staking*" page. "*Undelegate Stake*" option is highlighted in red color. 
         <img src="./assets/desktop_wallet/3-4-1.png" />
 
 - **Step 2** - You can undelegate your staked tokens from a validator by clicking "*Undelegate Stake*". Afterwards, you can specify the amount of token that you would like to undelegate from a validator, review and confirm the transaction details on the Desktop Wallet, input your app password again, then click "*Confirm*" to process.
@@ -150,6 +164,14 @@ Now you should see a success message on the Desktop Wallet, and your funds are r
         <img src="./assets/desktop_wallet/3-4-3.png" />
 
 Now you should see a success message on the Desktop Wallet, and your undelegation transaction was successfully processed!
+
+
+  ::: tip NOTE
+
+  - You can review your undelegation process by clicking "*View Unbonding Delegation*" at the top right corner in the "*Delegation Management*" section. 
+<img src="./assets/desktop_wallet/3-4-4.png" />
+
+  :::
 
 ## 4. Governance
 Governance proposals potentially impact many stakeholders. You are able to view all the concurrent voting, finished or rejected proposals, and cast your votes here. 
@@ -187,13 +209,72 @@ The "*My NFT*" page is where you could manage your NFTs which exist on the Crypt
         <img src="./assets/desktop_wallet/5-2-3.png" />
 - **Step 4** - Review the details of the NFT. Click "*Confirm*" to approve the minting transaction:
         <img src="./assets/desktop_wallet/5-2-4-1.png" />
-        <img src="./assets/desktop_wallet/5-2-4-2.png" />
 
-## 6. Settings
+## 6. Cronos Bridge
+Our Cronos Mainnet Beta, an EVM Compatible chain built with Etheremint, is live on 8th November 2021. You could easily convert and transfer your Crypto.org Native CRO and Cronos CRO between each other seamlessly with the Cronos Bridge we provide. 
+        <img src="./assets/desktop_wallet/6.png" />
 
-### 6.1 - Custom your node configuration
-You are able to change the node connection settings for every different wallet specifically. 
+### 6.1 - Before the bridge transfer
+First, you need to decide your desired bridge direction. You can also customize the config settings of a specific bridge direction, by clicking the config icon at the top-right corner. 
         <img src="./assets/desktop_wallet/6-1.png" />
+
+Here are the default settings of certain bridge directions:
+
+**MAINNET BETA** - *Crypto.org Chain* to *Cronos Chain*
+| Field | Value |
+| :---: | --- | --- |
+| Prefix | crc |
+| Bridge Channel | channel-44 |
+| Bridge Port | transfer |
+| Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
+
+**MAINNET BETA** - *Cronos Chain* to *Crypto.org Chain*
+| Field | Value |
+| :---: | --- | --- |
+| Cronos Bridge Contract Address | [0x6b1b50c2223eb31E0d4683b046ea9C6CB0D0ea4F](https://cronos.crypto.org/explorer/address/0x6b1b50c2223eb31E0d4683b046ea9C6CB0D0ea4F/transactions) |
+| Bridge Indexing URL | https://cronos.crypto.org/indexing/api/v1/bridges |
+| Gas Limit | 30000 |
+
+**TESTNET** - *Crypto.org Chain* to *Cronos Chain*
+| Field | Value |
+| :---: | --- | --- |
+| Prefix | tcrc |
+| Bridge Channel | channel-131 |
+| Bridge Port | transfer |
+| Bridge Indexing URL | https://cronos.crypto.org/testnet3/indexing/api/v1/bridges |
+
+**TESTNET** - *Cronos Chain* to *Crypto.org Chain*
+| Field | Value |
+| :---: | --- | --- |
+| Cronos Bridge Contract Address | [0x44b8c54d95906D6b223dAE5E038cB8EF4ef45aE5](https://cronos.crypto.org/explorer/testnet3/address/0x44b8c54d95906D6b223dAE5E038cB8EF4ef45aE5/transactions) |
+| Bridge Indexing URL | https://cronos.crypto.org/testnet3/indexing/api/v1/bridges |
+| Gas Limit | 30000 |
+
+NOTE: A misconfiguration may lead to a bridge transfer failure.
+
+### 6.2 - Initiate a bridge transfer transaction
+- **Step 1** - Once a valid bridge direction is selected, you are able to choose your desired transferring asset and enter the amount for the transferral. Then click "Transfer Asset" & enter your App Password to proceed.
+        <img src="./assets/desktop_wallet/6-2-1.png" />
+
+- **Step 2** - Please confirm the transfer details. You may modify your transfer by clicking the back button on the top-left corner as needed. Please note that once you’ve clicked the "Confirm" button, there will be no going back.
+        <img src="./assets/desktop_wallet/6-2-2.png" />
+
+- **Step 3** - After the transfer is initiated, the corresponding tokens will be transferred to our dedicated Cronos bridge smart contract. 
+        <img src="./assets/desktop_wallet/6-2-3-1.png" />
+
+The process may take up to a few minutes to finish. Once it’s done, you will see an updated balance in your receiving address. 
+        <img src="./assets/desktop_wallet/6-2-3-2.png" />
+
+### 6.3 - Check your Bridger Transfer History
+You can always review your latest bridge transfer history at the top-right corner. 
+        <img src="./assets/desktop_wallet/6-3.png" />
+If you found your bridge transfer history failed to get latest transferrals, please make sure your Bridge Indexing URL is correct with the value [mentioned above](#_6-1-before-the-bridge-transfer)
+
+## 7. Settings
+
+### 7.1 - Custom your node configuration
+You are able to change the node connection settings for every different wallet specifically. 
+        <img src="./assets/desktop_wallet/7-1.png" />
 - Check the "*Propagate the settings…*" box if you would like to apply the current settings to all wallets with the same network type. 
 - Here are the default node configurations of different network types:
 
@@ -205,28 +286,28 @@ You are able to change the node connection settings for every different wallet s
 | Network Fee  | 10000 | 10000 |
 | Gas Limit  | 300000 | 300000 |
 
-### 6.2 - Change your App Language
+### 7.2 - Change your App Language
 Since v0.4.0, we support languages other than English. You’re able to choose your preferred language under Tab "*General Configuration*":
-        <img src="./assets/desktop_wallet/6-2.png" />
+        <img src="./assets/desktop_wallet/7-2.png" />
 While we’re planning to bring more languages to the app, we also welcome your contribution on perfecting the translations. You may refer to [Content Management](https://github.com/crypto-com/chain-desktop-wallet/blob/dev/CONTENT_MANAGEMENT.md) for more details. 
 
-### 6.3 - Export your Wallet Recovery Phrase
+### 7.3 - Export your Wallet Recovery Phrase
 Since v0.3.8, you are able to export your wallet recovery phrase. All the wallets in Desktop Wallet are encrypted with the app password, therefore you are required to enter the correct app password to decrypt and export the wallet properly. 
 
 - **Step 1** - Under Tab "*General Configuration*", click "*Export*" in "*Export your Recovery Phrase*":
-        <img src="./assets/desktop_wallet/6-3-1.png" />
+        <img src="./assets/desktop_wallet/7-3-1.png" />
 - **Step 2** - Enter the app password and decrypt the wallet.
 - **Step 3** - Please swipe through and write down all the Recovery Phrases in the correct order:
-        <img src="./assets/desktop_wallet/6-3-2.png" />
+        <img src="./assets/desktop_wallet/7-3-2.png" />
 
-### 6.4 - Clear your Storage
+### 7.4 - Clear your Storage
 You may come across occasions when you’ve forgotten your app password, or you would like to clean up the access of all the existing wallets inside the Desktop Wallet. You are able to safely reset the Desktop Wallet’s storage with the following steps:
 
 - **Step 1** - Under Tab "*Clear Storage*", click "*Clear Storage*"
-        <img src="./assets/desktop_wallet/6-4-1.png" />
+        <img src="./assets/desktop_wallet/7-4-1.png" />
 - **Step 2** - Make sure you’ve checked the checkbox and understood the consequences:
-        <img src="./assets/desktop_wallet/6-4-2.png" />
+        <img src="./assets/desktop_wallet/7-4-2.png" />
 - **Step 3** - Enter "*CLEAR*", then click "*Clear Storage*":
-        <img src="./assets/desktop_wallet/6-4-3.png" />
+        <img src="./assets/desktop_wallet/7-4-3.png" />
 When the Clear Storage process finishes, it brings you back to the Welcome Page and the Desktop Wallet becomes a brand new installed state again:
-        <img src="./assets/desktop_wallet/6-4-4.png" />
+        <img src="./assets/desktop_wallet/7-4-4.png" />

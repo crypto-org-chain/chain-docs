@@ -109,7 +109,7 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 
 You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:
 
-<img src="./assets/ledger_desktop_wallet/s1-5-1.jpeg" />
+<img src="./assets/ledger_desktop_wallet/s1-5-3.jpeg" />
 
 ---
 

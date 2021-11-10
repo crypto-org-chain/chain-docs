@@ -28,11 +28,11 @@ This is where you could manage all your wallets, including Create, Restore, Dele
 ### 1.1 - Create Wallet
 - **Step 1** - Before your wallet is ready to be created, please make sure you select the following options accordingly:
     - Input the wallet name of your choice.
-    - For the network, three options of "*TESNET CROESEID 3*", "*MAINNET*", and "*CUSTOM DEVNET*" are given: 
-        - "*TESNET CROESEID 3*" is our Cosmos-based `testnet-croeseid-4`.
+    - For the network, three options of "*TESNET Croeseid 4*", "*MAINNET*", and "*CUSTOM DEVNET*" are given: 
+        - "*TESNET Croeseid 4*" is our Cosmos-based `testnet-croeseid-4`.
         - "*MAINNET*" is referring to Crypto.org Chain mainnet. 
         - Other than these, you may fill up the custom configuration to your own network. 
-    - In this demonstration, we will be creating a testnet address and connecting to the current `testnet-croeseid-4`, therefore, we select "*TESNET CROESEID 3*" as the network option.
+    - In this demonstration, we will be creating a testnet address and connecting to the current `testnet-croeseid-4`, therefore, we select "*TESNET Croeseid 4*" as the network option.
                 <img src="./assets/desktop_wallet/1-1-1.png" />
 
 - **Step 2** - After inputting the information, please hit "*Create Wallet*", and the success window will pop up. 
@@ -278,7 +278,7 @@ You are able to change the node connection settings for every different wallet s
 - Check the "*Propagate the settings…*" box if you would like to apply the current settings to all wallets with the same network type. 
 - Here are the default node configurations of different network types:
 
-| Network | Mainnet | Testnet Croeseid 3 |
+| Network | Mainnet | Testnet Croeseid 4 |
 | :---: | --- | --- |
 | Node URL  | https://mainnet.crypto.org | https://testnet-croeseid-4.crypto.org |
 | Chain Indexing URL  | https://crypto.org/explorer/api/v1/ | https://crypto.org/explorer/croeseid4/api/v1/ |

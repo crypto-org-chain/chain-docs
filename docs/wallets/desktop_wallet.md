@@ -78,8 +78,8 @@ Do not forget that you can always request some testing tokens in faucet:
 
 | Asset | Faucet |
 | :---: | --- | --- |
-| CRO (Crypto.org Chain) | [https://crypto.org/faucet](https://crypto.org/faucet) |
-| CRO (Cronos Chain) | [https://cronos.crypto.org/faucet](https://cronos.crypto.org/faucet) |
+| TCRO (Crypto.org Chain) | [https://crypto.org/faucet](https://crypto.org/faucet) |
+| TCRO (Cronos Chain) | [https://cronos.crypto.org/faucet](https://cronos.crypto.org/faucet) |
 
 In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord #request-tcro channel](https://discord.gg/c7vSX4TSrf).
 

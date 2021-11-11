@@ -43,10 +43,10 @@ After the app is set, please conducting the following steps to create a wallet w
 - **Step 2.1** - Download the latest Crypto.org Chain desktop wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases)
 
 - **Step 2.2** - Run the Crypto.org Chain desktop wallet and click "*Get started*":
-        <img src="./assets/ledger_desktop_wallet/s2-2.png" />
+        <img src="./assets/desktop_wallet/0-2.png" />
 
 - **Step 2.3** - Before creating your wallet, you would need to create an App password to protect your desktop wallet:
-        <img src="./assets/ledger_desktop_wallet/s2-3.png" />
+        <img src="./assets/desktop_wallet/0-3.png" />
 
 - **Step 2.4** - Afterwards, your wallet is ready to be created. Please make sure you select the following options accordingly:
 

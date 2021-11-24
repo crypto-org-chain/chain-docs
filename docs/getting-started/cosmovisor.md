@@ -38,18 +38,18 @@ One can follow this [folder structure](https://docs.cosmos.network/master/run-no
 ├── config
 │ 
 ├── cosmovisor
-│   ├── current -> genesis or upgrades/v2.0.0
+│   ├── current -> genesis or upgrades/v3.3.0
 │   ├── genesis
 │   │   └── bin
 │   │       └── chain-maind
 │   └── upgrades
-│       └── v2.0.0
+│       └── v3.3.0
 │           └── bin
 │               └── chain-maind
 └── data
 ```
 
-For `.chain-maind/cosmovisor/genesis/bin/chain-maind`, it is the binary before the upgrade proceeds. In our case of the "Canis Major" upgrade, it should be chain-maind with version `1.2.1`. Kindly have this binary ready before running cosmovisor.
+For `.chain-maind/cosmovisor/genesis/bin/chain-maind`, it is the binary before the upgrade proceeds. In our case of the "DRACO II" upgrade, it should be chain-maind with version `2.*`. Kindly have this binary ready before running cosmovisor.
 
 ## Step 2. - Run everything
 
@@ -59,11 +59,11 @@ For `.chain-maind/cosmovisor/genesis/bin/chain-maind`, it is the binary before t
 $ ./cosmovisor start
 ```
 
-Since we enable `DAEMON_ALLOW_DOWNLOAD_BINARIES=true`, cosmovisor will automatically download binary with `2.0.1` in `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` and update `./cosmovisor/current` directory symlink to `upgrades/v2.0.0` instead when proposed upgrade log is found. cosmovisor will create `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` for you.
+Since we enable `DAEMON_ALLOW_DOWNLOAD_BINARIES=true`, cosmovisor will automatically download binary with `3.3.1` in `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` and update `./cosmovisor/current` directory symlink to `upgrades/v3.3.0` instead when proposed upgrade log is found. cosmovisor will create `./cosmovisor/upgrades/v3.3.0/bin/chain-maind` for you.
 
 :::warning Important:
-If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` manually before upgrade time.
-[Linux](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz), [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
+If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v3.3.0/bin/chain-maind` manually before upgrade time.
+[Linux](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Linux_x86_64.tar.gz), [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Windows_x86_64.zip) are also available. 
 :::
 
 :::tip Tip:

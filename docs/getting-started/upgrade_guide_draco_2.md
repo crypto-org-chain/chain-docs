@@ -1,30 +1,30 @@
-# The "DRACO II" upgrade guide (`v2.*` to `v3.1.1`) : 
+# The "DRACO II" upgrade guide (`v2.*` to `v3.3.0`) : 
 
 :::warning
-The chain-maind `v3.1.1` - DRACO II upgrade is proposed to be scheduled at the block height of `2,472,800` ( *Estimated time ~Wednesday, 22 September 2021 22:00 GMT*, but this depends on the actual time taken when the blocks is being processed).
+The chain-maind `v3.3.0` - DRACO II upgrade is proposed to be scheduled at the block height of `3,526,800` ( *Estimated time ~Wednesday, 6 December 2021 05:51  GMT*, but this depends on the actual time taken when the blocks is being processed).
 
-**DO NOT UPGRADE to the binary `v3.1.1` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
+**DO NOT UPGRADE to the binary `v3.3.0` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
 :::
 
 For **full node host** who want to enjoy the automatic upgrade managed by [cosmovisor](https://docs.cosmos.network/master/run-node/cosmovisor.html), please follow this [cosmovisor guide](./cosmovisor.md) for the coming "DRACO II" network upgrade. Otherwise, please continue below manual upgrade steps. Please also note that cosmovisor **is NOT** suggested for validators. 
 
 ## Step 0 - Don't panic 
-At the point of proposed upgrade, user will see the following error message on the `chain-maind`: 
+At the point of proposed upgrade, user will see the error message on the `chain-maind` similar to the below: 
 
-`ERR UPGRADE "v3.0.0" NEEDED at time: xxxxxxxxxxxxx: {"binaries":{"darwin/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Darwin_x86_64.tar.gz?checksum=sha256:082539ce9e9f2e382a70003a8504c9aa95f16fee55d104d3d94090b01e36ee63","darwin/arm64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Darwin_arm64.tar.gz?checksum=sha256:3ebdeeb65400332e6c892a52cc6241ed6f4a43949114cf19a9648f56a212f471","linux/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Linux_x86_64.tar.gz?checksum=sha256:043793233827cb948714d8d9f0196a4d574195c90d7e8ac85c06220fdec39df2","linux/arm64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Linux_arm64.tar.gz?checksum=sha256:728940e53a9706d286480f55d6f033f8345b82e3788710490aac8cd79b44bdcd","windows/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Windows_x86_64.zip?checksum=sha256:1865dad6ff10b0830f2ef2230bce6f9b4aadbf09bc4b371175552d101201b030"}}`
+`ERR UPGRADE "v3.0.0" NEEDED at time: xxxxxxxxxxxxx: {"binaries":{"darwin/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Darwin_x86_64.tar.gz?checksum=sha256:082539ce9e9f2e382a70003a8504c9aa95f16fee55d104d3d94090b01e36ee63","darwin/arm64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Darwin_arm64.tar.gz?checksum=sha256:3ebdeeb65400332e6c892a52cc6241ed6f4a43949114cf19a9648f56a212f471","linux/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Linux_x86_64.tar.gz?checksum=sha256:043793233827cb948714d8d9f0196a4d574195c90d7e8ac85c06220fdec39df2","linux/arm64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Linux_arm64.tar.gz?checksum=sha256:728940e53a9706d286480f55d6f033f8345b82e3788710490aac8cd79b44bdcd","windows/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Windows_x86_64.zip?checksum=sha256:1865dad6ff10b0830f2ef2230bce6f9b4aadbf09bc4b371175552d101201b030"}}`
 
 Don't panic - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Crypto.org Chain nodes to the latest release binary.
 
-## Step 1 - Get the `v3.1.1` binary
+## Step 1 - Get the `v3.3.0` binary
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Windows_x86_64.zip) are also available. 
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Windows_x86_64.zip) are also available. 
 
-- Terminate the `chain-maind`; afterwards, download the `3.1.1` released binaries from github:
+- Terminate the `chain-maind`; afterwards, download the `3.3.0` released binaries from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.1/chain-main_3.1.1_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_3.1.1_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_3.3.0_Linux_x86_64.tar.gz
   ```
 
 
@@ -41,12 +41,12 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
 
 ### Step 1.1 -  Verify the version
 
-You can verify the installation by checking the version of `chain-maind`, the latest version is `3.1.1`.
+You can verify the installation by checking the version of `chain-maind`, the latest version is `3.3.0`.
 
   ```bash 
   # check the version of chain-maind
   $ ./chain-maind version
-  3.1.1
+  3.3.0
   ```
 
 ## Step 2. - Run everything

@@ -1,7 +1,7 @@
 # The "DRACO II" upgrade guide (`v2.*` to `v3.3.0`) : 
 
 :::warning
-The chain-maind `v3.3.0` - DRACO II upgrade is proposed to be scheduled at the block height of `3,526,800` ( *Estimated time ~Wednesday, 6 December 2021 05:51  GMT*, but this depends on the actual time taken when the blocks is being processed).
+The chain-maind `v3.3.0` - DRACO II upgrade is proposed to be scheduled at the block height of `3,526,800` ( *Estimated time ~Tuesday, 7 December 2021 02:00:00 GMT*, but this depends on the actual time taken when the blocks is being processed).
 
 **DO NOT UPGRADE to the binary `v3.3.0` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
 :::

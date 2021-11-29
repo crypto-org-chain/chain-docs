@@ -6,7 +6,6 @@ The chain-maind `v3.3.2` - DRACO II upgrade is proposed to be scheduled at the b
 **DO NOT UPGRADE to the binary `v3.3.2` before that suggested upgrade schedule and come across with the error message as described in [Step 0](#step-0-don-t-panic).**
 :::
 
-For **full node host** who want to enjoy the automatic upgrade managed by [cosmovisor](https://docs.cosmos.network/master/run-node/cosmovisor.html), please follow this [cosmovisor guide](./cosmovisor.md) for the coming "DRACO II" network upgrade. Otherwise, please continue below manual upgrade steps. Please also note that cosmovisor **is NOT** suggested for validators. 
 
 ## Step 0 - Don't panic 
 At the point of proposed upgrade, user will see the error message on the `chain-maind` similar to the below: 

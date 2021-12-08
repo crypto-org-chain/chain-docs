@@ -65,8 +65,16 @@ We are ready to start the node join the network again with the new binary:
 ```bash
   $ ./chain-maind start
 ```
+:::tip Remark:
+Once the `chain-maind` is started we would see the message
+```
+applying upgrade "v3.0.0" at height: 3526800"
+```
+and there will be an iteration over the previous blockchain data. This process will take a while (could be up to hours) which is depending on the size of the database and the hardware specs.
+:::
 
-Sit back and wait for the syncing process. You can query the node syncing status by
+
+Afterwards, sit back and wait for the syncing process. You can query the node syncing status by
   ```bash
   $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
   ```

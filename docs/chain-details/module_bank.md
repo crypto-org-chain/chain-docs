@@ -5,7 +5,7 @@
 The `bank` module maintains the state of two primary objects:
 
 - Account balances by address;
-- Total supply of tokens of the chain
+- Total supply of tokens on the chain
 
 `bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities. Specifically, the total supply is updated whenever a token is:
 
@@ -18,7 +18,7 @@ The `bank` module maintains the state of two primary objects:
 
 #### `tx bank send [from_key_or_address] [to_address] [amount] [network_id]` - **Send Funds**
 
-You can transfer of tokens between to a designated address by the `tx bank send` command. For example, we can send 10 cro from `address_a` to `address_b` by
+You can transfer tokens to a designated address by the `tx bank send` command. For example, we can send 10 CRO from `address_a` to `address_b` by
 
 ```bash
 $ chain-maind tx bank send <address_a> <address_b> 10cro --chain-id <chain-id>

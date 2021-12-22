@@ -317,8 +317,9 @@ Since v0.6.1, you’re able to play around DApps directly for `Standard` Type Wa
         <img src="./assets/desktop_wallet/7.png" />
 
 ### 7.1 - Connect to DApp
-On any DApps you’re going to play with, always look for the connect button and choose *Metamask*. 
+On any DApps you’re going to play with, always look for the connect button and choose "**Metamask**". 
         <img src="./assets/desktop_wallet/7-1-1.png" />
+
 Once you see your currently selected wallet address on Desktop Wallet appears, you’re successfully connected to the DApp. 
         <img src="./assets/desktop_wallet/7-1-2.png" />
 

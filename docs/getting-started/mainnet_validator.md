@@ -8,17 +8,19 @@ This is a detailed documentation for setting up a **Validator** on Crypto.org ma
 Before we start, please note that there was a "*Canis Major*" network upgrade at the block height `922,363`, which requires the node operator to update their Crypto.org Chain Mainnet binary `chain-maind` from `v1.*.*` to `v2.0.1`. 
 
 - For the host who would like to build a **Validator with complete blockchain data** from scratch, one would need to:
-  1. Start the node with the older binary version `v1.2.1`; 
+  1. Start the node with the older binary version `v1.2.1`;
   1. Sync-up with the blockchain until it reaches the target upgrade block height `922,363`;
   1. Update the binary to `v2.0.1` and start the node again.
+  1. Sync-up with the blockchain until it reaches the target upgrade block height `3,526,800` (DRACO upgrade height) ;
+  1. Update the binary to `v3.3.3` and start the node again.
 
 - For the host who would like to **join the network and start validating quickly**, one can:
-  1. Begin with the binary `v2.0.1` and join the network by *"STATE-SYNC"*
+  1. Begin with the binary `v3.3.3` and join the network by *"STATE-SYNC"*
 
 
-To simplify the following steps, we will be covering the **second case** here in this guide.
+To simplify the following steps, we will be covering the **second case** here in this guide, because we will guide user to Begin with the binary `v3.3.3` and join the network by "STATE-SYNC".
 
-For the first case, kindly refer to this [guide](./mainnet.html#crypto-org-mainnet-running-a-full-node) on building a full node. Once you have a complete synced node, you can revisit this page and jump to the [step](#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) of joining the networking as a validator. 
+For the first case, kindly refer to this [guide](./mainnet.html#crypto-org-mainnet-running-a-full-node.md) on building a full node. Once you have a complete synced node, you can revisit this page and jump to the [step](#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) of joining the networking as a validator. 
 
 ## Pre-requisites
 ### Supported OS
@@ -43,7 +45,7 @@ The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore
 
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Windows_x86_64.zip) are also available. 
 
 There are two options to install `chain-maind`:
 - [Directly from Github](#option-1-install-chain-maind-released-binaries-from-github); or
@@ -55,15 +57,15 @@ There are two options to install `chain-maind`:
 - To install Crypto.org Chain binaries from Github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_2.0.1_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_3.3.3_Linux_x86_64.tar.gz
   ```
 
-- You can verify the installation by checking the version of the chain-maind, the current version is `2.0.1`.
+- You can verify the installation by checking the version of the chain-maind, the current version is `3.3.3`.
   ```bash
   # check the version of chain-maind
   $ ./chain-maind version
-  2.0.1
+  3.3.3
   ```
 **OR**
 
@@ -96,7 +98,7 @@ To install binaries in Homebrew for macOS X or Linux
   ```bash
   # check the version of chain-maind
   $ chain-maind version
-  2.0.1
+  3.3.3
   ```
 ## Step 2. Configure `chain-maind`
 

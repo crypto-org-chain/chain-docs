@@ -313,18 +313,18 @@ You can always review your latest bridge transfer history at the top-right corne
 If you found your bridge transfer history failed to get latest transferrals, please make sure your Bridge Indexing URL is correct with the value [mentioned above](#_6-1-before-the-bridge-transfer)
 
 ## 7. DApp Browser
-Since v0.6.1, you’re able to play around DApps directly for `Standard` Type Wallets on Desktop Wallet. Certain DApps are available at the moment, and we’re going to bring more supported DApps in the future. 
+Since v0.6.1, you’re able to access various DApps directly (`Standard` Wallet Type) through the Desktop Wallet. Certain DApps are available at the moment, and we’re going to bring more supported DApps in the future. 
         <img src="./assets/desktop_wallet/7.png" />
 
 ### 7.1 - Connect to DApp
-On any DApps you’re going to play with, always look for the connect button and choose "**Metamask**". 
+To connect to a DApp, click the "connect" button and choose "**Metamask**". 
         <img src="./assets/desktop_wallet/7-1-1.png" />
 
-Once you see your currently selected wallet address on Desktop Wallet appears, you’re successfully connected to the DApp. 
+Once you see that your selected wallet address on the Desktop Wallet appears, you’re successfully connected to the DApp. 
         <img src="./assets/desktop_wallet/7-1-2.png" />
 
 ### 7.2 - Enter your App Password
-When you trigger any transactions on the DApp for the first time, a Password Input prompt will pop up just like when you perform any transactions on Desktop Wallet. Just enter the App Password you’ve always been using. 
+When you trigger any transactions on the DApp for the first time, a Password Input prompt will pop up – as is the case for any transaction you perform on the Desktop Wallet. 
         <img src="./assets/desktop_wallet/7-2.png" />
 
 Enjoy your DApp Journey!

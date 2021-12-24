@@ -21,6 +21,48 @@ In case you have any enquiries about using the Desktop Wallet, kindly send a mes
 - **Step 4** - Choose between ["*Restore Wallet*"](#_1-2-restore-wallet-from-mnemonic-phrases) and ["*Create Wallet*"](#_1-1-create-wallet)
         <img src="./assets/desktop_wallet/0-4.png" />
 
+## Settings
+
+### 1. Custom your node configuration
+You are able to change the node connection settings for every different wallet specifically. 
+        <img src="./assets/desktop_wallet/settings-1.png" />
+- Check the "*Propagate the settings…*" box if you would like to apply the current settings to all wallets with the same network type. 
+- Here are the default node configurations of different network types:
+
+| Network | Mainnet | Testnet Croeseid 4 |
+| :---: | --- | --- |
+| Node URL  | https://mainnet.crypto.org | https://testnet-croeseid-4.crypto.org |
+| Chain Indexing URL  | https://crypto.org/explorer/api/v1/ | https://crypto.org/explorer/croeseid4/api/v1/ |
+| Chain ID  | crypto-org-chain-mainnet-1 | testnet-croeseid-4 |
+| Network Fee  | 10000 | 10000 |
+| Gas Limit  | 300000 | 300000 |
+
+### 2. Change your App Language
+Since v0.4.0, we support languages other than English. You’re able to choose your preferred language under Tab "*General Configuration*":
+        <img src="./assets/desktop_wallet/settings-2.png" />
+While we’re planning to bring more languages to the app, we also welcome your contribution on perfecting the translations. You may refer to [Content Management](https://github.com/crypto-com/chain-desktop-wallet/blob/dev/CONTENT_MANAGEMENT.md) for more details. 
+
+### 3. Export your Wallet Recovery Phrase
+Since v0.3.8, you are able to export your wallet recovery phrase. All the wallets in Desktop Wallet are encrypted with the app password, therefore you are required to enter the correct app password to decrypt and export the wallet properly. 
+
+- **Step 1** - Under Tab "*General Configuration*", click "*Export*" in "*Export your Recovery Phrase*":
+        <img src="./assets/desktop_wallet/settings-3-1.png" />
+- **Step 2** - Enter the app password and decrypt the wallet.
+- **Step 3** - Please swipe through and write down all the Recovery Phrases in the correct order:
+        <img src="./assets/desktop_wallet/settings-3-2.png" />
+
+### 4. Clear your Storage
+You may come across occasions when you’ve forgotten your app password, or you would like to clean up the access of all the existing wallets inside the Desktop Wallet. You are able to safely reset the Desktop Wallet’s storage with the following steps:
+
+- **Step 1** - Under Tab "*Clear Storage*", click "*Clear Storage*"
+        <img src="./assets/desktop_wallet/settings-4-1.png" />
+- **Step 2** - Make sure you’ve checked the checkbox and understood the consequences:
+        <img src="./assets/desktop_wallet/settings-4-2.png" />
+- **Step 3** - Enter "*CLEAR*", then click "*Clear Storage*":
+        <img src="./assets/desktop_wallet/settings-4-3.png" />
+When the Clear Storage process finishes, it brings you back to the Welcome Page and the Desktop Wallet becomes a brand new installed state again:
+        <img src="./assets/desktop_wallet/settings-4-4.png" />
+
 ## 1. Wallet Menu
 This is where you could manage all your wallets, including Create, Restore, Delete, and switch between wallets.
         <img src="./assets/desktop_wallet/1.png" />
@@ -270,44 +312,19 @@ You can always review your latest bridge transfer history at the top-right corne
         <img src="./assets/desktop_wallet/6-3.png" />
 If you found your bridge transfer history failed to get latest transferrals, please make sure your Bridge Indexing URL is correct with the value [mentioned above](#_6-1-before-the-bridge-transfer)
 
-## 7. Settings
+## 7. DApp Browser
+Since v0.6.1, you’re able to access various DApps directly (`Standard` Wallet Type) through the Desktop Wallet. Certain DApps are available at the moment, and we’re going to bring more supported DApps in the future. 
+        <img src="./assets/desktop_wallet/7.png" />
 
-### 7.1 - Custom your node configuration
-You are able to change the node connection settings for every different wallet specifically. 
-        <img src="./assets/desktop_wallet/7-1.png" />
-- Check the "*Propagate the settings…*" box if you would like to apply the current settings to all wallets with the same network type. 
-- Here are the default node configurations of different network types:
+### 7.1 - Connect to DApp
+To connect to a DApp, click the "connect" button and choose "**Metamask**". 
+        <img src="./assets/desktop_wallet/7-1-1.png" />
 
-| Network | Mainnet | Testnet Croeseid 4 |
-| :---: | --- | --- |
-| Node URL  | https://mainnet.crypto.org | https://testnet-croeseid-4.crypto.org |
-| Chain Indexing URL  | https://crypto.org/explorer/api/v1/ | https://crypto.org/explorer/croeseid4/api/v1/ |
-| Chain ID  | crypto-org-chain-mainnet-1 | testnet-croeseid-4 |
-| Network Fee  | 10000 | 10000 |
-| Gas Limit  | 300000 | 300000 |
+Once you see that your selected wallet address on the Desktop Wallet appears, you’re successfully connected to the DApp. 
+        <img src="./assets/desktop_wallet/7-1-2.png" />
 
-### 7.2 - Change your App Language
-Since v0.4.0, we support languages other than English. You’re able to choose your preferred language under Tab "*General Configuration*":
+### 7.2 - Enter your App Password
+When you trigger any transactions on the DApp for the first time, a Password Input prompt will pop up – as is the case for any transaction you perform on the Desktop Wallet. 
         <img src="./assets/desktop_wallet/7-2.png" />
-While we’re planning to bring more languages to the app, we also welcome your contribution on perfecting the translations. You may refer to [Content Management](https://github.com/crypto-com/chain-desktop-wallet/blob/dev/CONTENT_MANAGEMENT.md) for more details. 
 
-### 7.3 - Export your Wallet Recovery Phrase
-Since v0.3.8, you are able to export your wallet recovery phrase. All the wallets in Desktop Wallet are encrypted with the app password, therefore you are required to enter the correct app password to decrypt and export the wallet properly. 
-
-- **Step 1** - Under Tab "*General Configuration*", click "*Export*" in "*Export your Recovery Phrase*":
-        <img src="./assets/desktop_wallet/7-3-1.png" />
-- **Step 2** - Enter the app password and decrypt the wallet.
-- **Step 3** - Please swipe through and write down all the Recovery Phrases in the correct order:
-        <img src="./assets/desktop_wallet/7-3-2.png" />
-
-### 7.4 - Clear your Storage
-You may come across occasions when you’ve forgotten your app password, or you would like to clean up the access of all the existing wallets inside the Desktop Wallet. You are able to safely reset the Desktop Wallet’s storage with the following steps:
-
-- **Step 1** - Under Tab "*Clear Storage*", click "*Clear Storage*"
-        <img src="./assets/desktop_wallet/7-4-1.png" />
-- **Step 2** - Make sure you’ve checked the checkbox and understood the consequences:
-        <img src="./assets/desktop_wallet/7-4-2.png" />
-- **Step 3** - Enter "*CLEAR*", then click "*Clear Storage*":
-        <img src="./assets/desktop_wallet/7-4-3.png" />
-When the Clear Storage process finishes, it brings you back to the Welcome Page and the Desktop Wallet becomes a brand new installed state again:
-        <img src="./assets/desktop_wallet/7-4-4.png" />
+Enjoy your DApp Journey!

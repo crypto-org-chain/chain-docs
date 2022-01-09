@@ -1,7 +1,7 @@
 # Crypto.org Mainnet: Running a Validator
 
 
-This is a detailed documentation for setting up a **Validator** on Crypto.org mainnet.
+This is a detailed documentation for setting up a **Validator** on Crypto.org mainnet. Note that while anyone can set up a validator, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
 ## Step 0 : Notes on  "Canis Major" Network upgrade 
 
@@ -266,7 +266,7 @@ Once the node is synced, we are now ready to send a `create-validator` transacti
 $ ./chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
 --amount=[amount of cro, e.g. 1000cro] \
---pubkey=[crocnclconspub...]  \
+--pubkey='{"@type":"/cosmos.crypto.ed25519.PubKey","key":[validator_public_key]}' \
 --moniker="[The_id_of_your_node]" \
 --security-contact="[security contact email/contact method]" \
 --chain-id="crypto-org-chain-mainnet-1" \
@@ -286,7 +286,7 @@ confirm transaction before signing and broadcasting [y/N]: y
   ::: tip You will be required to insert the following:
   - `--from`: The `cro...` address or the key name that holds your funds for initial delegation;
   - `--amount`: The amount of self-delegation provided to the validator as an initial staking;
-  - `--pubkey`: The validator public key ( See Step [3-2](#step-3-2-obtain-the-validator-public-key) above ) with **crocnclconspub** as the prefix;
+  - `--pubkey`: The validator public key. Can be found using `./chain-maind status`.;
   - `--moniker`: A moniker (name) for your validator node;
   - `--security-contact`: Security contact email/contact method, it is **strongly recommended** to provide an email address for receiving important messages related to validator operation in the future;
   - `--chain-id=`: The chain-id of mainnet - *crypto-org-chain-mainnet-1*

@@ -1,7 +1,7 @@
 # Crypto.org Mainnet: Running a Full Node
 
 
-This is a detailed documentation for setting up a **Full Node** on Crypto.org mainnet.
+This is a detailed documentation for setting up a **Full Node** on Crypto.org mainnet. Note that while anyone can set up a full node, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
 ## Step 0 : Notes on  "Canis Major" Network upgrade 
 

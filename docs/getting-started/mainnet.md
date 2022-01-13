@@ -215,7 +215,7 @@ If the above command returns `false`, it means that your node **is synced**; oth
 :::
 
 
-### Step 3-2. Upgrade the `chain-maind` binary to `v2.0.1`
+### Step 3-2. Upgrade the `chain-maind` binary to `v2.1.2`
 
 At the upgrade height of `922,363`, users will see the following error message on the `chain-maind`: 
 
@@ -224,16 +224,16 @@ At the upgrade height of `922,363`, users will see the following error message o
 ```
 
 
-#### Step 3-2-1 - Get the `v2.0.1` binary
+#### Step 3-2-1 - Get the `v2.1.2` binary
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main_2.1.2_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main_2.1.2_Windows_x86_64.zip) are also available. 
 
-- Terminate the `chain-maind`; afterwards, download the `v2.0.1` released binaries from github:
+- Terminate the `chain-maind`; afterwards, download the `v2.1.2` released binaries from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_2.0.1_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main_2.1.2_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_2.1.2_Linux_x86_64.tar.gz
   ```
 
 
@@ -261,10 +261,10 @@ You can verify the installation by checking the version of `chain-maind`, the la
   ```bash 
   # check the version of chain-maind
   $ ./chain-maind version
-  2.0.1
+  2.1.2
   ```
 
-#### Step 3-2-3 - Restart `chain-maind` with version `v2.0.1`
+#### Step 3-2-3 - Restart `chain-maind` with version `v2.1.2`
 
 We are ready to start the node join the network again with the new binary:
 

@@ -286,7 +286,7 @@ confirm transaction before signing and broadcasting [y/N]: y
   ::: tip You will be required to insert the following:
   - `--from`: The `cro...` address or the key name that holds your funds for initial delegation;
   - `--amount`: The amount of self-delegation provided to the validator as an initial staking;
-  - `--pubkey`: The validator public key. Can be found using `./chain-maind status`.;
+  - `--pubkey`: The validator public key. Can be found using `./chain-maind tendermint show-validator`.;
   - `--moniker`: A moniker (name) for your validator node;
   - `--security-contact`: Security contact email/contact method, it is **strongly recommended** to provide an email address for receiving important messages related to validator operation in the future;
   - `--chain-id=`: The chain-id of mainnet - *crypto-org-chain-mainnet-1*

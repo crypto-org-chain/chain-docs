@@ -126,6 +126,6 @@ Most ledger users are able to connect to Crypto.org Chain Desktop Wallet (Beta) 
 - Use the latest version of "Crypto.org App" & "Ethereum App" on Ledger
 - Wait several seconds after the App on Ledger device is first opened
 - If you have connected the Ledger device on other applications, e.g. Ledger Live, close these applications since they could potentially occupy the Ledger connection channel
-- Restart your machine to clear off any potential connection channel occupency
+- Restart your machine to clear off any potential connection channel occupancy
 - Check if your USB cable is working properly
 - Check if your USB port on your machine is working properly

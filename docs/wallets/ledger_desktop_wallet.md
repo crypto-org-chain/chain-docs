@@ -122,7 +122,7 @@ Since the private key of Ledger wallets is always stored inside the Ledger devic
 Please note that you may still need to input the correct **Address Index** to derive your desired Ledger wallet address.
 
 ## Ledger connection troubleshoot
-There are numerous reasons & possibilities why your Ledger device cannot be connected with the Crypto.org Chain Desktop Wallet (Beta) properly. Here are the most common checklist for you to troubleshoot the issue: 
+Most ledger users are able to connect to Crypto.org Chain Desktop Wallet (Beta) efficiently, while some users may encounter connection issues. Below are the most common reasons that cause the connection problem between a Ledger device and the Crypto.org Chain Desktop Wallet (Beta) and a checklist that you may refer to troubleshoot the issue: 
 - Use the latest version of "Crypto.org App" & "Ethereum App" on Ledger
 - Wait several seconds after the App on Ledger device is first opened
 - If you have connected the Ledger device on other applications, e.g. Ledger Live, close these applications since they could potentially occupy the Ledger connection channel

@@ -1,7 +1,7 @@
 # Using Ledger device with desktop wallet
 
 ### Crypto.org Chain Desktop Wallet (Beta)
-Crypto.org Chain Desktop Wallet (Beta) supports operations ranging from sending multiple assets, staking, governance & NFT. latest version can be found on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases). 
+Crypto.org Chain Desktop Wallet (Beta) supports operations ranging from sending multiple assets, staking, governance & NFT. The latest version can be found on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases). 
 
 
 The following are the step-by-step instructions for the use of Ledger devices with Crypto.org Chain desktop wallet. Before starting the process, you will need:

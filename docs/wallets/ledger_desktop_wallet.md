@@ -1,7 +1,7 @@
 # Using Ledger device with desktop wallet
 
-### Crypto.org Chain Desktop Wallet 
-Crypto.org Chain Desktop Wallet Beta supports operations ranging from sending multiple assets, staking, governance & NFT. latest version can be found on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases). 
+### Crypto.org Chain Desktop Wallet (Beta)
+Crypto.org Chain Desktop Wallet (Beta) supports operations ranging from sending multiple assets, staking, governance & NFT. latest version can be found on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases). 
 
 
 The following are the step-by-step instructions for the use of Ledger devices with Crypto.org Chain desktop wallet. Before starting the process, you will need:
@@ -120,3 +120,12 @@ Chain-id, Account number, sequence, Type of the transaction, the amount in "*bas
 Since the private key of Ledger wallets are always stored inside the Ledger device, you don't need the **Mnemonic Phrases** to restore a Ledger wallet on the Desktop Wallet. You may just follow our [*Create wallet in Desktop Wallet with Ledger device Guide*](#step-2-create-wallet-in-desktop-wallet-with-ledger-device) once again to restore your previously created Ledger wallet. 
 
 Please note that you may still need to input the correct **Address Index** to derive your desired Ledger wallet address.
+
+## Ledger connection troubleshoot
+There are numerous reasons & possibilities why your Ledger device cannot be connected with the Crypto.org Chain Desktop Wallet (Beta) properly. Here are the most common checklist for you to troubleshoot the issue: 
+- Use the latest version of "Crypto.org App" & "Ethereum App" on Ledger
+- Wait several seconds after the App on Ledger device is first opened
+- If you have connected the Ledger device on other applications, e.g. Ledger Live, close these applications since they could potentially occupy the Ledger connection channel
+- Restart your machine to clear off any potential connection channel occupency
+- Check if your USB cable is working properly
+- Check if your USB port on your machine is working properly

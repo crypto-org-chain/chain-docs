@@ -117,7 +117,7 @@ Chain-id, Account number, sequence, Type of the transaction, the amount in "*bas
     - You can then check the transaction history in "*Transaction*" Tab. 
 
 ## Restoring a Ledger wallet 
-Since the private key of Ledger wallets are always stored inside the Ledger device, you don't need the **Mnemonic Phrases** to restore a Ledger wallet on the Desktop Wallet. You may just follow our [*Create wallet in Desktop Wallet with Ledger device Guide*](#step-2-create-wallet-in-desktop-wallet-with-ledger-device) once again to restore your previously created Ledger wallet. 
+Since the private key of Ledger wallets is always stored inside the Ledger device, you don't need the **Mnemonic Phrases** to restore a Ledger wallet on the Desktop Wallet. You may also follow the [*Create wallet in Desktop Wallet with Ledger device Guide*](#step-2-create-wallet-in-desktop-wallet-with-ledger-device) to restore your previously created Ledger wallet. 
 
 Please note that you may still need to input the correct **Address Index** to derive your desired Ledger wallet address.
 

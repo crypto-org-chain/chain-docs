@@ -34,7 +34,7 @@ The `bank` module maintains the state of two primary objects:
 
 #### `tx bank send [from_key_or_address] [to_address] [amount] [network_id]` - **Send Funds**
 
-You can transfer of tokens between to a designated address by the `tx bank send` command. For example, we can send 10 cro from `address_a` to `address_b` by
+You can transfer tokens to a designated address by the `tx bank send` command. For example, we can send 10 CRO from `address_a` to `address_b` by
 
 ```bash
 $ chain-maind tx bank send <address_a> <address_b> 10cro --chain-id <chain-id>
@@ -120,11 +120,11 @@ There are two main types of rewards
 
 #### Block reward
 
-Block rewards are distributed proportionally to all validators relative to their voting power. This means that even though each validator gains cro with each reward, all validators will maintain equal weight over time.
+Block rewards are distributed proportionally to all validators relative to their voting power. This means that even though each validator gains CRO with each reward, all validators will maintain equal weight over time.
 
 For the validator operator, the distribution information is updated if:
 
-- the amount of delegation to a validator is updated (delegation, unbond, slashing etc.);
+- the amount of delegation to a validator is updated (delegation, unbond, slashing, etc.);
 - a validator successfully proposes a block and receives the reward;
 - any delegator withdraws from a validator, or
 - the validator withdraws it's commission.
@@ -135,15 +135,15 @@ For delegators, once they have delegated to a validator, they will be entitled t
 
 When a validator is selected to propose the next block, they must include at least 66% precommits of the previous block. To incentivise validators to include more than 66% precommits, the module provide a bonus reward (portion of the transaction fee in the block) to the proposer.
 
-This bonus reward is dependent linearly on the precommits from the other validators. Stating from 66% of the precommits, the basic bonus will be `base_proposer_reward` and increase linearly to `bonus_proposer_reward` when the validator includes 100% of the precommits.
+This bonus reward is dependent linearly on the precommits from the other validators. Starting from 66% of the precommits, the basic bonus will be `base_proposer_reward` and increase linearly to `bonus_proposer_reward` when the validator includes 100% of the precommits.
 
-This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refers to this [link](https://hub.cosmos.network/main/validators/validator-faq.html).
+This mechanism aims to incentivize non-empty block proposals, better networking between validators as well as to mitigate censorship. For further example, kindly refer to this [link](https://hub.cosmos.network/main/validators/validator-faq.html).
 
 #### Community tax
 
-The `community_tax` is the tax rate to the reward obtained by the validator. Specifically, part of the reward will be taxed and send to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](#gov).
+The `community_tax` is the tax rate of the reward obtained by the validator. Specifically, part of the reward will be taxed and sent to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](#gov).
 
-Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntary, and there could be funds allocated to the community pool in the [genesis](./genesis_file.md).
+Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntarily, and there could be funds allocated to the community pool in the [genesis](./genesis_file.md).
 
 ### Transactions and Queries
 
@@ -151,11 +151,11 @@ Even if the `community_tax` is set to be zero, the balance of the community pool
 
 #### `tx distribution withdraw-all-rewards` - Withdraw all delegations rewards for a delegator
 
-Delegator can withdraw their reward(s) from the validator(s) that they have delegated all at once.
+Delegator can withdraw their reward(s) from the validator(s) that they have delegated to all at once.
 
 #### `tx distribution withdraw-rewards [validator-addr]` - Withdraw rewards from a given validator address
 
-Delegator can withdraw their reward from a specific validator.
+Delegator can withdraw their reward(s) from a specific validator.
 
 :::tip Remark:
 Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`.
@@ -185,7 +185,7 @@ we can check the current rewards for a delegation on a specific validator.
 
 #### `query distribution slashes [validator] [start-height] [end-height]` - Query distribution validator slashes
 
-We can check the history of slashing event of a validator.
+We can check the history of slashing events of a validator.
 
 #### `query distribution validator-outstanding-rewards [validator]` - Query distribution outstanding rewards for a validator and all their delegations
 
@@ -210,7 +210,7 @@ $ chain-maind query distribution params --output json | jq
 
 #### `distribution` module: Network Parameters and configuration
 
-The following tables show overall effects on different configurations of the distribution related network parameters:
+The following tables show the overall effects of the distribution related network parameters on different configurations:
 
 |                      | `community_tax`                               | `base_proposer_reward`                               | `bonus_proposer_reward`              |
 | -------------------- | --------------------------------------------- | ---------------------------------------------------- | ------------------------------------ |
@@ -225,9 +225,9 @@ The following tables show overall effects on different configurations of the dis
 
 ### Introduction
 
-The `gov` module enables on-chain governance which allows Crypto.org Chain token holder to participate in the decision-making processes. For example, users can:
+The `gov` module enables on-chain governance which allows Crypto.org Chain token holders to participate in the decision-making processes. For example, users can:
 
-- Form an idea and seek the feedback;
+- Form an idea and seek feedback;
 - Create the proposal and adjust according to feedback as needed;
 - Submit a proposal along with an initial deposit;
 - Deposit tokens and fund an active proposal;
@@ -243,7 +243,7 @@ Below are all the network parameters for the `gov` module:
 
 - `deposit_params` - Deposit related parameters:
   - `min_deposit`: Minimum deposit for a proposal to enter voting period; and
-  - `max_deposit_period`: Maximum period for Cro holders to deposit on a proposal.
+  - `max_deposit_period`: Maximum period for CRO holders to deposit on a proposal.
 - `voting_params` - Voting related parameters
   - `voting_period`: The length of the voting period.
 - `tally_params` - Tally related parameters
@@ -255,22 +255,22 @@ Below are all the network parameters for the `gov` module:
 
 **Phase 0 - Submit a proposal along with an initial deposit:**
 
-Users can submit a proposal with an initial deposit. The proposal will then become "active" and entre the _deposit period_.
+Users can submit a proposal with an initial deposit. The proposal will then become "active" and enter the _deposit period_.
 
 **Phase 1 - Deposit period**
 
-During the _deposit period_, users can deposit and support an active proposal. Once the deposit of the proposal reached `min_deposit`, it will enter the _voting period_. Otherwise, if the proposal is not successfully funded within `max_deposit_period`, It will become inactive and all the deposit will be refunded.
+During the _deposit period_, users can deposit and support an active proposal. Once the deposit of the proposal reaches `min_deposit`, it will enter the _voting period_. Otherwise, if the proposal is not successfully funded within `max_deposit_period`, it will become inactive and the entire deposit will be refunded.
 
 **Phase 2 - Voting period**
 
-During the _voting period_, staked (bonded) token will be able to participate in the voting. Users can choose one of the following option: `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"`
+During the _voting period_, staked (bonded) tokens will be able to participate in the voting. Users can choose one of the following option: `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"`
 
-After the `voting_period` has passed, there are several scenarios that a proposal will consider to be "Rejected", for example, if
+After the `voting_period` has passed, there are several scenarios where a proposal will be considered to be "Rejected", for example, if
 
 - No one votes (everyone `"abstain"`);
 - Votes did not reach the `quorum`;
 - More than `veto` of voters vote for `"no_with_veto"`;
-- More than `threshold` that non-abstaining voters vote `"no"`.
+- More than `threshold` of non-abstaining voters vote `"no"`.
 
 Otherwise, the proposal will be accepted and changes will be implemented according to the proposal.
 
@@ -282,7 +282,7 @@ Otherwise, the proposal will be accepted and changes will be implemented accordi
 
 - Submit a parameter change proposal - `param-change [proposal-file]`
 
-  Users can submit a proposal to modify network parameters during run time, Here is a demon proposal if we would like to change the parameter `MaxValidators` (maximum number of validator) in the `staking` module,
+  Users can submit a proposal to modify network parameters during runtime. Here is a demo proposal if we would like to change the parameter `MaxValidators` (maximum number of validators) in the `staking` module,
 
   ```json
   {
@@ -369,7 +369,7 @@ $ chain-maind query gov proposals -o json | jq
   }
 ```
 
-In the above example, there is only one proposal with `"proposal_id": "1"`, with the title: `"Staking Param Change"` that change the `MaxValidators` parameter of the `staking` module to `151`. We can also see that the status of the proposal is `"PROPOSAL_STATUS_PASSED"`, which means that this proposal has bee passed.
+In the above example, there is only one proposal with `"proposal_id": "1"`, with the title: `"Staking Param Change"` that change the `MaxValidators` parameter of the `staking` module to `151`. We can also see that the status of the proposal is `"PROPOSAL_STATUS_PASSED"`, which means that this proposal has been passed.
 
 #### `query gov proposal [proposal-id]` Query details of a single proposal
 
@@ -377,7 +377,7 @@ Similarly, we can check the details of a proposal with a given `"proposal_id"`.
 
 #### `query gov tally [proposal-id]` Get the tally of a proposal vote
 
-We can also the tally of a proposal with a given `"proposal_id"`.
+We can also check the tally of a proposal with a given `"proposal_id"`.
 
 #### `query gov params` - Query the current gov parameters
 
@@ -411,7 +411,7 @@ $ chain-maind query gov params --output json | jq
 
 #### `gov` module: Network Parameters and configuration
 
-The following tables show overall effects on different configurations of the gov related network parameters:
+The following tables show the overall effects of the gov related network parameters on different configurations:
 
 |                      | `min_deposit`                               | `max_deposit_period`         | `voting_period`              |
 | -------------------- | ------------------------------------------- | ---------------------------- | ---------------------------- |
@@ -419,22 +419,22 @@ The following tables show overall effects on different configurations of the gov
 | Higher               | Larger window for calculating the downtime  | Longer deposit period        | Longer voting period         |
 | Lower                | Smaller window for calculating the downtime | Shorter deposit period       | Shorter voting period        |
 | Constraints          | Value has to be a positive integer          | Value has to be positive     | Value has to be positive     |
-| Sample configuration | `100000` (100000 cro)                       | `1209600000000000` (2 weeks) | `1209600000000000` (2 weeks) |
+| Sample configuration | `100000` (100000 CRO)                       | `1209600000000000` (2 weeks) | `1209600000000000` (2 weeks) |
 
-|                      | `quorum`                             | `threshold`                          | `veto`                               |
-| -------------------- | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| Type                 | string (dec)                         | string (dec)                         | string (dec)                         |
-| Higher               | Easier for a proposal to be passed   | Easier for a proposal to be passed   | Easier for a proposal to be passed   |
-| Lower                | Harder for a proposal to be passed   | Harder for a proposal to be passed   | Harder for a proposal to be passed   |
-| Constraints          | Value has to be less or equal to `1` | Value has to be less or equal to `1` | Value has to be less or equal to `1` |
-| Sample configuration | `0.15` (15%)                         | `0.5` (50%)                          | `0.33` (33%)                         |
+|                      | `quorum`                                  | `threshold`                               | `veto`                                    |
+| -------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| Type                 | string (dec)                              | string (dec)                              | string (dec)                              |
+| Higher               | Easier for a proposal to be passed        | Easier for a proposal to be passed        | Easier for a proposal to be passed        |
+| Lower                | Harder for a proposal to be passed        | Harder for a proposal to be passed        | Harder for a proposal to be passed        |
+| Constraints          | Value has to be less than or equal to `1` | Value has to be less than or equal to `1` | Value has to be less than or equal to `1` |
+| Sample configuration | `0.15` (15%)                              | `0.5` (50%)                               | `0.33` (33%)                              |
 
 
 ## `mint`
 
 ### Introduction
 
-The `mint` module is responsible for creating token in a flexible way to reward the validator who participate in the proof of stake consensus process (see also the [distribution module](#distribution)). It is also designed in a way to bring a balance between market liquidity and staked supply.
+The `mint` module is responsible for creating tokens in a flexible way to reward the validators who participate in the proof of stake consensus process (see also the [distribution module](#distribution)). It is also designed in a way to bring a balance between market liquidity and staked supply.
 
 ### Overview
 
@@ -443,13 +443,13 @@ The `mint` module is responsible for creating token in a flexible way to reward 
 Below are all the network parameters for the `mint` module:
 
 - `"blocks_per_year"` - The expected number of blocks being produced per year;
-- `"goal_bonded"` - Goal of bonded token in percentage;
+- `"goal_bonded"` - Goal of bonded tokens in percentage;
 - `"inflation_max"` - Maximum annual inflation rate;
 - `"inflation_min"` - Minimum annual inflation rate;
 - `"inflation_rate_change"` - Maximum annual change in inflation rate;
-- `"mint_denom"` - Token type being minted.
+- `"mint_denom"` - Type of the token being minted.
 
-The target annual inflation rate is recalculated for each previsions cycle. The inflation is also subject to a rate change (positive or negative) depending on the distance from the desired ratio (`"goal_bonded"`). The maximum rate change possible is defined to be `"inflation_rate_change"` per year, where the annual inflation is capped as between `"inflation_min"` and `"inflation_max"`.
+The target annual inflation rate is recalculated for each previsions cycle. The inflation is also subject to a rate change (positive or negative) depending on the distance from the desired ratio (`"goal_bonded"`). The maximum rate change possible is defined to be `"inflation_rate_change"` per year, where the annual inflation is capped between `"inflation_min"` and `"inflation_max"`.
 
 ### `mint` module: Queries
 
@@ -464,7 +464,7 @@ We can query the current minting annual provisions value, for example:
   109573801550200370
 ```
 
-implies that the current minting annual provisions will be `109573801550200370` basecro ( i.e. `1,095,738,015` cro)
+implies that the current minting annual provisions will be `109573801550200370` basecro ( i.e. `1,095,738,015` CRO)
 
 #### `query mint inflation` - Query the current minting inflation value
 
@@ -498,31 +498,31 @@ $ chain-maind query mint params --output json | jq
 
 #### `gov` module: Network Parameters and configuration
 
-The following tables show overall effects on different configurations of the mint related network parameters:
+The following tables show the overall effects of the mint related network parameters on different configurations:
 
-|                      | `blocks_per_year`                  | `goal_bonded`                        | `mint_denom` |
-| -------------------- | ---------------------------------- | ------------------------------------ | ------------ |
-| Type                 | array (coins)                      | string (dec)                         | string       |
-| Higher               | More expected blocks per year      | Higher target bonding ratio          | N/A          |
-| Lower                | Less expected blocks per year      | Lower target bonding ratio           | N/A          |
-| Constraints          | Value has to be a positive integer | Value has to be less or equal to `1` | N/A          |
-| Sample configuration | `5256000` (5,256,000 blocks)       | `0.66` (66%)                         | `basecro`    |
+|                      | `blocks_per_year`                  | `goal_bonded`                             | `mint_denom` |
+| -------------------- | ---------------------------------- | ----------------------------------------- | ------------ |
+| Type                 | array (coins)                      | string (dec)                              | string       |
+| Higher               | More expected blocks per year      | Higher target bonding ratio               | N/A          |
+| Lower                | Less expected blocks per year      | Lower target bonding ratio                | N/A          |
+| Constraints          | Value has to be a positive integer | Value has to be less than or equal to `1` | N/A          |
+| Sample configuration | `5256000` (5,256,000 blocks)       | `0.66` (66%)                              | `basecro`    |
 
-|                      | `inflation_max`                       | `inflation_min`                      | `inflation_rate_change`                       |
-| -------------------- | ------------------------------------- | ------------------------------------ | --------------------------------------------- |
-| Type                 | string (dec)                          | string (dec)                         | string (dec) (dec)                            |
-| Higher               | Higher ceiling for the inflation rate | Higher floor for the inflation rate  | Higher yearly rate of change to the inflation |
-| Lower                | Lower ceiling for the inflation rate  | Lower floor for the inflation rate   | Lower yearly rate of change to the inflation  |
-| Constraints          | Value has to be less or equal to `1`  | Value has to be less or equal to `1` | Value has to be less or equal to `1`          |
-| Sample configuration | `0.02` (2%)                           | `0.01` (1%)                          | `0.01` (1%)                                   |
+|                      | `inflation_max`                            | `inflation_min`                           | `inflation_rate_change`                             |
+| -------------------- | ------------------------------------------ | ----------------------------------------- | --------------------------------------------------- |
+| Type                 | string (dec)                               | string (dec)                              | string (dec) (dec)                                  |
+| Higher               | Higher ceiling for the inflation rate      | Higher floor for the inflation rate       | Higher yearly rate of change for the inflation      |
+| Lower                | Lower ceiling for the inflation rate       | Lower floor for the inflation rate        | Lower yearly rate of change for the inflation       |
+| Constraints          | Value has to be less than or equal to `1`  | Value has to be less than or equal to `1` | Value has to be less than or equal to `1`           |
+| Sample configuration | `0.02` (2%)                                | `0.01` (1%)                               | `0.01` (1%)                                         |
 
 ## `slashing`
 
 ### Introduction
 
-Validators are responsible for signing or proposing block at each consensus round. A penalty should be imposed on validators' misbehavior to reinforce this.
+Validators are responsible for signing or proposing a block at each consensus round. A penalty should be imposed on validators' misbehaviour to reinforce this.
 
-Specifically, `slashing` functionality that aims to dis-incentivize network-observable actions, such as faulty validations. The penalties may include losing some amount of their stake, losing their ability to perform the network functionality for a period of time, collect rewards etc.
+Specifically, `slashing` functionality that aims to dis-incentivize network-observable actions, such as faulty validations. The penalties may include losing some amount of their stake, losing their ability to perform the network functionality for a period of time, collect rewards, etc.
 
 ### Overview
 
@@ -542,13 +542,13 @@ Punishments for a validator are triggered when they either make a _byzantine fau
 
 - Liveness Faults (Low availability)
 
-  A validator is said to be **non-live** when they fail to sign at least `min_signed_per_window` blocks (in percentage) in the
-  last `signed_blocks_window` blocks successfully. `signed_blocks_window` and `min_signed_per_window` are network
+  A validator is said to be **non-live** when they fail to successfully sign at least `min_signed_per_window` blocks (in percentage) in the
+  last `signed_blocks_window` blocks. `signed_blocks_window` and `min_signed_per_window` are network
   parameters and can be configured during genesis and can be updated during runtime by the governance module.
 
 :::tip Example:
 For example, if `block_signing_window` is `2000` blocks and `min_signed_per_window` is `0.5`, a validator will
-be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in last `2000` blocks.
+be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in the last `2000` blocks.
 :::
 
 - Byzantine Faults 
@@ -575,14 +575,14 @@ not older than `max_age` in tendermint.
 
 ### Inactivity Slashing
 
-It is important that the validators maintain excellent availability and network connectivity to perform their tasks. A penalty should be imposed on validators' misbehavior to reinforce this.
+It is important that the validators maintain excellent availability and network connectivity to perform their tasks. A penalty should be imposed on validators' misbehaviour to reinforce this.
 
-When a validator fails to successfully sign `missed_block_threshold` blocks in last `block_signing_window` blocks, it is
-immediately jailed and punished by deducting funds from their bonded and unbonded amount and removing them from active validator set. The funds to be deducted are calculated based on `slash_fraction_downtime`. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/slashing/04_begin_block.html) on the logic of the liveness tracking.
+When a validator fails to successfully sign `missed_block_threshold` blocks in the last `block_signing_window` blocks, it is
+immediately jailed and punished by deducting funds from their bonded and unbonded amount and removing them from the active validator set. The funds to be deducted are calculated based on `slash_fraction_downtime`. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/slashing/04_begin_block.html) on the logic of the liveness tracking.
 
 ### Jailing
 
-A validator is jailed when they make liveness or Byzantine fault, when a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Futhermore, it cannot be un-jailed
+A validator is jailed when they make liveness or Byzantine fault. When a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Futhermore, it cannot be un-jailed
 before `downtime_jail_duration`. This `downtime_jail_duration` is a
 network parameter which can be configured during genesis.
 
@@ -592,11 +592,11 @@ When a validator is jailed because of a byzantine fault, their validator public 
 
 #### Un-jailing
 
-When a jailed validator wishes to resume normal operations (after `downtime_jail_duration` has passed), they can create an`unjail` transaction which marks them as un-jailed. Validator will then rejoin the validator set once it has bee successful un-jailed.
+When a jailed validator wishes to resume normal operations (after `downtime_jail_duration` has passed), they can create an `unjail` transaction which marks them as un-jailed. Validator will then rejoin the validator set once it has been successful un-jailed.
 
 ### Slashing for Byzantine Fault
 
-When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validator who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
+When there is byzantine fault detected, they are immediately slashed other than jailed. The funds to be deducted are calculated based on `slash_fraction_double_sign`. Furthermore, validators who commit this double-signing fault will also be put into the "tombstone state", which means it will be blacklisted and jailed forever.
 
 ### Transactions and Queries
 
@@ -604,7 +604,7 @@ When there is byzantine fault detected, they are immediately slashed other than 
 
 #### `tx slashing unjail` - Unjailing a validator
 
-Validator could be punished and jailed due to network misbehaviour, for example if we check the validator set:
+Validators could be punished and jailed due to network misbehaviour, for example if we check the validator set:
 
 ```bash
 $ chain-maind query staking validators -o json | jq
@@ -616,7 +616,7 @@ $ chain-maind query staking validators -o json | jq
 ................................
 ```
 
-After the jailing period has passed, one can broadcast a `unjail` transaction to unjail the validator and resume its normal operations by
+After the jailing period has passed, one can broadcast an `unjail` transaction to unjail the validator and resume its normal operations by
 
 ```bash
 $ chain-maind tx slashing unjail --from node1 --chain-id cro-test
@@ -658,13 +658,13 @@ The following tables show overall effects on different configurations of the sla
 
 ---
 
-|                      | `slash_fraction_double_sign`         | `slash_fraction_downtime`            |
-| -------------------- | ------------------------------------ | ------------------------------------ |
-| Type                 | string (dec)                         | string (dec)                         |
-| Higher               | Heavier penalty on byzantine faults  | Heavier penalty on liveness faults   |  |
-| Lower                | Lighter penalty on byzantine faults  | Lighter penalty on liveness faults   |
-| Constraints          | Value has to be less or equal to `1` | Value has to be less or equal to `1` |
-| Sample configuration | `0.001` (0.1%)                       | `0.05` (5%)                          |
+|                      | `slash_fraction_double_sign`              | `slash_fraction_downtime`                 |
+| -------------------- | ----------------------------------------- | ----------------------------------------- |
+| Type                 | string (dec)                              | string (dec)                              |
+| Higher               | Heavier penalty on byzantine faults       | Heavier penalty on liveness faults        |
+| Lower                | Lighter penalty on byzantine faults       | Lighter penalty on liveness faults        |
+| Constraints          | Value has to be less than or equal to `1` | Value has to be less than or equal to `1` |
+| Sample configuration | `0.001` (0.1%)                            | `0.05` (5%)                               |
 
 
 
@@ -672,27 +672,27 @@ The following tables show overall effects on different configurations of the sla
 
 ### Introduction
 
-The `staking` module handles Proof-of-Stake related logics, which plays a very import part to the underneath consensus protocol.
+The `staking` module handles Proof-of-Stake related logics, which plays a very important part to the underneath consensus protocol.
 
 ### Overview
 
-Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
+Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks to the blockchain.
 
 - `unbonding_time`: The time duration of unbonding;
-- `max_validators`: The maximum number of validator;
+- `max_validators`: The maximum number of validators;
 - `max_entries`: The max entries for either unbonding delegation or redelegation;
 - `historical_entries`: The number of historical entries to persist; and
 - `bond_denom`: Coin denomination for staking.
 
 ### Validator
 
-Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](#distribution) and [mint](#mint)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](#slashing)).
+Validators are responsible for signing or proposing a block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked tokens (see [distribution](#distribution) and [mint](#mint)). On the other hand, a penalty should be imposed on validators' misbehaviour (see [slashing](#slashing)).
 
 ### Delegator
 
-The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](#distribution) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
+The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](#distribution) module). Specifically, it allows token owners to take part in the consensus process without running a validator themselves.
 
-It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](#slashing)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
+It is important to point out that the delegator and the validator are on the same boat: they share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](#slashing)). Therefore, it is very important to choose a reliable validator to delegate to. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
 ### Transactions and Queries
 
@@ -722,7 +722,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 #### `tx staking delegate [validator-addr] [amount]` - Delegate liquid tokens to a validator
 
-As discussed in the delegator section, one can delegate their tokens to an active validators by:
+As discussed in the delegator section, one can delegate their tokens to an active validator by:
 
 ```bash
 $ tx staking delegate [validator-addr] [amount]
@@ -733,7 +733,7 @@ $ tx staking delegate [validator-addr] [amount]
 
 #### `tx staking unbond [validator-addr] [amount]` - Unbond shares from a validator
 
-Delegator can unbond their staked tokens by
+Delegators can unbond their staked tokens by
 
 ```bash
 $ chain-maind tx staking unbond [validator-addr] [amount]
@@ -767,7 +767,7 @@ to check all the supported sub-commands.
 
 #### `query staking delegation [delegator-addr] [validator-addr]` - Query a delegation based on address and validator address
 
-With a given delegator address and the validator account that it is associated with, we can check the by:
+With a given delegator address and the validator account that it is associated with, we can check the delegation by:
 
 ```json
 $ chain-maind query chain-maind query staking delegation [delegator-addr] [validator-addr] --output json | jq
@@ -928,40 +928,40 @@ $ chain-maind query staking params --output json | jq
 
 #### `staking` module: Network Parameters Configuration
 
-The following tables show overall effects on different configurations of the staking related network parameters:
+The following tables show the overall effects of the staking related network parameters on different configurations:
 
 |                      | `bond_denom` | `historical_entries`               | `max_entries`                                                 |
 | -------------------- | ------------ | ---------------------------------- | ------------------------------------------------------------- |
 | Type                 | string       | uint16                             | uint16                                                        |
 | Higher               | N/A          | More historical entries to persist | More entries for either unbonding delegation or redelegation  |
 | Lower                | N/A          | Less historical entries to persist | Fewer entries for either unbonding delegation or redelegation |
-| Constraints          | N/A          | Value has to be positive           | Value has to be a positive                                    |
+| Constraints          | N/A          | Value has to be positive           | Value has to be positive                                      |
 | Sample configuration | `basecro`    | `100` (50%)                        | `7`                                                           |
 
 ---
 
-|                      | `max_validators`                     | `unbonding_time`                     |
-| -------------------- | ------------------------------------ | ------------------------------------ |
-| Type                 | uint16                               | string                               |
-| Higher               | More active validators               | Longer waiting period for unbonding  |
-| Lower                | Fewer active validators              | Shorter waiting period for unbonding |
-| Constraints          | Value has to be less or equal to `1` | Positive value in seconds            |
-| Sample configuration | `100` (maximum 100 active validator) | `"1814400s"` (3 weeks)               |
+|                      | `max_validators`                          | `unbonding_time`                     |
+| -------------------- | ----------------------------------------- | ------------------------------------ |
+| Type                 | uint16                                    | string                               |
+| Higher               | More active validators                    | Longer waiting period for unbonding  |
+| Lower                | Fewer active validators                   | Shorter waiting period for unbonding |
+| Constraints          | Value has to be less than or equal to `1` | Positive value in seconds            |
+| Sample configuration | `100` (maximum 100 active validator)      | `"1814400s"` (3 weeks)               |
 
 
 ## `supply`
 
 ### Introduction
 
-The `supply` module is responsible for retrieve total and liquid supply. 
+The `supply` module is responsible for retrieving the total and liquid supply.
 
 
 
 ### Queries
 
-#### `query supply liquid` - Check the total supply of coins of the chain
+#### `query supply liquid` - Check the total supply of coins on the chain
 
-We can also use  `query` command of the `supply` module to check the current total supply:
+We can also use the `query` command of the `supply` module to check the current total supply:
 
 ```json
 $ chain-maind query supply total
@@ -975,9 +975,9 @@ $ chain-maind query supply total
     }
 ```
 
-#### `query supply liquid` - Check the liquid supply of coins of the chain
+#### `query supply liquid` - Check the liquid supply of coins on the chain
 
-We can also query the liquid supply, which is the total supply bonded subtracted by the non-circulating supply such as bonded amount, unvested amounts, and uncollected reward etc.
+We can also query the liquid supply, which is the total supply bonded subtracted by the non-circulating supply such as bonded amounts, unvested amounts, uncollected rewards, etc.
 
 ```json
 $ chain-maind query supply total

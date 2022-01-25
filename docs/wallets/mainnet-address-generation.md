@@ -17,17 +17,17 @@ i.e. the first address is derived at path `44'/394'/0'/0/0` and the second one a
 
 ## How to generate address
 
-::: warning MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS
+::: warning MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS<br/>
 Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backup your address's mnemonic words correctly in a safe place and the mnemonic words are correct such that it can restore to your wallet address in the future.
 
 You are the sole owner of your wallet mnemonic words and there is no way for Crypto.org to restore your wallet or recover your funds if you lost the mnemonic words.
 :::
 
-::: warning GENERATE ADDRESS ONLY IN A SECURE ENVIRONMENT
+::: warning GENERATE ADDRESS ONLY IN A SECURE ENVIRONMENT<br/>
 We recommend you to generate an address only on a trusted and secure computer. To further enhance the security, you should consider to run on a air-gapped (offline) machine.
 :::
 
-::: warning ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS
+::: warning ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS<br/>
 To make sure you have backed up the mnemonic words correctly, we recommend you to try to restore your wallet with the mnemonic words and verify the address derived is the same.
 
 For more details on how to verify your mnemonic words and addresses, please check [Mainnet Address Verification](./mainnet-address-verification.md)
@@ -45,20 +45,20 @@ Supported OS: Linux, Mac OS and Windows
 
 #### Step 1. Get the Crypto.org Chain binary
 
-Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v1.0.0) and extract the binary. Here we used Linux as an example:
+Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases) and extract the binary. Here we used Linux as an example:
 
  ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_2.0.1_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_3.3.3_Linux_x86_64.tar.gz
   ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0` or newer version that are targeting for mainnet.
+If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.3` or newer version that are targeting for mainnet.
 
 Before moving to the next step, kindly check your `chain-maind` version by
 
 ```bash
 $ ./chain-maind version
-2.0.1
+3.3.3
 ```
 
 #### Step 2. Create a new key and address
@@ -118,14 +118,14 @@ You can confirm the installation by checking if the Crypto.org App shows up in t
 
 #### Step 1. Get the Crypto.org Chain binary
 
-Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v1.0.0) and extract the binary. Here we used Linux as an example:
+Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases) and extract the binary. Here we used Linux as an example:
 
 ```bash
-$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.0.0/chain-main_1.0.0_Linux_x86_64.tar.gz
-$ tar -zxvf chain-main_1.0.0_Linux_x86_64.tar.gz
+$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Linux_x86_64.tar.gz
+$ tar -zxvf chain-main_3.3.3_Linux_x86_64.tar.gz
 ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0`, which is the version targeting for mainnet.
+If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.3`, which is the version targeting for mainnet.
 
 #### Step 2. Open the Crypto.org Chain application on your Ledger device
 
@@ -161,8 +161,7 @@ If you encounter connection error when creating a wallet, you can try to unplug 
 
 ::: warning DESKTOP WALLET IS IN BETA
 Desktop wallet is in beta testing. Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address.
-:::
-Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
+::: Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
 
 #### Step 1. Open the application and click "Get Started" to set up an application password.
 

@@ -1,7 +1,7 @@
 # Using Ledger device with desktop wallet
 
-### Crypto.org Chain Desktop Wallet 
-Crypto.org Chain Desktop Wallet Beta supports operations ranging from sending multiple assets, staking, governance & NFT. latest version can be found on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases). 
+### Crypto.org Chain Desktop Wallet (Beta)
+Crypto.org Chain Desktop Wallet (Beta) supports operations ranging from sending multiple assets, staking, governance & NFT. The latest version can be found on the [release page](https://github.com/crypto-com/chain-desktop-wallet/releases). 
 
 
 The following are the step-by-step instructions for the use of Ledger devices with Crypto.org Chain desktop wallet. Before starting the process, you will need:
@@ -117,6 +117,15 @@ Chain-id, Account number, sequence, Type of the transaction, the amount in "*bas
     - You can then check the transaction history in "*Transaction*" Tab. 
 
 ## Restoring a Ledger wallet 
-Since the private key of Ledger wallets are always stored inside the Ledger device, you don't need the **Mnemonic Phrases** to restore a Ledger wallet on the Desktop Wallet. You may just follow our [*Create wallet in Desktop Wallet with Ledger device Guide*](#step-2-create-wallet-in-desktop-wallet-with-ledger-device) once again to restore your previously created Ledger wallet. 
+Since the private key of Ledger wallets is always stored inside the Ledger device, you don't need the **Mnemonic Phrases** to restore a Ledger wallet on the Desktop Wallet. You may also follow the [*Create wallet in Desktop Wallet with Ledger device Guide*](#step-2-create-wallet-in-desktop-wallet-with-ledger-device) to restore your previously created Ledger wallet. 
 
 Please note that you may still need to input the correct **Address Index** to derive your desired Ledger wallet address.
+
+## Ledger connection troubleshoot
+Most ledger users are able to connect to Crypto.org Chain Desktop Wallet (Beta) efficiently, while some users may encounter connection issues. Below are the most common reasons that cause the connection problem between a Ledger device and the Crypto.org Chain Desktop Wallet (Beta) and a checklist that you may refer to troubleshoot the issue: 
+- Use the latest version of "Crypto.org App" & "Ethereum App" on Ledger
+- Wait several seconds after the App on Ledger device is first opened
+- If you have connected the Ledger device on other applications, e.g. Ledger Live, close these applications since they could potentially occupy the Ledger connection channel
+- Restart your machine to clear off any potential connection channel occupancy
+- Check if your USB cable is working properly
+- Check if your USB port on your machine is working properly

@@ -313,18 +313,30 @@ You can always review your latest bridge transfer history at the top-right corne
 If you found your bridge transfer history failed to get latest transferrals, please make sure your Bridge Indexing URL is correct with the value [mentioned above](#_6-1-before-the-bridge-transfer)
 
 ## 7. DApp Browser
-Since v0.6.1, you’re able to access various DApps directly (`Standard` Wallet Type) through the Desktop Wallet. Certain DApps are available at the moment, and we’re going to bring more supported DApps in the future. 
+Since v0.6.4, you’re able to access any DApps available on Cronos Mainnet Beta directly through the Desktop Wallet on both Standard & Ledger Wallet. 
         <img src="./assets/desktop_wallet/7.png" />
 
-### 7.1 - Connect to DApp
-To connect to a DApp, click the "connect" button and choose "**Metamask**". 
-        <img src="./assets/desktop_wallet/7-1-1.png" />
+### 7.1 - Choose your DApp
+You may go to any DApps you like by either clicking the DApps inside *Popular* / *Saved* section, or type the URL of the DApp directly on the Address Bar at the top. 
+
+### 7.2 - Save your favourite DApp
+You can always save any DApps you like by clicking the bookmark button at the top-right corner. When the bookmark button turns blue, the DApp has been successfully saved into your *Saved* collection.
+        <img src="./assets/desktop_wallet/7-2-1.png" />
+
+The bookmarked DApps will appear in *Saved* section for quick access.
+        <img src="./assets/desktop_wallet/7-2-2.png" />
+
+### 7.3 - Connect to DApp
+To connect to a DApp, click the "connect" button and choose "**Crypto.org Chain Desktop Wallet**". 
+        <img src="./assets/desktop_wallet/7-3-1.png" />
+        
+**Remark**: If "**Crypto.org Chain Desktop Wallet**" is missing from the options, choosing "**Metamask**" will also allow you to connect to the DApp. 
 
 Once you see that your selected wallet address on the Desktop Wallet appears, you’re successfully connected to the DApp. 
-        <img src="./assets/desktop_wallet/7-1-2.png" />
+        <img src="./assets/desktop_wallet/7-3-2.png" />
 
-### 7.2 - Enter your App Password
+### 7.4 - Enter your App Password
 When you trigger any transactions on the DApp for the first time, a Password Input prompt will pop up – as is the case for any transaction you perform on the Desktop Wallet. 
-        <img src="./assets/desktop_wallet/7-2.png" />
+        <img src="./assets/desktop_wallet/7-4.png" />
 
 Enjoy your DApp Journey!

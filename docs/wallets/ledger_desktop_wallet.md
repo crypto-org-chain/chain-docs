@@ -24,15 +24,15 @@ In case you have any enquiry about using Ledger device with desktop wallet, kind
 - **Step 1.2** - On your Ledger device, go to "*Install app*", It should show "*Open Ledger live to install apps*"
 
 - **Step 1.3** - On the Ledger Live, find Crypto.org Chain & Ethereum to install in the app catalog under "*Manager*" as below:
+        <img src="./assets/ledger_desktop_wallet/s1-3-1.png" />
+        <img src="./assets/ledger_desktop_wallet/s1-3-2.png" />
+
+- **Step 1.4** - Your Ledger device will display "*Processing…*". Once the installation is completed, you should see "*Installed*" on your Ledger Live as below:
         <img src="./assets/ledger_desktop_wallet/s1-4-1.png" />
         <img src="./assets/ledger_desktop_wallet/s1-4-2.png" />
 
-- **Step 1.4** - Your Ledger device will display "*Processing…*". Once the installation is completed, you should see "*Installed*" on your Ledger Live as below:
-        <img src="./assets/ledger_desktop_wallet/s1-5-1.png" />
-        <img src="./assets/ledger_desktop_wallet/s1-5-2.png" />
-
     You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:
-            <img src="./assets/ledger_desktop_wallet/s1-5-3.jpeg" />
+            <img src="./assets/ledger_desktop_wallet/s1-4-3.jpeg" />
 
 **Remark**: Once Crypto.org App & Ethereum successfully installed, please remember to close the *Ledger Live* app before proceeding to the next step .
 
@@ -104,8 +104,14 @@ Desktop Wallet supports all sorts of transactions for both normal wallets and wa
 Fill up the request information: recipient address, amount to be sent and optional memo as needed:
             <img src="./assets/ledger_desktop_wallet/s4-1-2.png" />
 
-- **Step 2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the desktop wallet and proceed to the next step by clicking "*Confirm*":
-            <img src="./assets/ledger_desktop_wallet/s4-2.png" />
+- **Step 2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the desktop wallet. Proceed to the next step by clicking "*Confirm*":
+            <img src="./assets/ledger_desktop_wallet/s4-2-1.png" />
+
+**Remark**: If you have not yet established a connection with your Ledger device, a notification will popup on the top-right hand corner, asking you to confirm connection with your Ledger.
+            <img src="./assets/ledger_desktop_wallet/s4-2-2.png" />
+
+Follow the instructions, and confirm the connection on your ledger device. Make sure you are using the ledger device storing with the same wallet address on Desktop Wallet.
+                <img src="./assets/ledger_desktop_wallet/s4-3-2.jpeg" />
 
 - **Step 3** - Now, your transaction details will be shown on your ledger device, which includes: 
 Chain-id, Account number, sequence, Type of the transaction, the amount in "*basetcro*", Sender address, Receiver address, memo message, Transaction fee and gas:

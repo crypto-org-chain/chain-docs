@@ -107,7 +107,7 @@ Fill up the request information: recipient address, amount to be sent and option
 - **Step 2** - Once you hit the "*Continue*" button, you can review the transaction details in the confirmation window on the desktop wallet. Proceed to the next step by clicking "*Confirm*":
             <img src="./assets/ledger_desktop_wallet/s4-2-1.png" />
 
-**Remark**: If you have not yet established a connection with your Ledger device, a notification will popup on the top-right hand corner, asking you to confirm connection with your Ledger.
+**Remark**: If you have not yet established a connection with your Ledger device, a notification will pop up on the top-right hand corner, asking you to confirm the connection with your Ledger.
             <img src="./assets/ledger_desktop_wallet/s4-2-2.png" />
 
 Follow the instructions, and confirm the connection on your ledger device. Make sure you are using the ledger device storing with the same wallet address on Desktop Wallet.

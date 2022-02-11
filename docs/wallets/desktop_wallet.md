@@ -322,7 +322,7 @@ We are not responsible for the accuracy, completeness, or usefulness of such DAp
 :::
 
 ### 7.1 - Choose your DApp
-You may go to any DApps you like by either clicking the DApps inside *Popular* / *Saved* section, or type the URL of the DApp directly on the Address Bar at the top. 
+You may go to any DApps you like by either clicking the DApps inside the *Popular* / *Saved* section or typing the URL of the DApp directly on the Address Bar at the top. 
 
 ### 7.2 - Save your favourite DApp
 You can always save any DApps you like by clicking the bookmark button at the top-right corner. When the bookmark button turns blue, the DApp has been successfully saved into your *Saved* collection.

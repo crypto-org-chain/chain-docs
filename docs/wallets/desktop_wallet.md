@@ -318,7 +318,7 @@ Since v0.6.4, you’re able to access any DApps available on Cronos Mainnet Beta
 
 ::: warning DISCLAIMER
 You are responsible for your use of any DApps. DApps are controlled solely by their respective project providers. Please check the receiving addresses or contract addresses before you transfer any assets.
-We are not responsible for the accuracy, completeness, or usefulness of such DApps. Accordingly, we neither endorse, recommend, nor give any opinion, advice or whatsoever on such DApps. are not responsible or liable for any losses incurred during your use of DApps.
+We are not responsible for the accuracy, completeness, or usefulness of such DApps. Accordingly, we neither endorse, recommend, nor give any opinion, advice or whatsoever on such DApps, and are not responsible or liable for any losses incurred during your use of DApps.
 :::
 
 ### 7.1 - Choose your DApp

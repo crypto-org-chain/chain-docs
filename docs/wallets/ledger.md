@@ -27,10 +27,10 @@ First of all, you will need to install the Crypto.org Chain app on your Ledger d
         <img src="./assets/ledger_desktop_wallet/s1-4-1.png" />
 
 - **Step 4** - Your Ledger device will display "*Processing…*". Once the installation is completed, you should see "*Installed*" on your Ledger Live as below:
-        <img src="./assets/ledger_desktop_wallet/s1-5-1.png" />
+        <img src="./assets/ledger_desktop_wallet/s1-4-2.png" />
 
     You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:
-            <img src="./assets/ledger_desktop_wallet/s1-5-3.jpeg" />
+            <img src="./assets/ledger_desktop_wallet/s1-4-3.jpeg" />
 
 **Remark**: Once the Crypto.org App is successfully installed, please close the Ledger Live app before proceeding to the next step .
 

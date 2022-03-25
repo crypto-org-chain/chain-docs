@@ -300,7 +300,7 @@ and you can check your node's progress (in terms of block height) by:
 At last step, you've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II,"** the second network upgrade  ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](./upgrade_guide_draco_2.md).
 
 
-## (Optional) Step 4. QuickSync
+## *(Optional)* Step 4. QuickSync
 Syncing Crypto.org Chain could be a time-consuming process, Crypto.org Chain team has partnered with Chainlayer to provide the “QuickSync” service to make the process more efficient for our users. 
 
 Users can visit [Chainlayer QuickSync Crypto.org page](https://quicksync.io/networks/crypto.html) and download the snapshots for Crypto.org Chain with different pruning settings. You may refer to the following guide to implement QuickSync. 
@@ -308,9 +308,9 @@ Users can visit [Chainlayer QuickSync Crypto.org page](https://quicksync.io/netw
 ### Step 4-1. QuickSync Download 
 After executing the command `./chain-maind` start at Step 3-1 Run everything, it starts the node and syncs the blockchain data. When you see it starts to sync from 0, you can terminate the terminal. 
 
+:::details Example: `chain-maind start` with 0 height originally
 
 ```bash
-
   $  ./chain-maind start
   12:17PM INF starting ABCI with Tendermint
   12:17PM INF Starting multiAppConn service impl=multiAppConn module=proxy
@@ -320,8 +320,9 @@ After executing the command `./chain-maind` start at Step 3-1 Run everything, it
   12:17PM INF Starting IndexerService service impl=IndexerService module=txindex
   12:17PM INF ABCI Handshake App Info hash= height=0 module=consensus protocol-version=0 software-version=
   12:17PM INF ABCI Replay Blocks appHeight=0 module=consensus stateHeight=0 storeHeight=0
-
 ```
+
+:::
 
 To start with QuickSync, you need to run `brew install lz4`  to install lz4 in a new terminal. Then download the file with preferred pruning settings directly from https://quicksync.io/networks/crypto.html. 
 
@@ -348,8 +349,9 @@ Then perform the following steps:
 - Change the path under `.chain-maind` with `cd .chain-maind`
 - Decompress with `lz4` first then decompress with `tar` by `lz4 -d /Users/<username>/.chain-maind/crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4 | tar -xv`.
 
-```bash
+:::details Example: Decompress the QuickSync pack with `lz4`
 
+```bash
 x data/
 x data/state.db/
 x data/state.db/161915.ldb
@@ -358,16 +360,18 @@ x data/state.db/035015.ldb
 x data/evidence.db/MANIFEST-000143
 x data/evidence.db/000142.log
 x data/priv_validator_state.json
-
 ```
+
+:::
 
 The original data folder under `.chain-maind` is overwritten with the step above. It takes around a few mins to decompress the pruned version of 47GB(at the date of writing).
 
 ### Step 4-3. Sync with QuickSync
 Now direct back to the original directory and re-sync the chain again with `./chain-maind start`. It starts the node and syncs the blockchain data from the height of `5055406`. 
 
-```bash
+:::details Example: Restart `chain-maind start` with QuickSync
 
+```bash
   $ ./chain-maind start                                                                   
   12:28PM INF starting ABCI with Tendermint
   12:28PM INF Starting multiAppConn service impl=multiAppConn module=proxy
@@ -376,8 +380,8 @@ Now direct back to the original directory and re-sync the chain again with `./ch
   ...
   12:28PM INF ABCI Handshake App Info hash="Pٖ}\x03G[5\x1aQi*#y-s:" height=5055406 module=consensus protocol-version=0 software-version=
   12:28PM INF ABCI Replay Blocks appHeight=5055406 module=consensus stateHeight=5055406 storeHeight=5055406
-
 ```
 
+:::
 
 ---

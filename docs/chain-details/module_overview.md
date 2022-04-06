@@ -950,8 +950,6 @@ Therefore, the first step is to issue a denom before one can mint NFTs:
 
 #### `tx nft issue [denom_id] --name [denom_name] --schema [denom_schema] --from [user_address]`- **Issue a denom**
 ::: details Example: Issue a new denom with specified name and schema
-Apart from the denom ID and the denom name, one, in most cases, should also specify the schema of the denom 
-to illustrate the format of NFT metadata under such denom:
 ```bash
 $ chain-maind tx nft issue fftb2050 --name "Fortune Favours the Brave 2050" --schema '{ "Name": "string", "Description": "string" }' --from <user_address> --chain-id <chain-id>
 
@@ -967,7 +965,7 @@ $ chain-maind tx nft issue fftb2050 --name "Fortune Favours the Brave 2050" --sc
 :::
 
 ::: tip NOTE
-Even though the denom schema is not a compulsory field, it is generally recommended for informative summary of such denom.
+Even though the denom schema is not a compulsory field, it is generally recommended to illustrate the format of NFT metadata as an informative summary of such denom.
 Moreover, a denom is non-transferable, non-editable, and non-deletable, so be mindful when issuing a denom.
 :::
 

@@ -878,7 +878,7 @@ The following tables show the overall effects of the mint related network parame
 
 ### Introduction
 
-Fungible tokens are mutually interchangeable with each other, and one most common example of fungible tokens are fiat currencies.
+Fungible tokens are mutually interchangeable, and one most common example of fungible tokens is fiat currencies.
 Specifically, the $100.50 US dollars in my bank account is equally valuable as the $100.50 US dollars in someone else's bank account.
 Another example of fungible tokens would be **Bitcoin**, the most popular cryptocurrency. 
 Bitcoins are totally fungible, meaning that one Bitcoin is equal to one Bitcoin, and it's equal to any other Bitcoin as well.

@@ -880,9 +880,9 @@ The following tables show the overall effects of the mint related network parame
 
 Fungible tokens are mutually interchangeable, and one most common example of fungible tokens is fiat currencies.
 Specifically, the $100.50 US dollars in my bank account is equally valuable as the $100.50 US dollars in someone else's bank account.
-Another example of fungible tokens would be **Bitcoin**, the most popular cryptocurrency. 
-Bitcoins are totally fungible, meaning that one Bitcoin is equal to one Bitcoin, and it's equal to any other Bitcoin as well.
-Particularly, Bitcoins are also highly divisible up to one **Satoshi**, or 0.00000001 Bitcoin.
+Another example of fungible tokens would be the native cryptocurrency of **Ethereum**, one of the most popular blockchain networks, i.e. **Ether**. 
+Ethers are totally fungible, meaning that one ether is equal to one ether, and it's equal to any other ether as well.
+Particularly, ethers are also highly divisible up to one **wei**, or 0.000000000000000001 (10<sup>-18</sup>) ether.
 
 In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type.
 **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Crypto.org Chain** are both examples of NFTs: 

@@ -305,7 +305,7 @@ At last step, you've successfully performed the **"Canis Major"** binary upgrade
 ## *(Optional)* Step 4. QuickSync
 Syncing Crypto.org Chain could be a time-consuming process, Crypto.org Chain team has partnered with Chainlayer to provide the “QuickSync” service to make the process more efficient for our users. 
 
-Users can visit [Chainlayer QuickSync Crypto.org page](https://quicksync.io/networks/crypto.html) and download the snapshots for Crypto.org Chain with different pruning settings. You may refer to the following guide to implement QuickSync. 
+Users can visit [Chainlayer QuickSync Crypto.org page](https://quicksync.io/networks/crypto.html) and download the snapshots for Crypto.org Chain with different pruning settings (*currently only levelDB downloads are available*). You may refer to the following guide to implement QuickSync. 
 
 ### Step 4-1. QuickSync Download 
 After executing the command `./chain-maind` start at Step 3-1 Run everything, it starts the node and syncs the blockchain data. When you see it starts to sync from 0, you can terminate the terminal. 

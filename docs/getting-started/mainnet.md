@@ -3,16 +3,18 @@
 
 This is a detailed documentation for setting up a **Full Node** on Crypto.org mainnet. Note that while anyone can set up a full node, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
-## Step 0 : Notes on  "Canis Major" Network upgrade 
+## Step 0 : Notes on  "Canis Major" and "DRACO II" Network upgrades
 
-Before we start, please note that there was a "*Canis Major*" network upgrade at the block height `922,363`, which requires the node operator to update their Crypto.org Chain Mainnet binary `chain-maind` from `v1.*.*` to `v2.0.1`. 
+Before we start, please note that there were "*Canis Major*" and "*DRACO II*" network upgrade at the block height `922,363` and `3,526,800`, which requires the node operator to update their Crypto.org Chain Mainnet binary `chain-maind` from `v1.*.*` to `v2.0.1`then `v3.3.2`. 
 
 For the host who would like to build a **Full Node** with complete blockchain data from scratch, one would need to:
 1. Start the node with the older binary version `v1.2.1`; 
 1. Sync-up with the blockchain until it reaches the target upgrade block height `922,363`;
-1. Update the binary to `v2.0.1` and start the node again.
+1. Update the binary to `v2.0.1` and start the node;
+1. Sync-up with the blockchain again until it reaches the target upgrade block height `3,526,800`;
+1. Update the binary to `v3.3.2` and start the node again.
 
-All of these steps will be covered in this guide.   
+Detailed steps are covered below in this guide.   
 
 
 ## Pre-requisites

@@ -14,7 +14,7 @@ For the host who would like to build a **Full Node** with complete blockchain da
 1. Sync-up with the blockchain again until it reaches the target upgrade block height `3,526,800`;
 1. Update the binary to `v3.3.2` and start the node again.
 
-Detailed steps are covered below in this guide.   
+Users can refer to the upgrade guides of ["Canis Major"](https://crypto.org/docs/getting-started/upgrade_guide.html) (`v1.*` to `v2.0.1`) and ["DRACO II"](https://crypto.org/docs/getting-started/upgrade_guide_draco_2.html) (`v2.*` to `v3.3.2`) for the detailed upgrade steps.
 
 
 ## Pre-requisites

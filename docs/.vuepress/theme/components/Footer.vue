@@ -85,6 +85,9 @@
           <a target="_blank" rel="noopener noreferrer" href="https://open.kakao.com/o/gGH1WQM">
             <img :src="$withBase('/social/kakaotalk.svg')" alt="kakaotalk" />
           </a>
+          <a target="_blank" rel="noopener noreferrer" href="mailto:chain@crypto.org">
+            <img :src="$withBase('/social/email.svg')" alt="Email" />
+          </a>
         </div>
       </div>
       <p class="copyright">

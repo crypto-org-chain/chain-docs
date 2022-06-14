@@ -343,7 +343,7 @@ The only thing that default nodes do not have is the full history from the start
 ### Step 4-2. QuickSync Setup 
 In the following steps, we will take the version `crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4` as an example. 
 
-(Optional) you can [download an addressbook](https://quicksync.io/addrbook.cronos.json) to get connected to peers faster. After downloading it, place the new `addrbook.json` under `.chain-maind/config` folder and restart your node to take effect.
+(Optional) you can [download an addressbook](https://quicksync.io/addrbook.ccomchain.json) to get connected to peers faster. After downloading it, place the new `addrbook.json` under `.chain-maind/config` folder and restart your node to take effect.
 
 Now add the `crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4` inside `.chain-maind`.
 

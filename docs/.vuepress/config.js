@@ -70,10 +70,10 @@ module.exports = {
             text: "Ledger Hardware Wallets with chain-maind",
             link: "/wallets/ledger.html#ledger-hardware-wallets"
           },
-          // {
-          //   text: "Desktop Wallet",
-          //   link: "/wallets/desktop_wallet.html#desktop-wallet"
-          // },
+          {
+            text: "Desktop Wallet",
+            link: "/wallets/desktop_wallet.html#desktop-wallet"
+          },
           // {
           //   text: "Ledger Hardware Wallets with Desktop Wallet",
           //   link: "/wallets/ledger_desktop_wallet.html#ledger-hardware-wallets"

@@ -157,10 +157,9 @@ If you encounter connection error when creating a wallet, you can try to unplug 
 
 ---
 
-## B-ii. Ledger Wallet via Crypto.org Chain Desktop Wallet
+## B-ii. Ledger Wallet via Crypto.com DeFi Desktop Wallet
 
-::: warning DESKTOP WALLET IS IN BETA
-Desktop wallet is in beta testing. Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address.
+Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address.
 ::: Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
 
 #### Step 1. Open the application and click "Get Started" to set up an application password.
@@ -184,7 +183,7 @@ If you encounter connection error when creating a wallet, you can try to unplug 
 
 <img src="./assets/mainnet-address-generation/desktop-main-page.png" />
 
-#### Step 5. You can check the wallet address by click the "Receive" tab on the left navigation menu. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
+#### Step 5. You can check the wallet address by click the "Receive" tab inside any token assets. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
 
 <img src="./assets/mainnet-address-generation/ledger-desktop-address.png" />
 

@@ -74,10 +74,10 @@ module.exports = {
             text: "Desktop Wallet",
             link: "/wallets/desktop_wallet.html#desktop-wallet"
           },
-          {
-            text: "Ledger Hardware Wallets with Desktop Wallet",
-            link: "/wallets/ledger_desktop_wallet.html#ledger-hardware-wallets"
-          },
+          // {
+          //   text: "Ledger Hardware Wallets with Desktop Wallet",
+          //   link: "/wallets/ledger_desktop_wallet.html#ledger-hardware-wallets"
+          // },
           {
             text: "Keplr Wallet: Using Ledger Device with Keplr",
             link: "/wallets/keplr_ledger_guide.html#using-ledger-device-with-keplr"
@@ -148,8 +148,8 @@ module.exports = {
       "/wallets/": [
         "cli",
         "ledger",
-        "desktop_wallet",
-        "ledger_desktop_wallet",
+        // "desktop_wallet",
+        // "ledger_desktop_wallet",
         "keplr_ledger_guide",
         "keplr_IBC_guide",
         "mainnet-address-generation",

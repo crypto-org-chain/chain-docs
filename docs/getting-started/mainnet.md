@@ -308,23 +308,6 @@ Syncing Crypto.org Chain could be a time-consuming process, Crypto.org Chain tea
 Users can visit [Chainlayer QuickSync Crypto.org page](https://quicksync.io/networks/crypto.html) and download the snapshots for Crypto.org Chain with different pruning settings (*currently only levelDB downloads are available*). You may refer to the following guide to implement QuickSync. 
 
 ### Step 4-1. QuickSync Download 
-After executing the command `./chain-maind` start at Step 3-1 Run everything, it starts the node and syncs the blockchain data. When you see it starts to sync from 0, you can terminate the terminal. 
-
-:::details Example: `chain-maind start` with 0 height originally
-
-```bash
-  $  ./chain-maind start
-  12:17PM INF starting ABCI with Tendermint
-  12:17PM INF Starting multiAppConn service impl=multiAppConn module=proxy
-  12:17PM INF Starting localClient service connection=query impl=localClient module=abci-client
-  12:17PM INF Starting localClient service connection=snapshot impl=localClient module=abci-client
-  ...
-  12:17PM INF Starting IndexerService service impl=IndexerService module=txindex
-  12:17PM INF ABCI Handshake App Info hash= height=0 module=consensus protocol-version=0 software-version=
-  12:17PM INF ABCI Replay Blocks appHeight=0 module=consensus stateHeight=0 storeHeight=0
-```
-
-:::
 
 To start with QuickSync, you need to run `brew install lz4`  to install lz4 in a new terminal. Then download the file with preferred pruning settings directly from https://quicksync.io/networks/crypto.html. 
 

@@ -2,7 +2,7 @@ name: chain-docs
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   issue_comment:
     types: [created]
 jobs:
@@ -12,26 +12,26 @@ jobs:
     if: >-
       github.event_name == 'push' || github.event_name == 'pull_request' || (github.event.comment.body == '/staging' && 
       (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || 
-      github.actor == 'calvinaco' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || 
-      github.actor == 'leejw51crypto' || github.actor == 'cdc-Hitesh' || github.actor == 'eddycpc' || github.actor == 'crypto-matto' || github.actor == 'borischeuk-crypto'))
+      github.actor == 'calvinaco'  || github.actor == 'devashishdxt' || 
+      github.actor == 'leejw51crypto' || github.actor == 'cdc-Hitesh' || github.actor == 'crypto-matto' || github.actor == 'borischeuk-crypto'))
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Perform ShiftLeft Scan
-      uses: ShiftLeftSecurity/scan-action@master
-      env:
-        WORKSPACE: ""
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SCAN_AUTO_BUILD: true
-      with:
-        output: reports
-        # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
-        # type: credscan,java
-        # type: python
-    - name: Upload report
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: reports
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Perform ShiftLeft Scan
+        uses: ShiftLeftSecurity/scan-action@master
+        env:
+          WORKSPACE: ""
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SCAN_AUTO_BUILD: true
+        with:
+          output: reports
+          # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
+          # type: credscan,java
+          # type: python
+      - name: Upload report
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: reports
   build:
     name: Build
     runs-on: ubuntu-22.04
@@ -39,50 +39,50 @@ jobs:
     if: >-
       github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || 
       github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinaco' || 
-      github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || 
-      github.actor == 'cdc-Hitesh' || github.actor == 'eddycpc' || github.actor == 'crypto-matto' || github.actor == 'borischeuk-crypto'))
+      github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || 
+      github.actor == 'cdc-Hitesh' || github.actor == 'crypto-matto' || github.actor == 'borischeuk-crypto'))
     steps:
-    - name: Github API Request
-      id: request
-      uses: octokit/request-action@v2.0.0
-      if: github.event_name == 'issue_comment'
-      with:
-        route: ${{ github.event.issue.pull_request.url }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Get PR informations
-      id: pr_data
-      if: github.event_name == 'issue_comment'
-      run: |
-        echo "::set-output name=branch::${{ fromJson(steps.request.outputs.data).head.ref }}"
-        echo "::set-output name=repo_name::${{ fromJson(steps.request.outputs.data).head.repo.full_name }}"
-    - name: Checkout PR Branch
-      uses: actions/checkout@v2
-      if: github.event_name == 'issue_comment'
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        repository: ${{ steps.pr_data.outputs.repo_name }}
-        ref: ${{ steps.pr_data.outputs.branch }}
-    - name: Check MASTER code
-      uses: actions/checkout@v2
-      if: github.event_name == 'push'
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12'
-    - name: ci
-      env:
-        MASTER_AWS_ACCESS_KEY_ID: ${{ secrets.MASTER_AWS_ACCESS_KEY_ID }}
-        MASTER_AWS_SECRET_ACCESS_KEY: ${{ secrets.MASTER_AWS_SECRET_ACCESS_KEY }}
-        MASTER_BUCKET_NAME: ${{ secrets.MASTER_BUCKET_NAME }}
-        MASTER_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.MASTER_CLOUDFRONT_DISTRIBUTION_ID }}
-        MASTER_REGION: ${{ secrets.MASTER_REGION }}
-        EVENT: ${{ github.event_name }}
-        STAGING_AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
-        STAGING_AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
-        STAGING_BUCKET_NAME: ${{ secrets.STAGING_BUCKET_NAME }}
-        STAGING_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.STAGING_CLOUDFRONT_DISTRIBUTION_ID }}
-        STAGING_REGION: ${{ secrets.STAGING_REGION }}
-      run: |
-        . ci/scripts/prepare
-        ci/scripts/build
-        ci/scripts/deploy
+      - name: Github API Request
+        id: request
+        uses: octokit/request-action@v2.0.0
+        if: github.event_name == 'issue_comment'
+        with:
+          route: ${{ github.event.issue.pull_request.url }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get PR informations
+        id: pr_data
+        if: github.event_name == 'issue_comment'
+        run: |
+          echo "::set-output name=branch::${{ fromJson(steps.request.outputs.data).head.ref }}"
+          echo "::set-output name=repo_name::${{ fromJson(steps.request.outputs.data).head.repo.full_name }}"
+      - name: Checkout PR Branch
+        uses: actions/checkout@v2
+        if: github.event_name == 'issue_comment'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ steps.pr_data.outputs.repo_name }}
+          ref: ${{ steps.pr_data.outputs.branch }}
+      - name: Check MASTER code
+        uses: actions/checkout@v2
+        if: github.event_name == 'push'
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - name: ci
+        env:
+          MASTER_AWS_ACCESS_KEY_ID: ${{ secrets.MASTER_AWS_ACCESS_KEY_ID }}
+          MASTER_AWS_SECRET_ACCESS_KEY: ${{ secrets.MASTER_AWS_SECRET_ACCESS_KEY }}
+          MASTER_BUCKET_NAME: ${{ secrets.MASTER_BUCKET_NAME }}
+          MASTER_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.MASTER_CLOUDFRONT_DISTRIBUTION_ID }}
+          MASTER_REGION: ${{ secrets.MASTER_REGION }}
+          EVENT: ${{ github.event_name }}
+          STAGING_AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
+          STAGING_AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
+          STAGING_BUCKET_NAME: ${{ secrets.STAGING_BUCKET_NAME }}
+          STAGING_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.STAGING_CLOUDFRONT_DISTRIBUTION_ID }}
+          STAGING_REGION: ${{ secrets.STAGING_REGION }}
+        run: |
+          . ci/scripts/prepare
+          ci/scripts/build
+          ci/scripts/deploy

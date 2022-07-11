@@ -11,9 +11,7 @@ jobs:
     runs-on: ubuntu-22.04
     if: >-
       github.event_name == 'push' || github.event_name == 'pull_request' || (github.event.comment.body == '/staging' && 
-      (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || 
-      github.actor == 'calvinaco'  || github.actor == 'devashishdxt' || 
-      github.actor == 'leejw51crypto' || github.actor == 'cdc-Hitesh' || github.actor == 'crypto-matto' || github.actor == 'borischeuk-crypto'))
+      (github.actor == 'allthatjazzleo' || github.actor == 'lezzokafka'|| github.actor == 'aw126'))
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -37,10 +35,7 @@ jobs:
     runs-on: ubuntu-22.04
     needs: scan
     if: >-
-      github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || 
-      github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinaco' || 
-      github.actor == 'devashishdxt' || github.actor == 'leejw51crypto' || 
-      github.actor == 'cdc-Hitesh' || github.actor == 'crypto-matto' || github.actor == 'borischeuk-crypto'))
+      github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'lezzokafka'|| github.actor == 'aw126'))
     steps:
       - name: Github API Request
         id: request

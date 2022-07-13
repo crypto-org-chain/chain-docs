@@ -6,15 +6,61 @@ on:
   issue_comment:
     types: [created]
 jobs:
+  member:
+    name: Check whether it is triggered by team members or pushed
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.comment.body == '/staging'
+    outputs:
+      valid: ${{ steps.setValid.outputs.valid }}
+    steps:
+      - uses: tspascoal/get-user-teams-membership@v1.0.2
+        id: checkUserMember
+        if: github.event_name == 'issue_comment'
+        with:
+          username: ${{ github.actor }}
+          team: 'docs-maintainers'
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+      - name: set valid if it is push event or it is triggered by team members
+        id: setValid
+        run: |
+          if [[ "${{ steps.checkUserMember.outputs.isTeamMember }}" == "true" ]]; then
+            echo "::set-output name=valid::true"
+          elif [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "::set-output name=valid::true"
+          else  
+            echo "::set-output name=valid::false"
+          fi
+
   scan:
     name: Scan
     runs-on: ubuntu-22.04
-    if: >-
-      github.event_name == 'push' || github.event_name == 'pull_request' || (github.event.comment.body == '/staging' && 
-      (github.actor == 'allthatjazzleo' || github.actor == 'lezzokafka'|| github.actor == 'aw126'))
+    needs: [member]
+    if: ${{ needs.member.outputs.valid == 'true' }}
     steps:
-      - name: Checkout
+      - name: Github API Request
+        id: request
+        uses: octokit/request-action@v2.0.0
+        if: github.event_name == 'issue_comment'
+        with:
+          route: ${{ github.event.issue.pull_request.url }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get PR informations
+        id: pr_data
+        if: github.event_name == 'issue_comment'
+        run: |
+          echo "::set-output name=branch::${{ fromJson(steps.request.outputs.data).head.ref }}"
+          echo "::set-output name=repo_name::${{ fromJson(steps.request.outputs.data).head.repo.full_name }}"
+      - name: Checkout PR Branch
         uses: actions/checkout@v2
+        if: github.event_name == 'issue_comment'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ steps.pr_data.outputs.repo_name }}
+          ref: ${{ steps.pr_data.outputs.branch }}
+      - name: Check MASTER code
+        uses: actions/checkout@v2
+        if: github.event_name == 'push'
       - name: Perform ShiftLeft Scan
         uses: ShiftLeftSecurity/scan-action@master
         env:
@@ -34,8 +80,6 @@ jobs:
     name: Build
     runs-on: ubuntu-22.04
     needs: scan
-    if: >-
-      github.event_name == 'push' || (github.event.comment.body == '/staging' && (github.actor == 'allthatjazzleo' || github.actor == 'lezzokafka'|| github.actor == 'aw126'))
     steps:
       - name: Github API Request
         id: request

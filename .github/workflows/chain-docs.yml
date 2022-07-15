@@ -19,7 +19,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           team: 'docs-maintainers'
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.ORG_READ_BOT_PAT }}
       - name: set valid if it is push event or it is triggered by team members
         id: setValid
         run: |
@@ -79,7 +79,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-22.04
-    needs: scan
+    needs: [member, scan]
+    if: ${{ needs.member.outputs.valid == 'true' }}
     steps:
       - name: Github API Request
         id: request

@@ -46,11 +46,11 @@ For testnet submission, please note: you'll need testnet tokens TCRO for your pr
 After everything is set and you are confident about the proposal, you can now submit the final proposal with chain-maind. You should have reasonable confidence that your proposal will pass before risking deposit contributions. Part of the voting community members should probably be aware of the proposal and if they see the proposal, they probably have considered it already before the proposal goes live on-chain. 
 
 ### 6. Deposit tokens and fund an active proposal
-The deposit period lasts either 14 days or until the proposal deposit totals 20,000 CROs, whichever happens first. Prior to a governance proposal entering the voting period (ie. for the proposal to be voted upon), a minimum number of CROs are deposited. 
+The deposit period lasts either 14 days or until the proposal deposit totals 10,000 CROs, whichever happens first. Prior to a governance proposal entering the voting period (ie. for the proposal to be voted upon), a minimum number of CROs are deposited. 
 Once the decision for the proposal is made - either passed or failed, the deposit will be returned to the contributors. People have considered contributions amounts differently and anyone can contribute to this deposit, while please note that the contributed CROs are potentially at risk of being burned*.
 
 *Deposits are burned when proposals:
-- Expire - deposits will be burned if the deposit period ends before reaching the minimum 20,000 of CROs 
+- Expire - deposits will be burned if the deposit period ends before reaching the minimum 10,000 of CROs 
 - Fail to reach quorum - deposits will be burned for proposals that do not reach voting power level ie. more than 33.4% of all staked CROs must vote
 - Being vetoed - deposits for proposals with 33.4% of voting power backing the 'no-with-veto' option are also burned
 
@@ -59,7 +59,7 @@ The voting period is currently 14 days, and the vote can be changed anytime befo
 
 
 ### 8. Criteria to determine whether a governance proposal passes
-- A minimum deposit - 20,000 CRO is required for the proposal to enter the voting period, and the deposit must be reached within 14 days (this is the deposit period)
+- A minimum deposit - 10,000 CRO is required for the proposal to enter the voting period, and the deposit must be reached within 14 days (this is the deposit period)
 - A minimum of 33.4% of the network's voting power is required to participate to make the proposal valid
 - A majority (greater than 50%) of the participating voting power must back the 'yes' vote during the required voting period
 - Less than 33.4% of participating voting power votes 'no-with-veto'

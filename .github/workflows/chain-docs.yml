@@ -35,6 +35,8 @@ jobs:
     name: Scan
     runs-on: ubuntu-22.04
     needs: [member]
+    permissions:
+      pull-requests: write
     if: ${{ needs.member.outputs.valid == 'true' }}
     steps:
       - name: Github API Request
@@ -80,6 +82,8 @@ jobs:
     name: Build
     runs-on: ubuntu-22.04
     needs: [member, scan]
+    permissions:
+      pull-requests: write
     if: ${{ needs.member.outputs.valid == 'true' }}
     steps:
       - name: Github API Request

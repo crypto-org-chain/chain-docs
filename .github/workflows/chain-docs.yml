@@ -36,7 +36,10 @@ jobs:
     runs-on: ubuntu-22.04
     needs: [member]
     permissions:
-      pull-requests: write
+      pull-requests: read
+      actions: read
+      contents: read
+      security-events: write
     if: ${{ needs.member.outputs.valid == 'true' }}
     steps:
       - name: Github API Request

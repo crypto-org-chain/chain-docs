@@ -5,7 +5,7 @@
 - RPC shouldn’t be exposed directly to the internet (as it currently doesn’t support rate-limiting, authentication…)
 - Validator block signing should be via [tmkms](https://github.com/iqlusioninc/tmkms)
 
-## Setting up Tendermint KMS for signing blocks (only for validators / council nodes)
+## Setting up Tendermint KMS for signing blocks (only for validators)
 Currently (tmkms v0.7), the system is still a bit Cosmos-centric, so the setup is slightly quirky.
 
 ### Configuration
@@ -45,7 +45,7 @@ The public key hex payload is Amino-encoded -- for the use in Tendermint configu
 2. convert the stripped-off `KEY_HEX_PAYLOAD` to base64.
 
 #### Step 2. place / use the public key where needed
-For example, generate the `genesis.json` with it if the corresponding node is one of the initial validators / council nodes.
+For example, generate the `genesis.json` with it if the corresponding node is one of the initial validators.
 
 #### Step 3. start up everything
 As before, but along with `tendermint node`, `tmkms start -c .tmkms/tmkms.toml` should also be launched.

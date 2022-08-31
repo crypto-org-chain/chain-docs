@@ -236,7 +236,7 @@ WorkingDirectory=/usr/local/bin
 ExecStart=/usr/local/bin/chain-maind start --home /home/ubuntu/.chain-maind
 Restart=on-failure
 RestartSec=10
-LimitNOFILE=4096
+LimitNOFILE=50000
 
 [Install]
 WantedBy=multi-user.target

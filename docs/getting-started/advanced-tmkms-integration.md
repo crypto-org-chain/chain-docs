@@ -215,7 +215,7 @@ After=network.target
 Type=simple
 User=ec2-user
 Group=ec2-user
-LimitNOFILE=1024
+LimitNOFILE=50000
 
 Restart=on-failure
 RestartSec=10

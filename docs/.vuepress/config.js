@@ -207,7 +207,6 @@ module.exports = {
             "Notes on Production Deployment": 19,
             "Threat Model": 20,
             "technical_glossary": 21
-            "solo_machine": 22
             
           };
           return ordering[a["title"]] - ordering[b["title"]];

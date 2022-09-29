@@ -115,7 +115,11 @@ module.exports = {
                 {
                   text: "gRPC API",
                   link: "/resources/cosmos-grpc-docs"
-              }               
+                },
+                {
+                  text: "Solo Machine",
+                  link: "/resources/solo-machine"
+                }     
             ]
         }
     ],
@@ -202,7 +206,8 @@ module.exports = {
             "Notes on Performance": 18,
             "Notes on Production Deployment": 19,
             "Threat Model": 20,
-            "technical_glossary": 21
+            "technical-glossary": 21,
+            "solo-machine": 22
             
           };
           return ordering[a["title"]] - ordering[b["title"]];

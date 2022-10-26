@@ -1,4 +1,4 @@
-# Crypto.com Mainnet Validator Security Checklist
+# Crypto.org Mainnet Validator Security Checklist
 
 ## Part 1 - Conduct Survey on General Controls of Hosting Data Centre
 

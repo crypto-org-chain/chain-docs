@@ -1,5 +1,7 @@
 # The "Canis Major" upgrade guide (`v1.*` to `v2.0.1`) at block height `922,363`: 
 
+For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
+
 :::warning
 The chain-maind `v2.0.1` - Canis Major upgrade is completed at block height `922,363`
 

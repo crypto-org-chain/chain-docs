@@ -48,17 +48,17 @@ Supported OS: Linux, Mac OS and Windows
 Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases) and extract the binary. Here we used Linux as an example:
 
  ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_3.3.3_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_3.3.9_Linux_x86_64.tar.gz
   ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.3` or newer version that are targeting for mainnet.
+If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.9` or newer version that are targeting for mainnet.
 
 Before moving to the next step, kindly check your `chain-maind` version by
 
 ```bash
 $ ./chain-maind version
-3.3.3
+3.3.9
 ```
 
 #### Step 2. Create a new key and address
@@ -121,11 +121,11 @@ You can confirm the installation by checking if the Crypto.org App shows up in t
 Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases) and extract the binary. Here we used Linux as an example:
 
 ```bash
-$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Linux_x86_64.tar.gz
-$ tar -zxvf chain-main_3.3.3_Linux_x86_64.tar.gz
+$ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
+$ tar -zxvf chain-main_3.3.9_Linux_x86_64.tar.gz
 ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.3`, which is the version targeting for mainnet.
+If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.9`, which is the version targeting for mainnet.
 
 #### Step 2. Open the Crypto.org Chain application on your Ledger device
 

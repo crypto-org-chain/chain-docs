@@ -38,12 +38,19 @@ There are a few ways to access to the Crypto.org Chain
        - [Swagger UI](https://v1.cosmos.network/rpc/v0.41.4)
        - [Swagger file](https://github.com/crypto-org-chain/chain-integration/blob/master/grpc-proxy-rest/swagger.yml)
 
+### Alchemy's Crypto.org API documentation
+- [Getting started](https://cro-docs.alchemy.com/guides/getting-started)
+- [Supported methods for Alchemy Crypto.org Tendermint RPC API](https://cro-docs.alchemy.com/documentation/tendermint)
+- [Supported methods for Alchemy Crypto.org gRPC-REST API](https://cro-docs.alchemy.com/documentation/grpc)
+
+
 ## API Clients and libraries
 
 - [**TypeScript** library](https://github.com/crypto-org-chain/chain-jslib);
 - [**Python** library](https://pypi.org/project/chainlibpy/#description);
 - [**Rust** library](https://github.com/crypto-org-chain/chainlib-rs) (note that it is not feature complete);
 - [@cosmjs/stargate](https://github.com/cosmos/cosmjs/tree/master/packages/stargate).
+
 
 ## Indexing
 

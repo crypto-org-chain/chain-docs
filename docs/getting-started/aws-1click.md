@@ -222,7 +222,7 @@ $ chain-maind version
 3.3.9
 ```
 - Mainnet binary for
-  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
+  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Windows_x86_64.zip) are also available. 
 
 Or
 

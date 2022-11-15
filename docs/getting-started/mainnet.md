@@ -11,10 +11,8 @@ note that there were serveral breaking network upgrades, requiring upgrading at 
 | Block height          | Binary Version        | Instruction |
 | --------------------- | --------------------- | -------------------------------------------- |
 | `1 - 922,363`         | `chain-main_1.2.1`    | Start the node with the older binary version |
-| `922,363`             | `chain-main_2.0.1`    | When it reaches the target block height `922,363` (Canis Major), update the binary and restart |
-| `922,363 - 3,526,800` | `chain-main_3.3.3`    | When it reaches the target block height `3,526,800` (Draco), update the binary and restart |
-| `>3,526,800`          | `chain-main_3.3.5`    | Update the binary to the latest `3.3.5` (incl. DragonBerry, IAVL Migration) binary and restart* |
-| `>3,526,800`          | `chain-main_3.3.9`    | Update the binary to the latest `3.3.9` (incl. IAVL upgrade) binary and restart* |
+| `922,363- 3,526,800` | `chain-main_2.0.1`    | When it reaches the target block height `922,363` (Canis Major), update the binary and restart |
+| `>3,526,800` | `chain-main_3.3.9`    | When it reaches the target block height `3,526,800` (Draco), update the binary and restart* |
 
 - *Note that as of `v3.3.5` and higher, you need to modify your `.chain-maind/config/app.toml` and set the following params:
   - `index_events = []`

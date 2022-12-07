@@ -1,5 +1,7 @@
 # The "DRACO II" upgrade guide (`v2.*` to `v3.3.2`) : 
 
+For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
+
 :::warning
 The chain-maind `v3.3.2` - DRACO II upgrade is proposed to be scheduled at the block height of `3,526,800` ( *Estimated time ~Tuesday, 7 December 2021 02:00:00 GMT*, but this depends on the actual time taken when the blocks is being processed).
 

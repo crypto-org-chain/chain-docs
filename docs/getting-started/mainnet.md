@@ -3,18 +3,26 @@
 
 This is a detailed documentation for setting up a **Full Node** on Crypto.org mainnet. Note that while anyone can set up a full node, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
-## Step 0 : Notes on  "Canis Major" and "DRACO II" Network upgrades
+## Step 0 : Notes on network upgrades
 
-Before we start, please note that there were "*Canis Major*" and "*DRACO II*" network upgrade at the block height `922,363` and `3,526,800`, which requires the node operator to update their Crypto.org Chain Mainnet binary `chain-maind` from `v1.*.*` to `v2.0.1` then `v3.3.2`. 
+For the host who would like to build a **Run a Full Node with complete blockchain data** from scratch,
+note that there were serveral breaking network upgrades, requiring upgrading at designated block heights below:
 
-For the host who would like to build a **Full Node** with complete blockchain data from scratch, one would need to:
-1. Start the node with the older binary version `v1.2.1`; 
-1. Sync-up with the blockchain until it reaches the target upgrade block height `922,363`;
-1. Update the binary to `v2.0.1` and start the node;
-1. Sync-up with the blockchain again until it reaches the target upgrade block height `3,526,800`;
-1. Update the binary to `v3.3.2` and start the node again.
+| Block height          | Binary Version        | Instruction |
+| --------------------- | --------------------- | -------------------------------------------- |
+| `1 - 922,363`         | `chain-main_1.2.1`    | Start the node with the older binary version |
+| `922,363- 3,526,800` | `chain-main_2.0.1`    | When it reaches the target block height `922,363` (Canis Major), update the binary and restart |
+| `>3,526,800` | `chain-main_3.3.9`    | When it reaches the target block height `3,526,800` (Draco), update the binary and restart* |
 
-Users can refer to the upgrade guides of ["Canis Major"](https://crypto.org/docs/getting-started/upgrade_guide.html) (`v1.*` to `v2.0.1`) and ["DRACO II"](https://crypto.org/docs/getting-started/upgrade_guide_draco_2.html) (`v2.*` to `v3.3.2`) for the detailed upgrade steps.
+- *Note that as of `v3.3.5` and higher, you need to modify your `.chain-maind/config/app.toml` and set the following params:
+  - `index_events = []`
+  - `iavl-cache-size = 781250`
+  - `iavl-disable-fastnode = false`
+  (set to `true` to skip IAVL migration, but keep as `false` when starting from a migrated snapshot. 
+  When you are on `INF starting ABCI with Tendermint` for a while, migration is going on and you should NOT terminate this. 
+  It might take a couple hours, so plan well ahead for this migration, as it may incur downtime.)
+
+- Users can refer to the upgrade guides of ["Canis Major"](https://crypto.org/docs/getting-started/upgrade_guide.html) (`v1.*` to `v2.0.1`) and ["DRACO II"](https://crypto.org/docs/getting-started/upgrade_guide_draco_2.html) (`v2.*` to `v3.3.2`) for the detailed upgrade steps.
 
 
 ## Pre-requisites
@@ -299,15 +307,15 @@ and you can check your node's progress (in terms of block height) by:
 
 ## Getting ready - "DRACO II" second network upgrade 
 
-At last step, you've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II,"** the second network upgrade  ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](./upgrade_guide_draco_2.md).
+At last step, you've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II,"** the second network upgrade  ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](./upgrade_guide_draco_2.md), and follow the rest of the upgrades here ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
 
 
-## *(Optional)* Step 4. QuickSync
+## *(Optional)*. QuickSync
 Syncing Crypto.org Chain could be a time-consuming process, Crypto.org Chain team has partnered with Chainlayer to provide the “QuickSync” service to make the process more efficient for our users. 
 
 Users can visit [Chainlayer QuickSync Crypto.org page](https://quicksync.io/networks/crypto.html) and download the snapshots for Crypto.org Chain with different pruning settings (*currently only levelDB downloads are available*). You may refer to the following guide to implement QuickSync. 
 
-### Step 4-1. QuickSync Download 
+### Step 1. QuickSync Download 
 
 To start with QuickSync, you need to run `brew install lz4`  to install lz4 in a new terminal. Then download the file with preferred pruning settings directly from https://quicksync.io/networks/crypto.html. 
 
@@ -323,7 +331,7 @@ The only thing that default nodes do not have is the full history from the start
 **Crypto-org-chain-mainnet-1-archive**
 - For the users who would like to query the old block, you may pick the archive one for complete blockchain data. The archive node will have all the blocks from the chain start or chain upgrade with full indexing. So this is a good option for API nodes if you need to have access to the whole chain history. Archives grow fast in size and might be more sluggish to run, so if you need something simpler default or a pruned kickstarted API node might solve most of the needs out there.
 
-### Step 4-2. QuickSync Setup 
+### Step 2. QuickSync Setup 
 In the following steps, we will take the version `crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4` as an example. 
 
 (Optional) you can [download an addressbook](https://quicksync.io/addrbook.ccomchain.json) to get connected to peers faster. After downloading it, place the new `addrbook.json` under `.chain-maind/config` folder and restart your node to take effect.
@@ -351,7 +359,7 @@ x data/priv_validator_state.json
 
 The original data folder under `.chain-maind` is overwritten with the step above. It takes around a few mins to decompress the pruned version of 47GB(at the date of writing).
 
-### Step 4-3. Sync with QuickSync
+### Step 3. Sync with QuickSync
 Now direct back to the original directory and re-sync the chain again with `./chain-maind start`. It starts the node and syncs the blockchain data from the height of `5055406`. 
 
 :::details Example: Restart `chain-maind start` with QuickSync

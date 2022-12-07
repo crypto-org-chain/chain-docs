@@ -31,15 +31,15 @@ The binary for _testnet_ and the binary for _mainnet_ are two **different** bina
 :::
 
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for
-**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.0.0-croeseid/chain-main_3.0.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.0.0-croeseid/chain-main_3.0.0-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.0.0-croeseid/chain-main_3.0.0-croeseid_Windows_x86_64.zip) are also available.
+**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Windows_x86_64.zip) are also available.
 
 - To install Crypto.org Chain released **testnet binaries** from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.0.0-croeseid/chain-main_3.0.0-croeseid_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_3.0.0-croeseid_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_3.1.0-croeseid_Linux_x86_64.tar.gz
   ```
-- You can verify the installation by checking the version of the chain-maind, the current version is `3.0.0-croeseid`.
+- You can verify the installation by checking the version of the chain-maind, the current version is `3.1.0-croeseid`.
 
 ::: tip Reminder:
 For macOS users: the binary is not signed, you have to follow the steps [here](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac) to make the binary runnable.
@@ -47,7 +47,7 @@ For macOS users: the binary is not signed, you have to follow the steps [here](h
 
   ```bash
   $./chain-maind version
-  3.0.0-croeseid
+  3.1.0-croeseid
   ```
 ## Step 2. Configure `chain-maind`
 

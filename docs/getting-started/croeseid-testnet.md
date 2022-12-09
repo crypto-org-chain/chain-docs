@@ -13,12 +13,17 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 ### Prepare your machine
 
-- To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements:
+- To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements to run different types of nodes:
 
-  - Dual-core, x86_64 architecture processor;
-  - 4 GB RAM;
-  - 100 GB of storage space.
+Archive Node (setting pruning = nothing) 
+- RAM: 16GB (goleveldb)
+- Disk: 281GB
+- CPU: 4 cores
 
+Default Full Node (setting pruning = default) 
+- RAM 16GB (goleveldb)
+- Disk: 83GB (Depends on how long the node is running for)
+- CPU: 4 cores
 
 ## Step 1. Get the Crypto.org Chain testnet binary
 

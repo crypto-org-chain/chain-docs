@@ -32,12 +32,12 @@ Archive Node (setting pruning = nothing)
 - Disk: 3.4TB
 - CPU: 4 cores
 
-Default full node (setting pruning = default) 
+Default Full Node (setting pruning = default) 
 - RAM: 64GB (Rocksdb) or 16GB (goleveldb)
 - Disk: 1.2TB (From quick sync)
 - CPU: 4 cores
 
-Pruned node (setting pruning = everything) 
+Pruned Node (setting pruning = everything) 
 - RAM: 64GB (Rocksdb) or 16GB (goleveldb)
 - Disk: 40GB (From quick sync)
 - CPU: 4 cores

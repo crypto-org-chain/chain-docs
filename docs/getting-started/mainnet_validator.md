@@ -25,11 +25,24 @@ We officially support macOS, Windows and Linux only. Other platforms may work, b
 
 ### Prepare your machine
 
-- For Crypto.org Chain mainnet, you will need a machine with the following minimum requirements:
+For Crypto.org Chain mainnet, you will need a machine with the following minimum requirements to run different types of nodes:
 
-  - 4-core, x86_64 architecture processor;
-  - 16 GB RAM;
-  - 1 TB of storage space.
+Archive Node (setting pruning = nothing) 
+- RAM: 64GB (Rocksdb)
+- Disk: 3.4TB
+- CPU: 4 cores
+
+Default Full Node (setting pruning = default) 
+- RAM: 64GB (Rocksdb) or 16GB (goleveldb)
+- Disk: 1.2TB (From quick sync)
+- CPU: 4 cores
+
+Pruned Node (setting pruning = everything) 
+- RAM: 64GB (Rocksdb) or 16GB (goleveldb)
+- Disk: 40GB (From quick sync)
+- CPU: 4 cores
+
+*Please note that the size of snapshots from Quicksync will keep growing.*
 
 ## Step 1. Get the Crypto.org Chain Mainnet binary
 

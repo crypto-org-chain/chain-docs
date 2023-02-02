@@ -41,15 +41,15 @@ The binary for _testnet_ and the binary for _mainnet_ are two **different** bina
 :::
 
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for
-**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v4.1.2-croeseid/chain-main_4.1.2-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v4.1.2-croeseid/chain-main_4.1.2-croeseid_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.1.2-croeseid/chain-main_4.1.2-croeseid_Windows_x86_64.zip) are also available.
+**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Windows_x86_64.zip) are also available.
 
 - To install Crypto.org Chain released **testnet binaries** from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.1.2-croeseid/chain-main_4.1.2-croeseid_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_4.1.2-croeseid_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_4.2.2-croeseid_Linux_x86_64.tar.gz
   ```
-- You can verify the installation by checking the version of the chain-maind, the current version is `4.1.2-croeseid`.
+- You can verify the installation by checking the version of the chain-maind, the current version is `4.2.2-croeseid`.
 
 ::: tip Reminder:
 For macOS users: the binary is not signed, you have to follow the steps [here](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac) to make the binary runnable.
@@ -57,7 +57,7 @@ For macOS users: the binary is not signed, you have to follow the steps [here](h
 
   ```bash
   $./chain-maind version
-  4.1.2-croeseid
+  4.2.2-croeseid
   ```
 ## Step 2. Configure `chain-maind`
 
@@ -142,14 +142,14 @@ Before kick-starting your node, we will have to configure your node so that it c
 
 **Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
 ### Step 2-3 Enable STATE-SYNC
-  [STATE-SYNC](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html#state-sync) is supported in our testnet! 🎉
+  [STATE-SYNC](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html#state-sync) is supported in our testnet.
 
 With state sync, your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator.
 
 However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network. 
 
 
-For **validator**, it will be amazingly fast to sync the near head of the chain and join the network.
+For **validator**, it will be fast to sync the near head of the chain and join the network.
 
 Follow the below optional steps to enable state-sync.
 
@@ -180,8 +180,7 @@ Follow the below optional steps to enable state-sync.
 This page only shows the minimal setup for validator node.
 
 
-Furthermore, you may want to run full nodes
-as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.
+Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/v0.34/tendermint-core/validators.html#sentry-node-configuration)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.
 :::
 
 ### Step 3-1. Create a new key and address
@@ -508,9 +507,8 @@ $ ./chain-maind tx slashing unjail --from [key_name] --chain-id "testnet-croesei
 
 Congratulations! You've successfully set up a Croeseid 5 Testnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
 
-## Croeseid 5 testnet faucet and explorer
+## Croeseid 5 testnet explorer and endpoint
 
 - You can lookup data within the `testnet-croeseid-5` network by the [explorer](https://crypto.org/explorer/croeseid5/);
-
-- To interact with the blockchain, simply use the [test-token faucet](https://crypto.org/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
-  - Note that you will need to create an Croeseid 5 address before using the faucet.
+- Tendermint: `https://rpc-c5.crypto.org/`; 
+- REST: `https://rest-c5.crypto.org`.

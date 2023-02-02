@@ -3,9 +3,7 @@
 Croeseid 5 Testnet is Crypto.org Chain Testnet. It is a new chain based on Croeseid Testnet and runs in parallel with Croeseid 4. 
 It servers as an alpha testnet for exploring new features, instead of the upgrade version of Croeseid 4 testnet. 
 
-
 This is detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid 5 testnet `testnet-croeseid-5`.
- 
 
 
 ## Pre-requisites
@@ -195,9 +193,7 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 
 ### Step 3-2. Obtain test token
 
-Unless you have obtained the CRO testnet token before, use the [tcro faucet](https://crypto.org/faucet) to obtain test CRO tokens.
-In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel,
-stating who you are and your `tcro.....` address.
+Croeseid 5 faucet is on the way. If you need testing tokens, you can send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro-croeseid channel, stating who you are and your `tcro.....` address for Croeseid 5.  
 
 ### Step 3-3. Obtain the validator public key
 

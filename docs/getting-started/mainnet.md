@@ -12,7 +12,7 @@ note that there were serveral breaking network upgrades, requiring upgrading at 
 | --------------------- | --------------------- | -------------------------------------------- |
 | `1 - 922,363`         | `chain-main_1.2.1`    | Start the node with the older binary version |
 | `922,363- 3,526,800` | `chain-main_2.0.1`    | When it reaches the target block height `922,363` (Canis Major), update the binary and restart |
-| `>3,526,800` | `chain-main_3.3.9`    | When it reaches the target block height `3,526,800` (Draco), update the binary and restart* |
+| `>3,526,800` | `chain-main_3.3.9`    | When it reaches the target block height `3,526,800` (Draco II ), update the binary and restart* |
 
 - *Note that as of `v3.3.5` and higher, you need to modify your `.chain-maind/config/app.toml` and set the following params:
   - `index_events = []`
@@ -22,7 +22,11 @@ note that there were serveral breaking network upgrades, requiring upgrading at 
   When you are on `INF starting ABCI with Tendermint` for a while, migration is going on and you should NOT terminate this. 
   It might take a couple hours, so plan well ahead for this migration, as it may incur downtime.)
 
-- Users can refer to the upgrade guides of ["Canis Major"](https://crypto.org/docs/getting-started/upgrade_guide.html) (`v1.*` to `v2.0.1`) and ["DRACO II"](https://crypto.org/docs/getting-started/upgrade_guide_draco_2.html) (`v2.*` to `v3.3.2`) for the detailed upgrade steps.
+- Users can refer to the upgrade guides of 
+  - ["Canis Major"](https://crypto.org/docs/getting-started/upgrade_guide.html) (`v1.*` to `v2.0.1`);
+  - ["DRACO II"](https://crypto.org/docs/getting-started/upgrade_guide_draco_2.html) (`v2.*` to `v3.3.9`);
+  - ["V4 upgrade"](https://crypto.org/docs/getting-started/upgrade_guide_v4.html) (`v3.3.9` to `v4.2.2`);
+for the detailed upgrade steps.
 
 
 ## Pre-requisites

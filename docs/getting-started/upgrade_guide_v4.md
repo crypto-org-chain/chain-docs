@@ -98,6 +98,16 @@ max-recv-msg-size = "10485760"
 max-send-msg-size = "2147483647"
 ```
 
+::: tip Remarks:
+If you are upgrading from `v3.3.4` or earlier, kindly also add  the following fields to the `app.toml` under `Base Configuration`:
+
+```
+index_events = []
+iavl-cache-size = 781250
+iavl-disable-fastnode = true
+```
+:::
+
 
 ## Step 2. - Run everything
 

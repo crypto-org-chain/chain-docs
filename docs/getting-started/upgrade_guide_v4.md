@@ -108,7 +108,7 @@ iavl-disable-fastnode = true
 ```
 
 For validators or production critical services, we recommend setting the `iavl-disable-fastnode` as `true` to skip the optional "IAVL migration" and avoid downtime: 
-- Setting it as `true` would skip the he optional "IAVL migration";
+- Setting it as `true` would skip the the optional "IAVL migration";
 - Setting it as `false` would run the "IAVL migration" that would take a couple hours with the log `INF starting ABCI with Tendermint` for a while and incur downtime.
 :::
 

@@ -99,7 +99,7 @@ max-send-msg-size = "2147483647"
 ```
 
 ::: tip Remarks:
-If you are upgrading from `v3.3.4` or earlier, kindly also add  the following fields to the `app.toml` under `Base Configuration`:
+If you are upgrading from `v3.3.5` or earlier, kindly also add  the following fields to the `app.toml` under `Base Configuration`:
 
 ```
 index_events = []

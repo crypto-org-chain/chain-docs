@@ -197,7 +197,7 @@ The latest block height can be found by:
 
 Mainnet
 ```bash
-$ curl -s https://mainnet.crypto.org:26657/block | jq -r .result.block.header.height
+$ curl -s https://rpc.mainnet.crypto.org:443/block | jq -r .result.block.header.height
 8525
 ```
 Testnet (`testnet-croeseid-4`)

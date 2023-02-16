@@ -31,7 +31,7 @@ You are able to change the node connection settings for every different wallet s
 
 | Network | Mainnet | Testnet Croeseid 4 |
 | :---: | --- | --- |
-| Node URL  | https://mainnet.crypto.org | https://testnet-croeseid-4.crypto.org |
+| Node URL  | https://rpc.mainnet.crypto.org | https://testnet-croeseid-4.crypto.org |
 | Chain Indexing URL  | https://crypto.org/explorer/api/v1/ | https://crypto.org/explorer/croeseid4/api/v1/ |
 | Chain ID  | crypto-org-chain-mainnet-1 | testnet-croeseid-4 |
 | Network Fee  | 10000 | 10000 |

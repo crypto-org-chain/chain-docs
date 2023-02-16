@@ -64,8 +64,8 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 
 ### Mainnet - `crypto-org-chain-mainnet-1`
 
-- [Tendermint](https://mainnet.crypto.org:26657/)
-- [Cosmos RESTful gRPC](https://mainnet.crypto.org:1317/)
+- [Tendermint](https://rpc.mainnet.crypto.org/)
+- [Cosmos RESTful gRPC](https://rest.mainnet.crypto.org/)
 
 ### Croeseid Testnet - `testnet-croeseid-4`
 

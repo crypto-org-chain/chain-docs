@@ -83,7 +83,7 @@ Check all issued nft denom information.
 ::: details Example: Display all of the issued nft denom information.
 
   ```bash
-$ ./chain-maind q nft denoms  --node https://mainnet.crypto.org:26657/
+$ ./chain-maind q nft denoms  --node https://rpc.mainnet.crypto.org:443/
   .....
   creator: cro1nk4rq3q46ltgjghxz80hy385p9uj0tf58apkcd
   id: canismajor1
@@ -103,7 +103,7 @@ Check the details of the nft by Denom ID.
 ::: details Example: Check the nft details by Denom ID 'canismajor1'.
 
 ```bash
-$ ./chain-maind q nft denom canismajor1  --node https://mainnet.crypto.org:26657/
+$ ./chain-maind q nft denom canismajor1  --node https://rpc.mainnet.crypto.org:443/
 
 creator: cro1nk4rq3q46ltgjghxz80hy385p9uj0tf58apkcd
 id: canismajor1
@@ -122,7 +122,7 @@ Check the total supply of nft according to Denom ID.
 ::: details Example: Check the total supply of nft by Denom ID 'canismajor1'. 
 
 ```bash
-$ ./chain-maind q nft supply  canismajor1  --node https://mainnet.crypto.org:26657/
+$ ./chain-maind q nft supply  canismajor1  --node https://rpc.mainnet.crypto.org:443/
 
 amount: "1"
 ```
@@ -146,7 +146,7 @@ Check all nft according to Denom ID.
 ::: details Example: Check all nft based on Denom ID 'canismajor1'.
   
 ``` bash 
-$ ./chain-maind q nft collection canismajor1  --node https://mainnet.crypto.org:26657/
+$ ./chain-maind q nft collection canismajor1  --node https://rpc.mainnet.crypto.org:443/
   
 collection:
   denom:
@@ -177,7 +177,7 @@ Check the specific nft based on Denom ID and Token ID.
 :::details Example: Check the specific nft based on Denom ID 'anismajor1' and Token ID 'beginning'.
   
 ```bash
-$ ./chain-maind q nft token canismajor1 beginning --node https://mainnet.crypto.org:26657/
+$ ./chain-maind q nft token canismajor1 beginning --node https://rpc.mainnet.crypto.org:443/
   
 data: '{"name":"Canis Major: The beginning","image":"https://ipfs.io/ipfs/QmUqmgx7axVihM3g29DpJRxvPHzEJLZQfWckHDM9qB5hTY","mimeType":"image/jpeg"}'
 id: beginning

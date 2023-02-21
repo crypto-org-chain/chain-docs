@@ -62,7 +62,7 @@ You can verify the installation by checking the version of `chain-maind`, the la
 ### Step 1.2 -  Insert new configuration
 
 Several new fields under `~/.chain-maind/config/app.toml` have been introduced, kindly add the following fields to the `app.toml`:
-- Under `Base Configuration`, please the aligned the`app-db-backend` with the `db-backend` field under `~/.chain-maind/config/config.toml`, for example, if it is `goleveldb` (default), then we can add:
+- Under `Base Configuration`, please align the`app-db-backend` with the `db-backend` field under `~/.chain-maind/config/config.toml`, for example, if it is `goleveldb` (default), then we can add:
 ```bash
 # AppDBBackend defines the database backend type to use for the application and snapshots DBs.
 # An empty string indicates that a fallback will be used.

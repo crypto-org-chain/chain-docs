@@ -323,12 +323,13 @@ and you can check your node's progress (in terms of block height) by:
     $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
     ```
 
-## Getting ready - "DRACO II" second network upgrade 
+## "DRACO II" and "V4" Network upgrades 
 
-At last step, you've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II,"** the second network upgrade  ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](./upgrade_guide_draco_2.md), and follow the rest of the upgrades here ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
+You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II,"** the second network upgrade  ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](./upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](./upgrade_guide_v4.md) at a later stage.
+You can find the key details for all the upgrades under ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
 
 
-## *(Optional)*. QuickSync
+## *(Optional)* QuickSync
 Syncing Crypto.org Chain could be a time-consuming process, Crypto.org Chain team has partnered with Chainlayer to provide the “QuickSync” service to make the process more efficient for our users. 
 
 Users can visit [Chainlayer QuickSync Crypto.org page](https://quicksync.io/networks/crypto.html) and download the snapshots for Crypto.org Chain with different pruning settings (*currently only levelDB downloads are available*). You may refer to the following guide to implement QuickSync. 

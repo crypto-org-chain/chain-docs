@@ -1,6 +1,13 @@
 # Table of contents
 
 * [README](README.md)
+
+## Getting Started
+
+* [Page 1](getting-started/page-1.md)
+
+***
+
 * [docs](docs/README.md)
   * [chain-details](docs/chain-details/README.md)
     * [Architecture](docs/chain-details/architecture.md)
@@ -57,3 +64,11 @@
     * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
     * [Multisig account](docs/wallets/multisig-account.md)
     * [rpc](docs/wallets/rpc.md)
+
+## Block Explorers
+
+* [Page 2](block-explorers/page-2.md)
+
+## Crypto.org Chain Protocol
+
+* [Page 3](crypto.org-chain-protocol/page-3.md)

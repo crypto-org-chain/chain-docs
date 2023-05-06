@@ -65,6 +65,14 @@
     * [Multisig account](docs/wallets/multisig-account.md)
     * [rpc](docs/wallets/rpc.md)
 
+## For Node Hosts
+
+* [Page 4](for-node-hosts/page-4.md)
+
+## For USERS
+
+* [Page 5](for-users/page-5.md)
+
 ## Block Explorers
 
 * [Page 2](block-explorers/page-2.md)

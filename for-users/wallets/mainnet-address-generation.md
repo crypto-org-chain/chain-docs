@@ -10,34 +10,30 @@ Account address for mainnet starts with prefix `cro`. For example: `cro1y8ua5lac
 
 Crypto.org Chain has [registered](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) coin type `394` as defined in [BIP44 standard](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
 
-Coin Type: 394 <br />
+Coin Type: 394\
 Derivation Path: `44'/394'/0'/0/{index}` where index starts from 0.
 
 i.e. the first address is derived at path `44'/394'/0'/0/0` and the second one at path `44'/394'/0'/0/1`.
 
 ## How to generate address
 
-::: warning MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS<br/>
+::: warning MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS\
 Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backup your address's mnemonic words correctly in a safe place and the mnemonic words are correct such that it can restore to your wallet address in the future.
 
-You are the sole owner of your wallet mnemonic words and there is no way for Crypto.org to restore your wallet or recover your funds if you lost the mnemonic words.
-:::
+You are the sole owner of your wallet mnemonic words and there is no way for Crypto.org to restore your wallet or recover your funds if you lost the mnemonic words. :::
 
-::: warning GENERATE ADDRESS ONLY IN A SECURE ENVIRONMENT<br/>
-We recommend you to generate an address only on a trusted and secure computer. To further enhance the security, you should consider to run on a air-gapped (offline) machine.
-:::
+::: warning GENERATE ADDRESS ONLY IN A SECURE ENVIRONMENT\
+We recommend you to generate an address only on a trusted and secure computer. To further enhance the security, you should consider to run on a air-gapped (offline) machine. :::
 
-::: warning ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS<br/>
+::: warning ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS\
 To make sure you have backed up the mnemonic words correctly, we recommend you to try to restore your wallet with the mnemonic words and verify the address derived is the same.
 
-For more details on how to verify your mnemonic words and addresses, please check [Mainnet Address Verification](./mainnet-address-verification.md)
-:::
-There are four ways to generate the mainnet address by using:
+For more details on how to verify your mnemonic words and addresses, please check [Mainnet Address Verification](mainnet-address-verification.md) ::: There are four ways to generate the mainnet address by using:
 
-- [Release Binary (CLI)](#a-release-binary-cli);
-- [Ledger Wallet](#b-ledger-wallet);
-- [Programmatically via Crypto.org Chain JavaScript Library](#c-programmatically); and
-- [Crypto.org Chain Desktop Wallet (Beta version)](#d-crypto-org-chain-desktop-wallet-beta).
+* [Release Binary (CLI)](mainnet-address-generation.md#a-release-binary-cli);
+* [Ledger Wallet](mainnet-address-generation.md#b-ledger-wallet);
+* [Programmatically via Crypto.org Chain JavaScript Library](mainnet-address-generation.md#c-programmatically); and
+* [Crypto.org Chain Desktop Wallet (Beta version)](mainnet-address-generation.md#d-crypto-org-chain-desktop-wallet-beta).
 
 ## A. Release Binary (CLI)
 
@@ -47,10 +43,10 @@ Supported OS: Linux, Mac OS and Windows
 
 Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases) and extract the binary. Here we used Linux as an example:
 
- ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_3.3.9_Linux_x86_64.tar.gz
-  ```
+```bash
+ $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
+ $ tar -zxvf chain-main_3.3.9_Linux_x86_64.tar.gz
+```
 
 If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.9` or newer version that are targeting for mainnet.
 
@@ -89,9 +85,8 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 
 ## B. Ledger Wallet
 
-- Supported OS: Linux, Mac OS and Windows
-- Pre-requisite: Ledger Hardware Wallet
-
+* Supported OS: Linux, Mac OS and Windows
+* Pre-requisite: Ledger Hardware Wallet
 
 ### Step 1. Install Ledger Application
 
@@ -99,20 +94,19 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 
 #### Step 1-2. Click "Manager" on the left navigation menu. Confirm to "Allow Ledger Manager" on your Ledger device.
 
-<img src="./assets/mainnet-address-generation/ledger-live-manager.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/ledger-live-manager.png)
 
 #### Step 1-3. Search for "Crypto.org Chain" and install the application to your Ledger.
 
-<img src="./assets/ledger_desktop_wallet/s1-5.png" />
+![](../../docs/wallets/assets/ledger\_desktop\_wallet/s1-5.png)
 
 #### Step 1-4. Confirm the installation
 
 You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device:
 
-<img src="./assets/ledger_desktop_wallet/s1-4-3.jpeg" />
+![](../../docs/wallets/assets/ledger\_desktop\_wallet/s1-4-3.jpeg)
 
----
-
+***
 
 ## B-i. Ledger Wallet via Release Binary (CLI)
 
@@ -139,9 +133,7 @@ $ ./chain-maind keys add Ledger --ledger
 
 You will be prompted with the address on your Ledger device screen. Read it carefully and write it down. Afterward, confirm the address on your Ledger device.
 
-::: tip Cannot Connect To Your Ledger Device?
-If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger.
-:::
+::: tip Cannot Connect To Your Ledger Device? If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger. :::
 
 #### Step 4. Verify the address displayed on the terminal, and make sure it matches the address you saw on Ledger device
 
@@ -155,37 +147,33 @@ If you encounter connection error when creating a wallet, you can try to unplug 
   pubkeys: []
 ```
 
----
+***
 
 ## B-ii. Ledger Wallet via Crypto.com DeFi Desktop Wallet
 
-Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address.
-::: Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
+Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address. ::: Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
 
 #### Step 1. Open the application and click "Get Started" to set up an application password.
 
-<img src="./assets/mainnet-address-generation/desktop-get-started.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-get-started.png)
 
 #### Step 2. After setting up the password, click "Create Wallet".
 
-<img src="./assets/mainnet-address-generation/desktop-create-wallet.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-create-wallet.png)
 
 #### Step 3. Fill in any wallet name of your choice and choose "MAINNET" as the network. Then check "Want to create with hardware wallet?" and choose "Ledger" as "Wallet Type"
 
-<img src="./assets/mainnet-address-generation/ledger-desktop-create-wallet.png" />
-<img src="./assets/mainnet-address-generation/desktop-create-success.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/ledger-desktop-create-wallet.png) ![](../../docs/wallets/assets/mainnet-address-generation/desktop-create-success.png)
 
 #### Step 4. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
 
-::: tip Cannot Connect To Your Ledger Device?
-If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger.
-:::
+::: tip Cannot Connect To Your Ledger Device? If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger. :::
 
-<img src="./assets/mainnet-address-generation/desktop-main-page.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-main-page.png)
 
 #### Step 5. You can check the wallet address by click the "Receive" tab inside any token assets. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
 
-<img src="./assets/mainnet-address-generation/ledger-desktop-address.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/ledger-desktop-address.png)
 
 ## C. Programmatically
 
@@ -222,9 +210,7 @@ console.log(address);
 
 Supported OS: Ubuntu, Mac OS and Windows
 
-::: warning DESKTOP WALLET IS IN BETA
-Desktop wallet is in beta testing. Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address.
-:::
+::: warning DESKTOP WALLET IS IN BETA Desktop wallet is in beta testing. Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address. :::
 
 Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
 
@@ -232,25 +218,24 @@ Download the latest version of the Crypto.org Chain Desktop Wallet [here](https:
 
 #### Step 2. Open the application and click "Get Started" to set up an application password.
 
-<img src="./assets/mainnet-address-generation/desktop-get-started.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-get-started.png)
 
 #### Step 3. After setting up the password, click "Create Wallet".
 
-<img src="./assets/mainnet-address-generation/desktop-create-wallet.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-create-wallet.png)
 
 #### Step 4. Fill in any wallet name of your choice and choose "MAINNET" as the network. Then create the wallet by clicking "Create Wallet"
 
-<img src="./assets/mainnet-address-generation/desktop-create-mainnet-wallet.png" />
-<img src="./assets/mainnet-address-generation/desktop-create-success.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-create-mainnet-wallet.png) ![](../../docs/wallets/assets/mainnet-address-generation/desktop-create-success.png)
 
 #### Step 5. Upon successful wallet creation, a list of 24 mnemonic words will be displayed. Make sure you have copied and stored your mnemonic words in a safe place.
 
-<img src="./assets/mainnet-address-generation/desktop-backup-mnemonic.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-backup-mnemonic.png)
 
 #### Step 6. A warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
 
-<img src="./assets/mainnet-address-generation/desktop-main-page.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-main-page.png)
 
 #### Step 7. You can check the wallet address by click the "Receive" tab on the left navigation menu.
 
-<img src="./assets/mainnet-address-generation/desktop-address.png" />
+![](../../docs/wallets/assets/mainnet-address-generation/desktop-address.png)

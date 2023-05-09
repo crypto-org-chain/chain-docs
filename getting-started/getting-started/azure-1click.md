@@ -2,11 +2,8 @@
 
 This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
-::: warning CAUTION
-We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution!
-Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`.
-You may consider running validator with [tmkms on AWS nitro-enclave](./advanced-tmkms-integration.html)
-:::
+::: warning CAUTION We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html) :::
+
 ## Step 1. Azure Account Creation
 
 You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to getting charged when you create a virtual machine.
@@ -17,9 +14,9 @@ Please read `Microsoft Azure` free trial introduction to see if you are eligible
 
 ### Step 2-1. Search for Crypto.org Chain on Marketplace
 
-Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.org Chain 1-Click Node".
+Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft\_Azure\_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.org Chain 1-Click Node".
 
-![](./assets/azure_marketplace.png)
+![](../../docs/getting-started/assets/azure\_marketplace.png)
 
 ### Step 2-2. Create a Virtual Machine
 
@@ -27,48 +24,50 @@ Choose the image and click "Create" to start creating the Crypto.org Chain 1-Cli
 
 #### 1. Basic
 
-![](./assets/azure_1click_basics.png)
+![](../../docs/getting-started/assets/azure\_1click\_basics.png)
 
-| Configuration           | Value                                                                                                            |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| _Size_                  | Select a recommended one or _DC2s_v3_                                                                            |
-| _SSH public key source_ | Choose _"existing public key"_                                                                                   |
-| _SSH public key_        | Copy and paste your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys)|
-| _Resource group_        | We suggest creating a new and dedicated one so that you can easily manage resources attached to the instance     |
+| Configuration           | Value                                                                                                             |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| _Size_                  | Select a recommended one or _DC2s\_v3_                                                                            |
+| _SSH public key source_ | Choose _"existing public key"_                                                                                    |
+| _SSH public key_        | Copy and paste your [SSH public key](https://docs.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys) |
+| _Resource group_        | We suggest creating a new and dedicated one so that you can easily manage resources attached to the instance      |
 
 #### 2. Disk
 
-- Follow default setting
+* Follow default setting
 
 #### 3. Networking
 
-![](./assets/azure_1click_networking.png)
+![](../../docs/getting-started/assets/azure\_1click\_networking.png)
 
-- _Virtual network_, _Subnet_, _Public IP_ and _NIC_: "Create new" if you don't have any in that region
+* _Virtual network_, _Subnet_, _Public IP_ and _NIC_: "Create new" if you don't have any in that region
 
 #### 4. Management
 
-- Follow default setting
-- _Boot diagnostics_: default is "On". Set to "Off" if it is not required.
+* Follow default setting
+* _Boot diagnostics_: default is "On". Set to "Off" if it is not required.
 
 #### 5. Advanced
 
-- Follow default setting
+* Follow default setting
 
 #### 6. Tags
 
-- Create Tag if needed
+* Create Tag if needed
 
 #### 7. Review + Create
 
-- Click "create" to create your instance
+* Click "create" to create your instance
 
 ### Step 2-3. Connect to your instance
 
 Once the deployment is completed, you can connect to your instance via SSH.
+
 ```bash
 $ ssh ubuntu@PUBLIC_IP
 ```
+
 Afterwards, go to the `chain` directory, and you will find all the essential binaries for setting up your node:
 
 ```bash
@@ -104,9 +103,7 @@ The genesis does not exit or the sha256sum does not match the target one. Downlo
 
 You may also enable (**Optional**)[STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html). Your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network.
 
-::: warning CAUTION
-Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. 
-:::
+::: warning CAUTION Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. :::
 
 ```bash
 ...
@@ -121,6 +118,7 @@ The binary does not exist or the version does not match the target version. Down
 ```
 
 Clean up the old blockchain data (if any)
+
 ```bash
 ...
 Reset chain-maind and remove data if any
@@ -137,6 +135,7 @@ A new priv_validator_key.json with pubkey: open /chain/.chain-maind/config/priv_
 The consensus public key information could be found in `/chain/.chain-maind/config/priv_validator_key.json`
 
 Backup your old `/chain/.chain-maind/config/priv_validator_key.json` if you created once.
+
 ```bash
 ❗️ /chain/.chain-maind/config/priv_validator_key.json already exists! Do you want to override old key? (Y/N): Y
 A new priv_validator_key.json with pubkey: open /chain/.chain-maind/config/priv_validator_key.json: no such file or directory
@@ -144,8 +143,8 @@ A new priv_validator_key.json with pubkey: open /chain/.chain-maind/config/priv_
 💡 Please make sure you have a backup of /chain/.chain-maind/config/priv_validator_key.json in case of unexpected accidents!
 ```
 
-The script will also ask you to fill in the `moniker` value which is a human-readable display name for tendermint p2p.
-_p2p gossip_ will allow you to connect with more nodes (data sources).
+The script will also ask you to fill in the `moniker` value which is a human-readable display name for tendermint p2p. _p2p gossip_ will allow you to connect with more nodes (data sources).
+
 ```bash
 Replace moniker in /chain/.chain-maind/config/config.toml
 Moniker is display name for tendermint p2p
@@ -154,7 +153,8 @@ moniker: YOUR_MONIKER_NAME
 Do you want to add the public IP of this node for p2p gossip? (Y/N): Y
 ✅ Added public IP to external_address in chain-maind config.toml for p2p gossip
 ```
-_node_id_ and _node_key_ are the unique identity of your node. Save them for later use.
+
+_node\_id_ and _node\_key_ are the unique identity of your node. Save them for later use.
 
 ```bash
 ...
@@ -166,8 +166,6 @@ node_id: 62cf74XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 node_key: LyQiGlL4HsdHsPXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
-
-
 
 `chain-maind` is now running at the background as a systemd service.
 
@@ -185,22 +183,25 @@ Mar 25 15:34:02 ip-172-31-69-43 chain-maind[2657]: 3:34PM INF committed state ap
 ...
 ```
 
-The consensus public key can be found by and please take a note of it for next [steps](./aws-1click.html#step-4-join-as-a-validator):
+The consensus public key can be found by and please take a note of it for next [steps](../../docs/getting-started/aws-1click.html#step-4-join-as-a-validator):
+
 ```
 $ sudo /chain/bin/chain-maind tendermint show-validator --home /chain/.chain-maind/
 ## [crocnclcons... address] ##
 ## [tcrocnclcons... address] ##
 ```
 
-
 The latest block height can be found by:
 
 Mainnet
+
 ```bash
 $ curl -s https://rpc.mainnet.crypto.org:443/block | jq -r .result.block.header.height
 8525
 ```
+
 Testnet (`testnet-croeseid-4`)
+
 ```bash
 $ curl -s https://testnet-croeseid-4.crypto.org:26657/block | jq -r .result.block.header.height
 8525
@@ -210,46 +211,45 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server.
-If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](./croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](./mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.
-:::tip NOTE
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet. :::tip NOTE
 
-- Check whether your chain-maind is mainnet or testnet binary
+* Check whether your chain-maind is mainnet or testnet binary
 
 Mainnet
+
 ```bash
 $ chain-maind version
 3.3.9
 ```
-- Mainnet binary for
-  [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available. 
 
-Or
-Testnet
+* Mainnet binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main\_2.0.1\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main\_2.0.1\_Windows\_x86\_64.zip) are also available.
+
+Or Testnet
+
 ```bash
 $ chain-maind version
 3.1.0-croeseid
 ```
-- Testnet binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Windows_x86_64.zip) are also available.
+
+* Testnet binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
 
 :::
 
-
-
-:::details Mainnet 
+:::details Mainnet
 
 ### Create a new key and address
 
-Please follow [Step 3-1. Create a new key and address](./mainnet.html#step-3-1-create-a-new-key-and-address)
+Please follow [Step 3-1. Create a new key and address](../../docs/getting-started/mainnet.html#step-3-1-create-a-new-key-and-address)
 
 ### Creating a validator node
-You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](./aws-1click.html#step-3-1-use-the-reconfiguration-script)
 
-Please follow [Step 3-5. Joining the network as a validator](./mainnet.html#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) to create validator.
+You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](../../docs/getting-started/aws-1click.html#step-3-1-use-the-reconfiguration-script)
+
+Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-started/mainnet.html#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) to create validator.
 
 ### Check if the validator has been set
 
-Back your server, and follow [Step 3-6. Check your validator status](./mainnet.html#step-3-6-check-your-validator-status)
+Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/mainnet.html#step-3-6-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 
@@ -259,16 +259,17 @@ Back your server, and follow [Step 3-6. Check your validator status](./mainnet.h
 
 ### Create a new key and address
 
-Please follow [Step 3-1. Create a new key and address](./croeseid-testnet.html#step-3-1-create-a-new-key-and-address)
+Please follow [Step 3-1. Create a new key and address](../../docs/getting-started/croeseid-testnet.html#step-3-1-create-a-new-key-and-address)
 
 ### Creating a validator node
-You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](./aws-1click.html#step-3-1-use-the-reconfiguration-script)
 
-Please follow [Step 3-5. Joining the network as a validator](./croeseid-testnet.html#step-3-5-send-a-create-validator-transaction) to create validator.
+You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](../../docs/getting-started/aws-1click.html#step-3-1-use-the-reconfiguration-script)
+
+Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-started/croeseid-testnet.html#step-3-5-send-a-create-validator-transaction) to create validator.
 
 ### Check if the validator has been set
 
-Back your server, and follow [Step 3-6. Check your validator status](./croeseid-testnet.html#step-3-6-check-your-validator-status)
+Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/croeseid-testnet.html#step-3-6-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 

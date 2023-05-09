@@ -1,34 +1,36 @@
-### `staking` module
+# module\_staking
 
-### Introduction
+#### `staking` module
+
+#### Introduction
 
 The `staking` module handles Proof-of-Stake related logics, which plays a very import part to the underneath consensus protocol.
 
-### Overview
+#### Overview
 
 Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
 
-- `unbonding_time`: The time duration of unbonding;
-- `max_validators`: The maximum number of validator;
-- `max_entries`: The max entries for either unbonding delegation or redelegation;
-- `historical_entries`: The number of historical entries to persist; and
-- `bond_denom`: Coin denomination for staking.
+* `unbonding_time`: The time duration of unbonding;
+* `max_validators`: The maximum number of validator;
+* `max_entries`: The max entries for either unbonding delegation or redelegation;
+* `historical_entries`: The number of historical entries to persist; and
+* `bond_denom`: Coin denomination for staking.
 
-### Validator
+#### Validator
 
-Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](./module_distribution.md) and [mint](./module_mint.md)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](./module_slashing.md)).
+Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](module\_distribution.md) and [mint](module\_mint.md)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](../../crypto.org-chain-protocol/module\_overview/module\_slashing.md)).
 
-### Delegator
+#### Delegator
 
-The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](./module_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
+The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](module\_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
-It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](./module_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
+It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](../../crypto.org-chain-protocol/module\_overview/module\_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
-### Transactions and Queries
+#### Transactions and Queries
 
-### Transactions
+#### Transactions
 
-#### `tx staking create-validator` - Create new validator initialized with a self-delegation
+**`tx staking create-validator` - Create new validator initialized with a self-delegation**
 
 First of all, we can create a validator with the `create-validator` transaction, for example:
 
@@ -50,7 +52,7 @@ $ chain-maind tx staking create-validator \
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-#### `tx staking delegate [validator-addr] [amount]` - Delegate liquid tokens to a validator
+**`tx staking delegate [validator-addr] [amount]` - Delegate liquid tokens to a validator**
 
 As discussed in the delegator section, one can delegate their tokens to an active validator by:
 
@@ -61,7 +63,7 @@ $ tx staking delegate [validator-addr] [amount]
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgDelegate"...}
 ```
 
-#### `tx staking unbond [validator-addr] [amount]` - Unbond shares from a validator
+**`tx staking unbond [validator-addr] [amount]` - Unbond shares from a validator**
 
 Delegator can unbond their staked tokens by
 
@@ -74,7 +76,7 @@ $ chain-maind tx staking unbond [validator-addr] [amount]
 
 _Remark:_ Note that funds will only be available after the `unbonding_time` has passed.
 
-#### `tx staking redelegate [src-validator-addr] [dst-validator-addr] [amount]` - Redelegate illiquid tokens from one validator to another
+**`tx staking redelegate [src-validator-addr] [dst-validator-addr] [amount]` - Redelegate illiquid tokens from one validator to another**
 
 We can also move our staked tokens from one validator to another by:
 
@@ -85,7 +87,7 @@ $ chain-maind tx staking redelegate [src-validator-addr] [dst-validator-addr] [a
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgBeginRedelegate"...}
 ```
 
-### Queries
+#### Queries
 
 We will be covering most of the commonly used queries here. Meanwhile, you can use
 
@@ -95,7 +97,7 @@ chain-maind query staking -h
 
 to check all the supported sub-commands.
 
-#### `query staking delegation [delegator-addr] [validator-addr]` - Query a delegation based on address and validator address
+**`query staking delegation [delegator-addr] [validator-addr]` - Query a delegation based on address and validator address**
 
 With a given delegator address and the validator account that it is associated with, we can check the by:
 
@@ -115,7 +117,7 @@ $ chain-maind query staking delegation [delegator-addr] [validator-addr] --outpu
   }
 ```
 
-#### `query staking delegations-to [validator-addr]` - Query all delegations made to one validator
+**`query staking delegations-to [validator-addr]` - Query all delegations made to one validator**
 
 We can check all the delegations made to a specific validator:
 
@@ -155,7 +157,7 @@ $ chain-maind query staking delegations-to [validator-addr] --output json  | jq
   }
 ```
 
-#### `query staking pool` - Query the current staking pool values
+**`query staking pool` - Query the current staking pool values**
 
 We can check the amount of bonded and unbonded amount in the staking pool:
 
@@ -168,7 +170,7 @@ $ chain-maind query staking pool --output json | jq
   }
 ```
 
-#### `query staking unbonding-delegation [delegator-addr] [validator-addr]` - Query an unbonding-delegation record based on delegator and validator address
+**`query staking unbonding-delegation [delegator-addr] [validator-addr]` - Query an unbonding-delegation record based on delegator and validator address**
 
 ```json
 $ chain-maind query staking unbonding-delegation [delegator-addr] [validator-addr] --output json | jq
@@ -187,7 +189,7 @@ $ chain-maind query staking unbonding-delegation [delegator-addr] [validator-add
   }
 ```
 
-#### `query staking validator [validator-addr]` - Query a specific validator
+**`query staking validator [validator-addr]` - Query a specific validator**
 
 We can query the details of a specific validator with its validator address (crocncl...) by:
 
@@ -234,11 +236,11 @@ $ chain-maind query staking validator [validator-addr] --output json | jq
   }
 ```
 
-#### `query staking validators` - Query all validators
+**`query staking validators` - Query all validators**
 
 A full list of validators and their details can be found by this query.
 
-#### `query staking params` - Query the current staking parameters
+**`query staking params` - Query the current staking parameters**
 
 Finally, we can query the current staking parameters by
 
@@ -254,9 +256,9 @@ $ chain-maind query staking params --output json | jq
   }
 ```
 
-### Appendix
+#### Appendix
 
-#### `staking` module: Network Parameters Configuration
+**`staking` module: Network Parameters Configuration**
 
 The following tables show overall effects on different configurations of the staking related network parameters:
 
@@ -268,7 +270,7 @@ The following tables show overall effects on different configurations of the sta
 | Constraints          | N/A          | Value has to be positive           | Value has to be a positive                                    |
 | Sample configuration | `basecro`    | `100` (50%)                        | `7`                                                           |
 
----
+***
 
 |                      | `max_validators`                     | `unbonding_time`                     |
 | -------------------- | ------------------------------------ | ------------------------------------ |

@@ -1,25 +1,27 @@
-<br />
-<p align="center">
-  <img src="https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/.vuepress/public/chain_doc_nav_logo.svg" alt="Crypto.org Chain" width="400">
-</p>
-<br />
+# README
+
+\
 
 
+![Crypto.org Chain](https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/.vuepress/public/chain\_doc\_nav\_logo.svg)
 
-# Crypto.org Chain's documentation
+\
+
+
+## Crypto.org Chain's documentation
 
 The documentation in this repository site is meant to provide specifications and implementation details that will be useful to third party developers or contributors to the main repository.
 
-## Getting Started
+### Getting Started
 
-### Prerequisites
+#### Prerequisites
 
 You're going to need:
 
-- **NPM**
-- **Oracle JDK** (For generating the pdf, deployment needs this)
+* **NPM**
+* **Oracle JDK** (For generating the pdf, deployment needs this)
 
-### Getting Set Up
+#### Getting Set Up
 
 1. Fork this repository on Github
 2. Clone your forked repository (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/chain-docs.git`
@@ -33,13 +35,13 @@ npm run docs:dev
 
 You can now see the docs at [http://localhost:8080](http://localhost:8080).
 
-## Adding new page to the doc
+### Adding new page to the doc
 
 1. Create a markdown file under `/docs/getting-started/`
 2. Open `/docs/.vuepress/config.js`
 3. Add the file name to `sidebar` and the `ordering` under `vuepress-plugin-export` in plugins
 
-``` diff
+```diff
 module.exports = {
   ...,
 
@@ -75,17 +77,17 @@ module.exports = {
 }
 ```
 
-## Generating a PDF version of the site
+### Generating a PDF version of the site
 
-Go to ``chain-docs/docs``, then run:
+Go to `chain-docs/docs`, then run:
 
 ```bash
 vuepress export
 ```
 
-PDF styling config in `/docs/.vuepress/config.js`, you can refer to [Puppeteer doc](https://pptr.dev/#?product=Puppeteer&version=v2.1.0&show=api-pagepdfoptions) for the complete page API when generating PDF.
+PDF styling config in `/docs/.vuepress/config.js`, you can refer to [Puppeteer doc](https://pptr.dev/#?product=Puppeteer\&version=v2.1.0\&show=api-pagepdfoptions) for the complete page API when generating PDF.
 
-``` diff
+```diff
 module.exports = {
   plugins: [
     ['vuepress-plugin-export',
@@ -109,9 +111,9 @@ module.exports = {
 }
 ```
 
-a PDF version of the site will be generated under the ``/docs`` path.
+a PDF version of the site will be generated under the `/docs` path.
 
-## Deploying Chain-doc to Github Pages
+### Deploying Chain-doc to Github Pages
 
 1. Make sure you're working on a fork in your own account, not our original repository: `git remote show origin`
 2. Commit your changes: `git commit -a -m "YOUR MESSAGE"`

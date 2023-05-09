@@ -1,11 +1,8 @@
 # Devnet: Running Latest Development Node
 
-::: warning caution
-this page is for building and running the latest development version of the chain for testing purpose only. The development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work is required.
+::: warning caution this page is for building and running the latest development version of the chain for testing purpose only. The development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work is required.
 
-For anyone interested in joining the Crypto.org Chain testnet,
-please refer to our [testnet documentation](./croeseid-testnet.md).
-:::
+For anyone interested in joining the Crypto.org Chain testnet, please refer to our [testnet documentation](croeseid-testnet.md). :::
 
 By following this tutorial, you can compile and run the latest development version of Crypto.org Chain from scratch. It is intended for testing purpose only.
 
@@ -14,8 +11,6 @@ By following this tutorial, you can compile and run the latest development versi
 We will be using [pystarport](https://github.com/crypto-org-chain/chain-main/tree/master/pystarport), a dedicated script similar to [cosmos starport](https://github.com/tendermint/starport) without the scaffolding feature to build a local development network with multiple validators.
 
 ## Install with Nix
-
-
 
 ### Install nix
 
@@ -29,7 +24,6 @@ If you are using linux, enable the cachix binary cache:
 $ nix-env -iA cachix -f https://cachix.org/api/v1/install
 $ cachix use crypto-com
 ```
-
 
 ### Install pystarport
 
@@ -49,8 +43,8 @@ $ nix-env -iA pystarport-unbind -f https://github.com/crypto-com/chain-main/arch
 
 ### Pre-requisites
 
-- Python > 3.7.3
-- [chain-maind](https://github.com/crypto-org-chain/chain-main)
+* Python > 3.7.3
+* [chain-maind](https://github.com/crypto-org-chain/chain-main)
 
 To install pystarport manually, run:
 
@@ -122,8 +116,7 @@ Afterwards, keys will be generated according to the configuration specified, the
 
 Kindly save these mnemonics for key recovery later.
 
-Blocks are now being generated! You can view the blockchain data by the rpc port of the `awesome0` (first node): [http://localhost:26657/](http://localhost:26657/).
-Furthermore, you can also use the swagger doc of `awesome0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
+Blocks are now being generated! You can view the blockchain data by the rpc port of the `awesome0` (first node): [http://localhost:26657/](http://localhost:26657/). Furthermore, you can also use the swagger doc of `awesome0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
 
 It is worth mentioning that the `serve` command would truncate all the blocks previously generated and regenerate a new genesis block, which means you'll also lose all of your transaction records. If you wish to restart the chain with the existing blocks, please run `pystarport` with `start` command:
 
@@ -141,36 +134,37 @@ After the chain has been started, we may open up another terminal and start inte
 
 As in the last section, pre-created Hierarchical Deterministic (HD) mnemonic with genesis funds inside are prepared for you in the Devnet. To gain access to the funds, kindly restore the key by using the mnemonic before moving on to the next step.
 
-**Note**: The keys are stored in your operating system by default, we will use `--keyring-backend test` for simplicity. You may refer to a more detailed explanation [here](../wallets/cli.md#the-keyring-keyring-backend-option). 
+**Note**: The keys are stored in your operating system by default, we will use `--keyring-backend test` for simplicity. You may refer to a more detailed explanation [here](../../for-users/wallets/cli.md#the-keyring-keyring-backend-option).
 
-- Firstly, restore the key name as `launch`:
+*   Firstly, restore the key name as `launch`:
 
-  ```
-  $ chain-maind keys add launch --recover --keyring-backend test
+    ```
+    $ chain-maind keys add launch --recover --keyring-backend test
 
-   > Enter your bip39 mnemonic
-   beef pistol fury work kick thumb delay side cement suggest tenant blind inform copy cross pull clinic arrow curtain laugh item oven clinic add
+     > Enter your bip39 mnemonic
+     beef pistol fury work kick thumb delay side cement suggest tenant blind inform copy cross pull clinic arrow curtain laugh item oven clinic add
 
-   - name: launch
-   type: local
-   address: cro1jyd8ul8ze2eyppet3ajl3t9sjfglf76l0ukgns
-   pubkey: cropub1addwnpepqtapys5eyeg28nak7xurka7phugp8m5fyzcc92d2sz86hgf7s85lqw6jgqv
-   mnemonic: ""
-   threshold: 0
-   pubkeys: []
-  ```
+     - name: launch
+     type: local
+     address: cro1jyd8ul8ze2eyppet3ajl3t9sjfglf76l0ukgns
+     pubkey: cropub1addwnpepqtapys5eyeg28nak7xurka7phugp8m5fyzcc92d2sz86hgf7s85lqw6jgqv
+     mnemonic: ""
+     threshold: 0
+     pubkeys: []
+    ```
+*   Now you can check the balance of it by running
 
-- Now you can check the balance of it by running
-  ```bash
-  $ chain-maind query bank balances cro1jyd8ul8ze2eyppet3ajl3t9sjfglf76l0ukgns
-  balances:
-  - amount: “20000000000”
-  denom: basecro
-  pagination:
-  next_key: null
-  total: “0"
-  ```
-  We can see that there is `20000000000` basecro (=`200`cro) in this address as expected.
+    ```bash
+    $ chain-maind query bank balances cro1jyd8ul8ze2eyppet3ajl3t9sjfglf76l0ukgns
+    balances:
+    - amount: “20000000000”
+    denom: basecro
+    pagination:
+    next_key: null
+    total: “0"
+    ```
+
+    We can see that there is `20000000000` basecro (=`200`cro) in this address as expected.
 
 #### Transfer CRO to another address
 
@@ -187,23 +181,22 @@ $ chain-maind keys add Bob --keyring-backend test
    pubkeys: []
 ```
 
-- Now you can transfer tokens to Bob, for example you can send `1` cro to Bob's address by
+*   Now you can transfer tokens to Bob, for example you can send `1` cro to Bob's address by
 
-  ```
-  $ chain-maind tx bank send launch cro13vy5dks0ns99h3rkuqtka3wasp0aqax6feeqfa 1cro --keyring-backend test --chain-id chainmaind
-  ```
+    ```
+    $ chain-maind tx bank send launch cro13vy5dks0ns99h3rkuqtka3wasp0aqax6feeqfa 1cro --keyring-backend test --chain-id chainmaind
+    ```
+*   Lastly, check `balance` of Bob's address:
 
-- Lastly, check `balance` of Bob's address:
-
-  ```
-  $ chain-maind query bank  balances cro1qrnqv9hgmyr4nrdr905wf2h4w6gvwypwhklhar
-     balances:
-     - amount: “100000000”
-     denom: basecro
-     pagination:
-     next_key: null
-     total: “0"
-  ```
+    ```
+    $ chain-maind query bank  balances cro1qrnqv9hgmyr4nrdr905wf2h4w6gvwypwhklhar
+       balances:
+       - amount: “100000000”
+       denom: basecro
+       pagination:
+       next_key: null
+       total: “0"
+    ```
 
 Congratulations! You've successfully transferred tokens to Bob.
 
@@ -218,7 +211,9 @@ Firstly, we can check the details of the current validator set by the query comm
 ```
 $ chain-maind query staking validators -o json | jq
 ```
+
 will result in
+
 ```json
   [
     {
@@ -268,8 +263,8 @@ then we can see that there are two active validators `awesome0` and `awesome1` a
 
 For each validator, we can see that it comes with an address and a public key:
 
-- `"operator_address"` - The operator address, which is used for identifying the operators of validators;
-- `"consensus_pubkey"` - The consensus public key, which is used for identifying the validator nodes participating in consensus.
+* `"operator_address"` - The operator address, which is used for identifying the operators of validators;
+* `"consensus_pubkey"` - The consensus public key, which is used for identifying the validator nodes participating in consensus.
 
 #### Delegating to a validator
 
@@ -298,7 +293,7 @@ rewards:
   denom: basecro
 ```
 
-Afterwards, we can send the following transaction to withdraw the rewards: 
+Afterwards, we can send the following transaction to withdraw the rewards:
 
 ```
 $ chain-maind tx distribution withdraw-rewards crocncl173q6r8kc3gl8lccma23qe62q5c7v9h5q9mtx2j --from launch --keyring-backend test --chain-id chainmaind
@@ -307,6 +302,7 @@ $ chain-maind tx distribution withdraw-rewards crocncl173q6r8kc3gl8lccma23qe62q5
 
 confirm transaction before signing and broadcasting [y/N]: y
 ```
-____
 
-If you are interested in contributing to or joining our testnet, you can continue reading the following sections about [Joining the Croeseid Testnet](./croeseid-testnet.md).
+***
+
+If you are interested in contributing to or joining our testnet, you can continue reading the following sections about [Joining the Croeseid Testnet](croeseid-testnet.md).

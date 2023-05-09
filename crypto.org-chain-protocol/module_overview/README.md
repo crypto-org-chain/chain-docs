@@ -1,113 +1,85 @@
 # Modules
 
 ## Overview
-Crypto.org Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tendermint](https://tendermint.com/) Core consensus engine underneath. Specifically, the Cosmos SDK is a framework that facilitates the development of secure state-machines on top of Tendermint. In particular, we utilize different SDK modules to facilitate the special features of the Crypto.org Chain. 
+
+Crypto.org Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tendermint](https://tendermint.com/) Core consensus engine underneath. Specifically, the Cosmos SDK is a framework that facilitates the development of secure state-machines on top of Tendermint. In particular, we utilize different SDK modules to facilitate the special features of the Crypto.org Chain.
 
 In this documentation, we will be focusing on some of the important modules we used, for example:
 
-- [Authz](#authz) - Facilitates authorizations granted to one account to perform actions on behalf of another account;
-- [Bank](#bank) - Token transfer functionalities and query support for the total supply of all assets; 
-- [Distribution](#distribution) - Fee distribution, and staking rewards to the validators and delegator; 
-- [Governance](#gov) - On-chain proposals and voting;
-- [Mint](#mint) - Creation of new units of staking token;
-- [Nft](#nft) - Non-Fungible Token management;
-- [Slashing](#slashing) - Validator punishment mechanisms;
-- [Staking](#staking) - Proof-of-Stake layer for public blockchains;
-- [Supply](#supply) - Retrieve total and liquid supply.
-
+* [Authz](./#authz) - Facilitates authorizations granted to one account to perform actions on behalf of another account;
+* [Bank](./#bank) - Token transfer functionalities and query support for the total supply of all assets;
+* [Distribution](./#distribution) - Fee distribution, and staking rewards to the validators and delegator;
+* [Governance](./#gov) - On-chain proposals and voting;
+* [Mint](./#mint) - Creation of new units of staking token;
+* [Nft](./#nft) - Non-Fungible Token management;
+* [Slashing](./#slashing) - Validator punishment mechanisms;
+* [Staking](./#staking) - Proof-of-Stake layer for public blockchains;
+* [Supply](./#supply) - Retrieve total and liquid supply.
 
 ## `authz`
 
 ### Introduction
 
-The `authz` module facilitates granting authorizations to perform actions, such as spending tokens, 
-on behalf of one account to other accounts.
+The `authz` module facilitates granting authorizations to perform actions, such as spending tokens, on behalf of one account to other accounts.
 
 ### Overview
 
-An _authorization_ is an allowance to execute an action by the _grantee_ on behalf of the authorization _granter_,
-e.g. to send tokens to an account from the _granter_, or to delegate tokens to a validator from the _granter_.
-There are 3 major built-in authorization types:
-- `SendAuthorization`
-- `StakeAuthorization`
-- `GenericAuthorization`
+An _authorization_ is an allowance to execute an action by the _grantee_ on behalf of the authorization _granter_, e.g. to send tokens to an account from the _granter_, or to delegate tokens to a validator from the _granter_. There are 3 major built-in authorization types:
 
----
+* `SendAuthorization`
+* `StakeAuthorization`
+* `GenericAuthorization`
+
+***
 
 #### SendAuthorization
-`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, 
-a basic `send` action defined in the [bank](./module_bank.md) module.
-It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend with. 
-The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and
-is updated as the tokens are spent until the `SendAuthorization` gets cleared when the `SpendLimit`reaches 0.
-Sending an amount greater than the `SpendLimit` is not allowed.
 
----
+`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](../../docs/chain-details/module\_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend with. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` gets cleared when the `SpendLimit`reaches 0. Sending an amount greater than the `SpendLimit` is not allowed.
+
+***
 
 #### StakeAuthorization
-`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_,
-`delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](./module_staking.md) module.
-Each of the above actions need to be authorized separately, with which either an `AllowList` or a `DenyList` must be 
-specified to restrict which validators to or not to perform a staking action with.
-Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens
-to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited.
-Similar to the `SpendLimit` in [`SendAuthorization`](#SendAuthorization), `MaxTokens` gets updated after each 
-valid authorized staking action. 
-An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
 
----
+`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](../../docs/chain-details/module\_staking.md) module. Each of the above actions need to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](./#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
+
+***
 
 #### GenericAuthorization
-`GenericAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, 
-a generic action.
-In other words, `GenericAuthorization` facilitates an arbitrary action grant, where a `MsgTypeURL` must be specified 
-to correspond to an action defined in the [modules](./module_overview.md). 
-A `GenericAuthorization` is currently unrestricted beyond the `MsgTypeURL`. For example, when granting someone to 
-send tokens, the `SpendLimit` in [`SendAuthorization`](#SendAuthorization) will not be enforced.
-Therefore, a [`SendAuthorization`](#SendAuthorization) without a spend limit may in fact be implemented as a `GenericAuthorization` with the 
-`MsgTypeURL` been set to `/cosmos.bank.v1beta1.MsgSend`.
-The following are some common `MsgTypeURLs`:
-- Send: `/cosmos.bank.v1beta1.MsgSend`
-- Delegate: `/cosmos.staking.v1beta1.MsgDelegate`
-- Unbond/Undelegate: `/cosmos.staking.v1beta1.MsgUndelegate`
-- Redelegate: `/cosmos.staking.v1beta1.MsgBeginRedelegate`
-- Withdraw delegator reward: `/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward`
-- Mint NFT: `/chainmain.nft.v1.MsgMintNFT`
-- Burn NFT: `/chainmain.nft.v1.MsgBurnNFT`
-- Transfer NFT: `/chainmain.nft.v1.MsgTransferNFT`
-- Edit NFT: `/chainmain.nft.v1.MsgEditNFT`
 
----
+`GenericAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a generic action. In other words, `GenericAuthorization` facilitates an arbitrary action grant, where a `MsgTypeURL` must be specified to correspond to an action defined in the [modules](./). A `GenericAuthorization` is currently unrestricted beyond the `MsgTypeURL`. For example, when granting someone to send tokens, the `SpendLimit` in [`SendAuthorization`](./#SendAuthorization) will not be enforced. Therefore, a [`SendAuthorization`](./#SendAuthorization) without a spend limit may in fact be implemented as a `GenericAuthorization` with the `MsgTypeURL` been set to `/cosmos.bank.v1beta1.MsgSend`. The following are some common `MsgTypeURLs`:
 
-::: tip NOTE
-**Expiration of Grant**:
-The _granter_ can optionally set an `Expiration` time in form of a UNIX Timestamp for any authorization grant.
-The `Expiration` time should be later than current UNIX Timestamp and is defaulted to be one year from current time if unspecified.
-An authorization may be executed only if the grant has not yet expired. 
-Setting an `Expiration` time for an authorization grant is generally encouraged.
-:::
+* Send: `/cosmos.bank.v1beta1.MsgSend`
+* Delegate: `/cosmos.staking.v1beta1.MsgDelegate`
+* Unbond/Undelegate: `/cosmos.staking.v1beta1.MsgUndelegate`
+* Redelegate: `/cosmos.staking.v1beta1.MsgBeginRedelegate`
+* Withdraw delegator reward: `/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward`
+* Mint NFT: `/chainmain.nft.v1.MsgMintNFT`
+* Burn NFT: `/chainmain.nft.v1.MsgBurnNFT`
+* Transfer NFT: `/chainmain.nft.v1.MsgTransferNFT`
+* Edit NFT: `/chainmain.nft.v1.MsgEditNFT`
 
+***
+
+::: tip NOTE **Expiration of Grant**: The _granter_ can optionally set an `Expiration` time in form of a UNIX Timestamp for any authorization grant. The `Expiration` time should be later than current UNIX Timestamp and is defaulted to be one year from current time if unspecified. An authorization may be executed only if the grant has not yet expired. Setting an `Expiration` time for an authorization grant is generally encouraged. :::
 
 ### Transactions and Queries
 
 ### Transactions
-In general, a _granter_ can `grant` an authorization to a _grantee_ 
-or `revoke` an existing authorization already granted to the _grantee_.
-A _grantee_ can `execute` an authorization already granted by the _granter_.
+
+In general, a _granter_ can `grant` an authorization to a _grantee_ or `revoke` an existing authorization already granted to the _grantee_. A _grantee_ can `execute` an authorization already granted by the _granter_.
 
 ### `grant`:
+
 An authorization starts from the _granter_ granting the _grantee_.
 
----
+***
 
-- under `SendAuthorization`
+* under `SendAuthorization`
+
 #### `tx authz grant [grantee_address] send --spend-limit [amount] --from [granter_address]`- **Grant to send with a spend limit**
 
-::: details Example: Grant to send with a spend limit and an expiration time
-The _granter_ may grant a _grantee_ to send tokens on the _granter_'s behalf, where a spend limit should be 
-provided through the `--spend-limit` flag.
-For example, _granter_ may authorize _grantee_ to spend up to `10 CRO`, 
-and sets an expiration time at the end of the year 2022 (i.e. `1672531199` in Unix timestamp) by running
+::: details Example: Grant to send with a spend limit and an expiration time The _granter_ may grant a _grantee_ to send tokens on the _granter_'s behalf, where a spend limit should be provided through the `--spend-limit` flag. For example, _granter_ may authorize _grantee_ to spend up to `10 CRO`, and sets an expiration time at the end of the year 2022 (i.e. `1672531199` in Unix timestamp) by running
+
 ```bash
 $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <granter_address> --expiration 1672531199 --chain-id <chain-id>
 
@@ -130,18 +102,17 @@ $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <
     "granter": "cro18..."
 }
 ```
+
 :::
 
----
+***
 
-- under `StakeAuthorization`
+* under `StakeAuthorization`
+
 #### `tx authz grant [grantee_address] delegate --spend-limit [amount] --allowed-validators [list_of_allowed_validators_separated_by_,] --from [granter_address]`- **Grant to delegate to validators on a specified list**
 
-::: details Example: Grant to delegate to validators on a specified list with a spend limit
-The _granter_ may grant a _grantee_ to delegate tokens on the _granter_'s behalf, where either a list of allowed validators 
-(through the `--allowed-validators` flag) or denied validators (through the `--deny-validators` flag) should be provided.
-For example, _granter_ may authorize _grantee_ to delegate on the _granter_'s behalf up to `10 CRO` towards 
-a specified list of validators by running
+::: details Example: Grant to delegate to validators on a specified list with a spend limit The _granter_ may grant a _grantee_ to delegate tokens on the _granter_'s behalf, where either a list of allowed validators (through the `--allowed-validators` flag) or denied validators (through the `--deny-validators` flag) should be provided. For example, _granter_ may authorize _grantee_ to delegate on the _granter_'s behalf up to `10 CRO` towards a specified list of validators by running
+
 ```bash
 $ chain-maind tx authz grant <grantee_address> delegate --spend-limit 10cro --allowed-validators <list_of_allowed_validators_separated_by_,> --from <granter_address> --expiration <expiration_time> --chain-id <chain-id>
 
@@ -168,28 +139,31 @@ $ chain-maind tx authz grant <grantee_address> delegate --spend-limit 10cro --al
     "granter": "cro18..."
 }
 ```
+
 :::
 
 On the contrary, the _granter_ may choose to exclude a list of validators the _grantee_ can delegate to on the _granter_'s behalf:
+
 #### `tx authz grant [grantee_address] delegate --spend-limit [amount] --deny-validators [list_of_deny_validators_separated_by_,] --from [granter_address]`- **Grant to delegate to validators excluding a specified list**
 
 Granting to redelegate or undelegate (unbond) is very similar by just replacing the `delegate` with `redelegate` or `unbond`:
+
 #### `tx authz grant [grantee_address] redelegate --spend-limit [amount] --allowed-validators [list_of_allowed_validators_separated_by_,] --from [granter_address]`- **Grant to redelegate to validators on a specified list**
+
 #### `tx authz grant [grantee_address] unbond --spend-limit [amount] --allowed-validators [list_of_allowed_validators_separated_by_,] --from [granter_address]`- **Grant to unbond from validators on a specified list**
 
-::: tip NOTE
-**Spend Limit for `StakeAuthorization`**:
-A spend limit for a grant to delegate/redelegate/unbond is not necessary but generally recommended.
-:::
+::: tip NOTE **Spend Limit for `StakeAuthorization`**: A spend limit for a grant to delegate/redelegate/unbond is not necessary but generally recommended. :::
 
----
+***
 
-- under `GenericAuthorization`
+* under `GenericAuthorization`
 
 Other than the above grants under `SendAuthorization` or `StakeAuthorization`, one may authorize other grants through `GenericAuthorization`:
+
 #### `tx authz grant [grantee_address] generic --msg-type [msg_type_url] --from [granter_address]`- **Grant for generic authorization with a specified Message Type URL**
 
 ::: details Example: Grant to withdraw delegator reward
+
 ```bash
 $ chain-maind tx authz grant <grantee_address> generic --msg-type /cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward --from <granter_address> --expiration <expiration_time> --chain-id <chain-id>
 
@@ -207,30 +181,32 @@ $ chain-maind tx authz grant <grantee_address> generic --msg-type /cosmos.distri
     "granter": "cro18..."
 }
 ```
+
 :::
 
-Similarly: 
+Similarly:
+
 #### `tx authz grant [grantee_address] generic --msg-type /chainmain.nft.v1.MsgMintNFT --from [granter_address]`- **Grant to mint NFT**
+
 #### `tx authz grant [grantee_address] generic --msg-type /chainmain.nft.v1.MsgTransferNFT --from [granter_address]`- **Grant to transfer NFT**
+
 #### `tx authz grant [grantee_address] generic --msg-type /chainmain.nft.v1.MsgEditNFT --from [granter_address]`- **Grant to edit NFT**
+
 so on and so forth.
 
----
+***
 
-::: tip NOTE
-**Message Type URL & Updating an Existing Grant**:
-At any time, there is up to one grant allowed for each Message Type URL over a unique _granter_-_grantee_ pair. 
-To update an existing grant, the _granter_ will need to re-grant the _grantee_ and the new grant will overwrite the old grant. 
-:::
+::: tip NOTE **Message Type URL & Updating an Existing Grant**: At any time, there is up to one grant allowed for each Message Type URL over a unique _granter_-_grantee_ pair. To update an existing grant, the _granter_ will need to re-grant the _grantee_ and the new grant will overwrite the old grant. :::
 
 ### `exec`:
-The `exec` transaction composes of 2 transactions:
-- the `authorized transaction`: the transaction to be executed on behalf of the _granter_; and
-- the `execution transaction`: the transaction that contains and executes the above `authorized transaction`.
 
-After a valid grant is set up, the _grantee_ needs to first prepare the `authorized transaction`, in JSON format, on behalf of the _granter_.
-For instance, when the _grantee_ wants to execute a `SendAuthorization` to send `10 CRO` from the _granter_ to a `recipient`,
-one easy way to generate such `authorized transaction` and saves it to a file named `tx.json` is to use the `--generate-only` flag by running:
+The `exec` transaction composes of 2 transactions:
+
+* the `authorized transaction`: the transaction to be executed on behalf of the _granter_; and
+* the `execution transaction`: the transaction that contains and executes the above `authorized transaction`.
+
+After a valid grant is set up, the _grantee_ needs to first prepare the `authorized transaction`, in JSON format, on behalf of the _granter_. For instance, when the _grantee_ wants to execute a `SendAuthorization` to send `10 CRO` from the _granter_ to a `recipient`, one easy way to generate such `authorized transaction` and saves it to a file named `tx.json` is to use the `--generate-only` flag by running:
+
 ```bash
 $ chain-maind tx bank send <granter_address> <recipient_address> 10cro --from <granter_address> --chain-id <chain-id> --generate-only > tx.json
 
@@ -247,14 +223,11 @@ $ chain-maind tx bank send <granter_address> <recipient_address> 10cro --from <g
     "to_address": "cro1j..."
 }
 ```
-::: tip NOTE
-The `authorized transaction` here does not need to be signed and the address after the `--from` flag 
-is the `granter_address` instead of the `grantee_address`.
-In other words, this `authorized transaction` is created by the _grantee_ but prepared as if he/she were the _granter_.
-:::
 
-After the `authorized transaction` is properly prepared, the _grantee_ needs to issue an `execution transaction` to 
-execute the `authorized transaction`:
+::: tip NOTE The `authorized transaction` here does not need to be signed and the address after the `--from` flag is the `granter_address` instead of the `grantee_address`. In other words, this `authorized transaction` is created by the _grantee_ but prepared as if he/she were the _granter_. :::
+
+After the `authorized transaction` is properly prepared, the _grantee_ needs to issue an `execution transaction` to execute the `authorized transaction`:
+
 #### `tx authz exec [tx_json] --from [grantee_address]` - **Execute an authorization**
 
 ```bash
@@ -283,10 +256,13 @@ $ chain-maind tx authz exec tx.json --from <grantee_address> --chain-id <chain-i
 Likewise, all valid authorized grants can be executed with proper `authorized transaction` and `execution transaction`.
 
 ### `revoke`:
+
 The _granter_ may choose to `revoke` an existing authorization already granted to the _grantee_ by running:
+
 #### `tx authz revoke [grantee_address] [msg_type_url] --from [granter_address]` - **Revoke an authorization with a specified Message Type URL**
 
 ::: details Example: Revoke an existing SendAuthorization
+
 ```bash
 $ chain-maind tx authz revoke <grantee_address> /cosmos.bank.v1beta1.MsgSend --from <granter_address> --chain-id <chain-id>
 
@@ -298,14 +274,15 @@ $ chain-maind tx authz revoke <grantee_address> /cosmos.bank.v1beta1.MsgSend --f
     "msg_type_url": "/cosmos.bank.v1beta1.MsgSend"
 }
 ```
-:::
 
+:::
 
 ### Queries
 
 #### `query authz grants [granter_address] [grantee_address]` - Query all existing grants between a _granter_-_grantee_ pair
 
 ::: details Example: Query all existing grants between the specified granter and grantee
+
 ```bash
 $ chain-maind query authz grants <granter_address> <grantee_address> --output json | jq
 {
@@ -347,12 +324,15 @@ $ chain-maind query authz grants <granter_address> <grantee_address> --output js
   }
 }
 ```
+
 :::
 
 We may also specify a `MsgTypeURL` for the query:
+
 #### `query authz grants [granter_address] [grantee_address] [msg_type_url]` - Query the grant with a specified Message Type URL between a _granter_-_grantee_ pair
 
 ::: details Example: Query the grant to withdraw delegator reward between the specified granter and grantee
+
 ```bash
 $ chain-maind query authz grants <granter_address> <grantee_address> /cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward --output json | jq
 {
@@ -368,22 +348,22 @@ $ chain-maind query authz grants <granter_address> <grantee_address> /cosmos.dis
   "pagination": null
 }
 ```
+
 :::
 
-
-## `bank` 
+## `bank`
 
 ### Introduction
 
 The `bank` module maintains the state of two primary objects:
 
-- Account balances by address;
-- Total supply of tokens of the chain
+* Account balances by address;
+* Total supply of tokens of the chain
 
 `bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities. Specifically, the total supply is updated whenever a token is:
 
-- **Minted**, e.g. Token created by the [mint](#mint) module; or
-- **Burned**, e.g. Token distorted by the [slashing](#slashing) module.
+* **Minted**, e.g. Token created by the [mint](./#mint) module; or
+* **Burned**, e.g. Token distorted by the [slashing](./#slashing) module.
 
 ### Transactions and Queries
 
@@ -400,8 +380,6 @@ $ chain-maind tx bank send <address_a> <address_b> 10cro --chain-id <chain-id>
 {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
-
-
 
 ### Queries
 
@@ -441,15 +419,14 @@ $ chain-maind query bank total --output json | jq
     }
 ```
 
-
 ### Appendix
 
 #### `bank` module: Network Parameters and configuration
 
-| Key                  | Type          | Example                              |
-| -------------------- | ------------- | ------------------------------------ |
-| `SendEnabled`        | []SendEnabled | [{denom: "basecro", enabled: true }] |
-| `DefaultSendEnabled` | bool          | true                                 |
+| Key                  | Type           | Example                               |
+| -------------------- | -------------- | ------------------------------------- |
+| `SendEnabled`        | \[]SendEnabled | \[{denom: "basecro", enabled: true }] |
+| `DefaultSendEnabled` | bool           | true                                  |
 
 ## `distribution`
 
@@ -463,17 +440,17 @@ The `distribution` module is responsible for the distribution of rewards to the 
 
 Below are all the network parameters for the `distribution` module:
 
-- `community_tax` - The rate of community tax;
-- `base_proposer_reward` - Base bonus on transaction fees collected in a valid block;
-- `bonus_proposer_reward` - Maximum bonus on transaction fees collected in a valid block;
-- `withdraw_addr_enabled` - Whether delegators can set a different address to withdraw their rewards.
+* `community_tax` - The rate of community tax;
+* `base_proposer_reward` - Base bonus on transaction fees collected in a valid block;
+* `bonus_proposer_reward` - Maximum bonus on transaction fees collected in a valid block;
+* `withdraw_addr_enabled` - Whether delegators can set a different address to withdraw their rewards.
 
 #### Rewards
 
 There are two main types of rewards
 
-- Block rewards, governed by the [mint](#mint) module; and
-- [Transaction fees bonus](#transaction-fees-bonus).
+* Block rewards, governed by the [mint](./#mint) module; and
+* [Transaction fees bonus](./#transaction-fees-bonus).
 
 #### Block reward
 
@@ -481,10 +458,10 @@ Block rewards are distributed proportionally to all validators relative to their
 
 For the validator operator, the distribution information is updated if:
 
-- the amount of delegation to a validator is updated (delegation, unbond, slashing, etc.);
-- a validator successfully proposes a block and receives the reward;
-- any delegator withdraws from a validator, or
-- the validator withdraws it's commission.
+* the amount of delegation to a validator is updated (delegation, unbond, slashing, etc.);
+* a validator successfully proposes a block and receives the reward;
+* any delegator withdraws from a validator, or
+* the validator withdraws it's commission.
 
 For delegators, once they have delegated to a validator, they will be entitled to a portion of the total reward obtained by the validators. The reward is proportional to their delegated amount, and the commission charged by the validator operator (if any).
 
@@ -498,9 +475,9 @@ This mechanism aims to incentivize non-empty block proposals, better networking 
 
 #### Community tax
 
-The `community_tax` is the tax rate of the reward obtained by the validator. Specifically, part of the reward will be taxed and sent to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](#gov).
+The `community_tax` is the tax rate of the reward obtained by the validator. Specifically, part of the reward will be taxed and sent to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](./#gov).
 
-Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntarily, and there could be funds allocated to the community pool in the [genesis](./genesis_file.md).
+Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntarily, and there could be funds allocated to the community pool in the [genesis](../../docs/chain-details/genesis\_file.md).
 
 ### Transactions and Queries
 
@@ -514,9 +491,7 @@ Delegator can withdraw their reward(s) from the validator(s) that they have dele
 
 Delegator can withdraw their reward(s) from a specific validator.
 
-:::tip Remark:
-Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`.
-:::
+:::tip Remark: Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`. :::
 
 #### `tx distribution set-withdraw-addr [withdraw-addr]` - Change the default withdraw address for rewards associated with an address
 
@@ -548,7 +523,7 @@ We can check the history of slashing events of a validator.
 
 We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations.
 
-#### `query distribution params ` - Query the current distribution parameters
+#### `query distribution params` - Query the current distribution parameters
 
 We can query the current distribution parameters by
 
@@ -577,18 +552,17 @@ The following tables show the overall effects of the distribution related networ
 | Constraints          | Value has to be less or equal to `1`          | Value has to be less or equal to `1`                 | Value has to be less or equal to `1` |
 | Sample configuration | `0` (0%)                                      | `0.01` (1%)                                          | `0.04` (4%)                          |
 
-
 ## `gov`
 
 ### Introduction
 
 The `gov` module enables on-chain governance which allows Crypto.org Chain token holders to participate in the decision-making processes. For example, users can:
 
-- Form an idea and seek feedback;
-- Create the proposal and adjust according to feedback as needed;
-- Submit a proposal along with an initial deposit;
-- Deposit tokens and fund an active proposal;
-- Vote for an active proposal.
+* Form an idea and seek feedback;
+* Create the proposal and adjust according to feedback as needed;
+* Submit a proposal along with an initial deposit;
+* Deposit tokens and fund an active proposal;
+* Vote for an active proposal.
 
 The details about the governance proposal process are available on [The Proposal Process page](https://crypto.org/docs/chain-details/govprocess.html).
 
@@ -598,15 +572,15 @@ The details about the governance proposal process are available on [The Proposal
 
 Below are all the network parameters for the `gov` module:
 
-- `deposit_params` - Deposit related parameters:
-  - `min_deposit`: Minimum deposit for a proposal to enter voting period; and
-  - `max_deposit_period`: Maximum period for CRO holders to deposit on a proposal.
-- `voting_params` - Voting related parameters
-  - `voting_period`: The length of the voting period.
-- `tally_params` - Tally related parameters
-  - `quorum`: The minimum percentage of voting power that needs to be casted on a proposal for the result to be valid;
-  - `threshold`: Minimum proportion of `Yes` votes (excluding `Abstain` votes) for the proposal to be accepted; and
-  - `veto`: Minimum proportion of `Veto` votes to total votes ratio for proposal to be vetoed.
+* `deposit_params` - Deposit related parameters:
+  * `min_deposit`: Minimum deposit for a proposal to enter voting period; and
+  * `max_deposit_period`: Maximum period for CRO holders to deposit on a proposal.
+* `voting_params` - Voting related parameters
+  * `voting_period`: The length of the voting period.
+* `tally_params` - Tally related parameters
+  * `quorum`: The minimum percentage of voting power that needs to be casted on a proposal for the result to be valid;
+  * `threshold`: Minimum proportion of `Yes` votes (excluding `Abstain` votes) for the proposal to be accepted; and
+  * `veto`: Minimum proportion of `Veto` votes to total votes ratio for proposal to be vetoed.
 
 #### The Governance Procedure
 
@@ -624,10 +598,10 @@ During the _voting period_, staked (bonded) tokens will be able to participate i
 
 After the `voting_period` has passed, there are several scenarios where a proposal will be considered to be "Rejected", for example, if
 
-- No one votes (everyone `"abstain"`);
-- Votes did not reach the `quorum`;
-- More than `veto` of voters vote for `"no_with_veto"`;
-- More than `threshold` of non-abstaining voters vote `"no"`.
+* No one votes (everyone `"abstain"`);
+* Votes did not reach the `quorum`;
+* More than `veto` of voters vote for `"no_with_veto"`;
+* More than `threshold` of non-abstaining voters vote `"no"`.
 
 Otherwise, the proposal will be accepted and changes will be implemented according to the proposal.
 
@@ -637,35 +611,32 @@ Otherwise, the proposal will be accepted and changes will be implemented accordi
 
 #### `tx gov submit-proposal` - Submit a proposal along with an initial deposit
 
-- Submit a parameter change proposal - `param-change [proposal-file]`
+*   Submit a parameter change proposal - `param-change [proposal-file]`
 
-  Users can submit a proposal to modify network parameters during runtime. Here is a demo proposal if we would like to change the parameter `MaxValidators` (maximum number of validators) in the `staking` module,
+    Users can submit a proposal to modify network parameters during runtime. Here is a demo proposal if we would like to change the parameter `MaxValidators` (maximum number of validators) in the `staking` module,
 
-  ```json
-  {
-    "title": "Staking Param Change",
-    "description": "Update max validators",
-    "changes": [
-      {
-        "subspace": "staking",
-        "key": "MaxValidators",
-        "value": 151
-      }
-    ]
-  }
-  ```
+    ```json
+    {
+      "title": "Staking Param Change",
+      "description": "Update max validators",
+      "changes": [
+        {
+          "subspace": "staking",
+          "key": "MaxValidators",
+          "value": 151
+        }
+      ]
+    }
+    ```
+*   Submit a community pool spend proposal - `community-pool-spend [proposal-file]`
 
-- Submit a community pool spend proposal - `community-pool-spend [proposal-file]`
+    Users can submit a proposal and request funds from the community pool to support their projects or other usages.
+*   Submit a software upgrade proposal- `software-upgrade [name] (--upgrade-height [height] | --upgrade-time [time]) (--upgrade-info [info])`
 
-  Users can submit a proposal and request funds from the community pool to support their projects or other usages.
+    Users can submit an upgrade proposal and suggest a software upgrade at a specific block height.
+*   Cancel the current software upgrade proposal - `cancel-software-upgrade`
 
-- Submit a software upgrade proposal- `software-upgrade [name] (--upgrade-height [height] | --upgrade-time [time]) (--upgrade-info [info])`
-
-  Users can submit an upgrade proposal and suggest a software upgrade at a specific block height.
-
-- Cancel the current software upgrade proposal - `cancel-software-upgrade`
-
-  On the other hand, users can submit a proposal to cancel the planned software upgrade.
+    On the other hand, users can submit a proposal to cancel the planned software upgrade.
 
 #### `tx gov deposit [proposal-id] [deposit]` - Deposit tokens for an active proposal
 
@@ -786,12 +757,11 @@ The following tables show the overall effects of the gov related network paramet
 | Constraints          | Value has to be less than or equal to `1` | Value has to be less than or equal to `1` | Value has to be less than or equal to `1` |
 | Sample configuration | `0.15` (15%)                              | `0.5` (50%)                               | `0.33` (33%)                              |
 
-
 ## `mint`
 
 ### Introduction
 
-The `mint` module is responsible for creating tokens in a flexible way to reward the validators who participate in the proof of stake consensus process (see also the [distribution module](#distribution)). It is also designed in a way to bring a balance between market liquidity and staked supply.
+The `mint` module is responsible for creating tokens in a flexible way to reward the validators who participate in the proof of stake consensus process (see also the [distribution module](./#distribution)). It is also designed in a way to bring a balance between market liquidity and staked supply.
 
 ### Overview
 
@@ -799,12 +769,12 @@ The `mint` module is responsible for creating tokens in a flexible way to reward
 
 Below are all the network parameters for the `mint` module:
 
-- `"blocks_per_year"` - The expected number of blocks being produced per year;
-- `"goal_bonded"` - Goal of bonded tokens in percentage;
-- `"inflation_max"` - Maximum annual inflation rate;
-- `"inflation_min"` - Minimum annual inflation rate;
-- `"inflation_rate_change"` - Maximum annual change in inflation rate;
-- `"mint_denom"` - Type of the token being minted.
+* `"blocks_per_year"` - The expected number of blocks being produced per year;
+* `"goal_bonded"` - Goal of bonded tokens in percentage;
+* `"inflation_max"` - Maximum annual inflation rate;
+* `"inflation_min"` - Minimum annual inflation rate;
+* `"inflation_rate_change"` - Maximum annual change in inflation rate;
+* `"mint_denom"` - Type of the token being minted.
 
 The target annual inflation rate is recalculated for each previsions cycle. The inflation is also subject to a rate change (positive or negative) depending on the distance from the desired ratio (`"goal_bonded"`). The maximum rate change possible is defined to be `"inflation_rate_change"` per year, where the annual inflation is capped between `"inflation_min"` and `"inflation_max"`.
 
@@ -865,34 +835,23 @@ The following tables show the overall effects of the mint related network parame
 | Constraints          | Value has to be a positive integer | Value has to be less than or equal to `1` | N/A          |
 | Sample configuration | `5256000` (5,256,000 blocks)       | `0.66` (66%)                              | `basecro`    |
 
-|                      | `inflation_max`                            | `inflation_min`                           | `inflation_rate_change`                             |
-| -------------------- | ------------------------------------------ | ----------------------------------------- | --------------------------------------------------- |
-| Type                 | string (dec)                               | string (dec)                              | string (dec) (dec)                                  |
-| Higher               | Higher ceiling for the inflation rate      | Higher floor for the inflation rate       | Higher yearly rate of change for the inflation      |
-| Lower                | Lower ceiling for the inflation rate       | Lower floor for the inflation rate        | Lower yearly rate of change for the inflation       |
-| Constraints          | Value has to be less than or equal to `1`  | Value has to be less than or equal to `1` | Value has to be less than or equal to `1`           |
-| Sample configuration | `0.02` (2%)                                | `0.01` (1%)                               | `0.01` (1%)                                         |
-
+|                      | `inflation_max`                           | `inflation_min`                           | `inflation_rate_change`                        |
+| -------------------- | ----------------------------------------- | ----------------------------------------- | ---------------------------------------------- |
+| Type                 | string (dec)                              | string (dec)                              | string (dec) (dec)                             |
+| Higher               | Higher ceiling for the inflation rate     | Higher floor for the inflation rate       | Higher yearly rate of change for the inflation |
+| Lower                | Lower ceiling for the inflation rate      | Lower floor for the inflation rate        | Lower yearly rate of change for the inflation  |
+| Constraints          | Value has to be less than or equal to `1` | Value has to be less than or equal to `1` | Value has to be less than or equal to `1`      |
+| Sample configuration | `0.02` (2%)                               | `0.01` (1%)                               | `0.01` (1%)                                    |
 
 ## `nft`
 
 ### Introduction
 
-Fungible tokens are mutually interchangeable, and one most common example of fungible tokens is fiat currencies.
-Specifically, the $100.50 US dollars in my bank account is equally valuable as the $100.50 US dollars in someone else's bank account.
-Another example of fungible tokens would be the native cryptocurrency of **Ethereum**, one of the most popular blockchain networks, i.e. **Ether**. 
-Ethers are totally fungible, meaning that one ether is equal to one ether, and it's equal to any other ether as well.
-Particularly, ethers are also highly divisible up to one **wei**, or 0.000000000000000001 (10<sup>-18</sup>) ether.
+Fungible tokens are mutually interchangeable, and one most common example of fungible tokens is fiat currencies. Specifically, the $100.50 US dollars in my bank account is equally valuable as the $100.50 US dollars in someone else's bank account. Another example of fungible tokens would be the native cryptocurrency of **Ethereum**, one of the most popular blockchain networks, i.e. **Ether**. Ethers are totally fungible, meaning that one ether is equal to one ether, and it's equal to any other ether as well. Particularly, ethers are also highly divisible up to one **wei**, or 0.000000000000000001 (10-18) ether.
 
-In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type.
-**CryptoKitties** on **Ethereum** or **Loaded Lions** on **Crypto.org Chain** are both examples of NFTs: 
-each **CryptoKitty** or **Loaded Lion** are unique and non-divisible, unlike **Bitcoin**.
-Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
+In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Crypto.org Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** are unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
 
-On-chain NFT standards were first developed on **Ethereum** within the **ERC-721** standard and its subsequent **Ethereum Improvement Proposals**. 
-The subsequent **ERC-1155** standard aims to address some restrictions of **Ethereum** such as storage costs and semi-fungible assets.
-NFTs on application specific blockchains share some but not all features as their **Ethereum** brethren, 
-since application specific blockchains are more flexible in how their resources are utilized, such as the ability to use strings as IDs.
+On-chain NFT standards were first developed on **Ethereum** within the **ERC-721** standard and its subsequent **Ethereum Improvement Proposals**. The subsequent **ERC-1155** standard aims to address some restrictions of **Ethereum** such as storage costs and semi-fungible assets. NFTs on application specific blockchains share some but not all features as their **Ethereum** brethren, since application specific blockchains are more flexible in how their resources are utilized, such as the ability to use strings as IDs.
 
 The `nft` module here facilitates managing non-fungible tokens that represent individual assets with unique features on **Crypto.org Chain**.
 
@@ -900,20 +859,14 @@ The `nft` module here facilitates managing non-fungible tokens that represent in
 
 There are two key concepts for NFTs on **Crypto.org Chain**, namely, **denom** and **token**:
 
-- #### denom
-    A denom represents a collection of NFTs. 
-    For example, I could issue a denom named "CryptoPuppies" under which my collection of 100 CryptoPuppies NFTs get minted. 
-    Each denom has a `denom ID` and a `denom name`, both are unique on chain. 
-    A `denom schema` should generally be set when a denom gets issued, which indicates the format of NFT metadata under this denom.
+*   **denom**
 
-- #### token
-    An NFT, or simply "token", is a specific instance of NFT minted under a denom. Each token has a `token ID`, which is unique under a specific denom.
-    Generally, a token also has its `token name` (name of the NFT), 
-    `token URI` (off-chain information or storage location of the NFT), 
-    and `token metadata` (on-chain data that provides information about the NFT).
+    A denom represents a collection of NFTs. For example, I could issue a denom named "CryptoPuppies" under which my collection of 100 CryptoPuppies NFTs get minted. Each denom has a `denom ID` and a `denom name`, both are unique on chain. A `denom schema` should generally be set when a denom gets issued, which indicates the format of NFT metadata under this denom.
+*   **token**
 
-::: tip Specifications
-`denom ID`: a string of lowercase alphanumeric characters with length between 3 and 64 that begins with a letter, unique over the chain;
+    An NFT, or simply "token", is a specific instance of NFT minted under a denom. Each token has a `token ID`, which is unique under a specific denom. Generally, a token also has its `token name` (name of the NFT), `token URI` (off-chain information or storage location of the NFT), and `token metadata` (on-chain data that provides information about the NFT).
+
+::: tip Specifications `denom ID`: a string of lowercase alphanumeric characters with length between 3 and 64 that begins with a letter, unique over the chain;
 
 `denom name`: a non-empty string, unique over the chain;
 
@@ -925,31 +878,33 @@ There are two key concepts for NFTs on **Crypto.org Chain**, namely, **denom** a
 
 `token URI`: a string that directs to the off-chain information or storage location of the NFT;
 
-`token metadata`: a JSON object that matches the denom schema and represents the on-chain data that provides information about the NFT.
-:::
+`token metadata`: a JSON object that matches the denom schema and represents the on-chain data that provides information about the NFT. :::
 
-Just as each user is uniquely identified by its address, each NFT is uniquely identified by the combination of its **denom ID** and its **token ID** (like a UID for the NFT),
-showing its uniqueness, non-interchangeability, and non-divisibility.
+Just as each user is uniquely identified by its address, each NFT is uniquely identified by the combination of its **denom ID** and its **token ID** (like a UID for the NFT), showing its uniqueness, non-interchangeability, and non-divisibility.
 
----
+***
 
 ### Transactions and Queries
 
 ### Transactions
+
 In general,
+
 1. any user may `issue` a denom as long as neither the **denom ID** nor the **denom name** has been taken;
 2. the creator of a denom, also know as the owner of the denom, is the only user who may `mint` an NFT under such denom;
 3. a user may `edit` or `burn` an NFT only if he/she is both the creator and the owner of that NFT;
 4. a user may `transfer` an NFT as long as he/she is the owner of that NFT.
 
----
+***
 
 ### `issue`:
-Every NFT needs to "live" under a denom: an NFT collection. 
-Therefore, the first step is to issue a denom before one can mint NFTs:
+
+Every NFT needs to "live" under a denom: an NFT collection. Therefore, the first step is to issue a denom before one can mint NFTs:
 
 #### `tx nft issue [denom_id] --name [denom_name] --schema [denom_schema] --from [user_address]`- **Issue a denom**
+
 ::: details Example: Issue a new denom with specified name and schema
+
 ```bash
 $ chain-maind tx nft issue fftb2050 --name "Fortune Favours the Brave 2050" --schema '{ "Name": "string", "Description": "string" }' --from <user_address> --chain-id <chain-id>
 
@@ -962,20 +917,21 @@ $ chain-maind tx nft issue fftb2050 --name "Fortune Favours the Brave 2050" --sc
     "sender": "cro18..."
 }
 ```
+
 :::
 
-::: tip NOTE
-Even though the denom schema is not a compulsory field, it is generally recommended to illustrate the format of NFT metadata as an informative summary of such denom.
-Moreover, a denom is non-transferable, non-editable, and non-deletable, so be mindful when issuing a denom.
-:::
+::: tip NOTE Even though the denom schema is not a compulsory field, it is generally recommended to illustrate the format of NFT metadata as an informative summary of such denom. Moreover, a denom is non-transferable, non-editable, and non-deletable, so be mindful when issuing a denom. :::
 
----
+***
 
 ### `mint`:
-When a denom has been issued, the denom owner (the creator) may mint an NFT under such denom. 
+
+When a denom has been issued, the denom owner (the creator) may mint an NFT under such denom.
 
 #### `tx nft mint [denom_id] [token_id] --name [token_name] --uri [token_uri] --data [token_metadata] --recipient [recipient_address] --from [user_address]`- **Mint an NFT**
+
 ::: details Example: Mint an NFT with specified name, URI, data, and recipient
+
 ```bash
 $ chain-maind tx nft mint fftb2050 v1ed1 --name "Version 1 Edition 1" --uri "https://crypto.com/fftb" --data '{ "Name": "v1", "Description": "ed1"}' --recipient <recipient_address> --from <user_address> --chain-id <chain-id>
 
@@ -991,22 +947,21 @@ $ chain-maind tx nft mint fftb2050 v1ed1 --name "Version 1 Edition 1" --uri "htt
     "recipient": "cro18..."
 }
 ```
+
 :::
 
-::: tip NOTE
-The token name, URI, and metadata fields are optional but highly recommended fields during the minting process, 
-even though they might also be edited later through `edit`.
-In addition, the minter may specify a recipient of the new NFT, where it defaults to be just the minter if not specified.
-:::
+::: tip NOTE The token name, URI, and metadata fields are optional but highly recommended fields during the minting process, even though they might also be edited later through `edit`. In addition, the minter may specify a recipient of the new NFT, where it defaults to be just the minter if not specified. :::
 
----
+***
 
 ### `edit`:
-Unlike NFTs minted on **Ethereum**, an NFT minted on **Crypto.org Chain** may easily be edited, 
-provided that the user editing it is both the owner and creator of such NFT. 
+
+Unlike NFTs minted on **Ethereum**, an NFT minted on **Crypto.org Chain** may easily be edited, provided that the user editing it is both the owner and creator of such NFT.
 
 #### `tx nft edit [denom_id] [token_id] --name [new_name] --uri [new_uri] --data [new_metadata] --from [user_address]`- **Edit an NFT**
+
 ::: details Example: Edit an NFT to change its URI
+
 ```bash
 $ chain-maind tx nft edit fftb2050 v1ed1 --uri "https://crypto.com/nft" --from <user_address> --chain-id <chain-id>
 
@@ -1021,19 +976,21 @@ $ chain-maind tx nft edit fftb2050 v1ed1 --uri "https://crypto.com/nft" --from <
     "sender": "cro18..."
 }
 ```
+
 :::
 
-::: tip NOTE
-There are 3 fields available for NFT editing: name, URI, and the metadata. Any field that is not specified will remain unchanged.
-:::
+::: tip NOTE There are 3 fields available for NFT editing: name, URI, and the metadata. Any field that is not specified will remain unchanged. :::
 
----
+***
 
 ### `burn`:
+
 A user may burn an existing NFT as long as he/she is both the owner and creator of such NFT, similar to editing the NFT.
 
 #### `tx nft burn [denom_id] [token_id] --from [user_address]`- **Burn an NFT**
+
 ::: details Example: Burn an NFT
+
 ```bash
 $ chain-maind tx nft burn fftb2050 v1ed1 --from <user_address> --chain-id <chain-id>
 
@@ -1045,19 +1002,21 @@ $ chain-maind tx nft burn fftb2050 v1ed1 --from <user_address> --chain-id <chain
     "sender": "cro18..."
 }
 ```
+
 :::
 
-::: tip NOTE
-A token ID is unique under a specific denom, meaning no two existing NFTs can share the same token ID under the same denom.
-However, when an NFT gets burnt, its token ID is freed and is available for mint again.
-:::
+::: tip NOTE A token ID is unique under a specific denom, meaning no two existing NFTs can share the same token ID under the same denom. However, when an NFT gets burnt, its token ID is freed and is available for mint again. :::
 
----
+***
 
 ### `transfer`:
+
 Transferring an NFT is easy: one only needs to be the owner of the NFT.
+
 #### `tx nft transfer [recipient_address] [denom_id] [token_id] --from [granter_address]` - **Transfer an NFT**
+
 ::: details Example: Transfer an NFT to a recipient
+
 ```bash
 $ chain-maind tx nft transfer <recipient_address> fftb2050 v1ed1 --from <user_address> --chain-id <chain-id>
 
@@ -1070,22 +1029,27 @@ $ chain-maind tx nft transfer <recipient_address> fftb2050 v1ed1 --from <user_ad
     "recipient": "cro1j..."
 }
 ```
+
 :::
 
----
+***
 
 ### Queries
+
 In the NFT module, queries can be divided into 3 main categories:
-- denom information;
-- token information;
-- owner information.
 
----
+* denom information;
+* token information;
+* owner information.
 
-- #### query denom information:
+***
+
+* **query denom information:**
 
 #### `query nft denom [denom_id]` - Query information of a denom by its denom ID
+
 ::: details Example: Query information of a denom by its denom ID
+
 ```bash
 $ chain-maind query nft denom fftb2050 --output json | jq
 {
@@ -1095,36 +1059,49 @@ $ chain-maind query nft denom fftb2050 --output json | jq
   "creator": "cro18..."
 }
 ```
+
 :::
 
 Effectively, one may also query information of a denom by its denom name instead of denom id:
+
 #### `query nft denom-by-name [denom_name]` - Query information of a denom by its denom name
 
 To check the number of existing NFTs in a denom:
+
 #### `query nft supply [denom_id]` - Query the number of existing NFTs in a denom
+
 ::: details Example: Query the number of existing NFTs in a denom
+
 ```bash
 $ chain-maind query nft supply fftb2050
 amount: "3"
 ```
+
 :::
 
 In addition, one may query the number of existing NFTs in a denom of a specific owner through the `--owner` flag:
+
 #### `query nft supply [denom_id] --owner [owner_address]` - Query the number of existing NFTs in a denom of a specific owner
+
 ::: details Example: Query the number of existing NFTs in a denom of a specific owner
+
 ```bash
 $ chain-maind query nft supply fftb2050 --owner <owner_address>
 amount: "2"
 ```
+
 :::
 
----
+***
 
-- #### query token information:
+* **query token information:**
 
 One may query information of a specific NFT with its UID (denom ID and token ID):
+
 #### `query nft token [denom_id] [token_id]` - Query information of an NFT
+
 ::: details Example: Query information of an NFT
+
 ```bash
 $ chain-maind query nft token fftb2050 v1ed1 --output json | jq
 {
@@ -1135,11 +1112,15 @@ $ chain-maind query nft token fftb2050 v1ed1 --output json | jq
   "owner": "cro1j..."
 }
 ```
+
 :::
 
 One may also query information of all NFTs under a specific denom:
+
 #### `query nft collection [denom_id]` - Query information of all NFTs under a specific denom
+
 ::: details Example: Query information of all NFTs under a specific denom
+
 ```bash
 $ chain-maind query nft collection fftb2050 --output json | jq
 {
@@ -1180,16 +1161,19 @@ $ chain-maind query nft collection fftb2050 --output json | jq
   }
 }
 ```
+
 :::
 
----
+***
 
-- #### query owner information:
+* **query owner information:**
 
 Last but not least, information of a specific NFT owner may also be queried.
 
 #### `query nft owner [owner_address]` - Query information of all NFTs owned by a specific owner
+
 ::: details Example: Query information of all NFTs owned by a specific owner
+
 ```bash
 $ chain-maind query nft owner <owner_address> --output json | jq
 {
@@ -1217,11 +1201,15 @@ $ chain-maind query nft owner <owner_address> --output json | jq
   }
 }
 ```
+
 :::
 
 One may also use the `--denom-id` flag to query owner NFT information under a specific denom:
+
 #### `query nft owner [owner_address] --denom-id [denom_id]` - Query information of all NFTs owned by a specific owner under specified denom
+
 ::: details Example: Query information of all NFTs owned by a specific owner under specified denom
+
 ```bash
 $ chain-maind query nft owner <owner_address> --denom-id fftb2050 --output json | jq
 {
@@ -1243,8 +1231,8 @@ $ chain-maind query nft owner <owner_address> --denom-id fftb2050 --output json 
   }
 }
 ```
-:::
 
+:::
 
 ## `slashing`
 
@@ -1260,65 +1248,44 @@ Specifically, `slashing` functionality that aims to dis-incentivize network-obse
 
 Below are all the network parameters used to configure the behavior of validator punishments. Details of all these parameters and their effect on behavior of validator punishments is discussed later in this document.
 
-- `signed_blocks_window`: Number of blocks for which the liveness is calculated for uptime tracking;
-- `min_signed_per_window`: Maximum percentage of blocks with faulty/missed validations allowed for an account in last; `signed_blocks_window` blocks before it gets deactivated;
-- `downtime_jail_duration`: Duration for [jailing](#jailing);
--  `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
--  `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
+* `signed_blocks_window`: Number of blocks for which the liveness is calculated for uptime tracking;
+* `min_signed_per_window`: Maximum percentage of blocks with faulty/missed validations allowed for an account in last; `signed_blocks_window` blocks before it gets deactivated;
+* `downtime_jail_duration`: Duration for [jailing](./#jailing);
+* `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
+* `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
 
 #### Slashing mechanism
 
 Punishments for a validator are triggered when they either make a _byzantine fault_ or become _non-live_:
 
-- Liveness Faults (Low availability)
+*   Liveness Faults (Low availability)
 
-  A validator is said to be **non-live** when they fail to successfully sign at least `min_signed_per_window` blocks (in percentage) in the
-  last `signed_blocks_window` blocks. `signed_blocks_window` and `min_signed_per_window` are network
-  parameters and can be configured during genesis and can be updated during runtime by the governance module.
+    A validator is said to be **non-live** when they fail to successfully sign at least `min_signed_per_window` blocks (in percentage) in the last `signed_blocks_window` blocks. `signed_blocks_window` and `min_signed_per_window` are network parameters and can be configured during genesis and can be updated during runtime by the governance module.
 
-:::tip Example:
-For example, if `block_signing_window` is `2000` blocks and `min_signed_per_window` is `0.5`, a validator will
-be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in the last `2000` blocks.
-:::
+:::tip Example: For example, if `block_signing_window` is `2000` blocks and `min_signed_per_window` is `0.5`, a validator will be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in the last `2000` blocks. :::
 
-- Byzantine Faults 
+*   Byzantine Faults
 
-  A validator is said to make a byzantine fault when they sign conflicting messages/blocks at the same height and round. Tendermint has mechanisms to publish evidence of validators that signed conflicting votes so they can be punished by the slashing module. For example:
-  
+    A validator is said to make a byzantine fault when they sign conflicting messages/blocks at the same height and round. Tendermint has mechanisms to publish evidence of validators that signed conflicting votes so they can be punished by the slashing module. For example:
 
-  - Validator who votes for two different blocks within a single round (*"Equivocation validator"*/ *"Double signing"*);
-
-
-  - Validator who signs commit messages for arbitrary application state ( *"Lunatic validator"*).
-
+    * Validator who votes for two different blocks within a single round (_"Equivocation validator"_/ _"Double signing"_);
+    * Validator who signs commit messages for arbitrary application state ( _"Lunatic validator"_).
 
 **Remark**: The evidence of a set of validators attempting to mislead a light client can also be detected and captured. However, even the [Amnesia attack](https://github.com/tendermint/tendermint/blob/master/docs/architecture/adr-056-light-client-amnesia-attacks.md#amnesia-attack) can be detected, punishment can not be applied at this stage, as we can not deduce the malicious validators.
 
-:::tip Implementation note:
-Tendermint passes `Evidence` of a byzantine validator in `BeginBlock` request. Before jailing any account due to byzantine fault, that evidence should be verified. Also, it should be checked that evidence provided by tendermint is
-not older than `max_age` in tendermint.
-:::
-
-
-
-
+:::tip Implementation note: Tendermint passes `Evidence` of a byzantine validator in `BeginBlock` request. Before jailing any account due to byzantine fault, that evidence should be verified. Also, it should be checked that evidence provided by tendermint is not older than `max_age` in tendermint. :::
 
 ### Inactivity Slashing
 
 It is important that the validators maintain excellent availability and network connectivity to perform their tasks. A penalty should be imposed on validators' misbehaviour to reinforce this.
 
-When a validator fails to successfully sign `missed_block_threshold` blocks in the last `block_signing_window` blocks, it is
-immediately jailed and punished by deducting funds from their bonded and unbonded amount and removing them from the active validator set. The funds to be deducted are calculated based on `slash_fraction_downtime`. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/slashing/04_begin_block.html) on the logic of the liveness tracking.
+When a validator fails to successfully sign `missed_block_threshold` blocks in the last `block_signing_window` blocks, it is immediately jailed and punished by deducting funds from their bonded and unbonded amount and removing them from the active validator set. The funds to be deducted are calculated based on `slash_fraction_downtime`. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/slashing/04\_begin\_block.html) on the logic of the liveness tracking.
 
 ### Jailing
 
-A validator is jailed when they make liveness or Byzantine fault. When a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Futhermore, it cannot be un-jailed
-before `downtime_jail_duration`. This `downtime_jail_duration` is a
-network parameter which can be configured during genesis.
+A validator is jailed when they make liveness or Byzantine fault. When a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Futhermore, it cannot be un-jailed before `downtime_jail_duration`. This `downtime_jail_duration` is a network parameter which can be configured during genesis.
 
-:::warning Important:
-When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07_tombstone.html)
-:::
+:::warning Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html) :::
 
 #### Un-jailing
 
@@ -1356,7 +1323,7 @@ $ chain-maind tx slashing unjail --from node1 --chain-id cro-test
 
 ### Queries
 
-#### `query slashing params ` - Query the current slashing parameters
+#### `query slashing params` - Query the current slashing parameters
 
 We can query the current slashing parameters by
 
@@ -1386,7 +1353,7 @@ The following tables show overall effects on different configurations of the sla
 | Constraints          | Value has to be a positive integer          | Value has to be positive        | Value has to be a positive integer |
 | Sample configuration | `2000` (2000 blocks)                        | `0.5` (50%)                     | `3600s` (1 hour)                   |
 
----
+***
 
 |                      | `slash_fraction_double_sign`              | `slash_fraction_downtime`                 |
 | -------------------- | ----------------------------------------- | ----------------------------------------- |
@@ -1395,8 +1362,6 @@ The following tables show overall effects on different configurations of the sla
 | Lower                | Lighter penalty on byzantine faults       | Lighter penalty on liveness faults        |
 | Constraints          | Value has to be less than or equal to `1` | Value has to be less than or equal to `1` |
 | Sample configuration | `0.001` (0.1%)                            | `0.05` (5%)                               |
-
-
 
 ## `staking`
 
@@ -1408,21 +1373,21 @@ The `staking` module handles Proof-of-Stake related logics, which plays a very i
 
 Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks to the blockchain.
 
-- `unbonding_time`: The time duration of unbonding;
-- `max_validators`: The maximum number of validators;
-- `max_entries`: The max entries for either unbonding delegation or redelegation;
-- `historical_entries`: The number of historical entries to persist; and
-- `bond_denom`: Coin denomination for staking.
+* `unbonding_time`: The time duration of unbonding;
+* `max_validators`: The maximum number of validators;
+* `max_entries`: The max entries for either unbonding delegation or redelegation;
+* `historical_entries`: The number of historical entries to persist; and
+* `bond_denom`: Coin denomination for staking.
 
 ### Validator
 
-Validators are responsible for signing or proposing a block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked tokens (see [distribution](#distribution) and [mint](#mint)). On the other hand, a penalty should be imposed on validators' misbehaviour (see [slashing](#slashing)).
+Validators are responsible for signing or proposing a block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked tokens (see [distribution](./#distribution) and [mint](./#mint)). On the other hand, a penalty should be imposed on validators' misbehaviour (see [slashing](./#slashing)).
 
 ### Delegator
 
-The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](#distribution) module). Specifically, it allows token owners to take part in the consensus process without running a validator themselves.
+The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](./#distribution) module). Specifically, it allows token owners to take part in the consensus process without running a validator themselves.
 
-It is important to point out that the delegator and the validator are on the same boat: they share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](#slashing)). Therefore, it is very important to choose a reliable validator to delegate to. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
+It is important to point out that the delegator and the validator are on the same boat: they share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](./#slashing)). Therefore, it is very important to choose a reliable validator to delegate to. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
 ### Transactions and Queries
 
@@ -1668,7 +1633,7 @@ The following tables show the overall effects of the staking related network par
 | Constraints          | N/A          | Value has to be positive           | Value has to be positive                                      |
 | Sample configuration | `basecro`    | `100` (50%)                        | `7`                                                           |
 
----
+***
 
 |                      | `max_validators`                          | `unbonding_time`                     |
 | -------------------- | ----------------------------------------- | ------------------------------------ |
@@ -1678,14 +1643,11 @@ The following tables show the overall effects of the staking related network par
 | Constraints          | Value has to be less than or equal to `1` | Positive value in seconds            |
 | Sample configuration | `100` (maximum 100 active validator)      | `"1814400s"` (3 weeks)               |
 
-
 ## `supply`
 
 ### Introduction
 
 The `supply` module is responsible for retrieving the total and liquid supply.
-
-
 
 ### Queries
 

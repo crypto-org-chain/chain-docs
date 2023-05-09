@@ -4,7 +4,25 @@
 
 ## Getting Started
 
-* [Page 1](getting-started/page-1.md)
+* [Getting Started](getting-started/getting-started/README.md)
+  * [Advanced TMKMS Integration](getting-started/getting-started/advanced-tmkms-integration.md)
+  * [Mainnet/Testnet: Running Nodes using AWS 1-click Deployment](getting-started/getting-started/aws-1click.md)
+  * [Mainnet/Testnet: Running Nodes using Azure 1-click Deployment](getting-started/getting-started/azure-1click.md)
+  * [Running "Canis Major" network upgrade with cosmovisor](getting-started/getting-started/cosmovisor.md)
+  * [Croeseid Testnet: Running Nodes With Nix](getting-started/getting-started/croeseid-testnet-nix.md)
+  * [Croeseid Testnet: Running Nodes](getting-started/getting-started/croeseid-testnet.md)
+  * [Croeseid 5 Testnet: Running Nodes](getting-started/getting-started/croeseid5-testnet.md)
+  * [Devnet: Running Latest Development Node](getting-started/getting-started/local-devnet.md)
+  * [Crypto.org Mainnet: Running a Full Node](getting-started/getting-started/mainnet.md)
+  * [Crypto.org Mainnet: Running a Validator](getting-started/getting-started/mainnet\_validator.md)
+  * [NFT](getting-started/getting-started/nft-guide.md)
+  * [Notes on Performance](getting-started/getting-started/notes-on-performance.md)
+  * [Notes on Production Deployment](getting-started/getting-started/notes-on-production-deployment.md)
+  * [Crypto.org Mainnet Validator Security Checklist](getting-started/getting-started/security-checklist.md)
+  * [Token Migration Web Tool](getting-started/getting-started/token-migration.md)
+  * [The "Canis Major" upgrade guide (v1.\* to v2.0.1) at block height 922,363:](getting-started/getting-started/upgrade\_guide.md)
+  * [The "DRACO II" upgrade guide (v2.\* to v3.3.2) :](getting-started/getting-started/upgrade\_guide\_draco\_2.md)
+  * [The "V4" upgrade guide (v3.\* to v4.2.2) :](getting-started/getting-started/upgrade\_guide\_v4.md)
 
 ***
 
@@ -21,30 +39,8 @@
     * [module\_gov](docs/chain-details/module\_gov.md)
     * [module\_mint](docs/chain-details/module\_mint.md)
     * [module\_nft](docs/chain-details/module\_nft.md)
-    * [Modules](docs/chain-details/module\_overview.md)
-    * [module\_slashing](docs/chain-details/module\_slashing.md)
     * [module\_staking](docs/chain-details/module\_staking.md)
-    * [module\_supply](docs/chain-details/module\_supply.md)
     * [List of parameters](docs/chain-details/parameters.md)
-  * [Getting Started](docs/getting-started/README.md)
-    * [Advanced TMKMS Integration](docs/getting-started/advanced-tmkms-integration.md)
-    * [Mainnet/Testnet: Running Nodes using AWS 1-click Deployment](docs/getting-started/aws-1click.md)
-    * [Mainnet/Testnet: Running Nodes using Azure 1-click Deployment](docs/getting-started/azure-1click.md)
-    * [Running "Canis Major" network upgrade with cosmovisor](docs/getting-started/cosmovisor.md)
-    * [Croeseid Testnet: Running Nodes With Nix](docs/getting-started/croeseid-testnet-nix.md)
-    * [Croeseid Testnet: Running Nodes](docs/getting-started/croeseid-testnet.md)
-    * [Croeseid 5 Testnet: Running Nodes](docs/getting-started/croeseid5-testnet.md)
-    * [Devnet: Running Latest Development Node](docs/getting-started/local-devnet.md)
-    * [Crypto.org Mainnet: Running a Full Node](docs/getting-started/mainnet.md)
-    * [Crypto.org Mainnet: Running a Validator](docs/getting-started/mainnet\_validator.md)
-    * [NFT](docs/getting-started/nft-guide.md)
-    * [Notes on Performance](docs/getting-started/notes-on-performance.md)
-    * [Notes on Production Deployment](docs/getting-started/notes-on-production-deployment.md)
-    * [Crypto.org Mainnet Validator Security Checklist](docs/getting-started/security-checklist.md)
-    * [Token Migration Web Tool](docs/getting-started/token-migration.md)
-    * [The "Canis Major" upgrade guide (v1.\* to v2.0.1) at block height 922,363:](docs/getting-started/upgrade\_guide.md)
-    * [The "DRACO II" upgrade guide (v2.\* to v3.3.2) :](docs/getting-started/upgrade\_guide\_draco\_2.md)
-    * [The "V4" upgrade guide (v3.\* to v4.2.2) :](docs/getting-started/upgrade\_guide\_v4.md)
   * [resources](docs/resources/README.md)
     * [Crypto.org Chain Blocks and Transactions](docs/resources/blocks-and-transactions.md)
     * [Crypto.org Chain Integration documentation](docs/resources/chain-integration.md)
@@ -52,18 +48,6 @@
     * [Node Setup and RPC note](docs/resources/node-and-rpc-setup-notes.md)
     * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](docs/resources/solo-machine.md)
     * [Technical glossary](docs/resources/technical-glossary.md)
-  * [wallets](docs/wallets/README.md)
-    * [chain-maind](docs/wallets/cli.md)
-    * [Crypto.com DeFi Desktop Wallet](docs/wallets/desktop\_wallet.md)
-    * [Crypto.org Chain Desktop Wallet](docs/wallets/desktop\_wallet\_backup.md)
-    * [Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr\_IBC\_guide.md)
-    * [Using Ledger Device with Keplr](docs/wallets/keplr\_ledger\_guide.md)
-    * [Ledger Hardware Wallets with chain-maind](docs/wallets/ledger.md)
-    * [Using Ledger device with desktop wallet](docs/wallets/ledger\_desktop\_wallet.md)
-    * [Mainnet Address Generation](docs/wallets/mainnet-address-generation.md)
-    * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
-    * [Multisig account](docs/wallets/multisig-account.md)
-    * [rpc](docs/wallets/rpc.md)
 
 ## For Node Hosts
 
@@ -71,7 +55,18 @@
 
 ## For USERS
 
-* [Page 5](for-users/page-5.md)
+* [wallets](for-users/wallets/README.md)
+  * [chain-maind](for-users/wallets/cli.md)
+  * [Crypto.com DeFi Desktop Wallet](for-users/wallets/desktop\_wallet.md)
+  * [Crypto.org Chain Desktop Wallet](for-users/wallets/desktop\_wallet\_backup.md)
+  * [Conducting IBC Transfer with Keplr Wallet](for-users/wallets/keplr\_ibc\_guide.md)
+  * [Using Ledger Device with Keplr](for-users/wallets/keplr\_ledger\_guide.md)
+  * [Ledger Hardware Wallets with chain-maind](for-users/wallets/ledger.md)
+  * [Using Ledger device with desktop wallet](for-users/wallets/ledger\_desktop\_wallet.md)
+  * [Mainnet Address Generation](for-users/wallets/mainnet-address-generation.md)
+  * [Mainnet Address Verification](for-users/wallets/mainnet-address-verification.md)
+  * [Multisig account](for-users/wallets/multisig-account.md)
+  * [rpc](for-users/wallets/rpc.md)
 
 ## Block Explorers
 
@@ -79,4 +74,6 @@
 
 ## Crypto.org Chain Protocol
 
-* [Page 3](crypto.org-chain-protocol/page-3.md)
+* [Modules](crypto.org-chain-protocol/module\_overview/README.md)
+  * [module\_supply](crypto.org-chain-protocol/module\_overview/module\_supply.md)
+  * [module\_slashing](crypto.org-chain-protocol/module\_overview/module\_slashing.md)

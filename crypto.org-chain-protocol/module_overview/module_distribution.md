@@ -49,7 +49,7 @@ This mechanism aims to incentivize non-empty block proposals, better networking 
 
 The `community_tax` is the tax rate to the reward obtained by the validator. Specifically, part of the reward will be taxed and send to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](../../docs/chain-details/module\_gov/).
 
-Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntary, and there could be funds allocated to the community pool in the [genesis](../../docs/chain-details/genesis\_file.md).
+Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntary, and there could be funds allocated to the community pool in the [genesis](../chain-details/genesis\_file.md).
 
 #### Transactions and Queries
 

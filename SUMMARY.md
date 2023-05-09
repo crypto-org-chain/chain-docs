@@ -4,6 +4,8 @@
 
 ## Getting Started
 
+* [Introduction](getting-started/introduction.md)
+* [Architecture](getting-started/architecture.md)
 * [Getting Started](docs/getting-started/README.md)
   * [Advanced TMKMS Integration](docs/getting-started/advanced-tmkms-integration.md)
   * [Mainnet/Testnet: Running Nodes using AWS 1-click Deployment](docs/getting-started/aws-1click.md)
@@ -19,31 +21,20 @@
   * [Notes on Production Deployment](docs/getting-started/notes-on-production-deployment.md)
   * [Crypto.org Mainnet Validator Security Checklist](docs/getting-started/security-checklist.md)
   * [Token Migration Web Tool](docs/getting-started/token-migration.md)
-  * [Introduction](getting-started/getting-started/introduction.md)
 * [Upgrade Guide](getting-started/upgrade-guide/README.md)
   * [The "V4" upgrade guide (v3.\* to v4.2.2) :](getting-started/upgrade-guide/upgrade\_guide\_v4.md)
   * [The "DRACO II" upgrade guide (v2.\* to v3.3.2) :](getting-started/upgrade-guide/upgrade\_guide\_draco\_2.md)
   * [The "Canis Major" upgrade guide (v1.\* to v2.0.1) at block height 922,363:](getting-started/upgrade-guide/upgrade\_guide.md)
   * [Running "Canis Major" network upgrade with cosmovisor](getting-started/upgrade-guide/cosmovisor.md)
-* [Page 1](getting-started/page-1.md)
 
 ***
 
-* [docs](docs/README.md)
+* [Docs](docs/README.md)
   * [resources](docs/resources/README.md)
     * [Crypto.org Chain Blocks and Transactions](docs/resources/blocks-and-transactions.md)
     * [Crypto.org Chain Integration documentation](docs/resources/chain-integration.md)
-    * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](docs/resources/solo-machine.md)
-  * [chain-details](docs/chain-details/README.md)
-    * [Architecture](docs/chain-details/architecture.md)
-    * [Chain ID, Address Format and Signatures](docs/chain-details/chain-id.md)
-    * [Genesis](docs/chain-details/genesis\_file.md)
-    * [The Proposal Process](docs/chain-details/govprocess.md)
-    * [List of parameters](docs/chain-details/parameters.md)
 
 ## For Node Hosts
-
-* [Page 4](for-node-hosts/page-4.md)
 
 ## For USERS
 
@@ -80,3 +71,8 @@
 * [Chain Details](crypto.org-chain-protocol/chain-details/README.md)
   * [Protocol Documentation](crypto.org-chain-protocol/chain-details/cosmos-grpc-docs.md)
   * [Technical glossary](crypto.org-chain-protocol/chain-details/technical-glossary.md)
+  * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](crypto.org-chain-protocol/chain-details/solo-machine.md)
+  * [List of parameters](crypto.org-chain-protocol/chain-details/parameters.md)
+  * [The Proposal Process](crypto.org-chain-protocol/chain-details/govprocess.md)
+  * [Chain ID, Address Format and Signatures](crypto.org-chain-protocol/chain-details/chain-id.md)
+  * [Genesis](crypto.org-chain-protocol/chain-details/genesis\_file.md)

@@ -1,9 +1,8 @@
 # Technical glossary
 
-A | [B](#b) | [C](#c) | [D](#d) | E | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [J](#j) | K | [L](#l) | [M](#m) | [N](#n) | O | [P](#p) | [Q](#q) | [R](#r) | [S](#s) | [T](#t) | [U](#u) | [V](#v) | W | X | Y | Z
+A | [B](technical-glossary.md#b) | [C](technical-glossary.md#c) | [D](technical-glossary.md#d) | E | [F](technical-glossary.md#f) | [G](technical-glossary.md#g) | [H](technical-glossary.md#h) | [I](technical-glossary.md#i) | [J](technical-glossary.md#j) | K | [L](technical-glossary.md#l) | [M](technical-glossary.md#m) | [N](technical-glossary.md#n) | O | [P](technical-glossary.md#p) | [Q](technical-glossary.md#q) | [R](technical-glossary.md#r) | [S](technical-glossary.md#s) | [T](technical-glossary.md#t) | [U](technical-glossary.md#u) | [V](technical-glossary.md#v) | W | X | Y | Z
 
----
-
+***
 
 #### B
 
@@ -19,12 +18,9 @@ The non-transferable amount of token staked to the corresponding address and can
 
 A validator is said to make a byzantine fault when they sign conflicting messages/blocks at the same height and round.
 
-
 #### C
 
-**Chain ID**
-A unique identifier for the blockchain. Different prefixes of the Chain ID are used to distinguish between _mainnet_, _devnet_, and _testnet_. 
-For example, the Chain ID of our [testnet](https://crypto.org/docs/getting-started/croeseid-testnet.html) is `testnet-croeseid-4`.
+**Chain ID** A unique identifier for the blockchain. Different prefixes of the Chain ID are used to distinguish between _mainnet_, _devnet_, and _testnet_. For example, the Chain ID of our [testnet](https://crypto.org/docs/getting-started/croeseid-testnet.html) is `testnet-croeseid-4`.
 
 **Chain-abci**
 
@@ -32,8 +28,8 @@ The **A**pplication **B**lock**C**hain **I**nterface connects Tendermint (for co
 
 **Chain-maind**
 
-chain-maind is the all-in-one command-line interface. It supports wallet management, funds transfer, and staking operations. 
- 
+chain-maind is the all-in-one command-line interface. It supports wallet management, funds transfer, and staking operations.
+
 **Client-rpc**
 
 The JSONRPC interface of the wallet client. It can be used to be integrated with different services and also power the Sample Wallet. It provides nearly the same set of operations as Client-cli does.
@@ -46,14 +42,13 @@ The maximum daily increase of the validator’s commission. This parameter canno
 
 The process of a group of entities to agree on a particular data value, and there are a variety of algorithms used for determining consensus.
 
-**[CosmWasm](https://cosmwasm.com/)**
+[**CosmWasm**](https://cosmwasm.com/)
 
-It is a new smart contracting platform built for the cosmos ecosystem. It is written as a module that can plug into the Cosmos SDK. 
+It is a new smart contracting platform built for the cosmos ecosystem. It is written as a module that can plug into the Cosmos SDK.
 
 **Create-validator(Transaction Type: `create-validator`)**
 
 The transaction for joining the network as a validator.
-
 
 #### D
 
@@ -63,19 +58,17 @@ The transaction that delagate funds to a validator for staking purposes. Delegat
 
 **Delegator**
 
-CRO holders who do not run validator operations themselves. Users can delegate CRO to validators and obtain a part of its revenue in exchange. Because they share revenue with their validators, delegators also share responsibility. Should a validator misbehave, each of its delegators will be partially slashed in proportion to their stake. 
-
+CRO holders who do not run validator operations themselves. Users can delegate CRO to validators and obtain a part of its revenue in exchange. Because they share revenue with their validators, delegators also share responsibility. Should a validator misbehave, each of its delegators will be partially slashed in proportion to their stake.
 
 #### F
 
-**[Faucet](https://crypto.org/faucet)**
+[**Faucet**](https://crypto.org/faucet)
 
 Service carried out that dispenses funds in the form of free test token that can be used on a testnet.
 
 **Full Node**
 
-A full node is a node that participates in the network but will not help secure it. Full nodes can be used to store the entire state of a blockchain. There are two forms of state for Tendermint. First, blockchain state, this represents the blocks of a blockchain. Secondly, there is the Application state, this represents the state that transactions modify. 
-
+A full node is a node that participates in the network but will not help secure it. Full nodes can be used to store the entire state of a blockchain. There are two forms of state for Tendermint. First, blockchain state, this represents the blocks of a blockchain. Secondly, there is the Application state, this represents the state that transactions modify.
 
 #### G
 
@@ -87,17 +80,15 @@ The origin of a blockchain, also known as block 1. It can also be used to refere
 
 The process of determining what changes to the network are permissible, such as modifications to code or movement of funds. The governance system in Crypto.org Chain is on-chain and revolves around stakeholder voting.
 
-
 #### H
 
 **Hard Fork**
 
-A permanent diversion of a blockchain can occur quickly due to a high priority change in a consensus rule. This change makes all-new recordings (blocks) very different from the original blocks. Any computer that is not updated with the new technology, will find these new blocks appear invalid. 
+A permanent diversion of a blockchain can occur quickly due to a high priority change in a consensus rule. This change makes all-new recordings (blocks) very different from the original blocks. Any computer that is not updated with the new technology, will find these new blocks appear invalid.
 
 **HD Wallet**
 
-The [BIP-32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) compatible Hierarchical Deterministic (HD) wallet is a system of deriving keys from a single starting point known as a [seed](https://en.bitcoin.it/wiki/Seed_phrase). The seed can be presented in the form of a human-readable [mnemonic](#m) that can be used for easily backup and restore the wallet.
-
+The [BIP-32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) compatible Hierarchical Deterministic (HD) wallet is a system of deriving keys from a single starting point known as a [seed](https://en.bitcoin.it/wiki/Seed\_phrase). The seed can be presented in the form of a human-readable [mnemonic](technical-glossary.md#m) that can be used for easily backup and restore the wallet.
 
 #### I
 
@@ -109,14 +100,13 @@ A network structure meant to optimize the querying of information from across th
 
 The annualized rate at which CRO supply grows.
 
-**Initial Commission Rate** 
+**Initial Commission Rate**
 
 The commission rate on revenue charged to any delegator by the validator.
 
-**[Inter-Blockchain Communication Protocol (IBC)](https://ibcprotocol.org/)**
+[**Inter-Blockchain Communication Protocol (IBC)**](https://ibcprotocol.org/)
 
 IBC enables self-sovereign blockchains to connect and build strong network ecosystems, intending to end ‘network tribalism’.
-
 
 #### J
 
@@ -124,13 +114,11 @@ IBC enables self-sovereign blockchains to connect and build strong network ecosy
 
 A validator is jailed when they make a byzantine fault. Jailing also happens to low uptime. When a validator gets jailed, they cannot perform any staking related operations relating to their account.
 
-
 #### L
 
 **Liveness Faults**
 
 A validator is said to be non-live when they fail to sign at least `missed_block_threshold` blocks in the last `block_signing_window` blocks successfully.
-
 
 #### M
 
@@ -140,9 +128,9 @@ The maximum commission rate this validator candidate can charge. This parameter 
 
 **Mempool**
 
-It is the node's collection of all the unconfirmed transactions it has already seen enabling it to decide whether or not to relay a new transaction. In short, the mempool is the node's holding area for all the pending transactions. 
+It is the node's collection of all the unconfirmed transactions it has already seen enabling it to decide whether or not to relay a new transaction. In short, the mempool is the node's holding area for all the pending transactions.
 
-**Metadata** 
+**Metadata**
 
 It is used to summarize basic information about data which can make tracking and working with specific data easier. It is the data providing information about one or more aspects of the data.
 
@@ -158,7 +146,6 @@ The [BIP-39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) com
 
 Multisig (multi-signature) is a digital signature that makes it possible for multiple unique signatures to sign documents as a group. It is the [threshold multi-signature](https://blockstream.com/2019/02/18/en-musig-a-new-multisignature-standard/) addresses that require multiple keys to authorize a transaction, which means multiple keys owned by separate entities are needed to make the transaction happen in an address.
 
-
 #### N
 
 **Network ID**
@@ -167,9 +154,7 @@ The last two hex characters of the Chain ID. Using our testnet Chain ID `testnet
 
 **Non-fungible Token (NFT)**
 
-NFT represents uniquely identifiable tokens with common use cases such as art, gaming, and asset ownership. NFTs are tokenized versions of digital or real-world assets. They function as verifiable proofs of authenticity and ownership within a blockchain network. 
-
-
+NFT represents uniquely identifiable tokens with common use cases such as art, gaming, and asset ownership. NFTs are tokenized versions of digital or real-world assets. They function as verifiable proofs of authenticity and ownership within a blockchain network.
 
 #### P
 
@@ -179,13 +164,13 @@ A potential function call to be voted on in a referendum. Proposals modify the b
 
 **Proposer (of a block)**
 
-Validator can become a proposer and commit new blocks in the blockchain according to a deterministic [proposer selection procedure](https://docs.tendermint.com/master/spec/consensus/proposer-selection.html). The probability of a validator being selected as the proposer for a round is proportional to their [voting power](#v).
+Validator can become a proposer and commit new blocks in the blockchain according to a deterministic [proposer selection procedure](https://docs.tendermint.com/master/spec/consensus/proposer-selection.html). The probability of a validator being selected as the proposer for a round is proportional to their [voting power](technical-glossary.md#v).
 
 **Protocol**
 
 A system of rules that allows two or more entities of a communications system to transmit information. The protocol defines the rules, syntax, semantics and synchronization of communication and possible recovery methods.
 
-#### Q 
+#### Q
 
 **Quorum**
 
@@ -214,14 +199,13 @@ The Intel® Software Guard Extensions (SGX) is a set of instructions that increa
 **Slashing**
 
 The penalty imposed on validators' misbehavior such as byzantine faults or liveness faults, which resulted in losing some amount of their staked tokens. Below are the main faults that can result in slashing of funds for a validator and its delegators:
-- Double signing: If someone reports on chain A that a validator signed two blocks at the same height.
-- Unavailability: If a validator signature has not been included in the last X blocks, the validator will get slashed by a marginal amount proportional to X. If X is above a certain limit Y, then the validator will get unbonded.
 
+* Double signing: If someone reports on chain A that a validator signed two blocks at the same height.
+* Unavailability: If a validator signature has not been included in the last X blocks, the validator will get slashed by a marginal amount proportional to X. If X is above a certain limit Y, then the validator will get unbonded.
 
 **State (of a staking address)**
 
 The general state of a staking address that includes _nonce_, _bounded/unbonded_ amount, _validator metadata_, and _slashing related information_ (if any).
-
 
 #### T
 
@@ -241,7 +225,6 @@ The threshold is defined as the minimum proportion of Yes votes (excluding Absta
 
 The number of transactions that a blockchain network is capable of processing each second.
 
-
 **Transfer (Transaction type:`transfer`)**
 
 The transaction that transfers funds between transfer addresses.
@@ -249,7 +232,6 @@ The transaction that transfers funds between transfer addresses.
 **Transfer Address**
 
 The address for payments/value transfers. Different prefixes of the transfer address are used to distinguish between _testnet_, _devnet_, and _mainnet_.
-
 
 #### U
 
@@ -265,7 +247,6 @@ The time duration of unbonding, which is the waiting period of the stake state's
 
 The transaction to unjail a validator.
 
-
 #### V
 
 **Validator**
@@ -278,10 +259,8 @@ The key pair for signing messages from the validator. The full key pair is locat
 
 **Voting**
 
-The process of stakeholders determining whether or not a referendum should pass. 
+The process of stakeholders determining whether or not a referendum should pass.
 
 **Voting Power**
 
 The voting power is determined by the bonded amount in the validator's staking address. The probability of a validator being selected as the proposer for a round is proportional to their voting power.
-
-

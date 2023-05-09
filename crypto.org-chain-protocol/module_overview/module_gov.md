@@ -1,34 +1,36 @@
-### `gov` module
+# module\_gov
 
-### Introduction
+#### `gov` module
+
+#### Introduction
 
 The `gov` module enables on-chain governance which allows Crypto.org Chain token holder to participate in the decision-making processes. For example, users can:
 
-- Form an idea and seek the feedback;
-- Create the proposal and adjust according to feedback as needed;
-- Submit a proposal along with an initial deposit;
-- Deposit tokens and fund an active proposal;
-- Vote for an active proposal.
+* Form an idea and seek the feedback;
+* Create the proposal and adjust according to feedback as needed;
+* Submit a proposal along with an initial deposit;
+* Deposit tokens and fund an active proposal;
+* Vote for an active proposal.
 
-The details about the governance proposal process are available on [The Proposal Process page](https://crypto.org/docs/chain-details/govprocess.html). 
+The details about the governance proposal process are available on [The Proposal Process page](https://crypto.org/docs/chain-details/govprocess.html).
 
-### Overview
+#### Overview
 
-#### Network parameters
+**Network parameters**
 
 Below are all the network parameters for the `gov` module:
 
-- `deposit_params` - Deposit related parameters:
-  - `min_deposit`: Minimum deposit for a proposal to enter voting period; and
-  - `max_deposit_period`: Maximum period for Cro holders to deposit on a proposal.
-- `voting_params` - Voting related parameters
-  - `voting_period`: The length of the voting period.
-- `tally_params` - Tally related parameters
-  - `quorum`: The minimum percentage of voting power that needs to be casted on a proposal for the result to be valid;
-  - `threshold`: Minimum proportion of `Yes` votes (excluding `Abstain` votes) for the proposal to be accepted; and
-  - `veto`: Minimum proportion of `Veto` votes to total votes ratio for proposal to be vetoed.
+* `deposit_params` - Deposit related parameters:
+  * `min_deposit`: Minimum deposit for a proposal to enter voting period; and
+  * `max_deposit_period`: Maximum period for Cro holders to deposit on a proposal.
+* `voting_params` - Voting related parameters
+  * `voting_period`: The length of the voting period.
+* `tally_params` - Tally related parameters
+  * `quorum`: The minimum percentage of voting power that needs to be casted on a proposal for the result to be valid;
+  * `threshold`: Minimum proportion of `Yes` votes (excluding `Abstain` votes) for the proposal to be accepted; and
+  * `veto`: Minimum proportion of `Veto` votes to total votes ratio for proposal to be vetoed.
 
-#### The Governance Procedure
+**The Governance Procedure**
 
 **Phase 0 - Submit a proposal along with an initial deposit:**
 
@@ -44,60 +46,57 @@ During the _voting period_, staked (bonded) token will be able to participate in
 
 After the `voting_period` has passed, there are several scenarios that a proposal will consider to be fail, for example, if
 
-- No one votes (everyone `"abstain"`);
-- Votes did not reach the `quorum`;
-- More than `veto` of voters vote for `"no_with_veto"`;
-- More than `threshold` that non-abstaining voters vote `"no"`.
+* No one votes (everyone `"abstain"`);
+* Votes did not reach the `quorum`;
+* More than `veto` of voters vote for `"no_with_veto"`;
+* More than `threshold` that non-abstaining voters vote `"no"`.
 
 Otherwise, the proposal will be accepted and changes will be implemented according to the proposal.
 
-### Transactions and Queries
+#### Transactions and Queries
 
-### Transactions
+#### Transactions
 
-#### `tx gov submit-proposal` - Submit a proposal along with an initial deposit
+**`tx gov submit-proposal` - Submit a proposal along with an initial deposit**
 
-- Submit a parameter change proposal - `param-change [proposal-file]`
+*   Submit a parameter change proposal - `param-change [proposal-file]`
 
-  Users can submit a proposal to modify network parameters during run time, here is a demon proposal if we would like to change the parameter `MaxValidators` (maximum number of validator) in the `staking` module,
+    Users can submit a proposal to modify network parameters during run time, here is a demon proposal if we would like to change the parameter `MaxValidators` (maximum number of validator) in the `staking` module,
 
-  ```json
-  {
-    "title": "Staking Param Change",
-    "description": "Update max validators",
-    "changes": [
-      {
-        "subspace": "staking",
-        "key": "MaxValidators",
-        "value": 151
-      }
-    ]
-  }
-  ```
+    ```json
+    {
+      "title": "Staking Param Change",
+      "description": "Update max validators",
+      "changes": [
+        {
+          "subspace": "staking",
+          "key": "MaxValidators",
+          "value": 151
+        }
+      ]
+    }
+    ```
+*   Submit a community pool spend proposal - `community-pool-spend [proposal-file]`
 
-- Submit a community pool spend proposal - `community-pool-spend [proposal-file]`
+    Users can submit a proposal and request funds from the community pool to support their projects or other usages.
+*   Submit a software upgrade proposal- `software-upgrade [name] (--upgrade-height [height] | --upgrade-time [time]) (--upgrade-info [info])`
 
-  Users can submit a proposal and request funds from the community pool to support their projects or other usages.
+    Users can submit an upgrade proposal and suggest a software upgrade at a specific block height.
+*   Cancel the current software upgrade proposal - `cancel-software-upgrade`
 
-- Submit a software upgrade proposal- `software-upgrade [name] (--upgrade-height [height] | --upgrade-time [time]) (--upgrade-info [info])`
+    On the other hand, users can submit a proposal to cancel the planned software upgrade.
 
-  Users can submit an upgrade proposal and suggest a software upgrade at a specific block height.
-
-- Cancel the current software upgrade proposal - `cancel-software-upgrade`
-
-  On the other hand, users can submit a proposal to cancel the planned software upgrade.
-
-#### `tx gov deposit [proposal-id] [deposit]` - Deposit tokens for an active proposal
+**`tx gov deposit [proposal-id] [deposit]` - Deposit tokens for an active proposal**
 
 Users can submit a deposit transaction to fund and support an active proposal.
 
-#### `tx gov vote [proposal-id] [option]` - Vote for an active proposal
+**`tx gov vote [proposal-id] [option]` - Vote for an active proposal**
 
 Users can vote for an active proposal. Valid value of `"option"` field can be `"yes"`, `"no"`, `"no_with_veto"` and `"abstain"`.
 
-### Queries
+#### Queries
 
-#### `query gov proposals [proposal-id]` - Query proposals with optional filters
+**`query gov proposals [proposal-id]` - Query proposals with optional filters**
 
 We can check the proposal with optional filters by:
 
@@ -148,15 +147,15 @@ $ chain-maind query gov proposals -o json | jq
 
 In the above example, there is only one proposal with `"proposal_id": "1"`, with the title: `"Staking Param Change"` that change the `MaxValidators` parameter of the `staking` module to `151`. We can also see that the status of the proposal is `"PROPOSAL_STATUS_PASSED"`, which means that this proposal has bee passed.
 
-#### `query gov proposal [proposal-id]` Query details of a single proposal
+**`query gov proposal [proposal-id]` Query details of a single proposal**
 
 Similarly, we can check the details of a proposal with a given `"proposal_id"`.
 
-#### `query gov tally [proposal-id]` Get the tally of a proposal vote
+**`query gov tally [proposal-id]` Get the tally of a proposal vote**
 
 We can also the tally of a proposal with a given `"proposal_id"`.
 
-#### `query gov params` - Query the current gov parameters
+**`query gov params` - Query the current gov parameters**
 
 We can query the current gov parameters by
 
@@ -184,9 +183,9 @@ $ chain-maind query gov params --output json | jq
   }
 ```
 
-### Appendix
+#### Appendix
 
-#### `gov` module: Network Parameters and configuration
+**`gov` module: Network Parameters and configuration**
 
 The following tables show overall effects on different configurations of the gov related network parameters:
 

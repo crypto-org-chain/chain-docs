@@ -1,9298 +1,5021 @@
 # Protocol Documentation
-<a name="top"></a>
 
 ## Table of Contents
 
-- [cosmos/crypto/multisig/v1beta1/multisig.proto](#cosmos/crypto/multisig/v1beta1/multisig.proto)
-    - [CompactBitArray](#cosmos.crypto.multisig.v1beta1.CompactBitArray)
-    - [MultiSignature](#cosmos.crypto.multisig.v1beta1.MultiSignature)
-  
-- [cosmos/crypto/multisig/keys.proto](#cosmos/crypto/multisig/keys.proto)
-    - [LegacyAminoPubKey](#cosmos.crypto.multisig.LegacyAminoPubKey)
-  
-- [cosmos/crypto/secp256k1/keys.proto](#cosmos/crypto/secp256k1/keys.proto)
-    - [PrivKey](#cosmos.crypto.secp256k1.PrivKey)
-    - [PubKey](#cosmos.crypto.secp256k1.PubKey)
-  
-- [cosmos/crypto/ed25519/keys.proto](#cosmos/crypto/ed25519/keys.proto)
-    - [PrivKey](#cosmos.crypto.ed25519.PrivKey)
-    - [PubKey](#cosmos.crypto.ed25519.PubKey)
-  
-- [cosmos/upgrade/v1beta1/upgrade.proto](#cosmos/upgrade/v1beta1/upgrade.proto)
-    - [CancelSoftwareUpgradeProposal](#cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal)
-    - [Plan](#cosmos.upgrade.v1beta1.Plan)
-    - [SoftwareUpgradeProposal](#cosmos.upgrade.v1beta1.SoftwareUpgradeProposal)
-  
-- [cosmos/upgrade/v1beta1/query.proto](#cosmos/upgrade/v1beta1/query.proto)
-    - [QueryAppliedPlanRequest](#cosmos.upgrade.v1beta1.QueryAppliedPlanRequest)
-    - [QueryAppliedPlanResponse](#cosmos.upgrade.v1beta1.QueryAppliedPlanResponse)
-    - [QueryCurrentPlanRequest](#cosmos.upgrade.v1beta1.QueryCurrentPlanRequest)
-    - [QueryCurrentPlanResponse](#cosmos.upgrade.v1beta1.QueryCurrentPlanResponse)
-  
-    - [Query](#cosmos.upgrade.v1beta1.Query)
-  
-- [cosmos/mint/v1beta1/query.proto](#cosmos/mint/v1beta1/query.proto)
-    - [QueryAnnualProvisionsRequest](#cosmos.mint.v1beta1.QueryAnnualProvisionsRequest)
-    - [QueryAnnualProvisionsResponse](#cosmos.mint.v1beta1.QueryAnnualProvisionsResponse)
-    - [QueryInflationRequest](#cosmos.mint.v1beta1.QueryInflationRequest)
-    - [QueryInflationResponse](#cosmos.mint.v1beta1.QueryInflationResponse)
-    - [QueryParamsRequest](#cosmos.mint.v1beta1.QueryParamsRequest)
-    - [QueryParamsResponse](#cosmos.mint.v1beta1.QueryParamsResponse)
-  
-    - [Query](#cosmos.mint.v1beta1.Query)
-  
-- [cosmos/mint/v1beta1/genesis.proto](#cosmos/mint/v1beta1/genesis.proto)
-    - [GenesisState](#cosmos.mint.v1beta1.GenesisState)
-  
-- [cosmos/mint/v1beta1/mint.proto](#cosmos/mint/v1beta1/mint.proto)
-    - [Minter](#cosmos.mint.v1beta1.Minter)
-    - [Params](#cosmos.mint.v1beta1.Params)
-  
-- [cosmos/evidence/v1beta1/tx.proto](#cosmos/evidence/v1beta1/tx.proto)
-    - [MsgSubmitEvidence](#cosmos.evidence.v1beta1.MsgSubmitEvidence)
-    - [MsgSubmitEvidenceResponse](#cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse)
-  
-    - [Msg](#cosmos.evidence.v1beta1.Msg)
-  
-- [cosmos/evidence/v1beta1/evidence.proto](#cosmos/evidence/v1beta1/evidence.proto)
-    - [Equivocation](#cosmos.evidence.v1beta1.Equivocation)
-  
-- [cosmos/evidence/v1beta1/query.proto](#cosmos/evidence/v1beta1/query.proto)
-    - [QueryAllEvidenceRequest](#cosmos.evidence.v1beta1.QueryAllEvidenceRequest)
-    - [QueryAllEvidenceResponse](#cosmos.evidence.v1beta1.QueryAllEvidenceResponse)
-    - [QueryEvidenceRequest](#cosmos.evidence.v1beta1.QueryEvidenceRequest)
-    - [QueryEvidenceResponse](#cosmos.evidence.v1beta1.QueryEvidenceResponse)
-  
-    - [Query](#cosmos.evidence.v1beta1.Query)
-  
-- [cosmos/evidence/v1beta1/genesis.proto](#cosmos/evidence/v1beta1/genesis.proto)
-    - [GenesisState](#cosmos.evidence.v1beta1.GenesisState)
-  
-- [cosmos/auth/v1beta1/query.proto](#cosmos/auth/v1beta1/query.proto)
-    - [QueryAccountRequest](#cosmos.auth.v1beta1.QueryAccountRequest)
-    - [QueryAccountResponse](#cosmos.auth.v1beta1.QueryAccountResponse)
-    - [QueryParamsRequest](#cosmos.auth.v1beta1.QueryParamsRequest)
-    - [QueryParamsResponse](#cosmos.auth.v1beta1.QueryParamsResponse)
-  
-    - [Query](#cosmos.auth.v1beta1.Query)
-  
-- [cosmos/auth/v1beta1/genesis.proto](#cosmos/auth/v1beta1/genesis.proto)
-    - [GenesisState](#cosmos.auth.v1beta1.GenesisState)
-  
-- [cosmos/auth/v1beta1/auth.proto](#cosmos/auth/v1beta1/auth.proto)
-    - [BaseAccount](#cosmos.auth.v1beta1.BaseAccount)
-    - [ModuleAccount](#cosmos.auth.v1beta1.ModuleAccount)
-    - [Params](#cosmos.auth.v1beta1.Params)
-  
-- [cosmos/bank/v1beta1/tx.proto](#cosmos/bank/v1beta1/tx.proto)
-    - [MsgMultiSend](#cosmos.bank.v1beta1.MsgMultiSend)
-    - [MsgMultiSendResponse](#cosmos.bank.v1beta1.MsgMultiSendResponse)
-    - [MsgSend](#cosmos.bank.v1beta1.MsgSend)
-    - [MsgSendResponse](#cosmos.bank.v1beta1.MsgSendResponse)
-  
-    - [Msg](#cosmos.bank.v1beta1.Msg)
-  
-- [cosmos/bank/v1beta1/bank.proto](#cosmos/bank/v1beta1/bank.proto)
-    - [DenomUnit](#cosmos.bank.v1beta1.DenomUnit)
-    - [Input](#cosmos.bank.v1beta1.Input)
-    - [Metadata](#cosmos.bank.v1beta1.Metadata)
-    - [Output](#cosmos.bank.v1beta1.Output)
-    - [Params](#cosmos.bank.v1beta1.Params)
-    - [SendEnabled](#cosmos.bank.v1beta1.SendEnabled)
-    - [Supply](#cosmos.bank.v1beta1.Supply)
-  
-- [cosmos/bank/v1beta1/query.proto](#cosmos/bank/v1beta1/query.proto)
-    - [QueryAllBalancesRequest](#cosmos.bank.v1beta1.QueryAllBalancesRequest)
-    - [QueryAllBalancesResponse](#cosmos.bank.v1beta1.QueryAllBalancesResponse)
-    - [QueryBalanceRequest](#cosmos.bank.v1beta1.QueryBalanceRequest)
-    - [QueryBalanceResponse](#cosmos.bank.v1beta1.QueryBalanceResponse)
-    - [QueryParamsRequest](#cosmos.bank.v1beta1.QueryParamsRequest)
-    - [QueryParamsResponse](#cosmos.bank.v1beta1.QueryParamsResponse)
-    - [QuerySupplyOfRequest](#cosmos.bank.v1beta1.QuerySupplyOfRequest)
-    - [QuerySupplyOfResponse](#cosmos.bank.v1beta1.QuerySupplyOfResponse)
-    - [QueryTotalSupplyRequest](#cosmos.bank.v1beta1.QueryTotalSupplyRequest)
-    - [QueryTotalSupplyResponse](#cosmos.bank.v1beta1.QueryTotalSupplyResponse)
-  
-    - [Query](#cosmos.bank.v1beta1.Query)
-  
-- [cosmos/bank/v1beta1/genesis.proto](#cosmos/bank/v1beta1/genesis.proto)
-    - [Balance](#cosmos.bank.v1beta1.Balance)
-    - [GenesisState](#cosmos.bank.v1beta1.GenesisState)
-  
-- [cosmos/capability/v1beta1/capability.proto](#cosmos/capability/v1beta1/capability.proto)
-    - [Capability](#cosmos.capability.v1beta1.Capability)
-    - [CapabilityOwners](#cosmos.capability.v1beta1.CapabilityOwners)
-    - [Owner](#cosmos.capability.v1beta1.Owner)
-  
-- [cosmos/capability/v1beta1/genesis.proto](#cosmos/capability/v1beta1/genesis.proto)
-    - [GenesisOwners](#cosmos.capability.v1beta1.GenesisOwners)
-    - [GenesisState](#cosmos.capability.v1beta1.GenesisState)
-  
-- [cosmos/distribution/v1beta1/tx.proto](#cosmos/distribution/v1beta1/tx.proto)
-    - [MsgFundCommunityPool](#cosmos.distribution.v1beta1.MsgFundCommunityPool)
-    - [MsgFundCommunityPoolResponse](#cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse)
-    - [MsgSetWithdrawAddress](#cosmos.distribution.v1beta1.MsgSetWithdrawAddress)
-    - [MsgSetWithdrawAddressResponse](#cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse)
-    - [MsgWithdrawDelegatorReward](#cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward)
-    - [MsgWithdrawDelegatorRewardResponse](#cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse)
-    - [MsgWithdrawValidatorCommission](#cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission)
-    - [MsgWithdrawValidatorCommissionResponse](#cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse)
-  
-    - [Msg](#cosmos.distribution.v1beta1.Msg)
-  
-- [cosmos/distribution/v1beta1/distribution.proto](#cosmos/distribution/v1beta1/distribution.proto)
-    - [CommunityPoolSpendProposal](#cosmos.distribution.v1beta1.CommunityPoolSpendProposal)
-    - [CommunityPoolSpendProposalWithDeposit](#cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit)
-    - [DelegationDelegatorReward](#cosmos.distribution.v1beta1.DelegationDelegatorReward)
-    - [DelegatorStartingInfo](#cosmos.distribution.v1beta1.DelegatorStartingInfo)
-    - [FeePool](#cosmos.distribution.v1beta1.FeePool)
-    - [Params](#cosmos.distribution.v1beta1.Params)
-    - [ValidatorAccumulatedCommission](#cosmos.distribution.v1beta1.ValidatorAccumulatedCommission)
-    - [ValidatorCurrentRewards](#cosmos.distribution.v1beta1.ValidatorCurrentRewards)
-    - [ValidatorHistoricalRewards](#cosmos.distribution.v1beta1.ValidatorHistoricalRewards)
-    - [ValidatorOutstandingRewards](#cosmos.distribution.v1beta1.ValidatorOutstandingRewards)
-    - [ValidatorSlashEvent](#cosmos.distribution.v1beta1.ValidatorSlashEvent)
-    - [ValidatorSlashEvents](#cosmos.distribution.v1beta1.ValidatorSlashEvents)
-  
-- [cosmos/distribution/v1beta1/query.proto](#cosmos/distribution/v1beta1/query.proto)
-    - [QueryCommunityPoolRequest](#cosmos.distribution.v1beta1.QueryCommunityPoolRequest)
-    - [QueryCommunityPoolResponse](#cosmos.distribution.v1beta1.QueryCommunityPoolResponse)
-    - [QueryDelegationRewardsRequest](#cosmos.distribution.v1beta1.QueryDelegationRewardsRequest)
-    - [QueryDelegationRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegationRewardsResponse)
-    - [QueryDelegationTotalRewardsRequest](#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest)
-    - [QueryDelegationTotalRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse)
-    - [QueryDelegatorValidatorsRequest](#cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest)
-    - [QueryDelegatorValidatorsResponse](#cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse)
-    - [QueryDelegatorWithdrawAddressRequest](#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest)
-    - [QueryDelegatorWithdrawAddressResponse](#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse)
-    - [QueryParamsRequest](#cosmos.distribution.v1beta1.QueryParamsRequest)
-    - [QueryParamsResponse](#cosmos.distribution.v1beta1.QueryParamsResponse)
-    - [QueryValidatorCommissionRequest](#cosmos.distribution.v1beta1.QueryValidatorCommissionRequest)
-    - [QueryValidatorCommissionResponse](#cosmos.distribution.v1beta1.QueryValidatorCommissionResponse)
-    - [QueryValidatorOutstandingRewardsRequest](#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest)
-    - [QueryValidatorOutstandingRewardsResponse](#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse)
-    - [QueryValidatorSlashesRequest](#cosmos.distribution.v1beta1.QueryValidatorSlashesRequest)
-    - [QueryValidatorSlashesResponse](#cosmos.distribution.v1beta1.QueryValidatorSlashesResponse)
-  
-    - [Query](#cosmos.distribution.v1beta1.Query)
-  
-- [cosmos/distribution/v1beta1/genesis.proto](#cosmos/distribution/v1beta1/genesis.proto)
-    - [DelegatorStartingInfoRecord](#cosmos.distribution.v1beta1.DelegatorStartingInfoRecord)
-    - [DelegatorWithdrawInfo](#cosmos.distribution.v1beta1.DelegatorWithdrawInfo)
-    - [GenesisState](#cosmos.distribution.v1beta1.GenesisState)
-    - [ValidatorAccumulatedCommissionRecord](#cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord)
-    - [ValidatorCurrentRewardsRecord](#cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord)
-    - [ValidatorHistoricalRewardsRecord](#cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord)
-    - [ValidatorOutstandingRewardsRecord](#cosmos.distribution.v1beta1.ValidatorOutstandingRewardsRecord)
-    - [ValidatorSlashEventRecord](#cosmos.distribution.v1beta1.ValidatorSlashEventRecord)
-  
-- [cosmos/crisis/v1beta1/tx.proto](#cosmos/crisis/v1beta1/tx.proto)
-    - [MsgVerifyInvariant](#cosmos.crisis.v1beta1.MsgVerifyInvariant)
-    - [MsgVerifyInvariantResponse](#cosmos.crisis.v1beta1.MsgVerifyInvariantResponse)
-  
-    - [Msg](#cosmos.crisis.v1beta1.Msg)
-  
-- [cosmos/crisis/v1beta1/genesis.proto](#cosmos/crisis/v1beta1/genesis.proto)
-    - [GenesisState](#cosmos.crisis.v1beta1.GenesisState)
-  
-- [cosmos/tx/signing/v1beta1/signing.proto](#cosmos/tx/signing/v1beta1/signing.proto)
-    - [SignatureDescriptor](#cosmos.tx.signing.v1beta1.SignatureDescriptor)
-    - [SignatureDescriptor.Data](#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data)
-    - [SignatureDescriptor.Data.Multi](#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi)
-    - [SignatureDescriptor.Data.Single](#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single)
-    - [SignatureDescriptors](#cosmos.tx.signing.v1beta1.SignatureDescriptors)
-  
-    - [SignMode](#cosmos.tx.signing.v1beta1.SignMode)
-  
-- [cosmos/tx/v1beta1/tx.proto](#cosmos/tx/v1beta1/tx.proto)
-    - [AuthInfo](#cosmos.tx.v1beta1.AuthInfo)
-    - [Fee](#cosmos.tx.v1beta1.Fee)
-    - [ModeInfo](#cosmos.tx.v1beta1.ModeInfo)
-    - [ModeInfo.Multi](#cosmos.tx.v1beta1.ModeInfo.Multi)
-    - [ModeInfo.Single](#cosmos.tx.v1beta1.ModeInfo.Single)
-    - [SignDoc](#cosmos.tx.v1beta1.SignDoc)
-    - [SignerInfo](#cosmos.tx.v1beta1.SignerInfo)
-    - [Tx](#cosmos.tx.v1beta1.Tx)
-    - [TxBody](#cosmos.tx.v1beta1.TxBody)
-    - [TxRaw](#cosmos.tx.v1beta1.TxRaw)
-  
-- [cosmos/vesting/v1beta1/tx.proto](#cosmos/vesting/v1beta1/tx.proto)
-    - [MsgCreateVestingAccount](#cosmos.vesting.v1beta1.MsgCreateVestingAccount)
-    - [MsgCreateVestingAccountResponse](#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse)
-  
-    - [Msg](#cosmos.vesting.v1beta1.Msg)
-  
-- [cosmos/vesting/v1beta1/vesting.proto](#cosmos/vesting/v1beta1/vesting.proto)
-    - [BaseVestingAccount](#cosmos.vesting.v1beta1.BaseVestingAccount)
-    - [ContinuousVestingAccount](#cosmos.vesting.v1beta1.ContinuousVestingAccount)
-    - [DelayedVestingAccount](#cosmos.vesting.v1beta1.DelayedVestingAccount)
-    - [Period](#cosmos.vesting.v1beta1.Period)
-    - [PeriodicVestingAccount](#cosmos.vesting.v1beta1.PeriodicVestingAccount)
-  
-- [cosmos/staking/v1beta1/tx.proto](#cosmos/staking/v1beta1/tx.proto)
-    - [MsgBeginRedelegate](#cosmos.staking.v1beta1.MsgBeginRedelegate)
-    - [MsgBeginRedelegateResponse](#cosmos.staking.v1beta1.MsgBeginRedelegateResponse)
-    - [MsgCreateValidator](#cosmos.staking.v1beta1.MsgCreateValidator)
-    - [MsgCreateValidatorResponse](#cosmos.staking.v1beta1.MsgCreateValidatorResponse)
-    - [MsgDelegate](#cosmos.staking.v1beta1.MsgDelegate)
-    - [MsgDelegateResponse](#cosmos.staking.v1beta1.MsgDelegateResponse)
-    - [MsgEditValidator](#cosmos.staking.v1beta1.MsgEditValidator)
-    - [MsgEditValidatorResponse](#cosmos.staking.v1beta1.MsgEditValidatorResponse)
-    - [MsgUndelegate](#cosmos.staking.v1beta1.MsgUndelegate)
-    - [MsgUndelegateResponse](#cosmos.staking.v1beta1.MsgUndelegateResponse)
-  
-    - [Msg](#cosmos.staking.v1beta1.Msg)
-  
-- [cosmos/staking/v1beta1/query.proto](#cosmos/staking/v1beta1/query.proto)
-    - [QueryDelegationRequest](#cosmos.staking.v1beta1.QueryDelegationRequest)
-    - [QueryDelegationResponse](#cosmos.staking.v1beta1.QueryDelegationResponse)
-    - [QueryDelegatorDelegationsRequest](#cosmos.staking.v1beta1.QueryDelegatorDelegationsRequest)
-    - [QueryDelegatorDelegationsResponse](#cosmos.staking.v1beta1.QueryDelegatorDelegationsResponse)
-    - [QueryDelegatorUnbondingDelegationsRequest](#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsRequest)
-    - [QueryDelegatorUnbondingDelegationsResponse](#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponse)
-    - [QueryDelegatorValidatorRequest](#cosmos.staking.v1beta1.QueryDelegatorValidatorRequest)
-    - [QueryDelegatorValidatorResponse](#cosmos.staking.v1beta1.QueryDelegatorValidatorResponse)
-    - [QueryDelegatorValidatorsRequest](#cosmos.staking.v1beta1.QueryDelegatorValidatorsRequest)
-    - [QueryDelegatorValidatorsResponse](#cosmos.staking.v1beta1.QueryDelegatorValidatorsResponse)
-    - [QueryHistoricalInfoRequest](#cosmos.staking.v1beta1.QueryHistoricalInfoRequest)
-    - [QueryHistoricalInfoResponse](#cosmos.staking.v1beta1.QueryHistoricalInfoResponse)
-    - [QueryParamsRequest](#cosmos.staking.v1beta1.QueryParamsRequest)
-    - [QueryParamsResponse](#cosmos.staking.v1beta1.QueryParamsResponse)
-    - [QueryPoolRequest](#cosmos.staking.v1beta1.QueryPoolRequest)
-    - [QueryPoolResponse](#cosmos.staking.v1beta1.QueryPoolResponse)
-    - [QueryRedelegationsRequest](#cosmos.staking.v1beta1.QueryRedelegationsRequest)
-    - [QueryRedelegationsResponse](#cosmos.staking.v1beta1.QueryRedelegationsResponse)
-    - [QueryUnbondingDelegationRequest](#cosmos.staking.v1beta1.QueryUnbondingDelegationRequest)
-    - [QueryUnbondingDelegationResponse](#cosmos.staking.v1beta1.QueryUnbondingDelegationResponse)
-    - [QueryValidatorDelegationsRequest](#cosmos.staking.v1beta1.QueryValidatorDelegationsRequest)
-    - [QueryValidatorDelegationsResponse](#cosmos.staking.v1beta1.QueryValidatorDelegationsResponse)
-    - [QueryValidatorRequest](#cosmos.staking.v1beta1.QueryValidatorRequest)
-    - [QueryValidatorResponse](#cosmos.staking.v1beta1.QueryValidatorResponse)
-    - [QueryValidatorUnbondingDelegationsRequest](#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsRequest)
-    - [QueryValidatorUnbondingDelegationsResponse](#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsResponse)
-    - [QueryValidatorsRequest](#cosmos.staking.v1beta1.QueryValidatorsRequest)
-    - [QueryValidatorsResponse](#cosmos.staking.v1beta1.QueryValidatorsResponse)
-  
-    - [Query](#cosmos.staking.v1beta1.Query)
-  
-- [cosmos/staking/v1beta1/genesis.proto](#cosmos/staking/v1beta1/genesis.proto)
-    - [GenesisState](#cosmos.staking.v1beta1.GenesisState)
-    - [LastValidatorPower](#cosmos.staking.v1beta1.LastValidatorPower)
-  
-- [cosmos/staking/v1beta1/staking.proto](#cosmos/staking/v1beta1/staking.proto)
-    - [Commission](#cosmos.staking.v1beta1.Commission)
-    - [CommissionRates](#cosmos.staking.v1beta1.CommissionRates)
-    - [DVPair](#cosmos.staking.v1beta1.DVPair)
-    - [DVPairs](#cosmos.staking.v1beta1.DVPairs)
-    - [DVVTriplet](#cosmos.staking.v1beta1.DVVTriplet)
-    - [DVVTriplets](#cosmos.staking.v1beta1.DVVTriplets)
-    - [Delegation](#cosmos.staking.v1beta1.Delegation)
-    - [DelegationResponse](#cosmos.staking.v1beta1.DelegationResponse)
-    - [Description](#cosmos.staking.v1beta1.Description)
-    - [HistoricalInfo](#cosmos.staking.v1beta1.HistoricalInfo)
-    - [Params](#cosmos.staking.v1beta1.Params)
-    - [Pool](#cosmos.staking.v1beta1.Pool)
-    - [Redelegation](#cosmos.staking.v1beta1.Redelegation)
-    - [RedelegationEntry](#cosmos.staking.v1beta1.RedelegationEntry)
-    - [RedelegationEntryResponse](#cosmos.staking.v1beta1.RedelegationEntryResponse)
-    - [RedelegationResponse](#cosmos.staking.v1beta1.RedelegationResponse)
-    - [UnbondingDelegation](#cosmos.staking.v1beta1.UnbondingDelegation)
-    - [UnbondingDelegationEntry](#cosmos.staking.v1beta1.UnbondingDelegationEntry)
-    - [ValAddresses](#cosmos.staking.v1beta1.ValAddresses)
-    - [Validator](#cosmos.staking.v1beta1.Validator)
-  
-    - [BondStatus](#cosmos.staking.v1beta1.BondStatus)
-  
-- [cosmos/genutil/v1beta1/genesis.proto](#cosmos/genutil/v1beta1/genesis.proto)
-    - [GenesisState](#cosmos.genutil.v1beta1.GenesisState)
-  
-- [cosmos/params/v1beta1/query.proto](#cosmos/params/v1beta1/query.proto)
-    - [QueryParamsRequest](#cosmos.params.v1beta1.QueryParamsRequest)
-    - [QueryParamsResponse](#cosmos.params.v1beta1.QueryParamsResponse)
-  
-    - [Query](#cosmos.params.v1beta1.Query)
-  
-- [cosmos/params/v1beta1/params.proto](#cosmos/params/v1beta1/params.proto)
-    - [ParamChange](#cosmos.params.v1beta1.ParamChange)
-    - [ParameterChangeProposal](#cosmos.params.v1beta1.ParameterChangeProposal)
-  
-- [cosmos/slashing/v1beta1/tx.proto](#cosmos/slashing/v1beta1/tx.proto)
-    - [MsgUnjail](#cosmos.slashing.v1beta1.MsgUnjail)
-    - [MsgUnjailResponse](#cosmos.slashing.v1beta1.MsgUnjailResponse)
-  
-    - [Msg](#cosmos.slashing.v1beta1.Msg)
-  
-- [cosmos/slashing/v1beta1/slashing.proto](#cosmos/slashing/v1beta1/slashing.proto)
-    - [Params](#cosmos.slashing.v1beta1.Params)
-    - [ValidatorSigningInfo](#cosmos.slashing.v1beta1.ValidatorSigningInfo)
-  
-- [cosmos/slashing/v1beta1/query.proto](#cosmos/slashing/v1beta1/query.proto)
-    - [QueryParamsRequest](#cosmos.slashing.v1beta1.QueryParamsRequest)
-    - [QueryParamsResponse](#cosmos.slashing.v1beta1.QueryParamsResponse)
-    - [QuerySigningInfoRequest](#cosmos.slashing.v1beta1.QuerySigningInfoRequest)
-    - [QuerySigningInfoResponse](#cosmos.slashing.v1beta1.QuerySigningInfoResponse)
-    - [QuerySigningInfosRequest](#cosmos.slashing.v1beta1.QuerySigningInfosRequest)
-    - [QuerySigningInfosResponse](#cosmos.slashing.v1beta1.QuerySigningInfosResponse)
-  
-    - [Query](#cosmos.slashing.v1beta1.Query)
-  
-- [cosmos/slashing/v1beta1/genesis.proto](#cosmos/slashing/v1beta1/genesis.proto)
-    - [GenesisState](#cosmos.slashing.v1beta1.GenesisState)
-    - [MissedBlock](#cosmos.slashing.v1beta1.MissedBlock)
-    - [SigningInfo](#cosmos.slashing.v1beta1.SigningInfo)
-    - [ValidatorMissedBlocks](#cosmos.slashing.v1beta1.ValidatorMissedBlocks)
-  
-- [cosmos/base/abci/v1beta1/abci.proto](#cosmos/base/abci/v1beta1/abci.proto)
-    - [ABCIMessageLog](#cosmos.base.abci.v1beta1.ABCIMessageLog)
-    - [Attribute](#cosmos.base.abci.v1beta1.Attribute)
-    - [GasInfo](#cosmos.base.abci.v1beta1.GasInfo)
-    - [MsgData](#cosmos.base.abci.v1beta1.MsgData)
-    - [Result](#cosmos.base.abci.v1beta1.Result)
-    - [SearchTxsResult](#cosmos.base.abci.v1beta1.SearchTxsResult)
-    - [SimulationResponse](#cosmos.base.abci.v1beta1.SimulationResponse)
-    - [StringEvent](#cosmos.base.abci.v1beta1.StringEvent)
-    - [TxMsgData](#cosmos.base.abci.v1beta1.TxMsgData)
-    - [TxResponse](#cosmos.base.abci.v1beta1.TxResponse)
-  
-- [cosmos/base/kv/v1beta1/kv.proto](#cosmos/base/kv/v1beta1/kv.proto)
-    - [Pair](#cosmos.base.kv.v1beta1.Pair)
-    - [Pairs](#cosmos.base.kv.v1beta1.Pairs)
-  
-- [cosmos/base/snapshots/v1beta1/snapshot.proto](#cosmos/base/snapshots/v1beta1/snapshot.proto)
-    - [Metadata](#cosmos.base.snapshots.v1beta1.Metadata)
-    - [Snapshot](#cosmos.base.snapshots.v1beta1.Snapshot)
-  
-- [cosmos/base/simulate/v1beta1/simulate.proto](#cosmos/base/simulate/v1beta1/simulate.proto)
-    - [SimulateRequest](#cosmos.base.simulate.v1beta1.SimulateRequest)
-    - [SimulateResponse](#cosmos.base.simulate.v1beta1.SimulateResponse)
-  
-    - [SimulateService](#cosmos.base.simulate.v1beta1.SimulateService)
-  
-- [cosmos/base/v1beta1/coin.proto](#cosmos/base/v1beta1/coin.proto)
-    - [Coin](#cosmos.base.v1beta1.Coin)
-    - [DecCoin](#cosmos.base.v1beta1.DecCoin)
-    - [DecProto](#cosmos.base.v1beta1.DecProto)
-    - [IntProto](#cosmos.base.v1beta1.IntProto)
-  
-- [cosmos/base/query/v1beta1/pagination.proto](#cosmos/base/query/v1beta1/pagination.proto)
-    - [PageRequest](#cosmos.base.query.v1beta1.PageRequest)
-    - [PageResponse](#cosmos.base.query.v1beta1.PageResponse)
-  
-- [cosmos/base/store/v1beta1/commit_info.proto](#cosmos/base/store/v1beta1/commit_info.proto)
-    - [CommitID](#cosmos.base.store.v1beta1.CommitID)
-    - [CommitInfo](#cosmos.base.store.v1beta1.CommitInfo)
-    - [StoreInfo](#cosmos.base.store.v1beta1.StoreInfo)
-  
-- [cosmos/base/store/v1beta1/snapshot.proto](#cosmos/base/store/v1beta1/snapshot.proto)
-    - [SnapshotIAVLItem](#cosmos.base.store.v1beta1.SnapshotIAVLItem)
-    - [SnapshotItem](#cosmos.base.store.v1beta1.SnapshotItem)
-    - [SnapshotStoreItem](#cosmos.base.store.v1beta1.SnapshotStoreItem)
-  
-- [cosmos/base/reflection/v1beta1/reflection.proto](#cosmos/base/reflection/v1beta1/reflection.proto)
-    - [ListAllInterfacesRequest](#cosmos.base.reflection.v1beta1.ListAllInterfacesRequest)
-    - [ListAllInterfacesResponse](#cosmos.base.reflection.v1beta1.ListAllInterfacesResponse)
-    - [ListImplementationsRequest](#cosmos.base.reflection.v1beta1.ListImplementationsRequest)
-    - [ListImplementationsResponse](#cosmos.base.reflection.v1beta1.ListImplementationsResponse)
-  
-    - [ReflectionService](#cosmos.base.reflection.v1beta1.ReflectionService)
-  
-- [cosmos/gov/v1beta1/tx.proto](#cosmos/gov/v1beta1/tx.proto)
-    - [MsgDeposit](#cosmos.gov.v1beta1.MsgDeposit)
-    - [MsgDepositResponse](#cosmos.gov.v1beta1.MsgDepositResponse)
-    - [MsgSubmitProposal](#cosmos.gov.v1beta1.MsgSubmitProposal)
-    - [MsgSubmitProposalResponse](#cosmos.gov.v1beta1.MsgSubmitProposalResponse)
-    - [MsgVote](#cosmos.gov.v1beta1.MsgVote)
-    - [MsgVoteResponse](#cosmos.gov.v1beta1.MsgVoteResponse)
-  
-    - [Msg](#cosmos.gov.v1beta1.Msg)
-  
-- [cosmos/gov/v1beta1/gov.proto](#cosmos/gov/v1beta1/gov.proto)
-    - [Deposit](#cosmos.gov.v1beta1.Deposit)
-    - [DepositParams](#cosmos.gov.v1beta1.DepositParams)
-    - [Proposal](#cosmos.gov.v1beta1.Proposal)
-    - [TallyParams](#cosmos.gov.v1beta1.TallyParams)
-    - [TallyResult](#cosmos.gov.v1beta1.TallyResult)
-    - [TextProposal](#cosmos.gov.v1beta1.TextProposal)
-    - [Vote](#cosmos.gov.v1beta1.Vote)
-    - [VotingParams](#cosmos.gov.v1beta1.VotingParams)
-  
-    - [ProposalStatus](#cosmos.gov.v1beta1.ProposalStatus)
-    - [VoteOption](#cosmos.gov.v1beta1.VoteOption)
-  
-- [cosmos/gov/v1beta1/query.proto](#cosmos/gov/v1beta1/query.proto)
-    - [QueryDepositRequest](#cosmos.gov.v1beta1.QueryDepositRequest)
-    - [QueryDepositResponse](#cosmos.gov.v1beta1.QueryDepositResponse)
-    - [QueryDepositsRequest](#cosmos.gov.v1beta1.QueryDepositsRequest)
-    - [QueryDepositsResponse](#cosmos.gov.v1beta1.QueryDepositsResponse)
-    - [QueryParamsRequest](#cosmos.gov.v1beta1.QueryParamsRequest)
-    - [QueryParamsResponse](#cosmos.gov.v1beta1.QueryParamsResponse)
-    - [QueryProposalRequest](#cosmos.gov.v1beta1.QueryProposalRequest)
-    - [QueryProposalResponse](#cosmos.gov.v1beta1.QueryProposalResponse)
-    - [QueryProposalsRequest](#cosmos.gov.v1beta1.QueryProposalsRequest)
-    - [QueryProposalsResponse](#cosmos.gov.v1beta1.QueryProposalsResponse)
-    - [QueryTallyResultRequest](#cosmos.gov.v1beta1.QueryTallyResultRequest)
-    - [QueryTallyResultResponse](#cosmos.gov.v1beta1.QueryTallyResultResponse)
-    - [QueryVoteRequest](#cosmos.gov.v1beta1.QueryVoteRequest)
-    - [QueryVoteResponse](#cosmos.gov.v1beta1.QueryVoteResponse)
-    - [QueryVotesRequest](#cosmos.gov.v1beta1.QueryVotesRequest)
-    - [QueryVotesResponse](#cosmos.gov.v1beta1.QueryVotesResponse)
-  
-    - [Query](#cosmos.gov.v1beta1.Query)
-  
-- [cosmos/gov/v1beta1/genesis.proto](#cosmos/gov/v1beta1/genesis.proto)
-    - [GenesisState](#cosmos.gov.v1beta1.GenesisState)
-  
-- [ibc/core/types/v1/genesis.proto](#ibc/core/types/v1/genesis.proto)
-    - [GenesisState](#ibc.core.types.v1.GenesisState)
-  
-- [ibc/core/connection/v1/query.proto](#ibc/core/connection/v1/query.proto)
-    - [QueryClientConnectionsRequest](#ibc.core.connection.v1.QueryClientConnectionsRequest)
-    - [QueryClientConnectionsResponse](#ibc.core.connection.v1.QueryClientConnectionsResponse)
-    - [QueryConnectionClientStateRequest](#ibc.core.connection.v1.QueryConnectionClientStateRequest)
-    - [QueryConnectionClientStateResponse](#ibc.core.connection.v1.QueryConnectionClientStateResponse)
-    - [QueryConnectionConsensusStateRequest](#ibc.core.connection.v1.QueryConnectionConsensusStateRequest)
-    - [QueryConnectionConsensusStateResponse](#ibc.core.connection.v1.QueryConnectionConsensusStateResponse)
-    - [QueryConnectionRequest](#ibc.core.connection.v1.QueryConnectionRequest)
-    - [QueryConnectionResponse](#ibc.core.connection.v1.QueryConnectionResponse)
-    - [QueryConnectionsRequest](#ibc.core.connection.v1.QueryConnectionsRequest)
-    - [QueryConnectionsResponse](#ibc.core.connection.v1.QueryConnectionsResponse)
-  
-    - [Query](#ibc.core.connection.v1.Query)
-  
-- [ibc/core/connection/v1/connection.proto](#ibc/core/connection/v1/connection.proto)
-    - [ClientPaths](#ibc.core.connection.v1.ClientPaths)
-    - [ConnectionEnd](#ibc.core.connection.v1.ConnectionEnd)
-    - [ConnectionPaths](#ibc.core.connection.v1.ConnectionPaths)
-    - [Counterparty](#ibc.core.connection.v1.Counterparty)
-    - [IdentifiedConnection](#ibc.core.connection.v1.IdentifiedConnection)
-    - [MsgConnectionOpenAck](#ibc.core.connection.v1.MsgConnectionOpenAck)
-    - [MsgConnectionOpenAckResponse](#ibc.core.connection.v1.MsgConnectionOpenAckResponse)
-    - [MsgConnectionOpenConfirm](#ibc.core.connection.v1.MsgConnectionOpenConfirm)
-    - [MsgConnectionOpenConfirmResponse](#ibc.core.connection.v1.MsgConnectionOpenConfirmResponse)
-    - [MsgConnectionOpenInit](#ibc.core.connection.v1.MsgConnectionOpenInit)
-    - [MsgConnectionOpenInitResponse](#ibc.core.connection.v1.MsgConnectionOpenInitResponse)
-    - [MsgConnectionOpenTry](#ibc.core.connection.v1.MsgConnectionOpenTry)
-    - [MsgConnectionOpenTryResponse](#ibc.core.connection.v1.MsgConnectionOpenTryResponse)
-    - [Version](#ibc.core.connection.v1.Version)
-  
-    - [State](#ibc.core.connection.v1.State)
-  
-    - [Msg](#ibc.core.connection.v1.Msg)
-  
-- [ibc/core/connection/v1/genesis.proto](#ibc/core/connection/v1/genesis.proto)
-    - [GenesisState](#ibc.core.connection.v1.GenesisState)
-  
-- [ibc/core/commitment/v1/commitment.proto](#ibc/core/commitment/v1/commitment.proto)
-    - [Key](#ibc.core.commitment.v1.Key)
-    - [KeyPath](#ibc.core.commitment.v1.KeyPath)
-    - [MerklePath](#ibc.core.commitment.v1.MerklePath)
-    - [MerklePrefix](#ibc.core.commitment.v1.MerklePrefix)
-    - [MerkleProof](#ibc.core.commitment.v1.MerkleProof)
-    - [MerkleRoot](#ibc.core.commitment.v1.MerkleRoot)
-  
-    - [KeyEncoding](#ibc.core.commitment.v1.KeyEncoding)
-  
-- [ibc/core/channel/v1/query.proto](#ibc/core/channel/v1/query.proto)
-    - [QueryChannelClientStateRequest](#ibc.core.channel.v1.QueryChannelClientStateRequest)
-    - [QueryChannelClientStateResponse](#ibc.core.channel.v1.QueryChannelClientStateResponse)
-    - [QueryChannelConsensusStateRequest](#ibc.core.channel.v1.QueryChannelConsensusStateRequest)
-    - [QueryChannelConsensusStateResponse](#ibc.core.channel.v1.QueryChannelConsensusStateResponse)
-    - [QueryChannelRequest](#ibc.core.channel.v1.QueryChannelRequest)
-    - [QueryChannelResponse](#ibc.core.channel.v1.QueryChannelResponse)
-    - [QueryChannelsRequest](#ibc.core.channel.v1.QueryChannelsRequest)
-    - [QueryChannelsResponse](#ibc.core.channel.v1.QueryChannelsResponse)
-    - [QueryConnectionChannelsRequest](#ibc.core.channel.v1.QueryConnectionChannelsRequest)
-    - [QueryConnectionChannelsResponse](#ibc.core.channel.v1.QueryConnectionChannelsResponse)
-    - [QueryNextSequenceReceiveRequest](#ibc.core.channel.v1.QueryNextSequenceReceiveRequest)
-    - [QueryNextSequenceReceiveResponse](#ibc.core.channel.v1.QueryNextSequenceReceiveResponse)
-    - [QueryPacketAcknowledgementRequest](#ibc.core.channel.v1.QueryPacketAcknowledgementRequest)
-    - [QueryPacketAcknowledgementResponse](#ibc.core.channel.v1.QueryPacketAcknowledgementResponse)
-    - [QueryPacketCommitmentRequest](#ibc.core.channel.v1.QueryPacketCommitmentRequest)
-    - [QueryPacketCommitmentResponse](#ibc.core.channel.v1.QueryPacketCommitmentResponse)
-    - [QueryPacketCommitmentsRequest](#ibc.core.channel.v1.QueryPacketCommitmentsRequest)
-    - [QueryPacketCommitmentsResponse](#ibc.core.channel.v1.QueryPacketCommitmentsResponse)
-    - [QueryUnreceivedPacketsRequest](#ibc.core.channel.v1.QueryUnreceivedPacketsRequest)
-    - [QueryUnreceivedPacketsResponse](#ibc.core.channel.v1.QueryUnreceivedPacketsResponse)
-    - [QueryUnrelayedAcksRequest](#ibc.core.channel.v1.QueryUnrelayedAcksRequest)
-    - [QueryUnrelayedAcksResponse](#ibc.core.channel.v1.QueryUnrelayedAcksResponse)
-  
-    - [Query](#ibc.core.channel.v1.Query)
-  
-- [ibc/core/channel/v1/genesis.proto](#ibc/core/channel/v1/genesis.proto)
-    - [GenesisState](#ibc.core.channel.v1.GenesisState)
-    - [PacketSequence](#ibc.core.channel.v1.PacketSequence)
-  
-- [ibc/core/channel/v1/channel.proto](#ibc/core/channel/v1/channel.proto)
-    - [Acknowledgement](#ibc.core.channel.v1.Acknowledgement)
-    - [Channel](#ibc.core.channel.v1.Channel)
-    - [Counterparty](#ibc.core.channel.v1.Counterparty)
-    - [IdentifiedChannel](#ibc.core.channel.v1.IdentifiedChannel)
-    - [MsgAcknowledgement](#ibc.core.channel.v1.MsgAcknowledgement)
-    - [MsgAcknowledgementResponse](#ibc.core.channel.v1.MsgAcknowledgementResponse)
-    - [MsgChannelCloseConfirm](#ibc.core.channel.v1.MsgChannelCloseConfirm)
-    - [MsgChannelCloseConfirmResponse](#ibc.core.channel.v1.MsgChannelCloseConfirmResponse)
-    - [MsgChannelCloseInit](#ibc.core.channel.v1.MsgChannelCloseInit)
-    - [MsgChannelCloseInitResponse](#ibc.core.channel.v1.MsgChannelCloseInitResponse)
-    - [MsgChannelOpenAck](#ibc.core.channel.v1.MsgChannelOpenAck)
-    - [MsgChannelOpenAckResponse](#ibc.core.channel.v1.MsgChannelOpenAckResponse)
-    - [MsgChannelOpenConfirm](#ibc.core.channel.v1.MsgChannelOpenConfirm)
-    - [MsgChannelOpenConfirmResponse](#ibc.core.channel.v1.MsgChannelOpenConfirmResponse)
-    - [MsgChannelOpenInit](#ibc.core.channel.v1.MsgChannelOpenInit)
-    - [MsgChannelOpenInitResponse](#ibc.core.channel.v1.MsgChannelOpenInitResponse)
-    - [MsgChannelOpenTry](#ibc.core.channel.v1.MsgChannelOpenTry)
-    - [MsgChannelOpenTryResponse](#ibc.core.channel.v1.MsgChannelOpenTryResponse)
-    - [MsgRecvPacket](#ibc.core.channel.v1.MsgRecvPacket)
-    - [MsgRecvPacketResponse](#ibc.core.channel.v1.MsgRecvPacketResponse)
-    - [MsgTimeout](#ibc.core.channel.v1.MsgTimeout)
-    - [MsgTimeoutOnClose](#ibc.core.channel.v1.MsgTimeoutOnClose)
-    - [MsgTimeoutOnCloseResponse](#ibc.core.channel.v1.MsgTimeoutOnCloseResponse)
-    - [MsgTimeoutResponse](#ibc.core.channel.v1.MsgTimeoutResponse)
-    - [Packet](#ibc.core.channel.v1.Packet)
-    - [PacketAckCommitment](#ibc.core.channel.v1.PacketAckCommitment)
-  
-    - [Order](#ibc.core.channel.v1.Order)
-    - [State](#ibc.core.channel.v1.State)
-  
-    - [Msg](#ibc.core.channel.v1.Msg)
-  
-- [ibc/core/client/v1/client.proto](#ibc/core/client/v1/client.proto)
-    - [ClientConsensusStates](#ibc.core.client.v1.ClientConsensusStates)
-    - [ClientUpdateProposal](#ibc.core.client.v1.ClientUpdateProposal)
-    - [ConsensusStateWithHeight](#ibc.core.client.v1.ConsensusStateWithHeight)
-    - [Height](#ibc.core.client.v1.Height)
-    - [IdentifiedClientState](#ibc.core.client.v1.IdentifiedClientState)
-    - [MsgCreateClient](#ibc.core.client.v1.MsgCreateClient)
-    - [MsgCreateClientResponse](#ibc.core.client.v1.MsgCreateClientResponse)
-    - [MsgSubmitMisbehaviour](#ibc.core.client.v1.MsgSubmitMisbehaviour)
-    - [MsgSubmitMisbehaviourResponse](#ibc.core.client.v1.MsgSubmitMisbehaviourResponse)
-    - [MsgUpdateClient](#ibc.core.client.v1.MsgUpdateClient)
-    - [MsgUpdateClientResponse](#ibc.core.client.v1.MsgUpdateClientResponse)
-    - [MsgUpgradeClient](#ibc.core.client.v1.MsgUpgradeClient)
-    - [MsgUpgradeClientResponse](#ibc.core.client.v1.MsgUpgradeClientResponse)
-  
-    - [Msg](#ibc.core.client.v1.Msg)
-  
-- [ibc/core/client/v1/query.proto](#ibc/core/client/v1/query.proto)
-    - [QueryClientStateRequest](#ibc.core.client.v1.QueryClientStateRequest)
-    - [QueryClientStateResponse](#ibc.core.client.v1.QueryClientStateResponse)
-    - [QueryClientStatesRequest](#ibc.core.client.v1.QueryClientStatesRequest)
-    - [QueryClientStatesResponse](#ibc.core.client.v1.QueryClientStatesResponse)
-    - [QueryConsensusStateRequest](#ibc.core.client.v1.QueryConsensusStateRequest)
-    - [QueryConsensusStateResponse](#ibc.core.client.v1.QueryConsensusStateResponse)
-    - [QueryConsensusStatesRequest](#ibc.core.client.v1.QueryConsensusStatesRequest)
-    - [QueryConsensusStatesResponse](#ibc.core.client.v1.QueryConsensusStatesResponse)
-  
-    - [Query](#ibc.core.client.v1.Query)
-  
-- [ibc/core/client/v1/genesis.proto](#ibc/core/client/v1/genesis.proto)
-    - [GenesisState](#ibc.core.client.v1.GenesisState)
-  
-- [ibc/lightclients/solomachine/v1/solomachine.proto](#ibc/lightclients/solomachine/v1/solomachine.proto)
-    - [ChannelStateData](#ibc.lightclients.solomachine.v1.ChannelStateData)
-    - [ClientState](#ibc.lightclients.solomachine.v1.ClientState)
-    - [ClientStateData](#ibc.lightclients.solomachine.v1.ClientStateData)
-    - [ConnectionStateData](#ibc.lightclients.solomachine.v1.ConnectionStateData)
-    - [ConsensusState](#ibc.lightclients.solomachine.v1.ConsensusState)
-    - [ConsensusStateData](#ibc.lightclients.solomachine.v1.ConsensusStateData)
-    - [Header](#ibc.lightclients.solomachine.v1.Header)
-    - [HeaderData](#ibc.lightclients.solomachine.v1.HeaderData)
-    - [Misbehaviour](#ibc.lightclients.solomachine.v1.Misbehaviour)
-    - [NextSequenceRecvData](#ibc.lightclients.solomachine.v1.NextSequenceRecvData)
-    - [PacketAcknowledgementData](#ibc.lightclients.solomachine.v1.PacketAcknowledgementData)
-    - [PacketCommitmentData](#ibc.lightclients.solomachine.v1.PacketCommitmentData)
-    - [PacketReceiptAbsenceData](#ibc.lightclients.solomachine.v1.PacketReceiptAbsenceData)
-    - [SignBytes](#ibc.lightclients.solomachine.v1.SignBytes)
-    - [SignatureAndData](#ibc.lightclients.solomachine.v1.SignatureAndData)
-    - [TimestampedSignatureData](#ibc.lightclients.solomachine.v1.TimestampedSignatureData)
-  
-    - [DataType](#ibc.lightclients.solomachine.v1.DataType)
-  
-- [ibc/lightclients/tendermint/v1/tendermint.proto](#ibc/lightclients/tendermint/v1/tendermint.proto)
-    - [ClientState](#ibc.lightclients.tendermint.v1.ClientState)
-    - [ConsensusState](#ibc.lightclients.tendermint.v1.ConsensusState)
-    - [Fraction](#ibc.lightclients.tendermint.v1.Fraction)
-    - [Header](#ibc.lightclients.tendermint.v1.Header)
-    - [Misbehaviour](#ibc.lightclients.tendermint.v1.Misbehaviour)
-  
-- [ibc/lightclients/localhost/v1/localhost.proto](#ibc/lightclients/localhost/v1/localhost.proto)
-    - [ClientState](#ibc.lightclients.localhost.v1.ClientState)
-  
-- [ibc/applications/transfer/v1/transfer.proto](#ibc/applications/transfer/v1/transfer.proto)
-    - [DenomTrace](#ibc.applications.transfer.v1.DenomTrace)
-    - [FungibleTokenPacketData](#ibc.applications.transfer.v1.FungibleTokenPacketData)
-    - [MsgTransfer](#ibc.applications.transfer.v1.MsgTransfer)
-    - [MsgTransferResponse](#ibc.applications.transfer.v1.MsgTransferResponse)
-    - [Params](#ibc.applications.transfer.v1.Params)
-  
-    - [Msg](#ibc.applications.transfer.v1.Msg)
-  
-- [ibc/applications/transfer/v1/query.proto](#ibc/applications/transfer/v1/query.proto)
-    - [QueryDenomTraceRequest](#ibc.applications.transfer.v1.QueryDenomTraceRequest)
-    - [QueryDenomTraceResponse](#ibc.applications.transfer.v1.QueryDenomTraceResponse)
-    - [QueryDenomTracesRequest](#ibc.applications.transfer.v1.QueryDenomTracesRequest)
-    - [QueryDenomTracesResponse](#ibc.applications.transfer.v1.QueryDenomTracesResponse)
-    - [QueryParamsRequest](#ibc.applications.transfer.v1.QueryParamsRequest)
-    - [QueryParamsResponse](#ibc.applications.transfer.v1.QueryParamsResponse)
-  
-    - [Query](#ibc.applications.transfer.v1.Query)
-  
-- [ibc/applications/transfer/v1/genesis.proto](#ibc/applications/transfer/v1/genesis.proto)
-    - [GenesisState](#ibc.applications.transfer.v1.GenesisState)
-  
-- [Scalar Value Types](#scalar-value-types)
+* [cosmos/crypto/multisig/v1beta1/multisig.proto](cosmos-grpc-docs.md#cosmos/crypto/multisig/v1beta1/multisig.proto)
+  * [CompactBitArray](cosmos-grpc-docs.md#cosmos.crypto.multisig.v1beta1.CompactBitArray)
+  * [MultiSignature](cosmos-grpc-docs.md#cosmos.crypto.multisig.v1beta1.MultiSignature)
+* [cosmos/crypto/multisig/keys.proto](cosmos-grpc-docs.md#cosmos/crypto/multisig/keys.proto)
+  * [LegacyAminoPubKey](cosmos-grpc-docs.md#cosmos.crypto.multisig.LegacyAminoPubKey)
+* [cosmos/crypto/secp256k1/keys.proto](cosmos-grpc-docs.md#cosmos/crypto/secp256k1/keys.proto)
+  * [PrivKey](cosmos-grpc-docs.md#cosmos.crypto.secp256k1.PrivKey)
+  * [PubKey](cosmos-grpc-docs.md#cosmos.crypto.secp256k1.PubKey)
+* [cosmos/crypto/ed25519/keys.proto](cosmos-grpc-docs.md#cosmos/crypto/ed25519/keys.proto)
+  * [PrivKey](cosmos-grpc-docs.md#cosmos.crypto.ed25519.PrivKey)
+  * [PubKey](cosmos-grpc-docs.md#cosmos.crypto.ed25519.PubKey)
+* [cosmos/upgrade/v1beta1/upgrade.proto](cosmos-grpc-docs.md#cosmos/upgrade/v1beta1/upgrade.proto)
+  * [CancelSoftwareUpgradeProposal](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal)
+  * [Plan](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.Plan)
+  * [SoftwareUpgradeProposal](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.SoftwareUpgradeProposal)
+* [cosmos/upgrade/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/upgrade/v1beta1/query.proto)
+  * [QueryAppliedPlanRequest](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.QueryAppliedPlanRequest)
+  * [QueryAppliedPlanResponse](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.QueryAppliedPlanResponse)
+  * [QueryCurrentPlanRequest](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.QueryCurrentPlanRequest)
+  * [QueryCurrentPlanResponse](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.QueryCurrentPlanResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.Query)
+* [cosmos/mint/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/mint/v1beta1/query.proto)
+  * [QueryAnnualProvisionsRequest](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryAnnualProvisionsRequest)
+  * [QueryAnnualProvisionsResponse](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryAnnualProvisionsResponse)
+  * [QueryInflationRequest](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryInflationRequest)
+  * [QueryInflationResponse](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryInflationResponse)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryParamsResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.mint.v1beta1.Query)
+* [cosmos/mint/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/mint/v1beta1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.mint.v1beta1.GenesisState)
+* [cosmos/mint/v1beta1/mint.proto](cosmos-grpc-docs.md#cosmos/mint/v1beta1/mint.proto)
+  * [Minter](cosmos-grpc-docs.md#cosmos.mint.v1beta1.Minter)
+  * [Params](cosmos-grpc-docs.md#cosmos.mint.v1beta1.Params)
+* [cosmos/evidence/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/evidence/v1beta1/tx.proto)
+  * [MsgSubmitEvidence](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.MsgSubmitEvidence)
+  * [MsgSubmitEvidenceResponse](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse)
+  * [Msg](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.Msg)
+* [cosmos/evidence/v1beta1/evidence.proto](cosmos-grpc-docs.md#cosmos/evidence/v1beta1/evidence.proto)
+  * [Equivocation](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.Equivocation)
+* [cosmos/evidence/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/evidence/v1beta1/query.proto)
+  * [QueryAllEvidenceRequest](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.QueryAllEvidenceRequest)
+  * [QueryAllEvidenceResponse](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.QueryAllEvidenceResponse)
+  * [QueryEvidenceRequest](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.QueryEvidenceRequest)
+  * [QueryEvidenceResponse](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.QueryEvidenceResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.Query)
+* [cosmos/evidence/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/evidence/v1beta1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.GenesisState)
+* [cosmos/auth/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/auth/v1beta1/query.proto)
+  * [QueryAccountRequest](cosmos-grpc-docs.md#cosmos.auth.v1beta1.QueryAccountRequest)
+  * [QueryAccountResponse](cosmos-grpc-docs.md#cosmos.auth.v1beta1.QueryAccountResponse)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.auth.v1beta1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.auth.v1beta1.QueryParamsResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.auth.v1beta1.Query)
+* [cosmos/auth/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/auth/v1beta1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.auth.v1beta1.GenesisState)
+* [cosmos/auth/v1beta1/auth.proto](cosmos-grpc-docs.md#cosmos/auth/v1beta1/auth.proto)
+  * [BaseAccount](cosmos-grpc-docs.md#cosmos.auth.v1beta1.BaseAccount)
+  * [ModuleAccount](cosmos-grpc-docs.md#cosmos.auth.v1beta1.ModuleAccount)
+  * [Params](cosmos-grpc-docs.md#cosmos.auth.v1beta1.Params)
+* [cosmos/bank/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/bank/v1beta1/tx.proto)
+  * [MsgMultiSend](cosmos-grpc-docs.md#cosmos.bank.v1beta1.MsgMultiSend)
+  * [MsgMultiSendResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.MsgMultiSendResponse)
+  * [MsgSend](cosmos-grpc-docs.md#cosmos.bank.v1beta1.MsgSend)
+  * [MsgSendResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.MsgSendResponse)
+  * [Msg](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Msg)
+* [cosmos/bank/v1beta1/bank.proto](cosmos-grpc-docs.md#cosmos/bank/v1beta1/bank.proto)
+  * [DenomUnit](cosmos-grpc-docs.md#cosmos.bank.v1beta1.DenomUnit)
+  * [Input](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Input)
+  * [Metadata](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Metadata)
+  * [Output](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Output)
+  * [Params](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Params)
+  * [SendEnabled](cosmos-grpc-docs.md#cosmos.bank.v1beta1.SendEnabled)
+  * [Supply](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Supply)
+* [cosmos/bank/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/bank/v1beta1/query.proto)
+  * [QueryAllBalancesRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryAllBalancesRequest)
+  * [QueryAllBalancesResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryAllBalancesResponse)
+  * [QueryBalanceRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryBalanceRequest)
+  * [QueryBalanceResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryBalanceResponse)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryParamsResponse)
+  * [QuerySupplyOfRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QuerySupplyOfRequest)
+  * [QuerySupplyOfResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QuerySupplyOfResponse)
+  * [QueryTotalSupplyRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryTotalSupplyRequest)
+  * [QueryTotalSupplyResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryTotalSupplyResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Query)
+* [cosmos/bank/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/bank/v1beta1/genesis.proto)
+  * [Balance](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Balance)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.bank.v1beta1.GenesisState)
+* [cosmos/capability/v1beta1/capability.proto](cosmos-grpc-docs.md#cosmos/capability/v1beta1/capability.proto)
+  * [Capability](cosmos-grpc-docs.md#cosmos.capability.v1beta1.Capability)
+  * [CapabilityOwners](cosmos-grpc-docs.md#cosmos.capability.v1beta1.CapabilityOwners)
+  * [Owner](cosmos-grpc-docs.md#cosmos.capability.v1beta1.Owner)
+* [cosmos/capability/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/capability/v1beta1/genesis.proto)
+  * [GenesisOwners](cosmos-grpc-docs.md#cosmos.capability.v1beta1.GenesisOwners)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.capability.v1beta1.GenesisState)
+* [cosmos/distribution/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/distribution/v1beta1/tx.proto)
+  * [MsgFundCommunityPool](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgFundCommunityPool)
+  * [MsgFundCommunityPoolResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse)
+  * [MsgSetWithdrawAddress](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgSetWithdrawAddress)
+  * [MsgSetWithdrawAddressResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse)
+  * [MsgWithdrawDelegatorReward](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward)
+  * [MsgWithdrawDelegatorRewardResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse)
+  * [MsgWithdrawValidatorCommission](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission)
+  * [MsgWithdrawValidatorCommissionResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse)
+  * [Msg](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.Msg)
+* [cosmos/distribution/v1beta1/distribution.proto](cosmos-grpc-docs.md#cosmos/distribution/v1beta1/distribution.proto)
+  * [CommunityPoolSpendProposal](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.CommunityPoolSpendProposal)
+  * [CommunityPoolSpendProposalWithDeposit](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit)
+  * [DelegationDelegatorReward](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.DelegationDelegatorReward)
+  * [DelegatorStartingInfo](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.DelegatorStartingInfo)
+  * [FeePool](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.FeePool)
+  * [Params](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.Params)
+  * [ValidatorAccumulatedCommission](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorAccumulatedCommission)
+  * [ValidatorCurrentRewards](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorCurrentRewards)
+  * [ValidatorHistoricalRewards](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorHistoricalRewards)
+  * [ValidatorOutstandingRewards](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorOutstandingRewards)
+  * [ValidatorSlashEvent](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorSlashEvent)
+  * [ValidatorSlashEvents](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorSlashEvents)
+* [cosmos/distribution/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/distribution/v1beta1/query.proto)
+  * [QueryCommunityPoolRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryCommunityPoolRequest)
+  * [QueryCommunityPoolResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryCommunityPoolResponse)
+  * [QueryDelegationRewardsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegationRewardsRequest)
+  * [QueryDelegationRewardsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegationRewardsResponse)
+  * [QueryDelegationTotalRewardsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest)
+  * [QueryDelegationTotalRewardsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse)
+  * [QueryDelegatorValidatorsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest)
+  * [QueryDelegatorValidatorsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse)
+  * [QueryDelegatorWithdrawAddressRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest)
+  * [QueryDelegatorWithdrawAddressResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryParamsResponse)
+  * [QueryValidatorCommissionRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorCommissionRequest)
+  * [QueryValidatorCommissionResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorCommissionResponse)
+  * [QueryValidatorOutstandingRewardsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest)
+  * [QueryValidatorOutstandingRewardsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse)
+  * [QueryValidatorSlashesRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorSlashesRequest)
+  * [QueryValidatorSlashesResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorSlashesResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.Query)
+* [cosmos/distribution/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/distribution/v1beta1/genesis.proto)
+  * [DelegatorStartingInfoRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.DelegatorStartingInfoRecord)
+  * [DelegatorWithdrawInfo](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.DelegatorWithdrawInfo)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.GenesisState)
+  * [ValidatorAccumulatedCommissionRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord)
+  * [ValidatorCurrentRewardsRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord)
+  * [ValidatorHistoricalRewardsRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord)
+  * [ValidatorOutstandingRewardsRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorOutstandingRewardsRecord)
+  * [ValidatorSlashEventRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorSlashEventRecord)
+* [cosmos/crisis/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/crisis/v1beta1/tx.proto)
+  * [MsgVerifyInvariant](cosmos-grpc-docs.md#cosmos.crisis.v1beta1.MsgVerifyInvariant)
+  * [MsgVerifyInvariantResponse](cosmos-grpc-docs.md#cosmos.crisis.v1beta1.MsgVerifyInvariantResponse)
+  * [Msg](cosmos-grpc-docs.md#cosmos.crisis.v1beta1.Msg)
+* [cosmos/crisis/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/crisis/v1beta1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.crisis.v1beta1.GenesisState)
+* [cosmos/tx/signing/v1beta1/signing.proto](cosmos-grpc-docs.md#cosmos/tx/signing/v1beta1/signing.proto)
+  * [SignatureDescriptor](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor)
+  * [SignatureDescriptor.Data](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data)
+  * [SignatureDescriptor.Data.Multi](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi)
+  * [SignatureDescriptor.Data.Single](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single)
+  * [SignatureDescriptors](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptors)
+  * [SignMode](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignMode)
+* [cosmos/tx/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/tx/v1beta1/tx.proto)
+  * [AuthInfo](cosmos-grpc-docs.md#cosmos.tx.v1beta1.AuthInfo)
+  * [Fee](cosmos-grpc-docs.md#cosmos.tx.v1beta1.Fee)
+  * [ModeInfo](cosmos-grpc-docs.md#cosmos.tx.v1beta1.ModeInfo)
+  * [ModeInfo.Multi](cosmos-grpc-docs.md#cosmos.tx.v1beta1.ModeInfo.Multi)
+  * [ModeInfo.Single](cosmos-grpc-docs.md#cosmos.tx.v1beta1.ModeInfo.Single)
+  * [SignDoc](cosmos-grpc-docs.md#cosmos.tx.v1beta1.SignDoc)
+  * [SignerInfo](cosmos-grpc-docs.md#cosmos.tx.v1beta1.SignerInfo)
+  * [Tx](cosmos-grpc-docs.md#cosmos.tx.v1beta1.Tx)
+  * [TxBody](cosmos-grpc-docs.md#cosmos.tx.v1beta1.TxBody)
+  * [TxRaw](cosmos-grpc-docs.md#cosmos.tx.v1beta1.TxRaw)
+* [cosmos/vesting/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/vesting/v1beta1/tx.proto)
+  * [MsgCreateVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.MsgCreateVestingAccount)
+  * [MsgCreateVestingAccountResponse](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse)
+  * [Msg](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.Msg)
+* [cosmos/vesting/v1beta1/vesting.proto](cosmos-grpc-docs.md#cosmos/vesting/v1beta1/vesting.proto)
+  * [BaseVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.BaseVestingAccount)
+  * [ContinuousVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.ContinuousVestingAccount)
+  * [DelayedVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.DelayedVestingAccount)
+  * [Period](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.Period)
+  * [PeriodicVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.PeriodicVestingAccount)
+* [cosmos/staking/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/staking/v1beta1/tx.proto)
+  * [MsgBeginRedelegate](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgBeginRedelegate)
+  * [MsgBeginRedelegateResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgBeginRedelegateResponse)
+  * [MsgCreateValidator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgCreateValidator)
+  * [MsgCreateValidatorResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgCreateValidatorResponse)
+  * [MsgDelegate](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgDelegate)
+  * [MsgDelegateResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgDelegateResponse)
+  * [MsgEditValidator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgEditValidator)
+  * [MsgEditValidatorResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgEditValidatorResponse)
+  * [MsgUndelegate](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgUndelegate)
+  * [MsgUndelegateResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgUndelegateResponse)
+  * [Msg](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Msg)
+* [cosmos/staking/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/staking/v1beta1/query.proto)
+  * [QueryDelegationRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegationRequest)
+  * [QueryDelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegationResponse)
+  * [QueryDelegatorDelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorDelegationsRequest)
+  * [QueryDelegatorDelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorDelegationsResponse)
+  * [QueryDelegatorUnbondingDelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsRequest)
+  * [QueryDelegatorUnbondingDelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponse)
+  * [QueryDelegatorValidatorRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorValidatorRequest)
+  * [QueryDelegatorValidatorResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorValidatorResponse)
+  * [QueryDelegatorValidatorsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorValidatorsRequest)
+  * [QueryDelegatorValidatorsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorValidatorsResponse)
+  * [QueryHistoricalInfoRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryHistoricalInfoRequest)
+  * [QueryHistoricalInfoResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryHistoricalInfoResponse)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryParamsResponse)
+  * [QueryPoolRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryPoolRequest)
+  * [QueryPoolResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryPoolResponse)
+  * [QueryRedelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryRedelegationsRequest)
+  * [QueryRedelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryRedelegationsResponse)
+  * [QueryUnbondingDelegationRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryUnbondingDelegationRequest)
+  * [QueryUnbondingDelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryUnbondingDelegationResponse)
+  * [QueryValidatorDelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorDelegationsRequest)
+  * [QueryValidatorDelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorDelegationsResponse)
+  * [QueryValidatorRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorRequest)
+  * [QueryValidatorResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorResponse)
+  * [QueryValidatorUnbondingDelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsRequest)
+  * [QueryValidatorUnbondingDelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsResponse)
+  * [QueryValidatorsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorsRequest)
+  * [QueryValidatorsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorsResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Query)
+* [cosmos/staking/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/staking/v1beta1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.staking.v1beta1.GenesisState)
+  * [LastValidatorPower](cosmos-grpc-docs.md#cosmos.staking.v1beta1.LastValidatorPower)
+* [cosmos/staking/v1beta1/staking.proto](cosmos-grpc-docs.md#cosmos/staking/v1beta1/staking.proto)
+  * [Commission](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Commission)
+  * [CommissionRates](cosmos-grpc-docs.md#cosmos.staking.v1beta1.CommissionRates)
+  * [DVPair](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DVPair)
+  * [DVPairs](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DVPairs)
+  * [DVVTriplet](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DVVTriplet)
+  * [DVVTriplets](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DVVTriplets)
+  * [Delegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Delegation)
+  * [DelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DelegationResponse)
+  * [Description](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Description)
+  * [HistoricalInfo](cosmos-grpc-docs.md#cosmos.staking.v1beta1.HistoricalInfo)
+  * [Params](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Params)
+  * [Pool](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Pool)
+  * [Redelegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Redelegation)
+  * [RedelegationEntry](cosmos-grpc-docs.md#cosmos.staking.v1beta1.RedelegationEntry)
+  * [RedelegationEntryResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.RedelegationEntryResponse)
+  * [RedelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.RedelegationResponse)
+  * [UnbondingDelegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.UnbondingDelegation)
+  * [UnbondingDelegationEntry](cosmos-grpc-docs.md#cosmos.staking.v1beta1.UnbondingDelegationEntry)
+  * [ValAddresses](cosmos-grpc-docs.md#cosmos.staking.v1beta1.ValAddresses)
+  * [Validator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Validator)
+  * [BondStatus](cosmos-grpc-docs.md#cosmos.staking.v1beta1.BondStatus)
+* [cosmos/genutil/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/genutil/v1beta1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.genutil.v1beta1.GenesisState)
+* [cosmos/params/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/params/v1beta1/query.proto)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.params.v1beta1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.params.v1beta1.QueryParamsResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.params.v1beta1.Query)
+* [cosmos/params/v1beta1/params.proto](cosmos-grpc-docs.md#cosmos/params/v1beta1/params.proto)
+  * [ParamChange](cosmos-grpc-docs.md#cosmos.params.v1beta1.ParamChange)
+  * [ParameterChangeProposal](cosmos-grpc-docs.md#cosmos.params.v1beta1.ParameterChangeProposal)
+* [cosmos/slashing/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/slashing/v1beta1/tx.proto)
+  * [MsgUnjail](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.MsgUnjail)
+  * [MsgUnjailResponse](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.MsgUnjailResponse)
+  * [Msg](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.Msg)
+* [cosmos/slashing/v1beta1/slashing.proto](cosmos-grpc-docs.md#cosmos/slashing/v1beta1/slashing.proto)
+  * [Params](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.Params)
+  * [ValidatorSigningInfo](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.ValidatorSigningInfo)
+* [cosmos/slashing/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/slashing/v1beta1/query.proto)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QueryParamsResponse)
+  * [QuerySigningInfoRequest](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QuerySigningInfoRequest)
+  * [QuerySigningInfoResponse](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QuerySigningInfoResponse)
+  * [QuerySigningInfosRequest](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QuerySigningInfosRequest)
+  * [QuerySigningInfosResponse](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QuerySigningInfosResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.Query)
+* [cosmos/slashing/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/slashing/v1beta1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.GenesisState)
+  * [MissedBlock](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.MissedBlock)
+  * [SigningInfo](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.SigningInfo)
+  * [ValidatorMissedBlocks](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.ValidatorMissedBlocks)
+* [cosmos/base/abci/v1beta1/abci.proto](cosmos-grpc-docs.md#cosmos/base/abci/v1beta1/abci.proto)
+  * [ABCIMessageLog](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.ABCIMessageLog)
+  * [Attribute](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.Attribute)
+  * [GasInfo](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.GasInfo)
+  * [MsgData](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.MsgData)
+  * [Result](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.Result)
+  * [SearchTxsResult](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.SearchTxsResult)
+  * [SimulationResponse](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.SimulationResponse)
+  * [StringEvent](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.StringEvent)
+  * [TxMsgData](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.TxMsgData)
+  * [TxResponse](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.TxResponse)
+* [cosmos/base/kv/v1beta1/kv.proto](cosmos-grpc-docs.md#cosmos/base/kv/v1beta1/kv.proto)
+  * [Pair](cosmos-grpc-docs.md#cosmos.base.kv.v1beta1.Pair)
+  * [Pairs](cosmos-grpc-docs.md#cosmos.base.kv.v1beta1.Pairs)
+* [cosmos/base/snapshots/v1beta1/snapshot.proto](cosmos-grpc-docs.md#cosmos/base/snapshots/v1beta1/snapshot.proto)
+  * [Metadata](cosmos-grpc-docs.md#cosmos.base.snapshots.v1beta1.Metadata)
+  * [Snapshot](cosmos-grpc-docs.md#cosmos.base.snapshots.v1beta1.Snapshot)
+* [cosmos/base/simulate/v1beta1/simulate.proto](cosmos-grpc-docs.md#cosmos/base/simulate/v1beta1/simulate.proto)
+  * [SimulateRequest](cosmos-grpc-docs.md#cosmos.base.simulate.v1beta1.SimulateRequest)
+  * [SimulateResponse](cosmos-grpc-docs.md#cosmos.base.simulate.v1beta1.SimulateResponse)
+  * [SimulateService](cosmos-grpc-docs.md#cosmos.base.simulate.v1beta1.SimulateService)
+* [cosmos/base/v1beta1/coin.proto](cosmos-grpc-docs.md#cosmos/base/v1beta1/coin.proto)
+  * [Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin)
+  * [DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin)
+  * [DecProto](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecProto)
+  * [IntProto](cosmos-grpc-docs.md#cosmos.base.v1beta1.IntProto)
+* [cosmos/base/query/v1beta1/pagination.proto](cosmos-grpc-docs.md#cosmos/base/query/v1beta1/pagination.proto)
+  * [PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest)
+  * [PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse)
+* [cosmos/base/store/v1beta1/commit\_info.proto](cosmos-grpc-docs.md#cosmos/base/store/v1beta1/commit\_info.proto)
+  * [CommitID](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.CommitID)
+  * [CommitInfo](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.CommitInfo)
+  * [StoreInfo](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.StoreInfo)
+* [cosmos/base/store/v1beta1/snapshot.proto](cosmos-grpc-docs.md#cosmos/base/store/v1beta1/snapshot.proto)
+  * [SnapshotIAVLItem](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.SnapshotIAVLItem)
+  * [SnapshotItem](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.SnapshotItem)
+  * [SnapshotStoreItem](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.SnapshotStoreItem)
+* [cosmos/base/reflection/v1beta1/reflection.proto](cosmos-grpc-docs.md#cosmos/base/reflection/v1beta1/reflection.proto)
+  * [ListAllInterfacesRequest](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ListAllInterfacesRequest)
+  * [ListAllInterfacesResponse](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ListAllInterfacesResponse)
+  * [ListImplementationsRequest](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ListImplementationsRequest)
+  * [ListImplementationsResponse](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ListImplementationsResponse)
+  * [ReflectionService](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ReflectionService)
+* [cosmos/gov/v1beta1/tx.proto](cosmos-grpc-docs.md#cosmos/gov/v1beta1/tx.proto)
+  * [MsgDeposit](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgDeposit)
+  * [MsgDepositResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgDepositResponse)
+  * [MsgSubmitProposal](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgSubmitProposal)
+  * [MsgSubmitProposalResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgSubmitProposalResponse)
+  * [MsgVote](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgVote)
+  * [MsgVoteResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgVoteResponse)
+  * [Msg](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Msg)
+* [cosmos/gov/v1beta1/gov.proto](cosmos-grpc-docs.md#cosmos/gov/v1beta1/gov.proto)
+  * [Deposit](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Deposit)
+  * [DepositParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.DepositParams)
+  * [Proposal](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Proposal)
+  * [TallyParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.TallyParams)
+  * [TallyResult](cosmos-grpc-docs.md#cosmos.gov.v1beta1.TallyResult)
+  * [TextProposal](cosmos-grpc-docs.md#cosmos.gov.v1beta1.TextProposal)
+  * [Vote](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Vote)
+  * [VotingParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.VotingParams)
+  * [ProposalStatus](cosmos-grpc-docs.md#cosmos.gov.v1beta1.ProposalStatus)
+  * [VoteOption](cosmos-grpc-docs.md#cosmos.gov.v1beta1.VoteOption)
+* [cosmos/gov/v1beta1/query.proto](cosmos-grpc-docs.md#cosmos/gov/v1beta1/query.proto)
+  * [QueryDepositRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryDepositRequest)
+  * [QueryDepositResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryDepositResponse)
+  * [QueryDepositsRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryDepositsRequest)
+  * [QueryDepositsResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryDepositsResponse)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryParamsResponse)
+  * [QueryProposalRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryProposalRequest)
+  * [QueryProposalResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryProposalResponse)
+  * [QueryProposalsRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryProposalsRequest)
+  * [QueryProposalsResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryProposalsResponse)
+  * [QueryTallyResultRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryTallyResultRequest)
+  * [QueryTallyResultResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryTallyResultResponse)
+  * [QueryVoteRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryVoteRequest)
+  * [QueryVoteResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryVoteResponse)
+  * [QueryVotesRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryVotesRequest)
+  * [QueryVotesResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryVotesResponse)
+  * [Query](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Query)
+* [cosmos/gov/v1beta1/genesis.proto](cosmos-grpc-docs.md#cosmos/gov/v1beta1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#cosmos.gov.v1beta1.GenesisState)
+* [ibc/core/types/v1/genesis.proto](cosmos-grpc-docs.md#ibc/core/types/v1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#ibc.core.types.v1.GenesisState)
+* [ibc/core/connection/v1/query.proto](cosmos-grpc-docs.md#ibc/core/connection/v1/query.proto)
+  * [QueryClientConnectionsRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryClientConnectionsRequest)
+  * [QueryClientConnectionsResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryClientConnectionsResponse)
+  * [QueryConnectionClientStateRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionClientStateRequest)
+  * [QueryConnectionClientStateResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionClientStateResponse)
+  * [QueryConnectionConsensusStateRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionConsensusStateRequest)
+  * [QueryConnectionConsensusStateResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionConsensusStateResponse)
+  * [QueryConnectionRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionRequest)
+  * [QueryConnectionResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionResponse)
+  * [QueryConnectionsRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionsRequest)
+  * [QueryConnectionsResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionsResponse)
+  * [Query](cosmos-grpc-docs.md#ibc.core.connection.v1.Query)
+* [ibc/core/connection/v1/connection.proto](cosmos-grpc-docs.md#ibc/core/connection/v1/connection.proto)
+  * [ClientPaths](cosmos-grpc-docs.md#ibc.core.connection.v1.ClientPaths)
+  * [ConnectionEnd](cosmos-grpc-docs.md#ibc.core.connection.v1.ConnectionEnd)
+  * [ConnectionPaths](cosmos-grpc-docs.md#ibc.core.connection.v1.ConnectionPaths)
+  * [Counterparty](cosmos-grpc-docs.md#ibc.core.connection.v1.Counterparty)
+  * [IdentifiedConnection](cosmos-grpc-docs.md#ibc.core.connection.v1.IdentifiedConnection)
+  * [MsgConnectionOpenAck](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenAck)
+  * [MsgConnectionOpenAckResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenAckResponse)
+  * [MsgConnectionOpenConfirm](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenConfirm)
+  * [MsgConnectionOpenConfirmResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenConfirmResponse)
+  * [MsgConnectionOpenInit](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenInit)
+  * [MsgConnectionOpenInitResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenInitResponse)
+  * [MsgConnectionOpenTry](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenTry)
+  * [MsgConnectionOpenTryResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenTryResponse)
+  * [Version](cosmos-grpc-docs.md#ibc.core.connection.v1.Version)
+  * [State](cosmos-grpc-docs.md#ibc.core.connection.v1.State)
+  * [Msg](cosmos-grpc-docs.md#ibc.core.connection.v1.Msg)
+* [ibc/core/connection/v1/genesis.proto](cosmos-grpc-docs.md#ibc/core/connection/v1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#ibc.core.connection.v1.GenesisState)
+* [ibc/core/commitment/v1/commitment.proto](cosmos-grpc-docs.md#ibc/core/commitment/v1/commitment.proto)
+  * [Key](cosmos-grpc-docs.md#ibc.core.commitment.v1.Key)
+  * [KeyPath](cosmos-grpc-docs.md#ibc.core.commitment.v1.KeyPath)
+  * [MerklePath](cosmos-grpc-docs.md#ibc.core.commitment.v1.MerklePath)
+  * [MerklePrefix](cosmos-grpc-docs.md#ibc.core.commitment.v1.MerklePrefix)
+  * [MerkleProof](cosmos-grpc-docs.md#ibc.core.commitment.v1.MerkleProof)
+  * [MerkleRoot](cosmos-grpc-docs.md#ibc.core.commitment.v1.MerkleRoot)
+  * [KeyEncoding](cosmos-grpc-docs.md#ibc.core.commitment.v1.KeyEncoding)
+* [ibc/core/channel/v1/query.proto](cosmos-grpc-docs.md#ibc/core/channel/v1/query.proto)
+  * [QueryChannelClientStateRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelClientStateRequest)
+  * [QueryChannelClientStateResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelClientStateResponse)
+  * [QueryChannelConsensusStateRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelConsensusStateRequest)
+  * [QueryChannelConsensusStateResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelConsensusStateResponse)
+  * [QueryChannelRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelRequest)
+  * [QueryChannelResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelResponse)
+  * [QueryChannelsRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelsRequest)
+  * [QueryChannelsResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelsResponse)
+  * [QueryConnectionChannelsRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryConnectionChannelsRequest)
+  * [QueryConnectionChannelsResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryConnectionChannelsResponse)
+  * [QueryNextSequenceReceiveRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryNextSequenceReceiveRequest)
+  * [QueryNextSequenceReceiveResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryNextSequenceReceiveResponse)
+  * [QueryPacketAcknowledgementRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketAcknowledgementRequest)
+  * [QueryPacketAcknowledgementResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketAcknowledgementResponse)
+  * [QueryPacketCommitmentRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketCommitmentRequest)
+  * [QueryPacketCommitmentResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketCommitmentResponse)
+  * [QueryPacketCommitmentsRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketCommitmentsRequest)
+  * [QueryPacketCommitmentsResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketCommitmentsResponse)
+  * [QueryUnreceivedPacketsRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryUnreceivedPacketsRequest)
+  * [QueryUnreceivedPacketsResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryUnreceivedPacketsResponse)
+  * [QueryUnrelayedAcksRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryUnrelayedAcksRequest)
+  * [QueryUnrelayedAcksResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryUnrelayedAcksResponse)
+  * [Query](cosmos-grpc-docs.md#ibc.core.channel.v1.Query)
+* [ibc/core/channel/v1/genesis.proto](cosmos-grpc-docs.md#ibc/core/channel/v1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#ibc.core.channel.v1.GenesisState)
+  * [PacketSequence](cosmos-grpc-docs.md#ibc.core.channel.v1.PacketSequence)
+* [ibc/core/channel/v1/channel.proto](cosmos-grpc-docs.md#ibc/core/channel/v1/channel.proto)
+  * [Acknowledgement](cosmos-grpc-docs.md#ibc.core.channel.v1.Acknowledgement)
+  * [Channel](cosmos-grpc-docs.md#ibc.core.channel.v1.Channel)
+  * [Counterparty](cosmos-grpc-docs.md#ibc.core.channel.v1.Counterparty)
+  * [IdentifiedChannel](cosmos-grpc-docs.md#ibc.core.channel.v1.IdentifiedChannel)
+  * [MsgAcknowledgement](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgAcknowledgement)
+  * [MsgAcknowledgementResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgAcknowledgementResponse)
+  * [MsgChannelCloseConfirm](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelCloseConfirm)
+  * [MsgChannelCloseConfirmResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelCloseConfirmResponse)
+  * [MsgChannelCloseInit](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelCloseInit)
+  * [MsgChannelCloseInitResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelCloseInitResponse)
+  * [MsgChannelOpenAck](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenAck)
+  * [MsgChannelOpenAckResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenAckResponse)
+  * [MsgChannelOpenConfirm](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenConfirm)
+  * [MsgChannelOpenConfirmResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenConfirmResponse)
+  * [MsgChannelOpenInit](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenInit)
+  * [MsgChannelOpenInitResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenInitResponse)
+  * [MsgChannelOpenTry](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenTry)
+  * [MsgChannelOpenTryResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenTryResponse)
+  * [MsgRecvPacket](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgRecvPacket)
+  * [MsgRecvPacketResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgRecvPacketResponse)
+  * [MsgTimeout](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgTimeout)
+  * [MsgTimeoutOnClose](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgTimeoutOnClose)
+  * [MsgTimeoutOnCloseResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgTimeoutOnCloseResponse)
+  * [MsgTimeoutResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgTimeoutResponse)
+  * [Packet](cosmos-grpc-docs.md#ibc.core.channel.v1.Packet)
+  * [PacketAckCommitment](cosmos-grpc-docs.md#ibc.core.channel.v1.PacketAckCommitment)
+  * [Order](cosmos-grpc-docs.md#ibc.core.channel.v1.Order)
+  * [State](cosmos-grpc-docs.md#ibc.core.channel.v1.State)
+  * [Msg](cosmos-grpc-docs.md#ibc.core.channel.v1.Msg)
+* [ibc/core/client/v1/client.proto](cosmos-grpc-docs.md#ibc/core/client/v1/client.proto)
+  * [ClientConsensusStates](cosmos-grpc-docs.md#ibc.core.client.v1.ClientConsensusStates)
+  * [ClientUpdateProposal](cosmos-grpc-docs.md#ibc.core.client.v1.ClientUpdateProposal)
+  * [ConsensusStateWithHeight](cosmos-grpc-docs.md#ibc.core.client.v1.ConsensusStateWithHeight)
+  * [Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)
+  * [IdentifiedClientState](cosmos-grpc-docs.md#ibc.core.client.v1.IdentifiedClientState)
+  * [MsgCreateClient](cosmos-grpc-docs.md#ibc.core.client.v1.MsgCreateClient)
+  * [MsgCreateClientResponse](cosmos-grpc-docs.md#ibc.core.client.v1.MsgCreateClientResponse)
+  * [MsgSubmitMisbehaviour](cosmos-grpc-docs.md#ibc.core.client.v1.MsgSubmitMisbehaviour)
+  * [MsgSubmitMisbehaviourResponse](cosmos-grpc-docs.md#ibc.core.client.v1.MsgSubmitMisbehaviourResponse)
+  * [MsgUpdateClient](cosmos-grpc-docs.md#ibc.core.client.v1.MsgUpdateClient)
+  * [MsgUpdateClientResponse](cosmos-grpc-docs.md#ibc.core.client.v1.MsgUpdateClientResponse)
+  * [MsgUpgradeClient](cosmos-grpc-docs.md#ibc.core.client.v1.MsgUpgradeClient)
+  * [MsgUpgradeClientResponse](cosmos-grpc-docs.md#ibc.core.client.v1.MsgUpgradeClientResponse)
+  * [Msg](cosmos-grpc-docs.md#ibc.core.client.v1.Msg)
+* [ibc/core/client/v1/query.proto](cosmos-grpc-docs.md#ibc/core/client/v1/query.proto)
+  * [QueryClientStateRequest](cosmos-grpc-docs.md#ibc.core.client.v1.QueryClientStateRequest)
+  * [QueryClientStateResponse](cosmos-grpc-docs.md#ibc.core.client.v1.QueryClientStateResponse)
+  * [QueryClientStatesRequest](cosmos-grpc-docs.md#ibc.core.client.v1.QueryClientStatesRequest)
+  * [QueryClientStatesResponse](cosmos-grpc-docs.md#ibc.core.client.v1.QueryClientStatesResponse)
+  * [QueryConsensusStateRequest](cosmos-grpc-docs.md#ibc.core.client.v1.QueryConsensusStateRequest)
+  * [QueryConsensusStateResponse](cosmos-grpc-docs.md#ibc.core.client.v1.QueryConsensusStateResponse)
+  * [QueryConsensusStatesRequest](cosmos-grpc-docs.md#ibc.core.client.v1.QueryConsensusStatesRequest)
+  * [QueryConsensusStatesResponse](cosmos-grpc-docs.md#ibc.core.client.v1.QueryConsensusStatesResponse)
+  * [Query](cosmos-grpc-docs.md#ibc.core.client.v1.Query)
+* [ibc/core/client/v1/genesis.proto](cosmos-grpc-docs.md#ibc/core/client/v1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#ibc.core.client.v1.GenesisState)
+* [ibc/lightclients/solomachine/v1/solomachine.proto](cosmos-grpc-docs.md#ibc/lightclients/solomachine/v1/solomachine.proto)
+  * [ChannelStateData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.ChannelStateData)
+  * [ClientState](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.ClientState)
+  * [ClientStateData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.ClientStateData)
+  * [ConnectionStateData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.ConnectionStateData)
+  * [ConsensusState](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.ConsensusState)
+  * [ConsensusStateData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.ConsensusStateData)
+  * [Header](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.Header)
+  * [HeaderData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.HeaderData)
+  * [Misbehaviour](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.Misbehaviour)
+  * [NextSequenceRecvData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.NextSequenceRecvData)
+  * [PacketAcknowledgementData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.PacketAcknowledgementData)
+  * [PacketCommitmentData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.PacketCommitmentData)
+  * [PacketReceiptAbsenceData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.PacketReceiptAbsenceData)
+  * [SignBytes](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.SignBytes)
+  * [SignatureAndData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.SignatureAndData)
+  * [TimestampedSignatureData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.TimestampedSignatureData)
+  * [DataType](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.DataType)
+* [ibc/lightclients/tendermint/v1/tendermint.proto](cosmos-grpc-docs.md#ibc/lightclients/tendermint/v1/tendermint.proto)
+  * [ClientState](cosmos-grpc-docs.md#ibc.lightclients.tendermint.v1.ClientState)
+  * [ConsensusState](cosmos-grpc-docs.md#ibc.lightclients.tendermint.v1.ConsensusState)
+  * [Fraction](cosmos-grpc-docs.md#ibc.lightclients.tendermint.v1.Fraction)
+  * [Header](cosmos-grpc-docs.md#ibc.lightclients.tendermint.v1.Header)
+  * [Misbehaviour](cosmos-grpc-docs.md#ibc.lightclients.tendermint.v1.Misbehaviour)
+* [ibc/lightclients/localhost/v1/localhost.proto](cosmos-grpc-docs.md#ibc/lightclients/localhost/v1/localhost.proto)
+  * [ClientState](cosmos-grpc-docs.md#ibc.lightclients.localhost.v1.ClientState)
+* [ibc/applications/transfer/v1/transfer.proto](cosmos-grpc-docs.md#ibc/applications/transfer/v1/transfer.proto)
+  * [DenomTrace](cosmos-grpc-docs.md#ibc.applications.transfer.v1.DenomTrace)
+  * [FungibleTokenPacketData](cosmos-grpc-docs.md#ibc.applications.transfer.v1.FungibleTokenPacketData)
+  * [MsgTransfer](cosmos-grpc-docs.md#ibc.applications.transfer.v1.MsgTransfer)
+  * [MsgTransferResponse](cosmos-grpc-docs.md#ibc.applications.transfer.v1.MsgTransferResponse)
+  * [Params](cosmos-grpc-docs.md#ibc.applications.transfer.v1.Params)
+  * [Msg](cosmos-grpc-docs.md#ibc.applications.transfer.v1.Msg)
+* [ibc/applications/transfer/v1/query.proto](cosmos-grpc-docs.md#ibc/applications/transfer/v1/query.proto)
+  * [QueryDenomTraceRequest](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryDenomTraceRequest)
+  * [QueryDenomTraceResponse](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryDenomTraceResponse)
+  * [QueryDenomTracesRequest](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryDenomTracesRequest)
+  * [QueryDenomTracesResponse](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryDenomTracesResponse)
+  * [QueryParamsRequest](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryParamsRequest)
+  * [QueryParamsResponse](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryParamsResponse)
+  * [Query](cosmos-grpc-docs.md#ibc.applications.transfer.v1.Query)
+* [ibc/applications/transfer/v1/genesis.proto](cosmos-grpc-docs.md#ibc/applications/transfer/v1/genesis.proto)
+  * [GenesisState](cosmos-grpc-docs.md#ibc.applications.transfer.v1.GenesisState)
+* [Scalar Value Types](cosmos-grpc-docs.md#scalar-value-types)
 
-
-
-<a name="cosmos/crypto/multisig/v1beta1/multisig.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/crypto/multisig/v1beta1/multisig.proto
 
-
-
-<a name="cosmos.crypto.multisig.v1beta1.CompactBitArray"></a>
-
 ### CompactBitArray
-CompactBitArray is an implementation of a space efficient bit array.
-This is used to ensure that the encoded data takes up a minimal amount of
-space after proto encoding.
-This is not thread safe, and is not intended for concurrent usage.
 
+CompactBitArray is an implementation of a space efficient bit array. This is used to ensure that the encoded data takes up a minimal amount of space after proto encoding. This is not thread safe, and is not intended for concurrent usage.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| extra_bits_stored | [uint32](#uint32) |  |  |
-| elems | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="cosmos.crypto.multisig.v1beta1.MultiSignature"></a>
+| Field               | Type                                 | Label | Description |
+| ------------------- | ------------------------------------ | ----- | ----------- |
+| extra\_bits\_stored | [uint32](cosmos-grpc-docs.md#uint32) |       |             |
+| elems               | [bytes](cosmos-grpc-docs.md#bytes)   |       |             |
 
 ### MultiSignature
-MultiSignature wraps the signatures from a multisig.LegacyAminoPubKey.
-See cosmos.tx.v1betata1.ModeInfo.Multi for how to specify which signers
-signed and with which modes.
 
+MultiSignature wraps the signatures from a multisig.LegacyAminoPubKey. See cosmos.tx.v1betata1.ModeInfo.Multi for how to specify which signers signed and with which modes.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| signatures | [bytes](#bytes) | repeated |  |
+| Field      | Type                               | Label    | Description |
+| ---------- | ---------------------------------- | -------- | ----------- |
+| signatures | [bytes](cosmos-grpc-docs.md#bytes) | repeated |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/crypto/multisig/keys.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/crypto/multisig/keys.proto
 
-
-
-<a name="cosmos.crypto.multisig.LegacyAminoPubKey"></a>
-
 ### LegacyAminoPubKey
-LegacyAminoPubKey specifies a public key type
-which nests multiple public keys and a threshold,
-it uses legacy amino address rules.
 
+LegacyAminoPubKey specifies a public key type which nests multiple public keys and a threshold, it uses legacy amino address rules.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| threshold | [uint32](#uint32) |  |  |
-| public_keys | [google.protobuf.Any](#google.protobuf.Any) | repeated |  |
+| Field        | Type                                                           | Label    | Description |
+| ------------ | -------------------------------------------------------------- | -------- | ----------- |
+| threshold    | [uint32](cosmos-grpc-docs.md#uint32)                           |          |             |
+| public\_keys | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) | repeated |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/crypto/secp256k1/keys.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/crypto/secp256k1/keys.proto
 
-
-
-<a name="cosmos.crypto.secp256k1.PrivKey"></a>
-
 ### PrivKey
+
 PrivKey defines a secp256k1 private key.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="cosmos.crypto.secp256k1.PubKey"></a>
+| Field | Type                               | Label | Description |
+| ----- | ---------------------------------- | ----- | ----------- |
+| key   | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### PubKey
-PubKey defines a secp256k1 public key
-Key is the compressed form of the pubkey. The first byte depends is a 0x02 byte
-if the y-coordinate is the lexicographically largest of the two associated with
-the x-coordinate. Otherwise the first byte is a 0x03.
-This prefix is followed with the x-coordinate.
 
+PubKey defines a secp256k1 public key Key is the compressed form of the pubkey. The first byte depends is a 0x02 byte if the y-coordinate is the lexicographically largest of the two associated with the x-coordinate. Otherwise the first byte is a 0x03. This prefix is followed with the x-coordinate.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [bytes](#bytes) |  |  |
+| Field | Type                               | Label | Description |
+| ----- | ---------------------------------- | ----- | ----------- |
+| key   | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/crypto/ed25519/keys.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/crypto/ed25519/keys.proto
 
-
-
-<a name="cosmos.crypto.ed25519.PrivKey"></a>
-
 ### PrivKey
+
 PrivKey defines a ed25519 private key.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="cosmos.crypto.ed25519.PubKey"></a>
+| Field | Type                               | Label | Description |
+| ----- | ---------------------------------- | ----- | ----------- |
+| key   | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### PubKey
-PubKey defines a ed25519 public key
-Key is the compressed form of the pubkey. The first byte depends is a 0x02 byte
-if the y-coordinate is the lexicographically largest of the two associated with
-the x-coordinate. Otherwise the first byte is a 0x03.
-This prefix is followed with the x-coordinate.
 
+PubKey defines a ed25519 public key Key is the compressed form of the pubkey. The first byte depends is a 0x02 byte if the y-coordinate is the lexicographically largest of the two associated with the x-coordinate. Otherwise the first byte is a 0x03. This prefix is followed with the x-coordinate.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [bytes](#bytes) |  |  |
+| Field | Type                               | Label | Description |
+| ----- | ---------------------------------- | ----- | ----------- |
+| key   | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/upgrade/v1beta1/upgrade.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/upgrade/v1beta1/upgrade.proto
 
-
-
-<a name="cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal"></a>
-
 ### CancelSoftwareUpgradeProposal
-CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software
-upgrade.
 
+CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software upgrade.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| title | [string](#string) |  |  |
-| description | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.upgrade.v1beta1.Plan"></a>
+| Field       | Type                                 | Label | Description |
+| ----------- | ------------------------------------ | ----- | ----------- |
+| title       | [string](cosmos-grpc-docs.md#string) |       |             |
+| description | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### Plan
+
 Plan specifies information about a planned upgrade and when it should occur.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Sets the name for the upgrade. This name will be used by the upgraded version of the software to apply any special &#34;on-upgrade&#34; commands during the first BeginBlock method after the upgrade is applied. It is also used to detect whether a software version can handle a given upgrade. If no upgrade handler with this name has been set in the software, it will be assumed that the software is out-of-date when the upgrade Time or Height is reached and the software will exit. |
-| time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The time after which the upgrade must be performed. Leave set to its zero value to use a pre-defined Height instead. |
-| height | [int64](#int64) |  | The height at which the upgrade must be performed. Only used if Time is not set. |
-| info | [string](#string) |  | Any application specific upgrade info to be included on-chain such as a git commit that validators could automatically upgrade to |
-| upgraded_client_state | [google.protobuf.Any](#google.protobuf.Any) |  | IBC-enabled chains can opt-in to including the upgraded client state in its upgrade plan This will make the chain commit to the correct upgraded (self) client state before the upgrade occurs, so that connecting chains can verify that the new upgraded client is valid by verifying a proof on the previous version of the chain. This will allow IBC connections to persist smoothly across planned chain upgrades |
-
-
-
-
-
-
-<a name="cosmos.upgrade.v1beta1.SoftwareUpgradeProposal"></a>
+| Field                   | Type                                                                       | Label | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                    | [string](cosmos-grpc-docs.md#string)                                       |       | Sets the name for the upgrade. This name will be used by the upgraded version of the software to apply any special "on-upgrade" commands during the first BeginBlock method after the upgrade is applied. It is also used to detect whether a software version can handle a given upgrade. If no upgrade handler with this name has been set in the software, it will be assumed that the software is out-of-date when the upgrade Time or Height is reached and the software will exit. |
+| time                    | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |       | The time after which the upgrade must be performed. Leave set to its zero value to use a pre-defined Height instead.                                                                                                                                                                                                                                                                                                                                                                     |
+| height                  | [int64](cosmos-grpc-docs.md#int64)                                         |       | The height at which the upgrade must be performed. Only used if Time is not set.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| info                    | [string](cosmos-grpc-docs.md#string)                                       |       | Any application specific upgrade info to be included on-chain such as a git commit that validators could automatically upgrade to                                                                                                                                                                                                                                                                                                                                                        |
+| upgraded\_client\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)             |       | IBC-enabled chains can opt-in to including the upgraded client state in its upgrade plan This will make the chain commit to the correct upgraded (self) client state before the upgrade occurs, so that connecting chains can verify that the new upgraded client is valid by verifying a proof on the previous version of the chain. This will allow IBC connections to persist smoothly across planned chain upgrades                                                                  |
 
 ### SoftwareUpgradeProposal
-SoftwareUpgradeProposal is a gov Content type for initiating a software
-upgrade.
 
+SoftwareUpgradeProposal is a gov Content type for initiating a software upgrade.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| title | [string](#string) |  |  |
-| description | [string](#string) |  |  |
-| plan | [Plan](#cosmos.upgrade.v1beta1.Plan) |  |  |
+| Field       | Type                                                    | Label | Description |
+| ----------- | ------------------------------------------------------- | ----- | ----------- |
+| title       | [string](cosmos-grpc-docs.md#string)                    |       |             |
+| description | [string](cosmos-grpc-docs.md#string)                    |       |             |
+| plan        | [Plan](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.Plan) |       |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/upgrade/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/upgrade/v1beta1/query.proto
 
-
-
-<a name="cosmos.upgrade.v1beta1.QueryAppliedPlanRequest"></a>
-
 ### QueryAppliedPlanRequest
-QueryCurrentPlanRequest is the request type for the Query/AppliedPlan RPC
-method.
 
+QueryCurrentPlanRequest is the request type for the Query/AppliedPlan RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | name is the name of the applied plan to query for. |
-
-
-
-
-
-
-<a name="cosmos.upgrade.v1beta1.QueryAppliedPlanResponse"></a>
+| Field | Type                                 | Label | Description                                        |
+| ----- | ------------------------------------ | ----- | -------------------------------------------------- |
+| name  | [string](cosmos-grpc-docs.md#string) |       | name is the name of the applied plan to query for. |
 
 ### QueryAppliedPlanResponse
-QueryAppliedPlanResponse is the response type for the Query/AppliedPlan RPC
-method.
 
+QueryAppliedPlanResponse is the response type for the Query/AppliedPlan RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| height | [int64](#int64) |  | height is the block height at which the plan was applied. |
-
-
-
-
-
-
-<a name="cosmos.upgrade.v1beta1.QueryCurrentPlanRequest"></a>
+| Field  | Type                               | Label | Description                                               |
+| ------ | ---------------------------------- | ----- | --------------------------------------------------------- |
+| height | [int64](cosmos-grpc-docs.md#int64) |       | height is the block height at which the plan was applied. |
 
 ### QueryCurrentPlanRequest
-QueryCurrentPlanRequest is the request type for the Query/CurrentPlan RPC
-method.
 
-
-
-
-
-
-<a name="cosmos.upgrade.v1beta1.QueryCurrentPlanResponse"></a>
+QueryCurrentPlanRequest is the request type for the Query/CurrentPlan RPC method.
 
 ### QueryCurrentPlanResponse
-QueryCurrentPlanResponse is the response type for the Query/CurrentPlan RPC
-method.
 
+QueryCurrentPlanResponse is the response type for the Query/CurrentPlan RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| plan | [Plan](#cosmos.upgrade.v1beta1.Plan) |  | plan is the current upgrade plan. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.upgrade.v1beta1.Query"></a>
+| Field | Type                                                    | Label | Description                       |
+| ----- | ------------------------------------------------------- | ----- | --------------------------------- |
+| plan  | [Plan](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.Plan) |       | plan is the current upgrade plan. |
 
 ### Query
+
 Query defines the gRPC upgrade querier service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CurrentPlan | [QueryCurrentPlanRequest](#cosmos.upgrade.v1beta1.QueryCurrentPlanRequest) | [QueryCurrentPlanResponse](#cosmos.upgrade.v1beta1.QueryCurrentPlanResponse) | CurrentPlan queries the current upgrade plan. |
-| AppliedPlan | [QueryAppliedPlanRequest](#cosmos.upgrade.v1beta1.QueryAppliedPlanRequest) | [QueryAppliedPlanResponse](#cosmos.upgrade.v1beta1.QueryAppliedPlanResponse) | AppliedPlan queries a previously applied upgrade plan by its name. |
+| Method Name | Request Type                                                                                  | Response Type                                                                                   | Description                                                        |
+| ----------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| CurrentPlan | [QueryCurrentPlanRequest](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.QueryCurrentPlanRequest) | [QueryCurrentPlanResponse](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.QueryCurrentPlanResponse) | CurrentPlan queries the current upgrade plan.                      |
+| AppliedPlan | [QueryAppliedPlanRequest](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.QueryAppliedPlanRequest) | [QueryAppliedPlanResponse](cosmos-grpc-docs.md#cosmos.upgrade.v1beta1.QueryAppliedPlanResponse) | AppliedPlan queries a previously applied upgrade plan by its name. |
 
- 
-
-
-
-<a name="cosmos/mint/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/mint/v1beta1/query.proto
 
-
-
-<a name="cosmos.mint.v1beta1.QueryAnnualProvisionsRequest"></a>
-
 ### QueryAnnualProvisionsRequest
-QueryAnnualProvisionsRequest is the request type for the
-Query/AnnualProvisions RPC method.
 
-
-
-
-
-
-<a name="cosmos.mint.v1beta1.QueryAnnualProvisionsResponse"></a>
+QueryAnnualProvisionsRequest is the request type for the Query/AnnualProvisions RPC method.
 
 ### QueryAnnualProvisionsResponse
-QueryAnnualProvisionsResponse is the response type for the
-Query/AnnualProvisions RPC method.
 
+QueryAnnualProvisionsResponse is the response type for the Query/AnnualProvisions RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| annual_provisions | [bytes](#bytes) |  | annual_provisions is the current minting annual provisions value. |
-
-
-
-
-
-
-<a name="cosmos.mint.v1beta1.QueryInflationRequest"></a>
+| Field              | Type                               | Label | Description                                                        |
+| ------------------ | ---------------------------------- | ----- | ------------------------------------------------------------------ |
+| annual\_provisions | [bytes](cosmos-grpc-docs.md#bytes) |       | annual\_provisions is the current minting annual provisions value. |
 
 ### QueryInflationRequest
+
 QueryInflationRequest is the request type for the Query/Inflation RPC method.
 
-
-
-
-
-
-<a name="cosmos.mint.v1beta1.QueryInflationResponse"></a>
-
 ### QueryInflationResponse
-QueryInflationResponse is the response type for the Query/Inflation RPC
-method.
 
+QueryInflationResponse is the response type for the Query/Inflation RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| inflation | [bytes](#bytes) |  | inflation is the current minting inflation value. |
-
-
-
-
-
-
-<a name="cosmos.mint.v1beta1.QueryParamsRequest"></a>
+| Field     | Type                               | Label | Description                                       |
+| --------- | ---------------------------------- | ----- | ------------------------------------------------- |
+| inflation | [bytes](cosmos-grpc-docs.md#bytes) |       | inflation is the current minting inflation value. |
 
 ### QueryParamsRequest
+
 QueryParamsRequest is the request type for the Query/Params RPC method.
 
-
-
-
-
-
-<a name="cosmos.mint.v1beta1.QueryParamsResponse"></a>
-
 ### QueryParamsResponse
+
 QueryParamsResponse is the response type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.mint.v1beta1.Params) |  | params defines the parameters of the module. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.mint.v1beta1.Query"></a>
+| Field  | Type                                                     | Label | Description                                  |
+| ------ | -------------------------------------------------------- | ----- | -------------------------------------------- |
+| params | [Params](cosmos-grpc-docs.md#cosmos.mint.v1beta1.Params) |       | params defines the parameters of the module. |
 
 ### Query
+
 Query provides defines the gRPC querier service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Params | [QueryParamsRequest](#cosmos.mint.v1beta1.QueryParamsRequest) | [QueryParamsResponse](#cosmos.mint.v1beta1.QueryParamsResponse) | Params returns the total set of minting parameters. |
-| Inflation | [QueryInflationRequest](#cosmos.mint.v1beta1.QueryInflationRequest) | [QueryInflationResponse](#cosmos.mint.v1beta1.QueryInflationResponse) | Inflation returns the current minting inflation value. |
-| AnnualProvisions | [QueryAnnualProvisionsRequest](#cosmos.mint.v1beta1.QueryAnnualProvisionsRequest) | [QueryAnnualProvisionsResponse](#cosmos.mint.v1beta1.QueryAnnualProvisionsResponse) | AnnualProvisions current minting annual provisions value. |
+| Method Name      | Request Type                                                                                         | Response Type                                                                                          | Description                                               |
+| ---------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| Params           | [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryParamsRequest)                     | [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryParamsResponse)                     | Params returns the total set of minting parameters.       |
+| Inflation        | [QueryInflationRequest](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryInflationRequest)               | [QueryInflationResponse](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryInflationResponse)               | Inflation returns the current minting inflation value.    |
+| AnnualProvisions | [QueryAnnualProvisionsRequest](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryAnnualProvisionsRequest) | [QueryAnnualProvisionsResponse](cosmos-grpc-docs.md#cosmos.mint.v1beta1.QueryAnnualProvisionsResponse) | AnnualProvisions current minting annual provisions value. |
 
- 
-
-
-
-<a name="cosmos/mint/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/mint/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.mint.v1beta1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the mint module&#39;s genesis state.
 
+GenesisState defines the mint module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| minter | [Minter](#cosmos.mint.v1beta1.Minter) |  | minter is a space for holding current inflation information. |
-| params | [Params](#cosmos.mint.v1beta1.Params) |  | params defines all the paramaters of the module. |
+| Field  | Type                                                     | Label | Description                                                  |
+| ------ | -------------------------------------------------------- | ----- | ------------------------------------------------------------ |
+| minter | [Minter](cosmos-grpc-docs.md#cosmos.mint.v1beta1.Minter) |       | minter is a space for holding current inflation information. |
+| params | [Params](cosmos-grpc-docs.md#cosmos.mint.v1beta1.Params) |       | params defines all the paramaters of the module.             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/mint/v1beta1/mint.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/mint/v1beta1/mint.proto
 
-
-
-<a name="cosmos.mint.v1beta1.Minter"></a>
-
 ### Minter
+
 Minter represents the minting state.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| inflation | [string](#string) |  | current annual inflation rate |
-| annual_provisions | [string](#string) |  | current annual expected provisions |
-
-
-
-
-
-
-<a name="cosmos.mint.v1beta1.Params"></a>
+| Field              | Type                                 | Label | Description                        |
+| ------------------ | ------------------------------------ | ----- | ---------------------------------- |
+| inflation          | [string](cosmos-grpc-docs.md#string) |       | current annual inflation rate      |
+| annual\_provisions | [string](cosmos-grpc-docs.md#string) |       | current annual expected provisions |
 
 ### Params
+
 Params holds parameters for the mint module.
 
+| Field                   | Type                                 | Label | Description                             |
+| ----------------------- | ------------------------------------ | ----- | --------------------------------------- |
+| mint\_denom             | [string](cosmos-grpc-docs.md#string) |       | type of coin to mint                    |
+| inflation\_rate\_change | [string](cosmos-grpc-docs.md#string) |       | maximum annual change in inflation rate |
+| inflation\_max          | [string](cosmos-grpc-docs.md#string) |       | maximum inflation rate                  |
+| inflation\_min          | [string](cosmos-grpc-docs.md#string) |       | minimum inflation rate                  |
+| goal\_bonded            | [string](cosmos-grpc-docs.md#string) |       | goal of percent bonded atoms            |
+| blocks\_per\_year       | [uint64](cosmos-grpc-docs.md#uint64) |       | expected blocks per year                |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| mint_denom | [string](#string) |  | type of coin to mint |
-| inflation_rate_change | [string](#string) |  | maximum annual change in inflation rate |
-| inflation_max | [string](#string) |  | maximum inflation rate |
-| inflation_min | [string](#string) |  | minimum inflation rate |
-| goal_bonded | [string](#string) |  | goal of percent bonded atoms |
-| blocks_per_year | [uint64](#uint64) |  | expected blocks per year |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/evidence/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/evidence/v1beta1/tx.proto
 
-
-
-<a name="cosmos.evidence.v1beta1.MsgSubmitEvidence"></a>
-
 ### MsgSubmitEvidence
-MsgSubmitEvidence represents a message that supports submitting arbitrary
-Evidence of misbehavior such as equivocation or counterfactual signing.
 
+MsgSubmitEvidence represents a message that supports submitting arbitrary Evidence of misbehavior such as equivocation or counterfactual signing.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| submitter | [string](#string) |  |  |
-| evidence | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-
-
-
-
-
-
-<a name="cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse"></a>
+| Field     | Type                                                           | Label | Description |
+| --------- | -------------------------------------------------------------- | ----- | ----------- |
+| submitter | [string](cosmos-grpc-docs.md#string)                           |       |             |
+| evidence  | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       |             |
 
 ### MsgSubmitEvidenceResponse
+
 MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| hash | [bytes](#bytes) |  | hash defines the hash of the evidence. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.evidence.v1beta1.Msg"></a>
+| Field | Type                               | Label | Description                            |
+| ----- | ---------------------------------- | ----- | -------------------------------------- |
+| hash  | [bytes](cosmos-grpc-docs.md#bytes) |       | hash defines the hash of the evidence. |
 
 ### Msg
+
 Msg defines the evidence Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| SubmitEvidence | [MsgSubmitEvidence](#cosmos.evidence.v1beta1.MsgSubmitEvidence) | [MsgSubmitEvidenceResponse](#cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse) | SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or counterfactual signing. |
+| Method Name    | Request Type                                                                       | Response Type                                                                                      | Description                                                                                                 |
+| -------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| SubmitEvidence | [MsgSubmitEvidence](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.MsgSubmitEvidence) | [MsgSubmitEvidenceResponse](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse) | SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or counterfactual signing. |
 
- 
-
-
-
-<a name="cosmos/evidence/v1beta1/evidence.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/evidence/v1beta1/evidence.proto
 
-
-
-<a name="cosmos.evidence.v1beta1.Equivocation"></a>
-
 ### Equivocation
-Equivocation implements the Evidence interface and defines evidence of double
-signing misbehavior.
 
+Equivocation implements the Evidence interface and defines evidence of double signing misbehavior.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| height | [int64](#int64) |  |  |
-| time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| power | [int64](#int64) |  |  |
-| consensus_address | [string](#string) |  |  |
+| Field              | Type                                                                       | Label | Description |
+| ------------------ | -------------------------------------------------------------------------- | ----- | ----------- |
+| height             | [int64](cosmos-grpc-docs.md#int64)                                         |       |             |
+| time               | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |       |             |
+| power              | [int64](cosmos-grpc-docs.md#int64)                                         |       |             |
+| consensus\_address | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/evidence/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/evidence/v1beta1/query.proto
 
-
-
-<a name="cosmos.evidence.v1beta1.QueryAllEvidenceRequest"></a>
-
 ### QueryAllEvidenceRequest
-QueryEvidenceRequest is the request type for the Query/AllEvidence RPC
-method.
 
+QueryEvidenceRequest is the request type for the Query/AllEvidence RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.evidence.v1beta1.QueryAllEvidenceResponse"></a>
+| Field      | Type                                                                                               | Label | Description                                                |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request. |
 
 ### QueryAllEvidenceResponse
-QueryAllEvidenceResponse is the response type for the Query/AllEvidence RPC
-method.
 
+QueryAllEvidenceResponse is the response type for the Query/AllEvidence RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| evidence | [google.protobuf.Any](#google.protobuf.Any) | repeated | evidence returns all evidences. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.evidence.v1beta1.QueryEvidenceRequest"></a>
+| Field      | Type                                                                                                 | Label    | Description                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| evidence   | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)                                       | repeated | evidence returns all evidences.                    |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### QueryEvidenceRequest
+
 QueryEvidenceRequest is the request type for the Query/Evidence RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| evidence_hash | [bytes](#bytes) |  | evidence_hash defines the hash of the requested evidence. |
-
-
-
-
-
-
-<a name="cosmos.evidence.v1beta1.QueryEvidenceResponse"></a>
+| Field          | Type                               | Label | Description                                                |
+| -------------- | ---------------------------------- | ----- | ---------------------------------------------------------- |
+| evidence\_hash | [bytes](cosmos-grpc-docs.md#bytes) |       | evidence\_hash defines the hash of the requested evidence. |
 
 ### QueryEvidenceResponse
+
 QueryEvidenceResponse is the response type for the Query/Evidence RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| evidence | [google.protobuf.Any](#google.protobuf.Any) |  | evidence returns the requested evidence. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.evidence.v1beta1.Query"></a>
+| Field    | Type                                                           | Label | Description                              |
+| -------- | -------------------------------------------------------------- | ----- | ---------------------------------------- |
+| evidence | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | evidence returns the requested evidence. |
 
 ### Query
+
 Query defines the gRPC querier service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Evidence | [QueryEvidenceRequest](#cosmos.evidence.v1beta1.QueryEvidenceRequest) | [QueryEvidenceResponse](#cosmos.evidence.v1beta1.QueryEvidenceResponse) | Evidence queries evidence based on evidence hash. |
-| AllEvidence | [QueryAllEvidenceRequest](#cosmos.evidence.v1beta1.QueryAllEvidenceRequest) | [QueryAllEvidenceResponse](#cosmos.evidence.v1beta1.QueryAllEvidenceResponse) | AllEvidence queries all evidence. |
+| Method Name | Request Type                                                                                   | Response Type                                                                                    | Description                                       |
+| ----------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
+| Evidence    | [QueryEvidenceRequest](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.QueryEvidenceRequest)       | [QueryEvidenceResponse](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.QueryEvidenceResponse)       | Evidence queries evidence based on evidence hash. |
+| AllEvidence | [QueryAllEvidenceRequest](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.QueryAllEvidenceRequest) | [QueryAllEvidenceResponse](cosmos-grpc-docs.md#cosmos.evidence.v1beta1.QueryAllEvidenceResponse) | AllEvidence queries all evidence.                 |
 
- 
-
-
-
-<a name="cosmos/evidence/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/evidence/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.evidence.v1beta1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the evidence module&#39;s genesis state.
 
+GenesisState defines the evidence module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| evidence | [google.protobuf.Any](#google.protobuf.Any) | repeated | evidence defines all the evidence at genesis. |
+| Field    | Type                                                           | Label    | Description                                   |
+| -------- | -------------------------------------------------------------- | -------- | --------------------------------------------- |
+| evidence | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) | repeated | evidence defines all the evidence at genesis. |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/auth/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/auth/v1beta1/query.proto
 
-
-
-<a name="cosmos.auth.v1beta1.QueryAccountRequest"></a>
-
 ### QueryAccountRequest
+
 QueryAccountRequest is the request type for the Query/Account RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  | address defines the address to query for. |
-
-
-
-
-
-
-<a name="cosmos.auth.v1beta1.QueryAccountResponse"></a>
+| Field   | Type                                 | Label | Description                               |
+| ------- | ------------------------------------ | ----- | ----------------------------------------- |
+| address | [string](cosmos-grpc-docs.md#string) |       | address defines the address to query for. |
 
 ### QueryAccountResponse
+
 QueryAccountResponse is the response type for the Query/Account RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| account | [google.protobuf.Any](#google.protobuf.Any) |  | account defines the account of the corresponding address. |
-
-
-
-
-
-
-<a name="cosmos.auth.v1beta1.QueryParamsRequest"></a>
+| Field   | Type                                                           | Label | Description                                               |
+| ------- | -------------------------------------------------------------- | ----- | --------------------------------------------------------- |
+| account | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | account defines the account of the corresponding address. |
 
 ### QueryParamsRequest
+
 QueryParamsRequest is the request type for the Query/Params RPC method.
 
-
-
-
-
-
-<a name="cosmos.auth.v1beta1.QueryParamsResponse"></a>
-
 ### QueryParamsResponse
+
 QueryParamsResponse is the response type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.auth.v1beta1.Params) |  | params defines the parameters of the module. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.auth.v1beta1.Query"></a>
+| Field  | Type                                                     | Label | Description                                  |
+| ------ | -------------------------------------------------------- | ----- | -------------------------------------------- |
+| params | [Params](cosmos-grpc-docs.md#cosmos.auth.v1beta1.Params) |       | params defines the parameters of the module. |
 
 ### Query
+
 Query defines the gRPC querier service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Account | [QueryAccountRequest](#cosmos.auth.v1beta1.QueryAccountRequest) | [QueryAccountResponse](#cosmos.auth.v1beta1.QueryAccountResponse) | Account returns account details based on address. |
-| Params | [QueryParamsRequest](#cosmos.auth.v1beta1.QueryParamsRequest) | [QueryParamsResponse](#cosmos.auth.v1beta1.QueryParamsResponse) | Params queries all parameters. |
+| Method Name | Request Type                                                                       | Response Type                                                                        | Description                                       |
+| ----------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------- |
+| Account     | [QueryAccountRequest](cosmos-grpc-docs.md#cosmos.auth.v1beta1.QueryAccountRequest) | [QueryAccountResponse](cosmos-grpc-docs.md#cosmos.auth.v1beta1.QueryAccountResponse) | Account returns account details based on address. |
+| Params      | [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.auth.v1beta1.QueryParamsRequest)   | [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.auth.v1beta1.QueryParamsResponse)   | Params queries all parameters.                    |
 
- 
-
-
-
-<a name="cosmos/auth/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/auth/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.auth.v1beta1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the auth module&#39;s genesis state.
 
+GenesisState defines the auth module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.auth.v1beta1.Params) |  | params defines all the paramaters of the module. |
-| accounts | [google.protobuf.Any](#google.protobuf.Any) | repeated | accounts are the accounts present at genesis. |
+| Field    | Type                                                           | Label    | Description                                      |
+| -------- | -------------------------------------------------------------- | -------- | ------------------------------------------------ |
+| params   | [Params](cosmos-grpc-docs.md#cosmos.auth.v1beta1.Params)       |          | params defines all the paramaters of the module. |
+| accounts | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) | repeated | accounts are the accounts present at genesis.    |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/auth/v1beta1/auth.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/auth/v1beta1/auth.proto
 
-
-
-<a name="cosmos.auth.v1beta1.BaseAccount"></a>
-
 ### BaseAccount
-BaseAccount defines a base account type. It contains all the necessary fields
-for basic account functionality. Any custom account type should extend this
-type for additional functionality (e.g. vesting).
 
+BaseAccount defines a base account type. It contains all the necessary fields for basic account functionality. Any custom account type should extend this type for additional functionality (e.g. vesting).
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  |  |
-| pub_key | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-| account_number | [uint64](#uint64) |  |  |
-| sequence | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="cosmos.auth.v1beta1.ModuleAccount"></a>
+| Field           | Type                                                           | Label | Description |
+| --------------- | -------------------------------------------------------------- | ----- | ----------- |
+| address         | [string](cosmos-grpc-docs.md#string)                           |       |             |
+| pub\_key        | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       |             |
+| account\_number | [uint64](cosmos-grpc-docs.md#uint64)                           |       |             |
+| sequence        | [uint64](cosmos-grpc-docs.md#uint64)                           |       |             |
 
 ### ModuleAccount
+
 ModuleAccount defines an account for modules that holds coins on a pool.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base_account | [BaseAccount](#cosmos.auth.v1beta1.BaseAccount) |  |  |
-| name | [string](#string) |  |  |
-| permissions | [string](#string) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.auth.v1beta1.Params"></a>
+| Field         | Type                                                               | Label    | Description |
+| ------------- | ------------------------------------------------------------------ | -------- | ----------- |
+| base\_account | [BaseAccount](cosmos-grpc-docs.md#cosmos.auth.v1beta1.BaseAccount) |          |             |
+| name          | [string](cosmos-grpc-docs.md#string)                               |          |             |
+| permissions   | [string](cosmos-grpc-docs.md#string)                               | repeated |             |
 
 ### Params
+
 Params defines the parameters for the auth module.
 
+| Field                        | Type                                 | Label | Description |
+| ---------------------------- | ------------------------------------ | ----- | ----------- |
+| max\_memo\_characters        | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
+| tx\_sig\_limit               | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
+| tx\_size\_cost\_per\_byte    | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
+| sig\_verify\_cost\_ed25519   | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
+| sig\_verify\_cost\_secp256k1 | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| max_memo_characters | [uint64](#uint64) |  |  |
-| tx_sig_limit | [uint64](#uint64) |  |  |
-| tx_size_cost_per_byte | [uint64](#uint64) |  |  |
-| sig_verify_cost_ed25519 | [uint64](#uint64) |  |  |
-| sig_verify_cost_secp256k1 | [uint64](#uint64) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/bank/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/bank/v1beta1/tx.proto
 
-
-
-<a name="cosmos.bank.v1beta1.MsgMultiSend"></a>
-
 ### MsgMultiSend
+
 MsgMultiSend represents an arbitrary multi-in, multi-out send message.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| inputs | [Input](#cosmos.bank.v1beta1.Input) | repeated |  |
-| outputs | [Output](#cosmos.bank.v1beta1.Output) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.MsgMultiSendResponse"></a>
+| Field   | Type                                                     | Label    | Description |
+| ------- | -------------------------------------------------------- | -------- | ----------- |
+| inputs  | [Input](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Input)   | repeated |             |
+| outputs | [Output](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Output) | repeated |             |
 
 ### MsgMultiSendResponse
+
 MsgMultiSendResponse defines the Msg/MultiSend response type.
 
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.MsgSend"></a>
-
 ### MsgSend
+
 MsgSend represents a message to send coins from one account to another.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| from_address | [string](#string) |  |  |
-| to_address | [string](#string) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.MsgSendResponse"></a>
+| Field         | Type                                                                     | Label    | Description |
+| ------------- | ------------------------------------------------------------------------ | -------- | ----------- |
+| from\_address | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| to\_address   | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| amount        | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
 
 ### MsgSendResponse
+
 MsgSendResponse defines the Msg/Send response type.
 
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.bank.v1beta1.Msg"></a>
-
 ### Msg
+
 Msg defines the bank Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Send | [MsgSend](#cosmos.bank.v1beta1.MsgSend) | [MsgSendResponse](#cosmos.bank.v1beta1.MsgSendResponse) | Send defines a method for sending coins from one account to another account. |
-| MultiSend | [MsgMultiSend](#cosmos.bank.v1beta1.MsgMultiSend) | [MsgMultiSendResponse](#cosmos.bank.v1beta1.MsgMultiSendResponse) | MultiSend defines a method for sending coins from some accounts to other accounts. |
+| Method Name | Request Type                                                         | Response Type                                                                        | Description                                                                        |
+| ----------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| Send        | [MsgSend](cosmos-grpc-docs.md#cosmos.bank.v1beta1.MsgSend)           | [MsgSendResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.MsgSendResponse)           | Send defines a method for sending coins from one account to another account.       |
+| MultiSend   | [MsgMultiSend](cosmos-grpc-docs.md#cosmos.bank.v1beta1.MsgMultiSend) | [MsgMultiSendResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.MsgMultiSendResponse) | MultiSend defines a method for sending coins from some accounts to other accounts. |
 
- 
-
-
-
-<a name="cosmos/bank/v1beta1/bank.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/bank/v1beta1/bank.proto
 
-
-
-<a name="cosmos.bank.v1beta1.DenomUnit"></a>
-
 ### DenomUnit
-DenomUnit represents a struct that describes a given
-denomination unit of the basic token.
 
+DenomUnit represents a struct that describes a given denomination unit of the basic token.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| denom | [string](#string) |  | denom represents the string name of the given denom unit (e.g uatom). |
-| exponent | [uint32](#uint32) |  | exponent represents power of 10 exponent that one must raise the base_denom to in order to equal the given DenomUnit&#39;s denom 1 denom = 1^exponent base_denom (e.g. with a base_denom of uatom, one can create a DenomUnit of &#39;atom&#39; with exponent = 6, thus: 1 atom = 10^6 uatom). |
-| aliases | [string](#string) | repeated | aliases is a list of string aliases for the given denom |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.Input"></a>
+| Field    | Type                                 | Label    | Description                                                                                                                                                                                                                                                                           |
+| -------- | ------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| denom    | [string](cosmos-grpc-docs.md#string) |          | denom represents the string name of the given denom unit (e.g uatom).                                                                                                                                                                                                                 |
+| exponent | [uint32](cosmos-grpc-docs.md#uint32) |          | exponent represents power of 10 exponent that one must raise the base\_denom to in order to equal the given DenomUnit's denom 1 denom = 1^exponent base\_denom (e.g. with a base\_denom of uatom, one can create a DenomUnit of 'atom' with exponent = 6, thus: 1 atom = 10^6 uatom). |
+| aliases  | [string](cosmos-grpc-docs.md#string) | repeated | aliases is a list of string aliases for the given denom                                                                                                                                                                                                                               |
 
 ### Input
+
 Input models transaction input.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  |  |
-| coins | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.Metadata"></a>
+| Field   | Type                                                                     | Label    | Description |
+| ------- | ------------------------------------------------------------------------ | -------- | ----------- |
+| address | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| coins   | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
 
 ### Metadata
-Metadata represents a struct that describes
-a basic token.
 
+Metadata represents a struct that describes a basic token.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| description | [string](#string) |  |  |
-| denom_units | [DenomUnit](#cosmos.bank.v1beta1.DenomUnit) | repeated | denom_units represents the list of DenomUnit&#39;s for a given coin |
-| base | [string](#string) |  | base represents the base denom (should be the DenomUnit with exponent = 0). |
-| display | [string](#string) |  | display indicates the suggested denom that should be displayed in clients. |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.Output"></a>
+| Field        | Type                                                           | Label    | Description                                                                 |
+| ------------ | -------------------------------------------------------------- | -------- | --------------------------------------------------------------------------- |
+| description  | [string](cosmos-grpc-docs.md#string)                           |          |                                                                             |
+| denom\_units | [DenomUnit](cosmos-grpc-docs.md#cosmos.bank.v1beta1.DenomUnit) | repeated | denom\_units represents the list of DenomUnit's for a given coin            |
+| base         | [string](cosmos-grpc-docs.md#string)                           |          | base represents the base denom (should be the DenomUnit with exponent = 0). |
+| display      | [string](cosmos-grpc-docs.md#string)                           |          | display indicates the suggested denom that should be displayed in clients.  |
 
 ### Output
+
 Output models transaction outputs.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  |  |
-| coins | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.Params"></a>
+| Field   | Type                                                                     | Label    | Description |
+| ------- | ------------------------------------------------------------------------ | -------- | ----------- |
+| address | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| coins   | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
 
 ### Params
+
 Params defines the parameters for the bank module.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| send_enabled | [SendEnabled](#cosmos.bank.v1beta1.SendEnabled) | repeated |  |
-| default_send_enabled | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.SendEnabled"></a>
+| Field                  | Type                                                               | Label    | Description |
+| ---------------------- | ------------------------------------------------------------------ | -------- | ----------- |
+| send\_enabled          | [SendEnabled](cosmos-grpc-docs.md#cosmos.bank.v1beta1.SendEnabled) | repeated |             |
+| default\_send\_enabled | [bool](cosmos-grpc-docs.md#bool)                                   |          |             |
 
 ### SendEnabled
-SendEnabled maps coin denom to a send_enabled status (whether a denom is
-sendable).
 
+SendEnabled maps coin denom to a send\_enabled status (whether a denom is sendable).
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| denom | [string](#string) |  |  |
-| enabled | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.Supply"></a>
+| Field   | Type                                 | Label | Description |
+| ------- | ------------------------------------ | ----- | ----------- |
+| denom   | [string](cosmos-grpc-docs.md#string) |       |             |
+| enabled | [bool](cosmos-grpc-docs.md#bool)     |       |             |
 
 ### Supply
-Supply represents a struct that passively keeps track of the total supply
-amounts in the network.
 
+Supply represents a struct that passively keeps track of the total supply amounts in the network.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| total | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
+| Field | Type                                                                     | Label    | Description |
+| ----- | ------------------------------------------------------------------------ | -------- | ----------- |
+| total | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/bank/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/bank/v1beta1/query.proto
 
-
-
-<a name="cosmos.bank.v1beta1.QueryAllBalancesRequest"></a>
-
 ### QueryAllBalancesRequest
+
 QueryBalanceRequest is the request type for the Query/AllBalances RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  | address is the address to query balances for. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QueryAllBalancesResponse"></a>
+| Field      | Type                                                                                               | Label | Description                                                |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| address    | [string](cosmos-grpc-docs.md#string)                                                               |       | address is the address to query balances for.              |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request. |
 
 ### QueryAllBalancesResponse
-QueryAllBalancesResponse is the response type for the Query/AllBalances RPC
-method.
 
+QueryAllBalancesResponse is the response type for the Query/AllBalances RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| balances | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated | balances is the balances of all the coins. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QueryBalanceRequest"></a>
+| Field      | Type                                                                                                 | Label    | Description                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| balances   | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin)                             | repeated | balances is the balances of all the coins.         |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### QueryBalanceRequest
+
 QueryBalanceRequest is the request type for the Query/Balance RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  | address is the address to query balances for. |
-| denom | [string](#string) |  | denom is the coin denom to query balances for. |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QueryBalanceResponse"></a>
+| Field   | Type                                 | Label | Description                                    |
+| ------- | ------------------------------------ | ----- | ---------------------------------------------- |
+| address | [string](cosmos-grpc-docs.md#string) |       | address is the address to query balances for.  |
+| denom   | [string](cosmos-grpc-docs.md#string) |       | denom is the coin denom to query balances for. |
 
 ### QueryBalanceResponse
+
 QueryBalanceResponse is the response type for the Query/Balance RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| balance | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  | balance is the balance of the coin. |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QueryParamsRequest"></a>
+| Field   | Type                                                                     | Label | Description                         |
+| ------- | ------------------------------------------------------------------------ | ----- | ----------------------------------- |
+| balance | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) |       | balance is the balance of the coin. |
 
 ### QueryParamsRequest
+
 QueryParamsRequest defines the request type for querying x/bank parameters.
 
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QueryParamsResponse"></a>
-
 ### QueryParamsResponse
+
 QueryParamsResponse defines the response type for querying x/bank parameters.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.bank.v1beta1.Params) |  |  |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QuerySupplyOfRequest"></a>
+| Field  | Type                                                     | Label | Description |
+| ------ | -------------------------------------------------------- | ----- | ----------- |
+| params | [Params](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Params) |       |             |
 
 ### QuerySupplyOfRequest
+
 QuerySupplyOfRequest is the request type for the Query/SupplyOf RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| denom | [string](#string) |  | denom is the coin denom to query balances for. |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QuerySupplyOfResponse"></a>
+| Field | Type                                 | Label | Description                                    |
+| ----- | ------------------------------------ | ----- | ---------------------------------------------- |
+| denom | [string](cosmos-grpc-docs.md#string) |       | denom is the coin denom to query balances for. |
 
 ### QuerySupplyOfResponse
+
 QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  | amount is the supply of the coin. |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QueryTotalSupplyRequest"></a>
+| Field  | Type                                                                     | Label | Description                       |
+| ------ | ------------------------------------------------------------------------ | ----- | --------------------------------- |
+| amount | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) |       | amount is the supply of the coin. |
 
 ### QueryTotalSupplyRequest
-QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC
-method.
 
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.QueryTotalSupplyResponse"></a>
+QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC method.
 
 ### QueryTotalSupplyResponse
-QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC
-method
 
+QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| supply | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated | supply is the supply of the coins |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.bank.v1beta1.Query"></a>
+| Field  | Type                                                                     | Label    | Description                       |
+| ------ | ------------------------------------------------------------------------ | -------- | --------------------------------- |
+| supply | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated | supply is the supply of the coins |
 
 ### Query
+
 Query defines the gRPC querier service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Balance | [QueryBalanceRequest](#cosmos.bank.v1beta1.QueryBalanceRequest) | [QueryBalanceResponse](#cosmos.bank.v1beta1.QueryBalanceResponse) | Balance queries the balance of a single coin for a single account. |
-| AllBalances | [QueryAllBalancesRequest](#cosmos.bank.v1beta1.QueryAllBalancesRequest) | [QueryAllBalancesResponse](#cosmos.bank.v1beta1.QueryAllBalancesResponse) | AllBalances queries the balance of all coins for a single account. |
-| TotalSupply | [QueryTotalSupplyRequest](#cosmos.bank.v1beta1.QueryTotalSupplyRequest) | [QueryTotalSupplyResponse](#cosmos.bank.v1beta1.QueryTotalSupplyResponse) | TotalSupply queries the total supply of all coins. |
-| SupplyOf | [QuerySupplyOfRequest](#cosmos.bank.v1beta1.QuerySupplyOfRequest) | [QuerySupplyOfResponse](#cosmos.bank.v1beta1.QuerySupplyOfResponse) | SupplyOf queries the supply of a single coin. |
-| Params | [QueryParamsRequest](#cosmos.bank.v1beta1.QueryParamsRequest) | [QueryParamsResponse](#cosmos.bank.v1beta1.QueryParamsResponse) | Params queries the parameters of x/bank module. |
+| Method Name | Request Type                                                                               | Response Type                                                                                | Description                                                        |
+| ----------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Balance     | [QueryBalanceRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryBalanceRequest)         | [QueryBalanceResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryBalanceResponse)         | Balance queries the balance of a single coin for a single account. |
+| AllBalances | [QueryAllBalancesRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryAllBalancesRequest) | [QueryAllBalancesResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryAllBalancesResponse) | AllBalances queries the balance of all coins for a single account. |
+| TotalSupply | [QueryTotalSupplyRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryTotalSupplyRequest) | [QueryTotalSupplyResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryTotalSupplyResponse) | TotalSupply queries the total supply of all coins.                 |
+| SupplyOf    | [QuerySupplyOfRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QuerySupplyOfRequest)       | [QuerySupplyOfResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QuerySupplyOfResponse)       | SupplyOf queries the supply of a single coin.                      |
+| Params      | [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryParamsRequest)           | [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.bank.v1beta1.QueryParamsResponse)           | Params queries the parameters of x/bank module.                    |
 
- 
-
-
-
-<a name="cosmos/bank/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/bank/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.bank.v1beta1.Balance"></a>
-
 ### Balance
-Balance defines an account address and balance pair used in the bank module&#39;s
-genesis state.
 
+Balance defines an account address and balance pair used in the bank module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  | address is the address of the balance holder. |
-| coins | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated | coins defines the different coins this balance holds. |
-
-
-
-
-
-
-<a name="cosmos.bank.v1beta1.GenesisState"></a>
+| Field   | Type                                                                     | Label    | Description                                           |
+| ------- | ------------------------------------------------------------------------ | -------- | ----------------------------------------------------- |
+| address | [string](cosmos-grpc-docs.md#string)                                     |          | address is the address of the balance holder.         |
+| coins   | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated | coins defines the different coins this balance holds. |
 
 ### GenesisState
-GenesisState defines the bank module&#39;s genesis state.
 
+GenesisState defines the bank module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.bank.v1beta1.Params) |  | params defines all the paramaters of the module. |
-| balances | [Balance](#cosmos.bank.v1beta1.Balance) | repeated | balances is an array containing the balances of all the accounts. |
-| supply | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated | supply represents the total supply. |
-| denom_metadata | [Metadata](#cosmos.bank.v1beta1.Metadata) | repeated | denom_metadata defines the metadata of the differents coins. |
+| Field           | Type                                                                     | Label    | Description                                                       |
+| --------------- | ------------------------------------------------------------------------ | -------- | ----------------------------------------------------------------- |
+| params          | [Params](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Params)                 |          | params defines all the paramaters of the module.                  |
+| balances        | [Balance](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Balance)               | repeated | balances is an array containing the balances of all the accounts. |
+| supply          | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated | supply represents the total supply.                               |
+| denom\_metadata | [Metadata](cosmos-grpc-docs.md#cosmos.bank.v1beta1.Metadata)             | repeated | denom\_metadata defines the metadata of the differents coins.     |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/capability/v1beta1/capability.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/capability/v1beta1/capability.proto
 
-
-
-<a name="cosmos.capability.v1beta1.Capability"></a>
-
 ### Capability
-Capability defines an implementation of an object capability. The index
-provided to a Capability must be globally unique.
 
+Capability defines an implementation of an object capability. The index provided to a Capability must be globally unique.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="cosmos.capability.v1beta1.CapabilityOwners"></a>
+| Field | Type                                 | Label | Description |
+| ----- | ------------------------------------ | ----- | ----------- |
+| index | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
 
 ### CapabilityOwners
-CapabilityOwners defines a set of owners of a single Capability. The set of
-owners must be unique.
 
+CapabilityOwners defines a set of owners of a single Capability. The set of owners must be unique.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| owners | [Owner](#cosmos.capability.v1beta1.Owner) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.capability.v1beta1.Owner"></a>
+| Field  | Type                                                         | Label    | Description |
+| ------ | ------------------------------------------------------------ | -------- | ----------- |
+| owners | [Owner](cosmos-grpc-docs.md#cosmos.capability.v1beta1.Owner) | repeated |             |
 
 ### Owner
-Owner defines a single capability owner. An owner is defined by the name of
-capability and the module name.
 
+Owner defines a single capability owner. An owner is defined by the name of capability and the module name.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| module | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| Field  | Type                                 | Label | Description |
+| ------ | ------------------------------------ | ----- | ----------- |
+| module | [string](cosmos-grpc-docs.md#string) |       |             |
+| name   | [string](cosmos-grpc-docs.md#string) |       |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/capability/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/capability/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.capability.v1beta1.GenesisOwners"></a>
-
 ### GenesisOwners
+
 GenesisOwners defines the capability owners with their corresponding index.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  | index is the index of the capability owner. |
-| index_owners | [CapabilityOwners](#cosmos.capability.v1beta1.CapabilityOwners) |  | index_owners are the owners at the given index. |
-
-
-
-
-
-
-<a name="cosmos.capability.v1beta1.GenesisState"></a>
+| Field         | Type                                                                               | Label | Description                                      |
+| ------------- | ---------------------------------------------------------------------------------- | ----- | ------------------------------------------------ |
+| index         | [uint64](cosmos-grpc-docs.md#uint64)                                               |       | index is the index of the capability owner.      |
+| index\_owners | [CapabilityOwners](cosmos-grpc-docs.md#cosmos.capability.v1beta1.CapabilityOwners) |       | index\_owners are the owners at the given index. |
 
 ### GenesisState
-GenesisState defines the capability module&#39;s genesis state.
 
+GenesisState defines the capability module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  | index is the capability global index. |
-| owners | [GenesisOwners](#cosmos.capability.v1beta1.GenesisOwners) | repeated | owners represents a map from index to owners of the capability index index key is string to allow amino marshalling. |
+| Field  | Type                                                                         | Label    | Description                                                                                                          |
+| ------ | ---------------------------------------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------- |
+| index  | [uint64](cosmos-grpc-docs.md#uint64)                                         |          | index is the capability global index.                                                                                |
+| owners | [GenesisOwners](cosmos-grpc-docs.md#cosmos.capability.v1beta1.GenesisOwners) | repeated | owners represents a map from index to owners of the capability index index key is string to allow amino marshalling. |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/distribution/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/distribution/v1beta1/tx.proto
 
-
-
-<a name="cosmos.distribution.v1beta1.MsgFundCommunityPool"></a>
-
 ### MsgFundCommunityPool
-MsgFundCommunityPool allows an account to directly
-fund the community pool.
 
+MsgFundCommunityPool allows an account to directly fund the community pool.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-| depositor | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse"></a>
+| Field     | Type                                                                     | Label    | Description |
+| --------- | ------------------------------------------------------------------------ | -------- | ----------- |
+| amount    | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
+| depositor | [string](cosmos-grpc-docs.md#string)                                     |          |             |
 
 ### MsgFundCommunityPoolResponse
+
 MsgFundCommunityPoolResponse defines the Msg/FundCommunityPool response type.
 
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.MsgSetWithdrawAddress"></a>
-
 ### MsgSetWithdrawAddress
-MsgSetWithdrawAddress sets the withdraw address for
-a delegator (or validator self-delegation).
 
+MsgSetWithdrawAddress sets the withdraw address for a delegator (or validator self-delegation).
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| withdraw_address | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse"></a>
+| Field              | Type                                 | Label | Description |
+| ------------------ | ------------------------------------ | ----- | ----------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       |             |
+| withdraw\_address  | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### MsgSetWithdrawAddressResponse
+
 MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response type.
 
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward"></a>
-
 ### MsgWithdrawDelegatorReward
-MsgWithdrawDelegatorReward represents delegation withdrawal to a delegator
-from a single validator.
 
+MsgWithdrawDelegatorReward represents delegation withdrawal to a delegator from a single validator.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_address | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse"></a>
+| Field              | Type                                 | Label | Description |
+| ------------------ | ------------------------------------ | ----- | ----------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       |             |
+| validator\_address | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### MsgWithdrawDelegatorRewardResponse
+
 MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward response type.
 
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"></a>
-
 ### MsgWithdrawValidatorCommission
-MsgWithdrawValidatorCommission withdraws the full commission to the validator
-address.
 
+MsgWithdrawValidatorCommission withdraws the full commission to the validator address.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse"></a>
+| Field              | Type                                 | Label | Description |
+| ------------------ | ------------------------------------ | ----- | ----------- |
+| validator\_address | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### MsgWithdrawValidatorCommissionResponse
+
 MsgWithdrawValidatorCommissionResponse defines the Msg/WithdrawValidatorCommission response type.
 
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.distribution.v1beta1.Msg"></a>
-
 ### Msg
+
 Msg defines the distribution Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| SetWithdrawAddress | [MsgSetWithdrawAddress](#cosmos.distribution.v1beta1.MsgSetWithdrawAddress) | [MsgSetWithdrawAddressResponse](#cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse) | SetWithdrawAddress defines a method to change the withdraw address for a delegator (or validator self-delegation). |
-| WithdrawDelegatorReward | [MsgWithdrawDelegatorReward](#cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward) | [MsgWithdrawDelegatorRewardResponse](#cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse) | WithdrawDelegatorReward defines a method to withdraw rewards of delegator from a single validator. |
-| WithdrawValidatorCommission | [MsgWithdrawValidatorCommission](#cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission) | [MsgWithdrawValidatorCommissionResponse](#cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse) | WithdrawValidatorCommission defines a method to withdraw the full commission to the validator address. |
-| FundCommunityPool | [MsgFundCommunityPool](#cosmos.distribution.v1beta1.MsgFundCommunityPool) | [MsgFundCommunityPoolResponse](#cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse) | FundCommunityPool defines a method to allow an account to directly fund the community pool. |
+| Method Name                 | Request Type                                                                                                     | Response Type                                                                                                                    | Description                                                                                                        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| SetWithdrawAddress          | [MsgSetWithdrawAddress](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgSetWithdrawAddress)                   | [MsgSetWithdrawAddressResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse)                   | SetWithdrawAddress defines a method to change the withdraw address for a delegator (or validator self-delegation). |
+| WithdrawDelegatorReward     | [MsgWithdrawDelegatorReward](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward)         | [MsgWithdrawDelegatorRewardResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse)         | WithdrawDelegatorReward defines a method to withdraw rewards of delegator from a single validator.                 |
+| WithdrawValidatorCommission | [MsgWithdrawValidatorCommission](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission) | [MsgWithdrawValidatorCommissionResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse) | WithdrawValidatorCommission defines a method to withdraw the full commission to the validator address.             |
+| FundCommunityPool           | [MsgFundCommunityPool](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgFundCommunityPool)                     | [MsgFundCommunityPoolResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse)                     | FundCommunityPool defines a method to allow an account to directly fund the community pool.                        |
 
- 
-
-
-
-<a name="cosmos/distribution/v1beta1/distribution.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/distribution/v1beta1/distribution.proto
 
-
-
-<a name="cosmos.distribution.v1beta1.CommunityPoolSpendProposal"></a>
-
 ### CommunityPoolSpendProposal
-CommunityPoolSpendProposal details a proposal for use of community funds,
-together with how many coins are proposed to be spent, and to which
-recipient account.
 
+CommunityPoolSpendProposal details a proposal for use of community funds, together with how many coins are proposed to be spent, and to which recipient account.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| title | [string](#string) |  |  |
-| description | [string](#string) |  |  |
-| recipient | [string](#string) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit"></a>
+| Field       | Type                                                                     | Label    | Description |
+| ----------- | ------------------------------------------------------------------------ | -------- | ----------- |
+| title       | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| description | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| recipient   | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| amount      | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
 
 ### CommunityPoolSpendProposalWithDeposit
-CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal
-with a deposit
 
+CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal with a deposit
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| title | [string](#string) |  |  |
-| description | [string](#string) |  |  |
-| recipient | [string](#string) |  |  |
-| amount | [string](#string) |  |  |
-| deposit | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.DelegationDelegatorReward"></a>
+| Field       | Type                                 | Label | Description |
+| ----------- | ------------------------------------ | ----- | ----------- |
+| title       | [string](cosmos-grpc-docs.md#string) |       |             |
+| description | [string](cosmos-grpc-docs.md#string) |       |             |
+| recipient   | [string](cosmos-grpc-docs.md#string) |       |             |
+| amount      | [string](cosmos-grpc-docs.md#string) |       |             |
+| deposit     | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### DelegationDelegatorReward
-DelegationDelegatorReward represents the properties
-of a delegator&#39;s delegation reward.
 
+DelegationDelegatorReward represents the properties of a delegator's delegation reward.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  |  |
-| reward | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.DelegatorStartingInfo"></a>
+| Field              | Type                                                                           | Label    | Description |
+| ------------------ | ------------------------------------------------------------------------------ | -------- | ----------- |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                           |          |             |
+| reward             | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated |             |
 
 ### DelegatorStartingInfo
-DelegatorStartingInfo represents the starting info for a delegator reward
-period. It tracks the previous validator period, the delegation&#39;s amount of
-staking token, and the creation height (to check later on if any slashes have
-occurred). NOTE: Even though validators are slashed to whole staking tokens,
-the delegators within the validator may be left with less than a full token,
-thus sdk.Dec is used.
 
+DelegatorStartingInfo represents the starting info for a delegator reward period. It tracks the previous validator period, the delegation's amount of staking token, and the creation height (to check later on if any slashes have occurred). NOTE: Even though validators are slashed to whole staking tokens, the delegators within the validator may be left with less than a full token, thus sdk.Dec is used.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| previous_period | [uint64](#uint64) |  |  |
-| stake | [string](#string) |  |  |
-| height | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.FeePool"></a>
+| Field            | Type                                 | Label | Description |
+| ---------------- | ------------------------------------ | ----- | ----------- |
+| previous\_period | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
+| stake            | [string](cosmos-grpc-docs.md#string) |       |             |
+| height           | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
 
 ### FeePool
+
 FeePool is the global fee pool for distribution.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| community_pool | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.Params"></a>
+| Field           | Type                                                                           | Label    | Description |
+| --------------- | ------------------------------------------------------------------------------ | -------- | ----------- |
+| community\_pool | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated |             |
 
 ### Params
+
 Params defines the set of params for the distribution module.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| community_tax | [string](#string) |  |  |
-| base_proposer_reward | [string](#string) |  |  |
-| bonus_proposer_reward | [string](#string) |  |  |
-| withdraw_addr_enabled | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorAccumulatedCommission"></a>
+| Field                   | Type                                 | Label | Description |
+| ----------------------- | ------------------------------------ | ----- | ----------- |
+| community\_tax          | [string](cosmos-grpc-docs.md#string) |       |             |
+| base\_proposer\_reward  | [string](cosmos-grpc-docs.md#string) |       |             |
+| bonus\_proposer\_reward | [string](cosmos-grpc-docs.md#string) |       |             |
+| withdraw\_addr\_enabled | [bool](cosmos-grpc-docs.md#bool)     |       |             |
 
 ### ValidatorAccumulatedCommission
-ValidatorAccumulatedCommission represents accumulated commission
-for a validator kept as a running counter, can be withdrawn at any time.
 
+ValidatorAccumulatedCommission represents accumulated commission for a validator kept as a running counter, can be withdrawn at any time.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| commission | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorCurrentRewards"></a>
+| Field      | Type                                                                           | Label    | Description |
+| ---------- | ------------------------------------------------------------------------------ | -------- | ----------- |
+| commission | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated |             |
 
 ### ValidatorCurrentRewards
-ValidatorCurrentRewards represents current rewards and current
-period for a validator kept as a running counter and incremented
-each block as long as the validator&#39;s tokens remain constant.
 
+ValidatorCurrentRewards represents current rewards and current period for a validator kept as a running counter and incremented each block as long as the validator's tokens remain constant.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| rewards | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated |  |
-| period | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorHistoricalRewards"></a>
+| Field   | Type                                                                           | Label    | Description |
+| ------- | ------------------------------------------------------------------------------ | -------- | ----------- |
+| rewards | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated |             |
+| period  | [uint64](cosmos-grpc-docs.md#uint64)                                           |          |             |
 
 ### ValidatorHistoricalRewards
-ValidatorHistoricalRewards represents historical rewards for a validator.
-Height is implicit within the store key.
-Cumulative reward ratio is the sum from the zeroeth period
-until this period of rewards / tokens, per the spec.
-The reference count indicates the number of objects
-which might need to reference this historical entry at any point.
-ReferenceCount =
-   number of outstanding delegations which ended the associated period (and
-   might need to read that record)
- &#43; number of slashes which ended the associated period (and might need to
- read that record)
- &#43; one per validator for the zeroeth period, set on initialization
 
+ValidatorHistoricalRewards represents historical rewards for a validator. Height is implicit within the store key. Cumulative reward ratio is the sum from the zeroeth period until this period of rewards / tokens, per the spec. The reference count indicates the number of objects which might need to reference this historical entry at any point. ReferenceCount = number of outstanding delegations which ended the associated period (and might need to read that record) + number of slashes which ended the associated period (and might need to read that record) + one per validator for the zeroeth period, set on initialization
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| cumulative_reward_ratio | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated |  |
-| reference_count | [uint32](#uint32) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorOutstandingRewards"></a>
+| Field                     | Type                                                                           | Label    | Description |
+| ------------------------- | ------------------------------------------------------------------------------ | -------- | ----------- |
+| cumulative\_reward\_ratio | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated |             |
+| reference\_count          | [uint32](cosmos-grpc-docs.md#uint32)                                           |          |             |
 
 ### ValidatorOutstandingRewards
-ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
-for a validator inexpensive to track, allows simple sanity checks.
 
+ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards for a validator inexpensive to track, allows simple sanity checks.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| rewards | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorSlashEvent"></a>
+| Field   | Type                                                                           | Label    | Description |
+| ------- | ------------------------------------------------------------------------------ | -------- | ----------- |
+| rewards | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated |             |
 
 ### ValidatorSlashEvent
-ValidatorSlashEvent represents a validator slash event.
-Height is implicit within the store key.
-This is needed to calculate appropriate amount of staking tokens
-for delegations which are withdrawn after a slash has occurred.
 
+ValidatorSlashEvent represents a validator slash event. Height is implicit within the store key. This is needed to calculate appropriate amount of staking tokens for delegations which are withdrawn after a slash has occurred.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_period | [uint64](#uint64) |  |  |
-| fraction | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorSlashEvents"></a>
+| Field             | Type                                 | Label | Description |
+| ----------------- | ------------------------------------ | ----- | ----------- |
+| validator\_period | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
+| fraction          | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### ValidatorSlashEvents
+
 ValidatorSlashEvents is a collection of ValidatorSlashEvent messages.
 
+| Field                    | Type                                                                                       | Label    | Description |
+| ------------------------ | ------------------------------------------------------------------------------------------ | -------- | ----------- |
+| validator\_slash\_events | [ValidatorSlashEvent](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorSlashEvent) | repeated |             |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_slash_events | [ValidatorSlashEvent](#cosmos.distribution.v1beta1.ValidatorSlashEvent) | repeated |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/distribution/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/distribution/v1beta1/query.proto
 
-
-
-<a name="cosmos.distribution.v1beta1.QueryCommunityPoolRequest"></a>
-
 ### QueryCommunityPoolRequest
-QueryCommunityPoolRequest is the request type for the Query/CommunityPool RPC
-method.
 
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryCommunityPoolResponse"></a>
+QueryCommunityPoolRequest is the request type for the Query/CommunityPool RPC method.
 
 ### QueryCommunityPoolResponse
-QueryCommunityPoolResponse is the response type for the Query/CommunityPool
-RPC method.
 
+QueryCommunityPoolResponse is the response type for the Query/CommunityPool RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pool | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated | pool defines community pool&#39;s coins. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryDelegationRewardsRequest"></a>
+| Field | Type                                                                           | Label    | Description                          |
+| ----- | ------------------------------------------------------------------------------ | -------- | ------------------------------------ |
+| pool  | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated | pool defines community pool's coins. |
 
 ### QueryDelegationRewardsRequest
-QueryDelegationRewardsRequest is the request type for the
-Query/DelegationRewards RPC method.
 
+QueryDelegationRewardsRequest is the request type for the Query/DelegationRewards RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  | delegator_address defines the delegator address to query for. |
-| validator_address | [string](#string) |  | validator_address defines the validator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryDelegationRewardsResponse"></a>
+| Field              | Type                                 | Label | Description                                                    |
+| ------------------ | ------------------------------------ | ----- | -------------------------------------------------------------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       | delegator\_address defines the delegator address to query for. |
+| validator\_address | [string](cosmos-grpc-docs.md#string) |       | validator\_address defines the validator address to query for. |
 
 ### QueryDelegationRewardsResponse
-QueryDelegationRewardsResponse is the response type for the
-Query/DelegationRewards RPC method.
 
+QueryDelegationRewardsResponse is the response type for the Query/DelegationRewards RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| rewards | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated | rewards defines the rewards accrued by a delegation. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest"></a>
+| Field   | Type                                                                           | Label    | Description                                          |
+| ------- | ------------------------------------------------------------------------------ | -------- | ---------------------------------------------------- |
+| rewards | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated | rewards defines the rewards accrued by a delegation. |
 
 ### QueryDelegationTotalRewardsRequest
-QueryDelegationTotalRewardsRequest is the request type for the
-Query/DelegationTotalRewards RPC method.
 
+QueryDelegationTotalRewardsRequest is the request type for the Query/DelegationTotalRewards RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  | delegator_address defines the delegator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse"></a>
+| Field              | Type                                 | Label | Description                                                    |
+| ------------------ | ------------------------------------ | ----- | -------------------------------------------------------------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       | delegator\_address defines the delegator address to query for. |
 
 ### QueryDelegationTotalRewardsResponse
-QueryDelegationTotalRewardsResponse is the response type for the
-Query/DelegationTotalRewards RPC method.
 
+QueryDelegationTotalRewardsResponse is the response type for the Query/DelegationTotalRewards RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| rewards | [DelegationDelegatorReward](#cosmos.distribution.v1beta1.DelegationDelegatorReward) | repeated | rewards defines all the rewards accrued by a delegator. |
-| total | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated | total defines the sum of all the rewards. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest"></a>
+| Field   | Type                                                                                                   | Label    | Description                                             |
+| ------- | ------------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------------- |
+| rewards | [DelegationDelegatorReward](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.DelegationDelegatorReward) | repeated | rewards defines all the rewards accrued by a delegator. |
+| total   | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin)                         | repeated | total defines the sum of all the rewards.               |
 
 ### QueryDelegatorValidatorsRequest
-QueryDelegatorValidatorsRequest is the request type for the
-Query/DelegatorValidators RPC method.
 
+QueryDelegatorValidatorsRequest is the request type for the Query/DelegatorValidators RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  | delegator_address defines the delegator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse"></a>
+| Field              | Type                                 | Label | Description                                                    |
+| ------------------ | ------------------------------------ | ----- | -------------------------------------------------------------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       | delegator\_address defines the delegator address to query for. |
 
 ### QueryDelegatorValidatorsResponse
-QueryDelegatorValidatorsResponse is the response type for the
-Query/DelegatorValidators RPC method.
 
+QueryDelegatorValidatorsResponse is the response type for the Query/DelegatorValidators RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validators | [string](#string) | repeated | validators defines the validators a delegator is delegating for. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest"></a>
+| Field      | Type                                 | Label    | Description                                                      |
+| ---------- | ------------------------------------ | -------- | ---------------------------------------------------------------- |
+| validators | [string](cosmos-grpc-docs.md#string) | repeated | validators defines the validators a delegator is delegating for. |
 
 ### QueryDelegatorWithdrawAddressRequest
-QueryDelegatorWithdrawAddressRequest is the request type for the
-Query/DelegatorWithdrawAddress RPC method.
 
+QueryDelegatorWithdrawAddressRequest is the request type for the Query/DelegatorWithdrawAddress RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  | delegator_address defines the delegator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse"></a>
+| Field              | Type                                 | Label | Description                                                    |
+| ------------------ | ------------------------------------ | ----- | -------------------------------------------------------------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       | delegator\_address defines the delegator address to query for. |
 
 ### QueryDelegatorWithdrawAddressResponse
-QueryDelegatorWithdrawAddressResponse is the response type for the
-Query/DelegatorWithdrawAddress RPC method.
 
+QueryDelegatorWithdrawAddressResponse is the response type for the Query/DelegatorWithdrawAddress RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| withdraw_address | [string](#string) |  | withdraw_address defines the delegator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryParamsRequest"></a>
+| Field             | Type                                 | Label | Description                                                   |
+| ----------------- | ------------------------------------ | ----- | ------------------------------------------------------------- |
+| withdraw\_address | [string](cosmos-grpc-docs.md#string) |       | withdraw\_address defines the delegator address to query for. |
 
 ### QueryParamsRequest
+
 QueryParamsRequest is the request type for the Query/Params RPC method.
 
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryParamsResponse"></a>
-
 ### QueryParamsResponse
+
 QueryParamsResponse is the response type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.distribution.v1beta1.Params) |  | params defines the parameters of the module. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryValidatorCommissionRequest"></a>
+| Field  | Type                                                             | Label | Description                                  |
+| ------ | ---------------------------------------------------------------- | ----- | -------------------------------------------- |
+| params | [Params](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.Params) |       | params defines the parameters of the module. |
 
 ### QueryValidatorCommissionRequest
-QueryValidatorCommissionRequest is the request type for the
-Query/ValidatorCommission RPC method
 
+QueryValidatorCommissionRequest is the request type for the Query/ValidatorCommission RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  | validator_address defines the validator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryValidatorCommissionResponse"></a>
+| Field              | Type                                 | Label | Description                                                    |
+| ------------------ | ------------------------------------ | ----- | -------------------------------------------------------------- |
+| validator\_address | [string](cosmos-grpc-docs.md#string) |       | validator\_address defines the validator address to query for. |
 
 ### QueryValidatorCommissionResponse
-QueryValidatorCommissionResponse is the response type for the
-Query/ValidatorCommission RPC method
 
+QueryValidatorCommissionResponse is the response type for the Query/ValidatorCommission RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| commission | [ValidatorAccumulatedCommission](#cosmos.distribution.v1beta1.ValidatorAccumulatedCommission) |  | commission defines the commision the validator received. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest"></a>
+| Field      | Type                                                                                                             | Label | Description                                              |
+| ---------- | ---------------------------------------------------------------------------------------------------------------- | ----- | -------------------------------------------------------- |
+| commission | [ValidatorAccumulatedCommission](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorAccumulatedCommission) |       | commission defines the commision the validator received. |
 
 ### QueryValidatorOutstandingRewardsRequest
-QueryValidatorOutstandingRewardsRequest is the request type for the
-Query/ValidatorOutstandingRewards RPC method.
 
+QueryValidatorOutstandingRewardsRequest is the request type for the Query/ValidatorOutstandingRewards RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  | validator_address defines the validator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse"></a>
+| Field              | Type                                 | Label | Description                                                    |
+| ------------------ | ------------------------------------ | ----- | -------------------------------------------------------------- |
+| validator\_address | [string](cosmos-grpc-docs.md#string) |       | validator\_address defines the validator address to query for. |
 
 ### QueryValidatorOutstandingRewardsResponse
-QueryValidatorOutstandingRewardsResponse is the response type for the
-Query/ValidatorOutstandingRewards RPC method.
 
+QueryValidatorOutstandingRewardsResponse is the response type for the Query/ValidatorOutstandingRewards RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| rewards | [ValidatorOutstandingRewards](#cosmos.distribution.v1beta1.ValidatorOutstandingRewards) |  |  |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryValidatorSlashesRequest"></a>
+| Field   | Type                                                                                                       | Label | Description |
+| ------- | ---------------------------------------------------------------------------------------------------------- | ----- | ----------- |
+| rewards | [ValidatorOutstandingRewards](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorOutstandingRewards) |       |             |
 
 ### QueryValidatorSlashesRequest
-QueryValidatorSlashesRequest is the request type for the
-Query/ValidatorSlashes RPC method
 
+QueryValidatorSlashesRequest is the request type for the Query/ValidatorSlashes RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  | validator_address defines the validator address to query for. |
-| starting_height | [uint64](#uint64) |  | starting_height defines the optional starting height to query the slashes. |
-| ending_height | [uint64](#uint64) |  | starting_height defines the optional ending height to query the slashes. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.QueryValidatorSlashesResponse"></a>
+| Field              | Type                                                                                               | Label | Description                                                                 |
+| ------------------ | -------------------------------------------------------------------------------------------------- | ----- | --------------------------------------------------------------------------- |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                                               |       | validator\_address defines the validator address to query for.              |
+| starting\_height   | [uint64](cosmos-grpc-docs.md#uint64)                                                               |       | starting\_height defines the optional starting height to query the slashes. |
+| ending\_height     | [uint64](cosmos-grpc-docs.md#uint64)                                                               |       | starting\_height defines the optional ending height to query the slashes.   |
+| pagination         | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.                  |
 
 ### QueryValidatorSlashesResponse
-QueryValidatorSlashesResponse is the response type for the
-Query/ValidatorSlashes RPC method.
 
+QueryValidatorSlashesResponse is the response type for the Query/ValidatorSlashes RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| slashes | [ValidatorSlashEvent](#cosmos.distribution.v1beta1.ValidatorSlashEvent) | repeated | slashes defines the slashes the validator received. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.distribution.v1beta1.Query"></a>
+| Field      | Type                                                                                                 | Label    | Description                                         |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------- |
+| slashes    | [ValidatorSlashEvent](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorSlashEvent)           | repeated | slashes defines the slashes the validator received. |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response.  |
 
 ### Query
+
 Query defines the gRPC querier service for distribution module.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Params | [QueryParamsRequest](#cosmos.distribution.v1beta1.QueryParamsRequest) | [QueryParamsResponse](#cosmos.distribution.v1beta1.QueryParamsResponse) | Params queries params of the distribution module. |
-| ValidatorOutstandingRewards | [QueryValidatorOutstandingRewardsRequest](#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest) | [QueryValidatorOutstandingRewardsResponse](#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse) | ValidatorOutstandingRewards queries rewards of a validator address. |
-| ValidatorCommission | [QueryValidatorCommissionRequest](#cosmos.distribution.v1beta1.QueryValidatorCommissionRequest) | [QueryValidatorCommissionResponse](#cosmos.distribution.v1beta1.QueryValidatorCommissionResponse) | ValidatorCommission queries accumulated commission for a validator. |
-| ValidatorSlashes | [QueryValidatorSlashesRequest](#cosmos.distribution.v1beta1.QueryValidatorSlashesRequest) | [QueryValidatorSlashesResponse](#cosmos.distribution.v1beta1.QueryValidatorSlashesResponse) | ValidatorSlashes queries slash events of a validator. |
-| DelegationRewards | [QueryDelegationRewardsRequest](#cosmos.distribution.v1beta1.QueryDelegationRewardsRequest) | [QueryDelegationRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegationRewardsResponse) | DelegationRewards queries the total rewards accrued by a delegation. |
-| DelegationTotalRewards | [QueryDelegationTotalRewardsRequest](#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest) | [QueryDelegationTotalRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse) | DelegationTotalRewards queries the total rewards accrued by a each validator. |
-| DelegatorValidators | [QueryDelegatorValidatorsRequest](#cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest) | [QueryDelegatorValidatorsResponse](#cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse) | DelegatorValidators queries the validators of a delegator. |
-| DelegatorWithdrawAddress | [QueryDelegatorWithdrawAddressRequest](#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest) | [QueryDelegatorWithdrawAddressResponse](#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse) | DelegatorWithdrawAddress queries withdraw address of a delegator. |
-| CommunityPool | [QueryCommunityPoolRequest](#cosmos.distribution.v1beta1.QueryCommunityPoolRequest) | [QueryCommunityPoolResponse](#cosmos.distribution.v1beta1.QueryCommunityPoolResponse) | CommunityPool queries the community pool coins. |
+| Method Name                 | Request Type                                                                                                                       | Response Type                                                                                                                        | Description                                                                   |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| Params                      | [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryParamsRequest)                                           | [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryParamsResponse)                                           | Params queries params of the distribution module.                             |
+| ValidatorOutstandingRewards | [QueryValidatorOutstandingRewardsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest) | [QueryValidatorOutstandingRewardsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse) | ValidatorOutstandingRewards queries rewards of a validator address.           |
+| ValidatorCommission         | [QueryValidatorCommissionRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorCommissionRequest)                 | [QueryValidatorCommissionResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorCommissionResponse)                 | ValidatorCommission queries accumulated commission for a validator.           |
+| ValidatorSlashes            | [QueryValidatorSlashesRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorSlashesRequest)                       | [QueryValidatorSlashesResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryValidatorSlashesResponse)                       | ValidatorSlashes queries slash events of a validator.                         |
+| DelegationRewards           | [QueryDelegationRewardsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegationRewardsRequest)                     | [QueryDelegationRewardsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegationRewardsResponse)                     | DelegationRewards queries the total rewards accrued by a delegation.          |
+| DelegationTotalRewards      | [QueryDelegationTotalRewardsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest)           | [QueryDelegationTotalRewardsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse)           | DelegationTotalRewards queries the total rewards accrued by a each validator. |
+| DelegatorValidators         | [QueryDelegatorValidatorsRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest)                 | [QueryDelegatorValidatorsResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse)                 | DelegatorValidators queries the validators of a delegator.                    |
+| DelegatorWithdrawAddress    | [QueryDelegatorWithdrawAddressRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest)       | [QueryDelegatorWithdrawAddressResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse)       | DelegatorWithdrawAddress queries withdraw address of a delegator.             |
+| CommunityPool               | [QueryCommunityPoolRequest](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryCommunityPoolRequest)                             | [QueryCommunityPoolResponse](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.QueryCommunityPoolResponse)                             | CommunityPool queries the community pool coins.                               |
 
- 
-
-
-
-<a name="cosmos/distribution/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/distribution/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.distribution.v1beta1.DelegatorStartingInfoRecord"></a>
-
 ### DelegatorStartingInfoRecord
+
 DelegatorStartingInfoRecord used for import / export via genesis json.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  | delegator_address is the address of the delegator. |
-| validator_address | [string](#string) |  | validator_address is the address of the validator. |
-| starting_info | [DelegatorStartingInfo](#cosmos.distribution.v1beta1.DelegatorStartingInfo) |  | starting_info defines the starting info of a delegator. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.DelegatorWithdrawInfo"></a>
+| Field              | Type                                                                                           | Label | Description                                              |
+| ------------------ | ---------------------------------------------------------------------------------------------- | ----- | -------------------------------------------------------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string)                                                           |       | delegator\_address is the address of the delegator.      |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                                           |       | validator\_address is the address of the validator.      |
+| starting\_info     | [DelegatorStartingInfo](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.DelegatorStartingInfo) |       | starting\_info defines the starting info of a delegator. |
 
 ### DelegatorWithdrawInfo
-DelegatorWithdrawInfo is the address for where distributions rewards are
-withdrawn to by default this struct is only used at genesis to feed in
-default withdraw addresses.
 
+DelegatorWithdrawInfo is the address for where distributions rewards are withdrawn to by default this struct is only used at genesis to feed in default withdraw addresses.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  | delegator_address is the address of the delegator. |
-| withdraw_address | [string](#string) |  | withdraw_address is the address to withdraw the delegation rewards to. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.GenesisState"></a>
+| Field              | Type                                 | Label | Description                                                             |
+| ------------------ | ------------------------------------ | ----- | ----------------------------------------------------------------------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       | delegator\_address is the address of the delegator.                     |
+| withdraw\_address  | [string](cosmos-grpc-docs.md#string) |       | withdraw\_address is the address to withdraw the delegation rewards to. |
 
 ### GenesisState
-GenesisState defines the distribution module&#39;s genesis state.
 
+GenesisState defines the distribution module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.distribution.v1beta1.Params) |  | params defines all the paramaters of the module. |
-| fee_pool | [FeePool](#cosmos.distribution.v1beta1.FeePool) |  | fee_pool defines the fee pool at genesis. |
-| delegator_withdraw_infos | [DelegatorWithdrawInfo](#cosmos.distribution.v1beta1.DelegatorWithdrawInfo) | repeated | fee_pool defines the delegator withdraw infos at genesis. |
-| previous_proposer | [string](#string) |  | fee_pool defines the previous proposer at genesis. |
-| outstanding_rewards | [ValidatorOutstandingRewardsRecord](#cosmos.distribution.v1beta1.ValidatorOutstandingRewardsRecord) | repeated | fee_pool defines the outstanding rewards of all validators at genesis. |
-| validator_accumulated_commissions | [ValidatorAccumulatedCommissionRecord](#cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord) | repeated | fee_pool defines the accumulated commisions of all validators at genesis. |
-| validator_historical_rewards | [ValidatorHistoricalRewardsRecord](#cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord) | repeated | fee_pool defines the historical rewards of all validators at genesis. |
-| validator_current_rewards | [ValidatorCurrentRewardsRecord](#cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord) | repeated | fee_pool defines the current rewards of all validators at genesis. |
-| delegator_starting_infos | [DelegatorStartingInfoRecord](#cosmos.distribution.v1beta1.DelegatorStartingInfoRecord) | repeated | fee_pool defines the delegator starting infos at genesis. |
-| validator_slash_events | [ValidatorSlashEventRecord](#cosmos.distribution.v1beta1.ValidatorSlashEventRecord) | repeated | fee_pool defines the validator slash events at genesis. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord"></a>
+| Field                               | Type                                                                                                                         | Label    | Description                                                                |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------------------------------- |
+| params                              | [Params](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.Params)                                                             |          | params defines all the paramaters of the module.                           |
+| fee\_pool                           | [FeePool](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.FeePool)                                                           |          | fee\_pool defines the fee pool at genesis.                                 |
+| delegator\_withdraw\_infos          | [DelegatorWithdrawInfo](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.DelegatorWithdrawInfo)                               | repeated | fee\_pool defines the delegator withdraw infos at genesis.                 |
+| previous\_proposer                  | [string](cosmos-grpc-docs.md#string)                                                                                         |          | fee\_pool defines the previous proposer at genesis.                        |
+| outstanding\_rewards                | [ValidatorOutstandingRewardsRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorOutstandingRewardsRecord)       | repeated | fee\_pool defines the outstanding rewards of all validators at genesis.    |
+| validator\_accumulated\_commissions | [ValidatorAccumulatedCommissionRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord) | repeated | fee\_pool defines the accumulated commisions of all validators at genesis. |
+| validator\_historical\_rewards      | [ValidatorHistoricalRewardsRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord)         | repeated | fee\_pool defines the historical rewards of all validators at genesis.     |
+| validator\_current\_rewards         | [ValidatorCurrentRewardsRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord)               | repeated | fee\_pool defines the current rewards of all validators at genesis.        |
+| delegator\_starting\_infos          | [DelegatorStartingInfoRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.DelegatorStartingInfoRecord)                   | repeated | fee\_pool defines the delegator starting infos at genesis.                 |
+| validator\_slash\_events            | [ValidatorSlashEventRecord](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorSlashEventRecord)                       | repeated | fee\_pool defines the validator slash events at genesis.                   |
 
 ### ValidatorAccumulatedCommissionRecord
-ValidatorAccumulatedCommissionRecord is used for import / export via genesis
-json.
 
+ValidatorAccumulatedCommissionRecord is used for import / export via genesis json.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  | validator_address is the address of the validator. |
-| accumulated | [ValidatorAccumulatedCommission](#cosmos.distribution.v1beta1.ValidatorAccumulatedCommission) |  | accumulated is the accumulated commission of a validator. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord"></a>
+| Field              | Type                                                                                                             | Label | Description                                               |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------- | ----- | --------------------------------------------------------- |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                                                             |       | validator\_address is the address of the validator.       |
+| accumulated        | [ValidatorAccumulatedCommission](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorAccumulatedCommission) |       | accumulated is the accumulated commission of a validator. |
 
 ### ValidatorCurrentRewardsRecord
+
 ValidatorCurrentRewardsRecord is used for import / export via genesis json.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  | validator_address is the address of the validator. |
-| rewards | [ValidatorCurrentRewards](#cosmos.distribution.v1beta1.ValidatorCurrentRewards) |  | rewards defines the current rewards of a validator. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord"></a>
+| Field              | Type                                                                                               | Label | Description                                         |
+| ------------------ | -------------------------------------------------------------------------------------------------- | ----- | --------------------------------------------------- |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                                               |       | validator\_address is the address of the validator. |
+| rewards            | [ValidatorCurrentRewards](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorCurrentRewards) |       | rewards defines the current rewards of a validator. |
 
 ### ValidatorHistoricalRewardsRecord
-ValidatorHistoricalRewardsRecord is used for import / export via genesis
-json.
 
+ValidatorHistoricalRewardsRecord is used for import / export via genesis json.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  | validator_address is the address of the validator. |
-| period | [uint64](#uint64) |  | period defines the period the historical rewards apply to. |
-| rewards | [ValidatorHistoricalRewards](#cosmos.distribution.v1beta1.ValidatorHistoricalRewards) |  | rewards defines the historical rewards of a validator. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorOutstandingRewardsRecord"></a>
+| Field              | Type                                                                                                     | Label | Description                                                |
+| ------------------ | -------------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                                                     |       | validator\_address is the address of the validator.        |
+| period             | [uint64](cosmos-grpc-docs.md#uint64)                                                                     |       | period defines the period the historical rewards apply to. |
+| rewards            | [ValidatorHistoricalRewards](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorHistoricalRewards) |       | rewards defines the historical rewards of a validator.     |
 
 ### ValidatorOutstandingRewardsRecord
+
 ValidatorOutstandingRewardsRecord is used for import/export via genesis json.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  | validator_address is the address of the validator. |
-| outstanding_rewards | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated | outstanding_rewards represents the oustanding rewards of a validator. |
-
-
-
-
-
-
-<a name="cosmos.distribution.v1beta1.ValidatorSlashEventRecord"></a>
+| Field                | Type                                                                           | Label    | Description                                                            |
+| -------------------- | ------------------------------------------------------------------------------ | -------- | ---------------------------------------------------------------------- |
+| validator\_address   | [string](cosmos-grpc-docs.md#string)                                           |          | validator\_address is the address of the validator.                    |
+| outstanding\_rewards | [cosmos.base.v1beta1.DecCoin](cosmos-grpc-docs.md#cosmos.base.v1beta1.DecCoin) | repeated | outstanding\_rewards represents the oustanding rewards of a validator. |
 
 ### ValidatorSlashEventRecord
+
 ValidatorSlashEventRecord is used for import / export via genesis json.
 
+| Field                   | Type                                                                                       | Label | Description                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------ | ----- | ----------------------------------------------------------------- |
+| validator\_address      | [string](cosmos-grpc-docs.md#string)                                                       |       | validator\_address is the address of the validator.               |
+| height                  | [uint64](cosmos-grpc-docs.md#uint64)                                                       |       | height defines the block height at which the slash event occured. |
+| period                  | [uint64](cosmos-grpc-docs.md#uint64)                                                       |       | period is the period of the slash event.                          |
+| validator\_slash\_event | [ValidatorSlashEvent](cosmos-grpc-docs.md#cosmos.distribution.v1beta1.ValidatorSlashEvent) |       | validator\_slash\_event describes the slash event.                |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_address | [string](#string) |  | validator_address is the address of the validator. |
-| height | [uint64](#uint64) |  | height defines the block height at which the slash event occured. |
-| period | [uint64](#uint64) |  | period is the period of the slash event. |
-| validator_slash_event | [ValidatorSlashEvent](#cosmos.distribution.v1beta1.ValidatorSlashEvent) |  | validator_slash_event describes the slash event. |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/crisis/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/crisis/v1beta1/tx.proto
 
-
-
-<a name="cosmos.crisis.v1beta1.MsgVerifyInvariant"></a>
-
 ### MsgVerifyInvariant
+
 MsgVerifyInvariant represents a message to verify a particular invariance.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sender | [string](#string) |  |  |
-| invariant_module_name | [string](#string) |  |  |
-| invariant_route | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.crisis.v1beta1.MsgVerifyInvariantResponse"></a>
+| Field                   | Type                                 | Label | Description |
+| ----------------------- | ------------------------------------ | ----- | ----------- |
+| sender                  | [string](cosmos-grpc-docs.md#string) |       |             |
+| invariant\_module\_name | [string](cosmos-grpc-docs.md#string) |       |             |
+| invariant\_route        | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### MsgVerifyInvariantResponse
+
 MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type.
 
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.crisis.v1beta1.Msg"></a>
-
 ### Msg
+
 Msg defines the bank Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| VerifyInvariant | [MsgVerifyInvariant](#cosmos.crisis.v1beta1.MsgVerifyInvariant) | [MsgVerifyInvariantResponse](#cosmos.crisis.v1beta1.MsgVerifyInvariantResponse) | VerifyInvariant defines a method to verify a particular invariance. |
+| Method Name     | Request Type                                                                       | Response Type                                                                                      | Description                                                         |
+| --------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| VerifyInvariant | [MsgVerifyInvariant](cosmos-grpc-docs.md#cosmos.crisis.v1beta1.MsgVerifyInvariant) | [MsgVerifyInvariantResponse](cosmos-grpc-docs.md#cosmos.crisis.v1beta1.MsgVerifyInvariantResponse) | VerifyInvariant defines a method to verify a particular invariance. |
 
- 
-
-
-
-<a name="cosmos/crisis/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/crisis/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.crisis.v1beta1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the crisis module&#39;s genesis state.
 
+GenesisState defines the crisis module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| constant_fee | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  | constant_fee is the fee used to verify the invariant in the crisis module. |
+| Field         | Type                                                                     | Label | Description                                                                 |
+| ------------- | ------------------------------------------------------------------------ | ----- | --------------------------------------------------------------------------- |
+| constant\_fee | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) |       | constant\_fee is the fee used to verify the invariant in the crisis module. |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/tx/signing/v1beta1/signing.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/tx/signing/v1beta1/signing.proto
 
-
-
-<a name="cosmos.tx.signing.v1beta1.SignatureDescriptor"></a>
-
 ### SignatureDescriptor
-SignatureDescriptor is a convenience type which represents the full data for
-a signature including the public key of the signer, signing modes and the
-signature itself. It is primarily used for coordinating signatures between
-clients.
 
+SignatureDescriptor is a convenience type which represents the full data for a signature including the public key of the signer, signing modes and the signature itself. It is primarily used for coordinating signatures between clients.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| public_key | [google.protobuf.Any](#google.protobuf.Any) |  | public_key is the public key of the signer |
-| data | [SignatureDescriptor.Data](#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data) |  |  |
-| sequence | [uint64](#uint64) |  | sequence is the sequence of the account, which describes the number of committed transactions signed by a given address. It is used to prevent replay attacks. |
-
-
-
-
-
-
-<a name="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data"></a>
+| Field       | Type                                                                                               | Label | Description                                                                                                                                                    |
+| ----------- | -------------------------------------------------------------------------------------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| public\_key | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)                                     |       | public\_key is the public key of the signer                                                                                                                    |
+| data        | [SignatureDescriptor.Data](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data) |       |                                                                                                                                                                |
+| sequence    | [uint64](cosmos-grpc-docs.md#uint64)                                                               |       | sequence is the sequence of the account, which describes the number of committed transactions signed by a given address. It is used to prevent replay attacks. |
 
 ### SignatureDescriptor.Data
+
 Data represents signature data
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| single | [SignatureDescriptor.Data.Single](#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single) |  | single represents a single signer |
-| multi | [SignatureDescriptor.Data.Multi](#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi) |  | multi represents a multisig signer |
-
-
-
-
-
-
-<a name="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi"></a>
+| Field  | Type                                                                                                             | Label | Description                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------- | ----- | ---------------------------------- |
+| single | [SignatureDescriptor.Data.Single](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single) |       | single represents a single signer  |
+| multi  | [SignatureDescriptor.Data.Multi](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi)   |       | multi represents a multisig signer |
 
 ### SignatureDescriptor.Data.Multi
+
 Multi is the signature data for a multisig public key
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| bitarray | [cosmos.crypto.multisig.v1beta1.CompactBitArray](#cosmos.crypto.multisig.v1beta1.CompactBitArray) |  | bitarray specifies which keys within the multisig are signing |
-| signatures | [SignatureDescriptor.Data](#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data) | repeated | signatures is the signatures of the multi-signature |
-
-
-
-
-
-
-<a name="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single"></a>
+| Field      | Type                                                                                                                 | Label    | Description                                                   |
+| ---------- | -------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------- |
+| bitarray   | [cosmos.crypto.multisig.v1beta1.CompactBitArray](cosmos-grpc-docs.md#cosmos.crypto.multisig.v1beta1.CompactBitArray) |          | bitarray specifies which keys within the multisig are signing |
+| signatures | [SignatureDescriptor.Data](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data)                   | repeated | signatures is the signatures of the multi-signature           |
 
 ### SignatureDescriptor.Data.Single
+
 Single is the signature data for a single signer
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| mode | [SignMode](#cosmos.tx.signing.v1beta1.SignMode) |  | mode is the signing mode of the single signer |
-| signature | [bytes](#bytes) |  | signature is the raw signature bytes |
-
-
-
-
-
-
-<a name="cosmos.tx.signing.v1beta1.SignatureDescriptors"></a>
+| Field     | Type                                                               | Label | Description                                   |
+| --------- | ------------------------------------------------------------------ | ----- | --------------------------------------------- |
+| mode      | [SignMode](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignMode) |       | mode is the signing mode of the single signer |
+| signature | [bytes](cosmos-grpc-docs.md#bytes)                                 |       | signature is the raw signature bytes          |
 
 ### SignatureDescriptors
-SignatureDescriptors wraps multiple SignatureDescriptor&#39;s.
 
+SignatureDescriptors wraps multiple SignatureDescriptor's.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| signatures | [SignatureDescriptor](#cosmos.tx.signing.v1beta1.SignatureDescriptor) | repeated | signatures are the signature descriptors |
-
-
-
-
-
- 
-
-
-<a name="cosmos.tx.signing.v1beta1.SignMode"></a>
+| Field      | Type                                                                                     | Label    | Description                              |
+| ---------- | ---------------------------------------------------------------------------------------- | -------- | ---------------------------------------- |
+| signatures | [SignatureDescriptor](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignatureDescriptor) | repeated | signatures are the signature descriptors |
 
 ### SignMode
+
 SignMode represents a signing mode with its own security guarantees.
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| SIGN_MODE_UNSPECIFIED | 0 | SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be rejected |
-| SIGN_MODE_DIRECT | 1 | SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is verified with raw bytes from Tx |
-| SIGN_MODE_TEXTUAL | 2 | SIGN_MODE_TEXTUAL is a future signing mode that will verify some human-readable textual representation on top of the binary representation from SIGN_MODE_DIRECT |
-| SIGN_MODE_LEGACY_AMINO_JSON | 127 | SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses Amino JSON and will be removed in the future |
+| Name                            | Number | Description                                                                                                                                                          |
+| ------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SIGN\_MODE\_UNSPECIFIED         | 0      | SIGN\_MODE\_UNSPECIFIED specifies an unknown signing mode and will be rejected                                                                                       |
+| SIGN\_MODE\_DIRECT              | 1      | SIGN\_MODE\_DIRECT specifies a signing mode which uses SignDoc and is verified with raw bytes from Tx                                                                |
+| SIGN\_MODE\_TEXTUAL             | 2      | SIGN\_MODE\_TEXTUAL is a future signing mode that will verify some human-readable textual representation on top of the binary representation from SIGN\_MODE\_DIRECT |
+| SIGN\_MODE\_LEGACY\_AMINO\_JSON | 127    | SIGN\_MODE\_LEGACY\_AMINO\_JSON is a backwards compatibility mode which uses Amino JSON and will be removed in the future                                            |
 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/tx/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/tx/v1beta1/tx.proto
 
-
-
-<a name="cosmos.tx.v1beta1.AuthInfo"></a>
-
 ### AuthInfo
-AuthInfo describes the fee and signer modes that are used to sign a
-transaction.
 
+AuthInfo describes the fee and signer modes that are used to sign a transaction.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| signer_infos | [SignerInfo](#cosmos.tx.v1beta1.SignerInfo) | repeated | signer_infos defines the signing modes for the required signers. The number and order of elements must match the required signers from TxBody&#39;s messages. The first element is the primary signer and the one which pays the fee. |
-| fee | [Fee](#cosmos.tx.v1beta1.Fee) |  | Fee is the fee and gas limit for the transaction. The first signer is the primary signer and the one which pays the fee. The fee can be calculated based on the cost of evaluating the body and doing signature verification of the signers. This can be estimated via simulation. |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.Fee"></a>
+| Field         | Type                                                           | Label    | Description                                                                                                                                                                                                                                                                        |
+| ------------- | -------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| signer\_infos | [SignerInfo](cosmos-grpc-docs.md#cosmos.tx.v1beta1.SignerInfo) | repeated | signer\_infos defines the signing modes for the required signers. The number and order of elements must match the required signers from TxBody's messages. The first element is the primary signer and the one which pays the fee.                                                 |
+| fee           | [Fee](cosmos-grpc-docs.md#cosmos.tx.v1beta1.Fee)               |          | Fee is the fee and gas limit for the transaction. The first signer is the primary signer and the one which pays the fee. The fee can be calculated based on the cost of evaluating the body and doing signature verification of the signers. This can be estimated via simulation. |
 
 ### Fee
-Fee includes the amount of coins paid in fees and the maximum
-gas to be used by the transaction. The ratio yields an effective &#34;gasprice&#34;,
-which must be above some miminum to be accepted into the mempool.
 
+Fee includes the amount of coins paid in fees and the maximum gas to be used by the transaction. The ratio yields an effective "gasprice", which must be above some miminum to be accepted into the mempool.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated | amount is the amount of coins to be paid as a fee |
-| gas_limit | [uint64](#uint64) |  | gas_limit is the maximum gas that can be used in transaction processing before an out of gas error occurs |
-| payer | [string](#string) |  | if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees. the payer must be a tx signer (and thus have signed this field in AuthInfo). setting this field does *not* change the ordering of required signers for the transaction. |
-| granter | [string](#string) |  | if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used to pay fees instead of the fee payer&#39;s own balance. If an appropriate fee grant does not exist or the chain does not support fee grants, this will fail |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.ModeInfo"></a>
+| Field      | Type                                                                     | Label    | Description                                                                                                                                                                                                                                                                             |
+| ---------- | ------------------------------------------------------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| amount     | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated | amount is the amount of coins to be paid as a fee                                                                                                                                                                                                                                       |
+| gas\_limit | [uint64](cosmos-grpc-docs.md#uint64)                                     |          | gas\_limit is the maximum gas that can be used in transaction processing before an out of gas error occurs                                                                                                                                                                              |
+| payer      | [string](cosmos-grpc-docs.md#string)                                     |          | if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees. the payer must be a tx signer (and thus have signed this field in AuthInfo). setting this field does _not_ change the ordering of required signers for the transaction. |
+| granter    | [string](cosmos-grpc-docs.md#string)                                     |          | if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used to pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does not support fee grants, this will fail               |
 
 ### ModeInfo
+
 ModeInfo describes the signing mode of a single or nested multisig signer.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| single | [ModeInfo.Single](#cosmos.tx.v1beta1.ModeInfo.Single) |  | single represents a single signer |
-| multi | [ModeInfo.Multi](#cosmos.tx.v1beta1.ModeInfo.Multi) |  | multi represents a nested multisig signer |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.ModeInfo.Multi"></a>
+| Field  | Type                                                                     | Label | Description                               |
+| ------ | ------------------------------------------------------------------------ | ----- | ----------------------------------------- |
+| single | [ModeInfo.Single](cosmos-grpc-docs.md#cosmos.tx.v1beta1.ModeInfo.Single) |       | single represents a single signer         |
+| multi  | [ModeInfo.Multi](cosmos-grpc-docs.md#cosmos.tx.v1beta1.ModeInfo.Multi)   |       | multi represents a nested multisig signer |
 
 ### ModeInfo.Multi
+
 Multi is the mode info for a multisig public key
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| bitarray | [cosmos.crypto.multisig.v1beta1.CompactBitArray](#cosmos.crypto.multisig.v1beta1.CompactBitArray) |  | bitarray specifies which keys within the multisig are signing |
-| mode_infos | [ModeInfo](#cosmos.tx.v1beta1.ModeInfo) | repeated | mode_infos is the corresponding modes of the signers of the multisig which could include nested multisig public keys |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.ModeInfo.Single"></a>
+| Field       | Type                                                                                                                 | Label    | Description                                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| bitarray    | [cosmos.crypto.multisig.v1beta1.CompactBitArray](cosmos-grpc-docs.md#cosmos.crypto.multisig.v1beta1.CompactBitArray) |          | bitarray specifies which keys within the multisig are signing                                                         |
+| mode\_infos | [ModeInfo](cosmos-grpc-docs.md#cosmos.tx.v1beta1.ModeInfo)                                                           | repeated | mode\_infos is the corresponding modes of the signers of the multisig which could include nested multisig public keys |
 
 ### ModeInfo.Single
-Single is the mode info for a single signer. It is structured as a message
-to allow for additional fields such as locale for SIGN_MODE_TEXTUAL in the
-future
 
+Single is the mode info for a single signer. It is structured as a message to allow for additional fields such as locale for SIGN\_MODE\_TEXTUAL in the future
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| mode | [cosmos.tx.signing.v1beta1.SignMode](#cosmos.tx.signing.v1beta1.SignMode) |  | mode is the signing mode of the single signer |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.SignDoc"></a>
+| Field | Type                                                                                         | Label | Description                                   |
+| ----- | -------------------------------------------------------------------------------------------- | ----- | --------------------------------------------- |
+| mode  | [cosmos.tx.signing.v1beta1.SignMode](cosmos-grpc-docs.md#cosmos.tx.signing.v1beta1.SignMode) |       | mode is the signing mode of the single signer |
 
 ### SignDoc
-SignDoc is the type used for generating sign bytes for SIGN_MODE_DIRECT.
 
+SignDoc is the type used for generating sign bytes for SIGN\_MODE\_DIRECT.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| body_bytes | [bytes](#bytes) |  | body_bytes is protobuf serialization of a TxBody that matches the representation in TxRaw. |
-| auth_info_bytes | [bytes](#bytes) |  | auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in TxRaw. |
-| chain_id | [string](#string) |  | chain_id is the unique identifier of the chain this transaction targets. It prevents signed transactions from being used on another chain by an attacker |
-| account_number | [uint64](#uint64) |  | account_number is the account number of the account in state |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.SignerInfo"></a>
+| Field             | Type                                 | Label | Description                                                                                                                                               |
+| ----------------- | ------------------------------------ | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body\_bytes       | [bytes](cosmos-grpc-docs.md#bytes)   |       | body\_bytes is protobuf serialization of a TxBody that matches the representation in TxRaw.                                                               |
+| auth\_info\_bytes | [bytes](cosmos-grpc-docs.md#bytes)   |       | auth\_info\_bytes is a protobuf serialization of an AuthInfo that matches the representation in TxRaw.                                                    |
+| chain\_id         | [string](cosmos-grpc-docs.md#string) |       | chain\_id is the unique identifier of the chain this transaction targets. It prevents signed transactions from being used on another chain by an attacker |
+| account\_number   | [uint64](cosmos-grpc-docs.md#uint64) |       | account\_number is the account number of the account in state                                                                                             |
 
 ### SignerInfo
-SignerInfo describes the public key and signing mode of a single top-level
-signer.
 
+SignerInfo describes the public key and signing mode of a single top-level signer.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| public_key | [google.protobuf.Any](#google.protobuf.Any) |  | public_key is the public key of the signer. It is optional for accounts that already exist in state. If unset, the verifier can use the required \ signer address for this position and lookup the public key. |
-| mode_info | [ModeInfo](#cosmos.tx.v1beta1.ModeInfo) |  | mode_info describes the signing mode of the signer and is a nested structure to support nested multisig pubkey&#39;s |
-| sequence | [uint64](#uint64) |  | sequence is the sequence of the account, which describes the number of committed transactions signed by a given address. It is used to prevent replay attacks. |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.Tx"></a>
+| Field       | Type                                                           | Label | Description                                                                                                                                                                                                     |
+| ----------- | -------------------------------------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| public\_key | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | public\_key is the public key of the signer. It is optional for accounts that already exist in state. If unset, the verifier can use the required \ signer address for this position and lookup the public key. |
+| mode\_info  | [ModeInfo](cosmos-grpc-docs.md#cosmos.tx.v1beta1.ModeInfo)     |       | mode\_info describes the signing mode of the signer and is a nested structure to support nested multisig pubkey's                                                                                               |
+| sequence    | [uint64](cosmos-grpc-docs.md#uint64)                           |       | sequence is the sequence of the account, which describes the number of committed transactions signed by a given address. It is used to prevent replay attacks.                                                  |
 
 ### Tx
+
 Tx is the standard type used for broadcasting transactions.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| body | [TxBody](#cosmos.tx.v1beta1.TxBody) |  | body is the processable content of the transaction |
-| auth_info | [AuthInfo](#cosmos.tx.v1beta1.AuthInfo) |  | auth_info is the authorization related content of the transaction, specifically signers, signer modes and fee |
-| signatures | [bytes](#bytes) | repeated | signatures is a list of signatures that matches the length and order of AuthInfo&#39;s signer_infos to allow connecting signature meta information like public key and signing mode by position. |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.TxBody"></a>
+| Field      | Type                                                       | Label    | Description                                                                                                                                                                                   |
+| ---------- | ---------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body       | [TxBody](cosmos-grpc-docs.md#cosmos.tx.v1beta1.TxBody)     |          | body is the processable content of the transaction                                                                                                                                            |
+| auth\_info | [AuthInfo](cosmos-grpc-docs.md#cosmos.tx.v1beta1.AuthInfo) |          | auth\_info is the authorization related content of the transaction, specifically signers, signer modes and fee                                                                                |
+| signatures | [bytes](cosmos-grpc-docs.md#bytes)                         | repeated | signatures is a list of signatures that matches the length and order of AuthInfo's signer\_infos to allow connecting signature meta information like public key and signing mode by position. |
 
 ### TxBody
+
 TxBody is the body of a transaction that all signers sign over.
 
+| Field    | Type                                                           | Label    | Description                                                                                                                                                                                                                                                     |
+| -------- | -------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| messages | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) | repeated | messages is a list of messages to be executed. The required signers of those messages define the number and order of elements in AuthInfo's signer\_infos and Tx's signatures. Each required signer address is added to the list only the first time it occurs. |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| messages | [google.protobuf.Any](#google.protobuf.Any) | repeated | messages is a list of messages to be executed. The required signers of those messages define the number and order of elements in AuthInfo&#39;s signer_infos and Tx&#39;s signatures. Each required signer address is added to the list only the first time it occurs.
-
-By convention, the first required signer (usually from the first message) is referred to as the primary signer and pays the fee for the whole transaction. |
-| memo | [string](#string) |  | memo is any arbitrary memo to be added to the transaction |
-| timeout_height | [uint64](#uint64) |  | timeout is the block height after which this transaction will not be processed by the chain |
-| extension_options | [google.protobuf.Any](#google.protobuf.Any) | repeated | extension_options are arbitrary options that can be added by chains when the default options are not sufficient. If any of these are present and can&#39;t be handled, the transaction will be rejected |
-| non_critical_extension_options | [google.protobuf.Any](#google.protobuf.Any) | repeated | extension_options are arbitrary options that can be added by chains when the default options are not sufficient. If any of these are present and can&#39;t be handled, they will be ignored |
-
-
-
-
-
-
-<a name="cosmos.tx.v1beta1.TxRaw"></a>
+By convention, the first required signer (usually from the first message) is referred to as the primary signer and pays the fee for the whole transaction. | | memo | [string](cosmos-grpc-docs.md#string) | | memo is any arbitrary memo to be added to the transaction | | timeout\_height | [uint64](cosmos-grpc-docs.md#uint64) | | timeout is the block height after which this transaction will not be processed by the chain | | extension\_options | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) | repeated | extension\_options are arbitrary options that can be added by chains when the default options are not sufficient. If any of these are present and can't be handled, the transaction will be rejected | | non\_critical\_extension\_options | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) | repeated | extension\_options are arbitrary options that can be added by chains when the default options are not sufficient. If any of these are present and can't be handled, they will be ignored |
 
 ### TxRaw
-TxRaw is a variant of Tx that pins the signer&#39;s exact binary representation
-of body and auth_info. This is used for signing, broadcasting and
-verification. The binary `serialize(tx: TxRaw)` is stored in Tendermint and
-the hash `sha256(serialize(tx: TxRaw))` becomes the &#34;txhash&#34;, commonly used
-as the transaction ID.
 
+TxRaw is a variant of Tx that pins the signer's exact binary representation of body and auth\_info. This is used for signing, broadcasting and verification. The binary `serialize(tx: TxRaw)` is stored in Tendermint and the hash `sha256(serialize(tx: TxRaw))` becomes the "txhash", commonly used as the transaction ID.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| body_bytes | [bytes](#bytes) |  | body_bytes is a protobuf serialization of a TxBody that matches the representation in SignDoc. |
-| auth_info_bytes | [bytes](#bytes) |  | auth_info_bytes is a protobuf serialization of an AuthInfo that matches the representation in SignDoc. |
-| signatures | [bytes](#bytes) | repeated | signatures is a list of signatures that matches the length and order of AuthInfo&#39;s signer_infos to allow connecting signature meta information like public key and signing mode by position. |
+| Field             | Type                               | Label    | Description                                                                                                                                                                                   |
+| ----------------- | ---------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body\_bytes       | [bytes](cosmos-grpc-docs.md#bytes) |          | body\_bytes is a protobuf serialization of a TxBody that matches the representation in SignDoc.                                                                                               |
+| auth\_info\_bytes | [bytes](cosmos-grpc-docs.md#bytes) |          | auth\_info\_bytes is a protobuf serialization of an AuthInfo that matches the representation in SignDoc.                                                                                      |
+| signatures        | [bytes](cosmos-grpc-docs.md#bytes) | repeated | signatures is a list of signatures that matches the length and order of AuthInfo's signer\_infos to allow connecting signature meta information like public key and signing mode by position. |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/vesting/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/vesting/v1beta1/tx.proto
 
-
-
-<a name="cosmos.vesting.v1beta1.MsgCreateVestingAccount"></a>
-
 ### MsgCreateVestingAccount
-MsgCreateVestingAccount defines a message that enables creating a vesting
-account.
 
+MsgCreateVestingAccount defines a message that enables creating a vesting account.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| from_address | [string](#string) |  |  |
-| to_address | [string](#string) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-| end_time | [int64](#int64) |  |  |
-| delayed | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse"></a>
+| Field         | Type                                                                     | Label    | Description |
+| ------------- | ------------------------------------------------------------------------ | -------- | ----------- |
+| from\_address | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| to\_address   | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| amount        | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
+| end\_time     | [int64](cosmos-grpc-docs.md#int64)                                       |          |             |
+| delayed       | [bool](cosmos-grpc-docs.md#bool)                                         |          |             |
 
 ### MsgCreateVestingAccountResponse
+
 MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type.
 
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.vesting.v1beta1.Msg"></a>
-
 ### Msg
+
 Msg defines the bank Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateVestingAccount | [MsgCreateVestingAccount](#cosmos.vesting.v1beta1.MsgCreateVestingAccount) | [MsgCreateVestingAccountResponse](#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse) | CreateVestingAccount defines a method that enables creating a vesting account. |
+| Method Name          | Request Type                                                                                  | Response Type                                                                                                 | Description                                                                    |
+| -------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| CreateVestingAccount | [MsgCreateVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.MsgCreateVestingAccount) | [MsgCreateVestingAccountResponse](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse) | CreateVestingAccount defines a method that enables creating a vesting account. |
 
- 
-
-
-
-<a name="cosmos/vesting/v1beta1/vesting.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/vesting/v1beta1/vesting.proto
 
-
-
-<a name="cosmos.vesting.v1beta1.BaseVestingAccount"></a>
-
 ### BaseVestingAccount
-BaseVestingAccount implements the VestingAccount interface. It contains all
-the necessary fields needed for any vesting account implementation.
 
+BaseVestingAccount implements the VestingAccount interface. It contains all the necessary fields needed for any vesting account implementation.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base_account | [cosmos.auth.v1beta1.BaseAccount](#cosmos.auth.v1beta1.BaseAccount) |  |  |
-| original_vesting | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-| delegated_free | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-| delegated_vesting | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-| end_time | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="cosmos.vesting.v1beta1.ContinuousVestingAccount"></a>
+| Field              | Type                                                                                   | Label    | Description |
+| ------------------ | -------------------------------------------------------------------------------------- | -------- | ----------- |
+| base\_account      | [cosmos.auth.v1beta1.BaseAccount](cosmos-grpc-docs.md#cosmos.auth.v1beta1.BaseAccount) |          |             |
+| original\_vesting  | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin)               | repeated |             |
+| delegated\_free    | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin)               | repeated |             |
+| delegated\_vesting | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin)               | repeated |             |
+| end\_time          | [int64](cosmos-grpc-docs.md#int64)                                                     |          |             |
 
 ### ContinuousVestingAccount
-ContinuousVestingAccount implements the VestingAccount interface. It
-continuously vests by unlocking coins linearly with respect to time.
 
+ContinuousVestingAccount implements the VestingAccount interface. It continuously vests by unlocking coins linearly with respect to time.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base_vesting_account | [BaseVestingAccount](#cosmos.vesting.v1beta1.BaseVestingAccount) |  |  |
-| start_time | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="cosmos.vesting.v1beta1.DelayedVestingAccount"></a>
+| Field                  | Type                                                                                | Label | Description |
+| ---------------------- | ----------------------------------------------------------------------------------- | ----- | ----------- |
+| base\_vesting\_account | [BaseVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.BaseVestingAccount) |       |             |
+| start\_time            | [int64](cosmos-grpc-docs.md#int64)                                                  |       |             |
 
 ### DelayedVestingAccount
-DelayedVestingAccount implements the VestingAccount interface. It vests all
-coins after a specific time, but non prior. In other words, it keeps them
-locked until a specified time.
 
+DelayedVestingAccount implements the VestingAccount interface. It vests all coins after a specific time, but non prior. In other words, it keeps them locked until a specified time.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base_vesting_account | [BaseVestingAccount](#cosmos.vesting.v1beta1.BaseVestingAccount) |  |  |
-
-
-
-
-
-
-<a name="cosmos.vesting.v1beta1.Period"></a>
+| Field                  | Type                                                                                | Label | Description |
+| ---------------------- | ----------------------------------------------------------------------------------- | ----- | ----------- |
+| base\_vesting\_account | [BaseVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.BaseVestingAccount) |       |             |
 
 ### Period
+
 Period defines a length of time and amount of coins that will vest.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| length | [int64](#int64) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.vesting.v1beta1.PeriodicVestingAccount"></a>
+| Field  | Type                                                                     | Label    | Description |
+| ------ | ------------------------------------------------------------------------ | -------- | ----------- |
+| length | [int64](cosmos-grpc-docs.md#int64)                                       |          |             |
+| amount | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
 
 ### PeriodicVestingAccount
-PeriodicVestingAccount implements the VestingAccount interface. It
-periodically vests by unlocking coins during each specified period.
 
+PeriodicVestingAccount implements the VestingAccount interface. It periodically vests by unlocking coins during each specified period.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| base_vesting_account | [BaseVestingAccount](#cosmos.vesting.v1beta1.BaseVestingAccount) |  |  |
-| start_time | [int64](#int64) |  |  |
-| vesting_periods | [Period](#cosmos.vesting.v1beta1.Period) | repeated |  |
+| Field                  | Type                                                                                | Label    | Description |
+| ---------------------- | ----------------------------------------------------------------------------------- | -------- | ----------- |
+| base\_vesting\_account | [BaseVestingAccount](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.BaseVestingAccount) |          |             |
+| start\_time            | [int64](cosmos-grpc-docs.md#int64)                                                  |          |             |
+| vesting\_periods       | [Period](cosmos-grpc-docs.md#cosmos.vesting.v1beta1.Period)                         | repeated |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/staking/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/staking/v1beta1/tx.proto
 
-
-
-<a name="cosmos.staking.v1beta1.MsgBeginRedelegate"></a>
-
 ### MsgBeginRedelegate
-MsgBeginRedelegate defines a SDK message for performing a redelegation
-of coins from a delegator and source validator to a destination validator.
 
+MsgBeginRedelegate defines a SDK message for performing a redelegation of coins from a delegator and source validator to a destination validator.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_src_address | [string](#string) |  |  |
-| validator_dst_address | [string](#string) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgBeginRedelegateResponse"></a>
+| Field                   | Type                                                                     | Label | Description |
+| ----------------------- | ------------------------------------------------------------------------ | ----- | ----------- |
+| delegator\_address      | [string](cosmos-grpc-docs.md#string)                                     |       |             |
+| validator\_src\_address | [string](cosmos-grpc-docs.md#string)                                     |       |             |
+| validator\_dst\_address | [string](cosmos-grpc-docs.md#string)                                     |       |             |
+| amount                  | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) |       |             |
 
 ### MsgBeginRedelegateResponse
+
 MsgBeginRedelegateResponse defines the Msg/BeginRedelegate response type.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| completion_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgCreateValidator"></a>
+| Field            | Type                                                                       | Label | Description |
+| ---------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| completion\_time | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |       |             |
 
 ### MsgCreateValidator
+
 MsgCreateValidator defines a SDK message for creating a new validator.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| description | [Description](#cosmos.staking.v1beta1.Description) |  |  |
-| commission | [CommissionRates](#cosmos.staking.v1beta1.CommissionRates) |  |  |
-| min_self_delegation | [string](#string) |  |  |
-| delegator_address | [string](#string) |  |  |
-| validator_address | [string](#string) |  |  |
-| pubkey | [string](#string) |  |  |
-| value | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgCreateValidatorResponse"></a>
+| Field                 | Type                                                                          | Label | Description |
+| --------------------- | ----------------------------------------------------------------------------- | ----- | ----------- |
+| description           | [Description](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Description)         |       |             |
+| commission            | [CommissionRates](cosmos-grpc-docs.md#cosmos.staking.v1beta1.CommissionRates) |       |             |
+| min\_self\_delegation | [string](cosmos-grpc-docs.md#string)                                          |       |             |
+| delegator\_address    | [string](cosmos-grpc-docs.md#string)                                          |       |             |
+| validator\_address    | [string](cosmos-grpc-docs.md#string)                                          |       |             |
+| pubkey                | [string](cosmos-grpc-docs.md#string)                                          |       |             |
+| value                 | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin)      |       |             |
 
 ### MsgCreateValidatorResponse
+
 MsgCreateValidatorResponse defines the Msg/CreateValidator response type.
 
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgDelegate"></a>
-
 ### MsgDelegate
-MsgDelegate defines a SDK message for performing a delegation of coins
-from a delegator to a validator.
 
+MsgDelegate defines a SDK message for performing a delegation of coins from a delegator to a validator.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_address | [string](#string) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgDelegateResponse"></a>
+| Field              | Type                                                                     | Label | Description |
+| ------------------ | ------------------------------------------------------------------------ | ----- | ----------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string)                                     |       |             |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                     |       |             |
+| amount             | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) |       |             |
 
 ### MsgDelegateResponse
+
 MsgDelegateResponse defines the Msg/Delegate response type.
 
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgEditValidator"></a>
-
 ### MsgEditValidator
+
 MsgEditValidator defines a SDK message for editing an existing validator.
 
+| Field              | Type                                                                  | Label | Description                                                                                                                                                                                                      |
+| ------------------ | --------------------------------------------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description        | [Description](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Description) |       |                                                                                                                                                                                                                  |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                  |       |                                                                                                                                                                                                                  |
+| commission\_rate   | [string](cosmos-grpc-docs.md#string)                                  |       | We pass a reference to the new commission rate and min self delegation as it's not mandatory to update. If not updated, the deserialized rate will be zero with no way to distinguish if an update was intended. |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| description | [Description](#cosmos.staking.v1beta1.Description) |  |  |
-| validator_address | [string](#string) |  |  |
-| commission_rate | [string](#string) |  | We pass a reference to the new commission rate and min self delegation as it&#39;s not mandatory to update. If not updated, the deserialized rate will be zero with no way to distinguish if an update was intended.
-
-REF: #2373 |
-| min_self_delegation | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgEditValidatorResponse"></a>
+REF: #2373 | | min\_self\_delegation | [string](cosmos-grpc-docs.md#string) | | |
 
 ### MsgEditValidatorResponse
+
 MsgEditValidatorResponse defines the Msg/EditValidator response type.
 
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgUndelegate"></a>
-
 ### MsgUndelegate
-MsgUndelegate defines a SDK message for performing an undelegation from a
-delegate and a validator.
 
+MsgUndelegate defines a SDK message for performing an undelegation from a delegate and a validator.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_address | [string](#string) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.MsgUndelegateResponse"></a>
+| Field              | Type                                                                     | Label | Description |
+| ------------------ | ------------------------------------------------------------------------ | ----- | ----------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string)                                     |       |             |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                     |       |             |
+| amount             | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) |       |             |
 
 ### MsgUndelegateResponse
+
 MsgUndelegateResponse defines the Msg/Undelegate response type.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| completion_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.staking.v1beta1.Msg"></a>
+| Field            | Type                                                                       | Label | Description |
+| ---------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| completion\_time | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |       |             |
 
 ### Msg
+
 Msg defines the staking Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateValidator | [MsgCreateValidator](#cosmos.staking.v1beta1.MsgCreateValidator) | [MsgCreateValidatorResponse](#cosmos.staking.v1beta1.MsgCreateValidatorResponse) | CreateValidator defines a method for creating a new validator. |
-| EditValidator | [MsgEditValidator](#cosmos.staking.v1beta1.MsgEditValidator) | [MsgEditValidatorResponse](#cosmos.staking.v1beta1.MsgEditValidatorResponse) | EditValidator defines a method for editing an existing validator. |
-| Delegate | [MsgDelegate](#cosmos.staking.v1beta1.MsgDelegate) | [MsgDelegateResponse](#cosmos.staking.v1beta1.MsgDelegateResponse) | Delegate defines a method for performing a delegation of coins from a delegator to a validator. |
-| BeginRedelegate | [MsgBeginRedelegate](#cosmos.staking.v1beta1.MsgBeginRedelegate) | [MsgBeginRedelegateResponse](#cosmos.staking.v1beta1.MsgBeginRedelegateResponse) | BeginRedelegate defines a method for performing a redelegation of coins from a delegator and source validator to a destination validator. |
-| Undelegate | [MsgUndelegate](#cosmos.staking.v1beta1.MsgUndelegate) | [MsgUndelegateResponse](#cosmos.staking.v1beta1.MsgUndelegateResponse) | Undelegate defines a method for performing an undelegation from a delegate and a validator. |
+| Method Name     | Request Type                                                                        | Response Type                                                                                       | Description                                                                                                                               |
+| --------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| CreateValidator | [MsgCreateValidator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgCreateValidator) | [MsgCreateValidatorResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgCreateValidatorResponse) | CreateValidator defines a method for creating a new validator.                                                                            |
+| EditValidator   | [MsgEditValidator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgEditValidator)     | [MsgEditValidatorResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgEditValidatorResponse)     | EditValidator defines a method for editing an existing validator.                                                                         |
+| Delegate        | [MsgDelegate](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgDelegate)               | [MsgDelegateResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgDelegateResponse)               | Delegate defines a method for performing a delegation of coins from a delegator to a validator.                                           |
+| BeginRedelegate | [MsgBeginRedelegate](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgBeginRedelegate) | [MsgBeginRedelegateResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgBeginRedelegateResponse) | BeginRedelegate defines a method for performing a redelegation of coins from a delegator and source validator to a destination validator. |
+| Undelegate      | [MsgUndelegate](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgUndelegate)           | [MsgUndelegateResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.MsgUndelegateResponse)           | Undelegate defines a method for performing an undelegation from a delegate and a validator.                                               |
 
- 
-
-
-
-<a name="cosmos/staking/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/staking/v1beta1/query.proto
 
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegationRequest"></a>
-
 ### QueryDelegationRequest
+
 QueryDelegationRequest is request type for the Query/Delegation RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_addr | [string](#string) |  | delegator_addr defines the delegator address to query for. |
-| validator_addr | [string](#string) |  | validator_addr defines the validator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegationResponse"></a>
+| Field           | Type                                 | Label | Description                                                 |
+| --------------- | ------------------------------------ | ----- | ----------------------------------------------------------- |
+| delegator\_addr | [string](cosmos-grpc-docs.md#string) |       | delegator\_addr defines the delegator address to query for. |
+| validator\_addr | [string](cosmos-grpc-docs.md#string) |       | validator\_addr defines the validator address to query for. |
 
 ### QueryDelegationResponse
+
 QueryDelegationResponse is response type for the Query/Delegation RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegation_response | [DelegationResponse](#cosmos.staking.v1beta1.DelegationResponse) |  | delegation_responses defines the delegation info of a delegation. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegatorDelegationsRequest"></a>
+| Field                | Type                                                                                | Label | Description                                                        |
+| -------------------- | ----------------------------------------------------------------------------------- | ----- | ------------------------------------------------------------------ |
+| delegation\_response | [DelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DelegationResponse) |       | delegation\_responses defines the delegation info of a delegation. |
 
 ### QueryDelegatorDelegationsRequest
-QueryDelegatorDelegationsRequest is request type for the
-Query/DelegatorDelegations RPC method.
 
+QueryDelegatorDelegationsRequest is request type for the Query/DelegatorDelegations RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_addr | [string](#string) |  | delegator_addr defines the delegator address to query for. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegatorDelegationsResponse"></a>
+| Field           | Type                                                                                               | Label | Description                                                 |
+| --------------- | -------------------------------------------------------------------------------------------------- | ----- | ----------------------------------------------------------- |
+| delegator\_addr | [string](cosmos-grpc-docs.md#string)                                                               |       | delegator\_addr defines the delegator address to query for. |
+| pagination      | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.  |
 
 ### QueryDelegatorDelegationsResponse
-QueryDelegatorDelegationsResponse is response type for the
-Query/DelegatorDelegations RPC method.
 
+QueryDelegatorDelegationsResponse is response type for the Query/DelegatorDelegations RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegation_responses | [DelegationResponse](#cosmos.staking.v1beta1.DelegationResponse) | repeated | delegation_responses defines all the delegations&#39; info of a delegator. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsRequest"></a>
+| Field                 | Type                                                                                                 | Label    | Description                                                             |
+| --------------------- | ---------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------- |
+| delegation\_responses | [DelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DelegationResponse)                  | repeated | delegation\_responses defines all the delegations' info of a delegator. |
+| pagination            | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response.                      |
 
 ### QueryDelegatorUnbondingDelegationsRequest
-QueryDelegatorUnbondingDelegationsRequest is request type for the
-Query/DelegatorUnbondingDelegations RPC method.
 
+QueryDelegatorUnbondingDelegationsRequest is request type for the Query/DelegatorUnbondingDelegations RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_addr | [string](#string) |  | delegator_addr defines the delegator address to query for. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponse"></a>
+| Field           | Type                                                                                               | Label | Description                                                 |
+| --------------- | -------------------------------------------------------------------------------------------------- | ----- | ----------------------------------------------------------- |
+| delegator\_addr | [string](cosmos-grpc-docs.md#string)                                                               |       | delegator\_addr defines the delegator address to query for. |
+| pagination      | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.  |
 
 ### QueryDelegatorUnbondingDelegationsResponse
-QueryUnbondingDelegatorDelegationsResponse is response type for the
-Query/UnbondingDelegatorDelegations RPC method.
 
+QueryUnbondingDelegatorDelegationsResponse is response type for the Query/UnbondingDelegatorDelegations RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| unbonding_responses | [UnbondingDelegation](#cosmos.staking.v1beta1.UnbondingDelegation) | repeated |  |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegatorValidatorRequest"></a>
+| Field                | Type                                                                                                 | Label    | Description                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| unbonding\_responses | [UnbondingDelegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.UnbondingDelegation)                | repeated |                                                    |
+| pagination           | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### QueryDelegatorValidatorRequest
-QueryDelegatorValidatorRequest is request type for the
-Query/DelegatorValidator RPC method.
 
+QueryDelegatorValidatorRequest is request type for the Query/DelegatorValidator RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_addr | [string](#string) |  | delegator_addr defines the delegator address to query for. |
-| validator_addr | [string](#string) |  | validator_addr defines the validator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegatorValidatorResponse"></a>
+| Field           | Type                                 | Label | Description                                                 |
+| --------------- | ------------------------------------ | ----- | ----------------------------------------------------------- |
+| delegator\_addr | [string](cosmos-grpc-docs.md#string) |       | delegator\_addr defines the delegator address to query for. |
+| validator\_addr | [string](cosmos-grpc-docs.md#string) |       | validator\_addr defines the validator address to query for. |
 
 ### QueryDelegatorValidatorResponse
-QueryDelegatorValidatorResponse response type for the
-Query/DelegatorValidator RPC method.
 
+QueryDelegatorValidatorResponse response type for the Query/DelegatorValidator RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator | [Validator](#cosmos.staking.v1beta1.Validator) |  | validator defines the the validator info. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegatorValidatorsRequest"></a>
+| Field     | Type                                                              | Label | Description                               |
+| --------- | ----------------------------------------------------------------- | ----- | ----------------------------------------- |
+| validator | [Validator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Validator) |       | validator defines the the validator info. |
 
 ### QueryDelegatorValidatorsRequest
-QueryDelegatorValidatorsRequest is request type for the
-Query/DelegatorValidators RPC method.
 
+QueryDelegatorValidatorsRequest is request type for the Query/DelegatorValidators RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_addr | [string](#string) |  | delegator_addr defines the delegator address to query for. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryDelegatorValidatorsResponse"></a>
+| Field           | Type                                                                                               | Label | Description                                                 |
+| --------------- | -------------------------------------------------------------------------------------------------- | ----- | ----------------------------------------------------------- |
+| delegator\_addr | [string](cosmos-grpc-docs.md#string)                                                               |       | delegator\_addr defines the delegator address to query for. |
+| pagination      | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.  |
 
 ### QueryDelegatorValidatorsResponse
-QueryDelegatorValidatorsResponse is response type for the
-Query/DelegatorValidators RPC method.
 
+QueryDelegatorValidatorsResponse is response type for the Query/DelegatorValidators RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validators | [Validator](#cosmos.staking.v1beta1.Validator) | repeated | validators defines the the validators&#39; info of a delegator. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryHistoricalInfoRequest"></a>
+| Field      | Type                                                                                                 | Label    | Description                                                 |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------- |
+| validators | [Validator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Validator)                                    | repeated | validators defines the the validators' info of a delegator. |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response.          |
 
 ### QueryHistoricalInfoRequest
-QueryHistoricalInfoRequest is request type for the Query/HistoricalInfo RPC
-method.
 
+QueryHistoricalInfoRequest is request type for the Query/HistoricalInfo RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| height | [int64](#int64) |  | height defines at which height to query the historical info. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryHistoricalInfoResponse"></a>
+| Field  | Type                               | Label | Description                                                  |
+| ------ | ---------------------------------- | ----- | ------------------------------------------------------------ |
+| height | [int64](cosmos-grpc-docs.md#int64) |       | height defines at which height to query the historical info. |
 
 ### QueryHistoricalInfoResponse
-QueryHistoricalInfoResponse is response type for the Query/HistoricalInfo RPC
-method.
 
+QueryHistoricalInfoResponse is response type for the Query/HistoricalInfo RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| hist | [HistoricalInfo](#cosmos.staking.v1beta1.HistoricalInfo) |  | hist defines the historical info at the given height. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryParamsRequest"></a>
+| Field | Type                                                                        | Label | Description                                           |
+| ----- | --------------------------------------------------------------------------- | ----- | ----------------------------------------------------- |
+| hist  | [HistoricalInfo](cosmos-grpc-docs.md#cosmos.staking.v1beta1.HistoricalInfo) |       | hist defines the historical info at the given height. |
 
 ### QueryParamsRequest
+
 QueryParamsRequest is request type for the Query/Params RPC method.
 
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryParamsResponse"></a>
-
 ### QueryParamsResponse
+
 QueryParamsResponse is response type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.staking.v1beta1.Params) |  | params holds all the parameters of this module. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryPoolRequest"></a>
+| Field  | Type                                                        | Label | Description                                     |
+| ------ | ----------------------------------------------------------- | ----- | ----------------------------------------------- |
+| params | [Params](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Params) |       | params holds all the parameters of this module. |
 
 ### QueryPoolRequest
+
 QueryPoolRequest is request type for the Query/Pool RPC method.
 
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryPoolResponse"></a>
-
 ### QueryPoolResponse
+
 QueryPoolResponse is response type for the Query/Pool RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pool | [Pool](#cosmos.staking.v1beta1.Pool) |  | pool defines the pool info. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryRedelegationsRequest"></a>
+| Field | Type                                                    | Label | Description                 |
+| ----- | ------------------------------------------------------- | ----- | --------------------------- |
+| pool  | [Pool](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Pool) |       | pool defines the pool info. |
 
 ### QueryRedelegationsRequest
-QueryRedelegationsRequest is request type for the Query/Redelegations RPC
-method.
 
+QueryRedelegationsRequest is request type for the Query/Redelegations RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_addr | [string](#string) |  | delegator_addr defines the delegator address to query for. |
-| src_validator_addr | [string](#string) |  | src_validator_addr defines the validator address to redelegate from. |
-| dst_validator_addr | [string](#string) |  | dst_validator_addr defines the validator address to redelegate to. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryRedelegationsResponse"></a>
+| Field                | Type                                                                                               | Label | Description                                                            |
+| -------------------- | -------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------------------------- |
+| delegator\_addr      | [string](cosmos-grpc-docs.md#string)                                                               |       | delegator\_addr defines the delegator address to query for.            |
+| src\_validator\_addr | [string](cosmos-grpc-docs.md#string)                                                               |       | src\_validator\_addr defines the validator address to redelegate from. |
+| dst\_validator\_addr | [string](cosmos-grpc-docs.md#string)                                                               |       | dst\_validator\_addr defines the validator address to redelegate to.   |
+| pagination           | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.             |
 
 ### QueryRedelegationsResponse
-QueryRedelegationsResponse is response type for the Query/Redelegations RPC
-method.
 
+QueryRedelegationsResponse is response type for the Query/Redelegations RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| redelegation_responses | [RedelegationResponse](#cosmos.staking.v1beta1.RedelegationResponse) | repeated |  |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryUnbondingDelegationRequest"></a>
+| Field                   | Type                                                                                                 | Label    | Description                                        |
+| ----------------------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| redelegation\_responses | [RedelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.RedelegationResponse)              | repeated |                                                    |
+| pagination              | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### QueryUnbondingDelegationRequest
-QueryUnbondingDelegationRequest is request type for the
-Query/UnbondingDelegation RPC method.
 
+QueryUnbondingDelegationRequest is request type for the Query/UnbondingDelegation RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_addr | [string](#string) |  | delegator_addr defines the delegator address to query for. |
-| validator_addr | [string](#string) |  | validator_addr defines the validator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryUnbondingDelegationResponse"></a>
+| Field           | Type                                 | Label | Description                                                 |
+| --------------- | ------------------------------------ | ----- | ----------------------------------------------------------- |
+| delegator\_addr | [string](cosmos-grpc-docs.md#string) |       | delegator\_addr defines the delegator address to query for. |
+| validator\_addr | [string](cosmos-grpc-docs.md#string) |       | validator\_addr defines the validator address to query for. |
 
 ### QueryUnbondingDelegationResponse
-QueryDelegationResponse is response type for the Query/UnbondingDelegation
-RPC method.
 
+QueryDelegationResponse is response type for the Query/UnbondingDelegation RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| unbond | [UnbondingDelegation](#cosmos.staking.v1beta1.UnbondingDelegation) |  | unbond defines the unbonding information of a delegation. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryValidatorDelegationsRequest"></a>
+| Field  | Type                                                                                  | Label | Description                                               |
+| ------ | ------------------------------------------------------------------------------------- | ----- | --------------------------------------------------------- |
+| unbond | [UnbondingDelegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.UnbondingDelegation) |       | unbond defines the unbonding information of a delegation. |
 
 ### QueryValidatorDelegationsRequest
-QueryValidatorDelegationsRequest is request type for the
-Query/ValidatorDelegations RPC method
 
+QueryValidatorDelegationsRequest is request type for the Query/ValidatorDelegations RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_addr | [string](#string) |  | validator_addr defines the validator address to query for. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryValidatorDelegationsResponse"></a>
+| Field           | Type                                                                                               | Label | Description                                                 |
+| --------------- | -------------------------------------------------------------------------------------------------- | ----- | ----------------------------------------------------------- |
+| validator\_addr | [string](cosmos-grpc-docs.md#string)                                                               |       | validator\_addr defines the validator address to query for. |
+| pagination      | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.  |
 
 ### QueryValidatorDelegationsResponse
-QueryValidatorDelegationsResponse is response type for the
-Query/ValidatorDelegations RPC method
 
+QueryValidatorDelegationsResponse is response type for the Query/ValidatorDelegations RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegation_responses | [DelegationResponse](#cosmos.staking.v1beta1.DelegationResponse) | repeated |  |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryValidatorRequest"></a>
+| Field                 | Type                                                                                                 | Label    | Description                                        |
+| --------------------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| delegation\_responses | [DelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DelegationResponse)                  | repeated |                                                    |
+| pagination            | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### QueryValidatorRequest
+
 QueryValidatorRequest is response type for the Query/Validator RPC method
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_addr | [string](#string) |  | validator_addr defines the validator address to query for. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryValidatorResponse"></a>
+| Field           | Type                                 | Label | Description                                                 |
+| --------------- | ------------------------------------ | ----- | ----------------------------------------------------------- |
+| validator\_addr | [string](cosmos-grpc-docs.md#string) |       | validator\_addr defines the validator address to query for. |
 
 ### QueryValidatorResponse
+
 QueryValidatorResponse is response type for the Query/Validator RPC method
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator | [Validator](#cosmos.staking.v1beta1.Validator) |  | validator defines the the validator info. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsRequest"></a>
+| Field     | Type                                                              | Label | Description                               |
+| --------- | ----------------------------------------------------------------- | ----- | ----------------------------------------- |
+| validator | [Validator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Validator) |       | validator defines the the validator info. |
 
 ### QueryValidatorUnbondingDelegationsRequest
-QueryValidatorUnbondingDelegationsRequest is required type for the
-Query/ValidatorUnbondingDelegations RPC method
 
+QueryValidatorUnbondingDelegationsRequest is required type for the Query/ValidatorUnbondingDelegations RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_addr | [string](#string) |  | validator_addr defines the validator address to query for. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsResponse"></a>
+| Field           | Type                                                                                               | Label | Description                                                 |
+| --------------- | -------------------------------------------------------------------------------------------------- | ----- | ----------------------------------------------------------- |
+| validator\_addr | [string](cosmos-grpc-docs.md#string)                                                               |       | validator\_addr defines the validator address to query for. |
+| pagination      | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.  |
 
 ### QueryValidatorUnbondingDelegationsResponse
-QueryValidatorUnbondingDelegationsResponse is response type for the
-Query/ValidatorUnbondingDelegations RPC method.
 
+QueryValidatorUnbondingDelegationsResponse is response type for the Query/ValidatorUnbondingDelegations RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| unbonding_responses | [UnbondingDelegation](#cosmos.staking.v1beta1.UnbondingDelegation) | repeated |  |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryValidatorsRequest"></a>
+| Field                | Type                                                                                                 | Label    | Description                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| unbonding\_responses | [UnbondingDelegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.UnbondingDelegation)                | repeated |                                                    |
+| pagination           | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### QueryValidatorsRequest
+
 QueryValidatorsRequest is request type for Query/Validators RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| status | [string](#string) |  | status enables to query for validators matching a given status. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.QueryValidatorsResponse"></a>
+| Field      | Type                                                                                               | Label | Description                                                     |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | --------------------------------------------------------------- |
+| status     | [string](cosmos-grpc-docs.md#string)                                                               |       | status enables to query for validators matching a given status. |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.      |
 
 ### QueryValidatorsResponse
+
 QueryValidatorsResponse is response type for the Query/Validators RPC method
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validators | [Validator](#cosmos.staking.v1beta1.Validator) | repeated | validators contains all the queried validators. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.staking.v1beta1.Query"></a>
+| Field      | Type                                                                                                 | Label    | Description                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| validators | [Validator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Validator)                                    | repeated | validators contains all the queried validators.    |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### Query
+
 Query defines the gRPC querier service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Validators | [QueryValidatorsRequest](#cosmos.staking.v1beta1.QueryValidatorsRequest) | [QueryValidatorsResponse](#cosmos.staking.v1beta1.QueryValidatorsResponse) | Validators queries all validators that match the given status. |
-| Validator | [QueryValidatorRequest](#cosmos.staking.v1beta1.QueryValidatorRequest) | [QueryValidatorResponse](#cosmos.staking.v1beta1.QueryValidatorResponse) | Validator queries validator info for given validator address. |
-| ValidatorDelegations | [QueryValidatorDelegationsRequest](#cosmos.staking.v1beta1.QueryValidatorDelegationsRequest) | [QueryValidatorDelegationsResponse](#cosmos.staking.v1beta1.QueryValidatorDelegationsResponse) | ValidatorDelegations queries delegate info for given validator. |
-| ValidatorUnbondingDelegations | [QueryValidatorUnbondingDelegationsRequest](#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsRequest) | [QueryValidatorUnbondingDelegationsResponse](#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsResponse) | ValidatorUnbondingDelegations queries unbonding delegations of a validator. |
-| Delegation | [QueryDelegationRequest](#cosmos.staking.v1beta1.QueryDelegationRequest) | [QueryDelegationResponse](#cosmos.staking.v1beta1.QueryDelegationResponse) | Delegation queries delegate info for given validator delegator pair. |
-| UnbondingDelegation | [QueryUnbondingDelegationRequest](#cosmos.staking.v1beta1.QueryUnbondingDelegationRequest) | [QueryUnbondingDelegationResponse](#cosmos.staking.v1beta1.QueryUnbondingDelegationResponse) | UnbondingDelegation queries unbonding info for given validator delegator pair. |
-| DelegatorDelegations | [QueryDelegatorDelegationsRequest](#cosmos.staking.v1beta1.QueryDelegatorDelegationsRequest) | [QueryDelegatorDelegationsResponse](#cosmos.staking.v1beta1.QueryDelegatorDelegationsResponse) | DelegatorDelegations queries all delegations of a given delegator address. |
-| DelegatorUnbondingDelegations | [QueryDelegatorUnbondingDelegationsRequest](#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsRequest) | [QueryDelegatorUnbondingDelegationsResponse](#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponse) | DelegatorUnbondingDelegations queries all unbonding delegations of a given delegator address. |
-| Redelegations | [QueryRedelegationsRequest](#cosmos.staking.v1beta1.QueryRedelegationsRequest) | [QueryRedelegationsResponse](#cosmos.staking.v1beta1.QueryRedelegationsResponse) | Redelegations queries redelegations of given address. |
-| DelegatorValidators | [QueryDelegatorValidatorsRequest](#cosmos.staking.v1beta1.QueryDelegatorValidatorsRequest) | [QueryDelegatorValidatorsResponse](#cosmos.staking.v1beta1.QueryDelegatorValidatorsResponse) | DelegatorValidators queries all validators info for given delegator address. |
-| DelegatorValidator | [QueryDelegatorValidatorRequest](#cosmos.staking.v1beta1.QueryDelegatorValidatorRequest) | [QueryDelegatorValidatorResponse](#cosmos.staking.v1beta1.QueryDelegatorValidatorResponse) | DelegatorValidator queries validator info for given delegator validator pair. |
-| HistoricalInfo | [QueryHistoricalInfoRequest](#cosmos.staking.v1beta1.QueryHistoricalInfoRequest) | [QueryHistoricalInfoResponse](#cosmos.staking.v1beta1.QueryHistoricalInfoResponse) | HistoricalInfo queries the historical info for given height. |
-| Pool | [QueryPoolRequest](#cosmos.staking.v1beta1.QueryPoolRequest) | [QueryPoolResponse](#cosmos.staking.v1beta1.QueryPoolResponse) | Pool queries the pool info. |
-| Params | [QueryParamsRequest](#cosmos.staking.v1beta1.QueryParamsRequest) | [QueryParamsResponse](#cosmos.staking.v1beta1.QueryParamsResponse) | Parameters queries the staking parameters. |
+| Method Name                   | Request Type                                                                                                                      | Response Type                                                                                                                       | Description                                                                                   |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Validators                    | [QueryValidatorsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorsRequest)                                       | [QueryValidatorsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorsResponse)                                       | Validators queries all validators that match the given status.                                |
+| Validator                     | [QueryValidatorRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorRequest)                                         | [QueryValidatorResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorResponse)                                         | Validator queries validator info for given validator address.                                 |
+| ValidatorDelegations          | [QueryValidatorDelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorDelegationsRequest)                   | [QueryValidatorDelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorDelegationsResponse)                   | ValidatorDelegations queries delegate info for given validator.                               |
+| ValidatorUnbondingDelegations | [QueryValidatorUnbondingDelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsRequest) | [QueryValidatorUnbondingDelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsResponse) | ValidatorUnbondingDelegations queries unbonding delegations of a validator.                   |
+| Delegation                    | [QueryDelegationRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegationRequest)                                       | [QueryDelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegationResponse)                                       | Delegation queries delegate info for given validator delegator pair.                          |
+| UnbondingDelegation           | [QueryUnbondingDelegationRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryUnbondingDelegationRequest)                     | [QueryUnbondingDelegationResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryUnbondingDelegationResponse)                     | UnbondingDelegation queries unbonding info for given validator delegator pair.                |
+| DelegatorDelegations          | [QueryDelegatorDelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorDelegationsRequest)                   | [QueryDelegatorDelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorDelegationsResponse)                   | DelegatorDelegations queries all delegations of a given delegator address.                    |
+| DelegatorUnbondingDelegations | [QueryDelegatorUnbondingDelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsRequest) | [QueryDelegatorUnbondingDelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponse) | DelegatorUnbondingDelegations queries all unbonding delegations of a given delegator address. |
+| Redelegations                 | [QueryRedelegationsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryRedelegationsRequest)                                 | [QueryRedelegationsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryRedelegationsResponse)                                 | Redelegations queries redelegations of given address.                                         |
+| DelegatorValidators           | [QueryDelegatorValidatorsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorValidatorsRequest)                     | [QueryDelegatorValidatorsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorValidatorsResponse)                     | DelegatorValidators queries all validators info for given delegator address.                  |
+| DelegatorValidator            | [QueryDelegatorValidatorRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorValidatorRequest)                       | [QueryDelegatorValidatorResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryDelegatorValidatorResponse)                       | DelegatorValidator queries validator info for given delegator validator pair.                 |
+| HistoricalInfo                | [QueryHistoricalInfoRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryHistoricalInfoRequest)                               | [QueryHistoricalInfoResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryHistoricalInfoResponse)                               | HistoricalInfo queries the historical info for given height.                                  |
+| Pool                          | [QueryPoolRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryPoolRequest)                                                   | [QueryPoolResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryPoolResponse)                                                   | Pool queries the pool info.                                                                   |
+| Params                        | [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryParamsRequest)                                               | [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.QueryParamsResponse)                                               | Parameters queries the staking parameters.                                                    |
 
- 
-
-
-
-<a name="cosmos/staking/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/staking/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.staking.v1beta1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the staking module&#39;s genesis state.
 
+GenesisState defines the staking module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.staking.v1beta1.Params) |  | params defines all the paramaters of related to deposit. |
-| last_total_power | [bytes](#bytes) |  | last_total_power tracks the total amounts of bonded tokens recorded during the previous end block. |
-| last_validator_powers | [LastValidatorPower](#cosmos.staking.v1beta1.LastValidatorPower) | repeated | last_validator_powers is a special index that provides a historical list of the last-block&#39;s bonded validators. |
-| validators | [Validator](#cosmos.staking.v1beta1.Validator) | repeated | delegations defines the validator set at genesis. |
-| delegations | [Delegation](#cosmos.staking.v1beta1.Delegation) | repeated | delegations defines the delegations active at genesis. |
-| unbonding_delegations | [UnbondingDelegation](#cosmos.staking.v1beta1.UnbondingDelegation) | repeated | unbonding_delegations defines the unbonding delegations active at genesis. |
-| redelegations | [Redelegation](#cosmos.staking.v1beta1.Redelegation) | repeated | redelegations defines the redelegations active at genesis. |
-| exported | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.LastValidatorPower"></a>
+| Field                   | Type                                                                                  | Label    | Description                                                                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| params                  | [Params](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Params)                           |          | params defines all the paramaters of related to deposit.                                                          |
+| last\_total\_power      | [bytes](cosmos-grpc-docs.md#bytes)                                                    |          | last\_total\_power tracks the total amounts of bonded tokens recorded during the previous end block.              |
+| last\_validator\_powers | [LastValidatorPower](cosmos-grpc-docs.md#cosmos.staking.v1beta1.LastValidatorPower)   | repeated | last\_validator\_powers is a special index that provides a historical list of the last-block's bonded validators. |
+| validators              | [Validator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Validator)                     | repeated | delegations defines the validator set at genesis.                                                                 |
+| delegations             | [Delegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Delegation)                   | repeated | delegations defines the delegations active at genesis.                                                            |
+| unbonding\_delegations  | [UnbondingDelegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.UnbondingDelegation) | repeated | unbonding\_delegations defines the unbonding delegations active at genesis.                                       |
+| redelegations           | [Redelegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Redelegation)               | repeated | redelegations defines the redelegations active at genesis.                                                        |
+| exported                | [bool](cosmos-grpc-docs.md#bool)                                                      |          |                                                                                                                   |
 
 ### LastValidatorPower
+
 LastValidatorPower required for validator set update logic.
 
+| Field   | Type                                 | Label | Description                               |
+| ------- | ------------------------------------ | ----- | ----------------------------------------- |
+| address | [string](cosmos-grpc-docs.md#string) |       | address is the address of the validator.  |
+| power   | [int64](cosmos-grpc-docs.md#int64)   |       | power defines the power of the validator. |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  | address is the address of the validator. |
-| power | [int64](#int64) |  | power defines the power of the validator. |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/staking/v1beta1/staking.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/staking/v1beta1/staking.proto
 
-
-
-<a name="cosmos.staking.v1beta1.Commission"></a>
-
 ### Commission
+
 Commission defines commission parameters for a given validator.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| commission_rates | [CommissionRates](#cosmos.staking.v1beta1.CommissionRates) |  |  |
-| update_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.CommissionRates"></a>
+| Field             | Type                                                                          | Label | Description |
+| ----------------- | ----------------------------------------------------------------------------- | ----- | ----------- |
+| commission\_rates | [CommissionRates](cosmos-grpc-docs.md#cosmos.staking.v1beta1.CommissionRates) |       |             |
+| update\_time      | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp)    |       |             |
 
 ### CommissionRates
-CommissionRates defines the initial commission rates to be used for creating
-a validator.
 
+CommissionRates defines the initial commission rates to be used for creating a validator.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| rate | [string](#string) |  |  |
-| max_rate | [string](#string) |  |  |
-| max_change_rate | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.DVPair"></a>
+| Field             | Type                                 | Label | Description |
+| ----------------- | ------------------------------------ | ----- | ----------- |
+| rate              | [string](cosmos-grpc-docs.md#string) |       |             |
+| max\_rate         | [string](cosmos-grpc-docs.md#string) |       |             |
+| max\_change\_rate | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### DVPair
-DVPair is struct that just has a delegator-validator pair with no other data.
-It is intended to be used as a marshalable pointer. For example, a DVPair can
-be used to construct the key to getting an UnbondingDelegation from state.
 
+DVPair is struct that just has a delegator-validator pair with no other data. It is intended to be used as a marshalable pointer. For example, a DVPair can be used to construct the key to getting an UnbondingDelegation from state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_address | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.DVPairs"></a>
+| Field              | Type                                 | Label | Description |
+| ------------------ | ------------------------------------ | ----- | ----------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       |             |
+| validator\_address | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### DVPairs
+
 DVPairs defines an array of DVPair objects.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pairs | [DVPair](#cosmos.staking.v1beta1.DVPair) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.DVVTriplet"></a>
+| Field | Type                                                        | Label    | Description |
+| ----- | ----------------------------------------------------------- | -------- | ----------- |
+| pairs | [DVPair](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DVPair) | repeated |             |
 
 ### DVVTriplet
-DVVTriplet is struct that just has a delegator-validator-validator triplet
-with no other data. It is intended to be used as a marshalable pointer. For
-example, a DVVTriplet can be used to construct the key to getting a
-Redelegation from state.
 
+DVVTriplet is struct that just has a delegator-validator-validator triplet with no other data. It is intended to be used as a marshalable pointer. For example, a DVVTriplet can be used to construct the key to getting a Redelegation from state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_src_address | [string](#string) |  |  |
-| validator_dst_address | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.DVVTriplets"></a>
+| Field                   | Type                                 | Label | Description |
+| ----------------------- | ------------------------------------ | ----- | ----------- |
+| delegator\_address      | [string](cosmos-grpc-docs.md#string) |       |             |
+| validator\_src\_address | [string](cosmos-grpc-docs.md#string) |       |             |
+| validator\_dst\_address | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### DVVTriplets
+
 DVVTriplets defines an array of DVVTriplet objects.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| triplets | [DVVTriplet](#cosmos.staking.v1beta1.DVVTriplet) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.Delegation"></a>
+| Field    | Type                                                                | Label    | Description |
+| -------- | ------------------------------------------------------------------- | -------- | ----------- |
+| triplets | [DVVTriplet](cosmos-grpc-docs.md#cosmos.staking.v1beta1.DVVTriplet) | repeated |             |
 
 ### Delegation
-Delegation represents the bond with tokens held by an account. It is
-owned by one delegator, and is associated with the voting power of one
-validator.
 
+Delegation represents the bond with tokens held by an account. It is owned by one delegator, and is associated with the voting power of one validator.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_address | [string](#string) |  |  |
-| shares | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.DelegationResponse"></a>
+| Field              | Type                                 | Label | Description |
+| ------------------ | ------------------------------------ | ----- | ----------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string) |       |             |
+| validator\_address | [string](cosmos-grpc-docs.md#string) |       |             |
+| shares             | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### DelegationResponse
-DelegationResponse is equivalent to Delegation except that it contains a
-balance in addition to shares which is more suitable for client responses.
 
+DelegationResponse is equivalent to Delegation except that it contains a balance in addition to shares which is more suitable for client responses.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegation | [Delegation](#cosmos.staking.v1beta1.Delegation) |  |  |
-| balance | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.Description"></a>
+| Field      | Type                                                                     | Label | Description |
+| ---------- | ------------------------------------------------------------------------ | ----- | ----------- |
+| delegation | [Delegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Delegation)      |       |             |
+| balance    | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) |       |             |
 
 ### Description
+
 Description defines a validator description.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| moniker | [string](#string) |  |  |
-| identity | [string](#string) |  |  |
-| website | [string](#string) |  |  |
-| security_contact | [string](#string) |  |  |
-| details | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.HistoricalInfo"></a>
+| Field             | Type                                 | Label | Description |
+| ----------------- | ------------------------------------ | ----- | ----------- |
+| moniker           | [string](cosmos-grpc-docs.md#string) |       |             |
+| identity          | [string](cosmos-grpc-docs.md#string) |       |             |
+| website           | [string](cosmos-grpc-docs.md#string) |       |             |
+| security\_contact | [string](cosmos-grpc-docs.md#string) |       |             |
+| details           | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### HistoricalInfo
-HistoricalInfo contains header and validator information for a given block.
-It is stored as part of staking module&#39;s state, which persists the `n` most
-recent HistoricalInfo
-(`n` is set by the staking module&#39;s `historical_entries` parameter).
 
+HistoricalInfo contains header and validator information for a given block. It is stored as part of staking module's state, which persists the `n` most recent HistoricalInfo (`n` is set by the staking module's `historical_entries` parameter).
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [tendermint.types.Header](#tendermint.types.Header) |  |  |
-| valset | [Validator](#cosmos.staking.v1beta1.Validator) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.Params"></a>
+| Field  | Type                                                                   | Label    | Description |
+| ------ | ---------------------------------------------------------------------- | -------- | ----------- |
+| header | [tendermint.types.Header](cosmos-grpc-docs.md#tendermint.types.Header) |          |             |
+| valset | [Validator](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Validator)      | repeated |             |
 
 ### Params
+
 Params defines the parameters for the staking module.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| unbonding_time | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
-| max_validators | [uint32](#uint32) |  |  |
-| max_entries | [uint32](#uint32) |  |  |
-| historical_entries | [uint32](#uint32) |  |  |
-| bond_denom | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.Pool"></a>
+| Field               | Type                                                                     | Label | Description |
+| ------------------- | ------------------------------------------------------------------------ | ----- | ----------- |
+| unbonding\_time     | [google.protobuf.Duration](cosmos-grpc-docs.md#google.protobuf.Duration) |       |             |
+| max\_validators     | [uint32](cosmos-grpc-docs.md#uint32)                                     |       |             |
+| max\_entries        | [uint32](cosmos-grpc-docs.md#uint32)                                     |       |             |
+| historical\_entries | [uint32](cosmos-grpc-docs.md#uint32)                                     |       |             |
+| bond\_denom         | [string](cosmos-grpc-docs.md#string)                                     |       |             |
 
 ### Pool
-Pool is used for tracking bonded and not-bonded token supply of the bond
-denomination.
 
+Pool is used for tracking bonded and not-bonded token supply of the bond denomination.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| not_bonded_tokens | [string](#string) |  |  |
-| bonded_tokens | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.Redelegation"></a>
+| Field               | Type                                 | Label | Description |
+| ------------------- | ------------------------------------ | ----- | ----------- |
+| not\_bonded\_tokens | [string](cosmos-grpc-docs.md#string) |       |             |
+| bonded\_tokens      | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### Redelegation
-Redelegation contains the list of a particular delegator&#39;s redelegating bonds
-from a particular source validator to a particular destination validator.
 
+Redelegation contains the list of a particular delegator's redelegating bonds from a particular source validator to a particular destination validator.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_src_address | [string](#string) |  |  |
-| validator_dst_address | [string](#string) |  |  |
-| entries | [RedelegationEntry](#cosmos.staking.v1beta1.RedelegationEntry) | repeated | redelegation entries |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.RedelegationEntry"></a>
+| Field                   | Type                                                                              | Label    | Description          |
+| ----------------------- | --------------------------------------------------------------------------------- | -------- | -------------------- |
+| delegator\_address      | [string](cosmos-grpc-docs.md#string)                                              |          |                      |
+| validator\_src\_address | [string](cosmos-grpc-docs.md#string)                                              |          |                      |
+| validator\_dst\_address | [string](cosmos-grpc-docs.md#string)                                              |          |                      |
+| entries                 | [RedelegationEntry](cosmos-grpc-docs.md#cosmos.staking.v1beta1.RedelegationEntry) | repeated | redelegation entries |
 
 ### RedelegationEntry
+
 RedelegationEntry defines a redelegation object with relevant metadata.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| creation_height | [int64](#int64) |  |  |
-| completion_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| initial_balance | [string](#string) |  |  |
-| shares_dst | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.RedelegationEntryResponse"></a>
+| Field            | Type                                                                       | Label | Description |
+| ---------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| creation\_height | [int64](cosmos-grpc-docs.md#int64)                                         |       |             |
+| completion\_time | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |       |             |
+| initial\_balance | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| shares\_dst      | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### RedelegationEntryResponse
-RedelegationEntryResponse is equivalent to a RedelegationEntry except that it
-contains a balance in addition to shares which is more suitable for client
-responses.
 
+RedelegationEntryResponse is equivalent to a RedelegationEntry except that it contains a balance in addition to shares which is more suitable for client responses.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| redelegation_entry | [RedelegationEntry](#cosmos.staking.v1beta1.RedelegationEntry) |  |  |
-| balance | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.RedelegationResponse"></a>
+| Field               | Type                                                                              | Label | Description |
+| ------------------- | --------------------------------------------------------------------------------- | ----- | ----------- |
+| redelegation\_entry | [RedelegationEntry](cosmos-grpc-docs.md#cosmos.staking.v1beta1.RedelegationEntry) |       |             |
+| balance             | [string](cosmos-grpc-docs.md#string)                                              |       |             |
 
 ### RedelegationResponse
-RedelegationResponse is equivalent to a Redelegation except that its entries
-contain a balance in addition to shares which is more suitable for client
-responses.
 
+RedelegationResponse is equivalent to a Redelegation except that its entries contain a balance in addition to shares which is more suitable for client responses.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| redelegation | [Redelegation](#cosmos.staking.v1beta1.Redelegation) |  |  |
-| entries | [RedelegationEntryResponse](#cosmos.staking.v1beta1.RedelegationEntryResponse) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.UnbondingDelegation"></a>
+| Field        | Type                                                                                              | Label    | Description |
+| ------------ | ------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| redelegation | [Redelegation](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Redelegation)                           |          |             |
+| entries      | [RedelegationEntryResponse](cosmos-grpc-docs.md#cosmos.staking.v1beta1.RedelegationEntryResponse) | repeated |             |
 
 ### UnbondingDelegation
-UnbondingDelegation stores all of a single delegator&#39;s unbonding bonds
-for a single validator in an time-ordered list.
 
+UnbondingDelegation stores all of a single delegator's unbonding bonds for a single validator in an time-ordered list.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delegator_address | [string](#string) |  |  |
-| validator_address | [string](#string) |  |  |
-| entries | [UnbondingDelegationEntry](#cosmos.staking.v1beta1.UnbondingDelegationEntry) | repeated | unbonding delegation entries |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.UnbondingDelegationEntry"></a>
+| Field              | Type                                                                                            | Label    | Description                  |
+| ------------------ | ----------------------------------------------------------------------------------------------- | -------- | ---------------------------- |
+| delegator\_address | [string](cosmos-grpc-docs.md#string)                                                            |          |                              |
+| validator\_address | [string](cosmos-grpc-docs.md#string)                                                            |          |                              |
+| entries            | [UnbondingDelegationEntry](cosmos-grpc-docs.md#cosmos.staking.v1beta1.UnbondingDelegationEntry) | repeated | unbonding delegation entries |
 
 ### UnbondingDelegationEntry
+
 UnbondingDelegationEntry defines an unbonding object with relevant metadata.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| creation_height | [int64](#int64) |  |  |
-| completion_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| initial_balance | [string](#string) |  |  |
-| balance | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.ValAddresses"></a>
+| Field            | Type                                                                       | Label | Description |
+| ---------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| creation\_height | [int64](cosmos-grpc-docs.md#int64)                                         |       |             |
+| completion\_time | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |       |             |
+| initial\_balance | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| balance          | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### ValAddresses
+
 ValAddresses defines a repeated set of validator addresses.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| addresses | [string](#string) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.staking.v1beta1.Validator"></a>
+| Field     | Type                                 | Label    | Description |
+| --------- | ------------------------------------ | -------- | ----------- |
+| addresses | [string](cosmos-grpc-docs.md#string) | repeated |             |
 
 ### Validator
-Validator defines a validator, together with the total amount of the
-Validator&#39;s bond shares and their exchange rate to coins. Slashing results in
-a decrease in the exchange rate, allowing correct calculation of future
-undelegations without iterating over delegators. When coins are delegated to
-this validator, the validator is credited with a delegation whose number of
-bond shares is based on the amount of coins delegated divided by the current
-exchange rate. Voting power can be calculated as total bonded shares
-multiplied by exchange rate.
 
+Validator defines a validator, together with the total amount of the Validator's bond shares and their exchange rate to coins. Slashing results in a decrease in the exchange rate, allowing correct calculation of future undelegations without iterating over delegators. When coins are delegated to this validator, the validator is credited with a delegation whose number of bond shares is based on the amount of coins delegated divided by the current exchange rate. Voting power can be calculated as total bonded shares multiplied by exchange rate.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| operator_address | [string](#string) |  |  |
-| consensus_pubkey | [string](#string) |  |  |
-| jailed | [bool](#bool) |  |  |
-| status | [BondStatus](#cosmos.staking.v1beta1.BondStatus) |  |  |
-| tokens | [string](#string) |  |  |
-| delegator_shares | [string](#string) |  |  |
-| description | [Description](#cosmos.staking.v1beta1.Description) |  |  |
-| unbonding_height | [int64](#int64) |  |  |
-| unbonding_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| commission | [Commission](#cosmos.staking.v1beta1.Commission) |  |  |
-| min_self_delegation | [string](#string) |  |  |
-
-
-
-
-
- 
-
-
-<a name="cosmos.staking.v1beta1.BondStatus"></a>
+| Field                 | Type                                                                       | Label | Description |
+| --------------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| operator\_address     | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| consensus\_pubkey     | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| jailed                | [bool](cosmos-grpc-docs.md#bool)                                           |       |             |
+| status                | [BondStatus](cosmos-grpc-docs.md#cosmos.staking.v1beta1.BondStatus)        |       |             |
+| tokens                | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| delegator\_shares     | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| description           | [Description](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Description)      |       |             |
+| unbonding\_height     | [int64](cosmos-grpc-docs.md#int64)                                         |       |             |
+| unbonding\_time       | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |       |             |
+| commission            | [Commission](cosmos-grpc-docs.md#cosmos.staking.v1beta1.Commission)        |       |             |
+| min\_self\_delegation | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### BondStatus
+
 BondStatus is the status of a validator.
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| BOND_STATUS_UNSPECIFIED | 0 | UNSPECIFIED defines an invalid validator status. |
-| BOND_STATUS_UNBONDED | 1 | UNBONDED defines a validator that is not bonded. |
-| BOND_STATUS_UNBONDING | 2 | UNBONDING defines a validator that is unbonding. |
-| BOND_STATUS_BONDED | 3 | BONDED defines a validator that is bonded. |
+| Name                      | Number | Description                                      |
+| ------------------------- | ------ | ------------------------------------------------ |
+| BOND\_STATUS\_UNSPECIFIED | 0      | UNSPECIFIED defines an invalid validator status. |
+| BOND\_STATUS\_UNBONDED    | 1      | UNBONDED defines a validator that is not bonded. |
+| BOND\_STATUS\_UNBONDING   | 2      | UNBONDING defines a validator that is unbonding. |
+| BOND\_STATUS\_BONDED      | 3      | BONDED defines a validator that is bonded.       |
 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/genutil/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/genutil/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.genutil.v1beta1.GenesisState"></a>
-
 ### GenesisState
+
 GenesisState defines the raw genesis transaction in JSON.
 
+| Field    | Type                               | Label    | Description                                |
+| -------- | ---------------------------------- | -------- | ------------------------------------------ |
+| gen\_txs | [bytes](cosmos-grpc-docs.md#bytes) | repeated | gen\_txs defines the genesis transactions. |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gen_txs | [bytes](#bytes) | repeated | gen_txs defines the genesis transactions. |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/params/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/params/v1beta1/query.proto
 
-
-
-<a name="cosmos.params.v1beta1.QueryParamsRequest"></a>
-
 ### QueryParamsRequest
+
 QueryParamsRequest is request type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| subspace | [string](#string) |  | subspace defines the module to query the parameter for. |
-| key | [string](#string) |  | key defines the key of the parameter in the subspace. |
-
-
-
-
-
-
-<a name="cosmos.params.v1beta1.QueryParamsResponse"></a>
+| Field    | Type                                 | Label | Description                                             |
+| -------- | ------------------------------------ | ----- | ------------------------------------------------------- |
+| subspace | [string](cosmos-grpc-docs.md#string) |       | subspace defines the module to query the parameter for. |
+| key      | [string](cosmos-grpc-docs.md#string) |       | key defines the key of the parameter in the subspace.   |
 
 ### QueryParamsResponse
+
 QueryParamsResponse is response type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| param | [ParamChange](#cosmos.params.v1beta1.ParamChange) |  | param defines the queried parameter. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.params.v1beta1.Query"></a>
+| Field | Type                                                                 | Label | Description                          |
+| ----- | -------------------------------------------------------------------- | ----- | ------------------------------------ |
+| param | [ParamChange](cosmos-grpc-docs.md#cosmos.params.v1beta1.ParamChange) |       | param defines the queried parameter. |
 
 ### Query
+
 Query defines the gRPC querier service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Params | [QueryParamsRequest](#cosmos.params.v1beta1.QueryParamsRequest) | [QueryParamsResponse](#cosmos.params.v1beta1.QueryParamsResponse) | Params queries a specific parameter of a module, given its subspace and key. |
+| Method Name | Request Type                                                                       | Response Type                                                                        | Description                                                                  |
+| ----------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Params      | [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.params.v1beta1.QueryParamsRequest) | [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.params.v1beta1.QueryParamsResponse) | Params queries a specific parameter of a module, given its subspace and key. |
 
- 
-
-
-
-<a name="cosmos/params/v1beta1/params.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/params/v1beta1/params.proto
 
-
-
-<a name="cosmos.params.v1beta1.ParamChange"></a>
-
 ### ParamChange
-ParamChange defines an individual parameter change, for use in
-ParameterChangeProposal.
 
+ParamChange defines an individual parameter change, for use in ParameterChangeProposal.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| subspace | [string](#string) |  |  |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.params.v1beta1.ParameterChangeProposal"></a>
+| Field    | Type                                 | Label | Description |
+| -------- | ------------------------------------ | ----- | ----------- |
+| subspace | [string](cosmos-grpc-docs.md#string) |       |             |
+| key      | [string](cosmos-grpc-docs.md#string) |       |             |
+| value    | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### ParameterChangeProposal
+
 ParameterChangeProposal defines a proposal to change one or more parameters.
 
+| Field       | Type                                                                 | Label    | Description |
+| ----------- | -------------------------------------------------------------------- | -------- | ----------- |
+| title       | [string](cosmos-grpc-docs.md#string)                                 |          |             |
+| description | [string](cosmos-grpc-docs.md#string)                                 |          |             |
+| changes     | [ParamChange](cosmos-grpc-docs.md#cosmos.params.v1beta1.ParamChange) | repeated |             |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| title | [string](#string) |  |  |
-| description | [string](#string) |  |  |
-| changes | [ParamChange](#cosmos.params.v1beta1.ParamChange) | repeated |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/slashing/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/slashing/v1beta1/tx.proto
 
-
-
-<a name="cosmos.slashing.v1beta1.MsgUnjail"></a>
-
 ### MsgUnjail
+
 MsgUnjail defines the Msg/Unjail request type
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| validator_addr | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.MsgUnjailResponse"></a>
+| Field           | Type                                 | Label | Description |
+| --------------- | ------------------------------------ | ----- | ----------- |
+| validator\_addr | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### MsgUnjailResponse
+
 MsgUnjailResponse defines the Msg/Unjail response type
 
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.slashing.v1beta1.Msg"></a>
-
 ### Msg
+
 Msg defines the slashing Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Unjail | [MsgUnjail](#cosmos.slashing.v1beta1.MsgUnjail) | [MsgUnjailResponse](#cosmos.slashing.v1beta1.MsgUnjailResponse) | Unjail defines a method for unjailing a jailed validator, thus returning them into the bonded validator set, so they can begin receiving provisions and rewards again. |
+| Method Name | Request Type                                                       | Response Type                                                                      | Description                                                                                                                                                            |
+| ----------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Unjail      | [MsgUnjail](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.MsgUnjail) | [MsgUnjailResponse](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.MsgUnjailResponse) | Unjail defines a method for unjailing a jailed validator, thus returning them into the bonded validator set, so they can begin receiving provisions and rewards again. |
 
- 
-
-
-
-<a name="cosmos/slashing/v1beta1/slashing.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/slashing/v1beta1/slashing.proto
 
-
-
-<a name="cosmos.slashing.v1beta1.Params"></a>
-
 ### Params
+
 Params represents the parameters used for by the slashing module.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| signed_blocks_window | [int64](#int64) |  |  |
-| min_signed_per_window | [bytes](#bytes) |  |  |
-| downtime_jail_duration | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
-| slash_fraction_double_sign | [bytes](#bytes) |  |  |
-| slash_fraction_downtime | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.ValidatorSigningInfo"></a>
+| Field                         | Type                                                                     | Label | Description |
+| ----------------------------- | ------------------------------------------------------------------------ | ----- | ----------- |
+| signed\_blocks\_window        | [int64](cosmos-grpc-docs.md#int64)                                       |       |             |
+| min\_signed\_per\_window      | [bytes](cosmos-grpc-docs.md#bytes)                                       |       |             |
+| downtime\_jail\_duration      | [google.protobuf.Duration](cosmos-grpc-docs.md#google.protobuf.Duration) |       |             |
+| slash\_fraction\_double\_sign | [bytes](cosmos-grpc-docs.md#bytes)                                       |       |             |
+| slash\_fraction\_downtime     | [bytes](cosmos-grpc-docs.md#bytes)                                       |       |             |
 
 ### ValidatorSigningInfo
-ValidatorSigningInfo defines a validator&#39;s signing info for monitoring their
-liveness activity.
 
+ValidatorSigningInfo defines a validator's signing info for monitoring their liveness activity.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  |  |
-| start_height | [int64](#int64) |  | height at which validator was first a candidate OR was unjailed |
-| index_offset | [int64](#int64) |  | index offset into signed block bit array |
-| jailed_until | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | timestamp validator cannot be unjailed until |
-| tombstoned | [bool](#bool) |  | whether or not a validator has been tombstoned (killed out of validator set) |
-| missed_blocks_counter | [int64](#int64) |  | missed blocks counter (to avoid scanning the array every time) |
+| Field                   | Type                                                                       | Label | Description                                                                  |
+| ----------------------- | -------------------------------------------------------------------------- | ----- | ---------------------------------------------------------------------------- |
+| address                 | [string](cosmos-grpc-docs.md#string)                                       |       |                                                                              |
+| start\_height           | [int64](cosmos-grpc-docs.md#int64)                                         |       | height at which validator was first a candidate OR was unjailed              |
+| index\_offset           | [int64](cosmos-grpc-docs.md#int64)                                         |       | index offset into signed block bit array                                     |
+| jailed\_until           | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |       | timestamp validator cannot be unjailed until                                 |
+| tombstoned              | [bool](cosmos-grpc-docs.md#bool)                                           |       | whether or not a validator has been tombstoned (killed out of validator set) |
+| missed\_blocks\_counter | [int64](cosmos-grpc-docs.md#int64)                                         |       | missed blocks counter (to avoid scanning the array every time)               |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/slashing/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/slashing/v1beta1/query.proto
 
-
-
-<a name="cosmos.slashing.v1beta1.QueryParamsRequest"></a>
-
 ### QueryParamsRequest
+
 QueryParamsRequest is the request type for the Query/Params RPC method
 
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.QueryParamsResponse"></a>
-
 ### QueryParamsResponse
+
 QueryParamsResponse is the response type for the Query/Params RPC method
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.slashing.v1beta1.Params) |  |  |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.QuerySigningInfoRequest"></a>
+| Field  | Type                                                         | Label | Description |
+| ------ | ------------------------------------------------------------ | ----- | ----------- |
+| params | [Params](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.Params) |       |             |
 
 ### QuerySigningInfoRequest
-QuerySigningInfoRequest is the request type for the Query/SigningInfo RPC
-method
 
+QuerySigningInfoRequest is the request type for the Query/SigningInfo RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| cons_address | [string](#string) |  | cons_address is the address to query signing info of |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.QuerySigningInfoResponse"></a>
+| Field         | Type                                 | Label | Description                                           |
+| ------------- | ------------------------------------ | ----- | ----------------------------------------------------- |
+| cons\_address | [string](cosmos-grpc-docs.md#string) |       | cons\_address is the address to query signing info of |
 
 ### QuerySigningInfoResponse
-QuerySigningInfoResponse is the response type for the Query/SigningInfo RPC
-method
 
+QuerySigningInfoResponse is the response type for the Query/SigningInfo RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| val_signing_info | [ValidatorSigningInfo](#cosmos.slashing.v1beta1.ValidatorSigningInfo) |  | val_signing_info is the signing info of requested val cons address |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.QuerySigningInfosRequest"></a>
+| Field              | Type                                                                                     | Label | Description                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------- | ----- | -------------------------------------------------------------------- |
+| val\_signing\_info | [ValidatorSigningInfo](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.ValidatorSigningInfo) |       | val\_signing\_info is the signing info of requested val cons address |
 
 ### QuerySigningInfosRequest
-QuerySigningInfosRequest is the request type for the Query/SigningInfos RPC
-method
 
+QuerySigningInfosRequest is the request type for the Query/SigningInfos RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  |  |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.QuerySigningInfosResponse"></a>
+| Field      | Type                                                                                               | Label | Description |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ----------- |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       |             |
 
 ### QuerySigningInfosResponse
-QuerySigningInfosResponse is the response type for the Query/SigningInfos RPC
-method
 
+QuerySigningInfosResponse is the response type for the Query/SigningInfos RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| info | [ValidatorSigningInfo](#cosmos.slashing.v1beta1.ValidatorSigningInfo) | repeated | info is the signing info of all validators |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.slashing.v1beta1.Query"></a>
+| Field      | Type                                                                                                 | Label    | Description                                |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------ |
+| info       | [ValidatorSigningInfo](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.ValidatorSigningInfo)             | repeated | info is the signing info of all validators |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          |                                            |
 
 ### Query
+
 Query provides defines the gRPC querier service
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Params | [QueryParamsRequest](#cosmos.slashing.v1beta1.QueryParamsRequest) | [QueryParamsResponse](#cosmos.slashing.v1beta1.QueryParamsResponse) | Params queries the parameters of slashing module |
-| SigningInfo | [QuerySigningInfoRequest](#cosmos.slashing.v1beta1.QuerySigningInfoRequest) | [QuerySigningInfoResponse](#cosmos.slashing.v1beta1.QuerySigningInfoResponse) | SigningInfo queries the signing info of given cons address |
-| SigningInfos | [QuerySigningInfosRequest](#cosmos.slashing.v1beta1.QuerySigningInfosRequest) | [QuerySigningInfosResponse](#cosmos.slashing.v1beta1.QuerySigningInfosResponse) | SigningInfos queries signing info of all validators |
+| Method Name  | Request Type                                                                                     | Response Type                                                                                      | Description                                                |
+| ------------ | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| Params       | [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QueryParamsRequest)             | [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QueryParamsResponse)             | Params queries the parameters of slashing module           |
+| SigningInfo  | [QuerySigningInfoRequest](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QuerySigningInfoRequest)   | [QuerySigningInfoResponse](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QuerySigningInfoResponse)   | SigningInfo queries the signing info of given cons address |
+| SigningInfos | [QuerySigningInfosRequest](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QuerySigningInfosRequest) | [QuerySigningInfosResponse](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.QuerySigningInfosResponse) | SigningInfos queries signing info of all validators        |
 
- 
-
-
-
-<a name="cosmos/slashing/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/slashing/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.slashing.v1beta1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the slashing module&#39;s genesis state.
 
+GenesisState defines the slashing module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#cosmos.slashing.v1beta1.Params) |  | params defines all the paramaters of related to deposit. |
-| signing_infos | [SigningInfo](#cosmos.slashing.v1beta1.SigningInfo) | repeated | signing_infos represents a map between validator addresses and their signing infos. |
-| missed_blocks | [ValidatorMissedBlocks](#cosmos.slashing.v1beta1.ValidatorMissedBlocks) | repeated | signing_infos represents a map between validator addresses and their missed blocks. |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.MissedBlock"></a>
+| Field          | Type                                                                                       | Label    | Description                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------------ |
+| params         | [Params](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.Params)                               |          | params defines all the paramaters of related to deposit.                             |
+| signing\_infos | [SigningInfo](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.SigningInfo)                     | repeated | signing\_infos represents a map between validator addresses and their signing infos. |
+| missed\_blocks | [ValidatorMissedBlocks](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.ValidatorMissedBlocks) | repeated | signing\_infos represents a map between validator addresses and their missed blocks. |
 
 ### MissedBlock
+
 MissedBlock contains height and missed status as boolean.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [int64](#int64) |  | index is the height at which the block was missed. |
-| missed | [bool](#bool) |  | missed is the missed status. |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.SigningInfo"></a>
+| Field  | Type                               | Label | Description                                        |
+| ------ | ---------------------------------- | ----- | -------------------------------------------------- |
+| index  | [int64](cosmos-grpc-docs.md#int64) |       | index is the height at which the block was missed. |
+| missed | [bool](cosmos-grpc-docs.md#bool)   |       | missed is the missed status.                       |
 
 ### SigningInfo
+
 SigningInfo stores validator signing info of corresponding address.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  | address is the validator address. |
-| validator_signing_info | [ValidatorSigningInfo](#cosmos.slashing.v1beta1.ValidatorSigningInfo) |  | validator_signing_info represents the signing info of this validator. |
-
-
-
-
-
-
-<a name="cosmos.slashing.v1beta1.ValidatorMissedBlocks"></a>
+| Field                    | Type                                                                                     | Label | Description                                                             |
+| ------------------------ | ---------------------------------------------------------------------------------------- | ----- | ----------------------------------------------------------------------- |
+| address                  | [string](cosmos-grpc-docs.md#string)                                                     |       | address is the validator address.                                       |
+| validator\_signing\_info | [ValidatorSigningInfo](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.ValidatorSigningInfo) |       | validator\_signing\_info represents the signing info of this validator. |
 
 ### ValidatorMissedBlocks
-ValidatorMissedBlocks contains array of missed blocks of corresponding
-address.
 
+ValidatorMissedBlocks contains array of missed blocks of corresponding address.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  | address is the validator address. |
-| missed_blocks | [MissedBlock](#cosmos.slashing.v1beta1.MissedBlock) | repeated | missed_blocks is an array of missed blocks by the validator. |
+| Field          | Type                                                                   | Label    | Description                                                   |
+| -------------- | ---------------------------------------------------------------------- | -------- | ------------------------------------------------------------- |
+| address        | [string](cosmos-grpc-docs.md#string)                                   |          | address is the validator address.                             |
+| missed\_blocks | [MissedBlock](cosmos-grpc-docs.md#cosmos.slashing.v1beta1.MissedBlock) | repeated | missed\_blocks is an array of missed blocks by the validator. |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/base/abci/v1beta1/abci.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/base/abci/v1beta1/abci.proto
 
-
-
-<a name="cosmos.base.abci.v1beta1.ABCIMessageLog"></a>
-
 ### ABCIMessageLog
+
 ABCIMessageLog defines a structure containing an indexed tx ABCI message log.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| msg_index | [uint32](#uint32) |  |  |
-| log | [string](#string) |  |  |
-| events | [StringEvent](#cosmos.base.abci.v1beta1.StringEvent) | repeated | Events contains a slice of Event objects that were emitted during some execution. |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.Attribute"></a>
+| Field      | Type                                                                    | Label    | Description                                                                       |
+| ---------- | ----------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------- |
+| msg\_index | [uint32](cosmos-grpc-docs.md#uint32)                                    |          |                                                                                   |
+| log        | [string](cosmos-grpc-docs.md#string)                                    |          |                                                                                   |
+| events     | [StringEvent](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.StringEvent) | repeated | Events contains a slice of Event objects that were emitted during some execution. |
 
 ### Attribute
-Attribute defines an attribute wrapper where the key and value are
-strings instead of raw bytes.
 
+Attribute defines an attribute wrapper where the key and value are strings instead of raw bytes.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.GasInfo"></a>
+| Field | Type                                 | Label | Description |
+| ----- | ------------------------------------ | ----- | ----------- |
+| key   | [string](cosmos-grpc-docs.md#string) |       |             |
+| value | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### GasInfo
+
 GasInfo defines tx execution gas context.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gas_wanted | [uint64](#uint64) |  | GasWanted is the maximum units of work we allow this tx to perform. |
-| gas_used | [uint64](#uint64) |  | GasUsed is the amount of gas actually consumed. |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.MsgData"></a>
+| Field       | Type                                 | Label | Description                                                         |
+| ----------- | ------------------------------------ | ----- | ------------------------------------------------------------------- |
+| gas\_wanted | [uint64](cosmos-grpc-docs.md#uint64) |       | GasWanted is the maximum units of work we allow this tx to perform. |
+| gas\_used   | [uint64](cosmos-grpc-docs.md#uint64) |       | GasUsed is the amount of gas actually consumed.                     |
 
 ### MsgData
-MsgData defines the data returned in a Result object during message
-execution.
 
+MsgData defines the data returned in a Result object during message execution.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| msg_type | [string](#string) |  |  |
-| data | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.Result"></a>
+| Field     | Type                                 | Label | Description |
+| --------- | ------------------------------------ | ----- | ----------- |
+| msg\_type | [string](cosmos-grpc-docs.md#string) |       |             |
+| data      | [bytes](cosmos-grpc-docs.md#bytes)   |       |             |
 
 ### Result
+
 Result is the union of ResponseFormat and ResponseCheckTx.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| data | [bytes](#bytes) |  | Data is any data returned from message or handler execution. It MUST be length prefixed in order to separate data from multiple message executions. |
-| log | [string](#string) |  | Log contains the log information from message or handler execution. |
-| events | [tendermint.abci.Event](#tendermint.abci.Event) | repeated | Events contains a slice of Event objects that were emitted during message or handler execution. |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.SearchTxsResult"></a>
+| Field  | Type                                                               | Label    | Description                                                                                                                                         |
+| ------ | ------------------------------------------------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data   | [bytes](cosmos-grpc-docs.md#bytes)                                 |          | Data is any data returned from message or handler execution. It MUST be length prefixed in order to separate data from multiple message executions. |
+| log    | [string](cosmos-grpc-docs.md#string)                               |          | Log contains the log information from message or handler execution.                                                                                 |
+| events | [tendermint.abci.Event](cosmos-grpc-docs.md#tendermint.abci.Event) | repeated | Events contains a slice of Event objects that were emitted during message or handler execution.                                                     |
 
 ### SearchTxsResult
+
 SearchTxsResult defines a structure for querying txs pageable
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| total_count | [uint64](#uint64) |  | Count of all txs |
-| count | [uint64](#uint64) |  | Count of txs in current page |
-| page_number | [uint64](#uint64) |  | Index of current page, start from 1 |
-| page_total | [uint64](#uint64) |  | Count of total pages |
-| limit | [uint64](#uint64) |  | Max count txs per page |
-| txs | [TxResponse](#cosmos.base.abci.v1beta1.TxResponse) | repeated | List of txs in current page |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.SimulationResponse"></a>
+| Field        | Type                                                                  | Label    | Description                         |
+| ------------ | --------------------------------------------------------------------- | -------- | ----------------------------------- |
+| total\_count | [uint64](cosmos-grpc-docs.md#uint64)                                  |          | Count of all txs                    |
+| count        | [uint64](cosmos-grpc-docs.md#uint64)                                  |          | Count of txs in current page        |
+| page\_number | [uint64](cosmos-grpc-docs.md#uint64)                                  |          | Index of current page, start from 1 |
+| page\_total  | [uint64](cosmos-grpc-docs.md#uint64)                                  |          | Count of total pages                |
+| limit        | [uint64](cosmos-grpc-docs.md#uint64)                                  |          | Max count txs per page              |
+| txs          | [TxResponse](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.TxResponse) | repeated | List of txs in current page         |
 
 ### SimulationResponse
-SimulationResponse defines the response generated when a transaction is
-successfully simulated.
 
+SimulationResponse defines the response generated when a transaction is successfully simulated.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gas_info | [GasInfo](#cosmos.base.abci.v1beta1.GasInfo) |  |  |
-| result | [Result](#cosmos.base.abci.v1beta1.Result) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.StringEvent"></a>
+| Field     | Type                                                            | Label | Description |
+| --------- | --------------------------------------------------------------- | ----- | ----------- |
+| gas\_info | [GasInfo](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.GasInfo) |       |             |
+| result    | [Result](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.Result)   |       |             |
 
 ### StringEvent
-StringEvent defines en Event object wrapper where all the attributes
-contain key/value pairs that are strings instead of raw bytes.
 
+StringEvent defines en Event object wrapper where all the attributes contain key/value pairs that are strings instead of raw bytes.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| attributes | [Attribute](#cosmos.base.abci.v1beta1.Attribute) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.TxMsgData"></a>
+| Field      | Type                                                                | Label    | Description |
+| ---------- | ------------------------------------------------------------------- | -------- | ----------- |
+| type       | [string](cosmos-grpc-docs.md#string)                                |          |             |
+| attributes | [Attribute](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.Attribute) | repeated |             |
 
 ### TxMsgData
-TxMsgData defines a list of MsgData. A transaction will have a MsgData object
-for each message.
 
+TxMsgData defines a list of MsgData. A transaction will have a MsgData object for each message.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| data | [MsgData](#cosmos.base.abci.v1beta1.MsgData) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.base.abci.v1beta1.TxResponse"></a>
+| Field | Type                                                            | Label    | Description |
+| ----- | --------------------------------------------------------------- | -------- | ----------- |
+| data  | [MsgData](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.MsgData) | repeated |             |
 
 ### TxResponse
-TxResponse defines a structure containing relevant tx data and metadata. The
-tags are stringified and the log is JSON decoded.
 
+TxResponse defines a structure containing relevant tx data and metadata. The tags are stringified and the log is JSON decoded.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| height | [int64](#int64) |  | The block height |
-| txhash | [string](#string) |  | The transaction hash. |
-| codespace | [string](#string) |  | Namespace for the Code |
-| code | [uint32](#uint32) |  | Response code. |
-| data | [string](#string) |  | Result bytes, if any. |
-| raw_log | [string](#string) |  | The output of the application&#39;s logger (raw string). May be non-deterministic. |
-| logs | [ABCIMessageLog](#cosmos.base.abci.v1beta1.ABCIMessageLog) | repeated | The output of the application&#39;s logger (typed). May be non-deterministic. |
-| info | [string](#string) |  | Additional information. May be non-deterministic. |
-| gas_wanted | [int64](#int64) |  | Amount of gas requested for transaction. |
-| gas_used | [int64](#int64) |  | Amount of gas consumed by transaction. |
-| tx | [google.protobuf.Any](#google.protobuf.Any) |  | The request transaction bytes. |
-| timestamp | [string](#string) |  | Time of the previous block. For heights &gt; 1, it&#39;s the weighted median of the timestamps of the valid votes in the block.LastCommit. For height == 1, it&#39;s genesis time. |
+| Field       | Type                                                                          | Label    | Description                                                                                                                                                             |
+| ----------- | ----------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| height      | [int64](cosmos-grpc-docs.md#int64)                                            |          | The block height                                                                                                                                                        |
+| txhash      | [string](cosmos-grpc-docs.md#string)                                          |          | The transaction hash.                                                                                                                                                   |
+| codespace   | [string](cosmos-grpc-docs.md#string)                                          |          | Namespace for the Code                                                                                                                                                  |
+| code        | [uint32](cosmos-grpc-docs.md#uint32)                                          |          | Response code.                                                                                                                                                          |
+| data        | [string](cosmos-grpc-docs.md#string)                                          |          | Result bytes, if any.                                                                                                                                                   |
+| raw\_log    | [string](cosmos-grpc-docs.md#string)                                          |          | The output of the application's logger (raw string). May be non-deterministic.                                                                                          |
+| logs        | [ABCIMessageLog](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.ABCIMessageLog) | repeated | The output of the application's logger (typed). May be non-deterministic.                                                                                               |
+| info        | [string](cosmos-grpc-docs.md#string)                                          |          | Additional information. May be non-deterministic.                                                                                                                       |
+| gas\_wanted | [int64](cosmos-grpc-docs.md#int64)                                            |          | Amount of gas requested for transaction.                                                                                                                                |
+| gas\_used   | [int64](cosmos-grpc-docs.md#int64)                                            |          | Amount of gas consumed by transaction.                                                                                                                                  |
+| tx          | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)                |          | The request transaction bytes.                                                                                                                                          |
+| timestamp   | [string](cosmos-grpc-docs.md#string)                                          |          | Time of the previous block. For heights > 1, it's the weighted median of the timestamps of the valid votes in the block.LastCommit. For height == 1, it's genesis time. |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/base/kv/v1beta1/kv.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/base/kv/v1beta1/kv.proto
 
-
-
-<a name="cosmos.base.kv.v1beta1.Pair"></a>
-
 ### Pair
+
 Pair defines a key/value bytes tuple.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [bytes](#bytes) |  |  |
-| value | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.kv.v1beta1.Pairs"></a>
+| Field | Type                               | Label | Description |
+| ----- | ---------------------------------- | ----- | ----------- |
+| key   | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
+| value | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### Pairs
+
 Pairs defines a repeated slice of Pair objects.
 
+| Field | Type                                                    | Label    | Description |
+| ----- | ------------------------------------------------------- | -------- | ----------- |
+| pairs | [Pair](cosmos-grpc-docs.md#cosmos.base.kv.v1beta1.Pair) | repeated |             |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pairs | [Pair](#cosmos.base.kv.v1beta1.Pair) | repeated |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/base/snapshots/v1beta1/snapshot.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/base/snapshots/v1beta1/snapshot.proto
 
-
-
-<a name="cosmos.base.snapshots.v1beta1.Metadata"></a>
-
 ### Metadata
+
 Metadata contains SDK-specific snapshot metadata.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| chunk_hashes | [bytes](#bytes) | repeated | SHA-256 chunk hashes |
-
-
-
-
-
-
-<a name="cosmos.base.snapshots.v1beta1.Snapshot"></a>
+| Field         | Type                               | Label    | Description          |
+| ------------- | ---------------------------------- | -------- | -------------------- |
+| chunk\_hashes | [bytes](cosmos-grpc-docs.md#bytes) | repeated | SHA-256 chunk hashes |
 
 ### Snapshot
+
 Snapshot contains Tendermint state sync snapshot info.
 
+| Field    | Type                                                                   | Label | Description |
+| -------- | ---------------------------------------------------------------------- | ----- | ----------- |
+| height   | [uint64](cosmos-grpc-docs.md#uint64)                                   |       |             |
+| format   | [uint32](cosmos-grpc-docs.md#uint32)                                   |       |             |
+| chunks   | [uint32](cosmos-grpc-docs.md#uint32)                                   |       |             |
+| hash     | [bytes](cosmos-grpc-docs.md#bytes)                                     |       |             |
+| metadata | [Metadata](cosmos-grpc-docs.md#cosmos.base.snapshots.v1beta1.Metadata) |       |             |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| height | [uint64](#uint64) |  |  |
-| format | [uint32](#uint32) |  |  |
-| chunks | [uint32](#uint32) |  |  |
-| hash | [bytes](#bytes) |  |  |
-| metadata | [Metadata](#cosmos.base.snapshots.v1beta1.Metadata) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/base/simulate/v1beta1/simulate.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/base/simulate/v1beta1/simulate.proto
 
-
-
-<a name="cosmos.base.simulate.v1beta1.SimulateRequest"></a>
-
 ### SimulateRequest
-SimulateRequest is the request type for the SimulateServiceService.Simulate
-RPC method.
 
+SimulateRequest is the request type for the SimulateServiceService.Simulate RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| tx | [cosmos.tx.v1beta1.Tx](#cosmos.tx.v1beta1.Tx) |  | tx is the transaction to simulate. |
-
-
-
-
-
-
-<a name="cosmos.base.simulate.v1beta1.SimulateResponse"></a>
+| Field | Type                                                             | Label | Description                        |
+| ----- | ---------------------------------------------------------------- | ----- | ---------------------------------- |
+| tx    | [cosmos.tx.v1beta1.Tx](cosmos-grpc-docs.md#cosmos.tx.v1beta1.Tx) |       | tx is the transaction to simulate. |
 
 ### SimulateResponse
-SimulateResponse is the response type for the
-SimulateServiceService.SimulateRPC method.
 
+SimulateResponse is the response type for the SimulateServiceService.SimulateRPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| gas_info | [cosmos.base.abci.v1beta1.GasInfo](#cosmos.base.abci.v1beta1.GasInfo) |  | gas_info is the information about gas used in the simulation. |
-| result | [cosmos.base.abci.v1beta1.Result](#cosmos.base.abci.v1beta1.Result) |  | result is the result of the simulation. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.base.simulate.v1beta1.SimulateService"></a>
+| Field     | Type                                                                                     | Label | Description                                                    |
+| --------- | ---------------------------------------------------------------------------------------- | ----- | -------------------------------------------------------------- |
+| gas\_info | [cosmos.base.abci.v1beta1.GasInfo](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.GasInfo) |       | gas\_info is the information about gas used in the simulation. |
+| result    | [cosmos.base.abci.v1beta1.Result](cosmos-grpc-docs.md#cosmos.base.abci.v1beta1.Result)   |       | result is the result of the simulation.                        |
 
 ### SimulateService
-SimulateService defines a gRPC service for simulating transactions.
-It may also support querying and broadcasting in the future.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Simulate | [SimulateRequest](#cosmos.base.simulate.v1beta1.SimulateRequest) | [SimulateResponse](#cosmos.base.simulate.v1beta1.SimulateResponse) | Simulate simulates executing a transaction for estimating gas usage. |
+SimulateService defines a gRPC service for simulating transactions. It may also support querying and broadcasting in the future.
 
- 
+| Method Name | Request Type                                                                        | Response Type                                                                         | Description                                                          |
+| ----------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Simulate    | [SimulateRequest](cosmos-grpc-docs.md#cosmos.base.simulate.v1beta1.SimulateRequest) | [SimulateResponse](cosmos-grpc-docs.md#cosmos.base.simulate.v1beta1.SimulateResponse) | Simulate simulates executing a transaction for estimating gas usage. |
 
-
-
-<a name="cosmos/base/v1beta1/coin.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/base/v1beta1/coin.proto
 
-
-
-<a name="cosmos.base.v1beta1.Coin"></a>
-
 ### Coin
+
 Coin defines a token with a denomination and an amount.
 
-NOTE: The amount field is an Int which implements the custom method
-signatures required by gogoproto.
+NOTE: The amount field is an Int which implements the custom method signatures required by gogoproto.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| denom | [string](#string) |  |  |
-| amount | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.v1beta1.DecCoin"></a>
+| Field  | Type                                 | Label | Description |
+| ------ | ------------------------------------ | ----- | ----------- |
+| denom  | [string](cosmos-grpc-docs.md#string) |       |             |
+| amount | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### DecCoin
+
 DecCoin defines a token with a denomination and a decimal amount.
 
-NOTE: The amount field is an Dec which implements the custom method
-signatures required by gogoproto.
+NOTE: The amount field is an Dec which implements the custom method signatures required by gogoproto.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| denom | [string](#string) |  |  |
-| amount | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.v1beta1.DecProto"></a>
+| Field  | Type                                 | Label | Description |
+| ------ | ------------------------------------ | ----- | ----------- |
+| denom  | [string](cosmos-grpc-docs.md#string) |       |             |
+| amount | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### DecProto
+
 DecProto defines a Protobuf wrapper around a Dec object.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| dec | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.v1beta1.IntProto"></a>
+| Field | Type                                 | Label | Description |
+| ----- | ------------------------------------ | ----- | ----------- |
+| dec   | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### IntProto
+
 IntProto defines a Protobuf wrapper around an Int object.
 
+| Field | Type                                 | Label | Description |
+| ----- | ------------------------------------ | ----- | ----------- |
+| int   | [string](cosmos-grpc-docs.md#string) |       |             |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| int | [string](#string) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/base/query/v1beta1/pagination.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/base/query/v1beta1/pagination.proto
 
-
-
-<a name="cosmos.base.query.v1beta1.PageRequest"></a>
-
 ### PageRequest
-PageRequest is to be embedded in gRPC request messages for efficient
-pagination. Ex:
 
- message SomeRequest {
-         Foo some_parameter = 1;
-         PageRequest pagination = 2;
- }
+PageRequest is to be embedded in gRPC request messages for efficient pagination. Ex:
 
+message SomeRequest { Foo some\_parameter = 1; PageRequest pagination = 2; }
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [bytes](#bytes) |  | key is a value returned in PageResponse.next_key to begin querying the next page most efficiently. Only one of offset or key should be set. |
-| offset | [uint64](#uint64) |  | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set. |
-| limit | [uint64](#uint64) |  | limit is the total number of results to be returned in the result page. If left empty it will default to a value to be set by each app. |
-| count_total | [bool](#bool) |  | count_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs. count_total is only respected when offset is used. It is ignored when key is set. |
-
-
-
-
-
-
-<a name="cosmos.base.query.v1beta1.PageResponse"></a>
+| Field        | Type                                 | Label | Description                                                                                                                                                                                                                         |
+| ------------ | ------------------------------------ | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key          | [bytes](cosmos-grpc-docs.md#bytes)   |       | key is a value returned in PageResponse.next\_key to begin querying the next page most efficiently. Only one of offset or key should be set.                                                                                        |
+| offset       | [uint64](cosmos-grpc-docs.md#uint64) |       | offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key should be set.                                                                                  |
+| limit        | [uint64](cosmos-grpc-docs.md#uint64) |       | limit is the total number of results to be returned in the result page. If left empty it will default to a value to be set by each app.                                                                                             |
+| count\_total | [bool](cosmos-grpc-docs.md#bool)     |       | count\_total is set to true to indicate that the result set should include a count of the total number of items available for pagination in UIs. count\_total is only respected when offset is used. It is ignored when key is set. |
 
 ### PageResponse
-PageResponse is to be embedded in gRPC response messages where the
-corresponding request message has used PageRequest.
 
- message SomeResponse {
-         repeated Bar results = 1;
-         PageResponse page = 2;
- }
+PageResponse is to be embedded in gRPC response messages where the corresponding request message has used PageRequest.
 
+message SomeResponse { repeated Bar results = 1; PageResponse page = 2; }
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| next_key | [bytes](#bytes) |  | next_key is the key to be passed to PageRequest.key to query the next page most efficiently |
-| total | [uint64](#uint64) |  | total is total number of results available if PageRequest.count_total was set, its value is undefined otherwise |
+| Field     | Type                                 | Label | Description                                                                                                      |
+| --------- | ------------------------------------ | ----- | ---------------------------------------------------------------------------------------------------------------- |
+| next\_key | [bytes](cosmos-grpc-docs.md#bytes)   |       | next\_key is the key to be passed to PageRequest.key to query the next page most efficiently                     |
+| total     | [uint64](cosmos-grpc-docs.md#uint64) |       | total is total number of results available if PageRequest.count\_total was set, its value is undefined otherwise |
 
+[Top](cosmos-grpc-docs.md#top)
 
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/base/store/v1beta1/commit_info.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## cosmos/base/store/v1beta1/commit_info.proto
-
-
-
-<a name="cosmos.base.store.v1beta1.CommitID"></a>
+## cosmos/base/store/v1beta1/commit\_info.proto
 
 ### CommitID
-CommitID defines the committment information when a specific store is
-committed.
 
+CommitID defines the committment information when a specific store is committed.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version | [int64](#int64) |  |  |
-| hash | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.store.v1beta1.CommitInfo"></a>
+| Field   | Type                               | Label | Description |
+| ------- | ---------------------------------- | ----- | ----------- |
+| version | [int64](cosmos-grpc-docs.md#int64) |       |             |
+| hash    | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### CommitInfo
-CommitInfo defines commit information used by the multi-store when committing
-a version/height.
 
+CommitInfo defines commit information used by the multi-store when committing a version/height.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version | [int64](#int64) |  |  |
-| store_infos | [StoreInfo](#cosmos.base.store.v1beta1.StoreInfo) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.base.store.v1beta1.StoreInfo"></a>
+| Field        | Type                                                                 | Label    | Description |
+| ------------ | -------------------------------------------------------------------- | -------- | ----------- |
+| version      | [int64](cosmos-grpc-docs.md#int64)                                   |          |             |
+| store\_infos | [StoreInfo](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.StoreInfo) | repeated |             |
 
 ### StoreInfo
-StoreInfo defines store-specific commit information. It contains a reference
-between a store name and the commit ID.
 
+StoreInfo defines store-specific commit information. It contains a reference between a store name and the commit ID.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| commit_id | [CommitID](#cosmos.base.store.v1beta1.CommitID) |  |  |
+| Field      | Type                                                               | Label | Description |
+| ---------- | ------------------------------------------------------------------ | ----- | ----------- |
+| name       | [string](cosmos-grpc-docs.md#string)                               |       |             |
+| commit\_id | [CommitID](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.CommitID) |       |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/base/store/v1beta1/snapshot.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/base/store/v1beta1/snapshot.proto
 
-
-
-<a name="cosmos.base.store.v1beta1.SnapshotIAVLItem"></a>
-
 ### SnapshotIAVLItem
+
 SnapshotIAVLItem is an exported IAVL node.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [bytes](#bytes) |  |  |
-| value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
-| height | [int32](#int32) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.store.v1beta1.SnapshotItem"></a>
+| Field   | Type                               | Label | Description |
+| ------- | ---------------------------------- | ----- | ----------- |
+| key     | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
+| value   | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
+| version | [int64](cosmos-grpc-docs.md#int64) |       |             |
+| height  | [int32](cosmos-grpc-docs.md#int32) |       |             |
 
 ### SnapshotItem
+
 SnapshotItem is an item contained in a rootmulti.Store snapshot.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| store | [SnapshotStoreItem](#cosmos.base.store.v1beta1.SnapshotStoreItem) |  |  |
-| iavl | [SnapshotIAVLItem](#cosmos.base.store.v1beta1.SnapshotIAVLItem) |  |  |
-
-
-
-
-
-
-<a name="cosmos.base.store.v1beta1.SnapshotStoreItem"></a>
+| Field | Type                                                                                 | Label | Description |
+| ----- | ------------------------------------------------------------------------------------ | ----- | ----------- |
+| store | [SnapshotStoreItem](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.SnapshotStoreItem) |       |             |
+| iavl  | [SnapshotIAVLItem](cosmos-grpc-docs.md#cosmos.base.store.v1beta1.SnapshotIAVLItem)   |       |             |
 
 ### SnapshotStoreItem
+
 SnapshotStoreItem contains metadata about a snapshotted store.
 
+| Field | Type                                 | Label | Description |
+| ----- | ------------------------------------ | ----- | ----------- |
+| name  | [string](cosmos-grpc-docs.md#string) |       |             |
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/base/reflection/v1beta1/reflection.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/base/reflection/v1beta1/reflection.proto
 
-
-
-<a name="cosmos.base.reflection.v1beta1.ListAllInterfacesRequest"></a>
-
 ### ListAllInterfacesRequest
+
 ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC.
 
-
-
-
-
-
-<a name="cosmos.base.reflection.v1beta1.ListAllInterfacesResponse"></a>
-
 ### ListAllInterfacesResponse
+
 ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| interface_names | [string](#string) | repeated | interface_names is an array of all the registered interfaces. |
-
-
-
-
-
-
-<a name="cosmos.base.reflection.v1beta1.ListImplementationsRequest"></a>
+| Field            | Type                                 | Label    | Description                                                    |
+| ---------------- | ------------------------------------ | -------- | -------------------------------------------------------------- |
+| interface\_names | [string](cosmos-grpc-docs.md#string) | repeated | interface\_names is an array of all the registered interfaces. |
 
 ### ListImplementationsRequest
-ListImplementationsRequest is the request type of the ListImplementations
-RPC.
 
+ListImplementationsRequest is the request type of the ListImplementations RPC.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| interface_name | [string](#string) |  | interface_name defines the interface to query the implementations for. |
-
-
-
-
-
-
-<a name="cosmos.base.reflection.v1beta1.ListImplementationsResponse"></a>
+| Field           | Type                                 | Label | Description                                                             |
+| --------------- | ------------------------------------ | ----- | ----------------------------------------------------------------------- |
+| interface\_name | [string](cosmos-grpc-docs.md#string) |       | interface\_name defines the interface to query the implementations for. |
 
 ### ListImplementationsResponse
-ListImplementationsResponse is the response type of the ListImplementations
-RPC.
 
+ListImplementationsResponse is the response type of the ListImplementations RPC.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| implementation_message_names | [string](#string) | repeated |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.base.reflection.v1beta1.ReflectionService"></a>
+| Field                          | Type                                 | Label    | Description |
+| ------------------------------ | ------------------------------------ | -------- | ----------- |
+| implementation\_message\_names | [string](cosmos-grpc-docs.md#string) | repeated |             |
 
 ### ReflectionService
+
 ReflectionService defines a service for interface reflection.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| ListAllInterfaces | [ListAllInterfacesRequest](#cosmos.base.reflection.v1beta1.ListAllInterfacesRequest) | [ListAllInterfacesResponse](#cosmos.base.reflection.v1beta1.ListAllInterfacesResponse) | ListAllInterfaces lists all the interfaces registered in the interface registry. |
-| ListImplementations | [ListImplementationsRequest](#cosmos.base.reflection.v1beta1.ListImplementationsRequest) | [ListImplementationsResponse](#cosmos.base.reflection.v1beta1.ListImplementationsResponse) | ListImplementations list all the concrete types that implement a given interface. |
+| Method Name         | Request Type                                                                                                | Response Type                                                                                                 | Description                                                                       |
+| ------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| ListAllInterfaces   | [ListAllInterfacesRequest](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ListAllInterfacesRequest)     | [ListAllInterfacesResponse](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ListAllInterfacesResponse)     | ListAllInterfaces lists all the interfaces registered in the interface registry.  |
+| ListImplementations | [ListImplementationsRequest](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ListImplementationsRequest) | [ListImplementationsResponse](cosmos-grpc-docs.md#cosmos.base.reflection.v1beta1.ListImplementationsResponse) | ListImplementations list all the concrete types that implement a given interface. |
 
- 
-
-
-
-<a name="cosmos/gov/v1beta1/tx.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/gov/v1beta1/tx.proto
 
-
-
-<a name="cosmos.gov.v1beta1.MsgDeposit"></a>
-
 ### MsgDeposit
+
 MsgDeposit defines a message to submit a deposit to an existing proposal.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  |  |
-| depositor | [string](#string) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.MsgDepositResponse"></a>
+| Field        | Type                                                                     | Label    | Description |
+| ------------ | ------------------------------------------------------------------------ | -------- | ----------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64)                                     |          |             |
+| depositor    | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| amount       | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
 
 ### MsgDepositResponse
+
 MsgDepositResponse defines the Msg/Deposit response type.
 
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.MsgSubmitProposal"></a>
-
 ### MsgSubmitProposal
-MsgSubmitProposal defines an sdk.Msg type that supports submitting arbitrary
-proposal Content.
 
+MsgSubmitProposal defines an sdk.Msg type that supports submitting arbitrary proposal Content.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| content | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-| initial_deposit | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-| proposer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.MsgSubmitProposalResponse"></a>
+| Field            | Type                                                                     | Label    | Description |
+| ---------------- | ------------------------------------------------------------------------ | -------- | ----------- |
+| content          | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)           |          |             |
+| initial\_deposit | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
+| proposer         | [string](cosmos-grpc-docs.md#string)                                     |          |             |
 
 ### MsgSubmitProposalResponse
+
 MsgSubmitProposalResponse defines the Msg/SubmitProposal response type.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.MsgVote"></a>
+| Field        | Type                                 | Label | Description |
+| ------------ | ------------------------------------ | ----- | ----------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
 
 ### MsgVote
+
 MsgVote defines a message to cast a vote.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  |  |
-| voter | [string](#string) |  |  |
-| option | [VoteOption](#cosmos.gov.v1beta1.VoteOption) |  |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.MsgVoteResponse"></a>
+| Field        | Type                                                            | Label | Description |
+| ------------ | --------------------------------------------------------------- | ----- | ----------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64)                            |       |             |
+| voter        | [string](cosmos-grpc-docs.md#string)                            |       |             |
+| option       | [VoteOption](cosmos-grpc-docs.md#cosmos.gov.v1beta1.VoteOption) |       |             |
 
 ### MsgVoteResponse
+
 MsgVoteResponse defines the Msg/Vote response type.
 
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.gov.v1beta1.Msg"></a>
-
 ### Msg
+
 Msg defines the bank Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| SubmitProposal | [MsgSubmitProposal](#cosmos.gov.v1beta1.MsgSubmitProposal) | [MsgSubmitProposalResponse](#cosmos.gov.v1beta1.MsgSubmitProposalResponse) | SubmitProposal defines a method to create new proposal given a content. |
-| Vote | [MsgVote](#cosmos.gov.v1beta1.MsgVote) | [MsgVoteResponse](#cosmos.gov.v1beta1.MsgVoteResponse) | Vote defines a method to add a vote on a specific proposal. |
-| Deposit | [MsgDeposit](#cosmos.gov.v1beta1.MsgDeposit) | [MsgDepositResponse](#cosmos.gov.v1beta1.MsgDepositResponse) | Deposit defines a method to add deposit on a specific proposal. |
+| Method Name    | Request Type                                                                  | Response Type                                                                                 | Description                                                             |
+| -------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| SubmitProposal | [MsgSubmitProposal](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgSubmitProposal) | [MsgSubmitProposalResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgSubmitProposalResponse) | SubmitProposal defines a method to create new proposal given a content. |
+| Vote           | [MsgVote](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgVote)                     | [MsgVoteResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgVoteResponse)                     | Vote defines a method to add a vote on a specific proposal.             |
+| Deposit        | [MsgDeposit](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgDeposit)               | [MsgDepositResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.MsgDepositResponse)               | Deposit defines a method to add deposit on a specific proposal.         |
 
- 
-
-
-
-<a name="cosmos/gov/v1beta1/gov.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/gov/v1beta1/gov.proto
 
-
-
-<a name="cosmos.gov.v1beta1.Deposit"></a>
-
 ### Deposit
-Deposit defines an amount deposited by an account address to an active
-proposal.
 
+Deposit defines an amount deposited by an account address to an active proposal.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  |  |
-| depositor | [string](#string) |  |  |
-| amount | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.DepositParams"></a>
+| Field        | Type                                                                     | Label    | Description |
+| ------------ | ------------------------------------------------------------------------ | -------- | ----------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64)                                     |          |             |
+| depositor    | [string](cosmos-grpc-docs.md#string)                                     |          |             |
+| amount       | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated |             |
 
 ### DepositParams
+
 DepositParams defines the params for deposits on governance proposals.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| min_deposit | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated | Minimum deposit for a proposal to enter voting period. |
-| max_deposit_period | [google.protobuf.Duration](#google.protobuf.Duration) |  | Maximum period for Atom holders to deposit on a proposal. Initial value: 2 months. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.Proposal"></a>
+| Field                | Type                                                                     | Label    | Description                                                                        |
+| -------------------- | ------------------------------------------------------------------------ | -------- | ---------------------------------------------------------------------------------- |
+| min\_deposit         | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin) | repeated | Minimum deposit for a proposal to enter voting period.                             |
+| max\_deposit\_period | [google.protobuf.Duration](cosmos-grpc-docs.md#google.protobuf.Duration) |          | Maximum period for Atom holders to deposit on a proposal. Initial value: 2 months. |
 
 ### Proposal
+
 Proposal defines the core field members of a governance proposal.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  |  |
-| content | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-| status | [ProposalStatus](#cosmos.gov.v1beta1.ProposalStatus) |  |  |
-| final_tally_result | [TallyResult](#cosmos.gov.v1beta1.TallyResult) |  |  |
-| submit_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| deposit_end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| total_deposit | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) | repeated |  |
-| voting_start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| voting_end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.TallyParams"></a>
+| Field                | Type                                                                       | Label    | Description |
+| -------------------- | -------------------------------------------------------------------------- | -------- | ----------- |
+| proposal\_id         | [uint64](cosmos-grpc-docs.md#uint64)                                       |          |             |
+| content              | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)             |          |             |
+| status               | [ProposalStatus](cosmos-grpc-docs.md#cosmos.gov.v1beta1.ProposalStatus)    |          |             |
+| final\_tally\_result | [TallyResult](cosmos-grpc-docs.md#cosmos.gov.v1beta1.TallyResult)          |          |             |
+| submit\_time         | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |          |             |
+| deposit\_end\_time   | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |          |             |
+| total\_deposit       | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin)   | repeated |             |
+| voting\_start\_time  | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |          |             |
+| voting\_end\_time    | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp) |          |             |
 
 ### TallyParams
+
 TallyParams defines the params for tallying votes on governance proposals.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| quorum | [bytes](#bytes) |  | Minimum percentage of total stake needed to vote for a result to be considered valid. |
-| threshold | [bytes](#bytes) |  | Minimum proportion of Yes votes for proposal to pass. Default value: 0.5. |
-| veto_threshold | [bytes](#bytes) |  | Minimum value of Veto votes to Total votes ratio for proposal to be vetoed. Default value: 1/3. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.TallyResult"></a>
+| Field           | Type                               | Label | Description                                                                                     |
+| --------------- | ---------------------------------- | ----- | ----------------------------------------------------------------------------------------------- |
+| quorum          | [bytes](cosmos-grpc-docs.md#bytes) |       | Minimum percentage of total stake needed to vote for a result to be considered valid.           |
+| threshold       | [bytes](cosmos-grpc-docs.md#bytes) |       | Minimum proportion of Yes votes for proposal to pass. Default value: 0.5.                       |
+| veto\_threshold | [bytes](cosmos-grpc-docs.md#bytes) |       | Minimum value of Veto votes to Total votes ratio for proposal to be vetoed. Default value: 1/3. |
 
 ### TallyResult
+
 TallyResult defines a standard tally for a governance proposal.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| yes | [string](#string) |  |  |
-| abstain | [string](#string) |  |  |
-| no | [string](#string) |  |  |
-| no_with_veto | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.TextProposal"></a>
+| Field          | Type                                 | Label | Description |
+| -------------- | ------------------------------------ | ----- | ----------- |
+| yes            | [string](cosmos-grpc-docs.md#string) |       |             |
+| abstain        | [string](cosmos-grpc-docs.md#string) |       |             |
+| no             | [string](cosmos-grpc-docs.md#string) |       |             |
+| no\_with\_veto | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### TextProposal
-TextProposal defines a standard text proposal whose changes need to be
-manually updated in case of approval.
 
+TextProposal defines a standard text proposal whose changes need to be manually updated in case of approval.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| title | [string](#string) |  |  |
-| description | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.Vote"></a>
+| Field       | Type                                 | Label | Description |
+| ----------- | ------------------------------------ | ----- | ----------- |
+| title       | [string](cosmos-grpc-docs.md#string) |       |             |
+| description | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### Vote
-Vote defines a vote on a governance proposal.
-A Vote consists of a proposal ID, the voter, and the vote option.
 
+Vote defines a vote on a governance proposal. A Vote consists of a proposal ID, the voter, and the vote option.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  |  |
-| voter | [string](#string) |  |  |
-| option | [VoteOption](#cosmos.gov.v1beta1.VoteOption) |  |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.VotingParams"></a>
+| Field        | Type                                                            | Label | Description |
+| ------------ | --------------------------------------------------------------- | ----- | ----------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64)                            |       |             |
+| voter        | [string](cosmos-grpc-docs.md#string)                            |       |             |
+| option       | [VoteOption](cosmos-grpc-docs.md#cosmos.gov.v1beta1.VoteOption) |       |             |
 
 ### VotingParams
+
 VotingParams defines the params for voting on governance proposals.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| voting_period | [google.protobuf.Duration](#google.protobuf.Duration) |  | Length of the voting period. |
-
-
-
-
-
- 
-
-
-<a name="cosmos.gov.v1beta1.ProposalStatus"></a>
+| Field          | Type                                                                     | Label | Description                  |
+| -------------- | ------------------------------------------------------------------------ | ----- | ---------------------------- |
+| voting\_period | [google.protobuf.Duration](cosmos-grpc-docs.md#google.protobuf.Duration) |       | Length of the voting period. |
 
 ### ProposalStatus
+
 ProposalStatus enumerates the valid statuses of a proposal.
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| PROPOSAL_STATUS_UNSPECIFIED | 0 | PROPOSAL_STATUS_UNSPECIFIED defines the default propopsal status. |
-| PROPOSAL_STATUS_DEPOSIT_PERIOD | 1 | PROPOSAL_STATUS_DEPOSIT_PERIOD defines a proposal status during the deposit period. |
-| PROPOSAL_STATUS_VOTING_PERIOD | 2 | PROPOSAL_STATUS_VOTING_PERIOD defines a proposal status during the voting period. |
-| PROPOSAL_STATUS_PASSED | 3 | PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has passed. |
-| PROPOSAL_STATUS_REJECTED | 4 | PROPOSAL_STATUS_REJECTED defines a proposal status of a proposal that has been rejected. |
-| PROPOSAL_STATUS_FAILED | 5 | PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has failed. |
-
-
-
-<a name="cosmos.gov.v1beta1.VoteOption"></a>
+| Name                              | Number | Description                                                                                |
+| --------------------------------- | ------ | ------------------------------------------------------------------------------------------ |
+| PROPOSAL\_STATUS\_UNSPECIFIED     | 0      | PROPOSAL\_STATUS\_UNSPECIFIED defines the default propopsal status.                        |
+| PROPOSAL\_STATUS\_DEPOSIT\_PERIOD | 1      | PROPOSAL\_STATUS\_DEPOSIT\_PERIOD defines a proposal status during the deposit period.     |
+| PROPOSAL\_STATUS\_VOTING\_PERIOD  | 2      | PROPOSAL\_STATUS\_VOTING\_PERIOD defines a proposal status during the voting period.       |
+| PROPOSAL\_STATUS\_PASSED          | 3      | PROPOSAL\_STATUS\_PASSED defines a proposal status of a proposal that has passed.          |
+| PROPOSAL\_STATUS\_REJECTED        | 4      | PROPOSAL\_STATUS\_REJECTED defines a proposal status of a proposal that has been rejected. |
+| PROPOSAL\_STATUS\_FAILED          | 5      | PROPOSAL\_STATUS\_FAILED defines a proposal status of a proposal that has failed.          |
 
 ### VoteOption
+
 VoteOption enumerates the valid vote options for a given governance proposal.
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| VOTE_OPTION_UNSPECIFIED | 0 | VOTE_OPTION_UNSPECIFIED defines a no-op vote option. |
-| VOTE_OPTION_YES | 1 | VOTE_OPTION_YES defines a yes vote option. |
-| VOTE_OPTION_ABSTAIN | 2 | VOTE_OPTION_ABSTAIN defines an abstain vote option. |
-| VOTE_OPTION_NO | 3 | VOTE_OPTION_NO defines a no vote option. |
-| VOTE_OPTION_NO_WITH_VETO | 4 | VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option. |
+| Name                         | Number | Description                                                      |
+| ---------------------------- | ------ | ---------------------------------------------------------------- |
+| VOTE\_OPTION\_UNSPECIFIED    | 0      | VOTE\_OPTION\_UNSPECIFIED defines a no-op vote option.           |
+| VOTE\_OPTION\_YES            | 1      | VOTE\_OPTION\_YES defines a yes vote option.                     |
+| VOTE\_OPTION\_ABSTAIN        | 2      | VOTE\_OPTION\_ABSTAIN defines an abstain vote option.            |
+| VOTE\_OPTION\_NO             | 3      | VOTE\_OPTION\_NO defines a no vote option.                       |
+| VOTE\_OPTION\_NO\_WITH\_VETO | 4      | VOTE\_OPTION\_NO\_WITH\_VETO defines a no with veto vote option. |
 
-
- 
-
- 
-
- 
-
-
-
-<a name="cosmos/gov/v1beta1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/gov/v1beta1/query.proto
 
-
-
-<a name="cosmos.gov.v1beta1.QueryDepositRequest"></a>
-
 ### QueryDepositRequest
+
 QueryDepositRequest is the request type for the Query/Deposit RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  | proposal_id defines the unique id of the proposal. |
-| depositor | [string](#string) |  | depositor defines the deposit addresses from the proposals. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryDepositResponse"></a>
+| Field        | Type                                 | Label | Description                                                 |
+| ------------ | ------------------------------------ | ----- | ----------------------------------------------------------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64) |       | proposal\_id defines the unique id of the proposal.         |
+| depositor    | [string](cosmos-grpc-docs.md#string) |       | depositor defines the deposit addresses from the proposals. |
 
 ### QueryDepositResponse
+
 QueryDepositResponse is the response type for the Query/Deposit RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| deposit | [Deposit](#cosmos.gov.v1beta1.Deposit) |  | deposit defines the requested deposit. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryDepositsRequest"></a>
+| Field   | Type                                                      | Label | Description                            |
+| ------- | --------------------------------------------------------- | ----- | -------------------------------------- |
+| deposit | [Deposit](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Deposit) |       | deposit defines the requested deposit. |
 
 ### QueryDepositsRequest
+
 QueryDepositsRequest is the request type for the Query/Deposits RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  | proposal_id defines the unique id of the proposal. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryDepositsResponse"></a>
+| Field        | Type                                                                                               | Label | Description                                                |
+| ------------ | -------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64)                                                               |       | proposal\_id defines the unique id of the proposal.        |
+| pagination   | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request. |
 
 ### QueryDepositsResponse
+
 QueryDepositsResponse is the response type for the Query/Deposits RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| deposits | [Deposit](#cosmos.gov.v1beta1.Deposit) | repeated |  |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryParamsRequest"></a>
+| Field      | Type                                                                                                 | Label    | Description                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| deposits   | [Deposit](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Deposit)                                            | repeated |                                                    |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### QueryParamsRequest
+
 QueryParamsRequest is the request type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params_type | [string](#string) |  | params_type defines which parameters to query for, can be one of &#34;voting&#34;, &#34;tallying&#34; or &#34;deposit&#34;. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryParamsResponse"></a>
+| Field        | Type                                 | Label | Description                                                                                          |
+| ------------ | ------------------------------------ | ----- | ---------------------------------------------------------------------------------------------------- |
+| params\_type | [string](cosmos-grpc-docs.md#string) |       | params\_type defines which parameters to query for, can be one of "voting", "tallying" or "deposit". |
 
 ### QueryParamsResponse
+
 QueryParamsResponse is the response type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| voting_params | [VotingParams](#cosmos.gov.v1beta1.VotingParams) |  | voting_params defines the parameters related to voting. |
-| deposit_params | [DepositParams](#cosmos.gov.v1beta1.DepositParams) |  | deposit_params defines the parameters related to deposit. |
-| tally_params | [TallyParams](#cosmos.gov.v1beta1.TallyParams) |  | tally_params defines the parameters related to tally. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryProposalRequest"></a>
+| Field           | Type                                                                  | Label | Description                                                |
+| --------------- | --------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| voting\_params  | [VotingParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.VotingParams)   |       | voting\_params defines the parameters related to voting.   |
+| deposit\_params | [DepositParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.DepositParams) |       | deposit\_params defines the parameters related to deposit. |
+| tally\_params   | [TallyParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.TallyParams)     |       | tally\_params defines the parameters related to tally.     |
 
 ### QueryProposalRequest
+
 QueryProposalRequest is the request type for the Query/Proposal RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  | proposal_id defines the unique id of the proposal. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryProposalResponse"></a>
+| Field        | Type                                 | Label | Description                                         |
+| ------------ | ------------------------------------ | ----- | --------------------------------------------------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64) |       | proposal\_id defines the unique id of the proposal. |
 
 ### QueryProposalResponse
+
 QueryProposalResponse is the response type for the Query/Proposal RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal | [Proposal](#cosmos.gov.v1beta1.Proposal) |  |  |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryProposalsRequest"></a>
+| Field    | Type                                                        | Label | Description |
+| -------- | ----------------------------------------------------------- | ----- | ----------- |
+| proposal | [Proposal](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Proposal) |       |             |
 
 ### QueryProposalsRequest
+
 QueryProposalsRequest is the request type for the Query/Proposals RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_status | [ProposalStatus](#cosmos.gov.v1beta1.ProposalStatus) |  | proposal_status defines the status of the proposals. |
-| voter | [string](#string) |  | voter defines the voter address for the proposals. |
-| depositor | [string](#string) |  | depositor defines the deposit addresses from the proposals. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryProposalsResponse"></a>
+| Field            | Type                                                                                               | Label | Description                                                 |
+| ---------------- | -------------------------------------------------------------------------------------------------- | ----- | ----------------------------------------------------------- |
+| proposal\_status | [ProposalStatus](cosmos-grpc-docs.md#cosmos.gov.v1beta1.ProposalStatus)                            |       | proposal\_status defines the status of the proposals.       |
+| voter            | [string](cosmos-grpc-docs.md#string)                                                               |       | voter defines the voter address for the proposals.          |
+| depositor        | [string](cosmos-grpc-docs.md#string)                                                               |       | depositor defines the deposit addresses from the proposals. |
+| pagination       | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request.  |
 
 ### QueryProposalsResponse
-QueryProposalsResponse is the response type for the Query/Proposals RPC
-method.
 
+QueryProposalsResponse is the response type for the Query/Proposals RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposals | [Proposal](#cosmos.gov.v1beta1.Proposal) | repeated |  |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryTallyResultRequest"></a>
+| Field      | Type                                                                                                 | Label    | Description                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| proposals  | [Proposal](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Proposal)                                          | repeated |                                                    |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### QueryTallyResultRequest
+
 QueryTallyResultRequest is the request type for the Query/Tally RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  | proposal_id defines the unique id of the proposal. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryTallyResultResponse"></a>
+| Field        | Type                                 | Label | Description                                         |
+| ------------ | ------------------------------------ | ----- | --------------------------------------------------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64) |       | proposal\_id defines the unique id of the proposal. |
 
 ### QueryTallyResultResponse
+
 QueryTallyResultResponse is the response type for the Query/Tally RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| tally | [TallyResult](#cosmos.gov.v1beta1.TallyResult) |  | tally defines the requested tally. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryVoteRequest"></a>
+| Field | Type                                                              | Label | Description                        |
+| ----- | ----------------------------------------------------------------- | ----- | ---------------------------------- |
+| tally | [TallyResult](cosmos-grpc-docs.md#cosmos.gov.v1beta1.TallyResult) |       | tally defines the requested tally. |
 
 ### QueryVoteRequest
+
 QueryVoteRequest is the request type for the Query/Vote RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  | proposal_id defines the unique id of the proposal. |
-| voter | [string](#string) |  | voter defines the oter address for the proposals. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryVoteResponse"></a>
+| Field        | Type                                 | Label | Description                                         |
+| ------------ | ------------------------------------ | ----- | --------------------------------------------------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64) |       | proposal\_id defines the unique id of the proposal. |
+| voter        | [string](cosmos-grpc-docs.md#string) |       | voter defines the oter address for the proposals.   |
 
 ### QueryVoteResponse
+
 QueryVoteResponse is the response type for the Query/Vote RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| vote | [Vote](#cosmos.gov.v1beta1.Vote) |  | vote defined the queried vote. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryVotesRequest"></a>
+| Field | Type                                                | Label | Description                    |
+| ----- | --------------------------------------------------- | ----- | ------------------------------ |
+| vote  | [Vote](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Vote) |       | vote defined the queried vote. |
 
 ### QueryVotesRequest
+
 QueryVotesRequest is the request type for the Query/Votes RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proposal_id | [uint64](#uint64) |  | proposal_id defines the unique id of the proposal. |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="cosmos.gov.v1beta1.QueryVotesResponse"></a>
+| Field        | Type                                                                                               | Label | Description                                                |
+| ------------ | -------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| proposal\_id | [uint64](cosmos-grpc-docs.md#uint64)                                                               |       | proposal\_id defines the unique id of the proposal.        |
+| pagination   | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request. |
 
 ### QueryVotesResponse
+
 QueryVotesResponse is the response type for the Query/Votes RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| votes | [Vote](#cosmos.gov.v1beta1.Vote) | repeated | votes defined the queried votes. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="cosmos.gov.v1beta1.Query"></a>
+| Field      | Type                                                                                                 | Label    | Description                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| votes      | [Vote](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Vote)                                                  | repeated | votes defined the queried votes.                   |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response. |
 
 ### Query
+
 Query defines the gRPC querier service for gov module
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Proposal | [QueryProposalRequest](#cosmos.gov.v1beta1.QueryProposalRequest) | [QueryProposalResponse](#cosmos.gov.v1beta1.QueryProposalResponse) | Proposal queries proposal details based on ProposalID. |
-| Proposals | [QueryProposalsRequest](#cosmos.gov.v1beta1.QueryProposalsRequest) | [QueryProposalsResponse](#cosmos.gov.v1beta1.QueryProposalsResponse) | Proposals queries all proposals based on given status. |
-| Vote | [QueryVoteRequest](#cosmos.gov.v1beta1.QueryVoteRequest) | [QueryVoteResponse](#cosmos.gov.v1beta1.QueryVoteResponse) | Vote queries voted information based on proposalID, voterAddr. |
-| Votes | [QueryVotesRequest](#cosmos.gov.v1beta1.QueryVotesRequest) | [QueryVotesResponse](#cosmos.gov.v1beta1.QueryVotesResponse) | Votes queries votes of a given proposal. |
-| Params | [QueryParamsRequest](#cosmos.gov.v1beta1.QueryParamsRequest) | [QueryParamsResponse](#cosmos.gov.v1beta1.QueryParamsResponse) | Params queries all parameters of the gov module. |
-| Deposit | [QueryDepositRequest](#cosmos.gov.v1beta1.QueryDepositRequest) | [QueryDepositResponse](#cosmos.gov.v1beta1.QueryDepositResponse) | Deposit queries single deposit information based proposalID, depositAddr. |
-| Deposits | [QueryDepositsRequest](#cosmos.gov.v1beta1.QueryDepositsRequest) | [QueryDepositsResponse](#cosmos.gov.v1beta1.QueryDepositsResponse) | Deposits queries all deposits of a single proposal. |
-| TallyResult | [QueryTallyResultRequest](#cosmos.gov.v1beta1.QueryTallyResultRequest) | [QueryTallyResultResponse](#cosmos.gov.v1beta1.QueryTallyResultResponse) | TallyResult queries the tally of a proposal vote. |
+| Method Name | Request Type                                                                              | Response Type                                                                               | Description                                                               |
+| ----------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Proposal    | [QueryProposalRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryProposalRequest)       | [QueryProposalResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryProposalResponse)       | Proposal queries proposal details based on ProposalID.                    |
+| Proposals   | [QueryProposalsRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryProposalsRequest)     | [QueryProposalsResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryProposalsResponse)     | Proposals queries all proposals based on given status.                    |
+| Vote        | [QueryVoteRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryVoteRequest)               | [QueryVoteResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryVoteResponse)               | Vote queries voted information based on proposalID, voterAddr.            |
+| Votes       | [QueryVotesRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryVotesRequest)             | [QueryVotesResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryVotesResponse)             | Votes queries votes of a given proposal.                                  |
+| Params      | [QueryParamsRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryParamsRequest)           | [QueryParamsResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryParamsResponse)           | Params queries all parameters of the gov module.                          |
+| Deposit     | [QueryDepositRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryDepositRequest)         | [QueryDepositResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryDepositResponse)         | Deposit queries single deposit information based proposalID, depositAddr. |
+| Deposits    | [QueryDepositsRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryDepositsRequest)       | [QueryDepositsResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryDepositsResponse)       | Deposits queries all deposits of a single proposal.                       |
+| TallyResult | [QueryTallyResultRequest](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryTallyResultRequest) | [QueryTallyResultResponse](cosmos-grpc-docs.md#cosmos.gov.v1beta1.QueryTallyResultResponse) | TallyResult queries the tally of a proposal vote.                         |
 
- 
-
-
-
-<a name="cosmos/gov/v1beta1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## cosmos/gov/v1beta1/genesis.proto
 
-
-
-<a name="cosmos.gov.v1beta1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the gov module&#39;s genesis state.
 
+GenesisState defines the gov module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| starting_proposal_id | [uint64](#uint64) |  | starting_proposal_id is the ID of the starting proposal. |
-| deposits | [Deposit](#cosmos.gov.v1beta1.Deposit) | repeated | deposits defines all the deposits present at genesis. |
-| votes | [Vote](#cosmos.gov.v1beta1.Vote) | repeated | votes defines all the votes present at genesis. |
-| proposals | [Proposal](#cosmos.gov.v1beta1.Proposal) | repeated | proposals defines all the proposals present at genesis. |
-| deposit_params | [DepositParams](#cosmos.gov.v1beta1.DepositParams) |  | params defines all the paramaters of related to deposit. |
-| voting_params | [VotingParams](#cosmos.gov.v1beta1.VotingParams) |  | params defines all the paramaters of related to voting. |
-| tally_params | [TallyParams](#cosmos.gov.v1beta1.TallyParams) |  | params defines all the paramaters of related to tally. |
+| Field                  | Type                                                                  | Label    | Description                                                |
+| ---------------------- | --------------------------------------------------------------------- | -------- | ---------------------------------------------------------- |
+| starting\_proposal\_id | [uint64](cosmos-grpc-docs.md#uint64)                                  |          | starting\_proposal\_id is the ID of the starting proposal. |
+| deposits               | [Deposit](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Deposit)             | repeated | deposits defines all the deposits present at genesis.      |
+| votes                  | [Vote](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Vote)                   | repeated | votes defines all the votes present at genesis.            |
+| proposals              | [Proposal](cosmos-grpc-docs.md#cosmos.gov.v1beta1.Proposal)           | repeated | proposals defines all the proposals present at genesis.    |
+| deposit\_params        | [DepositParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.DepositParams) |          | params defines all the paramaters of related to deposit.   |
+| voting\_params         | [VotingParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.VotingParams)   |          | params defines all the paramaters of related to voting.    |
+| tally\_params          | [TallyParams](cosmos-grpc-docs.md#cosmos.gov.v1beta1.TallyParams)     |          | params defines all the paramaters of related to tally.     |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="ibc/core/types/v1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/types/v1/genesis.proto
 
-
-
-<a name="ibc.core.types.v1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the ibc module&#39;s genesis state.
 
+GenesisState defines the ibc module's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_genesis | [ibc.core.client.v1.GenesisState](#ibc.core.client.v1.GenesisState) |  | ICS002 - Clients genesis state |
-| connection_genesis | [ibc.core.connection.v1.GenesisState](#ibc.core.connection.v1.GenesisState) |  | ICS003 - Connections genesis state |
-| channel_genesis | [ibc.core.channel.v1.GenesisState](#ibc.core.channel.v1.GenesisState) |  | ICS004 - Channel genesis state |
+| Field               | Type                                                                                           | Label | Description                        |
+| ------------------- | ---------------------------------------------------------------------------------------------- | ----- | ---------------------------------- |
+| client\_genesis     | [ibc.core.client.v1.GenesisState](cosmos-grpc-docs.md#ibc.core.client.v1.GenesisState)         |       | ICS002 - Clients genesis state     |
+| connection\_genesis | [ibc.core.connection.v1.GenesisState](cosmos-grpc-docs.md#ibc.core.connection.v1.GenesisState) |       | ICS003 - Connections genesis state |
+| channel\_genesis    | [ibc.core.channel.v1.GenesisState](cosmos-grpc-docs.md#ibc.core.channel.v1.GenesisState)       |       | ICS004 - Channel genesis state     |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="ibc/core/connection/v1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/connection/v1/query.proto
 
-
-
-<a name="ibc.core.connection.v1.QueryClientConnectionsRequest"></a>
-
 ### QueryClientConnectionsRequest
-QueryClientConnectionsRequest is the request type for the
-Query/ClientConnections RPC method
 
+QueryClientConnectionsRequest is the request type for the Query/ClientConnections RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client identifier associated with a connection |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryClientConnectionsResponse"></a>
+| Field      | Type                                 | Label | Description                                    |
+| ---------- | ------------------------------------ | ----- | ---------------------------------------------- |
+| client\_id | [string](cosmos-grpc-docs.md#string) |       | client identifier associated with a connection |
 
 ### QueryClientConnectionsResponse
-QueryClientConnectionsResponse is the response type for the
-Query/ClientConnections RPC method
 
+QueryClientConnectionsResponse is the response type for the Query/ClientConnections RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection_paths | [string](#string) | repeated | slice of all the connection paths associated with a client. |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was generated |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryConnectionClientStateRequest"></a>
+| Field             | Type                                                                       | Label    | Description                                                 |
+| ----------------- | -------------------------------------------------------------------------- | -------- | ----------------------------------------------------------- |
+| connection\_paths | [string](cosmos-grpc-docs.md#string)                                       | repeated | slice of all the connection paths associated with a client. |
+| proof             | [bytes](cosmos-grpc-docs.md#bytes)                                         |          | merkle proof of existence                                   |
+| proof\_path       | [string](cosmos-grpc-docs.md#string)                                       |          | merkle proof path                                           |
+| proof\_height     | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |          | height at which the proof was generated                     |
 
 ### QueryConnectionClientStateRequest
-QueryConnectionClientStateRequest is the request type for the
-Query/ConnectionClientState RPC method
 
+QueryConnectionClientStateRequest is the request type for the Query/ConnectionClientState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection_id | [string](#string) |  | connection identifier |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryConnectionClientStateResponse"></a>
+| Field          | Type                                 | Label | Description           |
+| -------------- | ------------------------------------ | ----- | --------------------- |
+| connection\_id | [string](cosmos-grpc-docs.md#string) |       | connection identifier |
 
 ### QueryConnectionClientStateResponse
-QueryConnectionClientStateResponse is the response type for the
-Query/ConnectionClientState RPC method
 
+QueryConnectionClientStateResponse is the response type for the Query/ConnectionClientState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| identified_client_state | [ibc.core.client.v1.IdentifiedClientState](#ibc.core.client.v1.IdentifiedClientState) |  | client state associated with the channel |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryConnectionConsensusStateRequest"></a>
+| Field                     | Type                                                                                                     | Label | Description                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------- |
+| identified\_client\_state | [ibc.core.client.v1.IdentifiedClientState](cosmos-grpc-docs.md#ibc.core.client.v1.IdentifiedClientState) |       | client state associated with the channel |
+| proof                     | [bytes](cosmos-grpc-docs.md#bytes)                                                                       |       | merkle proof of existence                |
+| proof\_path               | [string](cosmos-grpc-docs.md#string)                                                                     |       | merkle proof path                        |
+| proof\_height             | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)                               |       | height at which the proof was retrieved  |
 
 ### QueryConnectionConsensusStateRequest
-QueryConnectionConsensusStateRequest is the request type for the
-Query/ConnectionConsensusState RPC method
 
+QueryConnectionConsensusStateRequest is the request type for the Query/ConnectionConsensusState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection_id | [string](#string) |  | connection identifier |
-| version_number | [uint64](#uint64) |  |  |
-| version_height | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryConnectionConsensusStateResponse"></a>
+| Field           | Type                                 | Label | Description           |
+| --------------- | ------------------------------------ | ----- | --------------------- |
+| connection\_id  | [string](cosmos-grpc-docs.md#string) |       | connection identifier |
+| version\_number | [uint64](cosmos-grpc-docs.md#uint64) |       |                       |
+| version\_height | [uint64](cosmos-grpc-docs.md#uint64) |       |                       |
 
 ### QueryConnectionConsensusStateResponse
-QueryConnectionConsensusStateResponse is the response type for the
-Query/ConnectionConsensusState RPC method
 
+QueryConnectionConsensusStateResponse is the response type for the Query/ConnectionConsensusState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| consensus_state | [google.protobuf.Any](#google.protobuf.Any) |  | consensus state associated with the channel |
-| client_id | [string](#string) |  | client ID associated with the consensus state |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryConnectionRequest"></a>
+| Field            | Type                                                                       | Label | Description                                   |
+| ---------------- | -------------------------------------------------------------------------- | ----- | --------------------------------------------- |
+| consensus\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)             |       | consensus state associated with the channel   |
+| client\_id       | [string](cosmos-grpc-docs.md#string)                                       |       | client ID associated with the consensus state |
+| proof            | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | merkle proof of existence                     |
+| proof\_path      | [string](cosmos-grpc-docs.md#string)                                       |       | merkle proof path                             |
+| proof\_height    | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | height at which the proof was retrieved       |
 
 ### QueryConnectionRequest
-QueryConnectionRequest is the request type for the Query/Connection RPC
-method
 
+QueryConnectionRequest is the request type for the Query/Connection RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection_id | [string](#string) |  | connection unique identifier |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryConnectionResponse"></a>
+| Field          | Type                                 | Label | Description                  |
+| -------------- | ------------------------------------ | ----- | ---------------------------- |
+| connection\_id | [string](cosmos-grpc-docs.md#string) |       | connection unique identifier |
 
 ### QueryConnectionResponse
-QueryConnectionResponse is the response type for the Query/Connection RPC
-method. Besides the connection end, it includes a proof and the height from
-which the proof was retrieved.
 
+QueryConnectionResponse is the response type for the Query/Connection RPC method. Besides the connection end, it includes a proof and the height from which the proof was retrieved.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection | [ConnectionEnd](#ibc.core.connection.v1.ConnectionEnd) |  | connection associated with the request identifier |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryConnectionsRequest"></a>
+| Field         | Type                                                                       | Label | Description                                       |
+| ------------- | -------------------------------------------------------------------------- | ----- | ------------------------------------------------- |
+| connection    | [ConnectionEnd](cosmos-grpc-docs.md#ibc.core.connection.v1.ConnectionEnd)  |       | connection associated with the request identifier |
+| proof         | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | merkle proof of existence                         |
+| proof\_path   | [string](cosmos-grpc-docs.md#string)                                       |       | merkle proof path                                 |
+| proof\_height | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | height at which the proof was retrieved           |
 
 ### QueryConnectionsRequest
-QueryConnectionsRequest is the request type for the Query/Connections RPC
-method
 
+QueryConnectionsRequest is the request type for the Query/Connections RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.QueryConnectionsResponse"></a>
+| Field      | Type                                                                                               | Label | Description |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ----------- |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       |             |
 
 ### QueryConnectionsResponse
-QueryConnectionsResponse is the response type for the Query/Connections RPC
-method.
 
+QueryConnectionsResponse is the response type for the Query/Connections RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connections | [IdentifiedConnection](#ibc.core.connection.v1.IdentifiedConnection) | repeated | list of stored connections of the chain. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination response |
-| height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | query block height |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="ibc.core.connection.v1.Query"></a>
+| Field       | Type                                                                                                 | Label    | Description                              |
+| ----------- | ---------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------- |
+| connections | [IdentifiedConnection](cosmos-grpc-docs.md#ibc.core.connection.v1.IdentifiedConnection)              | repeated | list of stored connections of the chain. |
+| pagination  | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination response                      |
+| height      | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)                           |          | query block height                       |
 
 ### Query
+
 Query provides defines the gRPC querier service
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Connection | [QueryConnectionRequest](#ibc.core.connection.v1.QueryConnectionRequest) | [QueryConnectionResponse](#ibc.core.connection.v1.QueryConnectionResponse) | Connection queries an IBC connection end. |
-| Connections | [QueryConnectionsRequest](#ibc.core.connection.v1.QueryConnectionsRequest) | [QueryConnectionsResponse](#ibc.core.connection.v1.QueryConnectionsResponse) | Connections queries all the IBC connections of a chain. |
-| ClientConnections | [QueryClientConnectionsRequest](#ibc.core.connection.v1.QueryClientConnectionsRequest) | [QueryClientConnectionsResponse](#ibc.core.connection.v1.QueryClientConnectionsResponse) | ClientConnections queries the connection paths associated with a client state. |
-| ConnectionClientState | [QueryConnectionClientStateRequest](#ibc.core.connection.v1.QueryConnectionClientStateRequest) | [QueryConnectionClientStateResponse](#ibc.core.connection.v1.QueryConnectionClientStateResponse) | ConnectionClientState queries the client state associated with the connection. |
-| ConnectionConsensusState | [QueryConnectionConsensusStateRequest](#ibc.core.connection.v1.QueryConnectionConsensusStateRequest) | [QueryConnectionConsensusStateResponse](#ibc.core.connection.v1.QueryConnectionConsensusStateResponse) | ConnectionConsensusState queries the consensus state associated with the connection. |
+| Method Name              | Request Type                                                                                                            | Response Type                                                                                                             | Description                                                                          |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Connection               | [QueryConnectionRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionRequest)                             | [QueryConnectionResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionResponse)                             | Connection queries an IBC connection end.                                            |
+| Connections              | [QueryConnectionsRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionsRequest)                           | [QueryConnectionsResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionsResponse)                           | Connections queries all the IBC connections of a chain.                              |
+| ClientConnections        | [QueryClientConnectionsRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryClientConnectionsRequest)               | [QueryClientConnectionsResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryClientConnectionsResponse)               | ClientConnections queries the connection paths associated with a client state.       |
+| ConnectionClientState    | [QueryConnectionClientStateRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionClientStateRequest)       | [QueryConnectionClientStateResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionClientStateResponse)       | ConnectionClientState queries the client state associated with the connection.       |
+| ConnectionConsensusState | [QueryConnectionConsensusStateRequest](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionConsensusStateRequest) | [QueryConnectionConsensusStateResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.QueryConnectionConsensusStateResponse) | ConnectionConsensusState queries the consensus state associated with the connection. |
 
- 
-
-
-
-<a name="ibc/core/connection/v1/connection.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/connection/v1/connection.proto
 
-
-
-<a name="ibc.core.connection.v1.ClientPaths"></a>
-
 ### ClientPaths
+
 ClientPaths define all the connection paths for a client state.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| paths | [string](#string) | repeated | list of connection paths |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.ConnectionEnd"></a>
+| Field | Type                                 | Label    | Description              |
+| ----- | ------------------------------------ | -------- | ------------------------ |
+| paths | [string](cosmos-grpc-docs.md#string) | repeated | list of connection paths |
 
 ### ConnectionEnd
-ConnectionEnd defines a stateful object on a chain connected to another
-separate one. NOTE: there must only be 2 defined ConnectionEnds to establish
-a connection between two chains.
 
+ConnectionEnd defines a stateful object on a chain connected to another separate one. NOTE: there must only be 2 defined ConnectionEnds to establish a connection between two chains.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client associated with this connection. |
-| versions | [string](#string) | repeated | IBC version which can be utilised to determine encodings or protocols for channels or packets utilising this connection |
-| state | [State](#ibc.core.connection.v1.State) |  | current state of the connection end. |
-| counterparty | [Counterparty](#ibc.core.connection.v1.Counterparty) |  | counterparty chain associated with this connection. |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.ConnectionPaths"></a>
+| Field        | Type                                                                    | Label    | Description                                                                                                             |
+| ------------ | ----------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| client\_id   | [string](cosmos-grpc-docs.md#string)                                    |          | client associated with this connection.                                                                                 |
+| versions     | [string](cosmos-grpc-docs.md#string)                                    | repeated | IBC version which can be utilised to determine encodings or protocols for channels or packets utilising this connection |
+| state        | [State](cosmos-grpc-docs.md#ibc.core.connection.v1.State)               |          | current state of the connection end.                                                                                    |
+| counterparty | [Counterparty](cosmos-grpc-docs.md#ibc.core.connection.v1.Counterparty) |          | counterparty chain associated with this connection.                                                                     |
 
 ### ConnectionPaths
+
 ConnectionPaths define all the connection paths for a given client state.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client state unique identifier |
-| paths | [string](#string) | repeated | list of connection paths |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.Counterparty"></a>
+| Field      | Type                                 | Label    | Description                    |
+| ---------- | ------------------------------------ | -------- | ------------------------------ |
+| client\_id | [string](cosmos-grpc-docs.md#string) |          | client state unique identifier |
+| paths      | [string](cosmos-grpc-docs.md#string) | repeated | list of connection paths       |
 
 ### Counterparty
+
 Counterparty defines the counterparty chain associated with a connection end.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | identifies the client on the counterparty chain associated with a given connection. |
-| connection_id | [string](#string) |  | identifies the connection end on the counterparty chain associated with a given connection. |
-| prefix | [ibc.core.commitment.v1.MerklePrefix](#ibc.core.commitment.v1.MerklePrefix) |  | commitment merkle prefix of the counterparty chain |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.IdentifiedConnection"></a>
+| Field          | Type                                                                                           | Label | Description                                                                                 |
+| -------------- | ---------------------------------------------------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------- |
+| client\_id     | [string](cosmos-grpc-docs.md#string)                                                           |       | identifies the client on the counterparty chain associated with a given connection.         |
+| connection\_id | [string](cosmos-grpc-docs.md#string)                                                           |       | identifies the connection end on the counterparty chain associated with a given connection. |
+| prefix         | [ibc.core.commitment.v1.MerklePrefix](cosmos-grpc-docs.md#ibc.core.commitment.v1.MerklePrefix) |       | commitment merkle prefix of the counterparty chain                                          |
 
 ### IdentifiedConnection
-IdentifiedConnection defines a connection with additional connection
-identifier field.
 
+IdentifiedConnection defines a connection with additional connection identifier field.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  | connection identifier. |
-| client_id | [string](#string) |  | client associated with this connection. |
-| versions | [string](#string) | repeated | IBC version which can be utilised to determine encodings or protocols for channels or packets utilising this connection |
-| state | [State](#ibc.core.connection.v1.State) |  | current state of the connection end. |
-| counterparty | [Counterparty](#ibc.core.connection.v1.Counterparty) |  | counterparty chain associated with this connection. |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.MsgConnectionOpenAck"></a>
+| Field        | Type                                                                    | Label    | Description                                                                                                             |
+| ------------ | ----------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| id           | [string](cosmos-grpc-docs.md#string)                                    |          | connection identifier.                                                                                                  |
+| client\_id   | [string](cosmos-grpc-docs.md#string)                                    |          | client associated with this connection.                                                                                 |
+| versions     | [string](cosmos-grpc-docs.md#string)                                    | repeated | IBC version which can be utilised to determine encodings or protocols for channels or packets utilising this connection |
+| state        | [State](cosmos-grpc-docs.md#ibc.core.connection.v1.State)               |          | current state of the connection end.                                                                                    |
+| counterparty | [Counterparty](cosmos-grpc-docs.md#ibc.core.connection.v1.Counterparty) |          | counterparty chain associated with this connection.                                                                     |
 
 ### MsgConnectionOpenAck
-MsgConnectionOpenAck defines a msg sent by a Relayer to Chain A to
-acknowledge the change of connection state to TRYOPEN on Chain B.
 
+MsgConnectionOpenAck defines a msg sent by a Relayer to Chain A to acknowledge the change of connection state to TRYOPEN on Chain B.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection_id | [string](#string) |  |  |
-| counterparty_connection_id | [string](#string) |  |  |
-| version | [string](#string) |  |  |
-| client_state | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| proof_try | [bytes](#bytes) |  | proof of the initialization the connection on Chain B: `UNITIALIZED -&gt; TRYOPEN` |
-| proof_client | [bytes](#bytes) |  | proof of client state included in message |
-| proof_consensus | [bytes](#bytes) |  | proof of client consensus state |
-| consensus_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.MsgConnectionOpenAckResponse"></a>
+| Field                        | Type                                                                       | Label | Description                                                                        |
+| ---------------------------- | -------------------------------------------------------------------------- | ----- | ---------------------------------------------------------------------------------- |
+| connection\_id               | [string](cosmos-grpc-docs.md#string)                                       |       |                                                                                    |
+| counterparty\_connection\_id | [string](cosmos-grpc-docs.md#string)                                       |       |                                                                                    |
+| version                      | [string](cosmos-grpc-docs.md#string)                                       |       |                                                                                    |
+| client\_state                | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)             |       |                                                                                    |
+| proof\_height                | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |                                                                                    |
+| proof\_try                   | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | proof of the initialization the connection on Chain B: `UNITIALIZED -&gt; TRYOPEN` |
+| proof\_client                | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | proof of client state included in message                                          |
+| proof\_consensus             | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | proof of client consensus state                                                    |
+| consensus\_height            | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |                                                                                    |
+| signer                       | [string](cosmos-grpc-docs.md#string)                                       |       |                                                                                    |
 
 ### MsgConnectionOpenAckResponse
+
 MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type.
 
-
-
-
-
-
-<a name="ibc.core.connection.v1.MsgConnectionOpenConfirm"></a>
-
 ### MsgConnectionOpenConfirm
-MsgConnectionOpenConfirm defines a msg sent by a Relayer to Chain B to
-acknowledge the change of connection state to OPEN on Chain A.
 
+MsgConnectionOpenConfirm defines a msg sent by a Relayer to Chain B to acknowledge the change of connection state to OPEN on Chain A.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection_id | [string](#string) |  |  |
-| proof_ack | [bytes](#bytes) |  | proof for the change of the connection state on Chain A: `INIT -&gt; OPEN` |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.MsgConnectionOpenConfirmResponse"></a>
+| Field          | Type                                                                       | Label | Description                                                                |
+| -------------- | -------------------------------------------------------------------------- | ----- | -------------------------------------------------------------------------- |
+| connection\_id | [string](cosmos-grpc-docs.md#string)                                       |       |                                                                            |
+| proof\_ack     | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | proof for the change of the connection state on Chain A: `INIT -&gt; OPEN` |
+| proof\_height  | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |                                                                            |
+| signer         | [string](cosmos-grpc-docs.md#string)                                       |       |                                                                            |
 
 ### MsgConnectionOpenConfirmResponse
+
 MsgConnectionOpenConfirmResponse defines the Msg/ConnectionOpenConfirm response type.
 
-
-
-
-
-
-<a name="ibc.core.connection.v1.MsgConnectionOpenInit"></a>
-
 ### MsgConnectionOpenInit
-MsgConnectionOpenInit defines the msg sent by an account on Chain A to
-initialize a connection with Chain B.
 
+MsgConnectionOpenInit defines the msg sent by an account on Chain A to initialize a connection with Chain B.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  |  |
-| connection_id | [string](#string) |  |  |
-| counterparty | [Counterparty](#ibc.core.connection.v1.Counterparty) |  |  |
-| version | [string](#string) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.MsgConnectionOpenInitResponse"></a>
+| Field          | Type                                                                    | Label | Description |
+| -------------- | ----------------------------------------------------------------------- | ----- | ----------- |
+| client\_id     | [string](cosmos-grpc-docs.md#string)                                    |       |             |
+| connection\_id | [string](cosmos-grpc-docs.md#string)                                    |       |             |
+| counterparty   | [Counterparty](cosmos-grpc-docs.md#ibc.core.connection.v1.Counterparty) |       |             |
+| version        | [string](cosmos-grpc-docs.md#string)                                    |       |             |
+| signer         | [string](cosmos-grpc-docs.md#string)                                    |       |             |
 
 ### MsgConnectionOpenInitResponse
+
 MsgConnectionOpenInitResponse defines the Msg/ConnectionOpenInit response type.
 
-
-
-
-
-
-<a name="ibc.core.connection.v1.MsgConnectionOpenTry"></a>
-
 ### MsgConnectionOpenTry
-MsgConnectionOpenTry defines a msg sent by a Relayer to try to open a
-connection on Chain B.
 
+MsgConnectionOpenTry defines a msg sent by a Relayer to try to open a connection on Chain B.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  |  |
-| desired_connection_id | [string](#string) |  |  |
-| counterparty_chosen_connection_id | [string](#string) |  |  |
-| client_state | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-| counterparty | [Counterparty](#ibc.core.connection.v1.Counterparty) |  |  |
-| counterparty_versions | [string](#string) | repeated |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| proof_init | [bytes](#bytes) |  | proof of the initialization the connection on Chain A: `UNITIALIZED -&gt; INIT` |
-| proof_client | [bytes](#bytes) |  | proof of client state included in message |
-| proof_consensus | [bytes](#bytes) |  | proof of client consensus state |
-| consensus_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.connection.v1.MsgConnectionOpenTryResponse"></a>
+| Field                                | Type                                                                       | Label    | Description                                                                     |
+| ------------------------------------ | -------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------- |
+| client\_id                           | [string](cosmos-grpc-docs.md#string)                                       |          |                                                                                 |
+| desired\_connection\_id              | [string](cosmos-grpc-docs.md#string)                                       |          |                                                                                 |
+| counterparty\_chosen\_connection\_id | [string](cosmos-grpc-docs.md#string)                                       |          |                                                                                 |
+| client\_state                        | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)             |          |                                                                                 |
+| counterparty                         | [Counterparty](cosmos-grpc-docs.md#ibc.core.connection.v1.Counterparty)    |          |                                                                                 |
+| counterparty\_versions               | [string](cosmos-grpc-docs.md#string)                                       | repeated |                                                                                 |
+| proof\_height                        | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |          |                                                                                 |
+| proof\_init                          | [bytes](cosmos-grpc-docs.md#bytes)                                         |          | proof of the initialization the connection on Chain A: `UNITIALIZED -&gt; INIT` |
+| proof\_client                        | [bytes](cosmos-grpc-docs.md#bytes)                                         |          | proof of client state included in message                                       |
+| proof\_consensus                     | [bytes](cosmos-grpc-docs.md#bytes)                                         |          | proof of client consensus state                                                 |
+| consensus\_height                    | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |          |                                                                                 |
+| signer                               | [string](cosmos-grpc-docs.md#string)                                       |          |                                                                                 |
 
 ### MsgConnectionOpenTryResponse
+
 MsgConnectionOpenTryResponse defines the Msg/ConnectionOpenTry response type.
 
-
-
-
-
-
-<a name="ibc.core.connection.v1.Version"></a>
-
 ### Version
-Version defines the versioning scheme used to negotiate the IBC verison in
-the connection handshake.
 
+Version defines the versioning scheme used to negotiate the IBC verison in the connection handshake.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| identifier | [string](#string) |  | unique version identifier |
-| features | [string](#string) | repeated | list of features compatible with the specified identifier |
-
-
-
-
-
- 
-
-
-<a name="ibc.core.connection.v1.State"></a>
+| Field      | Type                                 | Label    | Description                                               |
+| ---------- | ------------------------------------ | -------- | --------------------------------------------------------- |
+| identifier | [string](cosmos-grpc-docs.md#string) |          | unique version identifier                                 |
+| features   | [string](cosmos-grpc-docs.md#string) | repeated | list of features compatible with the specified identifier |
 
 ### State
-State defines if a connection is in one of the following states:
-INIT, TRYOPEN, OPEN or UNINITIALIZED.
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| STATE_UNINITIALIZED_UNSPECIFIED | 0 | Default State |
-| STATE_INIT | 1 | A connection end has just started the opening handshake. |
-| STATE_TRYOPEN | 2 | A connection end has acknowledged the handshake step on the counterparty chain. |
-| STATE_OPEN | 3 | A connection end has completed the handshake. |
+State defines if a connection is in one of the following states: INIT, TRYOPEN, OPEN or UNINITIALIZED.
 
-
- 
-
- 
-
-
-<a name="ibc.core.connection.v1.Msg"></a>
+| Name                              | Number | Description                                                                     |
+| --------------------------------- | ------ | ------------------------------------------------------------------------------- |
+| STATE\_UNINITIALIZED\_UNSPECIFIED | 0      | Default State                                                                   |
+| STATE\_INIT                       | 1      | A connection end has just started the opening handshake.                        |
+| STATE\_TRYOPEN                    | 2      | A connection end has acknowledged the handshake step on the counterparty chain. |
+| STATE\_OPEN                       | 3      | A connection end has completed the handshake.                                   |
 
 ### Msg
+
 Msg defines the ibc/connection Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| ConnectionOpenInit | [MsgConnectionOpenInit](#ibc.core.connection.v1.MsgConnectionOpenInit) | [MsgConnectionOpenInitResponse](#ibc.core.connection.v1.MsgConnectionOpenInitResponse) | ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit. |
-| ConnectionOpenTry | [MsgConnectionOpenTry](#ibc.core.connection.v1.MsgConnectionOpenTry) | [MsgConnectionOpenTryResponse](#ibc.core.connection.v1.MsgConnectionOpenTryResponse) | ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry. |
-| ConnectionOpenAck | [MsgConnectionOpenAck](#ibc.core.connection.v1.MsgConnectionOpenAck) | [MsgConnectionOpenAckResponse](#ibc.core.connection.v1.MsgConnectionOpenAckResponse) | ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck. |
-| ConnectionOpenConfirm | [MsgConnectionOpenConfirm](#ibc.core.connection.v1.MsgConnectionOpenConfirm) | [MsgConnectionOpenConfirmResponse](#ibc.core.connection.v1.MsgConnectionOpenConfirmResponse) | ConnectionOpenConfirm defines a rpc handler method for MsgConnectionOpenConfirm. |
+| Method Name           | Request Type                                                                                    | Response Type                                                                                                   | Description                                                                      |
+| --------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| ConnectionOpenInit    | [MsgConnectionOpenInit](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenInit)       | [MsgConnectionOpenInitResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenInitResponse)       | ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit.       |
+| ConnectionOpenTry     | [MsgConnectionOpenTry](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenTry)         | [MsgConnectionOpenTryResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenTryResponse)         | ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry.         |
+| ConnectionOpenAck     | [MsgConnectionOpenAck](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenAck)         | [MsgConnectionOpenAckResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenAckResponse)         | ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck.         |
+| ConnectionOpenConfirm | [MsgConnectionOpenConfirm](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenConfirm) | [MsgConnectionOpenConfirmResponse](cosmos-grpc-docs.md#ibc.core.connection.v1.MsgConnectionOpenConfirmResponse) | ConnectionOpenConfirm defines a rpc handler method for MsgConnectionOpenConfirm. |
 
- 
-
-
-
-<a name="ibc/core/connection/v1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/connection/v1/genesis.proto
 
-
-
-<a name="ibc.core.connection.v1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the ibc connection submodule&#39;s genesis state.
 
+GenesisState defines the ibc connection submodule's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connections | [IdentifiedConnection](#ibc.core.connection.v1.IdentifiedConnection) | repeated |  |
-| client_connection_paths | [ConnectionPaths](#ibc.core.connection.v1.ConnectionPaths) | repeated |  |
+| Field                     | Type                                                                                    | Label    | Description |
+| ------------------------- | --------------------------------------------------------------------------------------- | -------- | ----------- |
+| connections               | [IdentifiedConnection](cosmos-grpc-docs.md#ibc.core.connection.v1.IdentifiedConnection) | repeated |             |
+| client\_connection\_paths | [ConnectionPaths](cosmos-grpc-docs.md#ibc.core.connection.v1.ConnectionPaths)           | repeated |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="ibc/core/commitment/v1/commitment.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/commitment/v1/commitment.proto
 
-
-
-<a name="ibc.core.commitment.v1.Key"></a>
-
 ### Key
+
 Key defines a proof Key
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [bytes](#bytes) |  |  |
-| enc | [KeyEncoding](#ibc.core.commitment.v1.KeyEncoding) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.commitment.v1.KeyPath"></a>
+| Field | Type                                                                  | Label | Description |
+| ----- | --------------------------------------------------------------------- | ----- | ----------- |
+| name  | [bytes](cosmos-grpc-docs.md#bytes)                                    |       |             |
+| enc   | [KeyEncoding](cosmos-grpc-docs.md#ibc.core.commitment.v1.KeyEncoding) |       |             |
 
 ### KeyPath
+
 KeyPath defines a slice of keys
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| keys | [Key](#ibc.core.commitment.v1.Key) | repeated |  |
-
-
-
-
-
-
-<a name="ibc.core.commitment.v1.MerklePath"></a>
+| Field | Type                                                  | Label    | Description |
+| ----- | ----------------------------------------------------- | -------- | ----------- |
+| keys  | [Key](cosmos-grpc-docs.md#ibc.core.commitment.v1.Key) | repeated |             |
 
 ### MerklePath
-MerklePath is the path used to verify commitment proofs, which can be an
-arbitrary structured object (defined by a commitment type).
 
+MerklePath is the path used to verify commitment proofs, which can be an arbitrary structured object (defined by a commitment type).
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key_path | [KeyPath](#ibc.core.commitment.v1.KeyPath) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.commitment.v1.MerklePrefix"></a>
+| Field     | Type                                                          | Label | Description |
+| --------- | ------------------------------------------------------------- | ----- | ----------- |
+| key\_path | [KeyPath](cosmos-grpc-docs.md#ibc.core.commitment.v1.KeyPath) |       |             |
 
 ### MerklePrefix
-MerklePrefix is merkle path prefixed to the key.
-The constructed key from the Path and the key will be append(Path.KeyPath,
-append(Path.KeyPrefix, key...))
 
+MerklePrefix is merkle path prefixed to the key. The constructed key from the Path and the key will be append(Path.KeyPath, append(Path.KeyPrefix, key...))
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key_prefix | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.commitment.v1.MerkleProof"></a>
+| Field       | Type                               | Label | Description |
+| ----------- | ---------------------------------- | ----- | ----------- |
+| key\_prefix | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### MerkleProof
-MerkleProof is a wrapper type that contains a merkle proof.
-It demonstrates membership or non-membership for an element or set of
-elements, verifiable in conjunction with a known commitment root. Proofs
-should be succinct.
 
+MerkleProof is a wrapper type that contains a merkle proof. It demonstrates membership or non-membership for an element or set of elements, verifiable in conjunction with a known commitment root. Proofs should be succinct.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proof | [tendermint.crypto.ProofOps](#tendermint.crypto.ProofOps) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.commitment.v1.MerkleRoot"></a>
+| Field | Type                                                                         | Label | Description |
+| ----- | ---------------------------------------------------------------------------- | ----- | ----------- |
+| proof | [tendermint.crypto.ProofOps](cosmos-grpc-docs.md#tendermint.crypto.ProofOps) |       |             |
 
 ### MerkleRoot
-MerkleRoot defines a merkle root hash.
-In the Cosmos SDK, the AppHash of a block header becomes the root.
 
+MerkleRoot defines a merkle root hash. In the Cosmos SDK, the AppHash of a block header becomes the root.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| hash | [bytes](#bytes) |  |  |
-
-
-
-
-
- 
-
-
-<a name="ibc.core.commitment.v1.KeyEncoding"></a>
+| Field | Type                               | Label | Description |
+| ----- | ---------------------------------- | ----- | ----------- |
+| hash  | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### KeyEncoding
-KeyEncoding defines the encoding format of a key&#39;s bytes.
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| KEY_ENCODING_URL_UNSPECIFIED | 0 | URL encoding |
-| KEY_ENCODING_HEX | 1 | Hex encoding |
+KeyEncoding defines the encoding format of a key's bytes.
 
+| Name                            | Number | Description  |
+| ------------------------------- | ------ | ------------ |
+| KEY\_ENCODING\_URL\_UNSPECIFIED | 0      | URL encoding |
+| KEY\_ENCODING\_HEX              | 1      | Hex encoding |
 
- 
-
- 
-
- 
-
-
-
-<a name="ibc/core/channel/v1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/channel/v1/query.proto
 
-
-
-<a name="ibc.core.channel.v1.QueryChannelClientStateRequest"></a>
-
 ### QueryChannelClientStateRequest
-QueryChannelClientStateRequest is the request type for the Query/ClientState
-RPC method
 
+QueryChannelClientStateRequest is the request type for the Query/ClientState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryChannelClientStateResponse"></a>
+| Field       | Type                                 | Label | Description               |
+| ----------- | ------------------------------------ | ----- | ------------------------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       | port unique identifier    |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       | channel unique identifier |
 
 ### QueryChannelClientStateResponse
-QueryChannelClientStateResponse is the Response type for the
-Query/QueryChannelClientState RPC method
 
+QueryChannelClientStateResponse is the Response type for the Query/QueryChannelClientState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| identified_client_state | [ibc.core.client.v1.IdentifiedClientState](#ibc.core.client.v1.IdentifiedClientState) |  | client state associated with the channel |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryChannelConsensusStateRequest"></a>
+| Field                     | Type                                                                                                     | Label | Description                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------- |
+| identified\_client\_state | [ibc.core.client.v1.IdentifiedClientState](cosmos-grpc-docs.md#ibc.core.client.v1.IdentifiedClientState) |       | client state associated with the channel |
+| proof                     | [bytes](cosmos-grpc-docs.md#bytes)                                                                       |       | merkle proof of existence                |
+| proof\_path               | [string](cosmos-grpc-docs.md#string)                                                                     |       | merkle proof path                        |
+| proof\_height             | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)                               |       | height at which the proof was retrieved  |
 
 ### QueryChannelConsensusStateRequest
-QueryChannelConsensusStateRequest is the request type for the
-Query/ConsensusState RPC method
 
+QueryChannelConsensusStateRequest is the request type for the Query/ConsensusState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-| version_number | [uint64](#uint64) |  | version number of the consensus state |
-| version_height | [uint64](#uint64) |  | version height of the consensus state |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryChannelConsensusStateResponse"></a>
+| Field           | Type                                 | Label | Description                           |
+| --------------- | ------------------------------------ | ----- | ------------------------------------- |
+| port\_id        | [string](cosmos-grpc-docs.md#string) |       | port unique identifier                |
+| channel\_id     | [string](cosmos-grpc-docs.md#string) |       | channel unique identifier             |
+| version\_number | [uint64](cosmos-grpc-docs.md#uint64) |       | version number of the consensus state |
+| version\_height | [uint64](cosmos-grpc-docs.md#uint64) |       | version height of the consensus state |
 
 ### QueryChannelConsensusStateResponse
-QueryChannelClientStateResponse is the Response type for the
-Query/QueryChannelClientState RPC method
 
+QueryChannelClientStateResponse is the Response type for the Query/QueryChannelClientState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| consensus_state | [google.protobuf.Any](#google.protobuf.Any) |  | consensus state associated with the channel |
-| client_id | [string](#string) |  | client ID associated with the consensus state |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryChannelRequest"></a>
+| Field            | Type                                                                       | Label | Description                                   |
+| ---------------- | -------------------------------------------------------------------------- | ----- | --------------------------------------------- |
+| consensus\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any)             |       | consensus state associated with the channel   |
+| client\_id       | [string](cosmos-grpc-docs.md#string)                                       |       | client ID associated with the consensus state |
+| proof            | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | merkle proof of existence                     |
+| proof\_path      | [string](cosmos-grpc-docs.md#string)                                       |       | merkle proof path                             |
+| proof\_height    | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | height at which the proof was retrieved       |
 
 ### QueryChannelRequest
+
 QueryChannelRequest is the request type for the Query/Channel RPC method
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryChannelResponse"></a>
+| Field       | Type                                 | Label | Description               |
+| ----------- | ------------------------------------ | ----- | ------------------------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       | port unique identifier    |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       | channel unique identifier |
 
 ### QueryChannelResponse
-QueryChannelResponse is the response type for the Query/Channel RPC method.
-Besides the Channel end, it includes a proof and the height from which the
-proof was retrieved.
 
+QueryChannelResponse is the response type for the Query/Channel RPC method. Besides the Channel end, it includes a proof and the height from which the proof was retrieved.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| channel | [Channel](#ibc.core.channel.v1.Channel) |  | channel associated with the request identifiers |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryChannelsRequest"></a>
+| Field         | Type                                                                       | Label | Description                                     |
+| ------------- | -------------------------------------------------------------------------- | ----- | ----------------------------------------------- |
+| channel       | [Channel](cosmos-grpc-docs.md#ibc.core.channel.v1.Channel)                 |       | channel associated with the request identifiers |
+| proof         | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | merkle proof of existence                       |
+| proof\_path   | [string](cosmos-grpc-docs.md#string)                                       |       | merkle proof path                               |
+| proof\_height | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | height at which the proof was retrieved         |
 
 ### QueryChannelsRequest
+
 QueryChannelsRequest is the request type for the Query/Channels RPC method
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination request |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryChannelsResponse"></a>
+| Field      | Type                                                                                               | Label | Description        |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ------------------ |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination request |
 
 ### QueryChannelsResponse
+
 QueryChannelsResponse is the response type for the Query/Channels RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| channels | [IdentifiedChannel](#ibc.core.channel.v1.IdentifiedChannel) | repeated | list of stored channels of the chain. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination response |
-| height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | query block height |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryConnectionChannelsRequest"></a>
+| Field      | Type                                                                                                 | Label    | Description                           |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | ------------------------------------- |
+| channels   | [IdentifiedChannel](cosmos-grpc-docs.md#ibc.core.channel.v1.IdentifiedChannel)                       | repeated | list of stored channels of the chain. |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination response                   |
+| height     | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)                           |          | query block height                    |
 
 ### QueryConnectionChannelsRequest
-QueryConnectionChannelsRequest is the request type for the
-Query/QueryConnectionChannels RPC method
 
+QueryConnectionChannelsRequest is the request type for the Query/QueryConnectionChannels RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection | [string](#string) |  | connection unique identifier |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination request |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryConnectionChannelsResponse"></a>
+| Field      | Type                                                                                               | Label | Description                  |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ---------------------------- |
+| connection | [string](cosmos-grpc-docs.md#string)                                                               |       | connection unique identifier |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination request           |
 
 ### QueryConnectionChannelsResponse
-QueryConnectionChannelsResponse is the Response type for the
-Query/QueryConnectionChannels RPC method
 
+QueryConnectionChannelsResponse is the Response type for the Query/QueryConnectionChannels RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| channels | [IdentifiedChannel](#ibc.core.channel.v1.IdentifiedChannel) | repeated | list of channels associated with a connection. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination response |
-| height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | query block height |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryNextSequenceReceiveRequest"></a>
+| Field      | Type                                                                                                 | Label    | Description                                    |
+| ---------- | ---------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------------- |
+| channels   | [IdentifiedChannel](cosmos-grpc-docs.md#ibc.core.channel.v1.IdentifiedChannel)                       | repeated | list of channels associated with a connection. |
+| pagination | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination response                            |
+| height     | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)                           |          | query block height                             |
 
 ### QueryNextSequenceReceiveRequest
-QueryNextSequenceReceiveRequest is the request type for the
-Query/QueryNextSequenceReceiveRequest RPC method
 
+QueryNextSequenceReceiveRequest is the request type for the Query/QueryNextSequenceReceiveRequest RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryNextSequenceReceiveResponse"></a>
+| Field       | Type                                 | Label | Description               |
+| ----------- | ------------------------------------ | ----- | ------------------------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       | port unique identifier    |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       | channel unique identifier |
 
 ### QueryNextSequenceReceiveResponse
-QuerySequenceResponse is the request type for the
-Query/QueryNextSequenceReceiveResponse RPC method
 
+QuerySequenceResponse is the request type for the Query/QueryNextSequenceReceiveResponse RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| next_sequence_receive | [uint64](#uint64) |  | next sequence receive number |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryPacketAcknowledgementRequest"></a>
+| Field                   | Type                                                                       | Label | Description                             |
+| ----------------------- | -------------------------------------------------------------------------- | ----- | --------------------------------------- |
+| next\_sequence\_receive | [uint64](cosmos-grpc-docs.md#uint64)                                       |       | next sequence receive number            |
+| proof                   | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | merkle proof of existence               |
+| proof\_path             | [string](cosmos-grpc-docs.md#string)                                       |       | merkle proof path                       |
+| proof\_height           | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | height at which the proof was retrieved |
 
 ### QueryPacketAcknowledgementRequest
-QueryPacketAcknowledgementRequest is the request type for the
-Query/PacketAcknowledgement RPC method
 
+QueryPacketAcknowledgementRequest is the request type for the Query/PacketAcknowledgement RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-| sequence | [uint64](#uint64) |  | packet sequence |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryPacketAcknowledgementResponse"></a>
+| Field       | Type                                 | Label | Description               |
+| ----------- | ------------------------------------ | ----- | ------------------------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       | port unique identifier    |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       | channel unique identifier |
+| sequence    | [uint64](cosmos-grpc-docs.md#uint64) |       | packet sequence           |
 
 ### QueryPacketAcknowledgementResponse
-QueryPacketAcknowledgementResponse defines the client query response for a
-packet which also includes a proof, its path and the height form which the
-proof was retrieved
 
+QueryPacketAcknowledgementResponse defines the client query response for a packet which also includes a proof, its path and the height form which the proof was retrieved
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| acknowledgement | [bytes](#bytes) |  | packet associated with the request fields |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryPacketCommitmentRequest"></a>
+| Field           | Type                                                                       | Label | Description                               |
+| --------------- | -------------------------------------------------------------------------- | ----- | ----------------------------------------- |
+| acknowledgement | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | packet associated with the request fields |
+| proof           | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | merkle proof of existence                 |
+| proof\_path     | [string](cosmos-grpc-docs.md#string)                                       |       | merkle proof path                         |
+| proof\_height   | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | height at which the proof was retrieved   |
 
 ### QueryPacketCommitmentRequest
-QueryPacketCommitmentRequest is the request type for the
-Query/PacketCommitment RPC method
 
+QueryPacketCommitmentRequest is the request type for the Query/PacketCommitment RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-| sequence | [uint64](#uint64) |  | packet sequence |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryPacketCommitmentResponse"></a>
+| Field       | Type                                 | Label | Description               |
+| ----------- | ------------------------------------ | ----- | ------------------------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       | port unique identifier    |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       | channel unique identifier |
+| sequence    | [uint64](cosmos-grpc-docs.md#uint64) |       | packet sequence           |
 
 ### QueryPacketCommitmentResponse
-QueryPacketCommitmentResponse defines the client query response for a packet
-which also includes a proof, its path and the height form which the proof was
-retrieved
 
+QueryPacketCommitmentResponse defines the client query response for a packet which also includes a proof, its path and the height form which the proof was retrieved
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| commitment | [bytes](#bytes) |  | packet associated with the request fields |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryPacketCommitmentsRequest"></a>
+| Field         | Type                                                                       | Label | Description                               |
+| ------------- | -------------------------------------------------------------------------- | ----- | ----------------------------------------- |
+| commitment    | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | packet associated with the request fields |
+| proof         | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | merkle proof of existence                 |
+| proof\_path   | [string](cosmos-grpc-docs.md#string)                                       |       | merkle proof path                         |
+| proof\_height | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | height at which the proof was retrieved   |
 
 ### QueryPacketCommitmentsRequest
-QueryPacketCommitmentsRequest is the request type for the
-Query/QueryPacketCommitments RPC method
 
+QueryPacketCommitmentsRequest is the request type for the Query/QueryPacketCommitments RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination request |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryPacketCommitmentsResponse"></a>
+| Field       | Type                                                                                               | Label | Description               |
+| ----------- | -------------------------------------------------------------------------------------------------- | ----- | ------------------------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string)                                                               |       | port unique identifier    |
+| channel\_id | [string](cosmos-grpc-docs.md#string)                                                               |       | channel unique identifier |
+| pagination  | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination request        |
 
 ### QueryPacketCommitmentsResponse
-QueryPacketCommitmentsResponse is the request type for the
-Query/QueryPacketCommitments RPC method
 
+QueryPacketCommitmentsResponse is the request type for the Query/QueryPacketCommitments RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| commitments | [PacketAckCommitment](#ibc.core.channel.v1.PacketAckCommitment) | repeated |  |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination response |
-| height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | query block height |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryUnreceivedPacketsRequest"></a>
+| Field       | Type                                                                                                 | Label    | Description         |
+| ----------- | ---------------------------------------------------------------------------------------------------- | -------- | ------------------- |
+| commitments | [PacketAckCommitment](cosmos-grpc-docs.md#ibc.core.channel.v1.PacketAckCommitment)                   | repeated |                     |
+| pagination  | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination response |
+| height      | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)                           |          | query block height  |
 
 ### QueryUnreceivedPacketsRequest
-QueryUnreceivedPacketsRequest is the request type for the
-Query/UnreceivedPackets RPC method
 
+QueryUnreceivedPacketsRequest is the request type for the Query/UnreceivedPackets RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-| packet_commitment_sequences | [uint64](#uint64) | repeated | list of packet sequences |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryUnreceivedPacketsResponse"></a>
+| Field                         | Type                                 | Label    | Description               |
+| ----------------------------- | ------------------------------------ | -------- | ------------------------- |
+| port\_id                      | [string](cosmos-grpc-docs.md#string) |          | port unique identifier    |
+| channel\_id                   | [string](cosmos-grpc-docs.md#string) |          | channel unique identifier |
+| packet\_commitment\_sequences | [uint64](cosmos-grpc-docs.md#uint64) | repeated | list of packet sequences  |
 
 ### QueryUnreceivedPacketsResponse
-QueryUnreceivedPacketsResponse is the response type for the
-Query/UnreceivedPacketCommitments RPC method
 
+QueryUnreceivedPacketsResponse is the response type for the Query/UnreceivedPacketCommitments RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sequences | [uint64](#uint64) | repeated | list of unreceived packet sequences |
-| height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | query block height |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryUnrelayedAcksRequest"></a>
+| Field     | Type                                                                       | Label    | Description                         |
+| --------- | -------------------------------------------------------------------------- | -------- | ----------------------------------- |
+| sequences | [uint64](cosmos-grpc-docs.md#uint64)                                       | repeated | list of unreceived packet sequences |
+| height    | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |          | query block height                  |
 
 ### QueryUnrelayedAcksRequest
-QueryUnrelayedAcksRequest is the request type for the
-Query/UnrelayedAcks RPC method
 
+QueryUnrelayedAcksRequest is the request type for the Query/UnrelayedAcks RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port unique identifier |
-| channel_id | [string](#string) |  | channel unique identifier |
-| packet_commitment_sequences | [uint64](#uint64) | repeated | list of commitment sequences |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.QueryUnrelayedAcksResponse"></a>
+| Field                         | Type                                 | Label    | Description                  |
+| ----------------------------- | ------------------------------------ | -------- | ---------------------------- |
+| port\_id                      | [string](cosmos-grpc-docs.md#string) |          | port unique identifier       |
+| channel\_id                   | [string](cosmos-grpc-docs.md#string) |          | channel unique identifier    |
+| packet\_commitment\_sequences | [uint64](cosmos-grpc-docs.md#uint64) | repeated | list of commitment sequences |
 
 ### QueryUnrelayedAcksResponse
-QueryUnrelayedAcksResponse is the response type for the
-Query/UnrelayedAcks RPC method
 
+QueryUnrelayedAcksResponse is the response type for the Query/UnrelayedAcks RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sequences | [uint64](#uint64) | repeated | list of unrelayed acknowledgement sequences |
-| height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | query block height |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="ibc.core.channel.v1.Query"></a>
+| Field     | Type                                                                       | Label    | Description                                 |
+| --------- | -------------------------------------------------------------------------- | -------- | ------------------------------------------- |
+| sequences | [uint64](cosmos-grpc-docs.md#uint64)                                       | repeated | list of unrelayed acknowledgement sequences |
+| height    | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |          | query block height                          |
 
 ### Query
+
 Query provides defines the gRPC querier service
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Channel | [QueryChannelRequest](#ibc.core.channel.v1.QueryChannelRequest) | [QueryChannelResponse](#ibc.core.channel.v1.QueryChannelResponse) | Channel queries an IBC Channel. |
-| Channels | [QueryChannelsRequest](#ibc.core.channel.v1.QueryChannelsRequest) | [QueryChannelsResponse](#ibc.core.channel.v1.QueryChannelsResponse) | Channels queries all the IBC channels of a chain. |
-| ConnectionChannels | [QueryConnectionChannelsRequest](#ibc.core.channel.v1.QueryConnectionChannelsRequest) | [QueryConnectionChannelsResponse](#ibc.core.channel.v1.QueryConnectionChannelsResponse) | ConnectionChannels queries all the channels associated with a connection end. |
-| ChannelClientState | [QueryChannelClientStateRequest](#ibc.core.channel.v1.QueryChannelClientStateRequest) | [QueryChannelClientStateResponse](#ibc.core.channel.v1.QueryChannelClientStateResponse) | ChannelClientState queries for the client state for the channel associated with the provided channel identifiers. |
-| ChannelConsensusState | [QueryChannelConsensusStateRequest](#ibc.core.channel.v1.QueryChannelConsensusStateRequest) | [QueryChannelConsensusStateResponse](#ibc.core.channel.v1.QueryChannelConsensusStateResponse) | ChannelConsensusState queries for the consensus state for the channel associated with the provided channel identifiers. |
-| PacketCommitment | [QueryPacketCommitmentRequest](#ibc.core.channel.v1.QueryPacketCommitmentRequest) | [QueryPacketCommitmentResponse](#ibc.core.channel.v1.QueryPacketCommitmentResponse) | PacketCommitment queries a stored packet commitment hash. |
-| PacketCommitments | [QueryPacketCommitmentsRequest](#ibc.core.channel.v1.QueryPacketCommitmentsRequest) | [QueryPacketCommitmentsResponse](#ibc.core.channel.v1.QueryPacketCommitmentsResponse) | PacketCommitments returns the all the packet commitments hashes associated with a channel. |
-| PacketAcknowledgement | [QueryPacketAcknowledgementRequest](#ibc.core.channel.v1.QueryPacketAcknowledgementRequest) | [QueryPacketAcknowledgementResponse](#ibc.core.channel.v1.QueryPacketAcknowledgementResponse) | PacketAcknowledgement queries a stored packet acknowledgement hash. |
-| UnreceivedPackets | [QueryUnreceivedPacketsRequest](#ibc.core.channel.v1.QueryUnreceivedPacketsRequest) | [QueryUnreceivedPacketsResponse](#ibc.core.channel.v1.QueryUnreceivedPacketsResponse) | UnreceivedPackets returns all the unrelayed IBC packets associated with a channel and sequences. |
-| UnrelayedAcks | [QueryUnrelayedAcksRequest](#ibc.core.channel.v1.QueryUnrelayedAcksRequest) | [QueryUnrelayedAcksResponse](#ibc.core.channel.v1.QueryUnrelayedAcksResponse) | UnrelayedAcks returns all the unrelayed IBC acknowledgements associated with a channel and sequences. |
-| NextSequenceReceive | [QueryNextSequenceReceiveRequest](#ibc.core.channel.v1.QueryNextSequenceReceiveRequest) | [QueryNextSequenceReceiveResponse](#ibc.core.channel.v1.QueryNextSequenceReceiveResponse) | NextSequenceReceive returns the next receive sequence for a given channel. |
+| Method Name           | Request Type                                                                                                   | Response Type                                                                                                    | Description                                                                                                             |
+| --------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Channel               | [QueryChannelRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelRequest)                             | [QueryChannelResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelResponse)                             | Channel queries an IBC Channel.                                                                                         |
+| Channels              | [QueryChannelsRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelsRequest)                           | [QueryChannelsResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelsResponse)                           | Channels queries all the IBC channels of a chain.                                                                       |
+| ConnectionChannels    | [QueryConnectionChannelsRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryConnectionChannelsRequest)       | [QueryConnectionChannelsResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryConnectionChannelsResponse)       | ConnectionChannels queries all the channels associated with a connection end.                                           |
+| ChannelClientState    | [QueryChannelClientStateRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelClientStateRequest)       | [QueryChannelClientStateResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelClientStateResponse)       | ChannelClientState queries for the client state for the channel associated with the provided channel identifiers.       |
+| ChannelConsensusState | [QueryChannelConsensusStateRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelConsensusStateRequest) | [QueryChannelConsensusStateResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryChannelConsensusStateResponse) | ChannelConsensusState queries for the consensus state for the channel associated with the provided channel identifiers. |
+| PacketCommitment      | [QueryPacketCommitmentRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketCommitmentRequest)           | [QueryPacketCommitmentResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketCommitmentResponse)           | PacketCommitment queries a stored packet commitment hash.                                                               |
+| PacketCommitments     | [QueryPacketCommitmentsRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketCommitmentsRequest)         | [QueryPacketCommitmentsResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketCommitmentsResponse)         | PacketCommitments returns the all the packet commitments hashes associated with a channel.                              |
+| PacketAcknowledgement | [QueryPacketAcknowledgementRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketAcknowledgementRequest) | [QueryPacketAcknowledgementResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryPacketAcknowledgementResponse) | PacketAcknowledgement queries a stored packet acknowledgement hash.                                                     |
+| UnreceivedPackets     | [QueryUnreceivedPacketsRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryUnreceivedPacketsRequest)         | [QueryUnreceivedPacketsResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryUnreceivedPacketsResponse)         | UnreceivedPackets returns all the unrelayed IBC packets associated with a channel and sequences.                        |
+| UnrelayedAcks         | [QueryUnrelayedAcksRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryUnrelayedAcksRequest)                 | [QueryUnrelayedAcksResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryUnrelayedAcksResponse)                 | UnrelayedAcks returns all the unrelayed IBC acknowledgements associated with a channel and sequences.                   |
+| NextSequenceReceive   | [QueryNextSequenceReceiveRequest](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryNextSequenceReceiveRequest)     | [QueryNextSequenceReceiveResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.QueryNextSequenceReceiveResponse)     | NextSequenceReceive returns the next receive sequence for a given channel.                                              |
 
- 
-
-
-
-<a name="ibc/core/channel/v1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/channel/v1/genesis.proto
 
-
-
-<a name="ibc.core.channel.v1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the ibc channel submodule&#39;s genesis state.
 
+GenesisState defines the ibc channel submodule's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| channels | [IdentifiedChannel](#ibc.core.channel.v1.IdentifiedChannel) | repeated |  |
-| acknowledgements | [PacketAckCommitment](#ibc.core.channel.v1.PacketAckCommitment) | repeated |  |
-| commitments | [PacketAckCommitment](#ibc.core.channel.v1.PacketAckCommitment) | repeated |  |
-| send_sequences | [PacketSequence](#ibc.core.channel.v1.PacketSequence) | repeated |  |
-| recv_sequences | [PacketSequence](#ibc.core.channel.v1.PacketSequence) | repeated |  |
-| ack_sequences | [PacketSequence](#ibc.core.channel.v1.PacketSequence) | repeated |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.PacketSequence"></a>
+| Field            | Type                                                                               | Label    | Description |
+| ---------------- | ---------------------------------------------------------------------------------- | -------- | ----------- |
+| channels         | [IdentifiedChannel](cosmos-grpc-docs.md#ibc.core.channel.v1.IdentifiedChannel)     | repeated |             |
+| acknowledgements | [PacketAckCommitment](cosmos-grpc-docs.md#ibc.core.channel.v1.PacketAckCommitment) | repeated |             |
+| commitments      | [PacketAckCommitment](cosmos-grpc-docs.md#ibc.core.channel.v1.PacketAckCommitment) | repeated |             |
+| send\_sequences  | [PacketSequence](cosmos-grpc-docs.md#ibc.core.channel.v1.PacketSequence)           | repeated |             |
+| recv\_sequences  | [PacketSequence](cosmos-grpc-docs.md#ibc.core.channel.v1.PacketSequence)           | repeated |             |
+| ack\_sequences   | [PacketSequence](cosmos-grpc-docs.md#ibc.core.channel.v1.PacketSequence)           | repeated |             |
 
 ### PacketSequence
-PacketSequence defines the genesis type necessary to retrieve and store
-next send and receive sequences.
 
+PacketSequence defines the genesis type necessary to retrieve and store next send and receive sequences.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  |  |
-| channel_id | [string](#string) |  |  |
-| sequence | [uint64](#uint64) |  |  |
+| Field       | Type                                 | Label | Description |
+| ----------- | ------------------------------------ | ----- | ----------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       |             |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       |             |
+| sequence    | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="ibc/core/channel/v1/channel.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/channel/v1/channel.proto
 
-
-
-<a name="ibc.core.channel.v1.Acknowledgement"></a>
-
 ### Acknowledgement
-Acknowledgement is the recommended acknowledgement format to be used by
-app-specific protocols.
-NOTE: The field numbers 21 and 22 were explicitly chosen to avoid accidental
-conflicts with other protobuf message formats used for acknowledgements.
-The first byte of any message with this format will be the non-ASCII values
-`0xaa` (result) or `0xb2` (error). Implemented as defined by ICS:
-https://github.com/cosmos/ics/tree/master/spec/ics-004-channel-and-packet-semantics#acknowledgement-envelope
 
+Acknowledgement is the recommended acknowledgement format to be used by app-specific protocols. NOTE: The field numbers 21 and 22 were explicitly chosen to avoid accidental conflicts with other protobuf message formats used for acknowledgements. The first byte of any message with this format will be the non-ASCII values `0xaa` (result) or `0xb2` (error). Implemented as defined by ICS: https://github.com/cosmos/ics/tree/master/spec/ics-004-channel-and-packet-semantics#acknowledgement-envelope
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| result | [bytes](#bytes) |  |  |
-| error | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.Channel"></a>
+| Field  | Type                                 | Label | Description |
+| ------ | ------------------------------------ | ----- | ----------- |
+| result | [bytes](cosmos-grpc-docs.md#bytes)   |       |             |
+| error  | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### Channel
-Channel defines pipeline for exactly-once packet delivery between specific
-modules on separate blockchains, which has at least one end capable of
-sending packets and one end capable of receiving packets.
 
+Channel defines pipeline for exactly-once packet delivery between specific modules on separate blockchains, which has at least one end capable of sending packets and one end capable of receiving packets.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| state | [State](#ibc.core.channel.v1.State) |  | current state of the channel end |
-| ordering | [Order](#ibc.core.channel.v1.Order) |  | whether the channel is ordered or unordered |
-| counterparty | [Counterparty](#ibc.core.channel.v1.Counterparty) |  | counterparty channel end |
-| connection_hops | [string](#string) | repeated | list of connection identifiers, in order, along which packets sent on this channel will travel |
-| version | [string](#string) |  | opaque channel version, which is agreed upon during the handshake |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.Counterparty"></a>
+| Field            | Type                                                                 | Label    | Description                                                                                    |
+| ---------------- | -------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------- |
+| state            | [State](cosmos-grpc-docs.md#ibc.core.channel.v1.State)               |          | current state of the channel end                                                               |
+| ordering         | [Order](cosmos-grpc-docs.md#ibc.core.channel.v1.Order)               |          | whether the channel is ordered or unordered                                                    |
+| counterparty     | [Counterparty](cosmos-grpc-docs.md#ibc.core.channel.v1.Counterparty) |          | counterparty channel end                                                                       |
+| connection\_hops | [string](cosmos-grpc-docs.md#string)                                 | repeated | list of connection identifiers, in order, along which packets sent on this channel will travel |
+| version          | [string](cosmos-grpc-docs.md#string)                                 |          | opaque channel version, which is agreed upon during the handshake                              |
 
 ### Counterparty
+
 Counterparty defines a channel end counterparty
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | port on the counterparty chain which owns the other end of the channel. |
-| channel_id | [string](#string) |  | channel end on the counterparty chain |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.IdentifiedChannel"></a>
+| Field       | Type                                 | Label | Description                                                             |
+| ----------- | ------------------------------------ | ----- | ----------------------------------------------------------------------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       | port on the counterparty chain which owns the other end of the channel. |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       | channel end on the counterparty chain                                   |
 
 ### IdentifiedChannel
-IdentifiedChannel defines a channel with additional port and channel
-identifier fields.
 
+IdentifiedChannel defines a channel with additional port and channel identifier fields.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| state | [State](#ibc.core.channel.v1.State) |  | current state of the channel end |
-| ordering | [Order](#ibc.core.channel.v1.Order) |  | whether the channel is ordered or unordered |
-| counterparty | [Counterparty](#ibc.core.channel.v1.Counterparty) |  | counterparty channel end |
-| connection_hops | [string](#string) | repeated | list of connection identifiers, in order, along which packets sent on this channel will travel |
-| version | [string](#string) |  | opaque channel version, which is agreed upon during the handshake |
-| port_id | [string](#string) |  | port identifier |
-| channel_id | [string](#string) |  | channel identifier |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgAcknowledgement"></a>
+| Field            | Type                                                                 | Label    | Description                                                                                    |
+| ---------------- | -------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------- |
+| state            | [State](cosmos-grpc-docs.md#ibc.core.channel.v1.State)               |          | current state of the channel end                                                               |
+| ordering         | [Order](cosmos-grpc-docs.md#ibc.core.channel.v1.Order)               |          | whether the channel is ordered or unordered                                                    |
+| counterparty     | [Counterparty](cosmos-grpc-docs.md#ibc.core.channel.v1.Counterparty) |          | counterparty channel end                                                                       |
+| connection\_hops | [string](cosmos-grpc-docs.md#string)                                 | repeated | list of connection identifiers, in order, along which packets sent on this channel will travel |
+| version          | [string](cosmos-grpc-docs.md#string)                                 |          | opaque channel version, which is agreed upon during the handshake                              |
+| port\_id         | [string](cosmos-grpc-docs.md#string)                                 |          | port identifier                                                                                |
+| channel\_id      | [string](cosmos-grpc-docs.md#string)                                 |          | channel identifier                                                                             |
 
 ### MsgAcknowledgement
+
 MsgAcknowledgement receives incoming IBC acknowledgement
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| packet | [Packet](#ibc.core.channel.v1.Packet) |  |  |
-| acknowledgement | [bytes](#bytes) |  |  |
-| proof | [bytes](#bytes) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgAcknowledgementResponse"></a>
+| Field           | Type                                                                       | Label | Description |
+| --------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| packet          | [Packet](cosmos-grpc-docs.md#ibc.core.channel.v1.Packet)                   |       |             |
+| acknowledgement | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof           | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_height   | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |             |
+| signer          | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### MsgAcknowledgementResponse
+
 MsgAcknowledgementResponse defines the Msg/Acknowledgement response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelCloseConfirm"></a>
-
 ### MsgChannelCloseConfirm
-MsgChannelCloseConfirm defines a msg sent by a Relayer to Chain B
-to acknowledge the change of channel state to CLOSED on Chain A.
 
+MsgChannelCloseConfirm defines a msg sent by a Relayer to Chain B to acknowledge the change of channel state to CLOSED on Chain A.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  |  |
-| channel_id | [string](#string) |  |  |
-| proof_init | [bytes](#bytes) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelCloseConfirmResponse"></a>
+| Field         | Type                                                                       | Label | Description |
+| ------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| port\_id      | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| channel\_id   | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| proof\_init   | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_height | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |             |
+| signer        | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### MsgChannelCloseConfirmResponse
+
 MsgChannelCloseConfirmResponse defines the Msg/ChannelCloseConfirm response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelCloseInit"></a>
-
 ### MsgChannelCloseInit
-MsgChannelCloseInit defines a msg sent by a Relayer to Chain A
-to close a channel with Chain B.
 
+MsgChannelCloseInit defines a msg sent by a Relayer to Chain A to close a channel with Chain B.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  |  |
-| channel_id | [string](#string) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelCloseInitResponse"></a>
+| Field       | Type                                 | Label | Description |
+| ----------- | ------------------------------------ | ----- | ----------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       |             |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       |             |
+| signer      | [string](cosmos-grpc-docs.md#string) |       |             |
 
 ### MsgChannelCloseInitResponse
+
 MsgChannelCloseInitResponse defines the Msg/ChannelCloseInit response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelOpenAck"></a>
-
 ### MsgChannelOpenAck
-MsgChannelOpenAck defines a msg sent by a Relayer to Chain A to acknowledge
-the change of channel state to TRYOPEN on Chain B.
 
+MsgChannelOpenAck defines a msg sent by a Relayer to Chain A to acknowledge the change of channel state to TRYOPEN on Chain B.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  |  |
-| channel_id | [string](#string) |  |  |
-| counterparty_channel_id | [string](#string) |  |  |
-| counterparty_version | [string](#string) |  |  |
-| proof_try | [bytes](#bytes) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelOpenAckResponse"></a>
+| Field                     | Type                                                                       | Label | Description |
+| ------------------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| port\_id                  | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| channel\_id               | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| counterparty\_channel\_id | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| counterparty\_version     | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| proof\_try                | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_height             | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |             |
+| signer                    | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### MsgChannelOpenAckResponse
+
 MsgChannelOpenAckResponse defines the Msg/ChannelOpenAck response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelOpenConfirm"></a>
-
 ### MsgChannelOpenConfirm
-MsgChannelOpenConfirm defines a msg sent by a Relayer to Chain B to
-acknowledge the change of channel state to OPEN on Chain A.
 
+MsgChannelOpenConfirm defines a msg sent by a Relayer to Chain B to acknowledge the change of channel state to OPEN on Chain A.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  |  |
-| channel_id | [string](#string) |  |  |
-| proof_ack | [bytes](#bytes) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelOpenConfirmResponse"></a>
+| Field         | Type                                                                       | Label | Description |
+| ------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| port\_id      | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| channel\_id   | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| proof\_ack    | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_height | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |             |
+| signer        | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### MsgChannelOpenConfirmResponse
+
 MsgChannelOpenConfirmResponse defines the Msg/ChannelOpenConfirm response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelOpenInit"></a>
-
 ### MsgChannelOpenInit
-MsgChannelOpenInit defines an sdk.Msg to initialize a channel handshake. It
-is called by a relayer on Chain A.
 
+MsgChannelOpenInit defines an sdk.Msg to initialize a channel handshake. It is called by a relayer on Chain A.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  |  |
-| channel_id | [string](#string) |  |  |
-| channel | [Channel](#ibc.core.channel.v1.Channel) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelOpenInitResponse"></a>
+| Field       | Type                                                       | Label | Description |
+| ----------- | ---------------------------------------------------------- | ----- | ----------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string)                       |       |             |
+| channel\_id | [string](cosmos-grpc-docs.md#string)                       |       |             |
+| channel     | [Channel](cosmos-grpc-docs.md#ibc.core.channel.v1.Channel) |       |             |
+| signer      | [string](cosmos-grpc-docs.md#string)                       |       |             |
 
 ### MsgChannelOpenInitResponse
+
 MsgChannelOpenInitResponse defines the Msg/ChannelOpenInit response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelOpenTry"></a>
-
 ### MsgChannelOpenTry
-MsgChannelOpenInit defines a msg sent by a Relayer to try to open a channel
-on Chain B.
 
+MsgChannelOpenInit defines a msg sent by a Relayer to try to open a channel on Chain B.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  |  |
-| desired_channel_id | [string](#string) |  |  |
-| counterparty_chosen_channel_id | [string](#string) |  |  |
-| channel | [Channel](#ibc.core.channel.v1.Channel) |  |  |
-| counterparty_version | [string](#string) |  |  |
-| proof_init | [bytes](#bytes) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgChannelOpenTryResponse"></a>
+| Field                             | Type                                                                       | Label | Description |
+| --------------------------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| port\_id                          | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| desired\_channel\_id              | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| counterparty\_chosen\_channel\_id | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| channel                           | [Channel](cosmos-grpc-docs.md#ibc.core.channel.v1.Channel)                 |       |             |
+| counterparty\_version             | [string](cosmos-grpc-docs.md#string)                                       |       |             |
+| proof\_init                       | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_height                     | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |             |
+| signer                            | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### MsgChannelOpenTryResponse
+
 MsgChannelOpenTryResponse defines the Msg/ChannelOpenTry response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgRecvPacket"></a>
-
 ### MsgRecvPacket
+
 MsgRecvPacket receives incoming IBC packet
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| packet | [Packet](#ibc.core.channel.v1.Packet) |  |  |
-| proof | [bytes](#bytes) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgRecvPacketResponse"></a>
+| Field         | Type                                                                       | Label | Description |
+| ------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| packet        | [Packet](cosmos-grpc-docs.md#ibc.core.channel.v1.Packet)                   |       |             |
+| proof         | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_height | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |             |
+| signer        | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### MsgRecvPacketResponse
+
 MsgRecvPacketResponse defines the Msg/RecvPacket response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgTimeout"></a>
-
 ### MsgTimeout
+
 MsgTimeout receives timed-out packet
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| packet | [Packet](#ibc.core.channel.v1.Packet) |  |  |
-| proof | [bytes](#bytes) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| next_sequence_recv | [uint64](#uint64) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgTimeoutOnClose"></a>
+| Field                | Type                                                                       | Label | Description |
+| -------------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| packet               | [Packet](cosmos-grpc-docs.md#ibc.core.channel.v1.Packet)                   |       |             |
+| proof                | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_height        | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |             |
+| next\_sequence\_recv | [uint64](cosmos-grpc-docs.md#uint64)                                       |       |             |
+| signer               | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### MsgTimeoutOnClose
+
 MsgTimeoutOnClose timed-out packet upon counterparty channel closure.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| packet | [Packet](#ibc.core.channel.v1.Packet) |  |  |
-| proof | [bytes](#bytes) |  |  |
-| proof_close | [bytes](#bytes) |  |  |
-| proof_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| next_sequence_recv | [uint64](#uint64) |  |  |
-| signer | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgTimeoutOnCloseResponse"></a>
+| Field                | Type                                                                       | Label | Description |
+| -------------------- | -------------------------------------------------------------------------- | ----- | ----------- |
+| packet               | [Packet](cosmos-grpc-docs.md#ibc.core.channel.v1.Packet)                   |       |             |
+| proof                | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_close         | [bytes](cosmos-grpc-docs.md#bytes)                                         |       |             |
+| proof\_height        | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       |             |
+| next\_sequence\_recv | [uint64](cosmos-grpc-docs.md#uint64)                                       |       |             |
+| signer               | [string](cosmos-grpc-docs.md#string)                                       |       |             |
 
 ### MsgTimeoutOnCloseResponse
+
 MsgTimeoutOnCloseResponse defines the Msg/TimeoutOnClose response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.MsgTimeoutResponse"></a>
-
 ### MsgTimeoutResponse
+
 MsgTimeoutResponse defines the Msg/Timeout response type.
 
-
-
-
-
-
-<a name="ibc.core.channel.v1.Packet"></a>
-
 ### Packet
+
 Packet defines a type that carries data across different chains through IBC
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sequence | [uint64](#uint64) |  | number corresponds to the order of sends and receives, where a Packet with an earlier sequence number must be sent and received before a Packet with a later sequence number. |
-| source_port | [string](#string) |  | identifies the port on the sending chain. |
-| source_channel | [string](#string) |  | identifies the channel end on the sending chain. |
-| destination_port | [string](#string) |  | identifies the port on the receiving chain. |
-| destination_channel | [string](#string) |  | identifies the channel end on the receiving chain. |
-| data | [bytes](#bytes) |  | actual opaque bytes transferred directly to the application module |
-| timeout_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | block height after which the packet times out |
-| timeout_timestamp | [uint64](#uint64) |  | block timestamp (in nanoseconds) after which the packet times out |
-
-
-
-
-
-
-<a name="ibc.core.channel.v1.PacketAckCommitment"></a>
+| Field                | Type                                                                       | Label | Description                                                                                                                                                                   |
+| -------------------- | -------------------------------------------------------------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| sequence             | [uint64](cosmos-grpc-docs.md#uint64)                                       |       | number corresponds to the order of sends and receives, where a Packet with an earlier sequence number must be sent and received before a Packet with a later sequence number. |
+| source\_port         | [string](cosmos-grpc-docs.md#string)                                       |       | identifies the port on the sending chain.                                                                                                                                     |
+| source\_channel      | [string](cosmos-grpc-docs.md#string)                                       |       | identifies the channel end on the sending chain.                                                                                                                              |
+| destination\_port    | [string](cosmos-grpc-docs.md#string)                                       |       | identifies the port on the receiving chain.                                                                                                                                   |
+| destination\_channel | [string](cosmos-grpc-docs.md#string)                                       |       | identifies the channel end on the receiving chain.                                                                                                                            |
+| data                 | [bytes](cosmos-grpc-docs.md#bytes)                                         |       | actual opaque bytes transferred directly to the application module                                                                                                            |
+| timeout\_height      | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | block height after which the packet times out                                                                                                                                 |
+| timeout\_timestamp   | [uint64](cosmos-grpc-docs.md#uint64)                                       |       | block timestamp (in nanoseconds) after which the packet times out                                                                                                             |
 
 ### PacketAckCommitment
-PacketAckCommitment defines the genesis type necessary to retrieve and store
-acknowlegements.
 
+PacketAckCommitment defines the genesis type necessary to retrieve and store acknowlegements.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  | channel port identifier. |
-| channel_id | [string](#string) |  | channel unique identifier. |
-| sequence | [uint64](#uint64) |  | packet sequence. |
-| hash | [bytes](#bytes) |  | packet commitment hash. |
-
-
-
-
-
- 
-
-
-<a name="ibc.core.channel.v1.Order"></a>
+| Field       | Type                                 | Label | Description                |
+| ----------- | ------------------------------------ | ----- | -------------------------- |
+| port\_id    | [string](cosmos-grpc-docs.md#string) |       | channel port identifier.   |
+| channel\_id | [string](cosmos-grpc-docs.md#string) |       | channel unique identifier. |
+| sequence    | [uint64](cosmos-grpc-docs.md#uint64) |       | packet sequence.           |
+| hash        | [bytes](cosmos-grpc-docs.md#bytes)   |       | packet commitment hash.    |
 
 ### Order
+
 Order defines if a channel is ORDERED or UNORDERED
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| ORDER_NONE_UNSPECIFIED | 0 | zero-value for channel ordering |
-| ORDER_UNORDERED | 1 | packets can be delivered in any order, which may differ from the order in which they were sent. |
-| ORDER_ORDERED | 2 | packets are delivered exactly in the order which they were sent |
-
-
-
-<a name="ibc.core.channel.v1.State"></a>
+| Name                     | Number | Description                                                                                     |
+| ------------------------ | ------ | ----------------------------------------------------------------------------------------------- |
+| ORDER\_NONE\_UNSPECIFIED | 0      | zero-value for channel ordering                                                                 |
+| ORDER\_UNORDERED         | 1      | packets can be delivered in any order, which may differ from the order in which they were sent. |
+| ORDER\_ORDERED           | 2      | packets are delivered exactly in the order which they were sent                                 |
 
 ### State
-State defines if a channel is in one of the following states:
-CLOSED, INIT, TRYOPEN, OPEN or UNINITIALIZED.
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| STATE_UNINITIALIZED_UNSPECIFIED | 0 | Default State |
-| STATE_INIT | 1 | A channel has just started the opening handshake. |
-| STATE_TRYOPEN | 2 | A channel has acknowledged the handshake step on the counterparty chain. |
-| STATE_OPEN | 3 | A channel has completed the handshake. Open channels are ready to send and receive packets. |
-| STATE_CLOSED | 4 | A channel has been closed and can no longer be used to send or receive packets. |
+State defines if a channel is in one of the following states: CLOSED, INIT, TRYOPEN, OPEN or UNINITIALIZED.
 
-
- 
-
- 
-
-
-<a name="ibc.core.channel.v1.Msg"></a>
+| Name                              | Number | Description                                                                                 |
+| --------------------------------- | ------ | ------------------------------------------------------------------------------------------- |
+| STATE\_UNINITIALIZED\_UNSPECIFIED | 0      | Default State                                                                               |
+| STATE\_INIT                       | 1      | A channel has just started the opening handshake.                                           |
+| STATE\_TRYOPEN                    | 2      | A channel has acknowledged the handshake step on the counterparty chain.                    |
+| STATE\_OPEN                       | 3      | A channel has completed the handshake. Open channels are ready to send and receive packets. |
+| STATE\_CLOSED                     | 4      | A channel has been closed and can no longer be used to send or receive packets.             |
 
 ### Msg
+
 Msg defines the ibc/channel Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| ChannelOpenInit | [MsgChannelOpenInit](#ibc.core.channel.v1.MsgChannelOpenInit) | [MsgChannelOpenInitResponse](#ibc.core.channel.v1.MsgChannelOpenInitResponse) | ChannelOpenInit defines a rpc handler method for MsgChannelOpenInit. |
-| ChannelOpenTry | [MsgChannelOpenTry](#ibc.core.channel.v1.MsgChannelOpenTry) | [MsgChannelOpenTryResponse](#ibc.core.channel.v1.MsgChannelOpenTryResponse) | ChannelOpenTry defines a rpc handler method for MsgChannelOpenTry. |
-| ChannelOpenAck | [MsgChannelOpenAck](#ibc.core.channel.v1.MsgChannelOpenAck) | [MsgChannelOpenAckResponse](#ibc.core.channel.v1.MsgChannelOpenAckResponse) | ChannelOpenAck defines a rpc handler method for MsgChannelOpenAck. |
-| ChannelOpenConfirm | [MsgChannelOpenConfirm](#ibc.core.channel.v1.MsgChannelOpenConfirm) | [MsgChannelOpenConfirmResponse](#ibc.core.channel.v1.MsgChannelOpenConfirmResponse) | ChannelOpenConfirm defines a rpc handler method for MsgChannelOpenConfirm. |
-| ChannelCloseInit | [MsgChannelCloseInit](#ibc.core.channel.v1.MsgChannelCloseInit) | [MsgChannelCloseInitResponse](#ibc.core.channel.v1.MsgChannelCloseInitResponse) | ChannelCloseInit defines a rpc handler method for MsgChannelCloseInit. |
-| ChannelCloseConfirm | [MsgChannelCloseConfirm](#ibc.core.channel.v1.MsgChannelCloseConfirm) | [MsgChannelCloseConfirmResponse](#ibc.core.channel.v1.MsgChannelCloseConfirmResponse) | ChannelCloseConfirm defines a rpc handler method for MsgChannelCloseConfirm. |
-| RecvPacket | [MsgRecvPacket](#ibc.core.channel.v1.MsgRecvPacket) | [MsgRecvPacketResponse](#ibc.core.channel.v1.MsgRecvPacketResponse) | RecvPacket defines a rpc handler method for MsgRecvPacket. |
-| Timeout | [MsgTimeout](#ibc.core.channel.v1.MsgTimeout) | [MsgTimeoutResponse](#ibc.core.channel.v1.MsgTimeoutResponse) | Timeout defines a rpc handler method for MsgTimeout. |
-| TimeoutOnClose | [MsgTimeoutOnClose](#ibc.core.channel.v1.MsgTimeoutOnClose) | [MsgTimeoutOnCloseResponse](#ibc.core.channel.v1.MsgTimeoutOnCloseResponse) | TimeoutOnClose defines a rpc handler method for MsgTimeoutOnClose. |
-| Acknowledgement | [MsgAcknowledgement](#ibc.core.channel.v1.MsgAcknowledgement) | [MsgAcknowledgementResponse](#ibc.core.channel.v1.MsgAcknowledgementResponse) | Acknowledgement defines a rpc handler method for MsgAcknowledgement. |
+| Method Name         | Request Type                                                                             | Response Type                                                                                            | Description                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| ChannelOpenInit     | [MsgChannelOpenInit](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenInit)         | [MsgChannelOpenInitResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenInitResponse)         | ChannelOpenInit defines a rpc handler method for MsgChannelOpenInit.         |
+| ChannelOpenTry      | [MsgChannelOpenTry](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenTry)           | [MsgChannelOpenTryResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenTryResponse)           | ChannelOpenTry defines a rpc handler method for MsgChannelOpenTry.           |
+| ChannelOpenAck      | [MsgChannelOpenAck](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenAck)           | [MsgChannelOpenAckResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenAckResponse)           | ChannelOpenAck defines a rpc handler method for MsgChannelOpenAck.           |
+| ChannelOpenConfirm  | [MsgChannelOpenConfirm](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenConfirm)   | [MsgChannelOpenConfirmResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelOpenConfirmResponse)   | ChannelOpenConfirm defines a rpc handler method for MsgChannelOpenConfirm.   |
+| ChannelCloseInit    | [MsgChannelCloseInit](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelCloseInit)       | [MsgChannelCloseInitResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelCloseInitResponse)       | ChannelCloseInit defines a rpc handler method for MsgChannelCloseInit.       |
+| ChannelCloseConfirm | [MsgChannelCloseConfirm](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelCloseConfirm) | [MsgChannelCloseConfirmResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgChannelCloseConfirmResponse) | ChannelCloseConfirm defines a rpc handler method for MsgChannelCloseConfirm. |
+| RecvPacket          | [MsgRecvPacket](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgRecvPacket)                   | [MsgRecvPacketResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgRecvPacketResponse)                   | RecvPacket defines a rpc handler method for MsgRecvPacket.                   |
+| Timeout             | [MsgTimeout](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgTimeout)                         | [MsgTimeoutResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgTimeoutResponse)                         | Timeout defines a rpc handler method for MsgTimeout.                         |
+| TimeoutOnClose      | [MsgTimeoutOnClose](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgTimeoutOnClose)           | [MsgTimeoutOnCloseResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgTimeoutOnCloseResponse)           | TimeoutOnClose defines a rpc handler method for MsgTimeoutOnClose.           |
+| Acknowledgement     | [MsgAcknowledgement](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgAcknowledgement)         | [MsgAcknowledgementResponse](cosmos-grpc-docs.md#ibc.core.channel.v1.MsgAcknowledgementResponse)         | Acknowledgement defines a rpc handler method for MsgAcknowledgement.         |
 
- 
-
-
-
-<a name="ibc/core/client/v1/client.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/client/v1/client.proto
 
-
-
-<a name="ibc.core.client.v1.ClientConsensusStates"></a>
-
 ### ClientConsensusStates
-ClientConsensusStates defines all the stored consensus states for a given
-client.
 
+ClientConsensusStates defines all the stored consensus states for a given client.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client identifier |
-| consensus_states | [ConsensusStateWithHeight](#ibc.core.client.v1.ConsensusStateWithHeight) | repeated | consensus states and their heights associated with the client |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.ClientUpdateProposal"></a>
+| Field             | Type                                                                                        | Label    | Description                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------- |
+| client\_id        | [string](cosmos-grpc-docs.md#string)                                                        |          | client identifier                                             |
+| consensus\_states | [ConsensusStateWithHeight](cosmos-grpc-docs.md#ibc.core.client.v1.ConsensusStateWithHeight) | repeated | consensus states and their heights associated with the client |
 
 ### ClientUpdateProposal
-ClientUpdateProposal is a governance proposal. If it passes, the client is
-updated with the provided header. The update may fail if the header is not
-valid given certain conditions specified by the client implementation.
 
+ClientUpdateProposal is a governance proposal. If it passes, the client is updated with the provided header. The update may fail if the header is not valid given certain conditions specified by the client implementation.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| title | [string](#string) |  | the title of the update proposal |
-| description | [string](#string) |  | the description of the proposal |
-| client_id | [string](#string) |  | the client identifier for the client to be updated if the proposal passes |
-| header | [google.protobuf.Any](#google.protobuf.Any) |  | the header used to update the client if the proposal passes |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.ConsensusStateWithHeight"></a>
+| Field       | Type                                                           | Label | Description                                                               |
+| ----------- | -------------------------------------------------------------- | ----- | ------------------------------------------------------------------------- |
+| title       | [string](cosmos-grpc-docs.md#string)                           |       | the title of the update proposal                                          |
+| description | [string](cosmos-grpc-docs.md#string)                           |       | the description of the proposal                                           |
+| client\_id  | [string](cosmos-grpc-docs.md#string)                           |       | the client identifier for the client to be updated if the proposal passes |
+| header      | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | the header used to update the client if the proposal passes               |
 
 ### ConsensusStateWithHeight
+
 ConsensusStateWithHeight defines a consensus state with an additional height field.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| height | [Height](#ibc.core.client.v1.Height) |  | consensus state height |
-| consensus_state | [google.protobuf.Any](#google.protobuf.Any) |  | consensus state |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.Height"></a>
+| Field            | Type                                                           | Label | Description            |
+| ---------------- | -------------------------------------------------------------- | ----- | ---------------------- |
+| height           | [Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)        |       | consensus state height |
+| consensus\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | consensus state        |
 
 ### Height
-Height is a monotonically increasing data type
-that can be compared against another Height for the purposes of updating and
-freezing clients
 
-Normally the VersionHeight is incremented at each height while keeping version
-number the same However some consensus algorithms may choose to reset the
-height in certain conditions e.g. hard forks, state-machine breaking changes
-In these cases, the version number is incremented so that height continues to
-be monitonically increasing even as the VersionHeight gets reset
+Height is a monotonically increasing data type that can be compared against another Height for the purposes of updating and freezing clients
 
+Normally the VersionHeight is incremented at each height while keeping version number the same However some consensus algorithms may choose to reset the height in certain conditions e.g. hard forks, state-machine breaking changes In these cases, the version number is incremented so that height continues to be monitonically increasing even as the VersionHeight gets reset
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version_number | [uint64](#uint64) |  | the version that the client is currently on |
-| version_height | [uint64](#uint64) |  | the height within the given version |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.IdentifiedClientState"></a>
+| Field           | Type                                 | Label | Description                                 |
+| --------------- | ------------------------------------ | ----- | ------------------------------------------- |
+| version\_number | [uint64](cosmos-grpc-docs.md#uint64) |       | the version that the client is currently on |
+| version\_height | [uint64](cosmos-grpc-docs.md#uint64) |       | the height within the given version         |
 
 ### IdentifiedClientState
-IdentifiedClientState defines a client state with an additional client
-identifier field.
 
+IdentifiedClientState defines a client state with an additional client identifier field.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client identifier |
-| client_state | [google.protobuf.Any](#google.protobuf.Any) |  | client state |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.MsgCreateClient"></a>
+| Field         | Type                                                           | Label | Description       |
+| ------------- | -------------------------------------------------------------- | ----- | ----------------- |
+| client\_id    | [string](cosmos-grpc-docs.md#string)                           |       | client identifier |
+| client\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | client state      |
 
 ### MsgCreateClient
+
 MsgCreateClient defines a message to create an IBC client
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client unique identifier |
-| client_state | [google.protobuf.Any](#google.protobuf.Any) |  | light client state |
-| consensus_state | [google.protobuf.Any](#google.protobuf.Any) |  | consensus state associated with the client that corresponds to a given height. |
-| signer | [string](#string) |  | signer address |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.MsgCreateClientResponse"></a>
+| Field            | Type                                                           | Label | Description                                                                    |
+| ---------------- | -------------------------------------------------------------- | ----- | ------------------------------------------------------------------------------ |
+| client\_id       | [string](cosmos-grpc-docs.md#string)                           |       | client unique identifier                                                       |
+| client\_state    | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | light client state                                                             |
+| consensus\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | consensus state associated with the client that corresponds to a given height. |
+| signer           | [string](cosmos-grpc-docs.md#string)                           |       | signer address                                                                 |
 
 ### MsgCreateClientResponse
+
 MsgCreateClientResponse defines the Msg/CreateClient response type.
 
-
-
-
-
-
-<a name="ibc.core.client.v1.MsgSubmitMisbehaviour"></a>
-
 ### MsgSubmitMisbehaviour
-MsgSubmitMisbehaviour defines an sdk.Msg type that submits Evidence for
-light client misbehaviour.
 
+MsgSubmitMisbehaviour defines an sdk.Msg type that submits Evidence for light client misbehaviour.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client unique identifier |
-| misbehaviour | [google.protobuf.Any](#google.protobuf.Any) |  | misbehaviour used for freezing the light client |
-| signer | [string](#string) |  | signer address |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.MsgSubmitMisbehaviourResponse"></a>
+| Field        | Type                                                           | Label | Description                                     |
+| ------------ | -------------------------------------------------------------- | ----- | ----------------------------------------------- |
+| client\_id   | [string](cosmos-grpc-docs.md#string)                           |       | client unique identifier                        |
+| misbehaviour | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | misbehaviour used for freezing the light client |
+| signer       | [string](cosmos-grpc-docs.md#string)                           |       | signer address                                  |
 
 ### MsgSubmitMisbehaviourResponse
+
 MsgSubmitMisbehaviourResponse defines the Msg/SubmitMisbehaviour response type.
 
-
-
-
-
-
-<a name="ibc.core.client.v1.MsgUpdateClient"></a>
-
 ### MsgUpdateClient
-MsgUpdateClient defines an sdk.Msg to update a IBC client state using
-the given header.
 
+MsgUpdateClient defines an sdk.Msg to update a IBC client state using the given header.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client unique identifier |
-| header | [google.protobuf.Any](#google.protobuf.Any) |  | header to update the light client |
-| signer | [string](#string) |  | signer address |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.MsgUpdateClientResponse"></a>
+| Field      | Type                                                           | Label | Description                       |
+| ---------- | -------------------------------------------------------------- | ----- | --------------------------------- |
+| client\_id | [string](cosmos-grpc-docs.md#string)                           |       | client unique identifier          |
+| header     | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | header to update the light client |
+| signer     | [string](cosmos-grpc-docs.md#string)                           |       | signer address                    |
 
 ### MsgUpdateClientResponse
+
 MsgUpdateClientResponse defines the Msg/UpdateClient response type.
 
-
-
-
-
-
-<a name="ibc.core.client.v1.MsgUpgradeClient"></a>
-
 ### MsgUpgradeClient
+
 MsgUpgradeClient defines an sdk.Msg to upgrade an IBC client to a new client state
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client unique identifier |
-| client_state | [google.protobuf.Any](#google.protobuf.Any) |  | upgraded client state |
-| upgrade_height | [Height](#ibc.core.client.v1.Height) |  | height at which old chain halts and upgrades (i.e last block executed) |
-| proof_upgrade | [bytes](#bytes) |  | proof that old chain committed to new client |
-| signer | [string](#string) |  | signer address |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.MsgUpgradeClientResponse"></a>
+| Field           | Type                                                           | Label | Description                                                            |
+| --------------- | -------------------------------------------------------------- | ----- | ---------------------------------------------------------------------- |
+| client\_id      | [string](cosmos-grpc-docs.md#string)                           |       | client unique identifier                                               |
+| client\_state   | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | upgraded client state                                                  |
+| upgrade\_height | [Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)        |       | height at which old chain halts and upgrades (i.e last block executed) |
+| proof\_upgrade  | [bytes](cosmos-grpc-docs.md#bytes)                             |       | proof that old chain committed to new client                           |
+| signer          | [string](cosmos-grpc-docs.md#string)                           |       | signer address                                                         |
 
 ### MsgUpgradeClientResponse
+
 MsgUpgradeClientResponse defines the Msg/UpgradeClient response type.
 
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="ibc.core.client.v1.Msg"></a>
-
 ### Msg
+
 Msg defines the ibc/client Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateClient | [MsgCreateClient](#ibc.core.client.v1.MsgCreateClient) | [MsgCreateClientResponse](#ibc.core.client.v1.MsgCreateClientResponse) | CreateClient defines a rpc handler method for MsgCreateClient. |
-| UpdateClient | [MsgUpdateClient](#ibc.core.client.v1.MsgUpdateClient) | [MsgUpdateClientResponse](#ibc.core.client.v1.MsgUpdateClientResponse) | UpdateClient defines a rpc handler method for MsgUpdateClient. |
-| UpgradeClient | [MsgUpgradeClient](#ibc.core.client.v1.MsgUpgradeClient) | [MsgUpgradeClientResponse](#ibc.core.client.v1.MsgUpgradeClientResponse) | UpgradeClient defines a rpc handler method for MsgUpgradeClient. |
-| SubmitMisbehaviour | [MsgSubmitMisbehaviour](#ibc.core.client.v1.MsgSubmitMisbehaviour) | [MsgSubmitMisbehaviourResponse](#ibc.core.client.v1.MsgSubmitMisbehaviourResponse) | SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour. |
+| Method Name        | Request Type                                                                          | Response Type                                                                                         | Description                                                                |
+| ------------------ | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| CreateClient       | [MsgCreateClient](cosmos-grpc-docs.md#ibc.core.client.v1.MsgCreateClient)             | [MsgCreateClientResponse](cosmos-grpc-docs.md#ibc.core.client.v1.MsgCreateClientResponse)             | CreateClient defines a rpc handler method for MsgCreateClient.             |
+| UpdateClient       | [MsgUpdateClient](cosmos-grpc-docs.md#ibc.core.client.v1.MsgUpdateClient)             | [MsgUpdateClientResponse](cosmos-grpc-docs.md#ibc.core.client.v1.MsgUpdateClientResponse)             | UpdateClient defines a rpc handler method for MsgUpdateClient.             |
+| UpgradeClient      | [MsgUpgradeClient](cosmos-grpc-docs.md#ibc.core.client.v1.MsgUpgradeClient)           | [MsgUpgradeClientResponse](cosmos-grpc-docs.md#ibc.core.client.v1.MsgUpgradeClientResponse)           | UpgradeClient defines a rpc handler method for MsgUpgradeClient.           |
+| SubmitMisbehaviour | [MsgSubmitMisbehaviour](cosmos-grpc-docs.md#ibc.core.client.v1.MsgSubmitMisbehaviour) | [MsgSubmitMisbehaviourResponse](cosmos-grpc-docs.md#ibc.core.client.v1.MsgSubmitMisbehaviourResponse) | SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour. |
 
- 
-
-
-
-<a name="ibc/core/client/v1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/client/v1/query.proto
 
-
-
-<a name="ibc.core.client.v1.QueryClientStateRequest"></a>
-
 ### QueryClientStateRequest
-QueryClientStateRequest is the request type for the Query/ClientState RPC
-method
 
+QueryClientStateRequest is the request type for the Query/ClientState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client state unique identifier |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.QueryClientStateResponse"></a>
+| Field      | Type                                 | Label | Description                    |
+| ---------- | ------------------------------------ | ----- | ------------------------------ |
+| client\_id | [string](cosmos-grpc-docs.md#string) |       | client state unique identifier |
 
 ### QueryClientStateResponse
-QueryClientStateResponse is the response type for the Query/ClientState RPC
-method. Besides the client state, it includes a proof and the height from
-which the proof was retrieved.
 
+QueryClientStateResponse is the response type for the Query/ClientState RPC method. Besides the client state, it includes a proof and the height from which the proof was retrieved.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_state | [google.protobuf.Any](#google.protobuf.Any) |  | client state associated with the request identifier |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.QueryClientStatesRequest"></a>
+| Field         | Type                                                           | Label | Description                                         |
+| ------------- | -------------------------------------------------------------- | ----- | --------------------------------------------------- |
+| client\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | client state associated with the request identifier |
+| proof         | [bytes](cosmos-grpc-docs.md#bytes)                             |       | merkle proof of existence                           |
+| proof\_path   | [string](cosmos-grpc-docs.md#string)                           |       | merkle proof path                                   |
+| proof\_height | [Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)        |       | height at which the proof was retrieved             |
 
 ### QueryClientStatesRequest
-QueryClientStatesRequest is the request type for the Query/ClientStates RPC
-method
 
+QueryClientStatesRequest is the request type for the Query/ClientStates RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination request |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.QueryClientStatesResponse"></a>
+| Field      | Type                                                                                               | Label | Description        |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ------------------ |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination request |
 
 ### QueryClientStatesResponse
-QueryClientStatesResponse is the response type for the Query/ClientStates RPC
-method.
 
+QueryClientStatesResponse is the response type for the Query/ClientStates RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_states | [IdentifiedClientState](#ibc.core.client.v1.IdentifiedClientState) | repeated | list of stored ClientStates of the chain. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination response |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.QueryConsensusStateRequest"></a>
+| Field          | Type                                                                                                 | Label    | Description                               |
+| -------------- | ---------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------- |
+| client\_states | [IdentifiedClientState](cosmos-grpc-docs.md#ibc.core.client.v1.IdentifiedClientState)                | repeated | list of stored ClientStates of the chain. |
+| pagination     | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination response                       |
 
 ### QueryConsensusStateRequest
-QueryConsensusStateRequest is the request type for the Query/ConsensusState
-RPC method. Besides the consensus state, it includes a proof and the height
-from which the proof was retrieved.
 
+QueryConsensusStateRequest is the request type for the Query/ConsensusState RPC method. Besides the consensus state, it includes a proof and the height from which the proof was retrieved.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client identifier |
-| version_number | [uint64](#uint64) |  | consensus state version number |
-| version_height | [uint64](#uint64) |  | consensus state version height |
-| latest_height | [bool](#bool) |  | latest_height overrrides the height field and queries the latest stored ConsensusState |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.QueryConsensusStateResponse"></a>
+| Field           | Type                                 | Label | Description                                                                             |
+| --------------- | ------------------------------------ | ----- | --------------------------------------------------------------------------------------- |
+| client\_id      | [string](cosmos-grpc-docs.md#string) |       | client identifier                                                                       |
+| version\_number | [uint64](cosmos-grpc-docs.md#uint64) |       | consensus state version number                                                          |
+| version\_height | [uint64](cosmos-grpc-docs.md#uint64) |       | consensus state version height                                                          |
+| latest\_height  | [bool](cosmos-grpc-docs.md#bool)     |       | latest\_height overrrides the height field and queries the latest stored ConsensusState |
 
 ### QueryConsensusStateResponse
-QueryConsensusStateResponse is the response type for the Query/ConsensusState
-RPC method
 
+QueryConsensusStateResponse is the response type for the Query/ConsensusState RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| consensus_state | [google.protobuf.Any](#google.protobuf.Any) |  | consensus state associated with the client identifier at the given height |
-| proof | [bytes](#bytes) |  | merkle proof of existence |
-| proof_path | [string](#string) |  | merkle proof path |
-| proof_height | [Height](#ibc.core.client.v1.Height) |  | height at which the proof was retrieved |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.QueryConsensusStatesRequest"></a>
+| Field            | Type                                                           | Label | Description                                                               |
+| ---------------- | -------------------------------------------------------------- | ----- | ------------------------------------------------------------------------- |
+| consensus\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | consensus state associated with the client identifier at the given height |
+| proof            | [bytes](cosmos-grpc-docs.md#bytes)                             |       | merkle proof of existence                                                 |
+| proof\_path      | [string](cosmos-grpc-docs.md#string)                           |       | merkle proof path                                                         |
+| proof\_height    | [Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)        |       | height at which the proof was retrieved                                   |
 
 ### QueryConsensusStatesRequest
-QueryConsensusStatesRequest is the request type for the Query/ConsensusStates
-RPC method.
 
+QueryConsensusStatesRequest is the request type for the Query/ConsensusStates RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  | client identifier |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination request |
-
-
-
-
-
-
-<a name="ibc.core.client.v1.QueryConsensusStatesResponse"></a>
+| Field      | Type                                                                                               | Label | Description        |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ------------------ |
+| client\_id | [string](cosmos-grpc-docs.md#string)                                                               |       | client identifier  |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination request |
 
 ### QueryConsensusStatesResponse
-QueryConsensusStatesResponse is the response type for the
-Query/ConsensusStates RPC method
 
+QueryConsensusStatesResponse is the response type for the Query/ConsensusStates RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| consensus_states | [ConsensusStateWithHeight](#ibc.core.client.v1.ConsensusStateWithHeight) | repeated | consensus states associated with the identifier |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination response |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="ibc.core.client.v1.Query"></a>
+| Field             | Type                                                                                                 | Label    | Description                                     |
+| ----------------- | ---------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------------- |
+| consensus\_states | [ConsensusStateWithHeight](cosmos-grpc-docs.md#ibc.core.client.v1.ConsensusStateWithHeight)          | repeated | consensus states associated with the identifier |
+| pagination        | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination response                             |
 
 ### Query
+
 Query provides defines the gRPC querier service
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| ClientState | [QueryClientStateRequest](#ibc.core.client.v1.QueryClientStateRequest) | [QueryClientStateResponse](#ibc.core.client.v1.QueryClientStateResponse) | ClientState queries an IBC light client. |
-| ClientStates | [QueryClientStatesRequest](#ibc.core.client.v1.QueryClientStatesRequest) | [QueryClientStatesResponse](#ibc.core.client.v1.QueryClientStatesResponse) | ClientStates queries all the IBC light clients of a chain. |
-| ConsensusState | [QueryConsensusStateRequest](#ibc.core.client.v1.QueryConsensusStateRequest) | [QueryConsensusStateResponse](#ibc.core.client.v1.QueryConsensusStateResponse) | ConsensusState queries a consensus state associated with a client state at a given height. |
-| ConsensusStates | [QueryConsensusStatesRequest](#ibc.core.client.v1.QueryConsensusStatesRequest) | [QueryConsensusStatesResponse](#ibc.core.client.v1.QueryConsensusStatesResponse) | ConsensusStates queries all the consensus state associated with a given client. |
+| Method Name     | Request Type                                                                                      | Response Type                                                                                       | Description                                                                                |
+| --------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| ClientState     | [QueryClientStateRequest](cosmos-grpc-docs.md#ibc.core.client.v1.QueryClientStateRequest)         | [QueryClientStateResponse](cosmos-grpc-docs.md#ibc.core.client.v1.QueryClientStateResponse)         | ClientState queries an IBC light client.                                                   |
+| ClientStates    | [QueryClientStatesRequest](cosmos-grpc-docs.md#ibc.core.client.v1.QueryClientStatesRequest)       | [QueryClientStatesResponse](cosmos-grpc-docs.md#ibc.core.client.v1.QueryClientStatesResponse)       | ClientStates queries all the IBC light clients of a chain.                                 |
+| ConsensusState  | [QueryConsensusStateRequest](cosmos-grpc-docs.md#ibc.core.client.v1.QueryConsensusStateRequest)   | [QueryConsensusStateResponse](cosmos-grpc-docs.md#ibc.core.client.v1.QueryConsensusStateResponse)   | ConsensusState queries a consensus state associated with a client state at a given height. |
+| ConsensusStates | [QueryConsensusStatesRequest](cosmos-grpc-docs.md#ibc.core.client.v1.QueryConsensusStatesRequest) | [QueryConsensusStatesResponse](cosmos-grpc-docs.md#ibc.core.client.v1.QueryConsensusStatesResponse) | ConsensusStates queries all the consensus state associated with a given client.            |
 
- 
-
-
-
-<a name="ibc/core/client/v1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/core/client/v1/genesis.proto
 
-
-
-<a name="ibc.core.client.v1.GenesisState"></a>
-
 ### GenesisState
-GenesisState defines the ibc client submodule&#39;s genesis state.
 
+GenesisState defines the ibc client submodule's genesis state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| clients | [IdentifiedClientState](#ibc.core.client.v1.IdentifiedClientState) | repeated | client states with their corresponding identifiers |
-| clients_consensus | [ClientConsensusStates](#ibc.core.client.v1.ClientConsensusStates) | repeated | consensus states from each client |
-| create_localhost | [bool](#bool) |  | create localhost on initialization |
+| Field              | Type                                                                                  | Label    | Description                                        |
+| ------------------ | ------------------------------------------------------------------------------------- | -------- | -------------------------------------------------- |
+| clients            | [IdentifiedClientState](cosmos-grpc-docs.md#ibc.core.client.v1.IdentifiedClientState) | repeated | client states with their corresponding identifiers |
+| clients\_consensus | [ClientConsensusStates](cosmos-grpc-docs.md#ibc.core.client.v1.ClientConsensusStates) | repeated | consensus states from each client                  |
+| create\_localhost  | [bool](cosmos-grpc-docs.md#bool)                                                      |          | create localhost on initialization                 |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="ibc/lightclients/solomachine/v1/solomachine.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/lightclients/solomachine/v1/solomachine.proto
 
-
-
-<a name="ibc.lightclients.solomachine.v1.ChannelStateData"></a>
-
 ### ChannelStateData
-ChannelStateData returns the SignBytes data for channel state
-verification.
 
+ChannelStateData returns the SignBytes data for channel state verification.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [bytes](#bytes) |  |  |
-| channel | [ibc.core.channel.v1.Channel](#ibc.core.channel.v1.Channel) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.ClientState"></a>
+| Field   | Type                                                                           | Label | Description |
+| ------- | ------------------------------------------------------------------------------ | ----- | ----------- |
+| path    | [bytes](cosmos-grpc-docs.md#bytes)                                             |       |             |
+| channel | [ibc.core.channel.v1.Channel](cosmos-grpc-docs.md#ibc.core.channel.v1.Channel) |       |             |
 
 ### ClientState
-ClientState defines a solo machine client that tracks the current consensus
-state and if the client is frozen.
 
+ClientState defines a solo machine client that tracks the current consensus state and if the client is frozen.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sequence | [uint64](#uint64) |  | latest sequence of the client state |
-| frozen_sequence | [uint64](#uint64) |  | frozen sequence of the solo machine |
-| consensus_state | [ConsensusState](#ibc.lightclients.solomachine.v1.ConsensusState) |  |  |
-| allow_update_after_proposal | [bool](#bool) |  | when set to true, will allow governance to update a solo machine client. The client will be unfrozen if it is frozen. |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.ClientStateData"></a>
+| Field                          | Type                                                                                 | Label | Description                                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------------------ | ----- | --------------------------------------------------------------------------------------------------------------------- |
+| sequence                       | [uint64](cosmos-grpc-docs.md#uint64)                                                 |       | latest sequence of the client state                                                                                   |
+| frozen\_sequence               | [uint64](cosmos-grpc-docs.md#uint64)                                                 |       | frozen sequence of the solo machine                                                                                   |
+| consensus\_state               | [ConsensusState](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.ConsensusState) |       |                                                                                                                       |
+| allow\_update\_after\_proposal | [bool](cosmos-grpc-docs.md#bool)                                                     |       | when set to true, will allow governance to update a solo machine client. The client will be unfrozen if it is frozen. |
 
 ### ClientStateData
+
 ClientStateData returns the SignBytes data for client state verification.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [bytes](#bytes) |  |  |
-| client_state | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.ConnectionStateData"></a>
+| Field         | Type                                                           | Label | Description |
+| ------------- | -------------------------------------------------------------- | ----- | ----------- |
+| path          | [bytes](cosmos-grpc-docs.md#bytes)                             |       |             |
+| client\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       |             |
 
 ### ConnectionStateData
-ConnectionStateData returns the SignBytes data for connection state
-verification.
 
+ConnectionStateData returns the SignBytes data for connection state verification.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [bytes](#bytes) |  |  |
-| connection | [ibc.core.connection.v1.ConnectionEnd](#ibc.core.connection.v1.ConnectionEnd) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.ConsensusState"></a>
+| Field      | Type                                                                                             | Label | Description |
+| ---------- | ------------------------------------------------------------------------------------------------ | ----- | ----------- |
+| path       | [bytes](cosmos-grpc-docs.md#bytes)                                                               |       |             |
+| connection | [ibc.core.connection.v1.ConnectionEnd](cosmos-grpc-docs.md#ibc.core.connection.v1.ConnectionEnd) |       |             |
 
 ### ConsensusState
-ConsensusState defines a solo machine consensus state. The sequence of a consensus state
-is contained in the &#34;height&#34; key used in storing the consensus state.
 
+ConsensusState defines a solo machine consensus state. The sequence of a consensus state is contained in the "height" key used in storing the consensus state.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| public_key | [google.protobuf.Any](#google.protobuf.Any) |  | public key of the solo machine |
-| diversifier | [string](#string) |  | diversifier allows the same public key to be re-used across different solo machine clients (potentially on different chains) without being considered misbehaviour. |
-| timestamp | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.ConsensusStateData"></a>
+| Field       | Type                                                           | Label | Description                                                                                                                                                         |
+| ----------- | -------------------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| public\_key | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | public key of the solo machine                                                                                                                                      |
+| diversifier | [string](cosmos-grpc-docs.md#string)                           |       | diversifier allows the same public key to be re-used across different solo machine clients (potentially on different chains) without being considered misbehaviour. |
+| timestamp   | [uint64](cosmos-grpc-docs.md#uint64)                           |       |                                                                                                                                                                     |
 
 ### ConsensusStateData
-ConsensusStateData returns the SignBytes data for consensus state
-verification.
 
+ConsensusStateData returns the SignBytes data for consensus state verification.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [bytes](#bytes) |  |  |
-| consensus_state | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.Header"></a>
+| Field            | Type                                                           | Label | Description |
+| ---------------- | -------------------------------------------------------------- | ----- | ----------- |
+| path             | [bytes](cosmos-grpc-docs.md#bytes)                             |       |             |
+| consensus\_state | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       |             |
 
 ### Header
+
 Header defines a solo machine consensus header
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sequence | [uint64](#uint64) |  | sequence to update solo machine public key at |
-| timestamp | [uint64](#uint64) |  |  |
-| signature | [bytes](#bytes) |  |  |
-| new_public_key | [google.protobuf.Any](#google.protobuf.Any) |  |  |
-| new_diversifier | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.HeaderData"></a>
+| Field            | Type                                                           | Label | Description                                   |
+| ---------------- | -------------------------------------------------------------- | ----- | --------------------------------------------- |
+| sequence         | [uint64](cosmos-grpc-docs.md#uint64)                           |       | sequence to update solo machine public key at |
+| timestamp        | [uint64](cosmos-grpc-docs.md#uint64)                           |       |                                               |
+| signature        | [bytes](cosmos-grpc-docs.md#bytes)                             |       |                                               |
+| new\_public\_key | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       |                                               |
+| new\_diversifier | [string](cosmos-grpc-docs.md#string)                           |       |                                               |
 
 ### HeaderData
+
 HeaderData returns the SignBytes data for update verification.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| new_pub_key | [google.protobuf.Any](#google.protobuf.Any) |  | header public key |
-| new_diversifier | [string](#string) |  | header diversifier |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.Misbehaviour"></a>
+| Field            | Type                                                           | Label | Description        |
+| ---------------- | -------------------------------------------------------------- | ----- | ------------------ |
+| new\_pub\_key    | [google.protobuf.Any](cosmos-grpc-docs.md#google.protobuf.Any) |       | header public key  |
+| new\_diversifier | [string](cosmos-grpc-docs.md#string)                           |       | header diversifier |
 
 ### Misbehaviour
-Misbehaviour defines misbehaviour for a solo machine which consists
-of a sequence and two signatures over different messages at that sequence.
 
+Misbehaviour defines misbehaviour for a solo machine which consists of a sequence and two signatures over different messages at that sequence.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  |  |
-| sequence | [uint64](#uint64) |  |  |
-| signature_one | [SignatureAndData](#ibc.lightclients.solomachine.v1.SignatureAndData) |  |  |
-| signature_two | [SignatureAndData](#ibc.lightclients.solomachine.v1.SignatureAndData) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.NextSequenceRecvData"></a>
+| Field          | Type                                                                                     | Label | Description |
+| -------------- | ---------------------------------------------------------------------------------------- | ----- | ----------- |
+| client\_id     | [string](cosmos-grpc-docs.md#string)                                                     |       |             |
+| sequence       | [uint64](cosmos-grpc-docs.md#uint64)                                                     |       |             |
+| signature\_one | [SignatureAndData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.SignatureAndData) |       |             |
+| signature\_two | [SignatureAndData](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.SignatureAndData) |       |             |
 
 ### NextSequenceRecvData
-NextSequenceRecvData returns the SignBytes data for verification of the next
-sequence to be received.
 
+NextSequenceRecvData returns the SignBytes data for verification of the next sequence to be received.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [bytes](#bytes) |  |  |
-| next_seq_recv | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.PacketAcknowledgementData"></a>
+| Field           | Type                                 | Label | Description |
+| --------------- | ------------------------------------ | ----- | ----------- |
+| path            | [bytes](cosmos-grpc-docs.md#bytes)   |       |             |
+| next\_seq\_recv | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
 
 ### PacketAcknowledgementData
-PacketAcknowledgementData returns the SignBytes data for acknowledgement
-verification.
 
+PacketAcknowledgementData returns the SignBytes data for acknowledgement verification.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [bytes](#bytes) |  |  |
-| acknowledgement | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.PacketCommitmentData"></a>
+| Field           | Type                               | Label | Description |
+| --------------- | ---------------------------------- | ----- | ----------- |
+| path            | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
+| acknowledgement | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### PacketCommitmentData
-PacketCommitmentData returns the SignBytes data for packet commitment
-verification.
 
+PacketCommitmentData returns the SignBytes data for packet commitment verification.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [bytes](#bytes) |  |  |
-| commitment | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.PacketReceiptAbsenceData"></a>
+| Field      | Type                               | Label | Description |
+| ---------- | ---------------------------------- | ----- | ----------- |
+| path       | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
+| commitment | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### PacketReceiptAbsenceData
-PacketReceiptAbsenceData returns the SignBytes data for
-packet receipt absence verification.
 
+PacketReceiptAbsenceData returns the SignBytes data for packet receipt absence verification.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.SignBytes"></a>
+| Field | Type                               | Label | Description |
+| ----- | ---------------------------------- | ----- | ----------- |
+| path  | [bytes](cosmos-grpc-docs.md#bytes) |       |             |
 
 ### SignBytes
+
 SignBytes defines the signed bytes used for signature verification.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| sequence | [uint64](#uint64) |  |  |
-| timestamp | [uint64](#uint64) |  |  |
-| diversifier | [string](#string) |  |  |
-| data_type | [DataType](#ibc.lightclients.solomachine.v1.DataType) |  | type of the data used |
-| data | [bytes](#bytes) |  | marshaled data |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.SignatureAndData"></a>
+| Field       | Type                                                                     | Label | Description           |
+| ----------- | ------------------------------------------------------------------------ | ----- | --------------------- |
+| sequence    | [uint64](cosmos-grpc-docs.md#uint64)                                     |       |                       |
+| timestamp   | [uint64](cosmos-grpc-docs.md#uint64)                                     |       |                       |
+| diversifier | [string](cosmos-grpc-docs.md#string)                                     |       |                       |
+| data\_type  | [DataType](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.DataType) |       | type of the data used |
+| data        | [bytes](cosmos-grpc-docs.md#bytes)                                       |       | marshaled data        |
 
 ### SignatureAndData
-SignatureAndData contains a signature and the data signed over to create that
-signature.
 
+SignatureAndData contains a signature and the data signed over to create that signature.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| signature | [bytes](#bytes) |  |  |
-| data_type | [DataType](#ibc.lightclients.solomachine.v1.DataType) |  |  |
-| data | [bytes](#bytes) |  |  |
-| timestamp | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.solomachine.v1.TimestampedSignatureData"></a>
+| Field      | Type                                                                     | Label | Description |
+| ---------- | ------------------------------------------------------------------------ | ----- | ----------- |
+| signature  | [bytes](cosmos-grpc-docs.md#bytes)                                       |       |             |
+| data\_type | [DataType](cosmos-grpc-docs.md#ibc.lightclients.solomachine.v1.DataType) |       |             |
+| data       | [bytes](cosmos-grpc-docs.md#bytes)                                       |       |             |
+| timestamp  | [uint64](cosmos-grpc-docs.md#uint64)                                     |       |             |
 
 ### TimestampedSignatureData
-TimestampedSignatureData contains the signature data and the timestamp of the
-signature.
 
+TimestampedSignatureData contains the signature data and the timestamp of the signature.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| signature_data | [bytes](#bytes) |  |  |
-| timestamp | [uint64](#uint64) |  |  |
-
-
-
-
-
- 
-
-
-<a name="ibc.lightclients.solomachine.v1.DataType"></a>
+| Field           | Type                                 | Label | Description |
+| --------------- | ------------------------------------ | ----- | ----------- |
+| signature\_data | [bytes](cosmos-grpc-docs.md#bytes)   |       |             |
+| timestamp       | [uint64](cosmos-grpc-docs.md#uint64) |       |             |
 
 ### DataType
-DataType defines the type of solo machine proof being created. This is done to preserve uniqueness of different
-data sign byte encodings.
 
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| DATA_TYPE_UNINITIALIZED_UNSPECIFIED | 0 | Default State |
-| DATA_TYPE_CLIENT_STATE | 1 | Data type for client state verification |
-| DATA_TYPE_CONSENSUS_STATE | 2 | Data type for consensus state verification |
-| DATA_TYPE_CONNECTION_STATE | 3 | Data type for connection state verification |
-| DATA_TYPE_CHANNEL_STATE | 4 | Data type for channel state verification |
-| DATA_TYPE_PACKET_COMMITMENT | 5 | Data type for packet commitment verification |
-| DATA_TYPE_PACKET_ACKNOWLEDGEMENT | 6 | Data type for packet acknowledgement verification |
-| DATA_TYPE_PACKET_RECEIPT_ABSENCE | 7 | Data type for packet receipt absence verification |
-| DATA_TYPE_NEXT_SEQUENCE_RECV | 8 | Data type for next sequence recv verification |
-| DATA_TYPE_HEADER | 9 | Data type for header verification |
+DataType defines the type of solo machine proof being created. This is done to preserve uniqueness of different data sign byte encodings.
 
+| Name                                   | Number | Description                                       |
+| -------------------------------------- | ------ | ------------------------------------------------- |
+| DATA\_TYPE\_UNINITIALIZED\_UNSPECIFIED | 0      | Default State                                     |
+| DATA\_TYPE\_CLIENT\_STATE              | 1      | Data type for client state verification           |
+| DATA\_TYPE\_CONSENSUS\_STATE           | 2      | Data type for consensus state verification        |
+| DATA\_TYPE\_CONNECTION\_STATE          | 3      | Data type for connection state verification       |
+| DATA\_TYPE\_CHANNEL\_STATE             | 4      | Data type for channel state verification          |
+| DATA\_TYPE\_PACKET\_COMMITMENT         | 5      | Data type for packet commitment verification      |
+| DATA\_TYPE\_PACKET\_ACKNOWLEDGEMENT    | 6      | Data type for packet acknowledgement verification |
+| DATA\_TYPE\_PACKET\_RECEIPT\_ABSENCE   | 7      | Data type for packet receipt absence verification |
+| DATA\_TYPE\_NEXT\_SEQUENCE\_RECV       | 8      | Data type for next sequence recv verification     |
+| DATA\_TYPE\_HEADER                     | 9      | Data type for header verification                 |
 
- 
-
- 
-
- 
-
-
-
-<a name="ibc/lightclients/tendermint/v1/tendermint.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/lightclients/tendermint/v1/tendermint.proto
 
-
-
-<a name="ibc.lightclients.tendermint.v1.ClientState"></a>
-
 ### ClientState
-ClientState from Tendermint tracks the current validator set, latest height,
-and a possible frozen height.
 
+ClientState from Tendermint tracks the current validator set, latest height, and a possible frozen height.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| chain_id | [string](#string) |  |  |
-| trust_level | [Fraction](#ibc.lightclients.tendermint.v1.Fraction) |  |  |
-| trusting_period | [google.protobuf.Duration](#google.protobuf.Duration) |  | duration of the period since the LatestTimestamp during which the submitted headers are valid for upgrade |
-| unbonding_period | [google.protobuf.Duration](#google.protobuf.Duration) |  | duration of the staking unbonding period |
-| max_clock_drift | [google.protobuf.Duration](#google.protobuf.Duration) |  | defines how much new (untrusted) header&#39;s Time can drift into the future. |
-| frozen_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | Block height when the client was frozen due to a misbehaviour |
-| latest_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | Latest height the client was updated to |
-| consensus_params | [tendermint.abci.ConsensusParams](#tendermint.abci.ConsensusParams) |  | Consensus params of the chain |
-| proof_specs | [ics23.ProofSpec](#ics23.ProofSpec) | repeated | Proof specifications used in verifying counterparty state |
-| upgrade_path | [string](#string) |  | Path at which next upgraded client will be committed |
-| allow_update_after_expiry | [bool](#bool) |  | This flag, when set to true, will allow governance to recover a client which has expired |
-| allow_update_after_misbehaviour | [bool](#bool) |  | This flag, when set to true, will allow governance to unfreeze a client whose chain has experienced a misbehaviour event |
-
-
-
-
-
-
-<a name="ibc.lightclients.tendermint.v1.ConsensusState"></a>
+| Field                              | Type                                                                                   | Label    | Description                                                                                                              |
+| ---------------------------------- | -------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
+| chain\_id                          | [string](cosmos-grpc-docs.md#string)                                                   |          |                                                                                                                          |
+| trust\_level                       | [Fraction](cosmos-grpc-docs.md#ibc.lightclients.tendermint.v1.Fraction)                |          |                                                                                                                          |
+| trusting\_period                   | [google.protobuf.Duration](cosmos-grpc-docs.md#google.protobuf.Duration)               |          | duration of the period since the LatestTimestamp during which the submitted headers are valid for upgrade                |
+| unbonding\_period                  | [google.protobuf.Duration](cosmos-grpc-docs.md#google.protobuf.Duration)               |          | duration of the staking unbonding period                                                                                 |
+| max\_clock\_drift                  | [google.protobuf.Duration](cosmos-grpc-docs.md#google.protobuf.Duration)               |          | defines how much new (untrusted) header's Time can drift into the future.                                                |
+| frozen\_height                     | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)             |          | Block height when the client was frozen due to a misbehaviour                                                            |
+| latest\_height                     | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)             |          | Latest height the client was updated to                                                                                  |
+| consensus\_params                  | [tendermint.abci.ConsensusParams](cosmos-grpc-docs.md#tendermint.abci.ConsensusParams) |          | Consensus params of the chain                                                                                            |
+| proof\_specs                       | [ics23.ProofSpec](cosmos-grpc-docs.md#ics23.ProofSpec)                                 | repeated | Proof specifications used in verifying counterparty state                                                                |
+| upgrade\_path                      | [string](cosmos-grpc-docs.md#string)                                                   |          | Path at which next upgraded client will be committed                                                                     |
+| allow\_update\_after\_expiry       | [bool](cosmos-grpc-docs.md#bool)                                                       |          | This flag, when set to true, will allow governance to recover a client which has expired                                 |
+| allow\_update\_after\_misbehaviour | [bool](cosmos-grpc-docs.md#bool)                                                       |          | This flag, when set to true, will allow governance to unfreeze a client whose chain has experienced a misbehaviour event |
 
 ### ConsensusState
+
 ConsensusState defines the consensus state from Tendermint.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | timestamp that corresponds to the block height in which the ConsensusState was stored. |
-| root | [ibc.core.commitment.v1.MerkleRoot](#ibc.core.commitment.v1.MerkleRoot) |  | commitment root (i.e app hash) |
-| next_validators_hash | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.tendermint.v1.Fraction"></a>
+| Field                  | Type                                                                                       | Label | Description                                                                            |
+| ---------------------- | ------------------------------------------------------------------------------------------ | ----- | -------------------------------------------------------------------------------------- |
+| timestamp              | [google.protobuf.Timestamp](cosmos-grpc-docs.md#google.protobuf.Timestamp)                 |       | timestamp that corresponds to the block height in which the ConsensusState was stored. |
+| root                   | [ibc.core.commitment.v1.MerkleRoot](cosmos-grpc-docs.md#ibc.core.commitment.v1.MerkleRoot) |       | commitment root (i.e app hash)                                                         |
+| next\_validators\_hash | [bytes](cosmos-grpc-docs.md#bytes)                                                         |       |                                                                                        |
 
 ### Fraction
+
 Fraction defines the protobuf message type for tmmath.Fraction
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| numerator | [int64](#int64) |  |  |
-| denominator | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.tendermint.v1.Header"></a>
+| Field       | Type                               | Label | Description |
+| ----------- | ---------------------------------- | ----- | ----------- |
+| numerator   | [int64](cosmos-grpc-docs.md#int64) |       |             |
+| denominator | [int64](cosmos-grpc-docs.md#int64) |       |             |
 
 ### Header
-Header defines the Tendermint client consensus Header.
-It encapsulates all the information necessary to update from a trusted
-Tendermint ConsensusState. The inclusion of TrustedHeight and
-TrustedValidators allows this update to process correctly, so long as the
-ConsensusState for the TrustedHeight exists, this removes race conditions
-among relayers The SignedHeader and ValidatorSet are the new untrusted update
-fields for the client. The TrustedHeight is the height of a stored
-ConsensusState on the client that will be used to verify the new untrusted
-header. The Trusted ConsensusState must be within the unbonding period of
-current time in order to correctly verify, and the TrustedValidators must
-hash to TrustedConsensusState.NextValidatorsHash since that is the last
-trusted validator set at the TrustedHeight.
 
+Header defines the Tendermint client consensus Header. It encapsulates all the information necessary to update from a trusted Tendermint ConsensusState. The inclusion of TrustedHeight and TrustedValidators allows this update to process correctly, so long as the ConsensusState for the TrustedHeight exists, this removes race conditions among relayers The SignedHeader and ValidatorSet are the new untrusted update fields for the client. The TrustedHeight is the height of a stored ConsensusState on the client that will be used to verify the new untrusted header. The Trusted ConsensusState must be within the unbonding period of current time in order to correctly verify, and the TrustedValidators must hash to TrustedConsensusState.NextValidatorsHash since that is the last trusted validator set at the TrustedHeight.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| signed_header | [tendermint.types.SignedHeader](#tendermint.types.SignedHeader) |  |  |
-| validator_set | [tendermint.types.ValidatorSet](#tendermint.types.ValidatorSet) |  |  |
-| trusted_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| trusted_validators | [tendermint.types.ValidatorSet](#tendermint.types.ValidatorSet) |  |  |
-
-
-
-
-
-
-<a name="ibc.lightclients.tendermint.v1.Misbehaviour"></a>
+| Field               | Type                                                                               | Label | Description |
+| ------------------- | ---------------------------------------------------------------------------------- | ----- | ----------- |
+| signed\_header      | [tendermint.types.SignedHeader](cosmos-grpc-docs.md#tendermint.types.SignedHeader) |       |             |
+| validator\_set      | [tendermint.types.ValidatorSet](cosmos-grpc-docs.md#tendermint.types.ValidatorSet) |       |             |
+| trusted\_height     | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height)         |       |             |
+| trusted\_validators | [tendermint.types.ValidatorSet](cosmos-grpc-docs.md#tendermint.types.ValidatorSet) |       |             |
 
 ### Misbehaviour
-Misbehaviour is a wrapper over two conflicting Headers
-that implements Misbehaviour interface expected by ICS-02
 
+Misbehaviour is a wrapper over two conflicting Headers that implements Misbehaviour interface expected by ICS-02
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  |  |
-| chain_id | [string](#string) |  |  |
-| header_1 | [Header](#ibc.lightclients.tendermint.v1.Header) |  |  |
-| header_2 | [Header](#ibc.lightclients.tendermint.v1.Header) |  |  |
+| Field      | Type                                                                | Label | Description |
+| ---------- | ------------------------------------------------------------------- | ----- | ----------- |
+| client\_id | [string](cosmos-grpc-docs.md#string)                                |       |             |
+| chain\_id  | [string](cosmos-grpc-docs.md#string)                                |       |             |
+| header\_1  | [Header](cosmos-grpc-docs.md#ibc.lightclients.tendermint.v1.Header) |       |             |
+| header\_2  | [Header](cosmos-grpc-docs.md#ibc.lightclients.tendermint.v1.Header) |       |             |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="ibc/lightclients/localhost/v1/localhost.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/lightclients/localhost/v1/localhost.proto
 
-
-
-<a name="ibc.lightclients.localhost.v1.ClientState"></a>
-
 ### ClientState
-ClientState defines a loopback (localhost) client. It requires (read-only)
-access to keys outside the client prefix.
 
+ClientState defines a loopback (localhost) client. It requires (read-only) access to keys outside the client prefix.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| chain_id | [string](#string) |  | self chain ID |
-| height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | self latest block height |
+| Field     | Type                                                                       | Label | Description              |
+| --------- | -------------------------------------------------------------------------- | ----- | ------------------------ |
+| chain\_id | [string](cosmos-grpc-docs.md#string)                                       |       | self chain ID            |
+| height    | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | self latest block height |
 
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="ibc/applications/transfer/v1/transfer.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/applications/transfer/v1/transfer.proto
 
-
-
-<a name="ibc.applications.transfer.v1.DenomTrace"></a>
-
 ### DenomTrace
-DenomTrace contains the base denomination for ICS20 fungible tokens and the
-source tracing information path.
 
+DenomTrace contains the base denomination for ICS20 fungible tokens and the source tracing information path.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| path | [string](#string) |  | path defines the chain of port/channel identifiers used for tracing the source of the fungible token. |
-| base_denom | [string](#string) |  | base denomination of the relayed fungible token. |
-
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.FungibleTokenPacketData"></a>
+| Field       | Type                                 | Label | Description                                                                                           |
+| ----------- | ------------------------------------ | ----- | ----------------------------------------------------------------------------------------------------- |
+| path        | [string](cosmos-grpc-docs.md#string) |       | path defines the chain of port/channel identifiers used for tracing the source of the fungible token. |
+| base\_denom | [string](cosmos-grpc-docs.md#string) |       | base denomination of the relayed fungible token.                                                      |
 
 ### FungibleTokenPacketData
-FungibleTokenPacketData defines a struct for the packet payload
-See FungibleTokenPacketData spec:
-https://github.com/cosmos/ics/tree/master/spec/ics-020-fungible-token-transfer#data-structures
 
+FungibleTokenPacketData defines a struct for the packet payload See FungibleTokenPacketData spec: https://github.com/cosmos/ics/tree/master/spec/ics-020-fungible-token-transfer#data-structures
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| denom | [string](#string) |  | the token denomination to be transferred |
-| amount | [uint64](#uint64) |  | the token amount to be transferred |
-| sender | [string](#string) |  | the sender address |
-| receiver | [string](#string) |  | the recipient address on the destination chain |
-
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.MsgTransfer"></a>
+| Field    | Type                                 | Label | Description                                    |
+| -------- | ------------------------------------ | ----- | ---------------------------------------------- |
+| denom    | [string](cosmos-grpc-docs.md#string) |       | the token denomination to be transferred       |
+| amount   | [uint64](cosmos-grpc-docs.md#uint64) |       | the token amount to be transferred             |
+| sender   | [string](cosmos-grpc-docs.md#string) |       | the sender address                             |
+| receiver | [string](cosmos-grpc-docs.md#string) |       | the recipient address on the destination chain |
 
 ### MsgTransfer
-MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
-ICS20 enabled chains. See ICS Spec here:
-https://github.com/cosmos/ics/tree/master/spec/ics-020-fungible-token-transfer#data-structures
 
+MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between ICS20 enabled chains. See ICS Spec here: https://github.com/cosmos/ics/tree/master/spec/ics-020-fungible-token-transfer#data-structures
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| source_port | [string](#string) |  | the port on which the packet will be sent |
-| source_channel | [string](#string) |  | the channel by which the packet will be sent |
-| token | [cosmos.base.v1beta1.Coin](#cosmos.base.v1beta1.Coin) |  | the tokens to be transferred |
-| sender | [string](#string) |  | the sender address |
-| receiver | [string](#string) |  | the recipient address on the destination chain |
-| timeout_height | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  | Timeout height relative to the current block height. The timeout is disabled when set to 0. |
-| timeout_timestamp | [uint64](#uint64) |  | Timeout timestamp (in nanoseconds) relative to the current block timestamp. The timeout is disabled when set to 0. |
-
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.MsgTransferResponse"></a>
+| Field              | Type                                                                       | Label | Description                                                                                                        |
+| ------------------ | -------------------------------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------ |
+| source\_port       | [string](cosmos-grpc-docs.md#string)                                       |       | the port on which the packet will be sent                                                                          |
+| source\_channel    | [string](cosmos-grpc-docs.md#string)                                       |       | the channel by which the packet will be sent                                                                       |
+| token              | [cosmos.base.v1beta1.Coin](cosmos-grpc-docs.md#cosmos.base.v1beta1.Coin)   |       | the tokens to be transferred                                                                                       |
+| sender             | [string](cosmos-grpc-docs.md#string)                                       |       | the sender address                                                                                                 |
+| receiver           | [string](cosmos-grpc-docs.md#string)                                       |       | the recipient address on the destination chain                                                                     |
+| timeout\_height    | [ibc.core.client.v1.Height](cosmos-grpc-docs.md#ibc.core.client.v1.Height) |       | Timeout height relative to the current block height. The timeout is disabled when set to 0.                        |
+| timeout\_timestamp | [uint64](cosmos-grpc-docs.md#uint64)                                       |       | Timeout timestamp (in nanoseconds) relative to the current block timestamp. The timeout is disabled when set to 0. |
 
 ### MsgTransferResponse
+
 MsgTransferResponse defines the Msg/Transfer response type.
 
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.Params"></a>
-
 ### Params
-Params defines the set of IBC transfer parameters.
-NOTE: To prevent a single token from being transferred, set the
-TransfersEnabled parameter to true and then set the bank module&#39;s SendEnabled
-parameter for the denomination to false.
 
+Params defines the set of IBC transfer parameters. NOTE: To prevent a single token from being transferred, set the TransfersEnabled parameter to true and then set the bank module's SendEnabled parameter for the denomination to false.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| send_enabled | [bool](#bool) |  | send_enabled enables or disables all cross-chain token transfers from this chain. |
-| receive_enabled | [bool](#bool) |  | receive_enabled enables or disables all cross-chain token transfers to this chain. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="ibc.applications.transfer.v1.Msg"></a>
+| Field            | Type                             | Label | Description                                                                         |
+| ---------------- | -------------------------------- | ----- | ----------------------------------------------------------------------------------- |
+| send\_enabled    | [bool](cosmos-grpc-docs.md#bool) |       | send\_enabled enables or disables all cross-chain token transfers from this chain.  |
+| receive\_enabled | [bool](cosmos-grpc-docs.md#bool) |       | receive\_enabled enables or disables all cross-chain token transfers to this chain. |
 
 ### Msg
+
 Msg defines the ibc/transfer Msg service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Transfer | [MsgTransfer](#ibc.applications.transfer.v1.MsgTransfer) | [MsgTransferResponse](#ibc.applications.transfer.v1.MsgTransferResponse) | Transfer defines a rpc handler method for MsgTransfer. |
+| Method Name | Request Type                                                                | Response Type                                                                               | Description                                            |
+| ----------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| Transfer    | [MsgTransfer](cosmos-grpc-docs.md#ibc.applications.transfer.v1.MsgTransfer) | [MsgTransferResponse](cosmos-grpc-docs.md#ibc.applications.transfer.v1.MsgTransferResponse) | Transfer defines a rpc handler method for MsgTransfer. |
 
- 
-
-
-
-<a name="ibc/applications/transfer/v1/query.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/applications/transfer/v1/query.proto
 
-
-
-<a name="ibc.applications.transfer.v1.QueryDenomTraceRequest"></a>
-
 ### QueryDenomTraceRequest
-QueryDenomTraceRequest is the request type for the Query/DenomTrace RPC
-method
 
+QueryDenomTraceRequest is the request type for the Query/DenomTrace RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| hash | [string](#string) |  | hash (in hex format) of the denomination trace information. |
-
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.QueryDenomTraceResponse"></a>
+| Field | Type                                 | Label | Description                                                 |
+| ----- | ------------------------------------ | ----- | ----------------------------------------------------------- |
+| hash  | [string](cosmos-grpc-docs.md#string) |       | hash (in hex format) of the denomination trace information. |
 
 ### QueryDenomTraceResponse
-QueryDenomTraceResponse is the response type for the Query/DenomTrace RPC
-method.
 
+QueryDenomTraceResponse is the response type for the Query/DenomTrace RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| denom_trace | [DenomTrace](#ibc.applications.transfer.v1.DenomTrace) |  | denom_trace returns the requested denomination trace information. |
-
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.QueryDenomTracesRequest"></a>
+| Field        | Type                                                                      | Label | Description                                                        |
+| ------------ | ------------------------------------------------------------------------- | ----- | ------------------------------------------------------------------ |
+| denom\_trace | [DenomTrace](cosmos-grpc-docs.md#ibc.applications.transfer.v1.DenomTrace) |       | denom\_trace returns the requested denomination trace information. |
 
 ### QueryDenomTracesRequest
-QueryConnectionsRequest is the request type for the Query/DenomTraces RPC
-method
 
+QueryConnectionsRequest is the request type for the Query/DenomTraces RPC method
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pagination | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
-
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.QueryDenomTracesResponse"></a>
+| Field      | Type                                                                                               | Label | Description                                                |
+| ---------- | -------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
+| pagination | [cosmos.base.query.v1beta1.PageRequest](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageRequest) |       | pagination defines an optional pagination for the request. |
 
 ### QueryDenomTracesResponse
-QueryConnectionsResponse is the response type for the Query/DenomTraces RPC
-method.
 
+QueryConnectionsResponse is the response type for the Query/DenomTraces RPC method.
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| denom_traces | [DenomTrace](#ibc.applications.transfer.v1.DenomTrace) | repeated | denom_traces returns all denominations trace information. |
-| pagination | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
-
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.QueryParamsRequest"></a>
+| Field         | Type                                                                                                 | Label    | Description                                                |
+| ------------- | ---------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------------------------- |
+| denom\_traces | [DenomTrace](cosmos-grpc-docs.md#ibc.applications.transfer.v1.DenomTrace)                            | repeated | denom\_traces returns all denominations trace information. |
+| pagination    | [cosmos.base.query.v1beta1.PageResponse](cosmos-grpc-docs.md#cosmos.base.query.v1beta1.PageResponse) |          | pagination defines the pagination in the response.         |
 
 ### QueryParamsRequest
+
 QueryParamsRequest is the request type for the Query/Params RPC method.
 
-
-
-
-
-
-<a name="ibc.applications.transfer.v1.QueryParamsResponse"></a>
-
 ### QueryParamsResponse
+
 QueryParamsResponse is the response type for the Query/Params RPC method.
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| params | [Params](#ibc.applications.transfer.v1.Params) |  | params defines the parameters of the module. |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="ibc.applications.transfer.v1.Query"></a>
+| Field  | Type                                                              | Label | Description                                  |
+| ------ | ----------------------------------------------------------------- | ----- | -------------------------------------------- |
+| params | [Params](cosmos-grpc-docs.md#ibc.applications.transfer.v1.Params) |       | params defines the parameters of the module. |
 
 ### Query
+
 Query provides defines the gRPC querier service.
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| DenomTrace | [QueryDenomTraceRequest](#ibc.applications.transfer.v1.QueryDenomTraceRequest) | [QueryDenomTraceResponse](#ibc.applications.transfer.v1.QueryDenomTraceResponse) | DenomTrace queries a denomination trace information. |
-| DenomTraces | [QueryDenomTracesRequest](#ibc.applications.transfer.v1.QueryDenomTracesRequest) | [QueryDenomTracesResponse](#ibc.applications.transfer.v1.QueryDenomTracesResponse) | DenomTraces queries all denomination traces. |
-| Params | [QueryParamsRequest](#ibc.applications.transfer.v1.QueryParamsRequest) | [QueryParamsResponse](#ibc.applications.transfer.v1.QueryParamsResponse) | Params queries all parameters of the ibc-transfer module. |
+| Method Name | Request Type                                                                                        | Response Type                                                                                         | Description                                               |
+| ----------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| DenomTrace  | [QueryDenomTraceRequest](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryDenomTraceRequest)   | [QueryDenomTraceResponse](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryDenomTraceResponse)   | DenomTrace queries a denomination trace information.      |
+| DenomTraces | [QueryDenomTracesRequest](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryDenomTracesRequest) | [QueryDenomTracesResponse](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryDenomTracesResponse) | DenomTraces queries all denomination traces.              |
+| Params      | [QueryParamsRequest](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryParamsRequest)           | [QueryParamsResponse](cosmos-grpc-docs.md#ibc.applications.transfer.v1.QueryParamsResponse)           | Params queries all parameters of the ibc-transfer module. |
 
- 
-
-
-
-<a name="ibc/applications/transfer/v1/genesis.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
+[Top](cosmos-grpc-docs.md#top)
 
 ## ibc/applications/transfer/v1/genesis.proto
 
-
-
-<a name="ibc.applications.transfer.v1.GenesisState"></a>
-
 ### GenesisState
+
 GenesisState defines the ibc-transfer genesis state
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| port_id | [string](#string) |  |  |
-| denom_traces | [DenomTrace](#ibc.applications.transfer.v1.DenomTrace) | repeated |  |
-| params | [Params](#ibc.applications.transfer.v1.Params) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
+| Field         | Type                                                                      | Label    | Description |
+| ------------- | ------------------------------------------------------------------------- | -------- | ----------- |
+| port\_id      | [string](cosmos-grpc-docs.md#string)                                      |          |             |
+| denom\_traces | [DenomTrace](cosmos-grpc-docs.md#ibc.applications.transfer.v1.DenomTrace) | repeated |             |
+| params        | [Params](cosmos-grpc-docs.md#ibc.applications.transfer.v1.Params)         |          |             |
 
 ## Scalar Value Types
 
-| .proto Type | Notes | C++ | Java | Python | Go | C# | PHP | Ruby |
-| ----------- | ----- | --- | ---- | ------ | -- | -- | --- | ---- |
-| <a name="double" /> double |  | double | double | float | float64 | double | float | Float |
-| <a name="float" /> float |  | float | float | float | float32 | float | float | Float |
-| <a name="int32" /> int32 | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
-| <a name="int64" /> int64 | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead. | int64 | long | int/long | int64 | long | integer/string | Bignum |
-| <a name="uint32" /> uint32 | Uses variable-length encoding. | uint32 | int | int/long | uint32 | uint | integer | Bignum or Fixnum (as required) |
-| <a name="uint64" /> uint64 | Uses variable-length encoding. | uint64 | long | int/long | uint64 | ulong | integer/string | Bignum or Fixnum (as required) |
-| <a name="sint32" /> sint32 | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
-| <a name="sint64" /> sint64 | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s. | int64 | long | int/long | int64 | long | integer/string | Bignum |
-| <a name="fixed32" /> fixed32 | Always four bytes. More efficient than uint32 if values are often greater than 2^28. | uint32 | int | int | uint32 | uint | integer | Bignum or Fixnum (as required) |
-| <a name="fixed64" /> fixed64 | Always eight bytes. More efficient than uint64 if values are often greater than 2^56. | uint64 | long | int/long | uint64 | ulong | integer/string | Bignum |
-| <a name="sfixed32" /> sfixed32 | Always four bytes. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
-| <a name="sfixed64" /> sfixed64 | Always eight bytes. | int64 | long | int/long | int64 | long | integer/string | Bignum |
-| <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
-| <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
-| <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
-
+| .proto Type | Notes                                                                                                                                           | C++    | Java       | Python      | Go      | C#         | PHP            | Ruby                           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------- | ----------- | ------- | ---------- | -------------- | ------------------------------ |
+| double      |                                                                                                                                                 | double | double     | float       | float64 | double     | float          | Float                          |
+| float       |                                                                                                                                                 | float  | float      | float       | float32 | float      | float          | Float                          |
+| int32       | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead. | int32  | int        | int         | int32   | int        | integer        | Bignum or Fixnum (as required) |
+| int64       | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead. | int64  | long       | int/long    | int64   | long       | integer/string | Bignum                         |
+| uint32      | Uses variable-length encoding.                                                                                                                  | uint32 | int        | int/long    | uint32  | uint       | integer        | Bignum or Fixnum (as required) |
+| uint64      | Uses variable-length encoding.                                                                                                                  | uint64 | long       | int/long    | uint64  | ulong      | integer/string | Bignum or Fixnum (as required) |
+| sint32      | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.                            | int32  | int        | int         | int32   | int        | integer        | Bignum or Fixnum (as required) |
+| sint64      | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.                            | int64  | long       | int/long    | int64   | long       | integer/string | Bignum                         |
+| fixed32     | Always four bytes. More efficient than uint32 if values are often greater than 2^28.                                                            | uint32 | int        | int         | uint32  | uint       | integer        | Bignum or Fixnum (as required) |
+| fixed64     | Always eight bytes. More efficient than uint64 if values are often greater than 2^56.                                                           | uint64 | long       | int/long    | uint64  | ulong      | integer/string | Bignum                         |
+| sfixed32    | Always four bytes.                                                                                                                              | int32  | int        | int         | int32   | int        | integer        | Bignum or Fixnum (as required) |
+| sfixed64    | Always eight bytes.                                                                                                                             | int64  | long       | int/long    | int64   | long       | integer/string | Bignum                         |
+| bool        |                                                                                                                                                 | bool   | boolean    | boolean     | bool    | bool       | boolean        | TrueClass/FalseClass           |
+| string      | A string must always contain UTF-8 encoded or 7-bit ASCII text.                                                                                 | string | String     | str/unicode | string  | string     | string         | String (UTF-8)                 |
+| bytes       | May contain any arbitrary sequence of bytes.                                                                                                    | string | ByteString | str         | \[]byte | ByteString | string         | String (ASCII-8BIT)            |

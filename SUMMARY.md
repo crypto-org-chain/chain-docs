@@ -10,16 +10,9 @@
   * [Advanced TMKMS Integration](docs/getting-started/advanced-tmkms-integration.md)
   * [Mainnet/Testnet: Running Nodes using AWS 1-click Deployment](docs/getting-started/aws-1click.md)
   * [Mainnet/Testnet: Running Nodes using Azure 1-click Deployment](docs/getting-started/azure-1click.md)
-  * [Croeseid Testnet: Running Nodes With Nix](docs/getting-started/croeseid-testnet-nix.md)
-  * [Croeseid Testnet: Running Nodes](docs/getting-started/croeseid-testnet.md)
-  * [Croeseid 5 Testnet: Running Nodes](docs/getting-started/croeseid5-testnet.md)
-  * [Devnet: Running Latest Development Node](docs/getting-started/local-devnet.md)
-  * [Crypto.org Mainnet: Running a Full Node](docs/getting-started/mainnet.md)
-  * [Crypto.org Mainnet: Running a Validator](docs/getting-started/mainnet\_validator.md)
   * [NFT](docs/getting-started/nft-guide.md)
   * [Notes on Performance](docs/getting-started/notes-on-performance.md)
   * [Notes on Production Deployment](docs/getting-started/notes-on-production-deployment.md)
-  * [Crypto.org Mainnet Validator Security Checklist](docs/getting-started/security-checklist.md)
   * [Token Migration Web Tool](docs/getting-started/token-migration.md)
 * [Upgrade Guide](getting-started/upgrade-guide/README.md)
   * [The "V4" upgrade guide (v3.\* to v4.2.2) :](getting-started/upgrade-guide/upgrade\_guide\_v4.md)
@@ -35,6 +28,13 @@
     * [Crypto.org Chain Integration documentation](docs/resources/chain-integration.md)
 
 ## For Node Hosts
+
+* [Crypto.org Mainnet: Running a Full Node](for-node-hosts/mainnet.md)
+* [Devnet: Running Latest Development Node](for-node-hosts/local-devnet.md)
+* [Crypto.org Mainnet Validator Security Checklist](for-node-hosts/security-checklist.md)
+* [Croeseid Testnet: Running Nodes With Nix](for-node-hosts/croeseid-testnet-nix.md)
+* [Croeseid 5 Testnet: Running Nodes](for-node-hosts/croeseid5-testnet.md)
+* [Croeseid Testnet: Running Nodes](for-node-hosts/croeseid-testnet.md)
 
 ## For USERS
 
@@ -76,3 +76,4 @@
   * [The Proposal Process](crypto.org-chain-protocol/chain-details/govprocess.md)
   * [Chain ID, Address Format and Signatures](crypto.org-chain-protocol/chain-details/chain-id.md)
   * [Genesis](crypto.org-chain-protocol/chain-details/genesis\_file.md)
+* [Crypto.org Mainnet: Running a Validator](crypto.org-chain-protocol/mainnet\_validator.md)

@@ -4,8 +4,8 @@
 
 ## Getting Started
 
-* [Crypto.org Chain Introduction](getting-started/introduction.md)
-* [Architecture](getting-started/architecture.md)
+* [📑 Crypto.org Chain Introduction](getting-started/introduction.md)
+* [🔰 Architecture](getting-started/architecture.md)
 
 ## For Node Hosts
 
@@ -42,6 +42,7 @@
   * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
   * [Multisig account](docs/wallets/multisig-account.md)
 * [Token Migration Web Tool](for-users/token-migration.md)
+* [Croeseid Testnet Faucet](https://crypto.org/faucet)
 
 ## Block Explorers
 
@@ -51,10 +52,10 @@
 ## Crypto.org Chain Protocol
 
 * [Chain Details](crypto.org-chain-protocol/chain-details/README.md)
-  * [Protocol Documentation](crypto.org-chain-protocol/chain-details/cosmos-grpc-docs.md)
   * [Genesis](crypto.org-chain-protocol/chain-details/genesis\_file.md)
-  * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](crypto.org-chain-protocol/chain-details/solo-machine.md)
   * [Chain ID, Address Format and Signatures](crypto.org-chain-protocol/chain-details/chain-id.md)
+  * [Protocol Documentation](crypto.org-chain-protocol/chain-details/cosmos-grpc-docs.md)
+  * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](crypto.org-chain-protocol/chain-details/solo-machine.md)
   * [List of parameters](crypto.org-chain-protocol/chain-details/parameters.md)
   * [The Proposal Process](crypto.org-chain-protocol/chain-details/govprocess.md)
   * [Technical glossary](crypto.org-chain-protocol/chain-details/technical-glossary.md)
@@ -72,6 +73,6 @@
 
 ## Crypto.org Chain Integration
 
-* [Crypto.org Chain Integration documentation](crypto.org-chain-integration/chain-integration.md)
+* [Integration documentation](crypto.org-chain-integration/chain-integration.md)
 * [Node Setup and RPC note](crypto.org-chain-integration/node-and-rpc-setup-notes.md)
-* [Crypto.org Chain Blocks and Transactions](crypto.org-chain-integration/blocks-and-transactions.md)
+* [Blocks and Transactions](crypto.org-chain-integration/blocks-and-transactions.md)

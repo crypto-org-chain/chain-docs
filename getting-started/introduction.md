@@ -4,7 +4,7 @@ cover: ../.gitbook/assets/og-image.webp
 coverY: 0
 ---
 
-# Crypto.org Chain Introduction
+# 📑 Crypto.org Chain Introduction
 
 The development of blockchain technology and cryptocurrencies represents a cryptography and security breakthrough as significant as that created by the internet in the 1990s. This technology, however, is still at a very nascent stage; in order to generate mass adoption, it will therefore be necessary to find compelling real-life use cases that can appeal to an audience larger than the small group of industry professionals and experts.
 

@@ -65,11 +65,10 @@
   * [module\_authz](crypto.org-chain-protocol/module\_overview/module\_authz.md)
   * [module\_bank](crypto.org-chain-protocol/module\_overview/module\_bank.md)
   * [module\_mint](crypto.org-chain-protocol/module\_overview/module\_mint.md)
-  * [module\_nft](crypto.org-chain-protocol/module\_overview/module\_nft.md)
   * [module\_gov](crypto.org-chain-protocol/module\_overview/module\_gov.md)
   * [module\_staking](crypto.org-chain-protocol/module\_overview/module\_staking.md)
   * [module\_distribution](crypto.org-chain-protocol/module\_overview/module\_distribution.md)
-  * [NFT](crypto.org-chain-protocol/module\_overview/nft-guide.md)
+  * [module\_nft](crypto.org-chain-protocol/module\_overview/module\_nft.md)
 
 ## Crypto.org Chain Integration
 

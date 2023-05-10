@@ -4,24 +4,41 @@
 
 #### Introduction
 
+NFT provides the ability to digitize assets. The NFT Module described here is meant to be used as a module across chains for managing non-fungible token that represents individual assets with unique features. This standard was developed on Ethereum within the ERC-721 and the subsequent ERC-1155 standard addressed some of the restrictions of Ethereum regarding storage costs and semi-fungible assets. The NFT on the chain is identified by an ID, and the transaction process will also be publicly recorded. NFT metadata is based on a specific JSON schema - it can be stored directly on the chain or the URI of its storage source outside the chain can be stored on the chain.
+
+
+
 Fungible tokens are mutually interchangeable, and one most common example of fungible tokens is fiat currencies. Specifically, the $100.50 US dollars in my bank account is equally valuable as the $100.50 US dollars in someone else's bank account. Another example of fungible tokens would be the native cryptocurrency of **Ethereum**, one of the most popular blockchain networks, i.e. **Ether**. Ethers are totally fungible, meaning that one ether is equal to one ether, and it's equal to any other ether as well. Particularly, ethers are also highly divisible up to one **wei**, or 0.000000000000000001 (10-18) ether.
 
-In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Crypto.org Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** are unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
+In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Crypto.org Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** is unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
 
 On-chain NFT standards were first developed on **Ethereum** within the **ERC-721** standard and its subsequent **Ethereum Improvement Proposals**. The subsequent **ERC-1155** standard aims to address some restrictions of **Ethereum** such as storage costs and semi-fungible assets. NFTs on application specific blockchains share some but not all features as their **Ethereum** brethren, since application specific blockchains are more flexible in how their resources are utilized, such as the ability to use strings as IDs.
 
 The `nft` module here facilitates managing non-fungible tokens that represent individual assets with unique features on **Crypto.org Chain**.
 
+You can find the [NFT specification doc](https://github.com/crypto-org-chain/chain-main/tree/master/x/nft/spec) here.
+
+####
+
 #### Overview
 
-There are two key concepts for NFTs on **Crypto.org Chain**, namely, **denom** and **token**:
+Below are key concepts and properties for NFTs on **Crypto.org Chain**:
 
-*   **denom**
+*   **Denom**
 
-    A denom represents a collection of NFTs. For example, I could issue a denom named "CryptoPuppies" under which my collection of 100 CryptoPuppies NFTs get minted. Each denom has a `denom ID` and a `denom name`, both are unique on chain. A `denom schema` should generally be set when a denom gets issued, which indicates the format of NFT metadata under this denom.
-*   **token**
+    A denom represents a collection of NFTs. It is the globally unique nft category name. Denom ID is the globally unique nft category identifier of Denom. For example, I could issue a denom named "CryptoPuppies" under which my collection of 100 CryptoPuppies NFTs get minted. Each denom has a `denom ID` and a `denom name`, both are unique on chain. A `denom schema` should generally be set when a denom gets issued, which indicates the format of NFT metadata under this denom.
+*   **Token**
 
     An NFT, or simply "token", is a specific instance of NFT minted under a denom. Each token has a `token ID`, which is unique under a specific denom. Generally, a token also has its `token name` (name of the NFT), `token URI` (off-chain information or storage location of the NFT), and `token metadata` (on-chain data that provides information about the NFT).
+*   **Metadata**
+
+    The structure containing the specific data of the nft
+*   **Metadata Specification**
+
+    The JSON Schema that nft metadata should follow
+*   **Metadata URI**
+
+    The URI indicates its storage location when metadata is stored off-chain
 
 ::: tip Specifications `denom ID`: a string of lowercase alphanumeric characters with length between 3 and 64 that begins with a letter, unique over the chain;
 
@@ -83,7 +100,7 @@ $ chain-maind tx nft issue fftb2050 --name "Fortune Favours the Brave 2050" --sc
 
 #### `mint`:
 
-When a denom has been issued, the denom owner (the creator) may mint an NFT under such denom.
+The specific nft of this type can be created after the nft is issued. The denom ID, token ID, recipient address and URI need to be specified.
 
 **`tx nft mint [denom_id] [token_id] --name [token_name] --uri [token_uri] --data [token_metadata] --recipient [recipient_address] --from [user_address]`- Mint an NFT**
 
@@ -223,6 +240,8 @@ Effectively, one may also query information of a denom by its denom name instead
 
 **`query nft denom-by-name [denom_name]` - Query information of a denom by its denom name**
 
+
+
 To check the number of existing NFTs in a denom:
 
 **`query nft supply [denom_id]` - Query the number of existing NFTs in a denom**
@@ -325,7 +344,7 @@ $ chain-maind query nft collection fftb2050 --output json | jq
 
 * **query owner information:**
 
-Last but not least, information of a specific NFT owner may also be queried.
+Last but not least, information about a specific NFT owner may also be queried.
 
 **`query nft owner [owner_address]` - Query information of all NFTs owned by a specific owner**
 

@@ -56,8 +56,8 @@ _Please note that the size of snapshots from Quicksync will keep growing._
 
 ::: tip Remarks: The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys etc. ::: To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main\_1.2.1\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main\_1.2.1\_Windows\_x86\_64.zip) are also available. There are two options to install `chain-maind`:
 
-* [Directly from Github](mainnet.md#option-1-install-chain-maind-released-binaries-from-github); or
-* [Homebrew](mainnet.md#option-2-install-chain-maind-by-homebrew)
+* [Directly from Github](./#option-1-install-chain-maind-released-binaries-from-github); or
+* [Homebrew](./#option-2-install-chain-maind-by-homebrew)
 
 As mention before, in order to run a full node with complete blockchain data, we would need to begin with the older binary version `1.2.1`:
 
@@ -310,7 +310,7 @@ $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
 
 ## "DRACO II" and "V4" Network upgrades
 
-You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](../../getting-started/upgrade-guide/upgrade\_guide\_draco\_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](../../getting-started/upgrade-guide/upgrade\_guide\_v4.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
+You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade\_guide\_draco\_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade\_guide\_v4.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
 
 ## _(Optional)_ QuickSync
 

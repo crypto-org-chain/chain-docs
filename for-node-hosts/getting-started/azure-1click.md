@@ -2,7 +2,7 @@
 
 This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
-::: warning CAUTION We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](advanced-tmkms-integration.html) :::
+::: warning CAUTION We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html) :::
 
 ## Step 1. Azure Account Creation
 
@@ -16,7 +16,7 @@ Please read `Microsoft Azure` free trial introduction to see if you are eligible
 
 Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft\_Azure\_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.org Chain 1-Click Node".
 
-![](assets/azure\_marketplace.png)
+![](../../docs/getting-started/assets/azure\_marketplace.png)
 
 ### Step 2-2. Create a Virtual Machine
 
@@ -24,7 +24,7 @@ Choose the image and click "Create" to start creating the Crypto.org Chain 1-Cli
 
 #### 1. Basic
 
-![](assets/azure\_1click\_basics.png)
+![](../../docs/getting-started/assets/azure\_1click\_basics.png)
 
 | Configuration           | Value                                                                                                             |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -39,7 +39,7 @@ Choose the image and click "Create" to start creating the Crypto.org Chain 1-Cli
 
 #### 3. Networking
 
-![](assets/azure\_1click\_networking.png)
+![](../../docs/getting-started/assets/azure\_1click\_networking.png)
 
 * _Virtual network_, _Subnet_, _Public IP_ and _NIC_: "Create new" if you don't have any in that region
 
@@ -183,7 +183,7 @@ Mar 25 15:34:02 ip-172-31-69-43 chain-maind[2657]: 3:34PM INF committed state ap
 ...
 ```
 
-The consensus public key can be found by and please take a note of it for next [steps](aws-1click.html#step-4-join-as-a-validator):
+The consensus public key can be found by and please take a note of it for next [steps](../../docs/getting-started/aws-1click.html#step-4-join-as-a-validator):
 
 ```
 $ sudo /chain/bin/chain-maind tendermint show-validator --home /chain/.chain-maind/
@@ -211,7 +211,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet. :::tip NOTE
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet. :::tip NOTE
 
 * Check whether your chain-maind is mainnet or testnet binary
 
@@ -239,17 +239,17 @@ $ chain-maind version
 
 ### Create a new key and address
 
-Please follow [Step 3-1. Create a new key and address](mainnet.html#step-3-1-create-a-new-key-and-address)
+Please follow [Step 3-1. Create a new key and address](../../docs/getting-started/mainnet.html#step-3-1-create-a-new-key-and-address)
 
 ### Creating a validator node
 
-You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](aws-1click.html#step-3-1-use-the-reconfiguration-script)
+You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](../../docs/getting-started/aws-1click.html#step-3-1-use-the-reconfiguration-script)
 
-Please follow [Step 3-5. Joining the network as a validator](mainnet.html#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) to create validator.
+Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-started/mainnet.html#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) to create validator.
 
 ### Check if the validator has been set
 
-Back your server, and follow [Step 3-6. Check your validator status](mainnet.html#step-3-6-check-your-validator-status)
+Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/mainnet.html#step-3-6-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 
@@ -259,17 +259,17 @@ Back your server, and follow [Step 3-6. Check your validator status](mainnet.htm
 
 ### Create a new key and address
 
-Please follow [Step 3-1. Create a new key and address](croeseid-testnet.html#step-3-1-create-a-new-key-and-address)
+Please follow [Step 3-1. Create a new key and address](../../docs/getting-started/croeseid-testnet.html#step-3-1-create-a-new-key-and-address)
 
 ### Creating a validator node
 
-You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](aws-1click.html#step-3-1-use-the-reconfiguration-script)
+You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](../../docs/getting-started/aws-1click.html#step-3-1-use-the-reconfiguration-script)
 
-Please follow [Step 3-5. Joining the network as a validator](croeseid-testnet.html#step-3-5-send-a-create-validator-transaction) to create validator.
+Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-started/croeseid-testnet.html#step-3-5-send-a-create-validator-transaction) to create validator.
 
 ### Check if the validator has been set
 
-Back your server, and follow [Step 3-6. Check your validator status](croeseid-testnet.html#step-3-6-check-your-validator-status)
+Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/croeseid-testnet.html#step-3-6-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 

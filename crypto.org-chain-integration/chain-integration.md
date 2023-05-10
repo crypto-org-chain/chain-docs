@@ -8,7 +8,7 @@
 
 ## Node and RPC setup notes
 
-[Node Setup and RPC note](../../crypto.org-chain-protocol/node-and-rpc-setup-notes.md)
+[Node Setup and RPC note](node-and-rpc-setup-notes.md)
 
 ## Setup Guide
 

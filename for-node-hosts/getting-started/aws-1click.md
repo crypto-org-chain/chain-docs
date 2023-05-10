@@ -2,7 +2,7 @@
 
 This tutorial will use our AWS 1-click Deployment image to start and create the latest Crypto.org Chain 1-Click Node for both Mainnet and Testnet
 
-::: warning CAUTION We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](advanced-tmkms-integration.html) :::
+::: warning CAUTION We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html) :::
 
 ## Step 1. AWS Account Creation
 
@@ -14,19 +14,19 @@ Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.s
 
 ### Step 2-0. Go to EC2 page and change the region
 
-Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance" ![](assets/aws\_ec2\_dashboard.png)
+Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance" ![](../../docs/getting-started/assets/aws\_ec2\_dashboard.png)
 
 ### Step 2-1. Search for Crypto.org Chain 1-Click Node on AWS Marketplace
 
-Search for "Crypto.org Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Crypto.org Chain 1-Click Node" from search results. ![](assets/aws\_marketplace.png)
+Search for "Crypto.org Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Crypto.org Chain 1-Click Node" from search results. ![](../../docs/getting-started/assets/aws\_marketplace.png)
 
 ### Step 2-2. Choose an instance type
 
-By default, it will choose the recommended instance type (**m5a.large**) for you. But you can choose other instance type based on [Mainnet](mainnet.html#prepare-your-machine)/[Testnet](croeseid-testnet.html#pre-requisites) requirements. ![](assets/aws\_instance.png)
+By default, it will choose the recommended instance type (**m5a.large**) for you. But you can choose other instance type based on [Mainnet](../../docs/getting-started/mainnet.html#prepare-your-machine)/[Testnet](../../docs/getting-started/croeseid-testnet.html#pre-requisites) requirements. ![](../../docs/getting-started/assets/aws\_instance.png)
 
 ### Step 2-3. Configure instance details
 
-![](assets/aws\_config\_instance.png)
+![](../../docs/getting-started/assets/aws\_config\_instance.png)
 
 | Configuration           | Value                                                       |
 | ----------------------- | ----------------------------------------------------------- |
@@ -57,7 +57,7 @@ By default, the image create a new security group for you allowing ssh, p2p, rpc
 
 ### Step 2-7. Review Instance Launch
 
-Click "Launch" once you finish the review ![](assets/aws\_launch.png)
+Click "Launch" once you finish the review ![](../../docs/getting-started/assets/aws\_launch.png)
 
 You can either create a new key pair or import a key pair. Follow this [instruction](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#prepare-key-pair)
 
@@ -184,7 +184,7 @@ Mar 25 15:34:02 ip-172-31-69-43 chain-maind[2657]: 3:34PM INF committed state ap
 ...
 ```
 
-The consensus public key can be found by and please take a note of it for next [steps](aws-1click.html#step-4-join-as-a-validator):
+The consensus public key can be found by and please take a note of it for next [steps](../../docs/getting-started/aws-1click.html#step-4-join-as-a-validator):
 
 ```
 $ sudo /chain/bin/chain-maind tendermint show-validator --home /chain/.chain-maind/
@@ -212,7 +212,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet. :::tip NOTE
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet. :::tip NOTE
 
 * Check whether your chain-maind is mainnet or testnet binary
 
@@ -242,17 +242,17 @@ $ chain-maind version
 
 ### Create a new key and address
 
-Please follow [Step 3-1. Create a new key and address](mainnet.html#step-3-1-create-a-new-key-and-address)
+Please follow [Step 3-1. Create a new key and address](../../docs/getting-started/mainnet.html#step-3-1-create-a-new-key-and-address)
 
 ### Creating a validator node
 
-You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](aws-1click.html#step-3-1-use-the-reconfiguration-script)
+You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](../../docs/getting-started/aws-1click.html#step-3-1-use-the-reconfiguration-script)
 
-Please follow [Step 3-5. Joining the network as a validator](mainnet.html#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) to create validator.
+Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-started/mainnet.html#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) to create validator.
 
 ### Check if the validator has been set
 
-Back your server, and follow [Step 3-6. Check your validator status](mainnet.html#step-3-6-check-your-validator-status)
+Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/mainnet.html#step-3-6-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 
@@ -262,17 +262,17 @@ Back your server, and follow [Step 3-6. Check your validator status](mainnet.htm
 
 ### Create a new key and address
 
-Please follow [Step 3-1. Create a new key and address](croeseid-testnet.html#step-3-1-create-a-new-key-and-address)
+Please follow [Step 3-1. Create a new key and address](../../docs/getting-started/croeseid-testnet.html#step-3-1-create-a-new-key-and-address)
 
 ### Creating a validator node
 
-You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](aws-1click.html#step-3-1-use-the-reconfiguration-script)
+You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](../../docs/getting-started/aws-1click.html#step-3-1-use-the-reconfiguration-script)
 
-Please follow [Step 3-5. Joining the network as a validator](croeseid-testnet.html#step-3-5-send-a-create-validator-transaction) to create validator.
+Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-started/croeseid-testnet.html#step-3-5-send-a-create-validator-transaction) to create validator.
 
 ### Check if the validator has been set
 
-Back your server, and follow [Step 3-6. Check your validator status](croeseid-testnet.html#step-3-6-check-your-validator-status)
+Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/croeseid-testnet.html#step-3-6-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 

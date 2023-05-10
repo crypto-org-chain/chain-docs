@@ -8,7 +8,7 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
 
 * **Join Crypto.org Chain Mainnet**
   * [As a validator](mainnet\_validator.md);
-  * [Build a Full node](mainnet.md)
+  * [Build a Full node](mainnet/)
 *   Deploy mainnet node with [1 click](aws-1click.md):
 
     Try running Full Nodes or Validators connected to our mainnet on

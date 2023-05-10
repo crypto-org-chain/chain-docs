@@ -1,10 +1,8 @@
 # Table of contents
 
-* [README](README.md)
-
 ## Getting Started
 
-* [📑 Crypto.org Chain Introduction](getting-started/introduction.md)
+* [📑 Crypto.org Chain Introduction](README.md)
 * [🔰 Architecture](getting-started/architecture.md)
 
 ## For Node Hosts

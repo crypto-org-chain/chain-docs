@@ -7,8 +7,8 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
 #### Crypto.org Mainnet
 
 * **Join Crypto.org Chain Mainnet**
-  * [As a validator](../../crypto.org-chain-protocol/mainnet\_validator.md);
-  * [Build a Full node](../../for-node-hosts/mainnet.md)
+  * [As a validator](mainnet\_validator.md);
+  * [Build a Full node](mainnet.md)
 *   Deploy mainnet node with [1 click](aws-1click.md):
 
     Try running Full Nodes or Validators connected to our mainnet on
@@ -18,7 +18,7 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
 
 #### Crypto.org Croeseid Testnet
 
-*   [Join Croeseid Testnet](../../for-node-hosts/croeseid-testnet.md):
+*   [Join Croeseid Testnet](croeseid-testnet.md):
 
     Try running Full Nodes or Validators connected to our Croeseid Testnet.
 *   Deploy testnet node with [1 click](aws-1click.md):
@@ -27,13 +27,13 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
 
     * [AWS](aws-1click.md); or
     * [Azure](azure-1click.md).
-*   [Deploy testnet node with nix](../../for-node-hosts/croeseid-testnet-nix.md):
+*   [Deploy testnet node with nix](croeseid-testnet-nix.md):
 
     Install and run full nodes or validators connected to our Croeseid Testnet with nix.
 
 #### Devnet
 
-* **Devnet** - [Build latest development version](../../for-node-hosts/local-devnet.md): Try running latest development network (Devnet)
+* **Devnet** - [Build latest development version](local-devnet.md): Try running latest development network (Devnet)
 
 ### Useful links
 

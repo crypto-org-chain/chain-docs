@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-* [Introduction](getting-started/introduction.md)
+* [Crypto.org Chain Introduction](getting-started/introduction.md)
 * [Architecture](getting-started/architecture.md)
 * [Getting Started](docs/getting-started/README.md)
   * [Advanced TMKMS Integration](docs/getting-started/advanced-tmkms-integration.md)
@@ -29,12 +29,12 @@
 
 ## For Node Hosts
 
-* [Crypto.org Mainnet: Running a Full Node](for-node-hosts/mainnet.md)
-* [Devnet: Running Latest Development Node](for-node-hosts/local-devnet.md)
-* [Crypto.org Mainnet Validator Security Checklist](for-node-hosts/security-checklist.md)
-* [Croeseid Testnet: Running Nodes With Nix](for-node-hosts/croeseid-testnet-nix.md)
-* [Croeseid 5 Testnet: Running Nodes](for-node-hosts/croeseid5-testnet.md)
-* [Croeseid Testnet: Running Nodes](for-node-hosts/croeseid-testnet.md)
+* [Crypto.org Mainnet: Running a Full Node](docs/getting-started/mainnet.md)
+* [Devnet: Running Latest Development Node](docs/getting-started/local-devnet.md)
+* [Crypto.org Mainnet Validator Security Checklist](docs/getting-started/security-checklist.md)
+* [Croeseid Testnet: Running Nodes With Nix](docs/getting-started/croeseid-testnet-nix.md)
+* [Croeseid 5 Testnet: Running Nodes](docs/getting-started/croeseid5-testnet.md)
+* [Croeseid Testnet: Running Nodes](docs/getting-started/croeseid-testnet.md)
 
 ## For USERS
 
@@ -53,10 +53,19 @@
 
 ## Block Explorers
 
-* [Page 2](block-explorers/page-2.md)
+* [Crypto.org Chain Mainnet Explorer](https://crypto.org/explorer/)
+* [Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid5/)
 
 ## Crypto.org Chain Protocol
 
+* [Chain Details](crypto.org-chain-protocol/chain-details/README.md)
+  * [Protocol Documentation](crypto.org-chain-protocol/chain-details/cosmos-grpc-docs.md)
+  * [Technical glossary](crypto.org-chain-protocol/chain-details/technical-glossary.md)
+  * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](crypto.org-chain-protocol/chain-details/solo-machine.md)
+  * [List of parameters](crypto.org-chain-protocol/chain-details/parameters.md)
+  * [The Proposal Process](crypto.org-chain-protocol/chain-details/govprocess.md)
+  * [Chain ID, Address Format and Signatures](crypto.org-chain-protocol/chain-details/chain-id.md)
+  * [Genesis](crypto.org-chain-protocol/chain-details/genesis\_file.md)
 * [Modules](docs/chain-details/module\_overview.md)
   * [module\_supply](docs/chain-details/module\_supply.md)
   * [module\_slashing](docs/chain-details/module\_slashing.md)
@@ -68,12 +77,4 @@
   * [module\_staking](crypto.org-chain-protocol/module\_overview/module\_staking.md)
   * [module\_distribution](crypto.org-chain-protocol/module\_overview/module\_distribution.md)
 * [Node Setup and RPC note](crypto.org-chain-protocol/node-and-rpc-setup-notes.md)
-* [Chain Details](crypto.org-chain-protocol/chain-details/README.md)
-  * [Protocol Documentation](crypto.org-chain-protocol/chain-details/cosmos-grpc-docs.md)
-  * [Technical glossary](crypto.org-chain-protocol/chain-details/technical-glossary.md)
-  * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](crypto.org-chain-protocol/chain-details/solo-machine.md)
-  * [List of parameters](crypto.org-chain-protocol/chain-details/parameters.md)
-  * [The Proposal Process](crypto.org-chain-protocol/chain-details/govprocess.md)
-  * [Chain ID, Address Format and Signatures](crypto.org-chain-protocol/chain-details/chain-id.md)
-  * [Genesis](crypto.org-chain-protocol/chain-details/genesis\_file.md)
-* [Crypto.org Mainnet: Running a Validator](crypto.org-chain-protocol/mainnet\_validator.md)
+* [Crypto.org Mainnet: Running a Validator](docs/getting-started/mainnet\_validator.md)

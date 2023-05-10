@@ -134,7 +134,7 @@ After the chain has been started, we may open up another terminal and start inte
 
 As in the last section, pre-created Hierarchical Deterministic (HD) mnemonic with genesis funds inside are prepared for you in the Devnet. To gain access to the funds, kindly restore the key by using the mnemonic before moving on to the next step.
 
-**Note**: The keys are stored in your operating system by default, we will use `--keyring-backend test` for simplicity. You may refer to a more detailed explanation [here](../docs/wallets/cli.md#the-keyring-keyring-backend-option).
+**Note**: The keys are stored in your operating system by default, we will use `--keyring-backend test` for simplicity. You may refer to a more detailed explanation [here](../wallets/cli.md#the-keyring-keyring-backend-option).
 
 *   Firstly, restore the key name as `launch`:
 

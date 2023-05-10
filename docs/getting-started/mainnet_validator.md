@@ -8,7 +8,7 @@ There are two ways to setup a node:
 
 1. For the host who would like to build a **Validator with complete blockchain data** from scratch,
 
-* Note that there were serveral breaking network upgrades, requiring upgrading at designated block heights. For more details on how to upgrade, we refer to this [guide](../docs/getting-started/mainnet.html#crypto-org-mainnet-running-a-full-node.md) on running a full node.
+* Note that there were serveral breaking network upgrades, requiring upgrading at designated block heights. For more details on how to upgrade, we refer to this [guide](mainnet.html#crypto-org-mainnet-running-a-full-node.md) on running a full node.
 * Once you have a complete synced node, you can revisit this page and jump to the [step](mainnet\_validator.md#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) of joining the networking as a validator.
 
 2. For hosts who would like to **join the network and start validating quickly**, one can:
@@ -167,7 +167,7 @@ Before kick-starting your node, we will have to configure the node so that it co
 
 ### Step 2-3. Enable STATE-SYNC
 
-With [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network. ::: warning CAUTION Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. Kindly refer to this [guide](../docs/getting-started/mainnet.html#crypto-org-mainnet-running-a-full-node) on building a node with complete data. ::: Follow the below steps to enable state-sync:
+With [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network. ::: warning CAUTION Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. Kindly refer to this [guide](mainnet.html#crypto-org-mainnet-running-a-full-node) on building a node with complete data. ::: Follow the below steps to enable state-sync:
 
 *   For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations under \[statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` and add `persistent_peers` by:
 

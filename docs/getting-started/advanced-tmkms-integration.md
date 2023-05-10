@@ -256,7 +256,7 @@ sudo systemctl start tmkms.service
 
 ### Step 8. Running chain-maind
 
-One should follow the same steps in [Croeseid Testnet: Running Nodes](../../for-node-hosts/croeseid-testnet.md)
+One should follow the same steps in [Croeseid Testnet: Running Nodes](croeseid-testnet.md)
 
 Except for one last thing one needs to further configure `~/.chain-maind/config/config.toml` to enable enclave tmkm to sign.
 

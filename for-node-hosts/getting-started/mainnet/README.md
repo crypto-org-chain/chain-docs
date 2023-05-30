@@ -1,10 +1,10 @@
 # Crypto.org Mainnet: Running a Full Node
 
-This is a detailed documentation for setting up a **Full Node** on Crypto.org mainnet. Note that while anyone can set up a full node, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
+This is detailed documentation for setting up a **Full Node** on the Crypto.org mainnet. Note that while anyone can set up a full node, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
-## Step 0 : Notes on network upgrades
+## Step 0: Notes on network upgrades
 
-For the host who would like to build a **Run a Full Node with complete blockchain data** from scratch, note that there were serveral breaking network upgrades, requiring upgrading at designated block heights below:
+For the host who would like to build a **Run a Full Node with complete blockchain data** from scratch, note that there were several breaking network upgrades, requiring upgrading at designated block heights below:
 
 | Block height             | Binary Version     | Instruction                                                                                       |
 | ------------------------ | ------------------ | ------------------------------------------------------------------------------------------------- |
@@ -16,7 +16,7 @@ For the host who would like to build a **Run a Full Node with complete blockchai
 * \*Note that as of `v3.3.5` and higher, you need to modify your `.chain-maind/config/app.toml` and set the following params:
   * `index_events = []`
   * `iavl-cache-size = 781250`
-  * `iavl-disable-fastnode = false` (set to `true` to skip IAVL migration, but keep as `false` when starting from a migrated snapshot. When you are on `INF starting ABCI with Tendermint` for a while, migration is going on and you should NOT terminate this. It might take a couple hours, so plan well ahead for this migration, as it may incur downtime.)
+  * `iavl-disable-fastnode = false` (set to `true` to skip IAVL migration, but keep as `false` when starting from a migrated snapshot. When you are on `INF starting ABCI with Tendermint` for a while, migration is going on and you should NOT terminate this. It might take a couple of hours, so plan well ahead for this migration, as it may incur downtime.)
 * Users can refer to the upgrade guides of
   * ["Canis Major"](https://crypto.org/docs/getting-started/upgrade\_guide.html) (`v1.*` to `v2.0.1`);
   * ["DRACO II"](https://crypto.org/docs/getting-started/upgrade\_guide\_draco\_2.html) (`v2.*` to `v3.3.9`);
@@ -54,14 +54,18 @@ _Please note that the size of snapshots from Quicksync will keep growing._
 
 ## Step 1. Get the Crypto.org Chain Mainnet binary
 
-::: tip Remarks: The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys etc. ::: To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main\_1.2.1\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main\_1.2.1\_Windows\_x86\_64.zip) are also available. There are two options to install `chain-maind`:
+{% hint style="info" %}
+**Remarks**: The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys etc.
+{% endhint %}
+
+To simplify the following step, we will be using **Linux** for illustration. Binaries for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main\_1.2.1\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main\_1.2.1\_Windows\_x86\_64.zip) are also available. There are two options to install `chain-maind`:
 
 * [Directly from Github](./#option-1-install-chain-maind-released-binaries-from-github); or
 * [Homebrew](./#option-2-install-chain-maind-by-homebrew)
 
-As mention before, in order to run a full node with complete blockchain data, we would need to begin with the older binary version `1.2.1`:
+As mentioned before, in order to run a full node with complete blockchain data, we would need to begin with the older binary version `1.2.1`:
 
-### Option 1 - Install `chain-maind` released binaries from Github
+### Option 1 - Install `chain-maind` released binaries from GitHub
 
 *   To install Crypto.org Chain binaries from Github:
 
@@ -83,7 +87,7 @@ As mention before, in order to run a full node with complete blockchain data, we
 
 ::: tip Reminder:
 
-* If you plan to play around with different networks (mainnet and testnet), we suggest you to follow `Option 1` to download the binary directly.
+* If you plan to play around with different networks (mainnet and testnet), we suggest you follow `Option 1` to download the binary directly.
 * The binary downloaded from homebrew is **only for interacting with the mainnet**. You cannot use it to interact with testnet. :::
 
 To install binaries in Homebrew for macOS X or Linux
@@ -166,7 +170,12 @@ Before kick-starting your node, we will have to configure the node so that it co
     $ sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
     ```
 
-:::tip Reminder: The list of the `seed` is subjected to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes) :::
+{% hint style="info" %}
+tip Reminder: The list of the`seed`is subjected to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes)
+{% endhint %}
+
+\
+warning Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html)&#x20;
 
 ## Step 3. Run everything
 

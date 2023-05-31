@@ -85,10 +85,11 @@ As mentioned before, in order to run a full node with complete blockchain data, 
 
 ### Option 2 - Install `chain-maind` by homebrew
 
-::: tip Reminder:
-
-* If you plan to play around with different networks (mainnet and testnet), we suggest you follow `Option 1` to download the binary directly.
-* The binary downloaded from homebrew is **only for interacting with the mainnet**. You cannot use it to interact with testnet. :::
+{% hint style="info" %}
+**Reminder**:  \
+\- If you plan to play around with different networks (mainnet and testnet), we suggest you follow Option 1 to download the binary directly. \
+\- The binary downloaded from homebrew is **only for interacting with the mainnet**. You cannot use it to interact with testnet.
+{% endhint %}
 
 To install binaries in Homebrew for macOS X or Linux
 
@@ -119,10 +120,13 @@ To install binaries in Homebrew for macOS X or Linux
 
 Before kick-starting your node, we will have to configure the node so that it connects to the Crypto.org mainnet
 
-::: tip NOTE
 
-* Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
-* You can also put the `chain-maind` to your binary path and run it directly by `chain-maind` :::
+
+{% hint style="info" %}
+**Note**:\
+\- Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simplify the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.\
+\- You can also put the `chain-maind` to your binary path and run it directly by `chain-maind`
+{% endhint %}
 
 ### Step 2-1. Initialize `chain-maind`
 
@@ -149,15 +153,20 @@ Before kick-starting your node, we will have to configure the node so that it co
     OK!
     ```
 
-    ::: tip NOTE
 
-    *   For Mac environment, `sha256sum` was not installed by default. In this case, you may setup `sha256sum` with this command:
 
-        ```bash
-        function sha256sum() { shasum -a 256 "$@" ; } && export -f sha256sum
-        ```
 
-        :::
+
+    {% hint style="info" %}
+    **Note**: \
+    For Mac environment, `sha256sum` was not installed by default. In this case, you may setup `sha256sum` with this command:
+
+    ```bash
+    function sha256sum() { shasum -a 256 "$@" ; } && export -f sha256sum
+    ```
+    {% endhint %}
+
+
 *   In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
 
     ```bash
@@ -171,7 +180,8 @@ Before kick-starting your node, we will have to configure the node so that it co
     ```
 
 {% hint style="info" %}
-tip Reminder: The list of the`seed`is subjected to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes)
+**Reminder**: \
+The list of the`seed`is subjected to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes)
 {% endhint %}
 
 \
@@ -201,7 +211,10 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
   $ journalctl -u chain-maind -f
 ```
 
-:::details Example: /etc/systemd/system/chain-maind.service created by script
+
+
+{% hint style="info" %}
+&#x20;**Example**: /etc/systemd/system/chain-maind.service created by script
 
 ```bash
 # /etc/systemd/system/chain-maind.service
@@ -222,8 +235,7 @@ LimitNOFILE=50000
 [Install]
 WantedBy=multi-user.target
 ```
-
-:::
+{% endhint %}
 
 It should begin fetching blocks from the other peers. Please wait until it is synced to the upgrade height `922,363` before moving onto the next step.
 

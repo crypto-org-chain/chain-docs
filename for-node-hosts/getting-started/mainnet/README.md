@@ -120,8 +120,6 @@ To install binaries in Homebrew for macOS X or Linux
 
 Before kick-starting your node, we will have to configure the node so that it connects to the Crypto.org mainnet
 
-
-
 {% hint style="info" %}
 **Note**:\
 \- Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simplify the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.\
@@ -155,8 +153,6 @@ Before kick-starting your node, we will have to configure the node so that it co
 
 
 
-
-
     {% hint style="info" %}
     **Note**: \
     For Mac environment, `sha256sum` was not installed by default. In this case, you may setup `sha256sum` with this command:
@@ -181,11 +177,13 @@ Before kick-starting your node, we will have to configure the node so that it co
 
 {% hint style="info" %}
 **Reminder**: \
-The list of the`seed`is subjected to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes)
+The list of the`seed`is subject to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes).
 {% endhint %}
 
-\
-warning Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html)&#x20;
+{% hint style="warning" %}
+**Important**: \
+When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html)&#x20;
+{% endhint %}
 
 ## Step 3. Run everything
 

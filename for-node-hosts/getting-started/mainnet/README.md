@@ -239,17 +239,22 @@ WantedBy=multi-user.target
 
 It should begin fetching blocks from the other peers. Please wait until it is synced to the upgrade height `922,363` before moving onto the next step.
 
-::: tip Remarks:
+{% hint style="info" %}
+**Remarks:**  \
+Option 2 - Install `chain-maind` by homebrew \
+
+
+To install binaries in Homebrew for macOS X or Linux
 
 *   You can query the node syncing status by
 
     ```bash
     $ ./chain-maind status 2>&1 | jq '.SyncInfo.catching_up'
     ```
+* If the above command returns `false`, it means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
+{% endhint %}
 
-If the above command returns `false`, it means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
 
-:::
 
 ### Step 3-2. Upgrade the `chain-maind` binary to `v2.1.2`
 
@@ -270,15 +275,17 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
     $ tar -zxvf chain-main_2.1.2_Linux_x86_64.tar.gz
     ```
 
-    ::: tip Remarks: If you have stated `chain-maind` with _systemd_ service, kindly stop it by
+{% hint style="info" %}
+**Remarks:**  \
+If you have stated `chain-maind` with _systemd_ service, kindly stop it by
 
-    ```bash
-    $ sudo systemctl stop chain-maind
-    ```
+```bash
+$ sudo systemctl stop chain-maind
+```
 
-    And replace the binary in the location where the `ExecStart` states in Systemd Unit file.
+And replace the binary in the location where the `ExecStart` states in Systemd Unit file.
+{% endhint %}
 
-    :::
 *   For [homebrew](https://github.com/crypto-org-chain/homebrew-chain-maind#chain-maind-homebrew-tap) users, simply run
 
     ```bash
@@ -370,7 +377,9 @@ Then perform the following steps:
 * Change the path under `.chain-maind` with `cd .chain-maind`
 * Decompress with `lz4` first then decompress with `tar` by `lz4 -d /Users/<username>/.chain-maind/crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4 | tar -xv`.
 
-:::details Example: Decompress the QuickSync pack with `lz4`
+{% hint style="info" %}
+**Example:**  \
+Decompress the QuickSync pack with `lz4`
 
 ```bash
 x data/
@@ -382,8 +391,7 @@ x data/evidence.db/MANIFEST-000143
 x data/evidence.db/000142.log
 x data/priv_validator_state.json
 ```
-
-:::
+{% endhint %}
 
 The original data folder under `.chain-maind` is overwritten with the step above. It takes around a few mins to decompress the pruned version of 47GB(at the date of writing).
 
@@ -391,7 +399,9 @@ The original data folder under `.chain-maind` is overwritten with the step above
 
 Now direct back to the original directory and re-sync the chain again with `./chain-maind start`. It starts the node and syncs the blockchain data from the height of `5055406`.
 
-:::details Example: Restart `chain-maind start` with QuickSync
+{% hint style="info" %}
+**Example:**  \
+Restart `chain-maind start` with QuickSync
 
 ```bash
   $ ./chain-maind start                                                                   
@@ -403,7 +413,6 @@ Now direct back to the original directory and re-sync the chain again with `./ch
   12:28PM INF ABCI Handshake App Info hash="Pٖ}\x03G[5\x1aQi*#y-s:" height=5055406 module=consensus protocol-version=0 software-version=
   12:28PM INF ABCI Replay Blocks appHeight=5055406 module=consensus stateHeight=5055406 storeHeight=5055406
 ```
-
-:::
+{% endhint %}
 
 ***

@@ -2,12 +2,14 @@
 
 For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
 
-:::warning
+{% hint style="warning" %}
+**Warning**:
 
-* The chain-maind `v4.2.2` - "V4" upgrade is proposed to be scheduled at the block height of `10,073,800` ( _Estimated time \~WED, 22 Feb 2023 02:00:00 GMT_, but this depends on the actual time taken when the blocks is being processed);
+* The chain-maind `v4.2.2` - "V4" upgrade is proposed to be scheduled at the block height of `10,073,800` ( _Estimated time \~WED, 22 Feb 2023 02:00:00 GMT_, but this depends on the actual time taken when the blocks are being processed);
 * Actual timing depends on the progress of block production, the estimated time of this block can be found [here](https://www.mintscan.io/crypto-org/blocks/10073800).
 
-**DO NOT UPGRADE to the binary `v4.2.2` before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade\_guide\_v4.md#step-0-don-t-panic)**.** :::
+**DO NOT UPGRADE to the binary `v4.2.2` before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade\_guide\_v4.md#step-0-don-t-panic)**.** &#x20;
+{% endhint %}
 
 ## Step 0 - Don't panic
 
@@ -27,22 +29,22 @@ It is critically important for validator operators to back-up the `.chain-maind/
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac(arm64)](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main\_4.2.2\_Darwin\_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main\_4.2.2\_Windows\_x86\_64.zip) are also available.
 
-*   Terminate the `chain-maind`; afterwards, download the `4.2.2` released binaries from github:
+*   Terminate the `chain-maind`; afterward, download the `4.2.2` released binaries from GitHub:
 
     ```bash
     $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main_4.2.2_Linux_x86_64.tar.gz
     $ tar -zxvf chain-main_4.2.2_Linux_x86_64.tar.gz
     ```
 
-    ::: tip Remarks: If you have stated `chain-maind` with _systemd_ service, kindly stop it by
+{% hint style="info" %}
+**Remarks**: If you have stated `chain-maind` with _systemd_ service, kindly stop it by
 
-    ```bash
-    $ sudo systemctl stop chain-maind
-    ```
+```bash
+$ sudo systemctl stop chain-maind
+```
 
-    And replace the binary in the location where the `ExecStart` states in Systemd Unit file.
-
-    :::
+And replace the binary in the location where the `ExecStart` states in Systemd Unit file.
+{% endhint %}
 
 ### Step 1.1 - Verify the version
 
@@ -96,7 +98,8 @@ max-recv-msg-size = "10485760"
 max-send-msg-size = "2147483647"
 ```
 
-::: tip Remarks: If you are upgrading from `v3.3.5` or earlier, kindly also add the following fields to the `app.toml` under `Base Configuration`:
+{% hint style="info" %}
+**Remarks**:  If you are upgrading from `v3.3.5` or earlier, kindly also add the following fields to the `app.toml` under `Base Configuration`:
 
 ```
 index_events = []
@@ -107,7 +110,8 @@ iavl-disable-fastnode = true
 For validators or production critical services, we recommend setting the `iavl-disable-fastnode` as `true` to skip the optional "IAVL migration" and avoid downtime:
 
 * Setting it as `true` would skip the the optional "IAVL migration";
-* Setting it as `false` would run the "IAVL migration" that would take a couple hours with the log `INF starting ABCI with Tendermint` for a while and incur downtime. :::
+* Setting it as `false` would run the "IAVL migration" that would take a couple hours with the log `INF starting ABCI with Tendermint` for a while and incur downtime.&#x20;
+{% endhint %}
 
 ## Step 2. - Run everything
 

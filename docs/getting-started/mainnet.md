@@ -183,7 +183,7 @@ Before kick-starting your node, we will have to configure the node so that it co
   $ sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
 :::tip Reminder:
-The list of the `seed` is subjected to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes)
+The list of the `seed` is subject to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes)
 :::
 ## Step 3. Run everything
 
@@ -284,7 +284,7 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
     ```
 #### Step 3-2-2 -  Verify the version
 
-You can verify the installation by checking the version of `chain-maind`, the latest version is `2.0.1`.
+You can verify the installation by checking the version of `chain-maind`.
 
   ```bash 
   # check the version of chain-maind
@@ -325,8 +325,8 @@ and you can check your node's progress (in terms of block height) by:
 
 ## "DRACO II" and "V4" Network upgrades 
 
-You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for  **"DRACO II,"** the second network upgrade  ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](./upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](./upgrade_guide_v4.md) at a later stage.
-You can find the key details for all the upgrades under ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
+You've successfully performed the **"Canis Major"** binary upgrade! Allow some time for the node to catch up, meanwhile, you can get ready for  **"DRACO II,"** the second network upgrade  ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](./upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](./upgrade_guide_v4.md) at a later stage. The latest version is `v4.2.6`.
+You can find the key details for all the upgrades under ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades). 
 
 
 ## *(Optional)* QuickSync

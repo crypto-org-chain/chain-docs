@@ -1,7 +1,7 @@
 # Croeseid 5 Testnet: Running Nodes
 
 Croeseid 5 Testnet is Crypto.org Chain Testnet. It is a new chain based on Croeseid Testnet and runs in parallel with Croeseid 4. 
-It servers as an alpha testnet for exploring new features, instead of the upgrade version of Croeseid 4 testnet. 
+It serves as an alpha testnet for exploring new features, instead of the upgrade version of Croeseid 4 testnet. 
 
 This is detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid 5 testnet `testnet-croeseid-5`.
 
@@ -24,7 +24,7 @@ Archive Node:
 
 Default pruned node
 - RAM 16GB (goleveldb)
-- Disk: 83GB (Depends on how long the node is running for)
+- Disk: 83GB (Depends on how long the node is running)
 - CPU: 4 cores
 
 
@@ -39,15 +39,15 @@ The binary for _testnet_ and the binary for _mainnet_ are two **different** bina
 :::
 
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for
-**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Windows_x86_64.zip) are also available.
+**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v4.1.2-croeseid/chain-main_4.1.2-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v4.1.2-croeseid/chain-main_4.1.2-croeseid_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.1.2-croeseid/chain-main_4.1.2-croeseid_Windows_x86_64.zip) are also available.
 
 - To install Crypto.org Chain released **testnet binaries** from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_4.2.2-croeseid_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.1.2-croeseid/chain-main_4.1.2-croeseid_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_4.1.2-croeseid_Linux_x86_64.tar.gz
   ```
-- You can verify the installation by checking the version of the chain-maind, the current version is `4.2.2-croeseid`.
+- You can verify the installation by checking the version of the chain-maind, the current version is `4.1.2-croeseid`.
 
 ::: tip Reminder:
 For macOS users: the binary is not signed, you have to follow the steps [here](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac) to make the binary runnable.
@@ -55,7 +55,7 @@ For macOS users: the binary is not signed, you have to follow the steps [here](h
 
   ```bash
   $./chain-maind version
-  4.2.2-croeseid
+  4.1.2-croeseid
   ```
 ## Step 2. Configure `chain-maind`
 

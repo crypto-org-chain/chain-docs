@@ -1,8 +1,8 @@
 # Croeseid Testnet: Running Nodes
 
-The latest Crypto.org Chain Testnet has been named as **Croeseid**.
+The latest Crypto.org Chain Testnet has been named **Croeseid**.
 
-This is a detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet `testnet-croeseid-4`.
+This is detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet `testnet-croeseid-4`.
 
 ## Pre-requisites
 
@@ -22,7 +22,7 @@ Archive Node (setting pruning = nothing)
 
 Default Full Node (setting pruning = default) 
 - RAM 16GB (goleveldb)
-- Disk: 83GB (Depends on how long the node is running for)
+- Disk: 83GB (Depends on how long the node is running)
 - CPU: 4 cores
 
 ## Step 1. Get the Crypto.org Chain testnet binary
@@ -36,15 +36,15 @@ The binary for _testnet_ and the binary for _mainnet_ are two **different** bina
 :::
 
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for
-**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Windows_x86_64.zip) are also available.
+**Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Windows_x86_64.zip) are also available.
 
 - To install Crypto.org Chain released **testnet binaries** from github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_3.1.0-croeseid_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_4.2.2-croeseid_Linux_x86_64.tar.gz
   ```
-- You can verify the installation by checking the version of the chain-maind, the current version is `3.1.0-croeseid`.
+- You can verify the installation by checking the version of the chain-maind, the current version is `4.2.2-croeseid`.
 
 ::: tip Reminder:
 For macOS users: the binary is not signed, you have to follow the steps [here](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac) to make the binary runnable.
@@ -52,7 +52,7 @@ For macOS users: the binary is not signed, you have to follow the steps [here](h
 
   ```bash
   $./chain-maind version
-  3.1.0-croeseid
+  4.2.2-croeseid
   ```
 ## Step 2. Configure `chain-maind`
 
@@ -92,7 +92,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 
   ::: tip NOTE
 
-  - Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
+  - Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simplify the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
   - You can also put the `chain-maind` to your binary path and run it by `chain-maind`
     :::
 
@@ -135,7 +135,7 @@ Before kick-starting your node, we will have to configure your node so that it c
   $ sed -i.bak -E 's#^(timeout_commit[[:space:]]+=[[:space:]]+).*$#\1"2s"#' ~/.chain-maind/config/config.toml  
   ```
 
-**Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
+**Note**: We suggest using `persistent_peers` instead of `seeds` to provide a stable state-sync experience.
 ### Step 2-3 Enable STATE-SYNC
   [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
 
@@ -192,7 +192,7 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 ### Step 3-2. Obtain test token
 
 Unless you have obtained the CRO testnet token before, use the [tcro faucet](https://crypto.org/faucet) to obtain test CRO tokens.
-In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel ,
+In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel,
 stating who you are and your `tcro.....` address.
 
 ### Step 3-3. Obtain the validator public key
@@ -423,7 +423,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 #### **Unbond your delegated funds** [`tx staking unbond <validator-addr> <amount>`]
 
-On the other hand, we can create a `Unbond` transaction to unbond the delegated funds
+On the other hand, we can create an `Unbond` transaction to unbond the delegated funds
 
 ::: details Example: Unbond funds from a validator under the address `tcrocncl16k...edcer`
 
@@ -444,7 +444,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 ### Reward related transactions and queries
 
-After you have delegated or create a validator, reward will be accumulated, you can check/ withdraw it by:
+After you have delegated or created a validator, a reward will be accumulated, you can check/ withdraw it by:
 #### `query distribution validator-outstanding-rewards` - Query un-withdrawn rewards for a validator
 
 We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.

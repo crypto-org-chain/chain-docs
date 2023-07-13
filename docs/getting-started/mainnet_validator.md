@@ -1,21 +1,21 @@
 # Crypto.org Mainnet: Running a Validator
 
 
-This is a detailed documentation for setting up a **Validator** on Crypto.org mainnet. Note that while anyone can set up a validator, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
+This is detailed documentation for setting up a **Validator** on Crypto.org mainnet. Note that while anyone can set up a validator, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
-## Step 0 : Notes on network upgrades 
+## Step 0: Notes on network upgrades 
 
-There are two ways to setup a node:
+There are two ways to set up a node:
 
 1. For the host who would like to build a **Validator with complete blockchain data** from scratch,
-- Note that there were serveral breaking network upgrades, requiring upgrading at designated block heights.
+- Note that there were several breaking network upgrades, requiring upgrading at designated block heights.
 For more details on how to upgrade, we refer to this [guide](./mainnet.html#crypto-org-mainnet-running-a-full-node.md) on running a full node. 
 - Once you have a complete synced node, you can revisit this page and jump to the [step](#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) of joining the networking as a validator. 
 
 2. For hosts who would like to **join the network and start validating quickly**, one can:
-  - Begin with the binary `v3.3.9` and join the network by `STATE-SYNC`
+  - Begin with the binary `v4.2.6` and join the network by `STATE-SYNC`
 
-To simplify this guide, we will be covering the **second case** here in this guide, and guide you to begin with binary `v3.3.9` and join the network by `STATE-SYNC`.
+To simplify this guide, we will be covering the **second case** here in this guide, and guide you to begin with binary `v4.2.6` and join the network by `STATE-SYNC`.
 
 
 ## Pre-requisites
@@ -54,7 +54,7 @@ The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore
 
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for
-[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Windows_x86_64.zip) are also available. 
+[Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.6/chain-main_4.2.6_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.6/chain-main_4.2.6_Windows_x86_64.zip) are also available. 
 
 There are two options to install `chain-maind`:
 - [Directly from Github](#option-1-install-chain-maind-released-binaries-from-github); or
@@ -66,22 +66,22 @@ There are two options to install `chain-maind`:
 - To install Crypto.org Chain binaries from Github:
 
   ```bash
-  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
-  $ tar -zxvf chain-main_3.3.9_Linux_x86_64.tar.gz
+  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.6/chain-main_4.2.6_Linux_x86_64.tar.gz
+  $ tar -zxvf chain-main_4.2.6_Linux_x86_64.tar.gz
   ```
 
-- You can verify the installation by checking the version of the chain-maind, the current version is `3.3.9`.
+- You can verify the installation by checking the version of the chain-maind, the current version is `4.2.6`.
   ```bash
   # check the version of chain-maind
   $ ./chain-maind version
-  3.3.9
+  4.2.6
   ```
 **OR**
 
 ### Option 2 - Install `chain-maind` by homebrew
 
 ::: tip Reminder:
-- If you plan to play around with different networks (mainnet and testnet), we suggest you to follow the `Option 1` to download the binary directly.
+- If you plan to play around with different networks (mainnet and testnet), we suggest you follow `Option 1` to download the binary directly.
 
 - The binary downloaded from homebrew is **only for interacting with mainnet**. You cannot use it to interact with testnet.
 :::
@@ -107,7 +107,7 @@ To install binaries in Homebrew for macOS X or Linux
   ```bash
     # check the version of chain-maind
     $ chain-maind version
-    3.3.9
+    4.2.6
   ```
 ## Step 2. Configure `chain-maind`
 
@@ -115,7 +115,7 @@ Before kick-starting your node, we will have to configure the node so that it co
 
 ::: tip NOTE
 
-- Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
+- Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simplify the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
 - You can also put the `chain-maind` to your binary path and run it directly by `chain-maind`
 :::
 ### Step 2-1. Initialize `chain-maind`
@@ -172,14 +172,14 @@ Before kick-starting your node, we will have to configure the node so that it co
   $ sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
   ```
 :::tip Reminder:
-The list of the `seed` is subjected to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes)
+The list of the `seed` is subject to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes)
 :::
 
 
 ### Step 2-3. Enable STATE-SYNC
 
 
-With  [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html)  your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network.
+With [STATE-SYNC](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validators. For **validators**, it will be amazingly fast to sync the near head of the chain and join the network.
 ::: warning CAUTION
 Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. Kindly refer to this [guide](./mainnet.html#crypto-org-mainnet-running-a-full-node) on building a node with complete data.
 :::
@@ -205,7 +205,7 @@ Follow the below steps to enable state-sync:
   - For Mac environment, if `jq` is missing, you may install it by: `brew install jq`
     :::
 
-**Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
+**Note**: We suggest using `persistent_peers` instead of `seeds` to provide a stable state-sync experience.
 
 ## Step 3. Run everything
 
@@ -219,7 +219,7 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
   $ ./chain-maind start
 ```
 **OR**
-- _(Optional for Linux)_ If you would like to have it running at the background, you can start `chain-maind` with `systemd` service, e.g.:
+- _(Optional for Linux)_ If you would like to have it running in the background, you can start `chain-maind` with `systemd` service, e.g.:
 
 ```bash
   $ git clone https://github.com/crypto-org-chain/chain-main.git && cd chain-main

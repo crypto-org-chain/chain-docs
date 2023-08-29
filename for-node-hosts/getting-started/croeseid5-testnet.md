@@ -1,6 +1,6 @@
 # Croeseid 5 Testnet: Running Nodes
 
-Croeseid 5 Testnet is Crypto.org Chain Testnet. It is a new chain based on Croeseid Testnet and runs in parallel with Croeseid 4. It servers as an alpha testnet for exploring new features, instead of the upgrade version of Croeseid 4 testnet.
+Croeseid 5 Testnet is Crypto.org Chain Testnet. It is a new chain based on Croeseid Testnet and runs in parallel with Croeseid 4. It serves as an alpha testnet for exploring new features, instead of the upgraded version of Croeseid 4 testnet.
 
 This is detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid 5 testnet `testnet-croeseid-5`.
 
@@ -28,13 +28,17 @@ Default pruned node
 
 ## Step 1. Get the Crypto.org Chain testnet binary
 
-::: tip Remarks: The following is the minimal setup for a **validator node**. :::
+{% hint style="info" %}
+**Remarks**: The following is the minimal setup for a **validator node**.&#x20;
+{% endhint %}
 
-::: tip Reminder: The binary for _testnet_ and the binary for _mainnet_ are two **different** binaries. Please make sure you are using the correct binary. :::
+{% hint style="info" %}
+**Reminder**: The binary for _testnet_ and the binary for _mainnet_ are two **different** binaries. Please make sure you are using the correct binary.
+{% endhint %}
 
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main\_4.2.2-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main\_4.2.2-croeseid\_Darwin\_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main\_4.2.2-croeseid\_Windows\_x86\_64.zip) are also available.
 
-*   To install Crypto.org Chain released **testnet binaries** from github:
+*   To install Crypto.org Chain released **testnet binaries** from GitHub:
 
     ```bash
     $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Linux_x86_64.tar.gz
@@ -42,7 +46,9 @@ To simplify the following step, we will be using **Linux** (Intel x86) for illus
     ```
 * You can verify the installation by checking the version of the chain-maind, the current version is `4.2.2-croeseid`.
 
-::: tip Reminder: For macOS users: the binary is not signed, you have to follow the steps [here](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac) to make the binary runnable. :::
+{% hint style="info" %}
+**Reminder**: For macOS users: the binary is not signed, you have to follow the steps [here](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac) to make the binary runnable.&#x20;
+{% endhint %}
 
 ```bash
 $./chain-maind version
@@ -61,12 +67,12 @@ Before kick-starting your node, we will have to configure your node so that it c
     $ ./chain-maind unsafe-reset-all
     ```
 
-    and remove the old genesis file by
+    and remove the old Genesis file by
 
     ```
     $ rm ~/.chain-maind/config/genesis.json
     ```
-*   You cannnot override the previous validator through `chain-maind init`. If you want to have a new validator, you need to manually remove the `priv_validator_key.json`:
+*   You can not override the previous validator through `chain-maind init`. If you want to have a new validator, you need to manually remove the `priv_validator_key.json`:
 
     ```bash
     rm ~/.chain-maind/config/priv_validator_key.json
@@ -82,16 +88,20 @@ Before kick-starting your node, we will have to configure your node so that it c
       $ ./chain-maind init [moniker] --chain-id testnet-croeseid-5
     ```
 
-    This `moniker` will be the displayed id of your node when connected to Crypto.org Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed. The example below shows how to initialize a node named `pegasus-node` :
+    This `moniker` will be the displayed ID of your node when connected to the Crypto.org Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed. The example below shows how to initialize a node named `pegasus-node` :
 
     ```bash
       $ ./chain-maind init pegasus-node --chain-id testnet-croeseid-5
     ```
 
-    ::: tip NOTE
 
-    * Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
-    * You can also put the `chain-maind` to your binary path and run it by `chain-maind` :::
+
+    {% hint style="info" %}
+    **NOTE**: &#x20;
+
+    * Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simplify the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
+    * You can also put the `chain-maind` to your binary path and run it by `chain-maind`&#x20;
+    {% endhint %}
 
 ### Step 2-2 Configure chain-maind
 
@@ -108,15 +118,19 @@ Before kick-starting your node, we will have to configure your node so that it c
     OK!
     ```
 
-    ::: tip NOTE
+
+
+    {% hint style="info" %}
+    **NOTE**: &#x20;
 
     *   For Mac environment, `sha256sum` was not installed by default. In this case, you may setup `sha256sum` with this command:
 
         ```bash
         function sha256sum() { shasum -a 256 "$@" ; } && export -f sha256sum
         ```
+    {% endhint %}
 
-        :::
+    ###
 *   In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
 
     ```bash
@@ -130,7 +144,7 @@ Before kick-starting your node, we will have to configure your node so that it c
     $ sed -i.bak -E 's#^(timeout_commit[[:space:]]+=[[:space:]]+).*$#\1"2s"#' ~/.chain-maind/config/config.toml  
     ```
 
-**Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
+**Note**: We suggest using `persistent_peers` instead of `seeds` to provide a stable state-sync experience.
 
 ### Step 2-3 Enable STATE-SYNC
 
@@ -159,15 +173,23 @@ Follow the below optional steps to enable state-sync.
     s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
     ```
 
-    ::: tip NOTE
 
-    * For Mac environment, if `jq` is missing, you may install it by: `brew install jq` :::
+
+    {% hint style="info" %}
+    **NOTE**:
+
+    * For Mac environment, if `jq` is missing, you may install it by: `brew install jq`
+    {% endhint %}
 
 ## Step 3. Run everything
 
-::: warning CAUTION This page only shows the minimal setup for validator node.
+{% hint style="warning" %}
+**CAUTION**&#x20;
 
-Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/v0.34/tendermint-core/validators.html#sentry-node-configuration)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc. :::
+This page only shows the minimal setup for validator node.
+
+Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/v0.34/tendermint-core/validators.html#sentry-node-configuration)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys, etc.
+{% endhint %}
 
 ### Step 3-1. Create a new key and address
 
@@ -210,7 +232,8 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
   $ ./chain-maind start
 ```
 
-::: tip Remarks: If you see errors saying `too many files opened...`, then you need to set a higher number for maximum open file descriptors in your OS.
+{% hint style="info" %}
+**Remarks**: If you see errors saying `too many files opened...`, then you need to set a higher number for maximum open file descriptors in your OS.
 
 If you are on OSX or Linux, then the following could be useful:
 
@@ -222,8 +245,7 @@ $ ulimit -Sn [NEW_MAX_FILE_DESCRIPTOR]
 # Example
 $ ulimit -Sn 4096 
 ```
-
-:::
+{% endhint %}
 
 * _(Optional for Linux)_ Start chain-maind with systemd service, e.g.:
 
@@ -235,7 +257,8 @@ $ ulimit -Sn 4096
   $ journalctl -u chain-maind -f
 ```
 
-:::details Example: /etc/systemd/system/chain-maind.service created by script
+{% hint style="info" %}
+**Example**: /etc/systemd/system/chain-maind.service created by script
 
 ```bash
 # /etc/systemd/system/chain-maind.service
@@ -256,8 +279,7 @@ LimitNOFILE=50000
 [Install]
 WantedBy=multi-user.target
 ```
-
-:::
+{% endhint %}
 
 It should begin fetching blocks from the other peers. Please wait until it is fully synced before moving onto the next step.
 
@@ -350,7 +372,10 @@ $ cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value'
 
 ### Step 4-1. `query bank balances` - Check your transferable balance
 
-You can check your _transferable_ balance with the `balances` command under the bank module. :::details Example: Check your address balance
+You can check your _transferable_ balance with the `balances` command under the bank module.&#x20;
+
+{% hint style="info" %}
+**Example**: Check your address balance
 
 ```bash
 $ ./chain-maind query bank balances tcro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
@@ -361,10 +386,8 @@ balances:
 pagination:
   next_key: null
   total: "0"
-
 ```
-
-:::
+{% endhint %}
 
 ### Step 4-2. `tx bank send` - Transfer operation
 
@@ -372,36 +395,37 @@ Transfer operation involves the transfer of tokens between two addresses.
 
 #### **Send Funds** \[`tx bank send <from_key_or_address> <to_address> <amount> <network_id>`]
 
-:::details Example: Send 10tcro from an address to another.
+{% hint style="info" %}
+**Example**: Send 10tcro from one address to another.
 
-```bash
+```
 $ ./chain-maind tx bank send Default tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-5" --gas-prices 0.1basetcro
   ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
+{% endhint %}
 
-:::
+
 
 ### Step 4-3. `tx staking` - Staking operations
 
-::: tip NOTE
+{% hint style="info" %}
+To get the 'validator-addr' with bech32 prefix, you can run this command:
 
-*   To get the 'validator-addr' with bech32 prefix, you can run with this command:
+```bash
+./chain-maind keys show Default --bech val
+```
+{% endhint %}
 
-    ```bash
-    ./chain-maind keys show Default --bech val
-    ```
+Staking operations involve the interaction between an address and a validator. It allows you to create a validator and lock/unlock funds for staking purposes.
 
-    :::
-
-Staking operations involve the interaction between an address and a validator. It allows you to create a validator and lock/unlocking funds for staking purposes.
-
-#### **Delegate you funds to a validator** \[`tx staking delegate <validator-addr> <amount>`]
+#### **Delegate your funds to a validator** \[`tx staking delegate <validator-addr> <amount>`]
 
 To bond funds for staking, you can delegate funds to a validator by the `delegate` command
 
-::: details Example: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
+{% hint style="info" %}
+**Example**: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
 
 ```bash
 $ ./chain-maind tx staking delegate tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-5" --gas-prices 0.1basetcro
@@ -409,14 +433,14 @@ $ ./chain-maind tx staking delegate tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3ued
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgDelegate"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
-
-:::
+{% endhint %}
 
 #### **Unbond your delegated funds** \[`tx staking unbond <validator-addr> <amount>`]
 
 On the other hand, we can create a `Unbond` transaction to unbond the delegated funds
 
-::: details Example: Unbond funds from a validator under the address `tcrocncl16k...edcer`
+{% hint style="info" %}
+**Example**: Unbond funds from a validator under the address `tcrocncl16k...edcer`
 
 ```bash
 $ ./chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100tcro --from Default --chain-id "testnet-croeseid-5" --gas-prices 0.1basetcro
@@ -424,24 +448,24 @@ $ ./chain-maind tx staking unbond tcrocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedce
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
+{% endhint %}
 
-:::
+{% hint style="info" %}
+Once your funds are unbonded, they will be locked until the `unbonding_time` has passed.
+{% endhint %}
 
-::: tip
 
-* Once your funds were unbonded, It will be locked until the `unbonding_time` has passed.
-
-:::
 
 ### Reward related transactions and queries
 
-After you have delegated or create a validator, reward will be accumulated, you can check/ withdraw it by:
+After you have delegated or created a validator, the reward will be accumulated, you can check/ withdraw it by:
 
 #### `query distribution validator-outstanding-rewards` - Query un-withdrawn rewards for a validator
 
-We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.
+We can check the distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by operator address.
 
-::: details Example: Check all outstanding rewards under the operator address `tcrocncl1...zrf8`
+{% hint style="info" %}
+&#x20;**Example**: Check all outstanding rewards under the operator address `tcrocncl1...zrf8`
 
 ```bash
 $ ./chain-maind q distribution validator-outstanding-rewards tcrocncl1kkqxv3szgh099xezt7y38t5anqzue4s326zrf8
@@ -449,14 +473,14 @@ $ ./chain-maind q distribution validator-outstanding-rewards tcrocncl1kkqxv3szgh
   - amount: "1920761912.927067330419141688"
     denom: basetcro
 ```
-
-:::
+{% endhint %}
 
 #### `tx distribution validator-outstanding-rewards` - Query un-withdrawn rewards for a validator
 
-We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.
+We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by operator address.
 
-::: details Example: Withdraw all outstanding under a delegation address:
+{% hint style="info" %}
+**Example**: Withdraw all outstanding under a delegation address:
 
 ```bash
 $ ./chain-maind tx distribution withdraw-all-rewards --from [key_name] --chain-id "testnet-croeseid-5" --gas-prices 0.1basetcro
@@ -464,8 +488,9 @@ $ ./chain-maind tx distribution withdraw-all-rewards --from [key_name] --chain-i
 {"body":{"messages":[{"@type":"/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward"...}]}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
+{% endhint %}
 
-:::
+
 
 ### Slashing related transaction
 
@@ -493,8 +518,6 @@ $ ./chain-maind tx slashing unjail --from [key_name] --chain-id "testnet-croesei
   {"body":{"messages":[{"@type":"/cosmos.slashing.v1beta1.MsgUnjail"...}]}
   confirm transaction before signing and broadcasting [y/N]: y
 ```
-
-:::
 
 Congratulations! You've successfully set up a Croeseid 5 Testnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
 

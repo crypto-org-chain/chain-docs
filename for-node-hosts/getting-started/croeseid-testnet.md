@@ -397,7 +397,7 @@ Transfer operation involves the transfer of tokens between two addresses.
 #### **Send Funds** \[`tx bank send <from_key_or_address> <to_address> <amount> <network_id>`]
 
 {% hint style="info" %}
-Example: Send 10tcro from one address to another.
+**Example**: Send 10tcro from one address to another.
 
 ```bash
 $ ./chain-maind tx bank send Default tcro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10tcro --chain-id "testnet-croeseid-4" --gas-prices 0.1basetcro
@@ -410,8 +410,6 @@ confirm transaction before signing and broadcasting [y/N]: y
 
 
 ### Step 4-3. `tx staking` - Staking operations
-
-
 
 {% hint style="info" %}
 **NOTE**
@@ -430,7 +428,7 @@ Staking operations involve the interaction between an address and a validator. I
 To bond funds for staking, you can delegate funds to a validator by the `delegate` command
 
 {% hint style="info" %}
-Example: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
+**Example**: Delegate funds from `Default` to a validator under the address `tcrocncl16k...edcer`
 {% endhint %}
 
 ```bash

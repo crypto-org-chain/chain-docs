@@ -1,10 +1,12 @@
 # Devnet: Running Latest Development Node
 
-::: warning caution this page is for building and running the latest development version of the chain for testing purpose only. The development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work is required.
+{% hint style="warning" %}
+**Caution** This page is for building and running the latest development version of the chain for testing purposes only. The development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work to be required.\
+\
+For anyone interested in joining the Crypto.org Chain testnet, please refer to our [testnet documentation](croeseid-testnet.md).&#x20;
+{% endhint %}
 
-For anyone interested in joining the Crypto.org Chain testnet, please refer to our [testnet documentation](croeseid-testnet.md). :::
-
-By following this tutorial, you can compile and run the latest development version of Crypto.org Chain from scratch. It is intended for testing purpose only.
+By following this tutorial, you can compile and run the latest development version of Crypto.org Chain from scratch. It is intended for testing purposes only.
 
 ## Overview
 
@@ -91,7 +93,7 @@ chainmaind:  # The chain-id
 
 This configuration will give us a 2 validators devnet with the chain-id `chainmaind`; 4 accounts under the name of `community`, `ecosystem` `reserve` and `launch` with some allocated funds at the genesis.
 
-You can also specify some network parameters in the genesis file of your devnet under `genesis:` for different testing purpose. As in the above example, we have specified the `unbonding_time` to be `10` seconds.
+You can also specify some network parameters in the genesis file of your devnet under `genesis:` for different testing purposes. As in the above example, we have specified the `unbonding_time` to be `10` seconds.
 
 ## Start the devnet
 
@@ -101,7 +103,7 @@ Once we finish with the configuration, we are ready to start the chain: in the r
 $ pystarport serve --config examples/devnet.yaml
 ```
 
-Afterwards, keys will be generated according to the configuration specified, the accounts' information is generated in `data/chainmaind/accounts.json`, for example:
+Afterward, keys will be generated according to the configuration specified, and the accounts' information will be generated in `data/chainmaind/accounts.json`, for example:
 
 ```json
 [
@@ -116,9 +118,9 @@ Afterwards, keys will be generated according to the configuration specified, the
 
 Kindly save these mnemonics for key recovery later.
 
-Blocks are now being generated! You can view the blockchain data by the rpc port of the `awesome0` (first node): [http://localhost:26657/](http://localhost:26657/). Furthermore, you can also use the swagger doc of `awesome0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
+Blocks are now being generated! You can view the blockchain data by the RPC port of the `awesome0` (first node): [http://localhost:26657/](http://localhost:26657/). Furthermore, you can also use the swagger doc of `awesome0` at [http://localhost:26654/swagger/](http://localhost:26654/swagger/).
 
-It is worth mentioning that the `serve` command would truncate all the blocks previously generated and regenerate a new genesis block, which means you'll also lose all of your transaction records. If you wish to restart the chain with the existing blocks, please run `pystarport` with `start` command:
+It is worth mentioning that the `serve` command would truncate all the blocks previously generated and regenerate a new Genesis block, which means you'll also lose all of your transaction records. If you wish to restart the chain with the existing blocks, please run `pystarport` with `start` command:
 
 ```sh
 $ pystarport start
@@ -181,7 +183,7 @@ $ chain-maind keys add Bob --keyring-backend test
    pubkeys: []
 ```
 
-*   Now you can transfer tokens to Bob, for example you can send `1` cro to Bob's address by
+*   Now you can transfer tokens to Bob, for example, you can send `1` CRO to Bob's address by
 
     ```
     $ chain-maind tx bank send launch cro13vy5dks0ns99h3rkuqtka3wasp0aqax6feeqfa 1cro --keyring-backend test --chain-id chainmaind
@@ -259,7 +261,7 @@ will result in
   ]
 ```
 
-then we can see that there are two active validators `awesome0` and `awesome1` at the moment.
+Then we can see that there are two active validators `awesome0` and `awesome1` at the moment.
 
 For each validator, we can see that it comes with an address and a public key:
 

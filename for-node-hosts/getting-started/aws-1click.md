@@ -244,8 +244,9 @@ $ chain-maind version
 * Testnet binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
 {% endhint %}
 
-{% hint style="info" %}
-**Mainnet**
+<details>
+
+<summary><strong>Mainnet</strong></summary>
 
 ### Create a new key and address
 
@@ -262,10 +263,12 @@ Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-
 Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/mainnet.html#step-3-6-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
-{% endhint %}
 
-{% hint style="info" %}
-**Testnet**
+</details>
+
+<details>
+
+<summary><strong>Testnet</strong></summary>
 
 ### Create a new key and address
 
@@ -282,6 +285,5 @@ Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-
 Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/croeseid-testnet.html#step-3-6-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
-{% endhint %}
 
-&#x20;
+</details>

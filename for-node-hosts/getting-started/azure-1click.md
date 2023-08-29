@@ -2,11 +2,13 @@
 
 This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
-::: warning CAUTION We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html) :::
+{% hint style="warning" %}
+**CAUTION** We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html)
+{% endhint %}
 
 ## Step 1. Azure Account Creation
 
-You will first need to create an [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to getting charged when you create a virtual machine.
+You will first need to create a [Microsoft Azure](https://azure.microsoft.com/) account with a `Pay-As-You-Go` subscription. This will require providing your credit card information to `Microsoft Azure` and you may be subject to getting charged when you create a virtual machine.
 
 Please read `Microsoft Azure` free trial introduction to see if you are eligible for the free-tier.
 
@@ -211,7 +213,10 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet. :::tip NOTE
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
+
+{% hint style="info" %}
+**NOTE**
 
 * Check whether your chain-maind is mainnet or testnet binary
 
@@ -232,10 +237,11 @@ $ chain-maind version
 ```
 
 * Testnet binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
+{% endhint %}
 
-:::
+<details>
 
-:::details Mainnet
+<summary>Mainnet</summary>
 
 ### Create a new key and address
 
@@ -253,9 +259,11 @@ Back your server, and follow [Step 3-6. Check your validator status](../../docs/
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 
-:::
+</details>
 
-:::details Testnet
+<details>
+
+<summary>Testnet</summary>
 
 ### Create a new key and address
 
@@ -273,4 +281,4 @@ Back your server, and follow [Step 3-6. Check your validator status](../../docs/
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 
-:::
+</details>

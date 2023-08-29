@@ -49,7 +49,9 @@ _Please note that the size of snapshots from Quicksync will keep growing._
 
 ## Step 1. Get the Crypto.org Chain Mainnet binary
 
-::: tip Remarks: The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys etc. :::
+{% hint style="info" %}
+**Remarks**: The following is the minimal setup to join Crypto.org Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys, etc.&#x20;
+{% endhint %}
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main\_3.3.9\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main\_3.3.9\_Windows\_x86\_64.zip) are also available.
 
@@ -58,7 +60,9 @@ There are two options to install `chain-maind`:
 * [Directly from Github](mainnet\_validator.md#option-1-install-chain-maind-released-binaries-from-github); or
 * [Homebrew](mainnet\_validator.md#option-2-install-chain-maind-by-homebrew)
 
-### Option 1 - Install `chain-maind` released binaries from Github
+
+
+### Option 1 - Install `chain-maind` released binaries from GitHub
 
 *   To install Crypto.org Chain binaries from Github:
 
@@ -78,10 +82,12 @@ There are two options to install `chain-maind`:
 
 ### Option 2 - Install `chain-maind` by homebrew
 
-::: tip Reminder:
+{% hint style="info" %}
+**Reminder**:
 
-* If you plan to play around with different networks (mainnet and testnet), we suggest you to follow the `Option 1` to download the binary directly.
-* The binary downloaded from homebrew is **only for interacting with mainnet**. You cannot use it to interact with testnet. :::
+* If you plan to play around with different networks (mainnet and testnet), we suggest you follow the `Option 1` to download the binary directly.
+* The binary downloaded from homebrew is **only for interacting with mainnet**. You cannot use it to interact with testnet.
+{% endhint %}
 
 To install binaries in Homebrew for macOS X or Linux
 
@@ -112,10 +118,12 @@ To install binaries in Homebrew for macOS X or Linux
 
 Before kick-starting your node, we will have to configure the node so that it connects to the Crypto.org mainnet
 
-::: tip NOTE
+{% hint style="info" %}
+**NOTE**
 
 * Depending on your `chain-maind` home setting, the `chain-maind` configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
-* You can also put the `chain-maind` to your binary path and run it directly by `chain-maind` :::
+* You can also put the `chain-maind` to your binary path and run it directly by `chain-maind`
+{% endhint %}
 
 ### Step 2-1. Initialize `chain-maind`
 
@@ -125,7 +133,7 @@ Before kick-starting your node, we will have to configure the node so that it co
       $ ./chain-maind init [moniker] --chain-id crypto-org-chain-mainnet-1
     ```
 
-    * This `moniker` will be the displayed id of your node when connected to Crypto.org Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed.
+    * This `moniker` will be the displayed ID of your node when connected to the Crypto.org Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed.
 
 ### Step 2-2. Configure chain-maind
 
@@ -142,24 +150,30 @@ Before kick-starting your node, we will have to configure the node so that it co
     OK!
     ```
 
-    ::: tip NOTE
+    &#x20;
+
+    {% hint style="info" %}
+    **NOTE**
 
     *   For Mac environment, `sha256sum` was not installed by default. In this case, you may setup `sha256sum` with this command:
 
         ```bash
         function sha256sum() { shasum -a 256 "$@" ; } && export -f sha256sum
         ```
+    {% endhint %}
 
-        :::
+    ###
 *   In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
 
     ```bash
     $ sed -i.bak -E 's#^(minimum-gas-prices[[:space:]]+=[[:space:]]+)""$#\1"0.025basecro"#' ~/.chain-maind/config/app.toml
     ```
 
+{% hint style="info" %}
+**Reminder**: The list of the `seed` is subject to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes).
+{% endhint %}
 
-
-:::tip Reminder: The list of the `seed` is subjected to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes) :::
+&#x20;
 
 ### Step 2-3. Enable STATE-SYNC
 
@@ -181,11 +195,18 @@ With [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.
     s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
     ```
 
-    ::: tip NOTE
 
-    * For Mac environment, if `jq` is missing, you may install it by: `brew install jq` :::
 
-**Note**: We suggest using `persistent_peers` instead of `seeds` to provide stable state-sync experience.
+
+
+    {% hint style="info" %}
+    **NOTE**
+
+    * For Mac environment, if `jq` is missing, you may install it by: `brew install jq`
+    * We suggest using `persistent_peers` instead of `seeds` to provide a stable state-sync experience.
+    {% endhint %}
+
+
 
 ## Step 3. Run everything
 
@@ -211,7 +232,31 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
   $ journalctl -u chain-maind -f
 ```
 
-:::details Example: /etc/systemd/system/chain-maind.service created by script
+{% hint style="info" %}
+**Example**: /etc/systemd/system/chain-maind.service created by script
+
+```bash
+# /etc/systemd/system/chain-maind.service
+[Unit]
+Description=Chain-maind
+ConditionPathExists=/usr/local/bin/chain-maind
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/usr/local/bin
+ExecStart=/usr/local/bin/chain-maind start --home /home/ubuntu/.chain-maind
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=50000
+
+[Install]
+WantedBy=multi-user.target
+```
+{% endhint %}
+
+It should begin fetching blocks from the other peers. Please wait until it is synced before moving onto the next step.
 
 ```bash
 # /etc/systemd/system/chain-maind.service
@@ -233,11 +278,8 @@ LimitNOFILE=50000
 WantedBy=multi-user.target
 ```
 
-:::
-
-It should begin fetching blocks from the other peers. Please wait until it is synced before moving onto the next step.
-
-::: tip Remarks:
+{% hint style="info" %}
+**Remarks**:
 
 *   You can query the node syncing status by
 
@@ -246,8 +288,7 @@ It should begin fetching blocks from the other peers. Please wait until it is sy
     ```
 
     If the above command returns `false`, it means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
-
-:::
+{% endhint %}
 
 ### Step 3-2. Joining the network as a validator: Send a `create-validator` transaction
 
@@ -272,7 +313,8 @@ $ ./chain-maind tx staking create-validator \
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-::: tip You will be required to insert the following:
+{% hint style="info" %}
+You will be required to insert the following:
 
 * `--from`: The `cro...` address or the key name that holds your funds for initial delegation;
 * `--amount`: The amount of self-delegation provided to the validator as an initial staking;
@@ -284,6 +326,7 @@ confirm transaction before signing and broadcasting [y/N]: y
 * `--commission-max-rate`: The upper bound of the commission rate;
 * `--commission-max-change-rate`: The maximum daily increase of the validator commission. Please note this parameter cannot be changed after create-validator is processed;
 * `--min-self-delegation`: The lower threshold of validator's self-delegation amount, if the self-delegation drops below this number, all staked funds to the validator will be automatically unbonded and the validator will be inactive. :::
+{% endhint %}
 
 ### Step 3-3. Check your validator status
 
@@ -320,7 +363,10 @@ Congratulations! You've successfully set up a mainnet node and performed some ba
 
 ### `query bank balances` - Check your transferable balance
 
-You can check your _transferable_ balance with the `balances` command under the bank module. :::details Example: Check your address balance
+You can check your _transferable_ balance with the `balances` command under the bank module.&#x20;
+
+{% hint style="info" %}
+**Example**: Check your address balance
 
 ```bash
 $ ./chain-maind query bank balances cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
@@ -332,8 +378,7 @@ $ ./chain-maind query bank balances cro1quw5r22pxy8znjtdkgqc65atrm3x5hg6vycm5n
     next_key: null
     total: "0"
 ```
-
-:::
+{% endhint %}
 
 ### `tx bank send` - Transfer operation
 
@@ -341,7 +386,8 @@ Transfer operation involves the transfer of tokens between two addresses.
 
 #### **Send Funds** \[`tx bank send <from_key_or_address> <to_address> <amount> <network_id>`]
 
-:::details Example: Send 10cro from an address to another.
+{% hint style="info" %}
+**Example**: Send 10cro from one address to another.
 
 ```bash
 $ ./chain-maind tx bank send Default cro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 10cro --chain-id="crypto-org-chain-mainnet-1" --gas-prices 0.1basecro
@@ -349,28 +395,31 @@ $ ./chain-maind tx bank send Default cro1j7pej8kplem4wt50p4hfvndhuw5jprxxn5625q 
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
+{% endhint %}
 
-:::
+
 
 ### `tx staking` - Staking operations
 
-::: tip NOTE
+{% hint style="info" %}
+**NOTE**
 
-*   To get the 'validator-addr' with bech32 prefix, you can run with this command:
+*   To get the 'validator-addr' with bech32 prefix, you can run this command:
 
     ```bash
     ./chain-maind keys show Default --bech val
     ```
-
-    :::
+{% endhint %}
 
 Staking operations involve the interaction between an address and a validator. It allows you to create a validator and lock/unlocking funds for staking purposes.
 
-#### **Delegate you funds to a validator** \[`tx staking delegate <validator-addr> <amount>`]
+#### **Delegate your funds to a validator** \[`tx staking delegate <validator-addr> <amount>`]
 
 To bond funds for staking, you can delegate funds to a validator by the `delegate` command. Note that you can look up validators and their operator address by the validator list on the [explorer](https://crypto.org/explorer/validators).
 
-::: details Example: Delegate funds from `Default` to a validator under the operator address `crocncl16k...edcer`
+{% hint style="info" %}
+**Example**: Delegate funds from `Default` to a validator under the operator address `crocncl16k...edcer`
+{% endhint %}
 
 ```bash
 $ ./chain-maind tx staking delegate crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100cro --from Default --chain-id "crypto-org-chain-mainnet-1" --gas-prices 0.1basecro
@@ -379,13 +428,12 @@ $ ./chain-maind tx staking delegate crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedc
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-:::
-
 #### **Unbond your delegated funds** \[`tx staking unbond <validator-addr> <amount>`]
 
 On the other hand, we can create an `Unbond` transaction to unbond the delegated funds
 
-::: details Example: Unbond funds from a validator under the address `crocncl16k...edcer`
+{% hint style="info" %}
+**Example**: Unbond funds from a validator under the address `crocncl16k...edcer`
 
 ```bash
 $ ./chain-maind tx staking unbond crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer 100cro --from Default --chain-id "crypto-org-chain-mainnet-1" --gas-prices 0.1basecro
@@ -393,24 +441,22 @@ $ ./chain-maind tx staking unbond crocncl16kqr009ptgken6qsxnzfnyjfsq6q97g3uedcer
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
+{% endhint %}
 
-:::
+{% hint style="info" %}
+Once your funds are unbonded, they will be locked until the `unbonding_time` has passed.
+{% endhint %}
 
-::: tip
+### Reward-related transactions and queries
 
-* Once your funds were unbonded, they will be locked until the `unbonding_time` has passed.
-
-:::
-
-### Reward related transactions and queries
-
-After you have delegated or create a validator, reward will be accumulated, you can check/ withdraw it by:
+After you have delegated or created a validator, the reward will be accumulated, you can check/ withdraw it by:
 
 #### `query distribution validator-outstanding-rewards` - Query un-withdrawn rewards for a validator
 
-We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.
+We can check the distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by operator address.
 
-::: details Example: Check all outstanding rewards under the operator address `crocncl1...zrf8`
+{% hint style="info" %}
+Example: Check all outstanding rewards under the operator address `crocncl1...zrf8`
 
 ```bash
 $ ./chain-maind q distribution validator-outstanding-rewards crocncl1kkqxv3szgh099xezt7y38t5anqzue4s326zrf8 --gas-prices 0.1basecro
@@ -418,14 +464,14 @@ $ ./chain-maind q distribution validator-outstanding-rewards crocncl1kkqxv3szgh0
   - amount: "1920761912.927067330419141688"
     denom: basecro
 ```
-
-:::
+{% endhint %}
 
 #### `tx distribution validator-outstanding-rewards` - Query un-withdrawn rewards for a validator
 
-We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by its operator address.
+We can check the distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by operator address.
 
-::: details Example: Withdraw all outstanding under a delegation address:
+{% hint style="info" %}
+**Example**: Withdraw all outstanding under a delegation address:
 
 ```bash
 $ ./chain-maind tx distribution withdraw-all-rewards --from [key_name] --chain-id crypto-org-chain-mainnet-1 --gas-prices 0.1basecro
@@ -433,8 +479,9 @@ $ ./chain-maind tx distribution withdraw-all-rewards --from [key_name] --chain-i
 {"body":{"messages":[{"@type":"/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward"...}]}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
+{% endhint %}
 
-:::
+&#x20;
 
 ### Slashing related transaction
 
@@ -454,7 +501,7 @@ $ ./chain-maind query staking validators -o json | jq
 ................................
 ```
 
-Where `"jailed": true` implies that the validator has been jailed. After the jailing period has passed, one can broadcast an `unjail` transaction to unjail the validator and resume its normal operations by
+Where `"jailed": true` implies that the validator has been jailed. After the jailing period has passed, one can broadcast a `unjail` transaction to unjail the validator and resume its normal operations by
 
 ```bash
 $ ./chain-maind tx slashing unjail --from [key_name] --chain-id crypto-org-chain-mainnet-1 --gas-prices 0.1basecro

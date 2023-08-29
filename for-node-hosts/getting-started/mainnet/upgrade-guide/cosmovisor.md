@@ -1,10 +1,10 @@
 # Running "Canis Major" network upgrade with cosmovisor
 
-:::warning
+{% hint style="warning" %}
+**Warning**:
 
 It is recommended that cosmovisor is better to be used on full nodes rather than validators as currently there's a potential race condition: [cosmos/cosmos-sdk#9384](https://github.com/cosmos/cosmos-sdk/pull/9384)
-
-:::
+{% endhint %}
 
 ## Step 0 - Install cosmosviosr
 
@@ -62,9 +62,12 @@ $ ./cosmovisor start
 
 Since we enable `DAEMON_ALLOW_DOWNLOAD_BINARIES=true`, cosmovisor will automatically download binary with `3.3.1` in `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` and update `./cosmovisor/current` directory symlink to `upgrades/v3.3.0` instead when proposed upgrade log is found. cosmovisor will create `./cosmovisor/upgrades/v3.3.0/bin/chain-maind` for you.
 
-:::warning Important: If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v3.3.0/bin/chain-maind` manually before upgrade time. [Linux](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Linux\_x86\_64.tar.gz), [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Windows\_x86\_64.zip) are also available. :::
+{% hint style="info" %}
+**Important**: If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v3.3.0/bin/chain-maind` manually before upgrade time. [Linux](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Linux\_x86\_64.tar.gz), [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Windows\_x86\_64.zip) are also available.
+{% endhint %}
 
-:::tip Tip: Example of running cosmovisor with systemd
+{% hint style="info" %}
+**Tip**: Example of running cosmovisor with systemd
 
 ```toml
 # /lib/systemd/system/chain-maind.service
@@ -104,4 +107,6 @@ TimeoutStartSec=3min
 WantedBy=multi-user.target
 ```
 
-:::
+
+{% endhint %}
+

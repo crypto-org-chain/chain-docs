@@ -1,10 +1,14 @@
 # The "Canis Major" upgrade guide (v1.\* to v2.0.1) at block height 922,363:
 
-For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
+For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades).
 
-:::warning The chain-maind `v2.0.1` - Canis Major upgrade is completed at block height `922,363`
+{% hint style="warning" %}
+**Warning**:
 
-:::
+The chain-maind `v2.0.1` - Canis Major upgrade is completed at block height `922,363`
+{% endhint %}
+
+
 
 For those who want to enjoy the automatic upgrade managed by [cosmovisor](https://docs.cosmos.network/master/run-node/cosmovisor.html), please follow this [cosmovisor guide](cosmovisor.md) for the coming "Canis Major" network upgrade. Otherwise, please continue below manual upgrade steps.
 
@@ -27,15 +31,19 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
     $ tar -zxvf chain-main_2.0.1_Linux_x86_64.tar.gz
     ```
 
-    ::: tip Remarks: If you have stated `chain-maind` with _systemd_ service, kindly stop it by
+
+
+    {% hint style="info" %}
+    **Remarks**: If you have stated `chain-maind` with _systemd_ service, kindly stop it by
 
     ```bash
     $ sudo systemctl stop chain-maind
     ```
 
     And replace the binary in the location where the `ExecStart` states in Systemd Unit file.
+    {% endhint %}
 
-    :::
+
 *   For [homebrew](https://github.com/crypto-org-chain/homebrew-chain-maind#chain-maind-homebrew-tap) users, simply run
 
     ```bash

@@ -5,20 +5,22 @@
 
 ## Setting up AWS Nitro Enclaves + Tendermint KMS for signing blocks
 
-::: warning CAUTION The setup isn't yet ready for production use:
+{% hint style="warning" %}
+**CAUTION** The setup isn't yet ready for production use:
 
-1. It is not yet audited
-2. The [tmkms prototype fork](https://github.com/crypto-com/tmkms-light) isn't meant to be maintained in the long term :::
+* It is not yet audited
+* The [tmkms prototype fork](https://github.com/crypto-com/tmkms-light) isn't meant to be maintained in the long term&#x20;
+{% endhint %}
 
 ### Background
 
-[TMKMS](https://github.com/iqlusioninc/tmkms), initially targeting Cosmos Validators, provide **High-availability**, **Double-signing prevention** and **Hardware security module**.
+[TMKMS](https://github.com/iqlusioninc/tmkms), initially targeting Cosmos Validators, provides **High-availability**, **Double-signing prevention** and **Hardware security module**.
 
-Currently, TMKMS provides both **hardware signing** and **softsign**. However, it is hard or impossible to plug your own [Hardware Security Modules(HSM)](https://github.com/iqlusioninc/tmkms#hardware-security-modules-recommended) to the major cloud providers when one wants to run it on the cloud for **hardware signing**. On the other hand, it is also insecure to use **softsign** as your generated signing key is actually in plain text on the machine.
+Currently, TMKMS provides both **hardware signing** and **softsign**. However, it is hard or impossible to plug your own [Hardware Security Modules(HSM)](https://github.com/iqlusioninc/tmkms#hardware-security-modules-recommended) into the major cloud providers when one wants to run it on the cloud for **hardware signing**. On the other hand, it is also insecure to use **softsign** as your generated signing key is actually in plain text on the machine.
 
 What we want to achieve is just running TMKMS securely and provision validator conveniently on the cloud. To meet this end, we now can leverage [AWS Nitro Enclaves](https://aws.amazon.com/blogs/aws/aws-nitro-enclaves-isolated-ec2-environments-to-process-confidential-data/) to execute TMKMS and TMKMS then decrypts (during initialization) the signing via [AWS KMS](https://aws.amazon.com/kms/). Read more details [here](https://github.com/tomtau/tmkms/blob/feature/nitro-enclave/README.nitro.md)
 
-Note that this is still work in progress and this document only describes a basic setup, so it is not yet ready for the production use. We recommend looking at other materials for additional setups, such as the [Security best practices for AWS KMS whitepaper](https://d0.awsstatic.com/whitepapers/aws-kms-best-practices.pdf).
+Note that this is still a work in progress and this document only describes a basic setup, so it is not yet ready for production use. We recommend looking at other materials for additional setups, such as the [Security best practices for AWS KMS whitepaper](https://d0.awsstatic.com/whitepapers/aws-kms-best-practices.pdf).
 
 ![](../docs/getting-started/assets/tmkms\_vsock\_enclave.png)
 
@@ -45,7 +47,7 @@ $ mkdir ~/.tmkms
 $ nitro-cli build-enclave --docker-uri cryptocom/nitro-enclave-tmkms:latest --output-file ~/.tmkms/tmkms.eif
 ```
 
-After building the enclave image, you should obtain 3 [enclave's measurements(PCRs)](https://docs.aws.amazon.com/enclaves/latest/user/set-up-attestation.html#where): PCR0 (SHA384 hash of the image), PCR1 (SHA384 hash of the OS kernel and the bootstrap process), and PCR2 (SHA384 hash of the application). Take a note of the **PCR0** value. One can also use PCR3 and PCR8, for more details, please find this [link](https://docs.aws.amazon.com/enclaves/latest/user/enclaves-user.pdf)
+After building the enclave image, you should obtain 3 [enclave's measurements(PCRs)](https://docs.aws.amazon.com/enclaves/latest/user/set-up-attestation.html#where): PCR0 (SHA384 hash of the image), PCR1 (SHA384 hash of the OS kernel and the bootstrap process), and PCR2 (SHA384 hash of the application). Take note of the **PCR0** value. One can also use PCR3 and PCR8, for more details, please find this [link](https://docs.aws.amazon.com/enclaves/latest/user/enclaves-user.pdf)
 
 And also create and take a note of **PCR4** manually which is unique across ec2.
 
@@ -57,7 +59,7 @@ $ printf "PCR4: %s\n" $(INSTANCE_ID="$(curl http://169.254.169.254/latest/meta-d
 
 #### Step 4.1. Create an IAM role for EC2
 
-[Create an IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#create-iam-role)for the created EC2 previously without permissions policies attached. We will allow this role to decrypt with CMK inside nitro enclave in [KMS key policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) instead.
+[Create an IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#create-iam-role) for the created EC2 previously without permissions policies attached. We will allow this role to decrypt with CMK inside nitro enclave in [KMS key policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) instead.
 
 Attach this role to the previously created EC2. Check this [guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role).
 
@@ -151,7 +153,8 @@ enclave_tendermint_conn = 5000
 aws_region = '<AWS region to use for KMS>'
 ```
 
-:::details Example: tmkms.toml for testnet
+{% hint style="info" %}
+Example: tmkms.toml for testnet
 
 ```toml
 address = 'unix:///home/ec2-user/sockets/validator.socket'
@@ -164,8 +167,7 @@ enclave_state_port = 5555
 enclave_tendermint_conn = 5000
 aws_region = 'ap-southeast-1'
 ```
-
-:::
+{% endhint %}
 
 ### Step 7. Create TMKMS enclave service
 

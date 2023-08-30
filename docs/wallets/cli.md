@@ -73,7 +73,8 @@ A list of commonly used `chain-maind` commands.
 
 You may also add the flag `-h, --help` on `chain-maind [command]` to get more available commands and details.
 
-::: details Example: More details of subcommand - tx staking
+{% hint style="info" %}
+**Example**: More details of subcommand - tx staking
 
 ```bash
 $ chain-maind tx staking --help
@@ -100,8 +101,9 @@ Global Flags:
       --log_level string    The logging level (trace|debug|info|warn|error|fatal|panic) (default "info")
       --trace   
 ```
+{% endhint %}
 
-:::
+
 
 ## Keys management - `chain-maind keys`
 
@@ -127,29 +129,32 @@ It is the only way to recover your account if you ever forget your password.
 spare leopard potato hospital series salt model myself bronze print despair please mutual rival battle lumber crater brain food artwork goose west talent ritual
 ```
 
-::: The key comes with a "mnemonic phrase", which is serialized into a human-readable 24-word mnemonic. User can recover their associated addresses with the mnemonic phrase.
+{% hint style="danger" %}
+The key comes with a "mnemonic phrase", which is serialized into a human-readable 24-word mnemonic. User can recover their associated addresses with the mnemonic phrase.
 
-:::danger It is important that you keep the mnemonic for address secure, as there is **no way** to recover it. You would not be able to recover and access the funds in the wallet if you forget the mnemonic phrase. :::
+It is important that you keep the mnemonic for address secure, as there is **no way** to recover it. You would not be able to recover and access the funds in the wallet if you forget the mnemonic phrase.
+{% endhint %}
 
 ### `keys add <key_name> --recover` - Restore existing key by seed phrase
 
 You can restore an existing key with the mnemonic.
 
-::: details Example: Restore an existing key
+{% hint style="info" %}
+**Example**: Restore an existing key
 
 ```bash
 $ chain-maind keys add Default_restore --recover 
 > Enter your bip39 mnemonic
 ## Enter your 24-word mnemonic here ##
 ```
-
-:::
+{% endhint %}
 
 ### `keys list` - List your keys
 
 Multiple keys can be created when needed. You can list all keys saved under the storage path.
 
-::: details Example: List all of your keys
+{% hint style="info" %}
+**Example**: List all of your keys
 
 ```bash
 $ chain-maind keys list
@@ -168,14 +173,16 @@ $ chain-maind keys list
     threshold: 0
     pubkeys: []
 ```
-
-:::
+{% endhint %}
 
 ### `keys show <key_name>` - Retrieve key information
 
 You can retrieve key information by its name:
 
 ::: details Example: Retrieve key information - Account Address and its public key
+
+{% hint style="info" %}
+**Example**: Retrieve key information - Account Address and its public key
 
 ```bash
 $ chain-maind keys show Default --bech acc
@@ -187,12 +194,12 @@ $ chain-maind keys show Default --bech acc
   threshold: 0
   pubkeys: []
 ```
+{% endhint %}
 
-:::
+{% hint style="info" %}
+**Example**: Retrieve key information - Validator Address and its public key
 
-::: details Example: Retrieve key information - Validator Address and its public key
-
-```bash
+```
 $ chain-maind keys show Default --bech val
 - name: Default
   type: local
@@ -202,10 +209,10 @@ $ chain-maind keys show Default --bech val
   threshold: 0
   pubkeys: []
 ```
+{% endhint %}
 
-:::
-
-::: details Example: Retrieve key information - Consensus nodes Address and its public key
+{% hint style="info" %}
+**Example**: Retrieve key information - Consensus nodes Address and its public key
 
 ```bash
 $ chain-maind keys show Default --bech cons
@@ -217,30 +224,32 @@ $ chain-maind keys show Default --bech cons
   threshold: 0
   pubkeys: []
 ```
-
-:::
+{% endhint %}
 
 ### `keys delete <key_name>` - Delete a key
 
 You can delete a key in your storage path.
 
-:::danger Make sure you have backed up the key mnemonic before removing any of your keys, as there will be no way to recover your key without the mnemonic. :::
+{% hint style="danger" %}
+Make sure you have backed up the key mnemonic before removing any of your keys, as there will be no way to recover your key without the mnemonic.&#x20;
+{% endhint %}
 
-::: details Example: Remove a key
+{% hint style="info" %}
+**Example**: Remove a key
 
-```bash
+```
 $ chain-maind keys delete Default_restore1
 Key reference will be deleted. Continue? [y/N]: y
 Key deleted forever (uh oh!)
 ```
-
-:::
+{% endhint %}
 
 ### `keys export <key_name>` - Export private keys
 
 You can export and backup your key by using the `export` subcommand:
 
-::: details Example: Export your keys Exporting the key _Default_ :
+{% hint style="info" %}
+&#x20;**Example**: Export your keys Exporting the key _Default_ :
 
 ```bash
 $ chain-maind keys export Default
@@ -253,12 +262,11 @@ type: secp256k1
 ## Tendermint private key ##
 -----END TENDERMINT PRIVATE KEY-----
 ```
-
-:::
+{% endhint %}
 
 ### The keyring `--keyring-backend` option
 
-Interacting with a node requires a public-private key pair. Keyring is the place holding the keys. The keys can be stored in different locations with specified backend type.
+Interacting with a node requires a public-private key pair. Keyring is the place holding the keys. The keys can be stored in different locations with specified backend types.
 
 ```
 $ chain-maind keys [subcommands] --keyring-backend [backend type]
@@ -266,7 +274,7 @@ $ chain-maind keys [subcommands] --keyring-backend [backend type]
 
 ### `os` backend
 
-The default `os` backend stores the keys in operating system's credential sub-system, which are comfortable to most users, yet without compromising on security.
+The default `os` backend stores the keys in the operating system's credential sub-system, which are comfortable to most users, yet without compromising on security.
 
 Here is a list of the corresponding password managers in different operating systems:
 
@@ -278,7 +286,7 @@ Here is a list of the corresponding password managers in different operating sys
 
 ### `file` backend
 
-The `file` backend stores the encrypted keys inside the app's configuration directory. A password entry is required everytime a user access it, which may also occur multiple times of repeated password prompts in one single command.
+The `file` backend stores the encrypted keys inside the app's configuration directory. A password entry is required every time a user access it, which may also occur multiple times of repeated password prompts in one single command.
 
 ### `test` backend
 
@@ -292,26 +300,27 @@ Transfer operation involves the transfer of tokens between two addresses.
 
 #### **Send Funds** \[`tx bank send <from_key_or_address> <to_address> <amount> <network_id>`]
 
-:::details Example: Send 10cro from an address to another.
+{% hint style="info" %}
+**Example**: Send 10cro from one address to another.
 
-```bash
+```
 $ chain-maind tx bank send Default cro17waz6n5a4c4z388rvc40n4c402njfjgqmv0qcp 10cro --chain-id crypto-org-chain-mainnet-1
   ## Transaction payload##
   {"body":{"messages":[{"@type":"/cosmos.bank.v1beta1.MsgSend","from_address"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
-
-:::
+{% endhint %}
 
 ### `tx staking` - Staking operations
 
-Staking operations involve the interaction between an address and a validator. It allows you to create a validator and lock/unlocking funds for staking purposes.
+Staking operations involve the interaction between an address and a validator. It allows you to create a validator and lock/unlock funds for staking purposes.
 
-#### **Delegate you funds to a validator** \[`tx staking delegate <validator-addr> <amount>`]
+#### **Delegate your funds to a validator** \[`tx staking delegate <validator-addr> <amount>`]
 
 To bond funds for staking, you can delegate funds to a validator by the `delegate` command
 
-::: details Example: Delegate funds from `Default` to a validator under the address `crocncl1zd...rz35z`
+{% hint style="info" %}
+**Example**: Delegate funds from `Default` to a validator under the address `crocncl1zd...rz35z`
 
 ```bash
 $ chain-maind tx staking delegate crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z 100cro --from Default --chain-id crypto-org-chain-mainnet-1
@@ -319,35 +328,39 @@ $ chain-maind tx staking delegate crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgDelegate"....}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
+{% endhint %}
 
-:::
+
 
 #### **Unbond your delegated funds** \[`tx staking unbond <validator-addr> <amount>`]
 
 On the other hand, we can create a `Unbond` transaction to unbond the delegated funds
 
-::: details Example: Unbond funds from a validator under the address `crocncl1zdl...rz35z`
+{% hint style="info" %}
+Example: Unbond funds from a validator under the address `crocncl1zdl...rz35z`
 
-```bash
+```
 $ chain-maind tx staking unbond crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z 100cro --from Default --chain-id crypto-org-chain-mainnet-1
 ## Transaction payload##
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgUndelegate"...}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
+{% endhint %}
 
-:::
+{% hint style="info" %}
+Once your funds are unbonded, they will be locked until the `unbonding_time` has passed.
+{% endhint %}
 
-::: tip
 
-* Once your funds were unbonded, It will be locked until the `unbonding_time` has passed.
-
-:::
 
 ## Balance & transaction history
 
 ### `query bank balances` - Check your transferable balance
 
-You can check your _transferable_ balance with the `balances` command under the bank module. :::details Example: Check your address balance
+You can check your _transferable_ balance with the `balances` command under the bank module.&#x20;
+
+{% hint style="info" %}
+**Example**: Check your address balance
 
 ```bash
 $ chain-maind query bank balances cro1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3zwpck7
@@ -358,10 +371,10 @@ balances:
 pagination:
   next_key: null
   total: "0"
-
 ```
+{% endhint %}
 
-:::
+
 
 ## Advance operations and transactions
 
@@ -373,9 +386,10 @@ Anyone who wishes to become a validator can submit a `create-validator` transact
 $ chain-maind tx staking create-validator [flags]
 ```
 
-::: details Example: Joining the network as a validator
+{% hint style="info" %}
+**Example**: Joining the network as a validator
 
-```bash
+```
 $ chain-maind tx staking create-validator \
 --amount="100cro" \
 --pubkey="crocnclconspub1zcjduepqg0yml2l63qjnhr2cuw4tvprr72tle0twf3zymrxllmr0sj9uv3tqmpcrhs" \
@@ -390,14 +404,13 @@ $ chain-maind tx staking create-validator \
 {"body":{"messages":[{"@type":"/cosmos.staking.v1beta1.MsgCreateValidator"...}
 confirm transaction before signing and broadcasting [y/N]: y
 ```
-
-:::
+{% endhint %}
 
 (TODO: details of each flag )
 
 ### `tx slashing unjail` - Unjail a validator
 
-Validator could be punished and jailed due to network misbehaviour, for example if we check the validator set:
+Validator could be punished and jailed due to network misbehaviour, for example, if we check the validator set:
 
 ```bash
 $ chain-maind query staking validators -o json | jq

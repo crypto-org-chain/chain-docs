@@ -2,7 +2,11 @@
 
 After you have generated a mainnet address, you should first verify that you have backed up the correct mnemonic words and can restore to the same address before using it to receive funds.
 
-::: warning VERIFY ONLY IN SECURE ENVIRONMENT We recommend to verify your mnemonic words and address only on a trusted, safe and offline computer and always verify the mnemonic words before using it. :::
+{% hint style="warning" %}
+**VERIFY ONLY IN SECURE ENVIRONMENT**&#x20;
+
+We recommend verifying your mnemonic words and address only on a trusted, safe and offline computer and always verify the mnemonic words before using it.
+{% endhint %}
 
 ## Release Binary (CLI)
 
@@ -17,11 +21,11 @@ $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.
 $ tar -zxvf chain-main_1.0.0_Linux_x86_64.tar.gz
 ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0` or newer version avaliable for mainnet.
+If you are downloading the binary for other operating systems, make sure you are downloading `v1.0.0` or newer versions available for mainnet.
 
 #### Step 2. Recover a new key and derive the address
 
-Run the followings to restore from your save mnemonic words. For example, you can restore a key with the name "Default" by:
+Run the following to restore from your saved mnemonic words. For example, you can restore a key with the name "Default" by:
 
 ```bash
 $ ./chain-maind keys add Default --recover

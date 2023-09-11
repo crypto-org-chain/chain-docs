@@ -165,13 +165,16 @@ Please be aware of the [potential risks](https://github.com/crypto-com/chain-des
 
 ![](assets/mainnet-address-generation/ledger-desktop-create-wallet.png) ![](assets/mainnet-address-generation/desktop-create-success.png)
 
-#### Step 4. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
+#### Step 4. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launches.
 
-::: tip Cannot Connect To Your Ledger Device? If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger. :::
+{% hint style="info" %}
+**Cannot Connect To Your Ledger Device?** \
+If you encounter a connection error when creating a wallet, you can try to unplug and plug your Ledger device into your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger.
+{% endhint %}
 
 ![](assets/mainnet-address-generation/desktop-main-page.png)
 
-#### Step 5. You can check the wallet address by click the "Receive" tab inside any token assets. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
+#### Step 5. You can check the wallet address by clicking the "Receive" tab inside any token assets. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
 
 ![](assets/mainnet-address-generation/ledger-desktop-address.png)
 
@@ -208,9 +211,12 @@ console.log(address);
 
 ## D. Crypto.org Chain Desktop Wallet (Beta)
 
-Supported OS: Ubuntu, Mac OS and Windows
+Supported OS: Ubuntu, Mac OS, and Windows
 
-::: warning DESKTOP WALLET IS IN BETA Desktop wallet is in beta testing. Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address. :::
+{% hint style="warning" %}
+DESKTOP WALLET IS IN BETA Desktop wallet is in beta testing. \
+Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe, and offline computer and always verify the mnemonic words before using the address.
+{% endhint %}
 
 Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
 
@@ -232,10 +238,10 @@ Download the latest version of the Crypto.org Chain Desktop Wallet [here](https:
 
 ![](assets/mainnet-address-generation/desktop-backup-mnemonic.png)
 
-#### Step 6. A warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launch.
+#### Step 6. A warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launches.
 
 ![](assets/mainnet-address-generation/desktop-main-page.png)
 
-#### Step 7. You can check the wallet address by click the "Receive" tab on the left navigation menu.
+#### Step 7. You can check the wallet address by clicking the "Receive" tab on the left navigation menu.
 
 ![](assets/mainnet-address-generation/desktop-address.png)

@@ -15,20 +15,27 @@ Derivation Path: `44'/394'/0'/0/{index}` where index starts from 0.
 
 i.e. the first address is derived at path `44'/394'/0'/0/0` and the second one at path `44'/394'/0'/0/1`.
 
-## How to generate address
+## How to generate an address
 
-::: warning MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS\
-Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backup your address's mnemonic words correctly in a safe place and the mnemonic words are correct such that it can restore to your wallet address in the future.
+{% hint style="warning" %}
+**MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS**\
+Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backed up your address's mnemonic words correctly in a safe place and that the mnemonic words are correct such that they can be restored to your wallet address in the future.\
+You are the sole owner of your wallet mnemonic words and there is no way for Crypto.org to restore your wallet or recover your funds if you lost the mnemonic words.&#x20;
+{% endhint %}
 
-You are the sole owner of your wallet mnemonic words and there is no way for Crypto.org to restore your wallet or recover your funds if you lost the mnemonic words. :::
+{% hint style="warning" %}
+**GENERATE ADDRESS ONLY IN A SECURE ENVIRONMENT**\
+We recommend you generate an address only on a trusted and secure computer. To further enhance the security, you should consider running on an air-gapped (offline) machine.&#x20;
+{% endhint %}
 
-::: warning GENERATE ADDRESS ONLY IN A SECURE ENVIRONMENT\
-We recommend you to generate an address only on a trusted and secure computer. To further enhance the security, you should consider to run on a air-gapped (offline) machine. :::
+{% hint style="warning" %}
+**ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS**\
+To make sure you have backed up the mnemonic words correctly, we recommend you try to restore your wallet with the mnemonic words and verify the address derived is the same.
 
-::: warning ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS\
-To make sure you have backed up the mnemonic words correctly, we recommend you to try to restore your wallet with the mnemonic words and verify the address derived is the same.
+For more details on how to verify your mnemonic words and addresses, please check [Mainnet Address Verification](mainnet-address-verification.md)&#x20;
+{% endhint %}
 
-For more details on how to verify your mnemonic words and addresses, please check [Mainnet Address Verification](mainnet-address-verification.md) ::: There are four ways to generate the mainnet address by using:
+There are four ways to generate the mainnet address by using:
 
 * [Release Binary (CLI)](mainnet-address-generation.md#a-release-binary-cli);
 * [Ledger Wallet](mainnet-address-generation.md#b-ledger-wallet);
@@ -37,18 +44,18 @@ For more details on how to verify your mnemonic words and addresses, please chec
 
 ## A. Release Binary (CLI)
 
-Supported OS: Linux, Mac OS and Windows
+Supported OS: Linux, Mac OS, and Windows
 
 #### Step 1. Get the Crypto.org Chain binary
 
-Download the Crypto.org Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases) and extract the binary. Here we used Linux as an example:
+Download the Crypto.org Chain Binary for Mainnet from the [release page](https://github.com/crypto-org-chain/chain-main/releases) and extract the binary. Here we used Linux as an example:
 
 ```bash
  $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
  $ tar -zxvf chain-main_3.3.9_Linux_x86_64.tar.gz
 ```
 
-If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.9` or newer version that are targeting for mainnet.
+If you are downloading the binary for other operating systems, make sure you are downloading `v3.3.9` or newer versions that are targeting for mainnet.
 
 Before moving to the next step, kindly check your `chain-maind` version by
 
@@ -133,7 +140,11 @@ $ ./chain-maind keys add Ledger --ledger
 
 You will be prompted with the address on your Ledger device screen. Read it carefully and write it down. Afterward, confirm the address on your Ledger device.
 
-::: tip Cannot Connect To Your Ledger Device? If you encounter connection error when creating a wallet, you can try to unplug and plug your Ledger device to your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger. :::
+{% hint style="info" %}
+Cannot Connect To Your Ledger Device?&#x20;
+
+If you encounter a connection error when creating a wallet, you can try to unplug and plug your Ledger device into your computer again. Please make sure your Ledger device is unlocked and you have opened the "Crypto.org Chain" application on your Ledger.
+{% endhint %}
 
 #### Step 4. Verify the address displayed on the terminal, and make sure it matches the address you saw on Ledger device
 

@@ -1,60 +1,60 @@
-# Crypto.org Chain Blocks and Transactions
+# Blocks and Transactions
 
 This document describes the block and transaction structure of the Crypto.org Chain and explains different ways to extract and parse the details of them.
 
 ## Table of Content
 
-- [Crypto.org Chain Blocks and Transactions](#cryptoorg-chain-blocks-and-transactions)
-  - [Table of Content](#table-of-content)
-  - [Common APIs](#common-apis)
-    - [1. Tendermint Block API](#_1-tendermint-block-api)
-    - [2. Tendermint Block Results API](#_2-tendermint-block-results-api)
-    - [3. Cosmos Transaction Query API](#_3-cosmos-transaction-query-api)
-    - [4. Cosmos Transaction Search API](#_4-cosmos-transaction-search-api)
-  - [Common Block Details](#common-block-details)
-    - [1. Mint](#_1-mint)
-    - [2. Block Rewards](#_2-block-rewards)
-    - [3. Proposer Rewards](#_3-proposer-rewards)
-    - [4. Commissions](#_4-commissions)
-  - [Common Transaction Details](#common-transaction-details)
-    - [1. Block Height](#_1-block-height)
-    - [2. Transaction Hash](#_2-transaction-hash)
-    - [3. Transaction Fee](#_3-transaction-fee)
-    - [4. Assets and Amount](#_4-assets-and-amount)
-      - [1. Single object](#_1-single-object)
-      - [2. Array](#_2-array)
-      - [3. String](#_3-string)
-  - [Bank](#bank)
-    - [1. MsgSend](#_1-msgsend)
-    - [2. MsgMultiSend](#_2-msgmultisend)
-  - [Distribution](#distribution)
-    - [1. MsgSetWithdrawAddress](#_1-msgsetwithdrawaddress)
-    - [2. MsgWithdrawDelegatorReward](#_2-msgwithdrawdelegatorreward)
-    - [3. MsgWithdrawValidatorCommission](#_3-msgwithdrawvalidatorcommission)
-    - [4. MsgFundCommunityPool](#_4-msgfundcommunitypool)
-  - [Staking](#staking)
-    - [1. MsgCreateValidator](#_1-msgcreatevalidator)
-    - [2. MsgEditValidator](#_2-msgeditvalidator)
-    - [3. MsgDelegate](#_3-msgdelegate)
-    - [4. MsgBeginRedelegate](#_4-msgbeginredelegate)
-    - [5. MsgUndelegate](#_5-msgundelegate)
-      - [5a. Upon MsgUndelegate completed](#_5a-upon-msgundelegate-completed)
-  - [Slashing](#slashing)
-    - [1. MsgUnjail](#_1-msgunjail)
-    - [2. Being Jailed and Slashed](#_2-being-jailed-and-slashed)
-      - [Liveness](#liveness)
-      - [Double Sign](#double-sign)
-      - [Limitations](#limitations)
-  - [Governance](#governance)
-    - [1. MsgSubmitProposal](#_1-msgsubmitproposal)
-      - [1a. Community Pool Spend Proposal](#_1a-community-pool-spend-proposal)
-    - [2. MsgDeposit](#_2-msgdeposit)
-      - [2a. Burn Proposal's Deposit if Proposal does not Get Enough Deposit](#_2a-burn-proposals-deposit-if-proposal-does-not-get-enough-deposit)
-      - [2b. Return Proposal's Deposit](#_2b-return-proposals-deposit)
-      - [2c. Burn Proposal's Deposit](#_2c-burn-proposals-deposit)
-    - [3. MsgVote](#_3-msgvote)
-    - [4. Proposal Result](#_4-proposal-result)
-  - [Appendix: Module Accounts on Mainnet](#appendix-module-accounts-on-mainnet)
+* [Crypto.org Chain Blocks and Transactions](blocks-and-transactions.md#cryptoorg-chain-blocks-and-transactions)
+  * [Table of Content](blocks-and-transactions.md#table-of-content)
+  * [Common APIs](blocks-and-transactions.md#common-apis)
+    * [1. Tendermint Block API](blocks-and-transactions.md#\_1-tendermint-block-api)
+    * [2. Tendermint Block Results API](blocks-and-transactions.md#\_2-tendermint-block-results-api)
+    * [3. Cosmos Transaction Query API](blocks-and-transactions.md#\_3-cosmos-transaction-query-api)
+    * [4. Cosmos Transaction Search API](blocks-and-transactions.md#\_4-cosmos-transaction-search-api)
+  * [Common Block Details](blocks-and-transactions.md#common-block-details)
+    * [1. Mint](blocks-and-transactions.md#\_1-mint)
+    * [2. Block Rewards](blocks-and-transactions.md#\_2-block-rewards)
+    * [3. Proposer Rewards](blocks-and-transactions.md#\_3-proposer-rewards)
+    * [4. Commissions](blocks-and-transactions.md#\_4-commissions)
+  * [Common Transaction Details](blocks-and-transactions.md#common-transaction-details)
+    * [1. Block Height](blocks-and-transactions.md#\_1-block-height)
+    * [2. Transaction Hash](blocks-and-transactions.md#\_2-transaction-hash)
+    * [3. Transaction Fee](blocks-and-transactions.md#\_3-transaction-fee)
+    * [4. Assets and Amount](blocks-and-transactions.md#\_4-assets-and-amount)
+      * [1. Single object](blocks-and-transactions.md#\_1-single-object)
+      * [2. Array](blocks-and-transactions.md#\_2-array)
+      * [3. String](blocks-and-transactions.md#\_3-string)
+  * [Bank](blocks-and-transactions.md#bank)
+    * [1. MsgSend](blocks-and-transactions.md#\_1-msgsend)
+    * [2. MsgMultiSend](blocks-and-transactions.md#\_2-msgmultisend)
+  * [Distribution](blocks-and-transactions.md#distribution)
+    * [1. MsgSetWithdrawAddress](blocks-and-transactions.md#\_1-msgsetwithdrawaddress)
+    * [2. MsgWithdrawDelegatorReward](blocks-and-transactions.md#\_2-msgwithdrawdelegatorreward)
+    * [3. MsgWithdrawValidatorCommission](blocks-and-transactions.md#\_3-msgwithdrawvalidatorcommission)
+    * [4. MsgFundCommunityPool](blocks-and-transactions.md#\_4-msgfundcommunitypool)
+  * [Staking](blocks-and-transactions.md#staking)
+    * [1. MsgCreateValidator](blocks-and-transactions.md#\_1-msgcreatevalidator)
+    * [2. MsgEditValidator](blocks-and-transactions.md#\_2-msgeditvalidator)
+    * [3. MsgDelegate](blocks-and-transactions.md#\_3-msgdelegate)
+    * [4. MsgBeginRedelegate](blocks-and-transactions.md#\_4-msgbeginredelegate)
+    * [5. MsgUndelegate](blocks-and-transactions.md#\_5-msgundelegate)
+      * [5a. Upon MsgUndelegate completed](blocks-and-transactions.md#\_5a-upon-msgundelegate-completed)
+  * [Slashing](blocks-and-transactions.md#slashing)
+    * [1. MsgUnjail](blocks-and-transactions.md#\_1-msgunjail)
+    * [2. Being Jailed and Slashed](blocks-and-transactions.md#\_2-being-jailed-and-slashed)
+      * [Liveness](blocks-and-transactions.md#liveness)
+      * [Double Sign](blocks-and-transactions.md#double-sign)
+      * [Limitations](blocks-and-transactions.md#limitations)
+  * [Governance](blocks-and-transactions.md#governance)
+    * [1. MsgSubmitProposal](blocks-and-transactions.md#\_1-msgsubmitproposal)
+      * [1a. Community Pool Spend Proposal](blocks-and-transactions.md#\_1a-community-pool-spend-proposal)
+    * [2. MsgDeposit](blocks-and-transactions.md#\_2-msgdeposit)
+      * [2a. Burn Proposal's Deposit if Proposal does not Get Enough Deposit](blocks-and-transactions.md#\_2a-burn-proposals-deposit-if-proposal-does-not-get-enough-deposit)
+      * [2b. Return Proposal's Deposit](blocks-and-transactions.md#\_2b-return-proposals-deposit)
+      * [2c. Burn Proposal's Deposit](blocks-and-transactions.md#\_2c-burn-proposals-deposit)
+    * [3. MsgVote](blocks-and-transactions.md#\_3-msgvote)
+    * [4. Proposal Result](blocks-and-transactions.md#\_4-proposal-result)
+  * [Appendix: Module Accounts on Mainnet](blocks-and-transactions.md#appendix-module-accounts-on-mainnet)
 
 ## Common APIs
 
@@ -66,42 +66,45 @@ This document describes the block and transaction structure of the Crypto.org Ch
 
 ### 1. Tendermint Block API
 
-- **URL format:** https://rpc.mainnet.crypto.org/block?height=[height]
-- This API returns block details, a list of _transaction bytes_ and _consensus commits_.
-::: tip Example: Checking the block at height `10000` of the mainnet:
+* **URL format:** https://rpc.mainnet.crypto.org/block?height=\[height]
+* This API returns block details, a list of _transaction bytes_ and _consensus commits_.&#x20;
 
- [https://rpc.mainnet.crypto.org/block?height=10000](https:/rpc.mainnet.crypto.org/block?height=10000)
+{% hint style="info" %}
+**Example: Checking the block at height `10000` of the mainnet:**\
+[https://rpc.mainnet.crypto.org/block?height=10000](https://https/rpc.mainnet.crypto.org/block?height=10000)
+{% endhint %}
 
- :::
+
 
 ### 2. Tendermint Block Results API
 
-- **URL format:** https://rpc.mainnet.crypto.org:26657/block_results?height=[height]
-- This API returns the events of the block. These events include the outcomes from transactions, and block changes such as block rewards minted (`"mint"`) and distributed as well as consensus state updates such as validator missing block counts (`"liveness"`)
+* **URL format:** https://rpc.mainnet.crypto.org:26657/block\_results?height=\[height]
+* This API returns the events of the block. These events include the outcomes from transactions, and block changes such as block rewards minted (`"mint"`) and distributed as well as consensus state updates such as validator missing block counts (`"liveness"`)
 
-::: tip Example: Checking the block result of height `10000` of the mainnet:
+{% hint style="info" %}
+Example: Checking the block result of height `10000`of the mainnet:\
+[https://rpc.mainnet.crypto.org/block\_results?height=10000](https://rpc.mainnet.crypto.org/block\_results?height=10000)
+{% endhint %}
 
- [https://rpc.mainnet.crypto.org/block_results?height=10000](https://rpc.mainnet.crypto.org/block_results?height=10000)
 
-:::
 
 ### Cosmos
 
 ### 3. Cosmos Transaction Query API
 
-- **URL format:** https://rest.mainnet.crypto.org/comsos/tx/v1beta1/txs/[Transaction_Hash]
-- This API returns the parsed transaction details and events of a particular transaction hash
-- **Example**: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660
+* **URL format:** https://rest.mainnet.crypto.org/comsos/tx/v1beta1/txs/\[Transaction\_Hash]
+* This API returns the parsed transaction details and events of a particular transaction hash
+* **Example**: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660
 
 ### 4. Cosmos Transaction Search API
 
-- **URL format:** https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs
-- This API support event based query and returns parsed transactions. Common events include:
+* **URL format:** https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs
+* This API support event based query and returns parsed transactions. Common events include:
 
 | Event                           | Description                                                                                                                                            | Example                                                                                                                                                                                                     |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | tx.height                       | Transaction(s) in a particular block                                                                                                                   | [txs?events=tx.height%3D10000](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs?events=tx.height%3D10000)                                                                                              |
-| message.module & message.action | Search for messages belonged to a particular module and actions. _Note that this index will degrade when more transaction of its kind grows in number_ | [txs?events=message.module%3D%27bank%27&events=message.action%3D%27send%27](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs?events=message.module%3D%27bank%27&events=message.action%3D%27send%27)    |
+| message.module & message.action | Search for messages belonged to a particular module and actions. _Note that this index will degrade when more transaction of its kind grows in number_ | [txs?events=message.module%3D%27bank%27\&events=message.action%3D%27send%27](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs?events=message.module%3D%27bank%27\&events=message.action%3D%27send%27)  |
 | message.sender                  | Search for message with particular signer                                                                                                              | [/txs?events=message.sender=%27cro18undzhe3fmmav2x3csx8m00m5yupkcc7qzz4ec%27](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs?events=message.sender=%27cro18undzhe3fmmav2x3csx8m00m5yupkcc7qzz4ec%27) |
 
 **Note**:
@@ -110,100 +113,105 @@ This document describes the block and transaction structure of the Crypto.org Ch
 2. The performance will degrade if you are searching for a result set that will grow over time. For example, if we search for events that grow with the block height, such as validator's reward distrubtion.
 3. Multiple events in a single search is queried by `AND` condition. i.e If you do `tx.height` and `message.sender`. It will search for transactions that happened on that particular block height **AND** signed by the sender.
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ## Common Block Details
 
-Most of the block events can be accessed using the [Tendermint Block Results API](#_2-tendermint-block-results-api). One caveat of using this API is that all the events key-value attributes are base64 encoded. Therefore it is **non-human readable**.
+Most of the block events can be accessed using the [Tendermint Block Results API](blocks-and-transactions.md#\_2-tendermint-block-results-api). One caveat of using this API is that all the events key-value attributes are base64 encoded. Therefore it is **non-human readable**.
 
 A simple Node.js tool has been written to help parse and decode all key-value attributes in the block results API response. It can be downloaded at [https://github.com/calvinaco/cosmos-api-tools](https://github.com/calvinaco/cosmos-api-tools).
 
-::: tip Usage example:
 
+
+{% hint style="info" %}
+Usage example:
 
 ```bash
 $ git clone https://github.com/calvinaco/cosmos-api-tools
 $ cd cosmos-api-tools
 $ node block-results-decoder.js "https://rpc.mainnet.crypto.org/block_results?height=10000"
 ```
-:::
+{% endhint %}
+
 Note that when you integrate with the API you should still base64 decode the attributes programmatically.
+
+
 
 ### 1. Mint
 
-In every block, CRO is minted and offered to the active validators and their delegators as block rewards. The actual minted token is subject to inflation and is adjusted every block. Further details on the miniting parameters and configuration can be found [here](https://crypto.org/docs/chain-details/module_overview.html#mint).
+In every block, CRO is minted and offered to the active validators and their delegators as block rewards. The actual minted token is subject to inflation and is adjusted every block. Further details on the miniting parameters and configuration can be found [here](https://crypto.org/docs/chain-details/module\_overview.html#mint).
 
-Minted tokens are distributed as block and proposer rewards in the same block. However, since Cosmos SDK does the [lazy rewards calculation and collection](https://docs.cosmos.network/master/modules/distribution/), the minted tokens are first sent to the "Distribution" module account and are later transferred to an account when a delegator withdraws the rewards or commissions by sending a [MsgWithdrawDelegatorReward](#_2-msgwithdrawdelegatorreward) or [MsgWithdrawValidatorCommission](#_3-msgwithdrawvalidatorcommission).
+Minted tokens are distributed as blocks and proposer rewards in the same block. However, since Cosmos SDK does the [lazy rewards calculation and collection](https://docs.cosmos.network/master/modules/distribution/), the minted tokens are first sent to the "Distribution" module account and are later transferred to an account when a delegator withdraws the rewards or commissions by sending a [MsgWithdrawDelegatorReward](blocks-and-transactions.md#\_2-msgwithdrawdelegatorreward) or [MsgWithdrawValidatorCommission](blocks-and-transactions.md#\_3-msgwithdrawvalidatorcommission).
 
-So [Block Rewards](#_2-block-rewards), [Proposer Rewards](#_3-proposer-rewards) and [Commissions](#_4-commissions) events are for record-keeping only and do not represent any actual token transfer between accounts.
+So [Block Rewards](blocks-and-transactions.md#\_2-block-rewards), [Proposer Rewards](blocks-and-transactions.md#\_3-proposer-rewards) and [Commissions](blocks-and-transactions.md#\_4-commissions) events are for record-keeping only and do not represent any actual token transfer between accounts.
 
 To get the minted token every block:
 
-| Accessor                                                                                                                                                                                                                                                                             | Type                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
-| `Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`Base64Decode(result.begin_block_events[event_index].type) === "mint" && Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "amount"` | [Asset String](#asset-string) |
+| Accessor                                                                                                                                                                                                                                                                                                                | Type                                                    |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| <p><code>Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>Base64Decode(result.begin_block_events[event_index].type) === "mint" &#x26;&#x26; Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "amount"</code></p> | [Asset String](blocks-and-transactions.md#asset-string) |
 
 ### 2. Block Rewards
 
 In every block, mint tokens and transaction fees are distributed to every active validator in the network. As a result, there will be multiple events, each corresponding to a validator and the rewards it receives.
 
-Block rewards are **not** credited to the delegator account directly. This event serves as a record-keeping purpose only. Each delegator account must explicitly send a [MsgWithdrawDelegatorReward](#_2-msgwithdrawdelegatorreward) message transaction to collect the rewards.
+Block rewards are **not** credited to the delegator account directly. This event serves as a record-keeping purpose only. Each delegator account must explicitly send a [MsgWithdrawDelegatorReward](blocks-and-transactions.md#\_2-msgwithdrawdelegatorreward) message transaction to collect the rewards.
 
 To get the reward **per validator**:
 
-| Detail            | Accessor                                                                                                                                                                                                                                                                                   | Type                          |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
-| Validator Address | `Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`Base64Decode(result.begin_block_events[event_index].type) === "rewards" && Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "validator"` | [Asset String](#asset-string) |
-| Reward Amount     | `Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`Base64Decode(result.begin_block_events[event_index].type) === "rewards" && Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "amount"`    | String                        |
+| Detail            | Accessor                                                                                                                                                                                                                                                                                                                      | Type                                                    |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Validator Address | <p><code>Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>Base64Decode(result.begin_block_events[event_index].type) === "rewards" &#x26;&#x26; Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "validator"</code></p> | [Asset String](blocks-and-transactions.md#asset-string) |
+| Reward Amount     | <p><code>Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>Base64Decode(result.begin_block_events[event_index].type) === "rewards" &#x26;&#x26; Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "amount"</code></p>    | String                                                  |
 
 ### 3. Proposer Rewards
 
-Block proposers can get extra transaction fees bonus for the block they have successfully proposed. More details can be found [here](https://crypto.org/docs/chain-details/module_overview.html#transaction-fees-bonus) for reference.
+Block proposers can get extra transaction fees bonus for the block they have successfully proposed. More details can be found [here](https://crypto.org/docs/chain-details/module\_overview.html#transaction-fees-bonus) for reference.
 
-Similar to block rewards, proposer rewards are **not** credited to the account directly. This event serves as a record-keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawDelegatorReward](#_3-msgwithdrawvalidatorcommission) message transaction to collect the rewards.
+Similar to block rewards, proposer rewards are **not** credited to the account directly. This event serves as a record-keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawDelegatorReward](blocks-and-transactions.md#\_3-msgwithdrawvalidatorcommission) message transaction to collect the rewards.
 
-| Detail            | Accessor                                                                                                                                                                                                                                                                                           | Type                          |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Validator Address | `Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`Base64Decode(result.begin_block_events[event_index].type) === "proposer_reward" && Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "validator"` | [Asset String](#asset-string) |
-| Reward Amount     | `Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`Base64Decode(result.begin_block_events[event_index].type) === "proposer_reward" && Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "amount"`    | String                        |
+| Detail            | Accessor                                                                                                                                                                                                                                                                                                                              | Type                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Validator Address | <p><code>Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>Base64Decode(result.begin_block_events[event_index].type) === "proposer_reward" &#x26;&#x26; Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "validator"</code></p> | [Asset String](blocks-and-transactions.md#asset-string) |
+| Reward Amount     | <p><code>Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>Base64Decode(result.begin_block_events[event_index].type) === "proposer_reward" &#x26;&#x26; Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "amount"</code></p>    | String                                                  |
 
 ### 4. Commissions
 
-Validator can charge commission to the block rewards received by delegators. Commissions is already included in [Block Rewards](#_2-block-rewards) and [Proposer Rewards](#_3-proposer-rewards)
+Validator can charge a commission to the block rewards received by delegators. Commissions is already included in [Block Rewards](blocks-and-transactions.md#\_2-block-rewards) and [Proposer Rewards](blocks-and-transactions.md#\_3-proposer-rewards)
 
-Similar to block rewards, commission rewards are **not** credited to the account directly. This event serves as a record-keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawValidatorCommission](#msg-withdraw-validator-commission) message transaction to collect the rewards.
+Similar to block rewards, commission rewards are **not** credited to the account directly. This event serves as a record-keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawValidatorCommission](blocks-and-transactions.md#msg-withdraw-validator-commission) message transaction to collect the rewards.
 
 To get the commission received by **each validator**:
 
-| Detail            | Accessor                                                                                                                                                                                                                                                                                   | Type                          |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
-| Validator Address | `Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`Base64Decode(result.begin_block_events[event_index].type) === "rewards" && Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "validator"` | [Asset String](#asset-string) |
-| Commission Amount | `Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`Base64Decode(result.begin_block_events[event_index].type) === "rewards" && Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "amount"`    | String                        |
+| Detail            | Accessor                                                                                                                                                                                                                                                                                                                      | Type                                                    |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Validator Address | <p><code>Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>Base64Decode(result.begin_block_events[event_index].type) === "rewards" &#x26;&#x26; Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "validator"</code></p> | [Asset String](blocks-and-transactions.md#asset-string) |
+| Commission Amount | <p><code>Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>Base64Decode(result.begin_block_events[event_index].type) === "rewards" &#x26;&#x26; Base64Decode(result.begin_block_events[event_index].attributes[attribute_index].key) === "amount"</code></p>    | String                                                  |
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ## Common Transaction Details
 
 ### 1. Block Height
 
-- [Tendermint Block API](#_1-tendermint-block-api): `result.block.header.height`
-- [Tendermint Block Results API](#_2-blocktendermint-block-results-api): `result.height`
-- [Cosmos Transaction Query API](#_3-cosmos-transaction-query-api): `tx_response.height`
-- [Cosmos Transaction Search API](#_4-cosmos-transaction-search-api): `tx_response[index].height`
+* [Tendermint Block API](blocks-and-transactions.md#\_1-tendermint-block-api): `result.block.header.height`
+* [Tendermint Block Results API](blocks-and-transactions.md#\_2-blocktendermint-block-results-api): `result.height`
+* [Cosmos Transaction Query API](blocks-and-transactions.md#\_3-cosmos-transaction-query-api): `tx_response.height`
+* [Cosmos Transaction Search API](blocks-and-transactions.md#\_4-cosmos-transaction-search-api): `tx_response[index].height`
 
 ### 2. Transaction Hash
 
-- [Tendermint Block API](#_1-tendermint-block-api): `Uppercase(SHA256(Base64Decode(result.block.data.txs[index])))`
-- [Tendermint Block Results API](#_2-blocktendermint-block-results-api): Not available, should use [Tendermint Block API](#tendermint-block-api). Match transaction `[index]` in `result.txs_results` with `result.block.data.txs[index]`
-- [Cosmos Transaction Query API](#_3-cosmos-transaction-query-api): `tx_response.txhash`
-- [Cosmos Transaction Search API](#_4-cosmos-transaction-search-api): `tx_response[index].txhash`
+* [Tendermint Block API](blocks-and-transactions.md#\_1-tendermint-block-api): `Uppercase(SHA256(Base64Decode(result.block.data.txs[index])))`
+* [Tendermint Block Results API](blocks-and-transactions.md#\_2-blocktendermint-block-results-api): Not available, should use [Tendermint Block API](blocks-and-transactions.md#tendermint-block-api). Match transaction `[index]` in `result.txs_results` with `result.block.data.txs[index]`
+* [Cosmos Transaction Query API](blocks-and-transactions.md#\_3-cosmos-transaction-query-api): `tx_response.txhash`
+* [Cosmos Transaction Search API](blocks-and-transactions.md#\_4-cosmos-transaction-search-api): `tx_response[index].txhash`
 
 ### 3. Transaction Fee
 
-- [Cosmos Transaction Query API](#_3-cosmos-transaction-query-api): `tx.auth_info.fee.amount`
-- [Cosmos Transaction Search API](#_4-cosmos-transaction-search-api): `tx[index].auth_info.fee.amount`
+* [Cosmos Transaction Query API](blocks-and-transactions.md#\_3-cosmos-transaction-query-api): `tx.auth_info.fee.amount`
+* [Cosmos Transaction Search API](blocks-and-transactions.md#\_4-cosmos-transaction-search-api): `tx[index].auth_info.fee.amount`
 
-Transaction fee is an [Asset Array](#_2-array), meaning that a transaction can pay fee in more than one token types.
+Transaction fee is an [Asset Array](blocks-and-transactions.md#\_2-array), meaning that a transaction can pay fee in more than one token types.
 
 ### 4. Assets and Amount
 
@@ -211,7 +219,7 @@ There are mainly two types of assets and amount representation:
 
 #### 1. Single object
 
-This is commonly seen in `staking` module but may appear in other module as well. It represents a single token type.
+This is commonly seen in `staking` module but may appear in other modules as well. It represents a single token type.
 
 **Example**
 
@@ -224,17 +232,13 @@ This is commonly seen in `staking` module but may appear in other module as well
 
 where `denom` is the asset type and `amount` is the amount and `basecro` is the basic unit of CRO token (where 10^8 `basecro` = 1 cro)
 
-Note that the `amount` is always in string for precision accuracy. Please make sure your language is capable to handle big integer number.It is highly recommended to use library similar to [bignumber.js](https://mikemcl.github.io/bignumber.js/) in your language to handle the `amount`.
-
-<!-- omit in toc -->
-
-
+Note that the `amount` is always in string for precision accuracy. Please make sure your language is capable of handling big integer numbers. It is highly recommended to use library similar to [bignumber.js](https://mikemcl.github.io/bignumber.js/) in your language to handle the `amount`.
 
 #### 2. Array
 
 This is commonly seen in most message types. It represents a list of tokens.
 
-At the time of writing there will only be a single entry in this array because `basecro` (or `basetcro` in Croeseid Testnet) is the only supported asset on Crypto.org Chain. However, after IBC transfer and other coins issuance methods are enabled, there will be more asset types, the coin source tracing and their denomination can be found [here](https://github.com/cosmos/cosmos-sdk/blob/master/docs/architecture/adr-001-coin-source-tracing.md)
+At the time of writing, there will only be a single entry in this array because `basecro` (or `basetcro` in Croeseid Testnet) is the only supported asset on Crypto.org Chain. However, after IBC transfer and other coins issuance methods are enabled, there will be more asset types, the coin source tracing and their denomination can be found [here](https://github.com/cosmos/cosmos-sdk/blob/master/docs/architecture/adr-001-coin-source-tracing.md)
 
 **Example**:
 
@@ -251,7 +255,7 @@ At the time of writing there will only be a single entry in this array because `
 ]
 ```
 
-Each object in the array has the same format as [Single Object](#_1-single-object).
+Each object in the array has the same format as [Single Object](blocks-and-transactions.md#\_1-single-object).
 
 #### 3. String
 
@@ -266,17 +270,14 @@ This is commonly seen in events' attributes of block and transaction.
 }
 ```
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ## Bank
 
 ### 1. MsgSend
 
-- **Descriptions:**  Simple transfer message
-
-- Funds movement: Yes
-
-<!-- omit in toc -->
+* **Descriptions:** Simple transfer message
+* Funds movement: Yes
 
 #### Protobuf Structure
 
@@ -288,30 +289,23 @@ type MsgSend struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660)
 
-<!-- omit in toc -->
-
 #### Details
 
-| Detail           | Accessor                                                                      | Type                        |
-| ---------------- | ----------------------------------------------------------------------------- | --------------------------- |
-| Transaction Type | `tx.body.messages[message_index]["@type"] === "/cosmos.bank.v1beta1.MsgSend"` | String                      |
-| From address     | `tx.body.messages[message_index].from_address`                                | String                      |
-| To address       | `tx.body.messages[message_index].to_address`                                  | String                      |
-| Amount           | `tx.body.messages[message_index].amount`                                      | [Asset Array](#_2-array) |
+| Detail           | Accessor                                                                      | Type                                                |
+| ---------------- | ----------------------------------------------------------------------------- | --------------------------------------------------- |
+| Transaction Type | `tx.body.messages[message_index]["@type"] === "/cosmos.bank.v1beta1.MsgSend"` | String                                              |
+| From address     | `tx.body.messages[message_index].from_address`                                | String                                              |
+| To address       | `tx.body.messages[message_index].to_address`                                  | String                                              |
+| Amount           | `tx.body.messages[message_index].amount`                                      | [Asset Array](blocks-and-transactions.md#\_2-array) |
 
 ### 2. MsgMultiSend
 
-- **Descriptions:** Multiple inputs, multiple outputs transfer message.
-
-- Funds movement: Yes
-
-<!-- omit in toc -->
+* **Descriptions:** Multiple inputs, multiple outputs transfer message.
+* Funds movement: Yes
 
 #### Protobuf
 
@@ -330,33 +324,26 @@ type Output struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/6CD89C9F32A4F4E918B2BCD722A9429693E3372E3F882BA4A460F2588A2EE0B3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/6CD89C9F32A4F4E918B2BCD722A9429693E3372E3F882BA4A460F2588A2EE0B3)
 
-<!-- omit in toc -->
-
 #### Details
 
-| Detail           | Accessor                                                                                                                                                 | Type                        |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| Transaction Type | `tx.body.messages[message_index]["@type"] === "/cosmos.bank.v1beta1.MsgMultiSend"`                                                                       | String                      |
-| From Addresses   | `tx.body.messages[message_index].inputs[m].address` where `m>=1`. There can be multiple (`m`) from addresses.                                            | String                      |
-| From Amounts     | `tx.body.messages[message_index].inputs[m].coins` where `m>=1`. There can be multiple (`m`) from addresses and their corresponding input amount.         | [Asset Array](#_2-array) |
-| To Addresses     | `tx.body.messages[message_index].outputs[n].address` where `n>=1`. There can be multiple (`n`) destination addresses.                                    | String                      |
-| To Amounts       | `tx.body.messages[message_index].outputs[n].coins` where `n>=1`. There can be multiple (`n`) destination addresses and their corresponding input amount. | [Asset Array](#_2-array) |
+| Detail           | Accessor                                                                                                                                                 | Type                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Transaction Type | `tx.body.messages[message_index]["@type"] === "/cosmos.bank.v1beta1.MsgMultiSend"`                                                                       | String                                              |
+| From Addresses   | `tx.body.messages[message_index].inputs[m].address` where `m>=1`. There can be multiple (`m`) from addresses.                                            | String                                              |
+| From Amounts     | `tx.body.messages[message_index].inputs[m].coins` where `m>=1`. There can be multiple (`m`) from addresses and their corresponding input amount.         | [Asset Array](blocks-and-transactions.md#\_2-array) |
+| To Addresses     | `tx.body.messages[message_index].outputs[n].address` where `n>=1`. There can be multiple (`n`) destination addresses.                                    | String                                              |
+| To Amounts       | `tx.body.messages[message_index].outputs[n].coins` where `n>=1`. There can be multiple (`n`) destination addresses and their corresponding input amount. | [Asset Array](blocks-and-transactions.md#\_2-array) |
 
 ## Distribution
 
 ### 1. MsgSetWithdrawAddress
 
-- **Descriptions:** Sets the withdraw address for a delegator (or validator self-delegation)
-
-- Funds movement: No (Pay for fee only)
-
-<!-- omit in toc -->
+* **Descriptions:** Sets the withdraw address for a delegator (or validator self-delegation)
+* Funds movement: No (Pay for fee only)
 
 #### Protobuf
 
@@ -367,13 +354,9 @@ type MsgSetWithdrawAddress struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/D4FCC8E1403677157D367A88A0832B9E411BDC4E029954FC133DB60296CF3DE3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/D4FCC8E1403677157D367A88A0832B9E411BDC4E029954FC133DB60296CF3DE3)
-
-<!-- omit in toc -->
 
 #### Details
 
@@ -381,11 +364,8 @@ TODO
 
 ### 2. MsgWithdrawDelegatorReward
 
-- **Descriptions:** Withdraw delegation rewards from a single validator
-
-- Funds movement: Yes
-
-<!-- omit in toc -->
+* **Descriptions:** Withdraw delegation rewards from a single validator
+* Funds movement: Yes
 
 #### Protobuf
 
@@ -396,30 +376,24 @@ type MsgWithdrawDelegatorReward struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318)
 
-<!-- omit in toc -->
-
 #### Details
 
-| Detail                  | Accessor                                                                                                                                                                                                                                                                                    | Type                          |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Transaction Type        | `tx.body.messages[message_index]["@type"] === "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward"`                                                                                                                                                                                    | String                        |
-| Delegator               | `tx.body.messages[message_index].delegator_address`                                                                                                                                                                                                                                         | String                        |
-| Withdraw From Validator | `tx.body.messages[message_index].validator_address`                                                                                                                                                                                                                                         | String                        |
-| Withdraw To Address     | `tx_response.logs[message_index].events[event_index].attributes[attribute_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"`. | String                        |
-| Withdraw Reward Amount  | `tx_response.logs[message_index].events[event_index].attributes[attribute_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"`.    | [Asset String](#asset-string) |
+| Detail                  | Accessor                                                                                                                                                                                                                                                                                                                     | Type                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Transaction Type        | `tx.body.messages[message_index]["@type"] === "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward"`                                                                                                                                                                                                                     | String                                                  |
+| Delegator               | `tx.body.messages[message_index].delegator_address`                                                                                                                                                                                                                                                                          | String                                                  |
+| Withdraw From Validator | `tx.body.messages[message_index].validator_address`                                                                                                                                                                                                                                                                          | String                                                  |
+| Withdraw To Address     | <p><code>tx_response.logs[message_index].events[event_index].attributes[attribute_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"</code>.</p> | String                                                  |
+| Withdraw Reward Amount  | <p><code>tx_response.logs[message_index].events[event_index].attributes[attribute_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"</code>.</p>    | [Asset String](blocks-and-transactions.md#asset-string) |
 
 ### 3. MsgWithdrawValidatorCommission
 
-- **Descriptions:** : Withdraws the full commission of a validator to the validator creator (initial delegator) address.
-- Funds movement: Yes
-
-<!-- omit in toc -->
+* **Descriptions:** : Withdraws the full commission of a validator to the validator creator (initial delegator) address.
+* Funds movement: Yes
 
 #### Protofbuf
 
@@ -429,14 +403,10 @@ type MsgWithdrawValidatorCommission struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
-- Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320)
-- Message Index: `1`
-
-<!-- omit in toc -->
+* Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320)
+* Message Index: `1`
 
 #### Details
 
@@ -444,21 +414,18 @@ This transaction will trigger an internal transfer from the "Distribution" modul
 
 The "Distribution" module account is different on different chain. In Crypto.org Chain Mainnet, it is [cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w).
 
-| Detail                     | Accessor                                                                                                                                                                                                                                                                                    | Type                          |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Transaction Type           | `tx.body.messages[message_index]["@type"] === "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"`                                                                                                                                                                                | String                        |
-| Validator                  | `tx.body.messages[message_index].validator_address`                                                                                                                                                                                                                                         | String                        |
-| Withdraw From Validator    | `tx.body.messages[message_index].validator_address`                                                                                                                                                                                                                                         | String                        |
-| Withdraw To Address        | `tx_response.logs[message_index].events[event_index].attributes[attribute_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"`. | String                        |
-| Withdraw Commission Amount | `tx_response.logs[message_index].events[event_index].attributes[m].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"`.                  | [Asset String](#_3-string) |
+| Detail                     | Accessor                                                                                                                                                                                                                                                                                                                     | Type                                                  |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Transaction Type           | `tx.body.messages[message_index]["@type"] === "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission"`                                                                                                                                                                                                                 | String                                                |
+| Validator                  | `tx.body.messages[message_index].validator_address`                                                                                                                                                                                                                                                                          | String                                                |
+| Withdraw From Validator    | `tx.body.messages[message_index].validator_address`                                                                                                                                                                                                                                                                          | String                                                |
+| Withdraw To Address        | <p><code>tx_response.logs[message_index].events[event_index].attributes[attribute_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"</code>.</p> | String                                                |
+| Withdraw Commission Amount | <p><code>tx_response.logs[message_index].events[event_index].attributes[m].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"</code>.</p>                  | [Asset String](blocks-and-transactions.md#\_3-string) |
 
 ### 4. MsgFundCommunityPool
 
-- **Descriptions:** : Fund from an account to the community pool. The community pool can later be sent to another by submitting a MsgSubmitEcProposal
-
-- Funds movement: Yes
-
-<!-- omit in toc -->
+* **Descriptions:** : Fund from an account to the community pool. The community pool can later be sent to another by submitting a MsgSubmitEcProposal
+* Funds movement: Yes
 
 #### Protobuf
 
@@ -469,12 +436,9 @@ type MsgFundCommunityPool struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example: A transaction funding the community pool
-[https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F)
 
-<!-- omit in toc -->
+[https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F)
 
 #### Details
 
@@ -482,24 +446,21 @@ This transaction will initiate a transfer from an account to the "Distribution" 
 
 Ths "Distribution" module account is different on different chain. In Crypto.org Chain Mainnet, it is [cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w).
 
-| Detail                                              | Accessor                                                                                                                                                                                                                                                                                    | Type                        |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| Transaction Type                                    | `tx.body.messages[message_index]["@type"] === "/cosmos.distribution.v1beta1.MsgFundCommunityPool"`                                                                                                                                                                                          | String                      |
-| Deposit From Account                                | `tx.body.messages[message_index].depositor`                                                                                                                                                                                                                                                 | String                      |
-| Deposit Amount                                      | `tx.body.messages[message_index].amount`                                                                                                                                                                                                                                                    | [Asset Array](#_2-array) |
-| Delegate To Address ("Distribution" module account) | `tx_response.logs[message_index].events[event_index].attributes[attribute_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"`. | String                      |
+| Detail                                              | Accessor                                                                                                                                                                                                                                                                                                                     | Type                                                |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Transaction Type                                    | `tx.body.messages[message_index]["@type"] === "/cosmos.distribution.v1beta1.MsgFundCommunityPool"`                                                                                                                                                                                                                           | String                                              |
+| Deposit From Account                                | `tx.body.messages[message_index].depositor`                                                                                                                                                                                                                                                                                  | String                                              |
+| Deposit Amount                                      | `tx.body.messages[message_index].amount`                                                                                                                                                                                                                                                                                     | [Asset Array](blocks-and-transactions.md#\_2-array) |
+| Delegate To Address ("Distribution" module account) | <p><code>tx_response.logs[message_index].events[event_index].attributes[attribute_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"</code>.</p> | String                                              |
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ## Staking
 
 ### 1. MsgCreateValidator
 
-- **Descriptions:** : Create a new validator
-
-- Funds movement: Yes
-
-<!-- omit in toc -->
+* **Descriptions:** : Create a new validator
+* Funds movement: Yes
 
 #### Protobuf
 
@@ -537,31 +498,24 @@ type CommissionRates struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7B3C19A3674C9EF856C43FFF50B021085AC4DA693AA47F82882FFAC78F21DE05
 
-<!-- omit in toc -->
-
 #### Details
 
-| Detail                                        | Accessor                                                                                    | Type                          |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------- |
-| Transaction Type                              | `tx.body.messages[message_index]["@type"] === "/cosmos.staking.v1beta1.MsgCreateValidator"` | String                        |
-| Initial Delegator Address (Validator Creator) | `tx.body.messages[message_index].delegator_address`                                         | String                        |
-| Delegated Amount                              | `tx.body.messages[message_index].value                                                      | [Asset Object](#_1-single-object) |
+| Detail                                        | Accessor                                                                                    | Type                                                         |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Transaction Type                              | `tx.body.messages[message_index]["@type"] === "/cosmos.staking.v1beta1.MsgCreateValidator"` | String                                                       |
+| Initial Delegator Address (Validator Creator) | `tx.body.messages[message_index].delegator_address`                                         | String                                                       |
+| Delegated Amount                              | \`tx.body.messages\[message\_index].value                                                   | [Asset Object](blocks-and-transactions.md#\_1-single-object) |
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ### 2. MsgEditValidator
 
-- **Descriptions:** : Edit and existing validator
-
-- Funds Movement: No (Pay for fee only)
-
-<!-- omit in toc -->
+* **Descriptions:** : Edit and existing validator
+* Funds Movement: No (Pay for fee only)
 
 #### Protobuf
 
@@ -591,27 +545,20 @@ type Description struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/F4A1D7757AD20979D540C0CD29DD335D17E121F15AA447990B87E0EE94531BD7
-
-<!-- omit in toc -->
 
 ### Details
 
 TODO
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ### 3. MsgDelegate
 
-- **Descriptions:** : Perform a delegation of coins from a delegator to a validator
-
-- Funds movement: Yes
-
-<!-- omit in toc -->
+* **Descriptions:** : Perform a delegation of coins from a delegator to a validator
+* Funds movement: Yes
 
 #### Protobuf
 
@@ -623,36 +570,29 @@ type MsgDelegate struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/CCB45B0C6EC18A327ADFC8C36478A163D8C2A8BD9EB13687F73ED3D4559318A3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/CCB45B0C6EC18A327ADFC8C36478A163D8C2A8BD9EB13687F73ED3D4559318A3)
 
-<!-- omit in toc -->
-
 #### Details
 
-| Detail                | Accessor                                                                             | Type                          |
-| --------------------- | ------------------------------------------------------------------------------------ | ----------------------------- |
-| Transaction Type      | `tx.body.messages[message_index]["@type"] === "/cosmos.staking.v1beta1.MsgDelegate"` | String                        |
-| Delegate From Address | `tx.body.messages[message_index].delegator_address`                                  | String                        |
-| Delegate To Validator | `tx.body.messages[message_index].validator_address`                                  | String                        |
-| Delegate Amount       | `tx.body.messages[message_index].amount`                                             | [Asset Object](#_1-single-object) |
+| Detail                | Accessor                                                                             | Type                                                         |
+| --------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| Transaction Type      | `tx.body.messages[message_index]["@type"] === "/cosmos.staking.v1beta1.MsgDelegate"` | String                                                       |
+| Delegate From Address | `tx.body.messages[message_index].delegator_address`                                  | String                                                       |
+| Delegate To Validator | `tx.body.messages[message_index].validator_address`                                  | String                                                       |
+| Delegate Amount       | `tx.body.messages[message_index].amount`                                             | [Asset Object](blocks-and-transactions.md#\_1-single-object) |
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ### 4. MsgBeginRedelegate
 
-- **Descriptions**: Perform a redelegation of coins from a delegator and source validator to a destination validator.
+*   **Descriptions**: Perform a redelegation of coins from a delegator and source validator to a destination validator.
 
     Note that the redelegation is just a record update of the internal state of a delegator's staked funds. The delegator account won't have any funds movement based on the redelegation except.
 
     There is a side effect of `MsgBeginRedelegate`, upon successful execution of this message, all the rewards of the delegator from the previous (source) validator will be withdrawn automatically to the delegator account.
-
-- Funds movement: Yes
-
-<!-- omit in toc -->
+* Funds movement: Yes
 
 #### Protobuf
 
@@ -665,31 +605,27 @@ type MsgBeginRedelegate struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/5D43A55463C8FB30A89306C26C5E3318826AD075D36E9B5E72F7019C00F14549](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/5D43A55463C8FB30A89306C26C5E3318826AD075D36E9B5E72F7019C00F14549)
 
-<!-- omit in toc -->
-
 #### Details
 
-<!-- omit in toc -->
+| Detail                                                                          | Accessor                                                                                                                                                                                                                                                                                         | Type                                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| Transaction Type                                                                | `tx.body.messages[message_index]["@type"] === "/cosmos.staking.v1beta1.MsgBeginRedelegate"`                                                                                                                                                                                                      | String                                                       |
+| Redelegate From Address                                                         | `tx.body.messages[message_index].delegator_address`                                                                                                                                                                                                                                              | String                                                       |
+| Redelegate From Validator                                                       | `tx.body.messages[message_index].validator_src_address`                                                                                                                                                                                                                                          | String                                                       |
+| Redelegate To Validator                                                         | `tx.body.messages[message_index].validator_dst_address`                                                                                                                                                                                                                                          | String                                                       |
+| Redelegate Amount                                                               | `tx.body.messages[message_index].amount`                                                                                                                                                                                                                                                         | [Asset Object](blocks-and-transactions.md#\_1-single-object) |
+| Auto Withdraw Rewards To Address #                                              | <p><code>tx_response.logs[message_index].events[event_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"</code>.</p> | String                                                       |
+| Auto Withdraw Rewards From Address (Always the "distribution" module account) # | <p><code>tx_response.logs[message_index].events[event_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "sender"</code>.</p>    | String                                                       |
+| Auto Withdraw Rewards Amount #                                                  | <p><code>tx_response.logs[message_index].events[event_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"</code>.</p>    | String                                                       |
 
-| Detail                                                                          | Accessor                                                                                                                                                                                                                                                        | Type                          |
-| ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Transaction Type                                                                | `tx.body.messages[message_index]["@type"] === "/cosmos.staking.v1beta1.MsgBeginRedelegate"`                                                                                                                                                                     | String                        |
-| Redelegate From Address                                                         | `tx.body.messages[message_index].delegator_address`                                                                                                                                                                                                             | String                        |
-| Redelegate From Validator                                                       | `tx.body.messages[message_index].validator_src_address`                                                                                                                                                                                                         | String                        |
-| Redelegate To Validator                                                         | `tx.body.messages[message_index].validator_dst_address`                                                                                                                                                                                                         | String                        |
-| Redelegate Amount                                                               | `tx.body.messages[message_index].amount`                                                                                                                                                                                                                        | [Asset Object](#_1-single-object) |
-| Auto Withdraw Rewards To Address #                                              | `tx_response.logs[message_index].events[event_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"`. | String                        |
-| Auto Withdraw Rewards From Address (Always the "distribution" module account) # | `tx_response.logs[message_index].events[event_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "sender"`.    | String                        |
-| Auto Withdraw Rewards Amount #                                                  | `tx_response.logs[message_index].events[event_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"`.    | String                        |
 
-::: tip Note
-There may be multiple auto rewards withdrawals happen. In such a case, the `transfer` event will have the multiple `{"recipient":"","sender":"","amount":""}`. An example is
+
+{% hint style="info" %}
+**Note**: There may be multiple auto reward withdrawals that happen. In such a case, the `transfer` event will have multiple `{"recipient":"","sender":"","amount":""}`. An example is
 
 ```
 {
@@ -722,19 +658,16 @@ There may be multiple auto rewards withdrawals happen. In such a case, the `tran
   ]
 }
 ```
-:::
+{% endhint %}
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ### 5. MsgUndelegate
 
-- **Descriptions:** : Perform an undelegation from a delegate and a validator.
+*   **Descriptions:** Perform an undelegation from a delegate and a validator.
 
-    Note that the funds is moved between module accounts upon a `MsgUndelegate` message execute. The funds movement to the user account happens only when the unbond completes. For details you can refer to the [next section](#_5a-upon-msgundelegate-completed).
-
-- Funds movement: Yes
-
-<!-- omit in toc -->
+    Note that the funds are moved between module accounts upon a `MsgUndelegate` message execution. The funds movement to the user account happens only when the unbond completes. For details, you can refer to the [next section](blocks-and-transactions.md#\_5a-upon-msgundelegate-completed).
+* Funds movement: Yes
 
 #### Protobuf
 
@@ -746,62 +679,57 @@ type MsgUndelegate struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318)
 
-<!-- omit in toc -->
-
 #### Details
 
-| Detail                                                                          | Accessor                                                                                                                                                                                                                                                        | Type                          |
-| ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Transaction Type                                                                | `tx.body.messages[message_index]["@type"] === "/cosmos.distribution.v1beta1.MsgFundCommunityPool"`                                                                                                                                                              | String                        |
-| Undelegate From Address                                                         | `tx.body.messages[message_index].delegator_address`                                                                                                                                                                                                             | String                        |
-| Undelegate From Validator                                                       | `tx.body.messages[message_index].validator_src_address`                                                                                                                                                                                                         | String                        |
-| Undeleate Amount                                                                | `tx.body.messages[message_index].amount`                                                                                                                                                                                                                        | [Asset Object](#_1-single-object) |
-| Auto Withdraw Rewards To Address #                                              | `tx_response.logs[message_index].events[event_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"`. | String                        |
-| Auto Withdraw Rewards From Address (Always the "distribution" module account) # | `tx_response.logs[message_index].events[event_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "sender"`.    | String                        |
-| Auto Withdraw Rewards Amount #                                                  | `tx_response.logs[message_index].events[event_index].value` <br />where <br />`tx_response.logs[message_index].events[event_index].type === "transfer" && tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"`.    | String                        |
+| Detail                                                                          | Accessor                                                                                                                                                                                                                                                                                         | Type                                                         |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| Transaction Type                                                                | `tx.body.messages[message_index]["@type"] === "/cosmos.distribution.v1beta1.MsgFundCommunityPool"`                                                                                                                                                                                               | String                                                       |
+| Undelegate From Address                                                         | `tx.body.messages[message_index].delegator_address`                                                                                                                                                                                                                                              | String                                                       |
+| Undelegate From Validator                                                       | `tx.body.messages[message_index].validator_src_address`                                                                                                                                                                                                                                          | String                                                       |
+| Undeleate Amount                                                                | `tx.body.messages[message_index].amount`                                                                                                                                                                                                                                                         | [Asset Object](blocks-and-transactions.md#\_1-single-object) |
+| Auto Withdraw Rewards To Address #                                              | <p><code>tx_response.logs[message_index].events[event_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "recipient"</code>.</p> | String                                                       |
+| Auto Withdraw Rewards From Address (Always the "distribution" module account) # | <p><code>tx_response.logs[message_index].events[event_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "sender"</code>.</p>    | String                                                       |
+| Auto Withdraw Rewards Amount #                                                  | <p><code>tx_response.logs[message_index].events[event_index].value</code><br>where<br><code>tx_response.logs[message_index].events[event_index].type === "transfer" &#x26;&#x26; tx_response.logs[message_index].events[event_index].attributes[attribute_index].key === "amount"</code>.</p>    | String                                                       |
 
-:::tip Note: 
-Similar to MsgBeginRedelegate, there may be multiple auto rewards withdrawal happen. In such a case the `transfer` event will have the multiple `{"recipient":"","sender":"","amount":""}`.
-:::
 
-[Top](#table-of-content)
+
+{% hint style="info" %}
+**Note**: Similar to MsgBeginRedelegate, there may be multiple auto reward withdrawals happen. In such a case the `transfer` event will have the multiple `{"recipient":"","sender":"","amount":""}`
+{% endhint %}
+
+&#x20;
+
+[Top](blocks-and-transactions.md#table-of-content)
 
 ### 5a. Upon MsgUndelegate completed
 
-- **Descriptions:** : The undelegation is completed on the first block after the "Unbond Completion Time", in which there will be a special event in the Tendermint Block Results API.
+* **Descriptions**: The undelegation is completed on the first block after the "Unbond Completion Time", in which there will be a special event in the Tendermint Block Results API.
+* Funds movement: Yes
 
-- Funds movement: Yes
 #### Example
-Tendermint Block Results API:
-[https://rpc.mainnet.crypto.org/block_results?height=374823](https://rpc.mainnet.crypto.org/block_results?height=374823)
 
-<!-- omit in toc -->
+Tendermint Block Results API: [https://rpc.mainnet.crypto.org/block\_results?height=374823](https://rpc.mainnet.crypto.org/block\_results?height=374823)
 
 #### Details
 
-| Detail                    | Accessor                                                                                                                                                                                                                                                    | Type                          |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Undelegate From Validator | `.result.end_block_events[event_index].attributes[attribute_index].value` <br />where <br />`.result.end_block_events[event_index].type === "complete_unbonding" && .result.end_block_events[event_index].attributes[attribute_index].key === "validator"`. | String                        |
-| Undelegate To Address     | `.result.end_block_events[event_index].attributes[attribute_index].value` <br />where <br />`.result.end_block_events[event_index].type === "complete_unbonding" && .result.end_block_events[event_index].attributes[attribute_index].key === "delegator"`. | String                        |
-| Undeleate Amount          | `.result.end_block_events[event_index].attributes[attribute_index].value` <br />where <br />`.result.end_block_events[event_index].type === "complete_unbonding" && .result.end_block_events[event_index].attributes[attribute_index].key === "amount"`.    | [Asset String](#asset-string) |
+| Detail                    | Accessor                                                                                                                                                                                                                                                                                     | Type                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Undelegate From Validator | <p><code>.result.end_block_events[event_index].attributes[attribute_index].value</code><br>where<br><code>.result.end_block_events[event_index].type === "complete_unbonding" &#x26;&#x26; .result.end_block_events[event_index].attributes[attribute_index].key === "validator"</code>.</p> | String                                                  |
+| Undelegate To Address     | <p><code>.result.end_block_events[event_index].attributes[attribute_index].value</code><br>where<br><code>.result.end_block_events[event_index].type === "complete_unbonding" &#x26;&#x26; .result.end_block_events[event_index].attributes[attribute_index].key === "delegator"</code>.</p> | String                                                  |
+| Undeleate Amount          | <p><code>.result.end_block_events[event_index].attributes[attribute_index].value</code><br>where<br><code>.result.end_block_events[event_index].type === "complete_unbonding" &#x26;&#x26; .result.end_block_events[event_index].attributes[attribute_index].key === "amount"</code>.</p>    | [Asset String](blocks-and-transactions.md#asset-string) |
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ## Slashing
 
 ### 1. MsgUnjail
 
-- **Descriptions:** : Unjail a validator
-
-- Funds movement: No  (Pay for fee only)
-
-<!-- omit in toc -->
+* **Descriptions:** : Unjail a validator
+* Funds movement: No (Pay for fee only)
 
 #### Protobuf
 
@@ -811,13 +739,9 @@ type MsgUnjail struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/58BF8EBD17FF9500F395E4A9B2AE93EF21306E5706B3EC31CE116654D78B8684](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/58BF8EBD17FF9500F395E4A9B2AE93EF21306E5706B3EC31CE116654D78B8684)
-
-<!-- omit in toc -->
 
 #### Details
 
@@ -825,36 +749,34 @@ TODO
 
 ### 2. Being Jailed and Slashed
 
-A validator can get jailed for two reason:
+A validator can get jailed for two reasons:
 
 1. Liveness
 2. Double sign
 
 #### Liveness
 
-Liveness issue occurs when the validator failed to sign 50%\* of the blocks in a 5000# blocks sliding window.
+Liveness issue occurs when the validator fails to sign 50%\* of the blocks in a 5000# blocks sliding window.
 
-Upon a validator committing liveness issue, the validator is jailed for 24 hours (85400 seconds#).
+Upon a validator committing a liveness issue, the validator is jailed for 24 hours (85400 seconds#).
 
-\# The liveness metrics and the penalty is subject to the network parameters to be explained in the [details section](#details-params)
+\# The liveness metrics and the penalty are subject to the network parameters to be explained in the [details section](blocks-and-transactions.md#details-params)
 
 #### Double Sign
 
-Double sign occurs when a validator attempt to provide multiple signatures of the same block height.
+Double sign occurs when a validator attempts to provide multiple signatures of the same block height.
 
-This is considered as a serious fault and upon committing the validator will got jailed forever and got slashed for 5% of the total staking#.
+This is considered as a serious fault and upon committing the validator will get jailed forever and get slashed for 5% of the total staking#.
 
 This slashing is applied to all the delegations (both self delegation and delegation from other accounts).
 
-\# The slashing rate is subject to the network parameters to be explained in the [details section](#details-params)
+\# The slashing rate is subject to the network parameters to be explained in the [details section](blocks-and-transactions.md#details-params)
 
 #### Limitations
 
-There is a limitation in the protocol that the slashing amount cannot be easily extracted right now. Theoretically one could calculate the slashed amount of each delegator by applying the slash rate and delegation proportion but in practice small precision issue may be introduced in the calculation process and introduce discrepancy with the chain, so it is not recommended to do so.
+There is a limitation in the protocol that the slashing amount cannot be easily extracted right now. Theoretically one could calculate the slashed amount of each delegator by applying the slash rate and delegation proportion but in practice small precision issues may be introduced in the calculation process and introduce discrepancies with the chain, so it is not recommended to do so.
 
-On the other hand, the slashed amount, similar to the block rewards and commission, are **not** deducted from delegator account directly. There are events to signal the jail and slashing occurs but it serve more of the purpose of describing such as event occurs only.
-
-<!-- omit in toc -->
+On the other hand, the slashed amount, similar to the block rewards and commission, is **not** deducted from delegator account directly. There are events to signal the jail and slashing occurs but it serve more of the purpose of describing such as event occurs only.
 
 #### Details - Params
 
@@ -868,23 +790,21 @@ Cosmos Slashing Params API: [https://rest.mainnet.crypto.org/cosmos/slashing/v1b
 | Slashing ratio                            | Liveness    | `.params.slash_fraction_downtime`    | String            |
 | Slashing ratio                            | Double Sign | `.params.slash_fraction_double_sign` | String            |
 
-<!-- omit in toc -->
-
 #### Details - Jail and Slash events
 
-Tendermint Block Results API: https://rpc.mainnet.crypto.org/block?height=[height]
+Tendermint Block Results API: https://rpc.mainnet.crypto.org/block?height=\[height]
 
-You can use the [Cosmos API tools](#common-block-details) to decode the event details for readability during integration.
+You can use the [Cosmos API tools](blocks-and-transactions.md#common-block-details) to decode the event details for readability during integration.
 
-| Detail                    | Category              | Accessor                                                                                                                                                                                                                                                                                             | Type      |
-| ------------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| Jail                      | Liveness, Double Sign | `.results.begin_block_events[event_index].type === "slash" && Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "jailed"`                                                                                                                                   | Assertion |
-| Jailed Reason             | Liveness              | `Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value === "missing_signature"`<br />where<br />`.results.begin_block_events[event_index].type === "slash" && Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "reason"` | String    |
-| Jailed Reason             | Double Sign           | `Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value === "double_sign"`<br />where<br />`.results.begin_block_events[event_index].type === "slash" && Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "reason"`       | String    |
-| Jailed Validator Address  | Liveness, Double Sign | `Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`.results.begin_block_events[event_index].type === "slash" && Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "jailed"`                        | String    |
-| Slashed Validator Address | Liveness, Double Sign | `Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value)`<br />where<br />`.results.begin_block_events[event_index].type === "slash" && Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "address"`                       | String    |
+| Detail                    | Category              | Accessor                                                                                                                                                                                                                                                                                                                                | Type      |
+| ------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| Jail                      | Liveness, Double Sign | `.results.begin_block_events[event_index].type === "slash" && Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "jailed"`                                                                                                                                                                      | Assertion |
+| Jailed Reason             | Liveness              | <p><code>Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value === "missing_signature"</code><br>where<br><code>.results.begin_block_events[event_index].type === "slash" &#x26;&#x26; Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "reason"</code></p> | String    |
+| Jailed Reason             | Double Sign           | <p><code>Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value === "double_sign"</code><br>where<br><code>.results.begin_block_events[event_index].type === "slash" &#x26;&#x26; Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "reason"</code></p>       | String    |
+| Jailed Validator Address  | Liveness, Double Sign | <p><code>Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>.results.begin_block_events[event_index].type === "slash" &#x26;&#x26; Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "jailed"</code></p>                        | String    |
+| Slashed Validator Address | Liveness, Double Sign | <p><code>Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>.results.begin_block_events[event_index].type === "slash" &#x26;&#x26; Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "address"</code></p>                       | String    |
 
-Liveness Example: [https://rpc.mainnet.crypto.org/block_results?height=210356]
+Liveness Example: \[https://rpc.mainnet.crypto.org/block\_results?height=210356]
 
 Liveness Event Example
 
@@ -916,7 +836,7 @@ Liveness Event Example
 }
 ```
 
-Double Sign Example: [https://rpc.mainnet.crypto.org/block_results?height=210356](https://rpc.mainnet.crypto.org/block_results?height=210356)
+Double Sign Example: [https://rpc.mainnet.crypto.org/block\_results?height=210356](https://rpc.mainnet.crypto.org/block\_results?height=210356)
 
 Double Sign Event Example
 
@@ -953,7 +873,7 @@ Double Sign Event Example
 }
 ```
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ## Governance
 
@@ -965,8 +885,6 @@ Initial deposit will transfer from the proposer account to the "gov" module acco
 
 Funds movement: Yes
 
-<!-- omit in toc -->
-
 #### Protobuf
 
 ```go
@@ -977,39 +895,33 @@ type MsgSubmitProposal struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/9CCC988616344C804E8831B6FC6BECD6FD0F815E4E3FF13BDE6B7F8360BF0050
 
-<!-- omit in toc -->
-
 #### Details
 
-| Detail               | Accessor                                                                               | Type                        |
-| -------------------- | -------------------------------------------------------------------------------------- | --------------------------- |
-| Transaction Type     | `tx.body.messages[message_index]["@type"] === "/cosmos.gov.v1beta1.MsgSubmitProposal"` | String                      |
-| Deposit From Address | `tx.body.messages[message_index].porposer`                                             | String                      |
-| Deposit Amount       | `tx.body.messages[message_index].initial_deposit`                                      | [Asset Array](#_2-array) |
+| Detail               | Accessor                                                                               | Type                                                |
+| -------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Transaction Type     | `tx.body.messages[message_index]["@type"] === "/cosmos.gov.v1beta1.MsgSubmitProposal"` | String                                              |
+| Deposit From Address | `tx.body.messages[message_index].porposer`                                             | String                                              |
+| Deposit Amount       | `tx.body.messages[message_index].initial_deposit`                                      | [Asset Array](blocks-and-transactions.md#\_2-array) |
 
 ### 1a. Community Pool Spend Proposal
 
-One sub-type of proposal is to spend community pool. The community has to pre-funded using [MsgFundCommunityPool](#4-msgfundcommunitypool).
+One sub-type of proposal is to spend community pool. The community has to pre-funded using [MsgFundCommunityPool](blocks-and-transactions.md#4-msgfundcommunitypool).
 
-After a proposal of this kind got passed, it will release the funds to the grants receipient account.
-
-<!-- omit in toc -->
+After a proposal of this kind is passed, it will release the funds to the grants recipient account.
 
 #### Community Pool Spend Proposal Transaction
 
-| Detail                   | Accessor                                                                                                         | Type                        |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| Proposal Type            | `tx.body.messages[message_index].content["@type"] === "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal"` | String                      |
-| Grants Recipient Address | `tx.body.messages[message_index].conbtent.recipient`                                                             | String                      |
-| Spend Amount             | `tx.body.messages[message_index].content.amount`                                                                 | [Asset Array](#_2-array) |
+| Detail                   | Accessor                                                                                                         | Type                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Proposal Type            | `tx.body.messages[message_index].content["@type"] === "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal"` | String                                              |
+| Grants Recipient Address | `tx.body.messages[message_index].conbtent.recipient`                                                             | String                                              |
+| Spend Amount             | `tx.body.messages[message_index].content.amount`                                                                 | [Asset Array](blocks-and-transactions.md#\_2-array) |
 
-Example of Community Pool Spend Proposal tranaction:
+Example of Community Pool Spend Proposal transaction:
 
 ```json
 {
@@ -1229,16 +1141,14 @@ Example of Community Pool Spend Proposal tranaction:
 }
 ```
 
-<!-- omit in toc -->
-
 #### Community Pool Spend Proposal Funds Movement
 
-| Detail                                   | Accessor                                                                                                                                                                                                                                                                                                         | Type                          |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Proposal Passed                          | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "proposal_passed"` <br />where <br />`.result.end_block_events[event_index].type === "active_proposal" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key) === "proposal_result"`. | String                        |
-| Grant from "distribution" Module Account | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "{distribution module account}"` <br />where <br />`.result.end_block_events[event_index].type === "transfer" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key) === "sender"`.   | String                        |
-| Recipient Account                        | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value)` <br />where <br />`.result.end_block_events[event_index].type === "transfer" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "recipient")`.                                    | String                        |
-| Grants Amount                            | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value)` <br />where <br />`.result.end_block_events[event_index].type === "transfer" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "amount")`.                                       | [Asset String](#asset-string) |
+| Detail                                   | Accessor                                                                                                                                                                                                                                                                                                                                          | Type                                                    |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Proposal Passed                          | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "proposal_passed"</code><br>where<br><code>.result.end_block_events[event_index].type === "active_proposal" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key) === "proposal_result"</code>.</p> | String                                                  |
+| Grant from "distribution" Module Account | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "{distribution module account}"</code><br>where<br><code>.result.end_block_events[event_index].type === "transfer" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key) === "sender"</code>.</p>   | String                                                  |
+| Recipient Account                        | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>.result.end_block_events[event_index].type === "transfer" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "recipient")</code>.</p>                                    | String                                                  |
+| Grants Amount                            | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>.result.end_block_events[event_index].type === "transfer" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "amount")</code>.</p>                                       | [Asset String](blocks-and-transactions.md#asset-string) |
 
 Example of Block Results API when Community Pool Spend Proposal Funds is Released:
 
@@ -1339,11 +1249,9 @@ Example of Block Results API when Community Pool Spend Proposal Funds is Release
 
 ### 2. MsgDeposit
 
-- **Descriptions:** : Submit a deposit to an existing proposal
+*   **Descriptions:** : Submit a deposit to an existing proposal
 
     Deposit will transfer from the proposer account to the "gov" module account.
-
-<!-- omit in toc -->
 
 #### Protobuf
 
@@ -1355,70 +1263,56 @@ type MsgDeposit struct {
 }
 ```
 
-<!-- omit in toc -->
-
 #### Example
 
 Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/9CCC988616344C804E8831B6FC6BECD6FD0F815E4E3FF13BDE6B7F8360BF0050](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/9CCC988616344C804E8831B6FC6BECD6FD0F815E4E3FF13BDE6B7F8360BF0050)
 
-<!-- omit in toc -->
-
 #### Details
 
-| Detail               | Accessor                                                                        | Type                        |
-| -------------------- | ------------------------------------------------------------------------------- | --------------------------- |
-| Transaction Type     | `tx.body.messages[message_index]["@type"] === "/cosmos.gov.v1beta1.MsgDeposit"` | String                      |
-| Deposit From Address | `tx.body.messages[message_index].depositor`                                     | String                      |
-| Deposit Amount       | `tx.body.messages[message_index].amount`                                        | [Asset Array](#_2-array) |
+| Detail               | Accessor                                                                        | Type                                                |
+| -------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Transaction Type     | `tx.body.messages[message_index]["@type"] === "/cosmos.gov.v1beta1.MsgDeposit"` | String                                              |
+| Deposit From Address | `tx.body.messages[message_index].depositor`                                     | String                                              |
+| Deposit Amount       | `tx.body.messages[message_index].amount`                                        | [Asset Array](blocks-and-transactions.md#\_2-array) |
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ### 2a. Burn Proposal's Deposit if Proposal does not Get Enough Deposit
 
 If a proposal does not meet the depsoit requirement after the deposit period, the deposit will **NOT** be returned to the depositors. Those deposits **will be burnt** from the "gov" module account as well.
 
-The latest deposit requirement ("min_deposit") and deposit period ("max_deposit_period") can be checked on https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/deposit. Note that they are network parameters and may change over time after governance proposals.
+The latest deposit requirement ("min\_deposit") and deposit period ("max\_deposit\_period") can be checked on https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/deposit. Note that they are network parameters and may change over time after governance proposals.
 
 To monitor a proposal becomes inacitve, it can be detected by monitoring the `end_block_events` in Tendermint Block Results API. However, for the amount of deposit burnt, you have to keep track of the deposits made to the proposal before. Note that this operation does not involve any user account as the deposits are burnt.
 
-<!-- omit in toc -->
-
-Tendermint Block Results API: [https://rpc.mainnet.crypto.org/block_results?height=195346](https://rpc.mainnet.crypto.org/block_results?height=195346)
-
-
-<!-- omit in toc -->
+Tendermint Block Results API: [https://rpc.mainnet.crypto.org/block\_results?height=195346](https://rpc.mainnet.crypto.org/block\_results?height=195346)
 
 #### Details
 
-| Detail                     | Accessor                                                                                                                                                                                                                                                                                                            | Type   |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| Proposal Id                | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "{gov module account}"` <br />where <br />`.result.end_block_events[event_index].type === "inactive_proposal" && .result.Base64Decode(end_block_events[event_index].attributes[attribute_index].key) === "proposal_id"`. | String |
-| Assert Proposal is Dropped | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value === "proposal_dropped")` <br />where <br />`.result.end_block_events[event_index].type === "inactive_proposal" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "proposal_result"`). | String |
+| Detail                     | Accessor                                                                                                                                                                                                                                                                                                                                             | Type   |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Proposal Id                | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "{gov module account}"</code><br>where<br><code>.result.end_block_events[event_index].type === "inactive_proposal" &#x26;&#x26; .result.Base64Decode(end_block_events[event_index].attributes[attribute_index].key) === "proposal_id"</code>.</p> | String |
+| Assert Proposal is Dropped | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value === "proposal_dropped")</code><br>where<br><code>.result.end_block_events[event_index].type === "inactive_proposal" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "proposal_result"</code>).</p> | String |
 
 ### 2b. Return Proposal's Deposit
 
-There are a few cases where a proposal deposits will be returned to the depositors. For details, plesae refer to [Proposal Result](#4-proposal-result).
+There are a few cases where a proposal deposit will be returned to the depositors. For details, please refer to [Proposal Result](blocks-and-transactions.md#4-proposal-result).
 
-The return deposit can be detected from monitoring the `end_block_events` in Tendermint Block Results API.
-
-<!-- omit in toc -->
+The return deposit can be detected by monitoring the `end_block_events` in Tendermint Block Results API.
 
 #### Example
 
-Tendermint Block Results API:[https://rpc.mainnet.crypto.org:443/block_results?height=496620
-](https://rpc.mainnet.crypto.org:443/block_results?height=496620
-)
-<!-- omit in toc -->
+Tendermint Block Results API:[https://rpc.mainnet.crypto.org:443/block\_results?height=496620](https://rpc.mainnet.crypto.org/block\_results?height=496620)
 
 #### Details
 
-| Detail                           | Accessor                                                                                                                                                                                                                                                                                              | Type                          |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| Return From "gov" Module Account | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "{gov module account}"` <br />where <br />`.result.end_block_events[event_index].type === "transfer" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key) === "sender"`. | String                        |
-| Return To Address                | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value)` <br />where <br />`.result.end_block_events[event_index].type === "transfer" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key) === "recipient"`.                         | String                        |
-| Returned Deposit Amount          | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value)` <br />where <br />`.result.end_block_events[event_index].type === "transfer" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "amount"`).                            | [Asset String](#asset-string) |
+| Detail                           | Accessor                                                                                                                                                                                                                                                                                                                               | Type                                                    |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Return From "gov" Module Account | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "{gov module account}"</code><br>where<br><code>.result.end_block_events[event_index].type === "transfer" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key) === "sender"</code>.</p> | String                                                  |
+| Return To Address                | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>.result.end_block_events[event_index].type === "transfer" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key) === "recipient"</code>.</p>                         | String                                                  |
+| Returned Deposit Amount          | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>.result.end_block_events[event_index].type === "transfer" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "amount"</code>).</p>                            | [Asset String](blocks-and-transactions.md#asset-string) |
 
-Note that there may be multiple depositors of a proposal, so the event may appears multiple times.
+Note that there may be multiple depositors of a proposal, so the event may appear multiple times.
 
 ```json
 [
@@ -1465,26 +1359,24 @@ Note that there may be multiple depositors of a proposal, so the event may appea
 ]
 ```
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ### 2c. Burn Proposal's Deposit
 
-There are a few cases where proposal deposits will be burnt. For details, please refer to [Proposal Result](#4-proposal-result) for more details.
+There are a few cases where proposal deposits will be burnt. For details, please refer to [Proposal Result](blocks-and-transactions.md#4-proposal-result) for more details.
 
-If a proposal does not get enough votes that exceed the "quorum" or has the "No with Veto" votes exceed the "veto_threshold", the deposit will **NOT** be returned to the depositors. Those deposits **will be burnt** from the "gov" module account as well.
+If a proposal does not get enough votes that exceed the "quorum" or has the "No with Veto" votes exceed the "veto\_threshold", the deposit will **NOT** be returned to the depositors. Those deposits **will be burnt** from the "gov" module account as well.
 
-To monitor a proposal that got rejected and deposits got burned, it can be detected by monitoring the `end_block_events` in Tendermint Block Results API. There will be a "proposal_result" event marking the proposal as rejected, and different from [Return Proposal's Deposit](#2b-return-proposals-depsoit), there will be **NO** transfer event in the `end_block_results`, which means the deposits is **NOT** returned and is burnt.
+To monitor a proposal that got rejected and deposits got burned, it can be detected by monitoring the `end_block_events` Tendermint Block Results API. There will be a "proposal\_result" event marking the proposal as rejected, and different from [Return Proposal's Deposit](blocks-and-transactions.md#2b-return-proposals-depsoit), there will be **NO** transfer event in the `end_block_results`, which means the deposit is **NOT** returned and is burnt.
 
 However, for the amount of deposit burnt, you have to keep track of the deposits made to the proposal before. Note that this operation does not involve any user account as the deposits are burnt.
 
-<!-- omit in toc -->
-
 #### Details and Example
 
-| Detail                      | Accessor                                                                                                                                                                                                                                                                                                           | Type   |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| Proposal Id                 | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "{gov module account}"` <br />where <br />`.result.end_block_events[event_index].type === "active_proposal" && .result.Base64Decode(end_block_events[event_index].attributes[attribute_index].key) === "proposal_id"`.  | String |
-| Assert Proposal is Rejected | `Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value === "proposal_rejected")` <br />where <br />`.result.end_block_events[event_index].type === "active_proposal" && Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "proposal_result"`). | String |
+| Detail                      | Accessor                                                                                                                                                                                                                                                                                                                                            | Type   |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Proposal Id                 | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value) === "{gov module account}"</code><br>where<br><code>.result.end_block_events[event_index].type === "active_proposal" &#x26;&#x26; .result.Base64Decode(end_block_events[event_index].attributes[attribute_index].key) === "proposal_id"</code>.</p>  | String |
+| Assert Proposal is Rejected | <p><code>Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].value === "proposal_rejected")</code><br>where<br><code>.result.end_block_events[event_index].type === "active_proposal" &#x26;&#x26; Base64Decode(.result.end_block_events[event_index].attributes[attribute_index].key === "proposal_result"</code>).</p> | String |
 
 Tendermint Block Results API JSON Example (Base64 Decoded):
 
@@ -1523,16 +1415,16 @@ Tendermint Block Results API JSON Example (Base64 Decoded):
 }
 ```
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ### 3. MsgVote
 
-- **Descriptions:** : Submit a vote to an existing proposal
-- Funds movement: No (Pay for fee only)
+* **Descriptions:** : Submit a vote to an existing proposal
+* Funds movement: No (Pay for fee only)
 
 ### 4. Proposal Result
 
-Latest tally params can be retreived from:[https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/tallying](https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/tallying). The params may change from time to time after governance proposal.
+Latest tally params can be retrieved from:[https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/tallying](https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/tallying). The params may change from time to time after the governance proposal.
 
 | Scenario                                                                                                                                             | Result  | Burn Deposit |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------ |
@@ -1544,17 +1436,17 @@ Latest tally params can be retreived from:[https://rest.mainnet.crypto.org/cosmo
 | More than `tally_params.threshold` non-abstaining votes Yes                                                                                          | Passes  | No           |
 | More than `tally_params.threshold` non-abstaining votes Yes but the proposal cannot be executed (e.g. Insufficient funds in community pool to spend) | Failed  | No           |
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)
 
 ## Appendix: Module Accounts on Mainnet
 
-| Module                 | Address                                                                                                                                               |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mint                   | [cro1m3h30wlvsf8llruxtpukdvsy0km2kum8s20pm3](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1m3h30wlvsf8llruxtpukdvsy0km2kum8s20pm3) |
-| fee_collector          | [cro17xpfvakm2amg962yls6f84z3kell8c5lgztehv](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro17xpfvakm2amg962yls6f84z3kell8c5lgztehv) |
-| distribution           | [cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w) |
-| bonded_tokens_pool     | [cro1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3dqpk9x](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3dqpk9x) |
-| not_bonded_tokens_pool | [cro1tygms3xhhs3yv487phx3dw4a95jn7t7leqa8nj](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1tygms3xhhs3yv487phx3dw4a95jn7t7leqa8nj) |
-| gov                    | [cro10d07y265gmmuvt4z0w9aw880jnsr700jzemu2z](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro10d07y265gmmuvt4z0w9aw880jnsr700jzemu2z) |
+| Module                    | Address                                                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mint                      | [cro1m3h30wlvsf8llruxtpukdvsy0km2kum8s20pm3](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1m3h30wlvsf8llruxtpukdvsy0km2kum8s20pm3) |
+| fee\_collector            | [cro17xpfvakm2amg962yls6f84z3kell8c5lgztehv](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro17xpfvakm2amg962yls6f84z3kell8c5lgztehv) |
+| distribution              | [cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w) |
+| bonded\_tokens\_pool      | [cro1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3dqpk9x](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3dqpk9x) |
+| not\_bonded\_tokens\_pool | [cro1tygms3xhhs3yv487phx3dw4a95jn7t7leqa8nj](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1tygms3xhhs3yv487phx3dw4a95jn7t7leqa8nj) |
+| gov                       | [cro10d07y265gmmuvt4z0w9aw880jnsr700jzemu2z](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro10d07y265gmmuvt4z0w9aw880jnsr700jzemu2z) |
 
-[Top](#table-of-content)
+[Top](blocks-and-transactions.md#table-of-content)

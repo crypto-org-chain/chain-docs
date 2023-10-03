@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-* [📑 Crypto.org Chain Introduction](README.md)
+* [📑 Cronos PoS Chain Introduction](README.md)
 * [🔰 Architecture](getting-started/architecture.md)
 
 ## For Node Hosts

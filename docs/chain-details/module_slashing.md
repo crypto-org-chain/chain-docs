@@ -119,7 +119,7 @@ The following tables show overall effects on different configurations of the sla
 | Constraints          | Value has to be a positive integer          | Value has to be positive        | Value has to be a positive integer |
 | Sample configuration | `2000` (2000 blocks)                        | `0.5` (50%)                     | `3600s` (1 hour)                   |
 
-***
+
 
 |                      | `slash_fraction_double_sign`         | `slash_fraction_downtime`            |
 | -------------------- | ------------------------------------ | ------------------------------------ |

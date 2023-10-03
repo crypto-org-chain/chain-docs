@@ -14,19 +14,19 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 * `StakeAuthorization`
 * `GenericAuthorization`
 
-***
+
 
 **SendAuthorization**
 
 `SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](module\_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend with. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` gets cleared when the `SpendLimit`reaches 0. Sending an amount greater than the `SpendLimit` is not allowed.
 
-***
+
 
 **StakeAuthorization**
 
 `StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](module\_staking.md) module. Each of the above actions need to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](module\_authz.md#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
 
-***
+
 
 **GenericAuthorization**
 
@@ -42,7 +42,7 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 * Transfer NFT: `/chainmain.nft.v1.MsgTransferNFT`
 * Edit NFT: `/chainmain.nft.v1.MsgEditNFT`
 
-***
+
 
 ::: tip NOTE **Expiration of Grant**: The _granter_ can optionally set an `Expiration` time in form of a UNIX Timestamp for any authorization grant. The `Expiration` time should be later than current UNIX Timestamp and is defaulted to be one year from current time if unspecified. An authorization may be executed only if the grant has not yet expired. Setting an `Expiration` time for an authorization grant is generally encouraged. :::
 
@@ -56,7 +56,7 @@ In general, a _granter_ can `grant` an authorization to a _grantee_ or `revoke` 
 
 An authorization starts from the _granter_ granting the _grantee_.
 
-***
+
 
 * under `SendAuthorization`
 
@@ -89,7 +89,7 @@ $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <
 
 :::
 
-***
+
 
 * under `StakeAuthorization`
 
@@ -138,7 +138,7 @@ Granting to redelegate or undelegate (unbond) is very similar by just replacing 
 
 ::: tip NOTE **Spend Limit for `StakeAuthorization`**: A spend limit for a grant to delegate/redelegate/unbond is not necessary but generally recommended. :::
 
-***
+
 
 * under `GenericAuthorization`
 
@@ -178,7 +178,7 @@ Similarly:
 
 so on and so forth.
 
-***
+
 
 ::: tip NOTE **Message Type URL & Updating an Existing Grant**: At any time, there is up to one grant allowed for each Message Type URL over a unique _granter_-_grantee_ pair. To update an existing grant, the _granter_ will need to re-grant the _grantee_ and the new grant will overwrite the old grant. :::
 

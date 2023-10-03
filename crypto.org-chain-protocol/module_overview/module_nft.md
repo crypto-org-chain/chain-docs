@@ -56,7 +56,7 @@ Below are key concepts and properties for NFTs on **Crypto.org Chain**:
 
 Just as each user is uniquely identified by its address, each NFT is uniquely identified by the combination of its **denom ID** and its **token ID** (like a UID for the NFT), showing its uniqueness, non-interchangeability, and non-divisibility.
 
-***
+
 
 #### Transactions and Queries
 
@@ -69,7 +69,7 @@ In general,
 3. a user may `edit` or `burn` an NFT only if he/she is both the creator and the owner of that NFT;
 4. a user may `transfer` an NFT as long as he/she is the owner of that NFT.
 
-***
+
 
 #### `issue`:
 
@@ -96,7 +96,7 @@ $ chain-maind tx nft issue fftb2050 --name "Fortune Favours the Brave 2050" --sc
 
 ::: tip NOTE Even though the denom schema is not a compulsory field, it is generally recommended to illustrate the format of NFT metadata as an informative summary of such denom. Moreover, a denom is non-transferable, non-editable, and non-deletable, so be mindful when issuing a denom. :::
 
-***
+
 
 #### `mint`:
 
@@ -126,7 +126,7 @@ $ chain-maind tx nft mint fftb2050 v1ed1 --name "Version 1 Edition 1" --uri "htt
 
 ::: tip NOTE The token name, URI, and metadata fields are optional but highly recommended fields during the minting process, even though they might also be edited later through `edit`. In addition, the minter may specify a recipient of the new NFT, where it defaults to be just the minter if not specified. :::
 
-***
+
 
 #### `edit`:
 
@@ -155,7 +155,7 @@ $ chain-maind tx nft edit fftb2050 v1ed1 --uri "https://crypto.com/nft" --from <
 
 ::: tip NOTE There are 3 fields available for NFT editing: name, URI, and the metadata. Any field that is not specified will remain unchanged. :::
 
-***
+
 
 #### `burn`:
 
@@ -181,7 +181,7 @@ $ chain-maind tx nft burn fftb2050 v1ed1 --from <user_address> --chain-id <chain
 
 ::: tip NOTE A token ID is unique under a specific denom, meaning no two existing NFTs can share the same token ID under the same denom. However, when an NFT gets burnt, its token ID is freed and is available for mint again. :::
 
-***
+
 
 #### `transfer`:
 
@@ -206,7 +206,7 @@ $ chain-maind tx nft transfer <recipient_address> fftb2050 v1ed1 --from <user_ad
 
 :::
 
-***
+
 
 #### Queries
 
@@ -216,7 +216,7 @@ In the NFT module, queries can be divided into 3 main categories:
 * token information;
 * owner information.
 
-***
+
 
 * **query denom information:**
 
@@ -268,7 +268,7 @@ amount: "2"
 
 :::
 
-***
+
 
 * **query token information:**
 
@@ -340,7 +340,7 @@ $ chain-maind query nft collection fftb2050 --output json | jq
 
 :::
 
-***
+
 
 * **query owner information:**
 

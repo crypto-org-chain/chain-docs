@@ -1,6 +1,6 @@
 ---
 description: What is Cronos PoS Chain and its design goals?
-cover: .gitbook/assets/Cronos POS Chain Colour.svg
+cover: .gitbook/assets/Cronos POS Chain Docs Banner.png
 coverY: 0
 layout:
   cover:

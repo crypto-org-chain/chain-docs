@@ -8,7 +8,7 @@
 ## For Node Hosts
 
 * [Getting Started](for-node-hosts/getting-started/README.md)
-  * [Crypto.org Mainnet: Running a Full Node](for-node-hosts/getting-started/mainnet/README.md)
+  * [Cronos PoS Chain Mainnet: Running a Full Node](for-node-hosts/getting-started/mainnet/README.md)
     * [Upgrade Guide](for-node-hosts/getting-started/mainnet/upgrade-guide/README.md)
       * [The "V4" upgrade guide (v3.\* to v4.2.2) :](for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_v4.md)
       * [The "DRACO II" upgrade guide (v2.\* to v3.3.2) :](for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_draco\_2.md)

@@ -1,10 +1,10 @@
-# Crypto.org Mainnet Validator Security Checklist
+# Cronos PoS Chain Mainnet Validator Security Checklist
 
 ## Part 1 - Conduct Survey on General Controls of Hosting Data Centre
 
 Description: Perform a survey on the hosting data centre, and compare your result with the best practice suggested below
 
-For example, your hosting data centre should have following features
+For example, your hosting data centre should have the following features
 
 | Controls Category | Description of Best Practice    |
 | ----------------- | ------------------------------- |

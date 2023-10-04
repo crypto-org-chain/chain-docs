@@ -1,12 +1,12 @@
 # Getting Started
 
-Thanks for your interest in Crypto.org Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Crypto.org Chain.
+Thanks for your interest in Cronos PoS Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Cronos PoS Chain.
 
 ### What's next?
 
-#### Crypto.org Mainnet
+#### Cronos PoS Chain Mainnet
 
-* **Join Crypto.org Chain Mainnet**
+* **Join Cronos PoS Chain Mainnet**
   * [As a validator](mainnet\_validator.md);
   * [Build a Full node](mainnet/)
 *   Deploy mainnet node with [1 click](aws-1click.md):
@@ -16,7 +16,7 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
     * [AWS](aws-1click.md); or
     * [Azure](azure-1click.md).
 
-#### Crypto.org Croeseid Testnet
+#### Cronos PoS Chain Croeseid Testnet
 
 *   [Join Croeseid Testnet](croeseid-testnet.md):
 
@@ -29,11 +29,11 @@ Thanks for your interest in Crypto.org Chain. In this technical documentation, w
     * [Azure](azure-1click.md).
 *   [Deploy testnet node with nix](croeseid-testnet-nix.md):
 
-    Install and run full nodes or validators connected to our Croeseid Testnet with nix.
+    Install and run full nodes or validators connected to our Croeseid Testnet with Nix.
 
 #### Devnet
 
-* **Devnet** - [Build latest development version](local-devnet.md): Try running latest development network (Devnet)
+* **Devnet** - [Build latest development version](local-devnet.md): Try running the latest development network (Devnet)
 
 ### Useful links
 

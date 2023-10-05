@@ -1,9 +1,9 @@
 # Mainnet/Testnet: Running Nodes using AWS 1-click Deployment
 
-This tutorial will use our AWS 1-click Deployment image to start and create the latest Crypto.org Chain 1-Click Node for both Mainnet and Testnet
+This tutorial will use our AWS 1-click Deployment image to start and create the latest Cronos PoS Chain 1-Click Node for both Mainnet and Testnet
 
 {% hint style="warning" %}
-**CAUTION** We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html)
+**CAUTION** We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use it with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html)
 {% endhint %}
 
 ## Step 1. AWS Account Creation
@@ -18,9 +18,9 @@ Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.s
 
 Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance" ![](../../docs/getting-started/assets/aws\_ec2\_dashboard.png)
 
-### Step 2-1. Search for Crypto.org Chain 1-Click Node on AWS Marketplace
+### Step 2-1. Search for Cronos PoS Chain 1-Click Node on AWS Marketplace
 
-Search for "Crypto.org Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Crypto.org Chain 1-Click Node" from the search results. ![](../../docs/getting-started/assets/aws\_marketplace.png)
+Search for "Cronos PoS Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Cronos PoS Chain 1-Click Node" from the search results. ![](../../docs/getting-started/assets/aws\_marketplace.png)
 
 ### Step 2-2. Choose an instance type
 

@@ -30,12 +30,10 @@
 
 * [Wallets](docs/wallets/README.md)
   * [chain-maind](docs/wallets/cli.md)
-  * [Crypto.com DeFi Desktop Wallet](docs/wallets/desktop\_wallet.md)
-  * [Crypto.org Chain Desktop Wallet](docs/wallets/desktop\_wallet\_backup.md)
-  * [Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr\_IBC\_guide.md)
-  * [Using Ledger Device with Keplr](docs/wallets/keplr\_ledger\_guide.md)
   * [Ledger Hardware Wallets with chain-maind](docs/wallets/ledger.md)
-  * [Using Ledger device with desktop wallet](docs/wallets/ledger\_desktop\_wallet.md)
+  * [Crypto.com DeFi Desktop Wallet](docs/wallets/desktop\_wallet.md)
+  * [Keplr Wallet: Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr\_IBC\_guide.md)
+  * [Keplr Wallet: Using Ledger Device with Keplr Wallet](docs/wallets/keplr\_ledger\_guide.md)
   * [Mainnet Address Generation](docs/wallets/mainnet-address-generation.md)
   * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
   * [Multisig account](docs/wallets/multisig-account.md)
@@ -44,32 +42,32 @@
 
 ## Block Explorers
 
-* [Crypto.org Chain Mainnet Explorer](https://crypto.org/explorer/)
+* [Cronos PoS Chain Mainnet Explorer](https://cronos-pos.org/explorer)
 * [Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid5/)
 
-## Crypto.org Chain Protocol
+## Cronos PoS Chain Protocol
 
-* [Chain Details](crypto.org-chain-protocol/chain-details/README.md)
-  * [Genesis](crypto.org-chain-protocol/chain-details/genesis\_file.md)
-  * [Protocol Documentation](crypto.org-chain-protocol/chain-details/protocol-documentation.md)
-  * [Chain ID, Address Format and Signatures](crypto.org-chain-protocol/chain-details/chain-id.md)
-  * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](crypto.org-chain-protocol/chain-details/solo-machine.md)
-  * [List of parameters](crypto.org-chain-protocol/chain-details/parameters.md)
-  * [The Proposal Process](crypto.org-chain-protocol/chain-details/govprocess.md)
-  * [Technical glossary](crypto.org-chain-protocol/chain-details/technical-glossary.md)
-* [Modules](docs/chain-details/module\_overview.md)
-  * [module\_supply](docs/chain-details/module\_supply.md)
-  * [module\_slashing](docs/chain-details/module\_slashing.md)
-  * [module\_authz](crypto.org-chain-protocol/module\_overview/module\_authz.md)
-  * [module\_bank](crypto.org-chain-protocol/module\_overview/module\_bank.md)
-  * [module\_mint](crypto.org-chain-protocol/module\_overview/module\_mint.md)
-  * [module\_gov](crypto.org-chain-protocol/module\_overview/module\_gov.md)
-  * [module\_staking](crypto.org-chain-protocol/module\_overview/module\_staking.md)
-  * [module\_distribution](crypto.org-chain-protocol/module\_overview/module\_distribution.md)
-  * [module\_nft](crypto.org-chain-protocol/module\_overview/module\_nft.md)
+* [Chain Details](cronos-pos-chain-protocol/chain-details/README.md)
+  * [Genesis](cronos-pos-chain-protocol/chain-details/genesis\_file.md)
+  * [Protocol Documentation](cronos-pos-chain-protocol/chain-details/protocol-documentation.md)
+  * [Chain ID, Address Format and Signatures](cronos-pos-chain-protocol/chain-details/chain-id.md)
+  * [Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine](cronos-pos-chain-protocol/chain-details/solo-machine.md)
+  * [List of parameters](cronos-pos-chain-protocol/chain-details/parameters.md)
+  * [The Proposal Process](cronos-pos-chain-protocol/chain-details/govprocess.md)
+  * [Technical glossary](cronos-pos-chain-protocol/chain-details/technical-glossary.md)
+* [Modules](cronos-pos-chain-protocol/module\_overview/README.md)
+  * [module\_supply](cronos-pos-chain-protocol/module\_overview/module\_supply.md)
+  * [module\_slashing](cronos-pos-chain-protocol/module\_overview/module\_slashing.md)
+  * [module\_authz](cronos-pos-chain-protocol/module\_overview/module\_authz.md)
+  * [module\_bank](cronos-pos-chain-protocol/module\_overview/module\_bank.md)
+  * [module\_mint](cronos-pos-chain-protocol/module\_overview/module\_mint.md)
+  * [module\_gov](cronos-pos-chain-protocol/module\_overview/module\_gov.md)
+  * [module\_staking](cronos-pos-chain-protocol/module\_overview/module\_staking.md)
+  * [module\_distribution](cronos-pos-chain-protocol/module\_overview/module\_distribution.md)
+  * [module\_nft](cronos-pos-chain-protocol/module\_overview/module\_nft.md)
 
-## Crypto.org Chain Integration
+## Cronos PoS Integration
 
-* [Integration documentation](crypto.org-chain-integration/chain-integration.md)
-* [Node Setup and RPC note](crypto.org-chain-integration/node-and-rpc-setup-notes.md)
-* [Blocks and Transactions](crypto.org-chain-integration/blocks-and-transactions.md)
+* [Integration documentation](cronos-pos-integration/chain-integration.md)
+* [Node Setup and RPC note](cronos-pos-integration/node-and-rpc-setup-notes.md)
+* [Blocks and Transactions](cronos-pos-integration/blocks-and-transactions.md)

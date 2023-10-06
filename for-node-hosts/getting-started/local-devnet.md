@@ -1,12 +1,14 @@
 # Devnet: Running Latest Development Node
 
 {% hint style="warning" %}
-**Caution** This page is for building and running the latest development version of the chain for testing purposes only. The development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work to be required.\
+**Caution**&#x20;
+
+This page is for building and running the latest development version of the chain for testing purposes only. The development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work to be required.\
 \
-For anyone interested in joining the Crypto.org Chain testnet, please refer to our [testnet documentation](croeseid-testnet.md).&#x20;
+For anyone interested in joining the Cronos PoS Chain testnet, please refer to our [testnet documentation](croeseid-testnet.md).&#x20;
 {% endhint %}
 
-By following this tutorial, you can compile and run the latest development version of Crypto.org Chain from scratch. It is intended for testing purposes only.
+By following this tutorial, you can compile and run the latest development version of Cronos PoS Chain from scratch. It is intended for testing purposes only.
 
 ## Overview
 
@@ -20,7 +22,7 @@ Follow official instructions: https://nixos.org/download.html
 
 ### Use binary cache
 
-If you are using linux, enable the cachix binary cache:
+If you are using Linux, enable the cachix binary cache:
 
 ```
 $ nix-env -iA cachix -f https://cachix.org/api/v1/install
@@ -58,7 +60,7 @@ $ pip3 install pystarport
 
 ## Customize your devnet
 
-Jump to next section to start it without customization.
+Jump to the next section to start it without customization.
 
 You can customize your devnet based on `examples/devnet.yaml`:
 
@@ -91,7 +93,7 @@ chainmaind:  # The chain-id
           unbonding_time: "10s"
 ```
 
-This configuration will give us a 2 validators devnet with the chain-id `chainmaind`; 4 accounts under the name of `community`, `ecosystem` `reserve` and `launch` with some allocated funds at the genesis.
+This configuration will give us 2 validators devnet with the chain-id `chainmaind`; 4 accounts under the name of `community`, `ecosystem` `reserve` and `launch` with some allocated funds at the genesis.
 
 You can also specify some network parameters in the genesis file of your devnet under `genesis:` for different testing purposes. As in the above example, we have specified the `unbonding_time` to be `10` seconds.
 
@@ -204,7 +206,7 @@ Congratulations! You've successfully transferred tokens to Bob.
 
 ### Staking Operation
 
-Crypto.org Chain is based on tendermint with the Proof of Stake (PoS) consensus algorithm. In this sub-section, we will be covering how to perform basic staking related transactions.
+Cronos PoS Chain is based on tendermint with the Proof of Stake (PoS) consensus algorithm. In this sub-section, we will be covering how to perform basic staking related transactions.
 
 #### Check the current validator set
 

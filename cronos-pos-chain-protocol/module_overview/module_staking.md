@@ -18,13 +18,13 @@ Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a 
 
 #### Validator
 
-Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](module\_distribution.md) and [mint](module\_mint.md)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](../../docs/chain-details/module\_slashing.md)).
+Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](module\_distribution.md) and [mint](module\_mint.md)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](module\_slashing.md)).
 
 #### Delegator
 
 The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](module\_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
-It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](../../docs/chain-details/module\_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
+It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](module\_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
 #### Transactions and Queries
 

@@ -6,15 +6,15 @@ Crypto.org Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tend
 
 In this documentation, we will be focusing on some of the important modules we used, for example:
 
-* [Authz](module\_overview.md#authz) - Facilitates authorizations granted to one account to perform actions on behalf of another account;
-* [Bank](module\_overview.md#bank) - Token transfer functionalities and query support for the total supply of all assets;
-* [Distribution](module\_overview.md#distribution) - Fee distribution, and staking rewards to the validators and delegator;
-* [Governance](module\_overview.md#gov) - On-chain proposals and voting;
-* [Mint](module\_overview.md#mint) - Creation of new units of staking token;
-* [Nft](module\_overview.md#nft) - Non-Fungible Token management;
-* [Slashing](module\_overview.md#slashing) - Validator punishment mechanisms;
-* [Staking](module\_overview.md#staking) - Proof-of-Stake layer for public blockchains;
-* [Supply](module\_overview.md#supply) - Retrieve total and liquid supply.
+* [Authz](./#authz) - Facilitates authorizations granted to one account to perform actions on behalf of another account;
+* [Bank](./#bank) - Token transfer functionalities and query support for the total supply of all assets;
+* [Distribution](./#distribution) - Fee distribution, and staking rewards to the validators and delegator;
+* [Governance](./#gov) - On-chain proposals and voting;
+* [Mint](./#mint) - Creation of new units of staking token;
+* [Nft](./#nft) - Non-Fungible Token management;
+* [Slashing](./#slashing) - Validator punishment mechanisms;
+* [Staking](./#staking) - Proof-of-Stake layer for public blockchains;
+* [Supply](./#supply) - Retrieve total and liquid supply.
 
 ## `authz`
 
@@ -34,19 +34,19 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 
 #### SendAuthorization
 
-`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](../../crypto.org-chain-protocol/module\_overview/module\_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend with. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` gets cleared when the `SpendLimit`reaches 0. Sending an amount greater than the `SpendLimit` is not allowed.
+`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](module\_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend with. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` gets cleared when the `SpendLimit`reaches 0. Sending an amount greater than the `SpendLimit` is not allowed.
 
 ***
 
 #### StakeAuthorization
 
-`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](../../crypto.org-chain-protocol/module\_overview/module\_staking.md) module. Each of the above actions need to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](module\_overview.md#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
+`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](module\_staking.md) module. Each of the above actions need to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](./#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
 
 ***
 
 #### GenericAuthorization
 
-`GenericAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a generic action. In other words, `GenericAuthorization` facilitates an arbitrary action grant, where a `MsgTypeURL` must be specified to correspond to an action defined in the [modules](module\_overview.md). A `GenericAuthorization` is currently unrestricted beyond the `MsgTypeURL`. For example, when granting someone to send tokens, the `SpendLimit` in [`SendAuthorization`](module\_overview.md#SendAuthorization) will not be enforced. Therefore, a [`SendAuthorization`](module\_overview.md#SendAuthorization) without a spend limit may in fact be implemented as a `GenericAuthorization` with the `MsgTypeURL` been set to `/cosmos.bank.v1beta1.MsgSend`. The following are some common `MsgTypeURLs`:
+`GenericAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a generic action. In other words, `GenericAuthorization` facilitates an arbitrary action grant, where a `MsgTypeURL` must be specified to correspond to an action defined in the [modules](./). A `GenericAuthorization` is currently unrestricted beyond the `MsgTypeURL`. For example, when granting someone to send tokens, the `SpendLimit` in [`SendAuthorization`](./#SendAuthorization) will not be enforced. Therefore, a [`SendAuthorization`](./#SendAuthorization) without a spend limit may in fact be implemented as a `GenericAuthorization` with the `MsgTypeURL` been set to `/cosmos.bank.v1beta1.MsgSend`. The following are some common `MsgTypeURLs`:
 
 * Send: `/cosmos.bank.v1beta1.MsgSend`
 * Delegate: `/cosmos.staking.v1beta1.MsgDelegate`
@@ -362,8 +362,8 @@ The `bank` module maintains the state of two primary objects:
 
 `bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities. Specifically, the total supply is updated whenever a token is:
 
-* **Minted**, e.g. Token created by the [mint](module\_overview.md#mint) module; or
-* **Burned**, e.g. Token distorted by the [slashing](module\_overview.md#slashing) module.
+* **Minted**, e.g. Token created by the [mint](./#mint) module; or
+* **Burned**, e.g. Token distorted by the [slashing](./#slashing) module.
 
 ### Transactions and Queries
 
@@ -449,8 +449,8 @@ Below are all the network parameters for the `distribution` module:
 
 There are two main types of rewards
 
-* Block rewards, governed by the [mint](module\_overview.md#mint) module; and
-* [Transaction fees bonus](module\_overview.md#transaction-fees-bonus).
+* Block rewards, governed by the [mint](./#mint) module; and
+* [Transaction fees bonus](./#transaction-fees-bonus).
 
 #### Block reward
 
@@ -475,9 +475,9 @@ This mechanism aims to incentivize non-empty block proposals, better networking 
 
 #### Community tax
 
-The `community_tax` is the tax rate of the reward obtained by the validator. Specifically, part of the reward will be taxed and sent to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](module\_overview.md#gov).
+The `community_tax` is the tax rate of the reward obtained by the validator. Specifically, part of the reward will be taxed and sent to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](./#gov).
 
-Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntarily, and there could be funds allocated to the community pool in the [genesis](../../crypto.org-chain-protocol/chain-details/genesis\_file.md).
+Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntarily, and there could be funds allocated to the community pool in the [genesis](../chain-details/genesis\_file.md).
 
 ### Transactions and Queries
 
@@ -761,7 +761,7 @@ The following tables show the overall effects of the gov related network paramet
 
 ### Introduction
 
-The `mint` module is responsible for creating tokens in a flexible way to reward the validators who participate in the proof of stake consensus process (see also the [distribution module](module\_overview.md#distribution)). It is also designed in a way to bring a balance between market liquidity and staked supply.
+The `mint` module is responsible for creating tokens in a flexible way to reward the validators who participate in the proof of stake consensus process (see also the [distribution module](./#distribution)). It is also designed in a way to bring a balance between market liquidity and staked supply.
 
 ### Overview
 
@@ -1250,7 +1250,7 @@ Below are all the network parameters used to configure the behavior of validator
 
 * `signed_blocks_window`: Number of blocks for which the liveness is calculated for uptime tracking;
 * `min_signed_per_window`: Maximum percentage of blocks with faulty/missed validations allowed for an account in last; `signed_blocks_window` blocks before it gets deactivated;
-* `downtime_jail_duration`: Duration for [jailing](module\_overview.md#jailing);
+* `downtime_jail_duration`: Duration for [jailing](./#jailing);
 * `slash_fraction_double_sign`: Percentage of funds being slashed when validator makes a byzantine fault; and
 * `slash_fraction_downtime`: Percentage of funds being slashed when a validator is non-live.
 
@@ -1381,13 +1381,13 @@ Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a 
 
 ### Validator
 
-Validators are responsible for signing or proposing a block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked tokens (see [distribution](module\_overview.md#distribution) and [mint](module\_overview.md#mint)). On the other hand, a penalty should be imposed on validators' misbehaviour (see [slashing](module\_overview.md#slashing)).
+Validators are responsible for signing or proposing a block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked tokens (see [distribution](./#distribution) and [mint](./#mint)). On the other hand, a penalty should be imposed on validators' misbehaviour (see [slashing](./#slashing)).
 
 ### Delegator
 
-The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](module\_overview.md#distribution) module). Specifically, it allows token owners to take part in the consensus process without running a validator themselves.
+The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](./#distribution) module). Specifically, it allows token owners to take part in the consensus process without running a validator themselves.
 
-It is important to point out that the delegator and the validator are on the same boat: they share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](module\_overview.md#slashing)). Therefore, it is very important to choose a reliable validator to delegate to. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
+It is important to point out that the delegator and the validator are on the same boat: they share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](./#slashing)). Therefore, it is very important to choose a reliable validator to delegate to. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
 ### Transactions and Queries
 

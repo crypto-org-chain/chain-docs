@@ -1,10 +1,10 @@
-# The Proposal Process
+# Proposal Process
 
 _The governance process is divided into a few steps that are outlined below_:
 
 ### 1. The idea
 
-Governance proposals potentially impact many stakeholders. It is suggested to introduce your idea with known community members before investing resources into drafting a proposal to get the very initial feedback. If you know someone who is very experienced in the topic, you may try to communicate with them about a concise overview of what you think will result from proposed changes.
+Governance proposals potentially impact many stakeholders. It is suggested to introduce your idea with known community members before investing resources into drafting a proposal to get the very initial feedback. If you know someone who is very experienced in the topic, you may try to communicate with them about a concise overview of what you think will result from the proposed changes.
 
 ### 2. Begin your drafted proposal
 
@@ -14,7 +14,7 @@ Please ensure to include the following information in your proposal:
 
 * Overview of this proposal
 * Introduction of team member(s)
-* The problem/issue this project solve/The reason for creating this proposal
+* The problem/issue this project solves/The reason for creating this proposal
 * The details of the solution
 * The impact brings to the chain of the proposal
 * Timeline, if applicable
@@ -33,7 +33,7 @@ Proposal Types: You may choose to put your proposal in any of the following form
 
 ### 3. Collect feedback from the community
 
-After the proposal is ready, you can post a thread to begin a discussion on the [Crypto.org Chain Github Discussions page](https://github.com/crypto-org-chain/chain-main/discussions) to gain initial feedback. Engagement is critical to the success of a proposal. The ideal strategy is to engage with experienced people in the community about your idea, to confirm the key points, such as if it makes sense, or if critical flaws exist, etc. You may also plan for a few stages of engagement to get as much as feedback possible before and after submitting a proposal on-chain. Let people in the [Discord community](https://discord.gg/5JTk2ppsY3) know about your draft proposal.
+After the proposal is ready, you can post a thread to begin a discussion on the [Cronos PoS Chain Github Discussions page](https://github.com/crypto-org-chain/chain-main/discussions) to gain initial feedback. Engagement is critical to the success of a proposal. The ideal strategy is to engage with experienced people in the community about your idea, to confirm the key points, such as if it makes sense, or if critical flaws exist, etc. You may also plan for a few stages of engagement to get as much as feedback possible before and after submitting a proposal on-chain. Let people in the [Discord community](https://discord.gg/5JTk2ppsY3) know about your draft proposal.
 
 ### 4. Revise your proposal
 
@@ -48,10 +48,9 @@ Depending on the collected feedback, you can revise the proposal accordingly.
 
 The deposit period lasts either 14 days or until the proposal deposit totals 10,000 CROs, whichever happens first. Prior to a governance proposal entering the voting period (ie. for the proposal to be voted upon), a minimum number of CROs are deposited. Once the decision for the proposal is made - either passed or failed, the deposit will be returned to the contributors. People have considered contributions amounts differently and anyone can contribute to this deposit, while please note that the contributed CROs are potentially at risk of being burned\*.
 
-\*Deposits are burned when proposals:
+\*Deposits are burned when proposals: Expire - deposits will be burned if the deposit period ends before reaching the minimum 10,000 CROs
 
-* Expire - deposits will be burned if the deposit period ends before reaching the minimum 10,000 of CROs
-* Fail to reach quorum - deposits will be burned for proposals that do not reach voting power level ie. more than 33.4% of all staked CROs must vote
+* Fail to reach quorum - deposits will be burned for proposals that do not reach the voting power level ie. more than 33.4% of all staked CROs must vote
 * Being vetoed - deposits for proposals with 33.4% of voting power backing the 'no-with-veto' option are also burned
 
 ### 7. Vote for an active proposal

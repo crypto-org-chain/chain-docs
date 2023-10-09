@@ -1,14 +1,18 @@
-# Create the IBC-enabled tokens on the Crypto.org Chain with Solo Machine
+# Create the IBC-enabled tokens on the Cronos PoS Chain with Solo Machine
 
 A solo machine is a standalone process that can interact with blockchains through the Inter-Blockchain Communication Protocol (IBC). It can store key information like signed messages and private keys but has no consensus algorithm of its own. The solo machine client can be seen as a verification algorithm capable of authenticating messages sent from a chain or solo machine. With solo machines, one can access the IBC transport layer and blockchains (including features built on them) within the Cosmos ecosystem without developing their own blockchain. This provides great ease to token issuers who would like to natively mint IBC-enabled tokens.
 
-Another feature of using a solo machine is that it can [leverage Interchain Accounts (ICA)](https://github.com/cosmos/ibc-go/blob/main/docs/apps/interchain-accounts/overview.md). The key feature of the Interchain Accounts module is that it enables cross-chain account management via the IBC, which allows one blockchain to access the features of another blockchain. On the Crypto.org Chain, we have leveraged solo machines to issue tokens like [Polkadot (DOT)-pegged coins](https://medium.com/crypto-org-chain/crypto-org-chain-issues-dot-token-via-ibc-solo-machine-b0f58e605b0e). These DOT tokens can be natively transferred within the Cosmos interchain ecosystem using IBC.
+Another feature of using a solo machine is that it can [leverage Interchain Accounts (ICA)](https://github.com/cosmos/ibc-go/blob/main/docs/apps/interchain-accounts/overview.md). The key feature of the Interchain Accounts module is that it enables cross-chain account management via the IBC, which allows one blockchain to access the features of another blockchain. On the Cronos PoS Chain, we have leveraged solo machines to issue tokens like [Polkadot (DOT)-pegged coins](https://medium.com/crypto-org-chain/crypto-org-chain-issues-dot-token-via-ibc-solo-machine-b0f58e605b0e). These DOT tokens can be natively transferred within the Cosmos interchain ecosystem using IBC.
 
-Solo machines open up plenty of use cases in the Cosmos ecosystem. In this article, we will review simple approaches to implementing token operations using the IBC solo machine (e.g. mint and burn as well as delegation and undelegation) on the Crypto.org Chain locally, while any Cosmos SDK based blockchains should support it. Developers and users who are interested can clone our [Stag repository](https://github.com/devashishdxt/stag) to quickly go through these steps and try the approaches out.
+Solo machines open up plenty of use cases in the Cosmos ecosystem. In this article, we will review simple approaches to implementing token operations using the IBC solo machine (e.g. mint and burn as well as delegation and undelegation) on the Cronos PoS Chain locally, while any Cosmos SDK based blockchains should support it. Developers and users who are interested can clone our [Stag repository](https://github.com/devashishdxt/stag) to quickly go through these steps and try the approaches out.
 
 ## Prerequisite: Blockchain Configuration
 
-The blockchain is running locally in this example and the proper configuration setup is required. In the genesis file, ensure 1) `transfer` in the genesis file is enabled (`receive_enabled: true` and `send_enabled: true`); 2) the staking message (`/cosmos.staking.v1beta1/MsgDelegate` and `/cosmos.staking.v1beta1/MsgUndelegate`)is enabled at `allow_message` under `host_genesis_state`. This lets them communicate properly later on. ![image](https://user-images.githubusercontent.com/78806365/190537653-f7ea9530-c0ed-448a-89ba-48fbc7b9662b.png) After completing the integration, run the chain in the background.
+The blockchain is running locally in this example and the proper configuration setup is required. In the genesis file, ensure 1) `transfer` in the genesis file is enabled (`receive_enabled: true` and `send_enabled: true`); 2) the staking message (`/cosmos.staking.v1beta1/MsgDelegate` and `/cosmos.staking.v1beta1/MsgUndelegate`)is enabled at `allow_message` under `host_genesis_state`. This lets them communicate properly later on.&#x20;
+
+![image](https://user-images.githubusercontent.com/78806365/190537653-f7ea9530-c0ed-448a-89ba-48fbc7b9662b.png)&#x20;
+
+After completing the integration, run the chain in the background.
 
 ## Signer Configuration
 

@@ -8,7 +8,7 @@ A | [B](technical-glossary.md#b) | [C](technical-glossary.md#c) | [D](technical-
 
 **Block Explorer**
 
-An application that allows a user to explore the different blocks on a blockchain. It has a record of all the transactions in each block and is often made public to increase blockchain visibility and transparency. Here are our explorers: [Crypto.org Chain Explorer](https://crypto.org/explorer/) and [Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid4/).
+An application that allows a user to explore the different blocks on a blockchain. It has a record of all the transactions in each block and is often made public to increase blockchain visibility and transparency. Here are our explorers: [Cronos PoS Chain Explorer](https://crypto.org/explorer/) and [Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid4/).
 
 **Bonded (staking state)**
 
@@ -78,7 +78,7 @@ The origin of a blockchain, also known as block 1. It can also be used to refere
 
 **Governance**
 
-The process of determining what changes to the network are permissible, such as modifications to code or movement of funds. The governance system in Crypto.org Chain is on-chain and revolves around stakeholder voting.
+The process of determining what changes to the network are permissible, such as modifications to code or movement of funds. The governance system in Cronos PoS Chain is on-chain and revolves around stakeholder voting.
 
 #### H
 
@@ -160,7 +160,7 @@ NFT represents uniquely identifiable tokens with common use cases such as art, g
 
 **Proposal**
 
-A potential function call to be voted on in a referendum. Proposals modify the behavior of the Crypto.org chain network, from minor parameter tuning up to replacing the runtime code.
+A potential function call to be voted on in a referendum. Proposals modify the behavior of the Cronos PoS Chain network, from minor parameter tuning up to replacing the runtime code.
 
 **Proposer (of a block)**
 
@@ -203,9 +203,7 @@ The penalty imposed on validators' misbehavior such as byzantine faults or liven
 * Double signing: If someone reports on chain A that a validator signed two blocks at the same height.
 * Unavailability: If a validator signature has not been included in the last X blocks, the validator will get slashed by a marginal amount proportional to X. If X is above a certain limit Y, then the validator will get unbonded.
 
-**State (of a staking address)**
-
-The general state of a staking address that includes _nonce_, _bounded/unbonded_ amount, _validator metadata_, and _slashing related information_ (if any).
+**State (of a staking address)**The general state of a staking address that includes _nonce_, _bounded/unbonded_ amount, _validator metadata_, and _slashing related information_ (if any).
 
 #### T
 

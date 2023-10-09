@@ -2,7 +2,7 @@
 
 ## Useful Links
 
-* [Crypto.org Chain website](https://crypto.org/)
+* [Cronos PoS Chain website](https://crypto.org/)
 * [GitHub Repository](https://github.com/crypto-org-chain/chain-main)
 * [Official Documentation](https://crypto.org/docs/)
 
@@ -24,7 +24,7 @@
 
 ## API Documentation
 
-There are a few ways to access to the Crypto.org Chain
+There are a few ways to access to the Cronos PoS Chain
 
 1. **Tendermint RPC**
 
@@ -74,11 +74,11 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 
 ### Mainnet
 
-[https://crypto.org/explorer](https://crypto.org/explorer)
+[https://](https://crypto.org/explorer)[cronos-pos.org/explorer](http://cronos-pos.org/explorer)
 
 ### Croeseid Testnet
 
-[https://crypto.org/explorer/croeseid4/](https://crypto.org/explorer/croeseid4/)
+[https://cronos-pos.org/explorer/croeseid4/](https://crypto.org/explorer/croeseid4/)
 
 ## Community
 

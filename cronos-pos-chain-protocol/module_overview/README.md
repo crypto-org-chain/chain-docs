@@ -2,7 +2,7 @@
 
 ## Overview
 
-Crypto.org Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tendermint](https://tendermint.com/) Core consensus engine underneath. Specifically, the Cosmos SDK is a framework that facilitates the development of secure state-machines on top of Tendermint. In particular, we utilize different SDK modules to facilitate the special features of the Crypto.org Chain.
+Cronos PoS Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tendermint](https://tendermint.com/) Core consensus engine underneath. Specifically, the Cosmos SDK is a framework that facilitates the development of secure state-machines on top of Tendermint. In particular, we utilize different SDK modules to facilitate the special features of the Cronos PoS Chain.
 
 In this documentation, we will be focusing on some of the important modules we used, for example:
 
@@ -34,7 +34,7 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 
 #### SendAuthorization
 
-`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](module\_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend with. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` gets cleared when the `SpendLimit`reaches 0. Sending an amount greater than the `SpendLimit` is not allowed.
+`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](module\_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` get cleared when the `SpendLimit`reach 0. Sending an amount greater than the `SpendLimit` is not allowed.
 
 ***
 
@@ -60,6 +60,7 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 
 ***
 
+\
 ::: tip NOTE **Expiration of Grant**: The _granter_ can optionally set an `Expiration` time in form of a UNIX Timestamp for any authorization grant. The `Expiration` time should be later than current UNIX Timestamp and is defaulted to be one year from current time if unspecified. An authorization may be executed only if the grant has not yet expired. Setting an `Expiration` time for an authorization grant is generally encouraged. :::
 
 ### Transactions and Queries
@@ -78,7 +79,8 @@ An authorization starts from the _granter_ granting the _grantee_.
 
 #### `tx authz grant [grantee_address] send --spend-limit [amount] --from [granter_address]`- **Grant to send with a spend limit**
 
-::: details Example: Grant to send with a spend limit and an expiration time The _granter_ may grant a _grantee_ to send tokens on the _granter_'s behalf, where a spend limit should be provided through the `--spend-limit` flag. For example, _granter_ may authorize _grantee_ to spend up to `10 CRO`, and sets an expiration time at the end of the year 2022 (i.e. `1672531199` in Unix timestamp) by running
+{% hint style="info" %}
+Example: Grant to send with a spend limit and an expiration time The _granter_ may grant a _grantee_ to send tokens on the _granter_'s behalf, where a spend limit should be provided through the `--spend-limit` flag. For example, _granter_ may authorize _grantee_ to spend up to `10 CRO`, and sets an expiration time at the end of the year 2022 (i.e. `1672531199` in Unix timestamp) by running
 
 ```bash
 $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <granter_address> --expiration 1672531199 --chain-id <chain-id>
@@ -102,8 +104,7 @@ $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <
     "granter": "cro18..."
 }
 ```
-
-:::
+{% endhint %}
 
 ***
 
@@ -111,7 +112,10 @@ $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <
 
 #### `tx authz grant [grantee_address] delegate --spend-limit [amount] --allowed-validators [list_of_allowed_validators_separated_by_,] --from [granter_address]`- **Grant to delegate to validators on a specified list**
 
-::: details Example: Grant to delegate to validators on a specified list with a spend limit The _granter_ may grant a _grantee_ to delegate tokens on the _granter_'s behalf, where either a list of allowed validators (through the `--allowed-validators` flag) or denied validators (through the `--deny-validators` flag) should be provided. For example, _granter_ may authorize _grantee_ to delegate on the _granter_'s behalf up to `10 CRO` towards a specified list of validators by running
+{% hint style="info" %}
+Example: Grant to delegate to validators on a specified list with a spend limit The _granter_ may grant a _grantee_ to delegate tokens on the _granter_'s behalf, where either a list of allowed validators (through the `--allowed-validators` flag) or denied validators (through the `--deny-validators` flag) should be provided. For example, _granter_ may authorize _grantee_ to delegate on the _granter_'s behalf up to `10 CRO` towards a specified list of validators by running
+
+
 
 ```bash
 $ chain-maind tx authz grant <grantee_address> delegate --spend-limit 10cro --allowed-validators <list_of_allowed_validators_separated_by_,> --from <granter_address> --expiration <expiration_time> --chain-id <chain-id>
@@ -139,8 +143,9 @@ $ chain-maind tx authz grant <grantee_address> delegate --spend-limit 10cro --al
     "granter": "cro18..."
 }
 ```
+{% endhint %}
 
-:::
+
 
 On the contrary, the _granter_ may choose to exclude a list of validators the _grantee_ can delegate to on the _granter_'s behalf:
 
@@ -152,7 +157,9 @@ Granting to redelegate or undelegate (unbond) is very similar by just replacing 
 
 #### `tx authz grant [grantee_address] unbond --spend-limit [amount] --allowed-validators [list_of_allowed_validators_separated_by_,] --from [granter_address]`- **Grant to unbond from validators on a specified list**
 
-::: tip NOTE **Spend Limit for `StakeAuthorization`**: A spend limit for a grant to delegate/redelegate/unbond is not necessary but generally recommended. :::
+{% hint style="info" %}
+NOTE **Spend Limit for `StakeAuthorization`**: A spend limit for a grant to delegate/redelegate/unbond is not necessary but generally recommended.
+{% endhint %}
 
 ***
 
@@ -162,7 +169,8 @@ Other than the above grants under `SendAuthorization` or `StakeAuthorization`, o
 
 #### `tx authz grant [grantee_address] generic --msg-type [msg_type_url] --from [granter_address]`- **Grant for generic authorization with a specified Message Type URL**
 
-::: details Example: Grant to withdraw delegator reward
+{% hint style="info" %}
+Example: Grant to withdraw delegator reward
 
 ```bash
 $ chain-maind tx authz grant <grantee_address> generic --msg-type /cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward --from <granter_address> --expiration <expiration_time> --chain-id <chain-id>
@@ -181,8 +189,7 @@ $ chain-maind tx authz grant <grantee_address> generic --msg-type /cosmos.distri
     "granter": "cro18..."
 }
 ```
-
-:::
+{% endhint %}
 
 Similarly:
 
@@ -196,7 +203,9 @@ so on and so forth.
 
 ***
 
-::: tip NOTE **Message Type URL & Updating an Existing Grant**: At any time, there is up to one grant allowed for each Message Type URL over a unique _granter_-_grantee_ pair. To update an existing grant, the _granter_ will need to re-grant the _grantee_ and the new grant will overwrite the old grant. :::
+{% hint style="info" %}
+NOTE **Message Type URL & Updating an Existing Grant**: At any time, there is up to one grant allowed for each Message Type URL over a unique _granter_-_grantee_ pair. To update an existing grant, the _granter_ will need to re-grant the _grantee_ and the new grant will overwrite the old grant.
+{% endhint %}
 
 ### `exec`:
 
@@ -224,7 +233,11 @@ $ chain-maind tx bank send <granter_address> <recipient_address> 10cro --from <g
 }
 ```
 
-::: tip NOTE The `authorized transaction` here does not need to be signed and the address after the `--from` flag is the `granter_address` instead of the `grantee_address`. In other words, this `authorized transaction` is created by the _grantee_ but prepared as if he/she were the _granter_. :::
+{% hint style="info" %}
+NOTE The `authorized transaction` here does not need to be signed and the address after the `--from` flag is the `granter_address` instead of the `grantee_address`. In other words, this `authorized transaction` is created by the _grantee_ but prepared as if he/she were the _granter_.
+{% endhint %}
+
+
 
 After the `authorized transaction` is properly prepared, the _grantee_ needs to issue an `execution transaction` to execute the `authorized transaction`:
 
@@ -261,7 +274,8 @@ The _granter_ may choose to `revoke` an existing authorization already granted t
 
 #### `tx authz revoke [grantee_address] [msg_type_url] --from [granter_address]` - **Revoke an authorization with a specified Message Type URL**
 
-::: details Example: Revoke an existing SendAuthorization
+{% hint style="info" %}
+Example: Revoke an existing SendAuthorization
 
 ```bash
 $ chain-maind tx authz revoke <grantee_address> /cosmos.bank.v1beta1.MsgSend --from <granter_address> --chain-id <chain-id>
@@ -274,14 +288,16 @@ $ chain-maind tx authz revoke <grantee_address> /cosmos.bank.v1beta1.MsgSend --f
     "msg_type_url": "/cosmos.bank.v1beta1.MsgSend"
 }
 ```
+{% endhint %}
 
-:::
+
 
 ### Queries
 
 #### `query authz grants [granter_address] [grantee_address]` - Query all existing grants between a _granter_-_grantee_ pair
 
-::: details Example: Query all existing grants between the specified granter and grantee
+{% hint style="info" %}
+Example: Query all existing grants between the specified granter and grantee
 
 ```bash
 $ chain-maind query authz grants <granter_address> <grantee_address> --output json | jq
@@ -324,14 +340,14 @@ $ chain-maind query authz grants <granter_address> <grantee_address> --output js
   }
 }
 ```
-
-:::
+{% endhint %}
 
 We may also specify a `MsgTypeURL` for the query:
 
 #### `query authz grants [granter_address] [grantee_address] [msg_type_url]` - Query the grant with a specified Message Type URL between a _granter_-_grantee_ pair
 
-::: details Example: Query the grant to withdraw delegator reward between the specified granter and grantee
+{% hint style="info" %}
+&#x20;Example: Query the grant to withdraw delegator reward between the specified granter and grantee
 
 ```bash
 $ chain-maind query authz grants <granter_address> <grantee_address> /cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward --output json | jq
@@ -348,8 +364,9 @@ $ chain-maind query authz grants <granter_address> <grantee_address> /cosmos.dis
   "pagination": null
 }
 ```
+{% endhint %}
 
-:::
+
 
 ## `bank`
 
@@ -491,7 +508,9 @@ Delegator can withdraw their reward(s) from the validator(s) that they have dele
 
 Delegator can withdraw their reward(s) from a specific validator.
 
-:::tip Remark: Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`. :::
+{% hint style="info" %}
+Remark: Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`.&#x20;
+{% endhint %}
 
 #### `tx distribution set-withdraw-addr [withdraw-addr]` - Change the default withdraw address for rewards associated with an address
 
@@ -556,7 +575,7 @@ The following tables show the overall effects of the distribution related networ
 
 ### Introduction
 
-The `gov` module enables on-chain governance which allows Crypto.org Chain token holders to participate in the decision-making processes. For example, users can:
+The `gov` module enables on-chain governance which allows Cronos PoS Chain token holders to participate in the decision-making processes. For example, users can:
 
 * Form an idea and seek feedback;
 * Create the proposal and adjust according to feedback as needed;
@@ -849,15 +868,15 @@ The following tables show the overall effects of the mint related network parame
 
 Fungible tokens are mutually interchangeable, and one most common example of fungible tokens is fiat currencies. Specifically, the $100.50 US dollars in my bank account is equally valuable as the $100.50 US dollars in someone else's bank account. Another example of fungible tokens would be the native cryptocurrency of **Ethereum**, one of the most popular blockchain networks, i.e. **Ether**. Ethers are totally fungible, meaning that one ether is equal to one ether, and it's equal to any other ether as well. Particularly, ethers are also highly divisible up to one **wei**, or 0.000000000000000001 (10-18) ether.
 
-In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Crypto.org Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** are unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
+In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Cronos PoS Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** are unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
 
 On-chain NFT standards were first developed on **Ethereum** within the **ERC-721** standard and its subsequent **Ethereum Improvement Proposals**. The subsequent **ERC-1155** standard aims to address some restrictions of **Ethereum** such as storage costs and semi-fungible assets. NFTs on application specific blockchains share some but not all features as their **Ethereum** brethren, since application specific blockchains are more flexible in how their resources are utilized, such as the ability to use strings as IDs.
 
-The `nft` module here facilitates managing non-fungible tokens that represent individual assets with unique features on **Crypto.org Chain**.
+The `nft` module here facilitates managing non-fungible tokens that represent individual assets with unique features on **Cronos PoS Chain**.
 
 ### Overview
 
-There are two key concepts for NFTs on **Crypto.org Chain**, namely, **denom** and **token**:
+There are two key concepts for NFTs on **Cronos PoS Chain**, namely, **denom** and **token**:
 
 *   **denom**
 
@@ -866,7 +885,8 @@ There are two key concepts for NFTs on **Crypto.org Chain**, namely, **denom** a
 
     An NFT, or simply "token", is a specific instance of NFT minted under a denom. Each token has a `token ID`, which is unique under a specific denom. Generally, a token also has its `token name` (name of the NFT), `token URI` (off-chain information or storage location of the NFT), and `token metadata` (on-chain data that provides information about the NFT).
 
-::: tip Specifications `denom ID`: a string of lowercase alphanumeric characters with length between 3 and 64 that begins with a letter, unique over the chain;
+{% hint style="info" %}
+Specifications `denom ID`: a string of lowercase alphanumeric characters with length between 3 and 64 that begins with a letter, unique over the chain;
 
 `denom name`: a non-empty string, unique over the chain;
 
@@ -878,7 +898,8 @@ There are two key concepts for NFTs on **Crypto.org Chain**, namely, **denom** a
 
 `token URI`: a string that directs to the off-chain information or storage location of the NFT;
 
-`token metadata`: a JSON object that matches the denom schema and represents the on-chain data that provides information about the NFT. :::
+`token metadata`: a JSON object that matches the denom schema and represents the on-chain data that provides information about the NFT.
+{% endhint %}
 
 Just as each user is uniquely identified by its address, each NFT is uniquely identified by the combination of its **denom ID** and its **token ID** (like a UID for the NFT), showing its uniqueness, non-interchangeability, and non-divisibility.
 
@@ -903,7 +924,8 @@ Every NFT needs to "live" under a denom: an NFT collection. Therefore, the first
 
 #### `tx nft issue [denom_id] --name [denom_name] --schema [denom_schema] --from [user_address]`- **Issue a denom**
 
-::: details Example: Issue a new denom with specified name and schema
+{% hint style="info" %}
+Example: Issue a new denom with specified name and schema
 
 ```bash
 $ chain-maind tx nft issue fftb2050 --name "Fortune Favours the Brave 2050" --schema '{ "Name": "string", "Description": "string" }' --from <user_address> --chain-id <chain-id>
@@ -917,10 +939,11 @@ $ chain-maind tx nft issue fftb2050 --name "Fortune Favours the Brave 2050" --sc
     "sender": "cro18..."
 }
 ```
+{% endhint %}
 
-:::
-
-::: tip NOTE Even though the denom schema is not a compulsory field, it is generally recommended to illustrate the format of NFT metadata as an informative summary of such denom. Moreover, a denom is non-transferable, non-editable, and non-deletable, so be mindful when issuing a denom. :::
+{% hint style="info" %}
+**NOTE** Even though the denom schema is not a compulsory field, it is generally recommended to illustrate the format of NFT metadata as an informative summary of such denom. Moreover, a denom is non-transferable, non-editable, and non-deletable, so be mindful when issuing a denom.&#x20;
+{% endhint %}
 
 ***
 
@@ -930,7 +953,8 @@ When a denom has been issued, the denom owner (the creator) may mint an NFT unde
 
 #### `tx nft mint [denom_id] [token_id] --name [token_name] --uri [token_uri] --data [token_metadata] --recipient [recipient_address] --from [user_address]`- **Mint an NFT**
 
-::: details Example: Mint an NFT with specified name, URI, data, and recipient
+{% hint style="info" %}
+Example: Mint an NFT with specified name, URI, data, and recipient
 
 ```bash
 $ chain-maind tx nft mint fftb2050 v1ed1 --name "Version 1 Edition 1" --uri "https://crypto.com/fftb" --data '{ "Name": "v1", "Description": "ed1"}' --recipient <recipient_address> --from <user_address> --chain-id <chain-id>
@@ -947,20 +971,22 @@ $ chain-maind tx nft mint fftb2050 v1ed1 --name "Version 1 Edition 1" --uri "htt
     "recipient": "cro18..."
 }
 ```
+{% endhint %}
 
-:::
-
-::: tip NOTE The token name, URI, and metadata fields are optional but highly recommended fields during the minting process, even though they might also be edited later through `edit`. In addition, the minter may specify a recipient of the new NFT, where it defaults to be just the minter if not specified. :::
+{% hint style="info" %}
+**NOTE** The token name, URI, and metadata fields are optional but highly recommended fields during the minting process, even though they might also be edited later through `edit`. In addition, the minter may specify a recipient of the new NFT, where it defaults to be just the minter if not specified.
+{% endhint %}
 
 ***
 
 ### `edit`:
 
-Unlike NFTs minted on **Ethereum**, an NFT minted on **Crypto.org Chain** may easily be edited, provided that the user editing it is both the owner and creator of such NFT.
+Unlike NFTs minted on **Ethereum**, an NFT minted on **Cronos PoS Chain** may easily be edited, provided that the user editing it is both the owner and creator of such NFT.
 
 #### `tx nft edit [denom_id] [token_id] --name [new_name] --uri [new_uri] --data [new_metadata] --from [user_address]`- **Edit an NFT**
 
-::: details Example: Edit an NFT to change its URI
+{% hint style="info" %}
+Example: Edit an NFT to change its URI
 
 ```bash
 $ chain-maind tx nft edit fftb2050 v1ed1 --uri "https://crypto.com/nft" --from <user_address> --chain-id <chain-id>
@@ -976,10 +1002,11 @@ $ chain-maind tx nft edit fftb2050 v1ed1 --uri "https://crypto.com/nft" --from <
     "sender": "cro18..."
 }
 ```
+{% endhint %}
 
-:::
-
-::: tip NOTE There are 3 fields available for NFT editing: name, URI, and the metadata. Any field that is not specified will remain unchanged. :::
+{% hint style="info" %}
+NOTE There are 3 fields available for NFT editing: name, URI, and the metadata. Any field that is not specified will remain unchanged.
+{% endhint %}
 
 ***
 
@@ -989,7 +1016,8 @@ A user may burn an existing NFT as long as he/she is both the owner and creator 
 
 #### `tx nft burn [denom_id] [token_id] --from [user_address]`- **Burn an NFT**
 
-::: details Example: Burn an NFT
+{% hint style="info" %}
+Example: Burn an NFT
 
 ```bash
 $ chain-maind tx nft burn fftb2050 v1ed1 --from <user_address> --chain-id <chain-id>
@@ -1002,10 +1030,11 @@ $ chain-maind tx nft burn fftb2050 v1ed1 --from <user_address> --chain-id <chain
     "sender": "cro18..."
 }
 ```
+{% endhint %}
 
-:::
-
-::: tip NOTE A token ID is unique under a specific denom, meaning no two existing NFTs can share the same token ID under the same denom. However, when an NFT gets burnt, its token ID is freed and is available for mint again. :::
+{% hint style="info" %}
+**NOTE** A token ID is unique under a specific denom, meaning no two existing NFTs can share the same token ID under the same denom. However, when an NFT gets burnt, its token ID is freed and is available for mint again.
+{% endhint %}
 
 ***
 
@@ -1015,7 +1044,8 @@ Transferring an NFT is easy: one only needs to be the owner of the NFT.
 
 #### `tx nft transfer [recipient_address] [denom_id] [token_id] --from [granter_address]` - **Transfer an NFT**
 
-::: details Example: Transfer an NFT to a recipient
+{% hint style="info" %}
+Example: Transfer an NFT to a recipient
 
 ```bash
 $ chain-maind tx nft transfer <recipient_address> fftb2050 v1ed1 --from <user_address> --chain-id <chain-id>
@@ -1029,8 +1059,7 @@ $ chain-maind tx nft transfer <recipient_address> fftb2050 v1ed1 --from <user_ad
     "recipient": "cro1j..."
 }
 ```
-
-:::
+{% endhint %}
 
 ***
 
@@ -1048,7 +1077,8 @@ In the NFT module, queries can be divided into 3 main categories:
 
 #### `query nft denom [denom_id]` - Query information of a denom by its denom ID
 
-::: details Example: Query information of a denom by its denom ID
+{% hint style="info" %}
+Example: Query information of a denom by its denom ID
 
 ```bash
 $ chain-maind query nft denom fftb2050 --output json | jq
@@ -1059,8 +1089,7 @@ $ chain-maind query nft denom fftb2050 --output json | jq
   "creator": "cro18..."
 }
 ```
-
-:::
+{% endhint %}
 
 Effectively, one may also query information of a denom by its denom name instead of denom id:
 
@@ -1070,27 +1099,27 @@ To check the number of existing NFTs in a denom:
 
 #### `query nft supply [denom_id]` - Query the number of existing NFTs in a denom
 
-::: details Example: Query the number of existing NFTs in a denom
+{% hint style="info" %}
+Example: Query the number of existing NFTs in a denom
 
 ```bash
 $ chain-maind query nft supply fftb2050
 amount: "3"
 ```
-
-:::
+{% endhint %}
 
 In addition, one may query the number of existing NFTs in a denom of a specific owner through the `--owner` flag:
 
 #### `query nft supply [denom_id] --owner [owner_address]` - Query the number of existing NFTs in a denom of a specific owner
 
-::: details Example: Query the number of existing NFTs in a denom of a specific owner
+{% hint style="info" %}
+Example: Query the number of existing NFTs in a denom of a specific owner
 
 ```bash
 $ chain-maind query nft supply fftb2050 --owner <owner_address>
 amount: "2"
 ```
-
-:::
+{% endhint %}
 
 ***
 
@@ -1100,7 +1129,8 @@ One may query information of a specific NFT with its UID (denom ID and token ID)
 
 #### `query nft token [denom_id] [token_id]` - Query information of an NFT
 
-::: details Example: Query information of an NFT
+{% hint style="info" %}
+Example: Query information of an NFT
 
 ```bash
 $ chain-maind query nft token fftb2050 v1ed1 --output json | jq
@@ -1112,14 +1142,14 @@ $ chain-maind query nft token fftb2050 v1ed1 --output json | jq
   "owner": "cro1j..."
 }
 ```
-
-:::
+{% endhint %}
 
 One may also query information of all NFTs under a specific denom:
 
 #### `query nft collection [denom_id]` - Query information of all NFTs under a specific denom
 
-::: details Example: Query information of all NFTs under a specific denom
+{% hint style="info" %}
+Example: Query information of all NFTs under a specific denom
 
 ```bash
 $ chain-maind query nft collection fftb2050 --output json | jq
@@ -1161,8 +1191,7 @@ $ chain-maind query nft collection fftb2050 --output json | jq
   }
 }
 ```
-
-:::
+{% endhint %}
 
 ***
 
@@ -1172,7 +1201,8 @@ Last but not least, information of a specific NFT owner may also be queried.
 
 #### `query nft owner [owner_address]` - Query information of all NFTs owned by a specific owner
 
-::: details Example: Query information of all NFTs owned by a specific owner
+{% hint style="info" %}
+Example: Query information of all NFTs owned by a specific owner
 
 ```bash
 $ chain-maind query nft owner <owner_address> --output json | jq
@@ -1201,14 +1231,14 @@ $ chain-maind query nft owner <owner_address> --output json | jq
   }
 }
 ```
-
-:::
+{% endhint %}
 
 One may also use the `--denom-id` flag to query owner NFT information under a specific denom:
 
 #### `query nft owner [owner_address] --denom-id [denom_id]` - Query information of all NFTs owned by a specific owner under specified denom
 
-::: details Example: Query information of all NFTs owned by a specific owner under specified denom
+{% hint style="info" %}
+Example: Query information of all NFTs owned by a specific owner under specified denom
 
 ```bash
 $ chain-maind query nft owner <owner_address> --denom-id fftb2050 --output json | jq
@@ -1231,8 +1261,9 @@ $ chain-maind query nft owner <owner_address> --denom-id fftb2050 --output json 
   }
 }
 ```
+{% endhint %}
 
-:::
+
 
 ## `slashing`
 
@@ -1240,7 +1271,7 @@ $ chain-maind query nft owner <owner_address> --denom-id fftb2050 --output json 
 
 Validators are responsible for signing or proposing a block at each consensus round. A penalty should be imposed on validators' misbehaviour to reinforce this.
 
-Specifically, `slashing` functionality that aims to dis-incentivize network-observable actions, such as faulty validations. The penalties may include losing some amount of their stake, losing their ability to perform the network functionality for a period of time, collect rewards, etc.
+Specifically, `slashing` functionality that aims to disincentivize network-observable actions, such as faulty validations. The penalties may include losing some amount of their stake, losing their ability to perform the network functionality for a period of time, collect rewards, etc.
 
 ### Overview
 
@@ -1262,7 +1293,9 @@ Punishments for a validator are triggered when they either make a _byzantine fau
 
     A validator is said to be **non-live** when they fail to successfully sign at least `min_signed_per_window` blocks (in percentage) in the last `signed_blocks_window` blocks. `signed_blocks_window` and `min_signed_per_window` are network parameters and can be configured during genesis and can be updated during runtime by the governance module.
 
-:::tip Example: For example, if `block_signing_window` is `2000` blocks and `min_signed_per_window` is `0.5`, a validator will be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in the last `2000` blocks. :::
+{% hint style="info" %}
+Example: For example, if `block_signing_window` is `2000` blocks and `min_signed_per_window` is `0.5`, a validator will be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in the last `2000` blocks.&#x20;
+{% endhint %}
 
 *   Byzantine Faults
 
@@ -1273,7 +1306,11 @@ Punishments for a validator are triggered when they either make a _byzantine fau
 
 **Remark**: The evidence of a set of validators attempting to mislead a light client can also be detected and captured. However, even the [Amnesia attack](https://github.com/tendermint/tendermint/blob/master/docs/architecture/adr-056-light-client-amnesia-attacks.md#amnesia-attack) can be detected, punishment can not be applied at this stage, as we can not deduce the malicious validators.
 
-:::tip Implementation note: Tendermint passes `Evidence` of a byzantine validator in `BeginBlock` request. Before jailing any account due to byzantine fault, that evidence should be verified. Also, it should be checked that evidence provided by tendermint is not older than `max_age` in tendermint. :::
+{% hint style="info" %}
+&#x20;Implementation note: Tendermint passes `Evidence` of a byzantine validator in `BeginBlock` request. Before jailing any account due to byzantine fault, that evidence should be verified. Also, it should be checked that evidence provided by tendermint is not older than `max_age` in tendermint.
+{% endhint %}
+
+
 
 ### Inactivity Slashing
 
@@ -1285,11 +1322,13 @@ When a validator fails to successfully sign `missed_block_threshold` blocks in t
 
 A validator is jailed when they make liveness or Byzantine fault. When a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Futhermore, it cannot be un-jailed before `downtime_jail_duration`. This `downtime_jail_duration` is a network parameter which can be configured during genesis.
 
-:::warning Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html) :::
+{% hint style="warning" %}
+Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html).
+{% endhint %}
 
 #### Un-jailing
 
-When a jailed validator wishes to resume normal operations (after `downtime_jail_duration` has passed), they can create an `unjail` transaction which marks them as un-jailed. Validator will then rejoin the validator set once it has been successful un-jailed.
+When a jailed validator wishes to resume normal operations (after `downtime_jail_duration` has passed), they can create a `unjail` transaction which marks them as un-jailed. Validator will then rejoin the validator set once it has been successful un-jailed.
 
 ### Slashing for Byzantine Fault
 
@@ -1371,7 +1410,7 @@ The `staking` module handles Proof-of-Stake related logics, which plays a very i
 
 ### Overview
 
-Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks to the blockchain.
+Cronos PoS Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks to the blockchain.
 
 * `unbonding_time`: The time duration of unbonding;
 * `max_validators`: The maximum number of validators;

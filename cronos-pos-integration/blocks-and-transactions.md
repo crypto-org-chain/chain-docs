@@ -1,10 +1,10 @@
 # Blocks and Transactions
 
-This document describes the block and transaction structure of the Crypto.org Chain and explains different ways to extract and parse the details of them.
+This document describes the block and transaction structure of the Cronos PoS Chain and explains different ways to extract and parse the details of them.
 
 ## Table of Content
 
-* [Crypto.org Chain Blocks and Transactions](blocks-and-transactions.md#cryptoorg-chain-blocks-and-transactions)
+* [Cronos PoS Blocks and Transactions](blocks-and-transactions.md#cryptoorg-chain-blocks-and-transactions)
   * [Table of Content](blocks-and-transactions.md#table-of-content)
   * [Common APIs](blocks-and-transactions.md#common-apis)
     * [1. Tendermint Block API](blocks-and-transactions.md#\_1-tendermint-block-api)
@@ -66,24 +66,24 @@ This document describes the block and transaction structure of the Crypto.org Ch
 
 ### 1. Tendermint Block API
 
-* **URL format:** https://rpc.mainnet.crypto.org/block?height=\[height]
+* **URL format:** https://rpc.mainnet.cronos-pos.org/block?height=\[height]
 * This API returns block details, a list of _transaction bytes_ and _consensus commits_.&#x20;
 
 {% hint style="info" %}
 **Example: Checking the block at height `10000` of the mainnet:**\
-[https://rpc.mainnet.crypto.org/block?height=10000](https://https/rpc.mainnet.crypto.org/block?height=10000)
+[https://](https://https/rpc.mainnet.crypto.org/block?height=10000)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/block?height=10000](https://https/rpc.mainnet.crypto.org/block?height=10000)
 {% endhint %}
 
 
 
 ### 2. Tendermint Block Results API
 
-* **URL format:** https://rpc.mainnet.crypto.org:26657/block\_results?height=\[height]
+* **URL format:** https://rpc.mainnet.cronos-pos.org:26657/block\_results?height=\[height]
 * This API returns the events of the block. These events include the outcomes from transactions, and block changes such as block rewards minted (`"mint"`) and distributed as well as consensus state updates such as validator missing block counts (`"liveness"`)
 
 {% hint style="info" %}
 Example: Checking the block result of height `10000`of the mainnet:\
-[https://rpc.mainnet.crypto.org/block\_results?height=10000](https://rpc.mainnet.crypto.org/block\_results?height=10000)
+[https://](https://rpc.mainnet.crypto.org/block\_results?height=10000)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/block\_results?height=10000](https://rpc.mainnet.crypto.org/block\_results?height=10000)
 {% endhint %}
 
 
@@ -92,13 +92,13 @@ Example: Checking the block result of height `10000`of the mainnet:\
 
 ### 3. Cosmos Transaction Query API
 
-* **URL format:** https://rest.mainnet.crypto.org/comsos/tx/v1beta1/txs/\[Transaction\_Hash]
+* **URL format:** https://rpc.mainnet.cronos-pos.org/comsos/tx/v1beta1/txs/\[Transaction\_Hash]
 * This API returns the parsed transaction details and events of a particular transaction hash
-* **Example**: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660
+* **Example**: https://rpc.mainnet.cronos-pos.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660
 
 ### 4. Cosmos Transaction Search API
 
-* **URL format:** https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs
+* **URL format:** https://rpc.mainnet.cronos-pos.org/cosmos/tx/v1beta1/txs
 * This API support event based query and returns parsed transactions. Common events include:
 
 | Event                           | Description                                                                                                                                            | Example                                                                                                                                                                                                     |
@@ -129,7 +129,7 @@ Usage example:
 ```bash
 $ git clone https://github.com/calvinaco/cosmos-api-tools
 $ cd cosmos-api-tools
-$ node block-results-decoder.js "https://rpc.mainnet.crypto.org/block_results?height=10000"
+$ node block-results-decoder.js "https://rpc.mainnet.cronos-pos.org/block_results?height=10000"
 ```
 {% endhint %}
 
@@ -139,7 +139,7 @@ Note that when you integrate with the API you should still base64 decode the att
 
 ### 1. Mint
 
-In every block, CRO is minted and offered to the active validators and their delegators as block rewards. The actual minted token is subject to inflation and is adjusted every block. Further details on the miniting parameters and configuration can be found [here](https://crypto.org/docs/chain-details/module\_overview.html#mint).
+In every block, CRO is minted and offered to the active validators and their delegators as block rewards. The actual minted token is subject to inflation and is adjusted every block. Further details on the minting parameters and configuration can be found [here](https://crypto.org/docs/chain-details/module\_overview.html#mint).
 
 Minted tokens are distributed as blocks and proposer rewards in the same block. However, since Cosmos SDK does the [lazy rewards calculation and collection](https://docs.cosmos.network/master/modules/distribution/), the minted tokens are first sent to the "Distribution" module account and are later transferred to an account when a delegator withdraws the rewards or commissions by sending a [MsgWithdrawDelegatorReward](blocks-and-transactions.md#\_2-msgwithdrawdelegatorreward) or [MsgWithdrawValidatorCommission](blocks-and-transactions.md#\_3-msgwithdrawvalidatorcommission).
 
@@ -238,7 +238,7 @@ Note that the `amount` is always in string for precision accuracy. Please make s
 
 This is commonly seen in most message types. It represents a list of tokens.
 
-At the time of writing, there will only be a single entry in this array because `basecro` (or `basetcro` in Croeseid Testnet) is the only supported asset on Crypto.org Chain. However, after IBC transfer and other coins issuance methods are enabled, there will be more asset types, the coin source tracing and their denomination can be found [here](https://github.com/cosmos/cosmos-sdk/blob/master/docs/architecture/adr-001-coin-source-tracing.md)
+At the time of writing, there will only be a single entry in this array because `basecro` (or `basetcro` in Croeseid Testnet) is the only supported asset on Cronos PoS Chain. However, after IBC transfer and other coins issuance methods are enabled, there will be more asset types, the coin source tracing and their denomination can be found [here](https://github.com/cosmos/cosmos-sdk/blob/master/docs/architecture/adr-001-coin-source-tracing.md)
 
 **Example**:
 
@@ -291,7 +291,7 @@ type MsgSend struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660)
+Cosmos Transaction Query API: [https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/0C5E617B0577B047D78EBF5313B8B70DF69E9535E17B964303BD04947B11B660)
 
 #### Details
 
@@ -326,7 +326,7 @@ type Output struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/6CD89C9F32A4F4E918B2BCD722A9429693E3372E3F882BA4A460F2588A2EE0B3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/6CD89C9F32A4F4E918B2BCD722A9429693E3372E3F882BA4A460F2588A2EE0B3)
+Cosmos Transaction Query API: [https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/6CD89C9F32A4F4E918B2BCD722A9429693E3372E3F882BA4A460F2588A2EE0B3)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/6CD89C9F32A4F4E918B2BCD722A9429693E3372E3F882BA4A460F2588A2EE0B3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/6CD89C9F32A4F4E918B2BCD722A9429693E3372E3F882BA4A460F2588A2EE0B3)
 
 #### Details
 
@@ -356,7 +356,7 @@ type MsgSetWithdrawAddress struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/D4FCC8E1403677157D367A88A0832B9E411BDC4E029954FC133DB60296CF3DE3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/D4FCC8E1403677157D367A88A0832B9E411BDC4E029954FC133DB60296CF3DE3)
+Cosmos Transaction Query API: [https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/D4FCC8E1403677157D367A88A0832B9E411BDC4E029954FC133DB60296CF3DE3)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/D4FCC8E1403677157D367A88A0832B9E411BDC4E029954FC133DB60296CF3DE3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/D4FCC8E1403677157D367A88A0832B9E411BDC4E029954FC133DB60296CF3DE3)
 
 #### Details
 
@@ -378,7 +378,7 @@ type MsgWithdrawDelegatorReward struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318)
+Cosmos Transaction Query API: [https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318)
 
 #### Details
 
@@ -405,14 +405,14 @@ type MsgWithdrawValidatorCommission struct {
 
 #### Example
 
-* Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320)
+* Cosmos Transaction Query API: [https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3739F76EF67A61D6F0163A5B177EA64ED80B67D9AEF8435C525913E69026D320)
 * Message Index: `1`
 
 #### Details
 
-This transaction will trigger an internal transfer from the "Distribution" module account to the withdraw to address. Note that the "Distribution" module account is an internal account in Crypto.org Chain to hold the rewards, commissions and community pool funds before they are being distributed.
+This transaction will trigger an internal transfer from the "Distribution" module account to the withdraw to address. Note that the "Distribution" module account is an internal account in Cronos PoS Chain to hold the rewards, commissions and community pool funds before they are being distributed.
 
-The "Distribution" module account is different on different chain. In Crypto.org Chain Mainnet, it is [cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w).
+The "Distribution" module account is different on different chain. In Cronos PoS Chain Mainnet, it is [cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w).
 
 | Detail                     | Accessor                                                                                                                                                                                                                                                                                                                     | Type                                                  |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
@@ -438,13 +438,13 @@ type MsgFundCommunityPool struct {
 
 #### Example: A transaction funding the community pool
 
-[https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F)
+[https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7C1747E0189DCA88BBA55A1720809C8DF6075799C11ECBE4C4E1F89C91D4F55F)
 
 #### Details
 
-This transaction will initiate a transfer from an account to the "Distribution" module account. Note that the "Distribution" module account is an internal account in Crypto.org Chain to hold the rewards, commissions and community pool funds before they are being distributed.
+This transaction will initiate a transfer from an account to the "Distribution" module account. Note that the "Distribution" module account is an internal account in Cronos PoS Chain to hold the rewards, commissions and community pool funds before they are being distributed.
 
-Ths "Distribution" module account is different on different chain. In Crypto.org Chain Mainnet, it is [cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w).
+This "Distribution" module account is different on different chain. In Cronos PoS Chain Mainnet, it is [cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w](https://rest.mainnet.crypto.org/cosmos/auth/v1beta1/accounts/cro1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8lyv94w).
 
 | Detail                                              | Accessor                                                                                                                                                                                                                                                                                                                     | Type                                                |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
@@ -500,7 +500,7 @@ type CommissionRates struct {
 
 #### Example
 
-Cosmos Transaction Query API: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/7B3C19A3674C9EF856C43FFF50B021085AC4DA693AA47F82882FFAC78F21DE05
+Cosmos Transaction Query API: https://rpc.mainnet.cronos-pos.org/cosmos/tx/v1beta1/txs/7B3C19A3674C9EF856C43FFF50B021085AC4DA693AA47F82882FFAC78F21DE05
 
 #### Details
 
@@ -514,7 +514,7 @@ Cosmos Transaction Query API: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/
 
 ### 2. MsgEditValidator
 
-* **Descriptions:** : Edit and existing validator
+* **Descriptions**: Edit and existing validator
 * Funds Movement: No (Pay for fee only)
 
 #### Protobuf
@@ -547,7 +547,7 @@ type Description struct {
 
 #### Example
 
-Cosmos Transaction Query API: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/F4A1D7757AD20979D540C0CD29DD335D17E121F15AA447990B87E0EE94531BD7
+Cosmos Transaction Query API: https://rpc.mainnet.cronos-pos.org/cosmos/tx/v1beta1/txs/F4A1D7757AD20979D540C0CD29DD335D17E121F15AA447990B87E0EE94531BD7
 
 ### Details
 
@@ -557,7 +557,7 @@ TODO
 
 ### 3. MsgDelegate
 
-* **Descriptions:** : Perform a delegation of coins from a delegator to a validator
+* **Descriptions**: Perform a delegation of coins from a delegator to a validator
 * Funds movement: Yes
 
 #### Protobuf
@@ -572,7 +572,7 @@ type MsgDelegate struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/CCB45B0C6EC18A327ADFC8C36478A163D8C2A8BD9EB13687F73ED3D4559318A3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/CCB45B0C6EC18A327ADFC8C36478A163D8C2A8BD9EB13687F73ED3D4559318A3)
+Cosmos Transaction Query API: [https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/CCB45B0C6EC18A327ADFC8C36478A163D8C2A8BD9EB13687F73ED3D4559318A3)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/CCB45B0C6EC18A327ADFC8C36478A163D8C2A8BD9EB13687F73ED3D4559318A3](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/CCB45B0C6EC18A327ADFC8C36478A163D8C2A8BD9EB13687F73ED3D4559318A3)
 
 #### Details
 
@@ -607,7 +607,7 @@ type MsgBeginRedelegate struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/5D43A55463C8FB30A89306C26C5E3318826AD075D36E9B5E72F7019C00F14549](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/5D43A55463C8FB30A89306C26C5E3318826AD075D36E9B5E72F7019C00F14549)
+Cosmos Transaction Query API: [https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/5D43A55463C8FB30A89306C26C5E3318826AD075D36E9B5E72F7019C00F14549)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/5D43A55463C8FB30A89306C26C5E3318826AD075D36E9B5E72F7019C00F14549](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/5D43A55463C8FB30A89306C26C5E3318826AD075D36E9B5E72F7019C00F14549)
 
 #### Details
 
@@ -681,7 +681,7 @@ type MsgUndelegate struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318)
+Cosmos Transaction Query API: [https://](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/3B36AA1AC81ACD58E7A06C21353DB0FC40A70EDBF6BD2CD23D7BEDC7A0F56318)
 
 #### Details
 
@@ -712,7 +712,7 @@ Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1
 
 #### Example
 
-Tendermint Block Results API: [https://rpc.mainnet.crypto.org/block\_results?height=374823](https://rpc.mainnet.crypto.org/block\_results?height=374823)
+Tendermint Block Results API: [https://](https://rpc.mainnet.crypto.org/block\_results?height=374823)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/block\_results?height=374823](https://rpc.mainnet.crypto.org/block\_results?height=374823)
 
 #### Details
 
@@ -741,7 +741,7 @@ type MsgUnjail struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/58BF8EBD17FF9500F395E4A9B2AE93EF21306E5706B3EC31CE116654D78B8684](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/58BF8EBD17FF9500F395E4A9B2AE93EF21306E5706B3EC31CE116654D78B8684)
+Cosmos Transaction Query API: [https://rpc.mainnet.cronos-pos.org/cosmos/tx/v1beta1/txs/58BF8EBD17FF9500F395E4A9B2AE93EF21306E5706B3EC31CE116654D78B8684](https://rpc.mainnet.cronos-pos.org/cosmos/tx/v1beta1/txs/58BF8EBD17FF9500F395E4A9B2AE93EF21306E5706B3EC31CE116654D78B8684)
 
 #### Details
 
@@ -780,7 +780,7 @@ On the other hand, the slashed amount, similar to the block rewards and commissi
 
 #### Details - Params
 
-Cosmos Slashing Params API: [https://rest.mainnet.crypto.org/cosmos/slashing/v1beta1/params](https://rest.mainnet.crypto.org/cosmos/slashing/v1beta1/params)
+Cosmos Slashing Params API: https://rpc.mainnet.cronos-pos.org/cosmos/slashing/v1beta1/params
 
 | Detail                                    | Category    | Accessor                             | Type              |
 | ----------------------------------------- | ----------- | ------------------------------------ | ----------------- |
@@ -792,7 +792,7 @@ Cosmos Slashing Params API: [https://rest.mainnet.crypto.org/cosmos/slashing/v1b
 
 #### Details - Jail and Slash events
 
-Tendermint Block Results API: https://rpc.mainnet.crypto.org/block?height=\[height]
+Tendermint Block Results API: https://rpc.mainnet.cronos-pos.org/block?height=\[height]
 
 You can use the [Cosmos API tools](blocks-and-transactions.md#common-block-details) to decode the event details for readability during integration.
 
@@ -804,7 +804,7 @@ You can use the [Cosmos API tools](blocks-and-transactions.md#common-block-detai
 | Jailed Validator Address  | Liveness, Double Sign | <p><code>Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>.results.begin_block_events[event_index].type === "slash" &#x26;&#x26; Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "jailed"</code></p>                        | String    |
 | Slashed Validator Address | Liveness, Double Sign | <p><code>Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].value)</code><br>where<br><code>.results.begin_block_events[event_index].type === "slash" &#x26;&#x26; Base64Decode(.results.begin_block_events[event_index].attributes[attribute_index].key) === "address"</code></p>                       | String    |
 
-Liveness Example: \[https://rpc.mainnet.crypto.org/block\_results?height=210356]
+Liveness Example: \[https://rpc.mainnet.cronos-pos.org/block\_results?height=210356]
 
 Liveness Event Example
 
@@ -836,7 +836,7 @@ Liveness Event Example
 }
 ```
 
-Double Sign Example: [https://rpc.mainnet.crypto.org/block\_results?height=210356](https://rpc.mainnet.crypto.org/block\_results?height=210356)
+Double Sign Example: https://rpc.mainnet.cronos-pos.org/block\_results?height=210356
 
 Double Sign Event Example
 
@@ -897,7 +897,7 @@ type MsgSubmitProposal struct {
 
 #### Example
 
-Cosmos Transaction Query API: https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/9CCC988616344C804E8831B6FC6BECD6FD0F815E4E3FF13BDE6B7F8360BF0050
+Cosmos Transaction Query API: https://rpc.mainnet.cronos-pos.org/cosmos/tx/v1beta1/txs/9CCC988616344C804E8831B6FC6BECD6FD0F815E4E3FF13BDE6B7F8360BF0050
 
 #### Details
 
@@ -1249,7 +1249,7 @@ Example of Block Results API when Community Pool Spend Proposal Funds is Release
 
 ### 2. MsgDeposit
 
-*   **Descriptions:** : Submit a deposit to an existing proposal
+*   **Descriptions**: Submit a deposit to an existing proposal
 
     Deposit will transfer from the proposer account to the "gov" module account.
 
@@ -1265,7 +1265,7 @@ type MsgDeposit struct {
 
 #### Example
 
-Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/9CCC988616344C804E8831B6FC6BECD6FD0F815E4E3FF13BDE6B7F8360BF0050](https://rest.mainnet.crypto.org/cosmos/tx/v1beta1/txs/9CCC988616344C804E8831B6FC6BECD6FD0F815E4E3FF13BDE6B7F8360BF0050)
+Cosmos Transaction Query API: https://rpc.mainnet.cronos-pos.org/cosmos/tx/v1beta1/txs/9CCC988616344C804E8831B6FC6BECD6FD0F815E4E3FF13BDE6B7F8360BF0050
 
 #### Details
 
@@ -1281,11 +1281,11 @@ Cosmos Transaction Query API: [https://rest.mainnet.crypto.org/cosmos/tx/v1beta1
 
 If a proposal does not meet the depsoit requirement after the deposit period, the deposit will **NOT** be returned to the depositors. Those deposits **will be burnt** from the "gov" module account as well.
 
-The latest deposit requirement ("min\_deposit") and deposit period ("max\_deposit\_period") can be checked on https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/deposit. Note that they are network parameters and may change over time after governance proposals.
+The latest deposit requirement ("min\_deposit") and deposit period ("max\_deposit\_period") can be checked on https://rpc.mainnet.cronos-pos.org/cosmos/gov/v1beta1/params/deposit. Note that they are network parameters and may change over time after governance proposals.
 
-To monitor a proposal becomes inacitve, it can be detected by monitoring the `end_block_events` in Tendermint Block Results API. However, for the amount of deposit burnt, you have to keep track of the deposits made to the proposal before. Note that this operation does not involve any user account as the deposits are burnt.
+To monitor a proposal becomes inactive, it can be detected by monitoring the `end_block_events` in Tendermint Block Results API. However, for the amount of deposit burnt, you have to keep track of the deposits made to the proposal before. Note that this operation does not involve any user account as the deposits are burnt.
 
-Tendermint Block Results API: [https://rpc.mainnet.crypto.org/block\_results?height=195346](https://rpc.mainnet.crypto.org/block\_results?height=195346)
+Tendermint Block Results API: [https://](https://rpc.mainnet.crypto.org/block\_results?height=195346)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/block\_results?height=195346](https://rpc.mainnet.crypto.org/block\_results?height=195346)
 
 #### Details
 
@@ -1302,7 +1302,7 @@ The return deposit can be detected by monitoring the `end_block_events` in Tende
 
 #### Example
 
-Tendermint Block Results API:[https://rpc.mainnet.crypto.org:443/block\_results?height=496620](https://rpc.mainnet.crypto.org/block\_results?height=496620)
+Tendermint Block Results API: [https://](https://rpc.mainnet.crypto.org/block\_results?height=496620)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[:443/block\_results?height=496620](https://rpc.mainnet.crypto.org/block\_results?height=496620)
 
 #### Details
 
@@ -1424,7 +1424,7 @@ Tendermint Block Results API JSON Example (Base64 Decoded):
 
 ### 4. Proposal Result
 
-Latest tally params can be retrieved from:[https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/tallying](https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/tallying). The params may change from time to time after the governance proposal.
+Latest tally params can be retrieved from: [https://](https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/tallying)[rpc.mainnet.cronos-pos.org](http://rpc.mainnet.cronos-pos.org/)[/cosmos/gov/v1beta1/params/tallying](https://rest.mainnet.crypto.org/cosmos/gov/v1beta1/params/tallying). The params may change from time to time after the governance proposal.
 
 | Scenario                                                                                                                                             | Result  | Burn Deposit |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------ |

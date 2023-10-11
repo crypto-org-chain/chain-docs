@@ -17,7 +17,7 @@ At the point of proposed upgrade, user will see the error message on the `chain-
 
 `ERR UPGRADE "v4.2.0" NEEDED at time: xxxxxxxxxxxxx: {"binaries":{"darwin/amd64":.......`
 
-**Don't panic** - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Crypto.org Chain nodes to the latest release binary.
+**Don't panic** - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Cronos PoS Chain nodes to the latest release binary.
 
 ### Backups
 

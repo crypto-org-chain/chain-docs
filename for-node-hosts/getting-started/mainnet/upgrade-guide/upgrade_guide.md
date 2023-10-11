@@ -18,7 +18,7 @@ Once you have started syncing the blockchain from block `1` by using `v1.*` bina
 
 `ERR UPGRADE "v2.0.0" NEEDED at time: 2021-06-01T23:59:00Z: {"binaries":{"darwin/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz?checksum=sha256:a4d51bf98350c7ecbb5e6bab192c9cac2f4059754e5507d2a1970a8a5488c74a","darwin/arm64":"https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_arm64.tar.gz?checksum=sha256:eb6274724eab1957a7b708a5a0887de9f213d053841fb58041f697e13728a454","linux/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_x86_64.tar.gz?checksum=sha256:5e9e9f703cb85c72573086e384e187e752463b2ed0ccd612094a1f29a13f0158","linux/arm64":"https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Linux_arm64.tar.gz?checksum=sha256:345c7eacfc768df355c3b3ecadc9cc39e3c1656c9c0c4d465b938834fa66ff03","windows/amd64":"https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip?checksum=sha256:07b06382397df49774788ec06a5c9d0bf7e28ddb7b1dd91abdb35174bce49a31"}}`
 
-Validators and full node hosts will have to upgrade your Crypto.org Chain nodes to the `v2.0.1` binary.
+Validators and full node hosts will have to upgrade your Cronos PoS Chain nodes to the `v2.0.1` binary.
 
 ## Step 1 - Get the `v2.0.1` binary
 

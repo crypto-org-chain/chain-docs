@@ -2,13 +2,13 @@
 
 ## Chain ID
 
-Crypto.org Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_. When running the Crypto.org Chain in your local environment, you will also need to decide your own Chain ID.
+Cronos PoS Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_. When running the Cronos PoS Chain in your local environment, you will also need to decide your own Chain ID.
 
 For example, our testnet Chain ID is `testnet-croeseid-4`.
 
 ## Address prefix
 
-[BIP-0173](https://github.com/satoshilabs/slips/blob/master/slip-0173.md) defines a new format for segregated witness output addresses that contains a human-readable part that identifies the coin type. Crypto.org Chain has different address prefixes for its corresponding network types, these prefixes are:
+[BIP-0173](https://github.com/satoshilabs/slips/blob/master/slip-0173.md) defines a new format for segregated witness output addresses that contains a human-readable part that identifies the coin type. Cronos PoS Chain has different address prefixes for its corresponding network types, these prefixes are:
 
 | Mainnet | Testnet | Devnet |
 | ------- | ------- | ------ |

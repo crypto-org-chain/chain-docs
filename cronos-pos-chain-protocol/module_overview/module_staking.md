@@ -4,14 +4,14 @@
 
 #### Introduction
 
-The `staking` module handles Proof-of-Stake related logics, which plays a very import part to the underneath consensus protocol.
+The `staking` module handles Proof-of-Stake related logic, which plays a very important part in the underlying consensus protocol.
 
 #### Overview
 
-Crypto.org Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
+Cronos PoS Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks in the blockchain.
 
 * `unbonding_time`: The time duration of unbonding;
-* `max_validators`: The maximum number of validator;
+* `max_validators`: The maximum number of validators;
 * `max_entries`: The max entries for either unbonding delegation or redelegation;
 * `historical_entries`: The number of historical entries to persist; and
 * `bond_denom`: Coin denomination for staking.
@@ -24,7 +24,7 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](module\_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
-It is important to point out that the delegator and the validator are on the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](module\_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
+It is important to point out that the delegator and the validator are in the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](module\_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
 #### Transactions and Queries
 
@@ -270,7 +270,7 @@ The following tables show overall effects on different configurations of the sta
 | Constraints          | N/A          | Value has to be positive           | Value has to be a positive                                    |
 | Sample configuration | `basecro`    | `100` (50%)                        | `7`                                                           |
 
-
+***
 
 |                      | `max_validators`                     | `unbonding_time`                     |
 | -------------------- | ------------------------------------ | ------------------------------------ |

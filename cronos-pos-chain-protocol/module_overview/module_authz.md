@@ -24,7 +24,7 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 
 **StakeAuthorization**
 
-`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](module\_staking.md) module. Each of the above actions need to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](module\_authz.md#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
+`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](module\_staking.md) module. Each of the above actions needs to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](module\_authz.md#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
 
 ***
 
@@ -44,7 +44,11 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 
 ***
 
-::: tip NOTE **Expiration of Grant**: The _granter_ can optionally set an `Expiration` time in form of a UNIX Timestamp for any authorization grant. The `Expiration` time should be later than current UNIX Timestamp and is defaulted to be one year from current time if unspecified. An authorization may be executed only if the grant has not yet expired. Setting an `Expiration` time for an authorization grant is generally encouraged. :::
+{% hint style="info" %}
+NOTE **Expiration of Grant**: The _granter_ can optionally set an `Expiration` time in form of a UNIX Timestamp for any authorization grant. The `Expiration` time should be later than current UNIX Timestamp and is defaulted to be one year from the current time if unspecified. An authorization may be executed only if the grant has not yet expired. Setting an `Expiration` time for an authorization grant is generally encouraged.
+{% endhint %}
+
+
 
 #### Transactions and Queries
 
@@ -62,7 +66,8 @@ An authorization starts from the _granter_ granting the _grantee_.
 
 **`tx authz grant [grantee_address] send --spend-limit [amount] --from [granter_address]`- Grant to send with a spend limit**
 
-::: details Example: Grant to send with a spend limit and an expiration time The _granter_ may grant a _grantee_ to send tokens on the _granter_'s behalf, where a spend limit should be provided through the `--spend-limit` flag. For example, _granter_ may authorize _grantee_ to spend up to `10 CRO`, and sets an expiration time at the end of the year 2022 (i.e. `1672531199` in Unix timestamp) by running
+{% hint style="info" %}
+Example: Grant to send with a spend limit and an expiration time The _granter_ may grant a _grantee_ to send tokens on the _granter_'s behalf, where a spend limit should be provided through the `--spend-limit` flag. For example, _granter_ may authorize _grantee_ to spend up to `10 CRO`, and sets an expiration time at the end of the year 2022 (i.e. `1672531199` in Unix timestamp) by running
 
 ```bash
 $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <granter_address> --expiration 1672531199 --chain-id <chain-id>
@@ -86,8 +91,7 @@ $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <
     "granter": "cro18..."
 }
 ```
-
-:::
+{% endhint %}
 
 ***
 
@@ -95,7 +99,8 @@ $ chain-maind tx authz grant <grantee_address> send --spend-limit 10cro --from <
 
 **`tx authz grant [grantee_address] delegate --spend-limit [amount] --allowed-validators [list_of_allowed_validators_separated_by_,] --from [granter_address]`- Grant to delegate to validators on a specified list**
 
-::: details Example: Grant to delegate to validators on a specified list with a spend limit The _granter_ may grant a _grantee_ to delegate tokens on the _granter_'s behalf, where either a list of allowed validators (through the `--allowed-validators` flag) or denied validators (through the `--deny-validators` flag) should be provided. For example, _granter_ may authorize _grantee_ to delegate on the _granter_'s behalf up to `10 CRO` towards a specified list of validators by running
+{% hint style="info" %}
+Example: Grant to delegate to validators on a specified list with a spend limit The _granter_ may grant a _grantee_ to delegate tokens on the _granter_'s behalf, where either a list of allowed validators (through the `--allowed-validators` flag) or denied validators (through the `--deny-validators` flag) should be provided. For example, _granter_ may authorize _grantee_ to delegate on the _granter_'s behalf up to `10 CRO` towards a specified list of validators by running
 
 ```bash
 $ chain-maind tx authz grant <grantee_address> delegate --spend-limit 10cro --allowed-validators <list_of_allowed_validators_separated_by_,> --from <granter_address> --expiration <expiration_time> --chain-id <chain-id>
@@ -123,8 +128,7 @@ $ chain-maind tx authz grant <grantee_address> delegate --spend-limit 10cro --al
     "granter": "cro18..."
 }
 ```
-
-:::
+{% endhint %}
 
 On the contrary, the _granter_ may choose to exclude a list of validators the _grantee_ can delegate to on the _granter_'s behalf:
 
@@ -136,7 +140,9 @@ Granting to redelegate or undelegate (unbond) is very similar by just replacing 
 
 **`tx authz grant [grantee_address] unbond --spend-limit [amount] --allowed-validators [list_of_allowed_validators_separated_by_,] --from [granter_address]`- Grant to unbond from validators on a specified list**
 
-::: tip NOTE **Spend Limit for `StakeAuthorization`**: A spend limit for a grant to delegate/redelegate/unbond is not necessary but generally recommended. :::
+{% hint style="info" %}
+NOTE **Spend Limit for `StakeAuthorization`**: A spend limit for a grant to delegate/redelegate/unbond is not necessary but generally recommended.&#x20;
+{% endhint %}
 
 ***
 
@@ -146,7 +152,8 @@ Other than the above grants under `SendAuthorization` or `StakeAuthorization`, o
 
 **`tx authz grant [grantee_address] generic --msg-type [msg_type_url] --from [granter_address]`- Grant for generic authorization with a specified Message Type URL**
 
-::: details Example: Grant to withdraw delegator reward
+{% hint style="info" %}
+Example: Grant to withdraw delegator reward
 
 ```bash
 $ chain-maind tx authz grant <grantee_address> generic --msg-type /cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward --from <granter_address> --expiration <expiration_time> --chain-id <chain-id>
@@ -165,8 +172,7 @@ $ chain-maind tx authz grant <grantee_address> generic --msg-type /cosmos.distri
     "granter": "cro18..."
 }
 ```
-
-:::
+{% endhint %}
 
 Similarly:
 
@@ -180,7 +186,9 @@ so on and so forth.
 
 ***
 
-::: tip NOTE **Message Type URL & Updating an Existing Grant**: At any time, there is up to one grant allowed for each Message Type URL over a unique _granter_-_grantee_ pair. To update an existing grant, the _granter_ will need to re-grant the _grantee_ and the new grant will overwrite the old grant. :::
+{% hint style="info" %}
+NOTE **Message Type URL & Updating an Existing Grant**: At any time, there is up to one grant allowed for each Message Type URL over a unique _granter_-_grantee_ pair. To update an existing grant, the _granter_ will need to re-grant the _grantee_ and the new grant will overwrite the old grant.
+{% endhint %}
 
 #### `exec`:
 
@@ -208,7 +216,9 @@ $ chain-maind tx bank send <granter_address> <recipient_address> 10cro --from <g
 }
 ```
 
-::: tip NOTE The `authorized transaction` here does not need to be signed and the address after the `--from` flag is the `granter_address` instead of the `grantee_address`. In other words, this `authorized transaction` is created by the _grantee_ but prepared as if he/she were the _granter_. :::
+{% hint style="info" %}
+NOTE The `authorized transaction` here does not need to be signed and the address after the `--from` flag is the `granter_address` instead of the `grantee_address`. In other words, this `authorized transaction` is created by the _grantee_ but prepared as if he/she were the _granter_.
+{% endhint %}
 
 After the `authorized transaction` is properly prepared, the _grantee_ needs to issue an `execution transaction` to execute the `authorized transaction`:
 
@@ -245,7 +255,8 @@ The _granter_ may choose to `revoke` an existing authorization already granted t
 
 **`tx authz revoke [grantee_address] [msg_type_url] --from [granter_address]` - Revoke an authorization with a specified Message Type URL**
 
-::: details Example: Revoke an existing SendAuthorization
+{% hint style="info" %}
+Example: Revoke an existing SendAuthorization
 
 ```bash
 $ chain-maind tx authz revoke <grantee_address> /cosmos.bank.v1beta1.MsgSend --from <granter_address> --chain-id <chain-id>
@@ -258,14 +269,16 @@ $ chain-maind tx authz revoke <grantee_address> /cosmos.bank.v1beta1.MsgSend --f
     "msg_type_url": "/cosmos.bank.v1beta1.MsgSend"
 }
 ```
+{% endhint %}
 
-:::
+
 
 #### Queries
 
 **`query authz grants [granter_address] [grantee_address]` - Query all existing grants between a **_**granter**_**-**_**grantee**_** pair**
 
-::: details Example: Query all existing grants between the specified granter and grantee
+{% hint style="info" %}
+Example: Query all existing grants between the specified granter and grantee
 
 ```bash
 $ chain-maind query authz grants <granter_address> <grantee_address> --output json | jq
@@ -308,14 +321,14 @@ $ chain-maind query authz grants <granter_address> <grantee_address> --output js
   }
 }
 ```
-
-:::
+{% endhint %}
 
 We may also specify a `MsgTypeURL` for the query:
 
 **`query authz grants [granter_address] [grantee_address] [msg_type_url]` - Query the grant with a specified Message Type URL between a **_**granter**_**-**_**grantee**_** pair**
 
-::: details Example: Query the grant to withdraw delegator reward between the specified granter and grantee
+{% hint style="info" %}
+Example: Query the grant to withdraw delegator reward between the specified granter and grantee
 
 ```bash
 $ chain-maind query authz grants <granter_address> <grantee_address> /cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward --output json | jq
@@ -332,5 +345,5 @@ $ chain-maind query authz grants <granter_address> <grantee_address> /cosmos.dis
   "pagination": null
 }
 ```
+{% endhint %}
 
-:::

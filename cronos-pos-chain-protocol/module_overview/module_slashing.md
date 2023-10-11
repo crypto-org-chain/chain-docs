@@ -28,7 +28,9 @@ Punishments for a validator are triggered when they either make a _byzantine fau
 
     A validator is said to be **non-live** when they fail to sign at least `min_signed_per_window` blocks (in percentage) in the last `signed_blocks_window` blocks successfully. `signed_blocks_window` and `min_signed_per_window` are network parameters and can be configured during genesis and can be updated during runtime by the governance module.
 
-:::tip Example: For example, if `block_signing_window` is `2000` blocks and `min_signed_per_window` is `0.5`, a validator will be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in last `2000` blocks. :::
+{% hint style="info" %}
+For example, if `block_signing_window` is `2000` blocks and `min_signed_per_window` is `0.5`, a validator will be marked as **non-live** and jailed if they fail to successfully sign at least `2000*0.5=1000` blocks in last `2000` blocks.
+{% endhint %}
 
 *   Byzantine Faults
 
@@ -39,7 +41,11 @@ Punishments for a validator are triggered when they either make a _byzantine fau
 
 **Remark**: The evidence of a set of validators attempting to mislead a light client can also be detected and captured. However, even the [Amnesia attack](https://github.com/tendermint/tendermint/blob/master/docs/architecture/adr-056-light-client-amnesia-attacks.md#amnesia-attack) can be detected, punishment can not be applied at this stage, as we can not deduce the malicious validators.
 
-:::tip Implementation note: Tendermint passes `Evidence` of a byzantine validator in `BeginBlock` request. Before jailing any account due to byzantine fault, that evidence should be verified. Also, it should be checked that evidence provided by tendermint is not older than `max_age` in tendermint. :::
+{% hint style="info" %}
+Implementation note: Tendermint passes `Evidence` of a byzantine validator in `BeginBlock` request. Before jailing any account due to byzantine fault, that evidence should be verified. Also, it should be checked that evidence provided by tendermint is not older than `max_age` in tendermint.
+{% endhint %}
+
+
 
 #### Inactivity Slashing
 
@@ -51,11 +57,15 @@ When a validator fails to successfully sign `missed_block_threshold` blocks in l
 
 A validator is jailed when they make liveness or Byzantine fault, when a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Furthermore, it cannot be un-jailed before `downtime_jail_duration`. This `downtime_jail_duration` is a network parameter which can be configured during genesis.
 
-:::warning Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html) :::
+{% hint style="info" %}
+Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html)&#x20;
+{% endhint %}
+
+
 
 **Un-jailing**
 
-When a jailed validator wishes to resume normal operations (after `downtime_jail_duration` has passed), they can create an`unjail` transaction which marks them as un-jailed. Validator will then rejoin the validator set once it has been successful un-jailed.
+When a jailed validator wishes to resume normal operations (after `downtime_jail_duration` has passed), they can create an `unjail` transaction which marks them as un-jailed. Validator will then rejoin the validator set once it has been successful un-jailed.
 
 #### Slashing for Byzantine Fault
 

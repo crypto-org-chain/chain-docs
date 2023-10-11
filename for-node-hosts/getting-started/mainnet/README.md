@@ -317,7 +317,7 @@ If the above command returns `false`, it means that your node **is synced**; oth
 *   You can check the current block height by querying the public full node by:
 
     ```bash
-    curl -s https://rpc.mainnet.crypto.org:443/commit | jq "{height: .result.signed_header.header.height}"
+    curl -s https://rpc.mainnet.cronos-pos.org:443/commit | jq "{height: .result.signed_header.header.height}"
     ```
 
 and you can check your node's progress (in terms of block height) by:

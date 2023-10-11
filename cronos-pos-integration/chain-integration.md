@@ -1,4 +1,4 @@
-# Integration documentation
+# 🔄 Integration documentation
 
 ## Useful Links
 
@@ -60,7 +60,7 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 
 ## Public Nodes
 
-### Mainnet - `crypto-org-chain-mainnet-1`
+### Mainnet - `cronos-pos-org-chain-mainnet-1`
 
 * [Tendermint](https://rpc.mainnet.crypto.org/)
 * [Cosmos RESTful gRPC](https://rest.mainnet.crypto.org/)

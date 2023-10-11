@@ -47,7 +47,7 @@
 
 ## Cronos PoS Chain Protocol
 
-* [Chain Details](cronos-pos-chain-protocol/chain-details/README.md)
+* [⛓ Chain Details](cronos-pos-chain-protocol/chain-details/README.md)
   * [Genesis](cronos-pos-chain-protocol/chain-details/genesis\_file.md)
   * [Protocol Documentation](cronos-pos-chain-protocol/chain-details/protocol-documentation.md)
   * [Chain ID, Address Format and Signatures](cronos-pos-chain-protocol/chain-details/chain-id.md)
@@ -55,7 +55,7 @@
   * [List of parameters](cronos-pos-chain-protocol/chain-details/parameters.md)
   * [Proposal Process](cronos-pos-chain-protocol/chain-details/govprocess.md)
   * [Technical glossary](cronos-pos-chain-protocol/chain-details/technical-glossary.md)
-* [Modules](cronos-pos-chain-protocol/module\_overview/README.md)
+* [🎛 Modules](cronos-pos-chain-protocol/module\_overview/README.md)
   * [module\_supply](cronos-pos-chain-protocol/module\_overview/module\_supply.md)
   * [module\_slashing](cronos-pos-chain-protocol/module\_overview/module\_slashing.md)
   * [module\_authz](cronos-pos-chain-protocol/module\_overview/module\_authz.md)
@@ -68,6 +68,6 @@
 
 ## Cronos PoS Integration
 
-* [Integration documentation](cronos-pos-integration/chain-integration.md)
-* [Node Setup and RPC note](cronos-pos-integration/node-and-rpc-setup-notes.md)
-* [Blocks and Transactions](cronos-pos-integration/blocks-and-transactions.md)
+* [🔄 Integration documentation](cronos-pos-integration/chain-integration.md)
+* [🛂 Node Setup and RPC node](cronos-pos-integration/node-and-rpc-setup-notes.md)
+* [🔲 Blocks and Transactions](cronos-pos-integration/blocks-and-transactions.md)

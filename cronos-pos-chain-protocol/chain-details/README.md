@@ -1,2 +1,2 @@
-# Chain Details
+# ⛓ Chain Details
 

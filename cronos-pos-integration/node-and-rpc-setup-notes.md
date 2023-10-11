@@ -1,4 +1,4 @@
-# Node Setup and RPC note
+# 🛂 Node Setup and RPC node
 
 ## Node minimum setup
 

@@ -64,7 +64,7 @@ There are two options to install `chain-maind`:
 
 ### Option 1 - Install `chain-maind` released binaries from GitHub
 
-*   To install Crypto.org Chain binaries from Github:
+*   To install Cronos PoS Chain binaries from Github:
 
     ```bash
     $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
@@ -116,7 +116,7 @@ To install binaries in Homebrew for macOS X or Linux
 
 ## Step 2. Configure `chain-maind`
 
-Before kick-starting your node, we will have to configure the node so that it connects to the Crypto.org mainnet
+Before kick-starting your node, we will have to configure the node so that it connects to the Cronos PoS Chain mainnet
 
 {% hint style="info" %}
 **NOTE**
@@ -133,11 +133,11 @@ Before kick-starting your node, we will have to configure the node so that it co
       $ ./chain-maind init [moniker] --chain-id crypto-org-chain-mainnet-1
     ```
 
-    * This `moniker` will be the displayed ID of your node when connected to the Crypto.org Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed.
+    * This `moniker` will be the displayed ID of your node when connected to the Cronos PoS Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed.
 
 ### Step 2-2. Configure chain-maind
 
-*   Download and replace the Crypto.org mainnet `genesis.json` by:
+*   Download and replace the Cronos PoS Chain mainnet `genesis.json` by:
 
     ```bash
     $ curl https://raw.githubusercontent.com/crypto-org-chain/mainnet/main/crypto-org-chain-mainnet-1/genesis.json > ~/.chain-maind/config/genesis.json
@@ -182,14 +182,14 @@ With [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.
 *   For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations under \[statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` and add `persistent_peers` by:
 
     ```bash
-    $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"87c3adb7d8f649c51eebe0d3335d8f9e28c362f2@seed-0.crypto.org:26656,e1d7ff02b78044795371beb1cd5fb803f9389256@seed-1.crypto.org:26656,2c55809558a4e491e9995962e10c026eb9014655@seed-2.crypto.org:26656"#' ~/.chain-maind/config/config.toml
+    $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"87c3adb7d8f649c51eebe0d3335d8f9e28c362f2@seed-0.cronos-pos:26656,e1d7ff02b78044795371beb1cd5fb803f9389256@seed-1.cronos-pos.org:26656,2c55809558a4e491e9995962e10c026eb9014655@seed-2.cronos-pos.org:26656"#' ~/.chain-maind/config/config.toml
     $ sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1""#' ~/.chain-maind/config/config.toml
-    $ LATEST_HEIGHT=$(curl -s https://rpc.mainnet.crypto.org:443/block | jq -r .result.block.header.height); \
+    $ LATEST_HEIGHT=$(curl -s https://rpc.mainnet.cronos-pos.org:443/block | jq -r .result.block.header.height); \
     BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-    TRUST_HASH=$(curl -s "https://rpc.mainnet.crypto.org:443/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+    TRUST_HASH=$(curl -s "https://rpc.mainnet.cronos-pos.org:443/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
     $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://rpc.mainnet.crypto.org:443,https://rpc.mainnet.crypto.org:443\"| ; \
+    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://rpc.mainnet.cronos-pos.org:443,https://rpc.mainnet.cronos-pos.org:443\"| ; \
     s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
     s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
     s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
@@ -350,7 +350,7 @@ To further check if the validator is signing blocks, kindly run this [script](ht
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-org-chain/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://rpc.mainnet.crypto.org:443 \
+--tendermint-url https://rpc.mainnet.cronos-pos.org:443 \
 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>

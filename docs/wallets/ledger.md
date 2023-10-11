@@ -11,27 +11,29 @@ You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely 
 
 ### Technical support and enquiries
 
-In case you have any enquiry about using Ledger device with desktop wallet, kindly send a message to the Crypto.org Chain [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
+In case you have any inquiries about using the Ledger device, kindly send a message to the Cronos [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
 
-## Install the Crypto.org Chain app on your Ledger device
+## Install the Cronos PoS Chain app on your Ledger device
 
 We will use Ledger Nano S for this illustration:
 
-First of all, you will need to install the Crypto.org Chain app on your Ledger device. Kindly make sure your Ledger Live is updated to the latest version.
+First of all, you will need to install the Cronos PoS Chain app on your Ledger device. Kindly make sure your Ledger Live is updated to the latest version.
 
 * **Step 1** - Connect and unlock your Ledger device
 * **Step 2** - On your Ledger device, go to "_Install app_", It should show "_Open Ledger live to install apps_"
-* **Step 3** - On the Ledger Live, find and install Crypto.org Chain in the app catalog under "_Manager_" as below: ![](assets/ledger\_desktop\_wallet/s1-4-1.png)
+* **Step 3** - On the Ledger Live, find and install Cronos PoS Chain in the app catalog under "_Manager_" as below: ![](assets/ledger\_desktop\_wallet/s1-4-1.png)
 *   **Step 4** - Your Ledger device will display "_Processing…_". Once the installation is completed, you should see "_Installed_" on your Ledger Live as below: ![](assets/ledger\_desktop\_wallet/s1-4-2.png)
 
-    You can confirm the installation by checking if the Crypto.org App shows up in the main menu of your Ledger device: ![](assets/ledger\_desktop\_wallet/s1-4-3.jpeg)
+    You can confirm the installation by checking if the Cronos PoS Chain App shows up in the main menu of your Ledger device: \
+    \
+    ![](assets/ledger\_desktop\_wallet/s1-4-3.jpeg)
 
-**Remark**: Once the Crypto.org App is successfully installed, please close the Ledger Live app before proceeding to the next step .
+**Remark**: Once the Cronos PoS Chain App is successfully installed, please close the Ledger Live app before proceeding to the next step.
 
 ## Generate Address with Ledger device
 
 1. Connect and unlock your Ledger device
-2. Open "Crypto.org Chain" app on the device
+2. Open "Cronos PoS Chain" app on the device
 3.  Run in your terminal
 
     ```bash
@@ -69,10 +71,10 @@ $ ./chain-maind keys list --keyring-backend=test
 
 ## Sign a transaction
 
-In this tutorial we will send a `MsgSend` transaction securely signed by your Ledger device to the chain.
+In this tutorial, we will send a `MsgSend` transaction securely signed by your Ledger device to the chain.
 
 1. Connect and unlock your Ledger device
-2. Open "Crypto.org Chain" app on the device
+2. Open "Cronos PoS Chain" app on the device
 3.  For example, if you would like to send `1cro` in the mainnet, in your terminal, you can run:
 
     ```bash

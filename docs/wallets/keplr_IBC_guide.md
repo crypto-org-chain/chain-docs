@@ -7,7 +7,7 @@ In the following step-by-step guide, you will learn how to make IBC transfers wi
 
 
 {% hint style="danger" %}
-**Warning** _We recommend using this Keplr’s feature only after careful research and awareness of the risks associated with its improper use, and also verifying if the IBC channel is active prior to performing the IBC transactions. One way to view such IBC relayers information is to check out the_ [_Mintscan explorer Crypto.org relayer page_](https://www.mintscan.io/crypto-org/relayers)_. Crypto.org does not take any liability related to the potential loss of funds due to the IBC Transfers service._
+**Warning** _We recommend using this Keplr’s feature only after careful research and awareness of the risks associated with its improper use, and also verifying if the IBC channel is active prior to performing the IBC transactions. One way to view such IBC relayer information is to check out the_ [_Mintscan explorer Cronos PoS Chain relayer page_](https://www.mintscan.io/crypto-org/relayers)_. Cronos team does not take any liability related to the potential loss of funds due to the IBC Transfers service._
 {% endhint %}
 
 ### Pre-requisites
@@ -61,4 +61,4 @@ After a minute, go back to the Cosmos in Keplr, and you should see the amount of
 
 ![](assets/keplr\_wallet/IBC-s2-6.png)
 
-_Congratulations! You’ve done the cross-chain IBC transfer! Hope this tutorial has helped you in conducting IBC transfers! In case you need more assistance, you can always check the_ [_Keplr FAQ list_](https://faq.keplr.app/) _or find us on the Crypto.org Chain_ [_Discord Channel_](https://discord.com/invite/pahqHz26q4)_._
+_Congratulations! You’ve done the cross-chain IBC transfer! Hope this tutorial has helped you in conducting IBC transfers! In case you need more assistance, you can always check the_ [_Keplr FAQ list_](https://faq.keplr.app/) _or find us on the Cronos Chain_ [_Discord Channel_](https://discord.com/invite/pahqHz26q4)_._

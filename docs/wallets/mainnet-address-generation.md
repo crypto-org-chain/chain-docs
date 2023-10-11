@@ -1,6 +1,6 @@
 # Mainnet Address Generation
 
-This document contains the information of account address for Crypto.org Chain mainnet.
+This document contains the information of account address for Cronos PoS Chain mainnet.
 
 ## Address prefix
 
@@ -103,7 +103,7 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 
 ![](assets/mainnet-address-generation/ledger-live-manager.png)
 
-#### Step 1-3. Search for "Crypto.org Chain" and install the application to your Ledger.
+#### Step 1-3. Search for "Cronos PoS Chain" and install the application to your Ledger.
 
 ![](assets/ledger\_desktop\_wallet/s1-5.png)
 
@@ -191,7 +191,7 @@ If you encounter a connection error when creating a wallet, you can try to unplu
 
 ## C. Programmatically
 
-You can generate the Mnemonic and address programmatically. Here is an example code snippet written in JavaScript using the [Crypto.org Chain JavaScript Library](https://github.com/crypto-com/chain-jslib) to generate the mnemonic and the mainnet address:
+You can generate the Mnemonic and address programmatically. Here is an example code snippet written in JavaScript using the [Cronos PoS Chain JavaScript Library](https://github.com/crypto-com/chain-jslib) to generate the mnemonic and the mainnet address:
 
 ```javascript
 // Import the library
@@ -220,7 +220,7 @@ const address = new cro.Address(keyPair).account();
 console.log(address);
 ```
 
-## D. Crypto.org Chain Desktop Wallet (Beta)
+## D. Crypto.com Defi Desktop Wallet
 
 Supported OS: Ubuntu, Mac OS, and Windows
 
@@ -229,9 +229,9 @@ DESKTOP WALLET IS IN BETA Desktop wallet is in beta testing. \
 Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe, and offline computer and always verify the mnemonic words before using the address.
 {% endhint %}
 
-Download the latest version of the Crypto.org Chain Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
+Download the latest version of the Crypto.com Defi Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
 
-#### Step 1. Open the Crypto.org Chain application on your Ledger device
+#### Step 1. Open the Cronos PoS Chain application on your Ledger device
 
 #### Step 2. Open the application and click "Get Started" to set up an application password.
 

@@ -1,4 +1,4 @@
-# Using Ledger Device with Keplr
+# Keplr Wallet: Using Ledger Device with Keplr Wallet
 
 As an alternative way, you can consider using Keplr to conduct staking and reward claiming operations.
 
@@ -6,7 +6,7 @@ In the following step-by-step guide, you will learn how to stake your CROs using
 
 ### Technical support and inquiries
 
-In case you have any inquiries about using the Ledger device with Keplr, kindly refer to the [Keplr FAQ list](https://faq.keplr.app/) or send a message to the Crypto.org Chain [Discord Channel](https://discord.com/invite/pahqHz26q4) _#browser-extension-wallet_ channel for assistance. Using Keplr with a Ledger Nano on Windows sometimes causes some issues, if you encounter such issues, please reach out to the Keplr team.
+In case you have any inquiries about using the Ledger device with Keplr, kindly refer to the [Keplr FAQ list](https://faq.keplr.app/) or send a message to the Cronos PoS Chain [Discord Channel](https://discord.com/invite/pahqHz26q4) _#browser-extension-wallet_ channel for assistance. Using Keplr with a Ledger Nano on Windows sometimes causes some issues, if you encounter such issues, please reach out to the Keplr team.
 
 ## Set up Keplr Wallet and connect with your Ledger device
 
@@ -26,7 +26,7 @@ In this tutorial, we can skip the advanced option.
 
 ![](assets/keplr\_wallet/s1-2.png)
 
-It is time to connect your Ledger device to Keplr now! After plugging in your Ledger Device, you can open the Crypto.org Chain App on it and click “Next” in the pop-up window.
+It is time to connect your Ledger device to Keplr now! After plugging in your Ledger Device, you can open the Cronos PoS Chain App on it and click “Next” in the pop-up window.
 
 ![](assets/keplr\_wallet/s1-3.png)
 
@@ -34,17 +34,17 @@ Upon this step, your Ledger device should be successfully connected to Keplr!
 
 ![](assets/keplr\_wallet/s1-4.png)
 
-### Step 2: Connect to Crypto.org Chain on Keplr
+### Step 2: Connect to Cronos PoS Chain on Keplr
 
-At this step, we are going to connect to the Crypto.org Chain on Keplr.
+At this step, we are going to connect to the Cronos PoS Chain on Keplr.
 
-Now you can open the Keplr extension and make the network change on the top bar, and you will find Crypto.org in the drop-down list. After the network is set, you should be able to view your account name, address, and CRO balance info.
+Now you can open the Keplr extension and make the network change on the top bar, and you will find  Cronos PoS Chain in the drop-down list. After the network is set, you should be able to view your account name, address, and CRO balance info.
 
 Copy your account address which is below your account name and send some CROs to this address, so you can get ready to stake with Keplr!
 
 ![](assets/keplr\_wallet/s2-1.png) ![](assets/keplr\_wallet/s2-2.png) ![](assets/keplr\_wallet/s2-3.png)
 
-### Step 3: Stake CROs on the Crypto.org Chain via Keplr
+### Step 3: Stake CROs on the Cronos PoS Chain via Keplr
 
 _Please note: you can always choose to redelegate or undelegate, while in case you are undelegating, your tokens will remain locked for 28 days (due to a security mechanism stipulated by the Cosmos protocol)._
 
@@ -72,7 +72,7 @@ _Please note: claiming always incurs a transaction fee._
 
 It is ideal that you claim the staking rewards regularly in that you can either redelegate these rewards for a compound effect or do something else with it.
 
-To claim your CRO staking rewards, open the Keplr Browser Extension and click “Claim”. In this demo, we will go with “Average”. Now you can plug in your Ledger and open the Crypto.org Chain app on it, then click “Next” in the Browser Extension pop-up. The details will show and it will say “Waiting for Leder to Confirm'' at the bottom.
+To claim your CRO staking rewards, open the Keplr Browser Extension and click “Claim”. In this demo, we will go with “Average”. Now you can plug in your Ledger and open the Cronos PoS Chain app on it, then click “Next” in the Browser Extension pop-up. The details will show and it will say “Waiting for Leder to Confirm'' at the bottom.
 
 ![](assets/keplr\_wallet/s4-1.png) ![](assets/keplr\_wallet/s4-2.png)
 

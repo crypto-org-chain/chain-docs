@@ -63,7 +63,9 @@ Delegator can withdraw their reward(s) from the validator(s) that they have dele
 
 Delegator can withdraw their reward from a specific validator.
 
-:::tip Remark: Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`. :::
+{% hint style="info" %}
+Remark: Validator operation can withdraw the commission in addition to the rewards by adding the commission flag `--commission`.
+{% endhint %}
 
 **`tx distribution set-withdraw-addr [withdraw-addr]` - Change the default withdraw address for rewards associated with an address**
 

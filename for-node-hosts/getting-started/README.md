@@ -1,4 +1,4 @@
-# Getting Started
+# ⛓ Running Nodes
 
 Thanks for your interest in Cronos PoS Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Cronos PoS Chain.
 

@@ -5,9 +5,23 @@
 * [📑 Cronos PoS Chain Introduction](README.md)
 * [🔰 Architecture](getting-started/architecture.md)
 
+## For USERS
+
+* [💰 Wallets](docs/wallets/README.md)
+  * [chain-maind](docs/wallets/cli.md)
+  * [Ledger Hardware Wallets with chain-maind](docs/wallets/ledger.md)
+  * [Crypto.com DeFi Desktop Wallet](docs/wallets/desktop\_wallet.md)
+  * [Keplr Wallet: Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr\_IBC\_guide.md)
+  * [Keplr Wallet: Using Ledger Device with Keplr Wallet](docs/wallets/keplr\_ledger\_guide.md)
+  * [Mainnet Address Generation](docs/wallets/mainnet-address-generation.md)
+  * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
+  * [Multisig account](docs/wallets/multisig-account.md)
+* [🛠 Token Migration Web Tool](for-users/token-migration.md)
+* [🚰 Croeseid Testnet Faucet](https://cronos-pos.org/faucet)
+
 ## For Node Hosts
 
-* [Getting Started](for-node-hosts/getting-started/README.md)
+* [⛓ Running Nodes](for-node-hosts/getting-started/README.md)
   * [Cronos PoS Chain Mainnet: Running a Full Node](for-node-hosts/getting-started/mainnet/README.md)
     * [Upgrade Guide](for-node-hosts/getting-started/mainnet/upgrade-guide/README.md)
       * [The "V4" upgrade guide (v3.\* to v4.2.2) :](for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_v4.md)
@@ -22,28 +36,14 @@
   * [Mainnet/Testnet: Running Nodes using Azure 1-click Deployment](for-node-hosts/getting-started/azure-1click.md)
   * [Croeseid Testnet: Running Nodes With Nix](for-node-hosts/getting-started/croeseid-testnet-nix.md)
   * [Devnet: Running Latest Development Node](for-node-hosts/getting-started/local-devnet.md)
-* [Advanced TMKMS Integration](for-node-hosts/advanced-tmkms-integration.md)
-* [Notes on Performance](for-node-hosts/notes-on-performance.md)
-* [Notes on Production Deployment](for-node-hosts/notes-on-production-deployment.md)
-
-## For USERS
-
-* [Wallets](docs/wallets/README.md)
-  * [chain-maind](docs/wallets/cli.md)
-  * [Ledger Hardware Wallets with chain-maind](docs/wallets/ledger.md)
-  * [Crypto.com DeFi Desktop Wallet](docs/wallets/desktop\_wallet.md)
-  * [Keplr Wallet: Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr\_IBC\_guide.md)
-  * [Keplr Wallet: Using Ledger Device with Keplr Wallet](docs/wallets/keplr\_ledger\_guide.md)
-  * [Mainnet Address Generation](docs/wallets/mainnet-address-generation.md)
-  * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
-  * [Multisig account](docs/wallets/multisig-account.md)
-* [Token Migration Web Tool](for-users/token-migration.md)
-* [Croeseid Testnet Faucet](https://crypto.org/faucet)
+* [🔄 Advanced TMKMS Integration](for-node-hosts/advanced-tmkms-integration.md)
+* [💫 Notes on Performance](for-node-hosts/notes-on-performance.md)
+* [🔃 Notes on Production Deployment](for-node-hosts/notes-on-production-deployment.md)
 
 ## Block Explorers
 
-* [Cronos PoS Chain Mainnet Explorer](https://cronos-pos.org/explorer)
-* [Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid5/)
+* [📊 Cronos PoS Chain Mainnet Explorer](https://cronos-pos.org/explorer)
+* [📊 Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid5/)
 
 ## Cronos PoS Chain Protocol
 

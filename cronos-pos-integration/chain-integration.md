@@ -24,7 +24,7 @@
 
 ## API Documentation
 
-There are a few ways to access to the Cronos PoS Chain
+There are a few ways to access the Cronos PoS Chain
 
 1. **Tendermint RPC**
 

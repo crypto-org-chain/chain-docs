@@ -41,8 +41,10 @@ Depending on the collected feedback, you can revise the proposal accordingly.
 
 ### 5. Submit your proposal
 
-* (Recommend) Submit the Proposal to the Testnet first You may want to push your proposal live to the testnet first before pushing to the mainnet. Once your proposal is on-chain, you will not be able to change it. By submitting it to testnet, you will gain a good sense of what the proposal description will look like and know how your proposal will be on the mainnet. Submitting your proposal to the testnet also increases the likelihood that you will discover a flaw before deploying your proposal on the mainnet. For testnet submission, please note: you'll need testnet tokens TCRO for your proposal, and the parameters for testnet proposals are different (eg. voting period timing, deposit amount, deposit denomination)
-* Submit Your On-chain Proposal with Initial Deposit After everything is set and you are confident about the proposal, you can now submit the final proposal with chain-maind. You should have reasonable confidence that your proposal will pass before risking deposit contributions. Part of the voting community members should probably be aware of the proposal and if they see the proposal, they probably have considered it already before the proposal goes live on-chain.
+* (Recommend) Submit the Proposal to the Testnet first&#x20;
+  * You may want to push your proposal live to the testnet first before pushing to the mainnet. Once your proposal is on-chain, you will not be able to change it. By submitting it to testnet, you will gain a good sense of what the proposal description will look like and know how your proposal will be on the mainnet. Submitting your proposal to the testnet also increases the likelihood that you will discover a flaw before deploying your proposal on the mainnet. For testnet submission, please note: you'll need testnet tokens TCRO for your proposal, and the parameters for testnet proposals are different (eg. voting period timing, deposit amount, deposit denomination)
+* Submit Your On-chain Proposal with Initial Deposit&#x20;
+  * After everything is set and you are confident about the proposal, you can now submit the final proposal with chain-mind. You should have reasonable confidence that your proposal will pass before risking deposit contributions. Part of the voting community members should probably be aware of the proposal and if they see the proposal, they probably have considered it already before the proposal goes live on-chain.
 
 ### 6. Deposit tokens and fund an active proposal
 
@@ -64,8 +66,8 @@ The voting period is currently 14 days, and the vote can be changed anytime befo
 * A majority (greater than 50%) of the participating voting power must back the 'yes' vote during the required voting period
 * Less than 33.4% of participating voting power votes 'no-with-veto'
 
-&#x20;
+
 
 Please note that it is a WIP. The governance will further be explored down the line and some parts in this documentation are in development, so please use this document as a reference and seek feedback when using this information.
 
-For more details about governance transaction, queries, and relevant network parameters, please visit the [gov section](https://crypto.org/docs/chain-details/module\_overview.html#gov).
+For more details about governance transactions, queries, and relevant network parameters, please visit the [gov section](https://crypto.org/docs/chain-details/module\_overview.html#gov).

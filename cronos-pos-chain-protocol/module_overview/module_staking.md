@@ -260,7 +260,7 @@ $ chain-maind query staking params --output json | jq
 
 **`staking` module: Network Parameters Configuration**
 
-The following tables show overall effects on different configurations of the staking related network parameters:
+the The following tables show overall effects on different configurations of the staking related network parameters:
 
 |                      | `bond_denom` | `historical_entries`               | `max_entries`                                                 |
 | -------------------- | ------------ | ---------------------------------- | ------------------------------------------------------------- |

@@ -59,7 +59,7 @@ Switch the servers to localhost in the dropdown and you can interact with the Sw
 
 ### gRPC
 
-There are few clients our team has used before
+There are a few clients our team has used before
 
 #### BloomRPC
 
@@ -99,10 +99,10 @@ There are few clients our team has used before
 
 ## Tricks on creating a validator on testnet
 
-1. Make sure your node is fully sync before you join as validator
+1. Make sure your node is fully synced before you join as a validator.
 2.  Gas price error
 
-    Sometimes the `create-valiator` may fail because of the gas. You can use the following command instead (notice we have provide `--gas` and `--gas-price`)
+    Sometimes the `create-valiator` may fail because of the gas. You can use the following command instead (notice we have provided `--gas` and `--gas-price`)
 
     ```bash
     $ ./chain-maind tx staking create-validator \

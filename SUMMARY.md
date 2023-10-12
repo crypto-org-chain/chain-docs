@@ -4,6 +4,7 @@
 
 * [📑 Cronos PoS Chain Introduction](README.md)
 * [🔰 Architecture](getting-started/architecture.md)
+* [🌟 New brand and domains](getting-started/new-brand-and-domains.md)
 
 ## For USERS
 

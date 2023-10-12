@@ -1,6 +1,6 @@
 # 🌟 New brand and domains
 
-The rebranding of **Cronos POS chain** (formerly known as Crypto.org) aims to bring more coherence into the Cronos blockchain ecosystem, which consists of:
+The rebranding of **Cronos POS chain** (formerly known as Crypto.org Chain) aims to bring more coherence into the Cronos blockchain ecosystem, which consists of:
 
 * Cronos ($CRO), the native utility token of the Cronos ecosystem,
 * Cronos POS blockchain, the proof-of-stake Cosmos chain positioned as “layer zero” of the Cronos ecosystem, and&#x20;

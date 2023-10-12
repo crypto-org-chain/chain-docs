@@ -1,4 +1,4 @@
-# Notes on Production Deployment
+# 🔃 Notes on Production Deployment
 
 * See [Tendermint notes on running in production](https://docs.tendermint.com/master/tendermint-core/running-in-production.html) and [notes on setting up a validator](https://docs.tendermint.com/master/tendermint-core/validators.html#setting-up-a-validator)
 * Validators shouldn’t be exposed directly to the internet
@@ -32,13 +32,13 @@ In `~/.tendermint/config/config.toml` (or wherever located), set the socket addr
 priv_validator_laddr = "unix:///<TMKMS_SOCKET_PATH>"
 ```
 
-### Obtaining the consensus / validator public key
+### Obtaining the consensus/validator public key
 
-#### Step 0. generate / initialize the key pair or seed
+#### Step 0. Generate/Initialize the key pair or seed
 
 Step 0 depends on the signing provider -- e.g. for Ledger devices, one may need to enable _developer mode_ in Ledger Live settings and install the Tendermint validator app.
 
-#### Step 1. obtain the public key in the correct encoding
+#### Step 1. Obtain the public key in the correct encoding
 
 Depending on the signing provider, there may be a command to print out the public key. One other option is to run `tmkms start -c .tmkms/tmkms.toml -v` where `-v` is for verbose logging; the log may then include a message `... added consensus key <KEY_HEX_PAYLOAD>`.
 
@@ -47,10 +47,10 @@ The public key hex payload is Amino-encoded -- for the use in Tendermint configu
 1. strip off the Amino prefix; in the case of Ed25519 public keys, it's 5 bytes: 0x16, 0x24, 0xDE, 0x64, 0x20.
 2. convert the stripped-off `KEY_HEX_PAYLOAD` to base64.
 
-#### Step 2. place / use the public key where needed
+#### Step 2. Place/Use the public key where needed
 
 For example, generate the `genesis.json` with it if the corresponding node is one of the initial validators.
 
-#### Step 3. start up everything
+#### Step 3. Start up everything
 
 As before, but along with `tendermint node`, `tmkms start -c .tmkms/tmkms.toml` should also be launched.

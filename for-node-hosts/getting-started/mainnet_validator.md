@@ -2,7 +2,7 @@
 
 This is detailed documentation for setting up a **Validator** on Cronos PoS Chain mainnet. Note that while anyone can set up a validator, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
-## Step 0 : Notes on network upgrades
+## Step 0: Notes on network upgrades
 
 There are two ways to set up a node:
 
@@ -173,11 +173,9 @@ Before kick-starting your node, we will have to configure the node so that it co
 **Reminder**: The list of the `seed` is subject to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes).
 {% endhint %}
 
-&#x20;
-
 ### Step 2-3. Enable STATE-SYNC
 
-With [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network. ::: warning CAUTION Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. Kindly refer to this [guide](../../docs/getting-started/mainnet.html#crypto-org-mainnet-running-a-full-node) on building a node with complete data. ::: Follow the below steps to enable state-sync:
+With [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validators. For the **validator**, it will be amazingly fast to sync the near head of the chain and join the network. ::: warning CAUTION Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. Kindly refer to this [guide](../../docs/getting-started/mainnet.html#crypto-org-mainnet-running-a-full-node) on building a node with complete data. ::: Follow the below steps to enable state-sync:
 
 *   For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations under \[statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` and add `persistent_peers` by:
 
@@ -397,8 +395,6 @@ confirm transaction before signing and broadcasting [y/N]: y
 ```
 {% endhint %}
 
-
-
 ### `tx staking` - Staking operations
 
 {% hint style="info" %}
@@ -446,6 +442,8 @@ confirm transaction before signing and broadcasting [y/N]: y
 {% hint style="info" %}
 Once your funds are unbonded, they will be locked until the `unbonding_time` has passed.
 {% endhint %}
+
+
 
 ### Reward-related transactions and queries
 

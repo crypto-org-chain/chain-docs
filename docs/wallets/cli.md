@@ -179,8 +179,6 @@ $ chain-maind keys list
 
 You can retrieve key information by its name:
 
-::: details Example: Retrieve key information - Account Address and its public key
-
 {% hint style="info" %}
 **Example**: Retrieve key information - Account Address and its public key
 
@@ -286,7 +284,7 @@ Here is a list of the corresponding password managers in different operating sys
 
 ### `file` backend
 
-The `file` backend stores the encrypted keys inside the app's configuration directory. A password entry is required every time a user access it, which may also occur multiple times of repeated password prompts in one single command.
+The `file` backend stores the encrypted keys inside the app's configuration directory. A password entry is required every time a user accesses it, which may also occur multiple times of repeated password prompts in one single command.
 
 ### `test` backend
 
@@ -329,8 +327,6 @@ $ chain-maind tx staking delegate crocncl1zdlttjrqh9jsgk2l8tgn6f0kxlfy98s3prz35z
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 {% endhint %}
-
-
 
 #### **Unbond your delegated funds** \[`tx staking unbond <validator-addr> <amount>`]
 

@@ -1,8 +1,8 @@
 # Croeseid 5 Testnet: Running Nodes
 
-Croeseid 5 Testnet is Crypto.org Chain Testnet. It is a new chain based on Croeseid Testnet and runs in parallel with Croeseid 4. It serves as an alpha testnet for exploring new features, instead of the upgraded version of Croeseid 4 testnet.
+Croeseid 5 Testnet is Cronos PoS Chain Testnet. It is a new chain based on Croeseid Testnet and runs in parallel with Croeseid 4. It serves as an alpha testnet for exploring new features, instead of the upgraded version of Croeseid 4 testnet.
 
-This is detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid 5 testnet `testnet-croeseid-5`.
+This is detailed documentation for setting up a Validator or a full node on Cronos PoS Croeseid 5 testnet `testnet-croeseid-5`.
 
 ## Pre-requisites
 
@@ -12,7 +12,7 @@ We officially support macOS, Windows, and Linux only. Other platforms may work b
 
 ### Prepare your machine
 
-* To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements:
+* To run Cronos PoS Chain nodes in the testnet, you will need a machine with the following minimum requirements:
 
 Archive Node:
 
@@ -26,7 +26,7 @@ Default pruned node
 * Disk: 83GB (Depends on how long the node is running for)
 * CPU: 4 cores
 
-## Step 1. Get the Crypto.org Chain testnet binary
+## Step 1. Get the Cronos PoS Chain testnet binary
 
 {% hint style="info" %}
 **Remarks**: The following is the minimal setup for a **validator node**.&#x20;
@@ -38,7 +38,7 @@ Default pruned node
 
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main\_4.2.2-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main\_4.2.2-croeseid\_Darwin\_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main\_4.2.2-croeseid\_Windows\_x86\_64.zip) are also available.
 
-*   To install Crypto.org Chain released **testnet binaries** from GitHub:
+*   To install Cronos PoS Chain released **testnet binaries** from GitHub:
 
     ```bash
     $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2-croeseid/chain-main_4.2.2-croeseid_Linux_x86_64.tar.gz
@@ -88,7 +88,7 @@ Before kick-starting your node, we will have to configure your node so that it c
       $ ./chain-maind init [moniker] --chain-id testnet-croeseid-5
     ```
 
-    This `moniker` will be the displayed ID of your node when connected to the Crypto.org Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed. The example below shows how to initialize a node named `pegasus-node` :
+    This `moniker` will be the displayed ID of your node when connected to the Cronos PoS Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed. The example below shows how to initialize a node named `pegasus-node` :
 
     ```bash
       $ ./chain-maind init pegasus-node --chain-id testnet-croeseid-5
@@ -162,12 +162,12 @@ Follow the below optional steps to enable state-sync.
 
     ```bash
 
-    $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid-5.crypto.org:26657/block | jq -r .result.block.header.height); \
+    $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid-5.cronos-pos.org:26657/block | jq -r .result.block.header.height); \
     BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-    TRUST_HASH=$(curl -s "https://testnet-croeseid-5.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+    TRUST_HASH=$(curl -s "https://testnet-croeseid-5.cronos-pos:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
     $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-5.crypto.org:26657,https://testnet-croeseid-5.crypto.org:26657\"| ; \
+    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-5.cronos-pos.org:26657,https://testnet-croeseid-5.cronos-pos.org:26657\"| ; \
     s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
     s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
     s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
@@ -293,7 +293,7 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
 *   One can check the current block height by querying the public full node by:
 
     ```bash
-    curl -s https://testnet-croeseid-5.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
+    curl -s https://testnet-croeseid-5.cronos-pos.org:26657/commit | jq "{height: .result.signed_header.header.height}"
     ```
 
     and you can check your node's progress (in terms of block height) by
@@ -346,7 +346,7 @@ To further check if the validator is signing blocks, kindly run this [script](ht
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid-5.crypto.org:26657 \
+--tendermint-url https://testnet-croeseid-5.cronos-pos.org:26657 \
 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
@@ -355,7 +355,7 @@ The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid-5.crypto.org:26657 \
+--tendermint-url https://testnet-croeseid-5.cronos-pos.org:26657 \
 --bechpubkey [tcrocnclconspub1....]
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
@@ -477,7 +477,7 @@ $ ./chain-maind q distribution validator-outstanding-rewards tcrocncl1kkqxv3szgh
 
 #### `tx distribution validator-outstanding-rewards` - Query un-withdrawn rewards for a validator
 
-We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by operator address.
+the We can check distribution outstanding (un-withdrawn) rewards for a validator and all of their delegations by operator address.
 
 {% hint style="info" %}
 **Example**: Withdraw all outstanding under a delegation address:
@@ -524,5 +524,5 @@ Congratulations! You've successfully set up a Croeseid 5 Testnet node and perfor
 ## Croeseid 5 testnet explorer and endpoint
 
 * You can lookup data within the `testnet-croeseid-5` network by the [explorer](https://crypto.org/explorer/croeseid5/);
-* Tendermint: `https://rpc-c5.crypto.org/`;
-* REST: `https://rest-c5.crypto.org`.
+* Tendermint: `https://rpc-c5.cronos-pos.``org/`;
+* REST: `https://rest-c5.cronos-pos.org`.

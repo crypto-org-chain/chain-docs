@@ -1,6 +1,6 @@
 # Ledger Hardware Wallets with chain-maind
 
-You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely manage your CRO assets. Ledger devices are hardware wallets which store your private keys safely in the device and can be used in even unsafe PCs.
+You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely manage your CRO assets. Ledger devices are hardware wallets that store your private keys safely in the device and can be used in even unsafe PCs.
 
 ## Pre-requisites
 
@@ -21,12 +21,17 @@ First of all, you will need to install the Cronos PoS Chain app on your Ledger d
 
 * **Step 1** - Connect and unlock your Ledger device
 * **Step 2** - On your Ledger device, go to "_Install app_", It should show "_Open Ledger live to install apps_"
-* **Step 3** - On the Ledger Live, find and install Cronos PoS Chain in the app catalog under "_Manager_" as below: ![](assets/ledger\_desktop\_wallet/s1-4-1.png)
-*   **Step 4** - Your Ledger device will display "_Processing…_". Once the installation is completed, you should see "_Installed_" on your Ledger Live as below: ![](assets/ledger\_desktop\_wallet/s1-4-2.png)
+* **Step 3** - On the Ledger Live, find and install Cronos PoS Chain in the app catalog under "_Manager_" as below:&#x20;
 
-    You can confirm the installation by checking if the Cronos PoS Chain App shows up in the main menu of your Ledger device: \
-    \
-    ![](assets/ledger\_desktop\_wallet/s1-4-3.jpeg)
+&#x20;    ![](assets/ledger\_desktop\_wallet/s1-4-1.png)
+
+* **Step 4** - Your Ledger device will display "_Processing…_". Once the installation is completed, you should see "_Installed_" on your Ledger Live as below:&#x20;
+
+![](assets/ledger\_desktop\_wallet/s1-4-2.png)
+
+You can confirm the installation by checking if the Cronos PoS Chain App shows up in the main menu of your Ledger device: \
+\
+![](assets/ledger\_desktop\_wallet/s1-4-3.jpeg)
 
 **Remark**: Once the Cronos PoS Chain App is successfully installed, please close the Ledger Live app before proceeding to the next step.
 
@@ -42,7 +47,7 @@ First of all, you will need to install the Cronos PoS Chain app on your Ledger d
 
     * `name` is an arbitrary name for your new key
 4. An address will be displayed on your Ledger device, for example: ![](assets/ledger\_desktop\_wallet/s9.png)
-5.  Confirm the address on your Ledger device and verify the address displayed on the terminal. They should match with each other, for example, of we create a wallet named `ledger_test`, you should see the same address displayed on you terminal after confirming and pressing "_Ok_" on your ledger device:
+5.  Confirm the address on your Ledger device and verify the address displayed on the terminal. They should match each other, for example, if we create a wallet named `ledger_test`, you should see the same address displayed on your terminal after confirming and pressing "_Ok_" on your ledger device:
 
     ```bash
     - name: ledger_test

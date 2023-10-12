@@ -1,8 +1,8 @@
 # Croeseid Testnet: Running Nodes
 
-The latest Crypto.org Chain Testnet has been named as **Croeseid**.
+The latest Cronos PoS Chain Testnet has been named as **Croeseid**.
 
-This is a detailed documentation for setting up a Validator or a full node on Crypto.org Croeseid testnet `testnet-croeseid-4`.
+This is detailed documentation for setting up a Validator or a full node on Croeseid testnet `testnet-croeseid-4`.
 
 ## Pre-requisites
 
@@ -12,7 +12,7 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 ### Prepare your machine
 
-* To run Crypto.org Chain nodes in the testnet, you will need a machine with the following minimum requirements to run different types of nodes:
+* To run Cronos PoS Chain nodes in the testnet, you will need a machine with the following minimum requirements to run different types of nodes:
 
 Archive Node (setting pruning = nothing)
 
@@ -26,7 +26,7 @@ Default Full Node (setting pruning = default)
 * Disk: 83GB (Depends on how long the node is running for)
 * CPU: 4 cores
 
-## Step 1. Get the Crypto.org Chain testnet binary
+## Step 1. Get the Cronos PoS Chain testnet binary
 
 {% hint style="info" %}
 **Remarks**: The following is the minimal setup for a **validator node**.
@@ -38,7 +38,7 @@ Default Full Node (setting pruning = default)
 
 To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
 
-*   To install Crypto.org Chain released **testnet binaries** from github:
+*   To install Cronos PoS Chain released **testnet binaries** from GitHub:
 
     ```bash
     $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Linux_x86_64.tar.gz
@@ -90,7 +90,7 @@ Before kick-starting your node, we will have to configure your node so that it c
       $ ./chain-maind init [moniker] --chain-id testnet-croeseid-4
     ```
 
-    This `moniker` will be the displayed ID of your node when connected to Crypto.org Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed. The example below shows how to initialize a node named `pegasus-node` :
+    This `moniker` will be the displayed ID of your node when connected to Cronos PoS Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed. The example below shows how to initialize a node named `pegasus-node` :
 
     ```bash
       $ ./chain-maind init pegasus-node --chain-id testnet-croeseid-4
@@ -150,7 +150,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 
 [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
 
-With state sync your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator.
+With state sync your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validators.
 
 However, you should keep in mind that the block before state-sync `trust height` will not be queryable. So if you want to run a full node, better not use state-sync feature to ensure your node has every data on the blockchain network.
 
@@ -162,12 +162,12 @@ Follow the below optional steps to enable state-sync.
 
     ```bash
 
-    $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid-4.crypto.org:26657/block | jq -r .result.block.header.height); \
+    $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid-4.cronos-pos.org:26657/block | jq -r .result.block.header.height); \
     BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-    TRUST_HASH=$(curl -s "https://testnet-croeseid-4.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+    TRUST_HASH=$(curl -s "https://testnet-croeseid-4.cronos-pos.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
     $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-4.crypto.org:26657,https://testnet-croeseid-4.crypto.org:26657\"| ; \
+    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-4.cronos-pos.org:26657,https://testnet-croeseid-4.cronos-pos.org:26657\"| ; \
     s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
     s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
     s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
@@ -186,14 +186,14 @@ Follow the below optional steps to enable state-sync.
 {% hint style="warning" %}
 **CAUTION**&#x20;
 
-This page only shows the minimal setup for validator node.
+This page only shows the minimal setup for a validator node.
 
 Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys etc.
 {% endhint %}
 
 ### Step 3-1. Create a new key and address
 
-Run the followings to create a new key. For example, you can create a key with the name `Default` by:
+Run the following to create a new key. For example, you can create a key with the name `Default` by:
 
 ```bash
   $ ./chain-maind keys add Default
@@ -293,7 +293,7 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
 *   One can check the current block height by querying the public full node by:
 
     ```bash
-    curl -s https://testnet-croeseid-4.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
+    curl -s https://testnet-croeseid-4.cronos-pos.org:26657/commit | jq "{height: .result.signed_header.header.height}"
     ```
 
     and you can check your node's progress (in terms of block height) by
@@ -346,7 +346,7 @@ To further check if the validator is signing blocks, kindly run this [script](ht
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid-4.crypto.org:26657 \
+--tendermint-url https://testnet-croeseid-4.cronos-pos.org:26657 \
 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
@@ -355,7 +355,7 @@ The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid-4.crypto.org:26657 \
+--tendermint-url https://testnet-croeseid-4.cronos-pos.org:26657 \
 --bechpubkey [tcrocnclconspub1....]
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>

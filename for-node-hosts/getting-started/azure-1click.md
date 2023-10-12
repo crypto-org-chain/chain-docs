@@ -3,7 +3,7 @@
 This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
 {% hint style="warning" %}
-**CAUTION** We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html)
+**CAUTION** We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use it with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html)
 {% endhint %}
 
 ## Step 1. Azure Account Creation
@@ -14,15 +14,15 @@ Please read `Microsoft Azure` free trial introduction to see if you are eligible
 
 ## Step 2. Common Setup
 
-### Step 2-1. Search for Crypto.org Chain on Marketplace
+### Step 2-1. Search for Cronos PoS Chain on Marketplace
 
-Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft\_Azure\_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Crypto.org Chain 1-Click Node".
+Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft\_Azure\_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Cronos PoS Chain 1-Click Node".
 
 ![](../../docs/getting-started/assets/azure\_marketplace.png)
 
 ### Step 2-2. Create a Virtual Machine
 
-Choose the image and click "Create" to start creating the Crypto.org Chain 1-Click Node.
+Choose the image and click "Create" to start creating the Cronos PoS Chain 1-Click Node.
 
 #### 1. Basic
 
@@ -70,7 +70,7 @@ Once the deployment is completed, you can connect to your instance via SSH.
 $ ssh ubuntu@PUBLIC_IP
 ```
 
-Afterwards, go to the `chain` directory, and you will find all the essential binaries for setting up your node:
+Afterward, go to the `chain` directory, and you will find all the essential binaries for setting up your node:
 
 ```bash
 $ cd /chain/
@@ -198,14 +198,14 @@ The latest block height can be found by:
 Mainnet
 
 ```bash
-$ curl -s https://rpc.mainnet.crypto.org:443/block | jq -r .result.block.header.height
+$ curl -s https://rpc.mainnet.cronos-pos.org:443/block | jq -r .result.block.header.height
 8525
 ```
 
 Testnet (`testnet-croeseid-4`)
 
 ```bash
-$ curl -s https://testnet-croeseid-4.crypto.org:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid-4.cronos-pos.org:26657/block | jq -r .result.block.header.height
 8525
 ```
 
@@ -213,7 +213,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Cronos PoS Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Cronos PoS Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
 
 {% hint style="info" %}
 **NOTE**

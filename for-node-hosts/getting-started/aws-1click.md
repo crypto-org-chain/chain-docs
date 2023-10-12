@@ -8,7 +8,7 @@ This tutorial will use our AWS 1-click Deployment image to start and create the 
 
 ## Step 1. AWS Account Creation
 
-You will first need to create an [AWS](https://aws.amazon.com/) account. This will require providing your credit card information to `AWS` and you may be subject to getting charged when you create a virtual machine. More details on account creation, check this [link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
+You will first need to create an [AWS](https://aws.amazon.com/) account. This will require providing your credit card information to `AWS` and you may be subject to getting charged when you create a virtual machine. More details on account creation, check this [link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
 
 Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank\&all-free-tier.sort-order=asc) to see if you are eligible for the free-tier.
 
@@ -16,7 +16,9 @@ Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.s
 
 ### Step 2-0. Go to EC2 page and change the region
 
-Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance" ![](../../docs/getting-started/assets/aws\_ec2\_dashboard.png)
+Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance"
+
+&#x20;![](../../docs/getting-started/assets/aws\_ec2\_dashboard.png)
 
 ### Step 2-1. Search for Cronos PoS Chain 1-Click Node on AWS Marketplace
 
@@ -107,7 +109,7 @@ The genesis does not exit or the sha256sum does not match the target one. Downlo
 You may also enable (**Optional**)[STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html). Your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validator. For **validator**, It will be amazingly fast to sync the near head of the chain and join the network.
 
 {% hint style="warning" %}
-**CAUTION** Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. :::
+**CAUTION** Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync.
 {% endhint %}
 
 ```bash
@@ -201,14 +203,14 @@ The latest block height can be found by:
 Mainnet
 
 ```bash
-$ curl -s https://rpc.mainnet.crypto.org:443/block | jq -r .result.block.header.height
+$ curl -s https://rpc.mainnet.cronos-pos.org:443/block | jq -r .result.block.header.height
 8525
 ```
 
 Testnet
 
 ```bash
-$ curl -s https://testnet-croeseid-4.crypto.org:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid-4.cronos-pos.org:26657/block | jq -r .result.block.header.height
 8525
 ```
 
@@ -216,7 +218,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Crypto.org Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Crypto.org Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Cronos PoS Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Cronos PoS Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
 
 {% hint style="info" %}
 **NOTE**

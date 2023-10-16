@@ -1,4 +1,4 @@
-# Token Migration Web Tool
+# 🛠 Token Migration Web Tool
 
 Token migration is the process of migrating your ERC20 CRO to Mainnet CRO.
 

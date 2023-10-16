@@ -1,4 +1,4 @@
-# Advanced TMKMS Integration
+# 🔄 Advanced TMKMS Integration
 
 * The default consensus engine available within the SDK is Tendermint Core. See [Tendermint notes on running in production](https://docs.tendermint.com/master/tendermint-core/running-in-production.html) and [notes on setting up a validator](https://docs.tendermint.com/master/nodes/validators.html#setting-up-a-validator)
 * Validator block signing should be via [tmkms](https://github.com/iqlusioninc/tmkms)

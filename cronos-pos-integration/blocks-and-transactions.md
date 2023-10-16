@@ -1,4 +1,4 @@
-# Blocks and Transactions
+# 🔲 Blocks and Transactions
 
 This document describes the block and transaction structure of the Cronos PoS Chain and explains different ways to extract and parse the details of them.
 

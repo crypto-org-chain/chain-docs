@@ -4,10 +4,10 @@
 
 * [📑 Cronos PoS Chain Introduction](README.md)
 * [🔰 Architecture](getting-started/architecture.md)
-* [🌟 New brand and domains](getting-started/new-brand-and-domains.md)
 
 ## For USERS
 
+* [🌟 New brand and domains](for-users/new-brand-and-domains.md)
 * [💰 Wallets](docs/wallets/README.md)
   * [chain-maind](docs/wallets/cli.md)
   * [Ledger Hardware Wallets with chain-maind](docs/wallets/ledger.md)

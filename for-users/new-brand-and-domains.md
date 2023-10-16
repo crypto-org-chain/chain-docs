@@ -6,7 +6,15 @@ The rebranding of **Cronos POS chain** (formerly known as Crypto.org Chain) aims
 * Cronos POS blockchain, the proof-of-stake Cosmos chain positioned as “layer zero” of the Cronos ecosystem, and&#x20;
 * Cronos EVM blockchain (abbreviated into Cronos blockchain), the leading Ethereum-compatible blockchain of the Cosmos ecosystem, home to hundreds of decentralized applications.
 
-On October 16th, 2023, **Cronos POS** became the official name of the blockchain protocol formerly known as _Crypto.org Chain_. The following URLs are introduced:
+On October 16th, 2023, **Cronos POS** became the official name of the blockchain protocol formerly known as _Crypto.org Chain_.
+
+Cronos POS logos can be downloaded from the file below:
+
+{% file src="../.gitbook/assets/cronos pos logos svg.zip" %}
+Cronos POS SVG logos
+{% endfile %}
+
+The following URLs are introduced:
 
 ### Cronos POS public domains
 

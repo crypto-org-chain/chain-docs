@@ -13,14 +13,14 @@
 ## Setup Guide
 
 * **Mainnet**:
-  * [Running a full node;](https://crypto.org/docs/getting-started/mainnet.html)
-  * [Running a validator;](https://crypto.org/docs/getting-started/mainnet\_validator.html)
-  * [Mainnet Validator Security Checklist.](https://crypto.org/docs/getting-started/security-checklist.html#part-1-conduct-survey-on-general-controls-of-hosting-data-centre)
+  * [Running a full node](https://crypto.org/docs/getting-started/mainnet.html)
+  * [Running a validator](https://crypto.org/docs/getting-started/mainnet\_validator.html)
+  * [Mainnet Validator Security Checklist](https://crypto.org/docs/getting-started/security-checklist.html#part-1-conduct-survey-on-general-controls-of-hosting-data-centre)
 * **Testnet**:
   * [Joining the Croeseid Testnet](https://crypto.org/docs/getting-started/croeseid-testnet.html)
   * [Deploy testnet node with nix](https://crypto.org/docs/getting-started/croeseid-testnet-nix.html#pre-requisites)
 * **Devnet**
-  * [Running latest development network locally](https://crypto.org/docs/getting-started/local-devnet.html#overview)
+  * [Running the latest development network locally](https://crypto.org/docs/getting-started/local-devnet.html#overview)
 
 ## API Documentation
 
@@ -45,14 +45,14 @@ There are a few ways to access the Cronos PoS Chain
 
 ## API Clients and libraries
 
-* [**TypeScript** library](https://github.com/crypto-org-chain/chain-jslib);
-* [**Python** library](https://pypi.org/project/chainlibpy/#description);
-* [**Rust** library](https://github.com/crypto-org-chain/chainlib-rs) (note that it is not feature complete);
-* [@cosmjs/stargate](https://github.com/cosmos/cosmjs/tree/master/packages/stargate).
+* [**TypeScript** library](https://github.com/crypto-org-chain/chain-jslib)
+* [**Python** library](https://pypi.org/project/chainlibpy/#description)
+* [**Rust** library](https://github.com/crypto-org-chain/chainlib-rs) (note that it is not feature complete)
+* [@cosmjs/stargate](https://github.com/cosmos/cosmjs/tree/master/packages/stargate)
 
 ## Indexing
 
-* [chain-indexing](https://github.com/crypto-com/chain-indexing) (indexing on-chain data):
+* [chain-indexing](https://github.com/crypto-com/chain-indexing) (indexing on-chain data)
 
 ## Node Monitoring (Prometheus)
 
@@ -78,7 +78,7 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 
 ### Croeseid Testnet
 
-[https://cronos-pos.org/explorer/croeseid4/](https://crypto.org/explorer/croeseid4/)
+[https://cronos-pos.org/explorer/croeseid4](https://crypto.org/explorer/croeseid4/)
 
 ## Community
 

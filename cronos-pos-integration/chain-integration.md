@@ -34,7 +34,7 @@ There are a few ways to access the Cronos PoS Chain
 
 2. **gRPC Based**
 
-* Processed chain information. Old state maybe pruned from time-to-time. To avoid state pruning, update `pruning = "nothing"` in `~/.chain-maind/config/app.toml`
+* Processed chain information. Old state may be pruned from time-to-time. To avoid state pruning, update `pruning = "nothing"` in `~/.chain-maind/config/app.toml`
 * There are two query methods based on gRPC:
   1. [gRPC Server](https://github.com/crypto-org-chain/chain-integration/blob/master/grpc/README.md)
   2. [gRPC Proxy RESTful Server](https://github.com/crypto-org-chain/chain-integration/blob/master/grpc-proxy-rest/README.md)
@@ -60,7 +60,7 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 
 ## Public Nodes
 
-### Mainnet - `cronos-pos-org-chain-mainnet-1`
+### Mainnet - `crypto-org-chain-mainnet-1`
 
 * [Tendermint](https://rpc.mainnet.crypto.org/)
 * [Cosmos RESTful gRPC](https://rest.mainnet.crypto.org/)

@@ -162,12 +162,12 @@ Follow the below optional steps to enable state-sync.
 
     ```bash
 
-    $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid-4.cronos-pos.org:26657/block | jq -r .result.block.header.height); \
+    $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid-4.crypto.org:26657/block | jq -r .result.block.header.height); \
     BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-    TRUST_HASH=$(curl -s "https://testnet-croeseid-4.cronos-pos.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+    TRUST_HASH=$(curl -s "https://testnet-croeseid-4.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
     $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-4.cronos-pos.org:26657,https://testnet-croeseid-4.cronos-pos.org:26657\"| ; \
+    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-4.crypto.org:26657,https://testnet-croeseid-4.crypto.org:26657\"| ; \
     s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
     s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
     s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
@@ -203,7 +203,7 @@ You should obtain an address with `tcro` prefix, e.g. `tcro1quw5r22pxy8znjtdkgqc
 
 ### Step 3-2. Obtain test token
 
-Unless you have obtained the CRO testnet token before, use the [tcro faucet](https://crypto.org/faucet) to obtain test CRO tokens. In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel , stating who you are and your `tcro.....` address.
+Unless you have obtained the CRO testnet token before, use the [tcro faucet](https://crypto.org/faucet) to obtain test CRO tokens. In case you have reached the daily limit on faucet airdrop, you can simply send a message on [Discord](https://discord.gg/pahqHz26q4) #request-tcro channel, stating who you are and your `tcro.....` address.
 
 ### Step 3-3. Obtain the validator public key
 
@@ -213,7 +213,7 @@ You can obtain your validator public key by:
   $ ./chain-maind tendermint show-validator
 ```
 
-The public key should in a json format, for example:
+be The public key should in a json format, for example:
 
 ```bash
 {
@@ -293,7 +293,7 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
 *   One can check the current block height by querying the public full node by:
 
     ```bash
-    curl -s https://testnet-croeseid-4.cronos-pos.org:26657/commit | jq "{height: .result.signed_header.header.height}"
+    curl -s https://testnet-croeseid-4.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
     ```
 
     and you can check your node's progress (in terms of block height) by
@@ -346,7 +346,7 @@ To further check if the validator is signing blocks, kindly run this [script](ht
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid-4.cronos-pos.org:26657 \
+--tendermint-url https://testnet-croeseid-4.crypto.org:26657 \
 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
@@ -355,7 +355,7 @@ The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid-4.cronos-pos.org:26657 \
+--tendermint-url https://testnet-croeseid-4.crypto.org:26657 \
 --bechpubkey [tcrocnclconspub1....]
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>

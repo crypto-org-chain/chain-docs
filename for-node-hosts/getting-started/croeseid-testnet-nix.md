@@ -2,7 +2,7 @@
 
 ## Pre-requisites
 
-Nix supports both Linux and Mac, for Windows user, you can follow the [manual instructions](croeseid-testnet.md).
+Nix supports both Linux and Mac, for Windows users, you can follow the [manual instructions](croeseid-testnet.md).
 
 ## Install nix
 

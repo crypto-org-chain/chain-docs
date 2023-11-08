@@ -162,12 +162,12 @@ Follow the below optional steps to enable state-sync.
 
     ```bash
 
-    $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid-5.cronos-pos.org:26657/block | jq -r .result.block.header.height); \
+    $ LATEST_HEIGHT=$(curl -s https://testnet-croeseid-5.crypto.org:26657/block | jq -r .result.block.header.height); \
     BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)); \
-    TRUST_HASH=$(curl -s "https://testnet-croeseid-5.cronos-pos:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+    TRUST_HASH=$(curl -s "https://testnet-croeseid-5.crypto.org:26657/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
     $ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-5.cronos-pos.org:26657,https://testnet-croeseid-5.cronos-pos.org:26657\"| ; \
+    s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"https://testnet-croeseid-5.crypto.org:26657,https://testnet-croeseid-5.crypto.org:26657\"| ; \
     s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
     s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
     s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/.chain-maind/config/config.toml
@@ -186,7 +186,7 @@ Follow the below optional steps to enable state-sync.
 {% hint style="warning" %}
 **CAUTION**&#x20;
 
-This page only shows the minimal setup for validator node.
+This page only shows the minimal setup for a validator node.
 
 Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/v0.34/tendermint-core/validators.html#sentry-node-configuration)), restrict your validator connections to only connect to your full nodes, test secure storage of validator keys, etc.
 {% endhint %}
@@ -293,7 +293,7 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
 *   One can check the current block height by querying the public full node by:
 
     ```bash
-    curl -s https://testnet-croeseid-5.cronos-pos.org:26657/commit | jq "{height: .result.signed_header.header.height}"
+    curl -s https://testnet-croeseid-5.crypto.org:26657/commit | jq "{height: .result.signed_header.header.height}"
     ```
 
     and you can check your node's progress (in terms of block height) by
@@ -346,7 +346,7 @@ To further check if the validator is signing blocks, kindly run this [script](ht
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid-5.cronos-pos.org:26657 \
+--tendermint-url https://testnet-croeseid-5.crypto.org:26657 \
 --pubkey $(cat ~/.chain-maind/config/priv_validator_key.json | jq -r '.pub_key.value')
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
@@ -355,7 +355,7 @@ The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
---tendermint-url https://testnet-croeseid-5.cronos-pos.org:26657 \
+--tendermint-url https://testnet-croeseid-5.crypto.org:26657 \
 --bechpubkey [tcrocnclconspub1....]
 
 The validator is in the active validator set under the address  <YOUR_VALIDATOR_ADDRESS>
@@ -524,5 +524,5 @@ Congratulations! You've successfully set up a Croeseid 5 Testnet node and perfor
 ## Croeseid 5 testnet explorer and endpoint
 
 * You can lookup data within the `testnet-croeseid-5` network by the [explorer](https://crypto.org/explorer/croeseid5/);
-* Tendermint: `https://rpc-c5.cronos-pos.``org/`;
-* REST: `https://rest-c5.cronos-pos.org`.
+* Tendermint: `https://rpc-c5.crypto.org/`;
+* REST: `https://rest-c5.crypto.org`.

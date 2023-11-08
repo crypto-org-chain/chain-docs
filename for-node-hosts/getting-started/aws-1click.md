@@ -203,14 +203,14 @@ The latest block height can be found by:
 Mainnet
 
 ```bash
-$ curl -s https://rpc.mainnet.cronos-pos.org:443/block | jq -r .result.block.header.height
+$ curl -s https://rpc.mainnet.crypto.org:443/block | jq -r .result.block.header.height
 8525
 ```
 
 Testnet
 
 ```bash
-$ curl -s https://testnet-croeseid-4.cronos-pos.org:26657/block | jq -r .result.block.header.height
+$ curl -s https://testnet-croeseid-4.crypto.org:26657/block | jq -r .result.block.header.height
 8525
 ```
 

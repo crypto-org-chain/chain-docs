@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-* [📑 Cronos PoS Chain Introduction](README.md)
+* [📑 Cronos POS Chain Introduction](README.md)
 * [🔰 Architecture](getting-started/architecture.md)
 
 ## For USERS
@@ -43,7 +43,7 @@
 
 ## Block Explorers
 
-* [📊 Cronos PoS Chain Mainnet Explorer](https://cronos-pos.org/explorer)
+* [📊 Cronos POS Chain Mainnet Explorer](https://cronos-pos.org/explorer)
 * [📊 Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid5/)
 
 ## Cronos PoS Chain Protocol

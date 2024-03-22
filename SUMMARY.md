@@ -17,12 +17,12 @@
   * [Mainnet Address Generation](docs/wallets/mainnet-address-generation.md)
   * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
   * [Multisig account](docs/wallets/multisig-account.md)
-* [🛠 Token Migration Web Tool](for-users/token-migration.md)
+* [🛠️ Token Migration Web Tool](for-users/token-migration.md)
 * [🚰 Croeseid Testnet Faucet](https://cronos-pos.org/faucet)
 
 ## For Node Hosts
 
-* [⛓ Running Nodes](for-node-hosts/getting-started/README.md)
+* [⛓️ Running Nodes](for-node-hosts/getting-started/README.md)
   * [Cronos PoS Chain Mainnet: Running a Full Node](for-node-hosts/getting-started/mainnet/README.md)
     * [Upgrade Guide](for-node-hosts/getting-started/mainnet/upgrade-guide/README.md)
       * [The "V4" upgrade guide (v3.\* to v4.2.2) :](for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_v4.md)
@@ -48,7 +48,7 @@
 
 ## Cronos PoS Chain Protocol
 
-* [⛓ Chain Details](cronos-pos-chain-protocol/chain-details/README.md)
+* [⛓️ Chain Details](cronos-pos-chain-protocol/chain-details/README.md)
   * [Genesis](cronos-pos-chain-protocol/chain-details/genesis\_file.md)
   * [Protocol Documentation](cronos-pos-chain-protocol/chain-details/protocol-documentation.md)
   * [Chain ID, Address Format and Signatures](cronos-pos-chain-protocol/chain-details/chain-id.md)
@@ -56,7 +56,7 @@
   * [List of parameters](cronos-pos-chain-protocol/chain-details/parameters.md)
   * [Proposal Process](cronos-pos-chain-protocol/chain-details/govprocess.md)
   * [Technical glossary](cronos-pos-chain-protocol/chain-details/technical-glossary.md)
-* [🎛 Modules](cronos-pos-chain-protocol/module\_overview/README.md)
+* [🎛️ Modules](cronos-pos-chain-protocol/module\_overview/README.md)
   * [module\_supply](cronos-pos-chain-protocol/module\_overview/module\_supply.md)
   * [module\_slashing](cronos-pos-chain-protocol/module\_overview/module\_slashing.md)
   * [module\_authz](cronos-pos-chain-protocol/module\_overview/module\_authz.md)

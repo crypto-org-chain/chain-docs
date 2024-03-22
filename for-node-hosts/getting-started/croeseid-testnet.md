@@ -26,6 +26,19 @@ Default Full Node (setting pruning = default)
 * Disk: 83GB (Depends on how long the node is running for)
 * CPU: 4 cores
 
+
+
+## Step 0: Notes on network upgrades
+
+For those that would like to build a **Run a Full Node with complete blockchain data** from scratch, note that there were several breaking network upgrades, requiring upgrading at designated block heights below:
+
+| Block height    | Binary Version              | Instruction                                                                       |
+| --------------- | --------------------------- | --------------------------------------------------------------------------------- |
+| `1 - 8,302,700` | `chain-main_3.1.0-croeseid` | Start with this version.                                                          |
+| `>`8,302,700    | `chain-main_4.2.2-croeseid` | When it reaches the target block height `8,302,700` update the binary and restart |
+
+IMPORTANT: If you are not able to perform this upgrades, you can also reqeust a testnet archive snapshot from us
+
 ## Step 1. Get the Cronos PoS Chain testnet binary
 
 {% hint style="info" %}

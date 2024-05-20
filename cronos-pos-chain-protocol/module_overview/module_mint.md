@@ -64,6 +64,32 @@ $ chain-maind query mint params --output json | jq
   }
 ```
 
+
+
+**Easy to use endpoints to query CRO supply and emissions**
+
+The current supply of CRO and its emission projections can be easily queried directly from URLs, as described in this section.
+
+**Supply**
+
+The current total supply of CRO can be obtained from \
+[https://rest.mainnet.cronos-pos.org/cosmos/bank/v1beta1/supply/by\_denom?denom=basecro](https://rest.mainnet.cronos-pos.org/cosmos/bank/v1beta1/supply/by\_denom?denom=basecro).\
+\
+_Note_: This number is provided in `basecro`, where _1 CRO = 10^8 `basecro`_ on the Cronos POS chain.
+
+**Emissions**
+
+Under the Cosmos SDK `x/mint` module, the CRO inflation is determined by multiple parameters such as min and max inflation and the percentage of staked CRO at any point in time.
+
+At any point, the inflation, in annualized percentage increase of CRO supply, can be queried from [https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/inflation](https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/inflation).
+
+This results in annualized emissions that can be queried from \
+[https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/annual\_provisions](https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/annual\_provisions) (in `basecro`).
+
+Annualized emissions can also be seen on the Blockchain Explorer at [https://cronos-pos.org/explorer](https://cronos-pos.org/explorer) under "Events" of each block.
+
+This annualized emission value can be derived into a per-block value by using the block per year value provided by the following endpoint:  [https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/params](https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/params)
+
 #### Appendix
 
 **`gov` module: Network Parameters and configuration**
@@ -72,7 +98,7 @@ The following tables show overall effects on different configurations of the min
 
 |                      | `blocks_per_year`                  | `goal_bonded`                        | `mint_denom` |
 | -------------------- | ---------------------------------- | ------------------------------------ | ------------ |
-| Type                 | array (coins)                      | string (dec)                         | string       |
+| Type                 | string (uint64)                    | string (dec)                         | string       |
 | Higher               | More expected blocks per year      | Higher target bonding ratio          | N/A          |
 | Lower                | Less expected blocks per year      | Lower target bonding ratio           | N/A          |
 | Constraints          | Value has to be a positive integer | Value has to be less or equal to `1` | N/A          |
@@ -80,7 +106,7 @@ The following tables show overall effects on different configurations of the min
 
 |                      | `inflation_max`                       | `inflation_min`                      | `inflation_rate_change`                       |
 | -------------------- | ------------------------------------- | ------------------------------------ | --------------------------------------------- |
-| Type                 | string (dec)                          | string (dec)                         | string (dec) (dec)                            |
+| Type                 | string (dec)                          | string (dec)                         | string (dec)                                  |
 | Higher               | Higher ceiling for the inflation rate | Higher floor for the inflation rate  | Higher yearly rate of change to the inflation |
 | Lower                | Lower ceiling for the inflation rate  | Lower floor for the inflation rate   | Lower yearly rate of change to the inflation  |
 | Constraints          | Value has to be less or equal to `1`  | Value has to be less or equal to `1` | Value has to be less or equal to `1`          |

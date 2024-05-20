@@ -18,9 +18,9 @@ For the host who would like to build a **Run a Full Node with complete blockchai
   * `iavl-cache-size = 781250`
   * `iavl-disable-fastnode = false` (set to `true` to skip IAVL migration, but keep as `false` when starting from a migrated snapshot. When you are on `INF starting ABCI with Tendermint` for a while, migration is going on and you should NOT terminate this. It might take a couple of hours, so plan well ahead for this migration, as it may incur downtime.)
 * Users can refer to the upgrade guides of
-  * ["Canis Major"](https://crypto.org/docs/getting-started/upgrade\_guide.html) (`v1.*` to `v2.0.1`);
-  * ["DRACO II"](https://crypto.org/docs/getting-started/upgrade\_guide\_draco\_2.html) (`v2.*` to `v3.3.9`);
-  * ["V4 upgrade"](https://crypto.org/docs/getting-started/upgrade\_guide\_v4.html) (`v3.3.9` to `v4.2.2`); for the detailed upgrade steps.
+  * "[Canis Major](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide)" (`v1.*` to `v2.0.1`);
+  * ["DRACO II"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_draco\_2) (`v2.*` to `v3.3.9`);
+  * ["V4 upgrade"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_v4) (`v3.3.9` to `v4.2.2`); for the detailed upgrade steps.
 
 ## Pre-requisites
 

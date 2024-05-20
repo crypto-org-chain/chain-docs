@@ -75,7 +75,7 @@ The current supply of CRO and its emission projections can be easily queried dir
 The current total supply of CRO can be obtained from \
 [https://rest.mainnet.cronos-pos.org/cosmos/bank/v1beta1/supply/by\_denom?denom=basecro](https://rest.mainnet.cronos-pos.org/cosmos/bank/v1beta1/supply/by\_denom?denom=basecro).\
 \
-_Note_: This number is provided in `basecro`, where _1 CRO = 10^8 `basecro`_ on the Cronos POS chain.
+_Note -_ This number is provided in `basecro`, where _1 CRO = 10^8 `basecro`_ on the Cronos POS chain.
 
 **Emissions**
 
@@ -88,7 +88,8 @@ This results in annualized emissions that can be queried from \
 
 Annualized emissions can also be seen on the Blockchain Explorer at [https://cronos-pos.org/explorer](https://cronos-pos.org/explorer) under "Events" of each block.
 
-This annualized emission value can be derived into a per-block value by using the block per year value provided by the following endpoint:  [https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/params](https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/params)
+This annualized emission value can be derived into a per-block value by using the block per year value provided by the following endpoint: \
+[https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/params](https://rest.mainnet.cronos-pos.org/cosmos/mint/v1beta1/params)
 
 #### Appendix
 

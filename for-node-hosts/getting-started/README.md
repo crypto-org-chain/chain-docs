@@ -1,4 +1,4 @@
-# ⛓ Running Nodes
+# ⛓️ Running Nodes
 
 Thanks for your interest in Cronos PoS Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Cronos PoS Chain.
 
@@ -39,5 +39,4 @@ Thanks for your interest in Cronos PoS Chain. In this technical documentation, w
 
 * [Project Website](http://crypto.org/)
 * [Project Repository](https://github.com/crypto-org-chain/chain-main)
-* Community chatrooms (non-technical): [Discord](https://discord.gg/nsp9JTC) [Telegram](https://t.me/CryptoComOfficial)
 * Developer community channel (technical): [![Support Server](https://img.shields.io/discord/783264383978569728.svg?color=7289da\&label=Crypto.org%C2%A0Chain%C2%A0=discord%C2%A0=flat-square)](https://discord.gg/pahqHz26q4)

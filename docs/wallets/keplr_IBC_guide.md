@@ -1,64 +1,78 @@
-# Keplr Wallet: Conducting IBC Transfer with Keplr Wallet
+# Conducting IBC Transfer with Keplr Wallet
 
-The Inter-Blockchain Communication protocol (IBC) is an inter-module communication protocol that bridges different blockchains to facilitate communication and feature exchanges between networks with different infrastructure designs and consensus algorithms. IBC transfer works among the IBC-enabled chains, and it has been enabled in Cronos PoS Chain.
+The Inter-Blockchain Communication protocol (IBC) is an inter-module communication protocol that bridges different blockchains to facilitate communication and feature exchanges between networks with different infrastructure designs and consensus algorithms. IBC transfer works among the IBC-enabled chains, and it has been enabled in Cronos POS Chain.
 
-In the following step-by-step guide, you will learn how to make IBC transfers with Keplr, and IBC transfers between Cronos PoS Chain and Cosmos are demonstrated as an example in this guide.
-
-
-
-{% hint style="danger" %}
-**Warning** _We recommend using this Keplr’s feature only after careful research and awareness of the risks associated with its improper use, and also verifying if the IBC channel is active prior to performing the IBC transactions. One way to view such IBC relayer information is to check out the_ [_Mintscan explorer Cronos PoS Chain relayer page_](https://www.mintscan.io/crypto-org/relayers)_. Cronos team does not take any liability related to the potential loss of funds due to the IBC Transfers service._
-{% endhint %}
+In the following step-by-step guide, you will learn how to make IBC transfers with Keplr, and IBC transfers between Cronos POS Chain and Cosmos are demonstrated as an example in this guide.
 
 ### Pre-requisites
 
-* Make sure you have CRO under Cronos PoS Chain and ATOM under the Cosmos network in Keplr.
-* You will need your Cronos PoS Chain and Cosmos addresses in Keplr, please copy-and-paste somewhere and make them handy for later use.
+* Make sure you have CRO under Cronos POS Chain and ATOM under the Cosmos network in Keplr.
+* You will need your Cronos POS Chain and Cosmos addresses in Keplr, please copy-and-paste somewhere and make them handy for later use.
 
-### Step 1: Transferring ATOM under Cosmos to Cronos PoS Chain
+### Transfer ATOM under Cosmos to Cronos POS Chain
 
-Open your Keplr Extension, select “Cosmos” in the network drop-down bar. You will find “IBC Transfer” at the bottom and click “Transfer”.
+1. Open your Keplr Extension and select "Send".                          ![](<../../.gitbook/assets/image (8).png>)
+2. Search ATOM or Cosmos under "Asset", select "IBC Send" then click Cronos POS.                     ![](<../../.gitbook/assets/image (13).png>)
+3. Enter your Keplr Cronos POS Chain address under “Wallet Address or ICNS”. Keplr will auto-fill your selected account’s address. but you can manually adjust or click the person icon to select from your Address book if needed.  \
+   ![](<../../.gitbook/assets/image (6).png>)
+4. Input the desired ATOM desired amount to your Cronos POS Chain address in Keplr (we recommend testing with a small amount for the first try). And Optionally, customize the transaction fee.                                                                                ![](<../../.gitbook/assets/image (5).png>)
+5. Leave the memo field blank (you will need to provide a memo when sending it to an exchange). Then click “Next”.
+6. On the transaction confirmation screen, you can view the details of your transaction. Select "Approve" to confirm the transaction.                                      ![](<../../.gitbook/assets/image (4).png>) &#x20;
+7. Now wait a bit for the transfer processing (usually takes less than 1 mins). Keplr extension will show the progress of the transfer and a success message.![](<../../.gitbook/assets/Screenshot 2024-05-29 at 11.02.21 PM.png>)
 
-![](assets/keplr\_wallet/IBC-s1-1.png)
 
-Under “Destination Chain”, select “New IBC Transfer Channel”. Under the “Add IBC Channel” pop-up window, select “Cronos PoS Chain”, fill the “Channel ID” with **channel-109** (_Incorrect Channel ID will lead to the failure of this transaction_), and hit “Save”.
 
-![](assets/keplr\_wallet/IBC-s1-2.png) ![](assets/keplr\_wallet/IBC-s1-3.png)
+### Transfer ATOM under Cronos POS Chain to Cosmos Network
 
-Now you can fill up your Keplr Cronos PoS Chain address under “Recipient”. No need to worry about the memo here (_You will need to provide a memo when sending it to an exchange_). Then click “Next”.
+1. Open your Keplr Extension and select "Send".                         ![](<../../.gitbook/assets/Screenshot 2024-05-30 at 10.55.10 PM.png>)
+2. Search ATOM on Cronos POS under "Asset", select "IBC Send" and Cosmos Hub.   ![](<../../.gitbook/assets/Screenshot 2024-05-29 at 11.10.27 PM.png>)
+3. Input your Keplr Cosmos address in “Wallet Address or ICNS”. Keplr will auto-fill your selected account’s address, but you can manually adjust or select from your Address book if needed.                        ![](<../../.gitbook/assets/image (7).png>)
+4. Enter the desired ATOM amount you’d like to send to your Cronos POS Chain address in Keplr (we recommend testing with a small amount for the first try) and and optionally customize the transaction fee.                                                                                 ![](<../../.gitbook/assets/Screenshot 2024-05-30 at 10.59.18 PM.png>)
+5. Memo is also optional here (you will need to provide a memo when sending it to an exchange). Then click “Next”.
+6. On the transaction confirmation screen, you can view the details of your transaction. Select "Approve" to confirm the transaction.                                      ![](<../../.gitbook/assets/Screenshot 2024-05-30 at 10.59.55 PM.png>)
+7. After a minute, navigate back to account page in Keplr, and you should see the amount of ATOM you just transferred back.                                                            ![](<../../.gitbook/assets/image (9).png>)
 
-Under “Token”, select ATOM, then enter the amount of ATOM you’d like to send to your Cronos PoS Chain address in Keplr (_We encourage you to do a small amount for the first try_). Then select the preferred transaction fee then click “Submit”.
+&#x20;
 
-Now on the transaction confirmation page, you can review the details, and click on “Approve” to confirm this transaction.
+### (Optional) Advanced Transfer Mode in Keplr Wallet &#x20;
 
-![](assets/keplr\_wallet/IBC-s1-4.png) ![](assets/keplr\_wallet/IBC-s1-5.png)
+{% hint style="danger" %}
+**Warning** \
+Before using Keplr's Developer Mode for IBC Transfers, make sure research its associated risks and manually verify if the IBC channel is active prior to performing the IBC transactions on [Mintscan's Cronos POS Chain relayer page](https://www.mintscan.io/crypto-org/relayers). These active channels are subject to change. Incorrect Channel ID will lead to the failure of this transaction, or your transaction could get stuck in an inactive channel. Cronos team does not take any liability related to the loss of funds due to improper use of the IBC Transfers service.
+{% endhint %}
 
-Now wait a bit for the transfer processing (usually takes less than 1 mins), then select “Cronos PoS Chain” in the network drop-down bar, and you should see the amount of ATOM you just transferred here!
+\
+The default IBC Send option remains pre-configured. Keplr Wallet's developer transfer mode provides an alternative for situations where direct IBC send isn't available, requiring manual channel verification and addition.  The developer mode can be enabled by accessing Settings and turning on "Developer Mode" under "Advanced." &#x20;
 
-![](assets/keplr\_wallet/IBC-s1-6.png)
+![](<../../.gitbook/assets/Screenshot 2024-05-30 at 11.49.35 PM.png>)
 
-Your first IBC transfer to Cronos PoS Chain on Keplr is completed!
+Navigate back to the wallet account page, scroll down to the bottom and hit "Transfer" for Advanced IBC Transfer.&#x20;
 
-### Step 2: Transferring ATOM under Cronos PoS Chain to Cosmos Network
+<img src="../../.gitbook/assets/Screenshot 2024-05-30 at 11.49.57 PM.png" alt="" data-size="original">
 
-Select “Cronos PoS Chain” in the network drop-down bar in your Keplr extension app.
 
-Go to “IBC Transfer” at the bottom, and click “Transfer” (**Important: Please make sure you select IBC Transfer here instead of hitting another transfer button or the token itself**).
 
-Under “Destination Chain”, select “Cosmos”. (_There is no need to enter new channel information for Cosmos here, as Keplr can recognize the channel needed to send the tokens back automatically_)
+### Transfer ATOM under Cosmos to Cronos POS Chain
 
-Now fill up your Keplr Cosmos address under “Recipient”. Memo is also optional here. Then hit “Next”.
+Click on ATOM Cosmos Hub and select "New IBC Transfer Channel" under Destination chain.&#x20;
 
-![](assets/keplr\_wallet/IBC-s2-1.png) ![](assets/keplr\_wallet/IBC-s2-2.png) ![](assets/keplr\_wallet/IBC-s2-3.png)
+Choose "Cronos POS" from the Destination Chain dropdown menu, and enter "channel-187" or "187" in the field of Source Channel ID. Again, make sure you've **verified the** [**active channels** on Mintscan](https://www.mintscan.io/cosmos/relayers/channel-187/crypto-org/channel-27), as these channels are subject to change. Then hit “Save”.  &#x20;
 
-Under “Token”, make sure it is ATOM, enter the amount of ATOM to send back to your Cosmos address in Keplr, and select the preferred transaction fee, then click “Submit”.
+![](<../../.gitbook/assets/image (11).png>)
 
-![](assets/keplr\_wallet/IBC-s2-4.png) ![](assets/keplr\_wallet/IBC-s2-5.png)
+Then proceed to input the necessary details and finalize the transaction.\
 
-Now on the transaction confirmation page, you can double-check the details and click on “Approve” to confirm this transaction.
 
-After a minute, go back to the Cosmos in Keplr, and you should see the amount of ATOM you just transferred back. (In this example, our origin ATOM total balance was $28.4 before the initial IBC transfer, and it is $28 now after ATOM transferred back to Cosmos account, due to the token price fluctuation and transfer fee)
+### Transfer ATOM under Cronos POS Chain to Cosmos Network
 
-![](assets/keplr\_wallet/IBC-s2-6.png)
+Click ATOM on Cronos POS and select "New IBC Transfer Channel" under Destination chain.&#x20;
 
-_Congratulations! You’ve done the cross-chain IBC transfer! Hope this tutorial has helped you in conducting IBC transfers! In case you need more assistance, you can always check the_ [_Keplr FAQ list_](https://faq.keplr.app/) _or find us on the Cronos Chain_ [_Discord Channel_](https://discord.com/invite/pahqHz26q4)_._
+Choose "Cosmos Hub" from the Destination Chain dropdown menu, and enter "channel-27" or "27" in the field of Source Channel ID. Hit “Save”.&#x20;
+
+![](<../../.gitbook/assets/image (12).png>)
+
+Then proceed to input the necessary details and finalize the transaction.
+
+
+
+For further assistance, refer to the [Keplr FAQ list or reach out to their HelpDesk](https://help.keplr.app/faq) (located at the bottom corner). You can also join [Cronos Discord](https://discord.gg/cronos) for community support and resources.

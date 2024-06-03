@@ -12,7 +12,7 @@
   * [chain-maind](docs/wallets/cli.md)
   * [Ledger Hardware Wallets with chain-maind](docs/wallets/ledger.md)
   * [Crypto.com DeFi Desktop Wallet](docs/wallets/desktop\_wallet.md)
-  * [Keplr Wallet: Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr\_IBC\_guide.md)
+  * [Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr\_IBC\_guide.md)
   * [Keplr Wallet: Using Ledger Device with Keplr Wallet](docs/wallets/keplr\_ledger\_guide.md)
   * [Mainnet Address Generation](docs/wallets/mainnet-address-generation.md)
   * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)

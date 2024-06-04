@@ -18,7 +18,8 @@ In the following step-by-step guide, you will learn how to make IBC transfers wi
 4. Input the desired ATOM desired amount to your Cronos POS Chain address in Keplr (we recommend testing with a small amount for the first try). And Optionally, customize the transaction fee.                                                                                ![](<../../.gitbook/assets/image (5).png>)
 5. Leave the memo field blank (you will need to provide a memo when sending it to an exchange). Then click “Next”.
 6. On the transaction confirmation screen, you can view the details of your transaction. Select "Approve" to confirm the transaction.                                      ![](<../../.gitbook/assets/image (4).png>) &#x20;
-7. Now wait a bit for the transfer processing (usually takes less than 1 mins). Keplr extension will show the progress of the transfer and a success message.![](<../../.gitbook/assets/Screenshot 2024-05-29 at 11.02.21 PM.png>)
+7. Now wait a bit for the transfer processing (usually takes less than 1 min). Keplr extension will show the progress of the transfer and a success message.\
+   ![](<../../.gitbook/assets/Screenshot 2024-05-29 at 11.02.21 PM.png>)
 
 
 

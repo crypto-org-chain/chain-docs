@@ -13,11 +13,12 @@
   * [Ledger Hardware Wallets with chain-maind](docs/wallets/ledger.md)
   * [Crypto.com DeFi Desktop Wallet](docs/wallets/desktop\_wallet.md)
   * [Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr\_IBC\_guide.md)
-  * [Keplr Wallet: Using Ledger Device with Keplr Wallet](docs/wallets/keplr\_ledger\_guide.md)
+  * [Using Ledger Device with Keplr Wallet](docs/wallets/keplr\_ledger\_guide.md)
   * [Mainnet Address Generation](docs/wallets/mainnet-address-generation.md)
   * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
   * [Multisig Account](docs/wallets/multisig-account.md)
   * [Delegation Guide](for-users/wallets/delegation-guide.md)
+  * [Key Principles for Wallet Security](for-users/wallets/key-principles-for-wallet-security.md)
 * [🛠️ Token Migration Web Tool](for-users/token-migration.md)
 * [🚰 Croeseid Testnet Faucet](https://cronos-pos.org/faucet)
 

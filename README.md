@@ -24,7 +24,7 @@ The development of blockchain technology and cryptocurrencies represents a crypt
 
 ### Cronos POS Chain
 
-Accordingly, we propose Cronos POS Chain, the next-generation public blockchain that enables transactions worldwide between people and businesses. It is also the technology that powers Crypto.com Pay, our mobile payment solution, and will be used to power our trading & financial services offerings in the near future.
+Accordingly, we propose Cronos POS Chain, the next-generation public blockchain that enables transactions worldwide between people and businesses. It is also the technology that powers Crypto.com Pay, mobile payment solution, and will be used to power our trading & financial services offerings in the near future.
 
 We believe enabling cryptocurrency spending in the real world will be an adoption catalyst. Current traditional payment institutions and existing blockchains have failed to provide a secure, scalable and decentralized solution to support cryptocurrency payment. The key limitations of existing blockchain-powered payment networks are that they are:
 

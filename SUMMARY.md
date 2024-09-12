@@ -25,6 +25,7 @@
 ## For Node Hosts
 
 * [⛓️ Running Nodes](for-node-hosts/getting-started/README.md)
+  * [Public Node Sync](for-node-hosts/getting-started/public-node-sync.md)
   * [Cronos PoS Chain Mainnet: Running a Full Node](for-node-hosts/getting-started/mainnet/README.md)
     * [Upgrade Guide](for-node-hosts/getting-started/mainnet/upgrade-guide/README.md)
       * [The "V4" upgrade guide (v3.\* to v4.2.2) :](for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_v4.md)

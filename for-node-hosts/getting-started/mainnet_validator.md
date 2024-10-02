@@ -1,6 +1,6 @@
-# Cronos PoS Chain Mainnet: Running a Validator
+# Cronos POS Chain Mainnet: Running a Validator
 
-This is detailed documentation for setting up a **Validator** on Cronos PoS Chain mainnet. Note that while anyone can set up a validator, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
+This is detailed documentation for setting up a **Validator** on Cronos POS Chain mainnet. Note that while anyone can set up a validator, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
 ## Step 0: Notes on network upgrades
 
@@ -25,7 +25,7 @@ We officially support macOS, Windows and Linux only. Other platforms may work, b
 
 ### Prepare your machine
 
-For Cronos PoS Chain mainnet, you will need a machine with the following minimum requirements to run different types of nodes:
+For Cronos POS Chain mainnet, you will need a machine with the following minimum requirements to run different types of nodes:
 
 Archive Node (setting pruning = nothing)
 
@@ -47,10 +47,10 @@ Pruned Node (setting pruning = everything)
 
 _Please note that the size of snapshots from Quicksync will keep growing._
 
-## Step 1. Get the Cronos PoS Chain Mainnet binary
+## Step 1. Get the Cronos POS Chain Mainnet binary
 
 {% hint style="info" %}
-**Remarks**: The following is the minimal setup to join Cronos PoS Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys, etc.&#x20;
+**Remarks**: The following is the minimal setup to join Cronos POS Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys, etc.&#x20;
 {% endhint %}
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main\_3.3.9\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main\_3.3.9\_Windows\_x86\_64.zip) are also available.
@@ -64,7 +64,7 @@ There are two options to install `chain-maind`:
 
 ### Option 1 - Install `chain-maind` released binaries from GitHub
 
-*   To install Cronos PoS Chain binaries from Github:
+*   To install Cronos POS Chain binaries from Github:
 
     ```bash
     $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
@@ -116,7 +116,7 @@ To install binaries in Homebrew for macOS X or Linux
 
 ## Step 2. Configure `chain-maind`
 
-Before kick-starting your node, we will have to configure the node so that it connects to the Cronos PoS Chain mainnet
+Before kick-starting your node, we will have to configure the node so that it connects to the Cronos POS Chain mainnet
 
 {% hint style="info" %}
 **NOTE**
@@ -133,11 +133,11 @@ Before kick-starting your node, we will have to configure the node so that it co
       $ ./chain-maind init [moniker] --chain-id crypto-org-chain-mainnet-1
     ```
 
-    * This `moniker` will be the displayed ID of your node when connected to the Cronos PoS Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed.
+    * This `moniker` will be the displayed ID of your node when connected to the Cronos POS Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed.
 
 ### Step 2-2. Configure chain-maind
 
-*   Download and replace the Cronos PoS Chain mainnet `genesis.json` by:
+*   Download and replace the Cronos POS Chain mainnet `genesis.json` by:
 
     ```bash
     $ curl https://raw.githubusercontent.com/crypto-org-chain/mainnet/main/crypto-org-chain-mainnet-1/genesis.json > ~/.chain-maind/config/genesis.json

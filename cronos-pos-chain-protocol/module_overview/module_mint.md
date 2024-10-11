@@ -31,11 +31,17 @@ Goal of bonded token in percentage (also called staking ratio), the changes of t
 * If the staking ratio is **equal** to `"goal_bonded"`, the inflation rate will stay constant;
 * If the staking ratio is **above** the `"goal_bonded"`, it will decrease until reaching a minimum lower bound `"inflation_min"`).
 
-
-
 `"inflation_rate_change"`&#x20;
 
 Maximum annual change in inflation rate, represents the maximum percentage by which the inflation rate can change in a year.&#x20;
+
+***
+
+## Emissions and supply of $CRO
+
+The current emissions and supply of $CRO and its emission projections can be easily queried directly from URLs, as described in this section.
+
+### How inflation rate is calculated
 
 The magnitude of the rate of change of the inflation rate is controlled by an additional factor, which is the ratio between the current bonded ratio with the `"goal_bonded"`, the inflation rate is updated at the end of every block accordingly to the following formula:
 
@@ -54,10 +60,6 @@ as
 <figure><img src="../../.gitbook/assets/296951777-bfe501ca-9053-40d0-9b94-8f04fb3c43de (1).png" alt=""><figcaption></figcaption></figure>
 
 This function then updates the current inflation rate by adding the inflationRateChange to it. Finally, the function checks that the updated inflation rate is within the range defined by the InflationMin and InflationMax parameters, and returns the resulting inflation rate.
-
-## Emissions and supply of $CRO
-
-The current emissions and supply of $CRO and its emission projections can be easily queried directly from URLs, as described in this section.
 
 ### How emissions are calculated
 

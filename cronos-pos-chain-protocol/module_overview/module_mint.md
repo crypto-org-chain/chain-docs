@@ -4,7 +4,7 @@
 
 #### Introduction
 
-The `mint` module is responsible for creating token in a flexible way to reward the validator who participate in the proof of stake consensus process (see also the [distribution module](module\_distribution.md)). It is also designed in a way to bring a balance between market liquidity and staked supply.
+The `mint` module is responsible for creating tokens in a flexible way to reward the validators who participate in the proof of stake consensus process (see also the [distribution module](module\_distribution.md)). It is also designed in a way to bring a balance between market liquidity and staked supply.
 
 #### Overview
 
@@ -19,7 +19,7 @@ Below are all the network parameters for the `mint` module:
 * `"inflation_rate_change"` - Maximum annual change in inflation rate;
 * `"mint_denom"` - Token type being minted.
 
-The target annual inflation rate is recalculated for each previsions cycle. The inflation is also subject to a rate change (positive or negative) depending on the distance from the desired ratio (`"goal_bonded"`). The maximum rate change possible is defined to be `"inflation_rate_change"` per year, where the annual inflation is capped as between `"inflation_min"` and `"inflation_max"`.
+The target annual inflation rate is recalculated for each previous cycle. The inflation is also subject to a rate change (positive or negative) depending on the distance from the desired ratio (`"goal_bonded"`). The maximum rate change possible is defined to be `"inflation_rate_change"` per year, where the annual inflation is capped as between `"inflation_min"` and `"inflation_max"`.
 
 #### **Parameters explained**
 

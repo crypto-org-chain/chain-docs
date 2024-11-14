@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Croeseid 5 Testnet: Running Nodes
 
 Croeseid 5 Testnet is Cronos PoS Chain Testnet. It is a new chain based on Croeseid Testnet and runs in parallel with Croeseid 4. It serves as an alpha testnet for exploring new features, instead of the upgraded version of Croeseid 4 testnet.
@@ -139,9 +143,9 @@ Before kick-starting your node, we will have to configure your node so that it c
 *   For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `persistent_peers`, `create_empty_blocks_interval` and `timeout_commit` by:
 
     ```bash
-    $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"71d2a4727bf574d5d368c343e37edff00cd556b1@52.76.52.229:26656,8af7c92277f3edce58aa828cf1026cfa74fd6569@18.141.249.17:26656"#' ~/.chain-maind/config/config.toml
+    $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"71d2a4727bf574d5d368c343e37edff00cd556b1@seed-0.testnet-croeseid-4.cronos-pos.org:26656,8af7c92277f3edce58aa828cf1026cfa74fd6569@seed-1.testnet-croeseid-4.cronos-pos.org:26656"#' ~/.chain-maind/config/config.toml
     $ sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
-    $ sed -i.bak -E 's#^(timeout_commit[[:space:]]+=[[:space:]]+).*$#\1"2s"#' ~/.chain-maind/config/config.toml  
+    $ sed -i.bak -E 's#^(timeout_commit[[:space:]]+=[[:space:]]+).*$#\1"2s"#' ~/.chain-main
     ```
 
 **Note**: We suggest using `persistent_peers` instead of `seeds` to provide a stable state-sync experience.

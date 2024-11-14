@@ -1,6 +1,6 @@
 # Croeseid Testnet: Running Nodes
 
-The latest Cronos PoS Chain Testnet has been named as **Croeseid**.
+The latest Cronos POS Chain Testnet has been named as **Croeseid**.
 
 This is detailed documentation for setting up a Validator or a full node on Croeseid testnet `testnet-croeseid-4`.
 
@@ -12,7 +12,7 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 ### Prepare your machine
 
-* To run Cronos PoS Chain nodes in the testnet, you will need a machine with the following minimum requirements to run different types of nodes:
+* To run Cronos POS Chain nodes in the testnet, you will need a machine with the following minimum requirements to run different types of nodes:
 
 Archive Node (setting pruning = nothing)
 
@@ -37,9 +37,9 @@ For those that would like to build a **Run a Full Node with complete blockchain 
 | `1 - 8,302,700` | `chain-main_3.1.0-croeseid` | Start with this version.                                                          |
 | `>`8,302,700    | `chain-main_4.2.2-croeseid` | When it reaches the target block height `8,302,700` update the binary and restart |
 
-IMPORTANT: If you are not able to perform this upgrades, you can also reqeust a testnet archive snapshot from us
+IMPORTANT: If you are not able to perform this upgrades, you can also request a testnet archive snapshot from us
 
-## Step 1. Get the Cronos PoS Chain testnet binary
+## Step 1. Get the Cronos POS Chain testnet binary
 
 {% hint style="info" %}
 **Remarks**: The following is the minimal setup for a **validator node**.
@@ -49,9 +49,9 @@ IMPORTANT: If you are not able to perform this upgrades, you can also reqeust a 
 **Reminder**: The binary for _testnet_ and the binary for _mainnet_ are two **different** binaries. Please make sure you are using the correct binary.
 {% endhint %}
 
-To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
+To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz)) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
 
-*   To install Cronos PoS Chain released **testnet binaries** from GitHub:
+*   To install Cronos POS Chain released **testnet binaries** from GitHub:
 
     ```bash
     $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Linux_x86_64.tar.gz
@@ -152,9 +152,9 @@ Before kick-starting your node, we will have to configure your node so that it c
 *   For network configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations of `persistent_peers`, `create_empty_blocks_interval` and `timeout_commit` by:
 
     ```bash
-    $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"71d2a4727bf574d5d368c343e37edff00cd556b1@52.76.52.229:26656,8af7c92277f3edce58aa828cf1026cfa74fd6569@18.141.249.17:26656"#' ~/.chain-maind/config/config.toml
+    $ sed -i.bak -E 's#^(persistent_peers[[:space:]]+=[[:space:]]+).*$#\1"71d2a4727bf574d5d368c343e37edff00cd556b1@seed-0.testnet-croeseid-4.cronos-pos.org:26656,8af7c92277f3edce58aa828cf1026cfa74fd6569@seed-1.testnet-croeseid-4.cronos-pos.org:26656"#' ~/.chain-maind/config/config.toml
     $ sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' ~/.chain-maind/config/config.toml
-    $ sed -i.bak -E 's#^(timeout_commit[[:space:]]+=[[:space:]]+).*$#\1"2s"#' ~/.chain-maind/config/config.toml  
+    $ sed -i.bak -E 's#^(timeout_commit[[:space:]]+=[[:space:]]+).*$#\1"2s"#' ~/.chain-main
     ```
 
 **Note**: We suggest using `persistent_peers` instead of `seeds` for a stable state-sync experience.

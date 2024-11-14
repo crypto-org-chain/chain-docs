@@ -2,11 +2,11 @@
 
 Syncing Cronos POS Chain could be a time-consuming process, our team has partnered with Chainlayer to provide the “QuickSync” service to make the process more efficient for our users.
 
-Users can visit [Chainlayer QuickSync page](https://quicksync.io/networks/crypto.html) and download the snapshots for Cronos POS Chain with different pruning settings (_currently only levelDB downloads are available_). You may refer to the following guide to implement QuickSync.
+Users can visit [Chainlayer QuickSync page](https://quicksync.io/cronos-chain) and download the snapshots for Cronos POS Chain with different pruning settings (_currently only levelDB downloads are available_). You may refer to the following guide to implement QuickSync.
 
 ## Step 1. QuickSync Download
 
-To start with QuickSync, you need to run `brew install lz4` to install lz4 in a new terminal. Then download the file with preferred pruning settings directly from https://quicksync.io/networks/crypto.html.
+To start with QuickSync, you need to run `brew install lz4` to install lz4 in a new terminal. Then download the file with preferred pruning settings directly from [https://quicksync.io/cronos-chain](https://quicksync.io/cronos-chain).
 
 #### There are three versions:
 
@@ -26,7 +26,7 @@ To start with QuickSync, you need to run `brew install lz4` to install lz4 in a 
 
 In the following steps, we will take the version `crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4` as an example.
 
-(Optional) you can [download an addressbook](https://quicksync.io/addrbook.ccomchain.json) to get connected to peers faster. After downloading it, place the new `addrbook.json` under `.chain-maind/config` folder and restart your node to take effect.
+(Optional) you can download an addressbook from [Quicksync](https://quicksync.io/cronos-chain) to get connected to peers faster. After downloading it, place the new `addrbook.json` under `.chain-maind/config` folder and restart your node to take effect.
 
 Now add the `crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4` inside `.chain-maind`.
 

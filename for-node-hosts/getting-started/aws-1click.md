@@ -20,9 +20,9 @@ Sign in to your AWS account and go to EC2 Dashboard and change to your favourite
 
 &#x20;![](../../docs/getting-started/assets/aws\_ec2\_dashboard.png)
 
-### Step 2-1. Search for Cronos PoS Chain 1-Click Node on AWS Marketplace
+### Step 2-1. Search for Cronos POS Chain 1-Click Node on AWS Marketplace
 
-Search for "Cronos PoS Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Cronos PoS Chain 1-Click Node" from the search results. ![](../../docs/getting-started/assets/aws\_marketplace.png)
+Search for "Cronos POS Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Cronos POS Chain 1-Click Node" from the search results. ![](../../docs/getting-started/assets/aws\_marketplace.png)
 
 ### Step 2-2. Choose an instance type
 
@@ -61,7 +61,11 @@ By default, the image creates a new security group for you allowing ssh, p2p, rp
 
 ### Step 2-7. Review Instance Launch
 
-Click "Launch" once you finish the review ![](../../docs/getting-started/assets/aws\_launch.png)
+Click "Launch" once you finish the review
+
+&#x20;
+
+<figure><img src="../../docs/getting-started/assets/aws_launch.png" alt=""><figcaption></figcaption></figure>
 
 You can either create a new key pair or import a key pair. Follow this [instruction](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#prepare-key-pair)
 

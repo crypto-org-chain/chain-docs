@@ -1,4 +1,4 @@
-# 🛠 Token Migration Web Tool
+# 🛠️ Token Migration Web Tool
 
 Token migration is the process of migrating your ERC20 CRO to Mainnet CRO.
 
@@ -7,7 +7,7 @@ This tutorial will guide you through the steps to migrate your ERC20 CRO to Main
 {% hint style="info" %}
 **Other Migration Methods**&#x20;
 
-The Migration Web Tool targets advanced crypto users. It requires more complicated steps. For most users, we recommend using other migration methods such as [Crypto.com App](https://crypto.com/en/wallet), [Crypto.com DeFi wallet](https://crypto.com/en/defi/wallet/), or through our featured exchanges.
+The Migration Web Tool targets advanced crypto users. It requires more complicated steps. For most users, we recommend using other migration methods such as [Crypto.com App](https://crypto.com/en/wallet), [Crypto.com Onchain wallet](https://crypto.com/en/defi/wallet/), or through our featured exchanges.
 {% endhint %}
 
 

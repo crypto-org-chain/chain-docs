@@ -17,7 +17,7 @@ A crypto wallet allows you to store and manage your digital assets securely. At 
 
 The Cronos POS chain supports a mix of both Hot & Cold wallets. The most common wallets associated with Cronos POS are:
 
-* [Crypto.com DeFi Wallet](https://crypto.com/defi-wallet)
+* [Crypto.com Onchain Wallet](https://crypto.com/defi-wallet)
 * [Cronos POS Chain Wallet (chain-maind)](https://docs.cronos-pos.org/for-users/wallets/cli)
 * [Kepler Wallet](https://www.keplr.app/)
 * [Ledger Hardware Wallet](https://www.ledger.com/)
@@ -33,7 +33,7 @@ See a full list of Conos POS supported wallets [here](https://docs.cronos-pos.or
 
 Cronos POS Hot Wallets include:&#x20;
 
-* [Crypto.com DeFi Wallet](https://crypto.com/defi-wallet)
+* [Crypto.com Onchain Wallet](https://crypto.com/defi-wallet)
 * [Keplr Wallet](https://www.keplr.app/)
 
 **Security Tips for Hot Wallets**
@@ -68,7 +68,7 @@ Cronos POS Hardware Wallets include:
 
 **Hosted Wallets:** These wallets are usually provided and managed by centralized crypto exchanges (CEX). The exchange holds the private key, meaning they technically own & control the assets. For example the [Crypto.com App](https://crypto.com/app).
 
-**Self-Custody Wallets:** In self-custody wallets you hold/own the private key, giving you full control over the digital assets. [Crypto.com DeFi Wallet](https://crypto.com/defi-wallet) is an example of a self-custody solution.
+**Self-Custody Wallets:** In self-custody wallets you hold/own the private key, giving you full control over the digital assets. [Crypto.com Onchain Wallet](https://crypto.com/defi-wallet) is an example of a self-custody solution.
 
 ## Critical Data to Secure
 

@@ -4,7 +4,7 @@ This document describes the block and transaction structure of the Cronos PoS Ch
 
 ## Table of Content
 
-* [Cronos PoS Blocks and Transactions](blocks-and-transactions.md#cryptoorg-chain-blocks-and-transactions)
+* [Cronos POS Blocks and Transactions](blocks-and-transactions.md#cryptoorg-chain-blocks-and-transactions)
   * [Table of Content](blocks-and-transactions.md#table-of-content)
   * [Common APIs](blocks-and-transactions.md#common-apis)
     * [1. Tendermint Block API](blocks-and-transactions.md#\_1-tendermint-block-api)

@@ -1,6 +1,6 @@
-# Multisig account
+# Multisig Account
 
-A Multisig account is a Cronos PoS Chain account with a key that requires multiple signers in order to sign transactions. This is a useful feature to increase security as it requires the consent of more than 1 party in order to make a transaction.
+A Multisig account is a Cronos POS Chain account with a key that requires multiple signers in order to sign transactions. This is a useful feature to increase security as it requires the consent of more than 1 party in order to make a transaction.
 
 This guide assumes that you have some CRO to make a transfer as well as a valid RCPC node with the `--node` argument against which you can broadcast transactions.
 

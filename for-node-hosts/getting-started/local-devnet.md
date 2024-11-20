@@ -5,10 +5,10 @@
 
 This page is for building and running the latest development version of the chain for testing purposes only. The development branch is under active development and is highly unstable and subject to breaking changes. You should expect a moderate amount of troubleshooting work to be required.\
 \
-For anyone interested in joining the Cronos PoS Chain testnet, please refer to our [testnet documentation](croeseid-testnet.md).&#x20;
+For anyone interested in joining the Cronos POS Chain testnet, please refer to our [testnet documentation](croeseid-testnet.md).&#x20;
 {% endhint %}
 
-By following this tutorial, you can compile and run the latest development version of Cronos PoS Chain from scratch. It is intended for testing purposes only.
+By following this tutorial, you can compile and run the latest development version of Cronos POS Chain from scratch. It is intended for testing purposes only.
 
 ## Overview
 

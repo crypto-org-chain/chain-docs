@@ -1,17 +1,17 @@
 ---
 description: >-
   This guide is designed to provide you with clear instructions for managing
-  your CRO stakes across different platforms, including Crypto.com DeFi Wallet
-  and Crypto.com Defi Desktop Wallet.
+  your CRO stakes across different platforms, including Crypto.com Onchain
+  Wallet and Crypto.com Onchain Desktop Wallet.
 ---
 
 # Delegation Guide
 
-## [Crypto.com DeFi Wallet](https://crypto.com/eea/defi-wallet)
+## [Crypto.com Onchain Wallet](https://crypto.com/eea/defi-wallet)
 
-Crypto.com DeFi Wallet provides intuitive user interface through DeFi Earn simplifies the process for staking, claiming rewards, claim to restake, unstaking, and redelegation. The DeFi Wallet App offers the ability to select from a list of approved validators for both staking and changing your delegation from one validator to another.
+Crypto.com Onchain Wallet provides intuitive user interface through DeFi Earn simplifies the process for staking, claiming rewards, claim to restake, unstaking, and redelegation. The DeFi Wallet App offers the ability to select from a list of approved validators for both staking and changing your delegation from one validator to another.
 
-### Delegate CRO on Crypto.com DeFi Wallet&#x20;
+### Delegate CRO on Crypto.com Onchain Wallet&#x20;
 
 1. Tap \[Earn] on the bottom navigation of your DeFi Wallet app
 2. Tap \[Start Earning] or \[Earn More] to see the list of tokens supported for earning
@@ -28,7 +28,7 @@ Please note that every time when you increase your stake with the same validator
 
 
 
-### Undelegrate CRO on Crypto.com DeFi Wallet&#x20;
+### Undelegrate CRO on Crypto.com Onchain Wallet&#x20;
 
 You can unstake your CRO delegation anytime by following the below steps.
 
@@ -45,7 +45,7 @@ You can unstake your CRO delegation anytime by following the below steps.
 
 Once you unstake your CRO, all unreceived rewards will be deposited into your wallet automatically.&#x20;
 
-### &#x20;Redelegate CRO on Crypto.com DeFi Wallet&#x20;
+### &#x20;Redelegate CRO on Crypto.com Onchain Wallet&#x20;
 
 You can redelegate your existing delegations - change stake from one validator to another without undergoing the 28-day unbonding period
 
@@ -74,9 +74,9 @@ When managing your CRO delegation, be aware of the following restrictions:
 
 
 
-## [Crypto.com DeFi Desktop Wallet](https://github.com/crypto-com/chain-desktop-wallet)
+## [Crypto.com Defi Desktop Wallet](https://github.com/crypto-com/chain-desktop-wallet)
 
-The Crypto.com DeFi Desktop Wallet supports basic sending and CRO staking operations on Mainnet and Croeseid Testnet, including the option to choose any CRO validators for staking and redelegation.
+The Crypto.com Defi Desktop Wallet supports basic sending and CRO staking operations on Mainnet and Croeseid Testnet, including the option to choose any CRO validators for staking and redelegation.
 
 ### Delegate CRO to a validator
 
@@ -93,14 +93,15 @@ You can input the validator’s information either by:
 * Copying the complete address of your preferred validator, and pasting the validator’s "Operator Address" (begin with tcrocncl... for testnet) under "Validator address." Then specify the amount that you would like to delegate.
 
 {% hint style="warning" %}
-Remark: To support the decentralization of the network, we suggest all users delegate your funds to validators with fewer shares, but please make sure you've done research into the validators you selected before the delegation to minimize your risk of unnecessary fund loss.
+**Remark**\
+To support the decentralization of the network, we suggest all users delegate your funds to validators with fewer shares, but please make sure you've done research into the validators you selected before the delegation to minimize your risk of unnecessary fund loss.
 {% endhint %}
 
 Step 2 - Similar to sending a transaction, you can review and confirm the transaction details on the Desktop Wallet first shown below, click "Review" and enter your app password.
 
 ![](https://lh7-us.googleusercontent.com/sRD64WKtpSad0-2\_-5atKTQ0htjpM8nzoVv0ebVrG5jtIuEZyr2-Vda6QbSFcGZtPnlcDPL-MA8VoBaWSA3ARd9K2-2Xu\_zYSTqpP55E1t4iyp9OU5FptETv5aVi-Dai9nTq24-SKoHKJ\_Aj81DZdNQ)
 
-Step 3 - Now you will proceed to the confirmation section. Make sure you input the correct information of your wallet and then hit "Confirm"
+Step 3 - Now you will proceed to the confirmation section. Make sure you input the correct information of your wallet and then hit "Confirm".
 
 | ![](https://lh7-us.googleusercontent.com/y0tLmFNYMi2G1S9jAPxXR0eSonP39Ne5pmXM2bTdaOUI5iDclukPL0ZeCwZx0frlz14krcAgf4n2aK9cy9gLd8ScdX6MrYmqmWeNOkleV0cqlKzmjQUlEwShJ0vy3\_tp8mAd1h\_pyDXtb9yYpKdqljU) | ![](https://lh7-us.googleusercontent.com/qMs9GCNypNM7HipsXhZKP5cRr9QsB\_hHYWZCmK1DCXz6uWaVUMTCKBKj7e2bYc4F4xOpbthc026O0kCCVDO\_YjKlZXJxjgP6YKVPyWuxxMDWHEHNUKcJ5hROZrjy6TjV92EmDE4sUqhgLWygbzjtKOo) |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

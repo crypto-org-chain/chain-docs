@@ -20,7 +20,7 @@
 
 ### Using `chain-maind`
 
-`chain-maind`is bundled with the Cronos PoS Chain code. After you have obtained the latest `chain-maind` binary, run
+`chain-maind`is bundled with the Cronos POS Chain code. After you have obtained the latest `chain-maind` binary, run
 
 ```bash
 $ chain-maind [command]
@@ -44,7 +44,7 @@ To specify the chain-maind config and data storage directory; you can add a glob
 
 ### Configure Chain ID
 
-Cronos PoS Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the following aliases and add the global `--chain-id` flag, for example, `crypto-org-chain-mainnet-1` is the chain-id for the Cronos PoS Chain mainnet:
+Cronos POS Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_ . Accordingly, you should set up your chain-maind and use the correct configuration for the node you are connecting to. For example, you might create the following aliases and add the global `--chain-id` flag, for example, `crypto-org-chain-mainnet-1` is the chain-id for the Cronos POS Chain mainnet:
 
 ```bash
 alias chain-maind="chain-maind --chain-id crypto-org-chain-mainnet-1"

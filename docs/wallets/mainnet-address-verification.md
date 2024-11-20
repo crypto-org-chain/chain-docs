@@ -12,9 +12,9 @@ We recommend verifying your mnemonic words and address only on a trusted, safe a
 
 Supported OS: Linux, Mac OS and Windows
 
-#### Step 1. Get the Cronos PoS Chain  binary
+#### Step 1. Get the Cronos POS Chain  binary
 
-Download the Cronos PoS Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v1.0.0) and extract the binary. Here we used Linux as an example:
+Download the Cronos POS Chain Binary for Mainnet from [release page](https://github.com/crypto-org-chain/chain-main/releases/tag/v1.0.0) and extract the binary. Here we used Linux as an example:
 
 ```bash
 $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v1.0.0/chain-main_1.0.0_Linux_x86_64.tar.gz

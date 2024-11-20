@@ -13,15 +13,15 @@ You can use your [Ledger hardware wallets](https://www.ledger.com/) to securely 
 
 In case you have any inquiries about using the Ledger device, kindly send a message to the Cronos [Discord](https://discord.gg/pahqHz26q4) #technical-questions channel for assistance.
 
-## Install the Cronos PoS Chain app on your Ledger device
+## Install the Cronos POS Chain app on your Ledger device
 
 We will use Ledger Nano S for this illustration:
 
-First of all, you will need to install the Cronos PoS Chain app on your Ledger device. Kindly make sure your Ledger Live is updated to the latest version.
+First of all, you will need to install the Cronos POS Chain app on your Ledger device. Kindly make sure your Ledger Live is updated to the latest version.
 
 * **Step 1** - Connect and unlock your Ledger device
 * **Step 2** - On your Ledger device, go to "_Install app_", It should show "_Open Ledger live to install apps_"
-* **Step 3** - On the Ledger Live, find and install Cronos PoS Chain in the app catalog under "_Manager_" as below:&#x20;
+* **Step 3** - On the Ledger Live, find and install Cronos POS Chain in the app catalog under "_Manager_" as below:&#x20;
 
 &#x20;    ![](assets/ledger\_desktop\_wallet/s1-4-1.png)
 
@@ -29,16 +29,16 @@ First of all, you will need to install the Cronos PoS Chain app on your Ledger d
 
 ![](assets/ledger\_desktop\_wallet/s1-4-2.png)
 
-You can confirm the installation by checking if the Cronos PoS Chain App shows up in the main menu of your Ledger device: \
+You can confirm the installation by checking if the Cronos POS Chain App shows up in the main menu of your Ledger device: \
 \
 ![](assets/ledger\_desktop\_wallet/s1-4-3.jpeg)
 
-**Remark**: Once the Cronos PoS Chain App is successfully installed, please close the Ledger Live app before proceeding to the next step.
+**Remark**: Once the Cronos POS Chain App is successfully installed, please close the Ledger Live app before proceeding to the next step.
 
 ## Generate Address with Ledger device
 
 1. Connect and unlock your Ledger device
-2. Open "Cronos PoS Chain" app on the device
+2. Open "Cronos POS Chain" app on the device
 3.  Run in your terminal
 
     ```bash
@@ -79,7 +79,7 @@ $ ./chain-maind keys list --keyring-backend=test
 In this tutorial, we will send a `MsgSend` transaction securely signed by your Ledger device to the chain.
 
 1. Connect and unlock your Ledger device
-2. Open "Cronos PoS Chain" app on the device
+2. Open "Cronos POS Chain" app on the device
 3.  For example, if you would like to send `1cro` in the mainnet, in your terminal, you can run:
 
     ```bash

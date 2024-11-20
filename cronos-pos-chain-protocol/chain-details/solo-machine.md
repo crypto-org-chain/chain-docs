@@ -10,7 +10,9 @@ Solo machines open up plenty of use cases in the Cosmos ecosystem. In this artic
 
 The blockchain is running locally in this example and the proper configuration setup is required. In the genesis file, ensure 1) `transfer` in the genesis file is enabled (`receive_enabled: true` and `send_enabled: true`); 2) the staking message (`/cosmos.staking.v1beta1/MsgDelegate` and `/cosmos.staking.v1beta1/MsgUndelegate`)is enabled at `allow_message` under `host_genesis_state`. This lets them communicate properly later on.&#x20;
 
-![image](https://user-images.githubusercontent.com/78806365/190537653-f7ea9530-c0ed-448a-89ba-48fbc7b9662b.png)&#x20;
+&#x20;
+
+<figure><img src="https://user-images.githubusercontent.com/78806365/190537653-f7ea9530-c0ed-448a-89ba-48fbc7b9662b.png" alt=""><figcaption></figcaption></figure>
 
 After completing the integration, run the chain in the background.
 

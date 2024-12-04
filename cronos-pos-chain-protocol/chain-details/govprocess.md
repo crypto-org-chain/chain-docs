@@ -33,7 +33,7 @@ Proposal Types: You may choose to put your proposal in any of the following form
 
 ### 3. Collect feedback from the community
 
-After the proposal is ready, you can post a thread to begin a discussion on the [Cronos PoS Chain Github Discussions page](https://github.com/crypto-org-chain/chain-main/discussions) to gain initial feedback. Engagement is critical to the success of a proposal. The ideal strategy is to engage with experienced people in the community about your idea, to confirm the key points, such as if it makes sense, or if critical flaws exist, etc. You may also plan for a few stages of engagement to get as much as feedback possible before and after submitting a proposal on-chain. Let people in the [Discord community](https://discord.gg/5JTk2ppsY3) know about your draft proposal.
+After the proposal is ready, you can post a thread to begin a discussion on the [Cronos POS Chain Github Discussions page](https://github.com/crypto-org-chain/chain-main/discussions) to gain initial feedback. Engagement is critical to the success of a proposal. The ideal strategy is to engage with experienced people in the community about your idea, to confirm the key points, such as if it makes sense, or if critical flaws exist, etc. You may also plan for a few stages of engagement to get as much as feedback possible before and after submitting a proposal on-chain. Let people in the [Discord community](https://discord.gg/5JTk2ppsY3) know about your draft proposal.
 
 ### 4. Revise your proposal
 
@@ -70,4 +70,4 @@ The voting period is currently 14 days, and the vote can be changed anytime befo
 
 Please note that it is a WIP. The governance will further be explored down the line and some parts in this documentation are in development, so please use this document as a reference and seek feedback when using this information.
 
-For more details about governance transactions, queries, and relevant network parameters, please visit the [gov section](https://crypto.org/docs/chain-details/module\_overview.html#gov).
+For more details about governance transactions, queries, and relevant network parameters, please visit the [gov section](https://crypto.org/docs/chain-details/module_overview.html#gov).

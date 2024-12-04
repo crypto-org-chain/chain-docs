@@ -1,8 +1,8 @@
-# 🎛 Modules
+# 🎛️ Modules
 
 ## Overview
 
-Cronos PoS Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tendermint](https://tendermint.com/) Core consensus engine underneath. Specifically, the Cosmos SDK is a framework that facilitates the development of secure state-machines on top of Tendermint. In particular, we utilize different SDK modules to facilitate the special features of the Cronos PoS Chain.
+Cronos POS Chain utilizes [Cosmos SDK](https://cosmos.network/sdk) and the [Tendermint](https://tendermint.com/) Core consensus engine underneath. Specifically, the Cosmos SDK is a framework that facilitates the development of secure state-machines on top of Tendermint. In particular, we utilize different SDK modules to facilitate the special features of the Cronos POS Chain.
 
 In this documentation, we will be focusing on some of the important modules we used, for example:
 
@@ -34,13 +34,13 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 
 #### SendAuthorization
 
-`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](module\_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` get cleared when the `SpendLimit`reach 0. Sending an amount greater than the `SpendLimit` is not allowed.
+`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](module_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` get cleared when the `SpendLimit`reach 0. Sending an amount greater than the `SpendLimit` is not allowed.
 
 ***
 
 #### StakeAuthorization
 
-`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](module\_staking.md) module. Each of the above actions need to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](./#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
+`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](module_staking.md) module. Each of the above actions need to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](./#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
 
 ***
 
@@ -494,7 +494,7 @@ This mechanism aims to incentivize non-empty block proposals, better networking 
 
 The `community_tax` is the tax rate of the reward obtained by the validator. Specifically, part of the reward will be taxed and sent to the community pool. The funds in the community pool can be withdrawn by submitting a community pool spend proposal with the [gov module](./#gov).
 
-Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntarily, and there could be funds allocated to the community pool in the [genesis](../chain-details/genesis\_file.md).
+Even if the `community_tax` is set to be zero, the balance of the community pool could be non-zero. For example, the truncated remainder in some accounting edge cases will be sent to the community pool as well. Besides that, users can fund the community pool voluntarily, and there could be funds allocated to the community pool in the [genesis](../chain-details/genesis_file.md).
 
 ### Transactions and Queries
 
@@ -868,15 +868,15 @@ The following tables show the overall effects of the mint related network parame
 
 Fungible tokens are mutually interchangeable, and one most common example of fungible tokens is fiat currencies. Specifically, the $100.50 US dollars in my bank account is equally valuable as the $100.50 US dollars in someone else's bank account. Another example of fungible tokens would be the native cryptocurrency of **Ethereum**, one of the most popular blockchain networks, i.e. **Ether**. Ethers are totally fungible, meaning that one ether is equal to one ether, and it's equal to any other ether as well. Particularly, ethers are also highly divisible up to one **wei**, or 0.000000000000000001 (10-18) ether.
 
-In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Cronos PoS Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** are unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
+In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Cronos POS Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** are unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
 
 On-chain NFT standards were first developed on **Ethereum** within the **ERC-721** standard and its subsequent **Ethereum Improvement Proposals**. The subsequent **ERC-1155** standard aims to address some restrictions of **Ethereum** such as storage costs and semi-fungible assets. NFTs on application specific blockchains share some but not all features as their **Ethereum** brethren, since application specific blockchains are more flexible in how their resources are utilized, such as the ability to use strings as IDs.
 
-The `nft` module here facilitates managing non-fungible tokens that represent individual assets with unique features on **Cronos PoS Chain**.
+The `nft` module here facilitates managing non-fungible tokens that represent individual assets with unique features on **Cronos POS Chain**.
 
 ### Overview
 
-There are two key concepts for NFTs on **Cronos PoS Chain**, namely, **denom** and **token**:
+There are two key concepts for NFTs on **Cronos POS Chain**, namely, **denom** and **token**:
 
 *   **denom**
 
@@ -981,7 +981,7 @@ $ chain-maind tx nft mint fftb2050 v1ed1 --name "Version 1 Edition 1" --uri "htt
 
 ### `edit`:
 
-Unlike NFTs minted on **Ethereum**, an NFT minted on **Cronos PoS Chain** may easily be edited, provided that the user editing it is both the owner and creator of such NFT.
+Unlike NFTs minted on **Ethereum**, an NFT minted on **Cronos POS Chain** may easily be edited, provided that the user editing it is both the owner and creator of such NFT.
 
 #### `tx nft edit [denom_id] [token_id] --name [new_name] --uri [new_uri] --data [new_metadata] --from [user_address]`- **Edit an NFT**
 
@@ -1316,14 +1316,14 @@ Example: For example, if `block_signing_window` is `2000` blocks and `min_signed
 
 It is important that the validators maintain excellent availability and network connectivity to perform their tasks. A penalty should be imposed on validators' misbehaviour to reinforce this.
 
-When a validator fails to successfully sign `missed_block_threshold` blocks in the last `block_signing_window` blocks, it is immediately jailed and punished by deducting funds from their bonded and unbonded amount and removing them from the active validator set. The funds to be deducted are calculated based on `slash_fraction_downtime`. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/slashing/04\_begin\_block.html) on the logic of the liveness tracking.
+When a validator fails to successfully sign `missed_block_threshold` blocks in the last `block_signing_window` blocks, it is immediately jailed and punished by deducting funds from their bonded and unbonded amount and removing them from the active validator set. The funds to be deducted are calculated based on `slash_fraction_downtime`. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/slashing/04_begin_block.html) on the logic of the liveness tracking.
 
 ### Jailing
 
 A validator is jailed when they make liveness or Byzantine fault. When a validator is jailed, it will no longer be considered as an active validator until they are un-jailed. Futhermore, it cannot be un-jailed before `downtime_jail_duration`. This `downtime_jail_duration` is a network parameter which can be configured during genesis.
 
 {% hint style="warning" %}
-Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html).
+Important: When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07_tombstone.html).
 {% endhint %}
 
 #### Un-jailing
@@ -1410,7 +1410,7 @@ The `staking` module handles Proof-of-Stake related logics, which plays a very i
 
 ### Overview
 
-Cronos PoS Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (PoS) consensus protocol, and they are responsible for committing new blocks to the blockchain.
+Cronos POS Chain is based on Tendermint Core's consensus engine, it relies on a set of validators to participate in the proof of stake (POS) consensus protocol, and they are responsible for committing new blocks to the blockchain.
 
 * `unbonding_time`: The time duration of unbonding;
 * `max_validators`: The maximum number of validators;
@@ -1426,7 +1426,7 @@ Validators are responsible for signing or proposing a block at each consensus ro
 
 The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](./#distribution) module). Specifically, it allows token owners to take part in the consensus process without running a validator themselves.
 
-It is important to point out that the delegator and the validator are on the same boat: they share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](./#slashing)). Therefore, it is very important to choose a reliable validator to delegate to. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02\_state\_transitions.html#delegations) for detailed specification and state transitions of delegation.
+It is important to point out that the delegator and the validator are on the same boat: they share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](./#slashing)). Therefore, it is very important to choose a reliable validator to delegate to. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
 
 ### Transactions and Queries
 

@@ -105,13 +105,13 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 
 #### Step 1-3. Search for "Cronos POS Chain" and install the application to your Ledger.
 
-![](assets/ledger\_desktop\_wallet/s1-5.png)
+![](assets/ledger_desktop_wallet/s1-5.png)
 
 #### Step 1-4. Confirm the installation
 
 You can confirm the installation by checking if the Cronos POS Chain App shows up in the main menu of your Ledger device:
 
-![](assets/ledger\_desktop\_wallet/s1-4-3.jpeg)
+<div align="left"><figure><img src="../../.gitbook/assets/WhatsApp Image 2024-12-03 at 17.36.22.jpeg" alt="" width="188"><figcaption></figcaption></figure></div>
 
 ***
 

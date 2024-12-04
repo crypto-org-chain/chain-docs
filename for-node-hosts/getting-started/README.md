@@ -1,13 +1,13 @@
 # ⛓️ Running Nodes
 
-Thanks for your interest in Cronos PoS Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Cronos PoS Chain.
+Thanks for your interest in Cronos POS Chain. In this technical documentation, we have covered node setup instructions, our all-in-one command-line interface `chain-maind`, and different SDK modules we utilized in the Cronos POS Chain.
 
 ### What's next?
 
-#### Cronos PoS Chain Mainnet
+#### Cronos POS Chain Mainnet
 
-* **Join Cronos PoS Chain Mainnet**
-  * [As a validator](mainnet\_validator.md);
+* **Join Cronos POS Chain Mainnet**
+  * [As a validator](mainnet_validator.md);
   * [Build a Full node](mainnet/)
 *   Deploy mainnet node with [1 click](aws-1click.md):
 
@@ -16,7 +16,7 @@ Thanks for your interest in Cronos PoS Chain. In this technical documentation, w
     * [AWS](aws-1click.md); or
     * [Azure](azure-1click.md).
 
-#### Cronos PoS Chain Croeseid Testnet
+#### Cronos POS Chain Croeseid Testnet
 
 *   [Join Croeseid Testnet](croeseid-testnet.md):
 

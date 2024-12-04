@@ -206,7 +206,7 @@ Congratulations! You've successfully transferred tokens to Bob.
 
 ### Staking Operation
 
-Cronos PoS Chain is based on tendermint with the Proof of Stake (PoS) consensus algorithm. In this sub-section, we will be covering how to perform basic staking related transactions.
+Cronos POS Chain is based on tendermint with the Proof of Stake (POS) consensus algorithm. In this sub-section, we will be covering how to perform basic staking related transactions.
 
 #### Check the current validator set
 

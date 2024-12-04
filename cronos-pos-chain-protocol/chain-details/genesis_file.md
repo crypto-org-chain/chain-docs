@@ -1,6 +1,6 @@
 # Genesis
 
-The `genesis.json` file defines the initial state of the Cronos PoS Chain. On top of the standard [tendermint genesis](https://docs.tendermint.com/master/tendermint-core/using-tendermint.html#genesis) format, we customize our own genesis file that includes different [modules](genesis\_file.md#module\_overview) and facilitates the special features of the Cronos PoS Chain. Sample genesis file can be found [here](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/genesis.json).
+The `genesis.json` file defines the initial state of the Cronos POS Chain. On top of the standard [tendermint genesis](https://docs.tendermint.com/master/tendermint-core/using-tendermint.html#genesis) format, we customize our own genesis file that includes different [modules](genesis_file.md#module_overview) and facilitates the special features of the Cronos POS Chain. Sample genesis file can be found [here](https://github.com/crypto-com/testnets/blob/main/testnet-croeseid-2/genesis.json).
 
 ## Fields in genesis
 

@@ -10,11 +10,11 @@ NFT provides the ability to digitize assets. The NFT Module described here is me
 
 Fungible tokens are mutually interchangeable, and one most common example of fungible tokens is fiat currencies. Specifically, the $100.50 US dollars in my bank account is equally valuable as the $100.50 US dollars in someone else's bank account. Another example of fungible tokens would be the native cryptocurrency of **Ethereum**, one of the most popular blockchain networks, i.e. **Ether**. Ethers are totally fungible, meaning that one ether is equal to one ether, and it's equal to any other ether as well. Particularly, ethers are also highly divisible up to one **wei**, or 0.000000000000000001 (10-18) ether.
 
-In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Cronos PoS Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** is unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
+In contrast, non-fungible tokens (NFTs) are special tokens that are unique in the sense that they cannot be split or equally interchanged for other NFTs of the same type. **CryptoKitties** on **Ethereum** or **Loaded Lions** on **Cronos POS Chain** are both examples of NFTs: each **CryptoKitty** or **Loaded Lion** is unique and non-divisible, unlike **Bitcoin**. Generally speaking, NFTs are unique, non-interchangeable, and non-divisible.
 
 On-chain NFT standards were first developed on **Ethereum** within the **ERC-721** standard and its subsequent **Ethereum Improvement Proposals**. The subsequent **ERC-1155** standard aims to address some restrictions of **Ethereum** such as storage costs and semi-fungible assets. NFTs on application specific blockchains share some but not all features as their **Ethereum** brethren, since application specific blockchains are more flexible in how their resources are utilized, such as the ability to use strings as IDs.
 
-The `nft` module here facilitates managing non-fungible tokens that represent individual assets with unique features on **Cronos PoS Chain**.
+The `nft` module here facilitates managing non-fungible tokens that represent individual assets with unique features on **Cronos POS Chain**.
 
 You can find the [NFT specification doc](https://github.com/crypto-org-chain/chain-main/tree/master/x/nft/spec) here.
 
@@ -22,7 +22,7 @@ You can find the [NFT specification doc](https://github.com/crypto-org-chain/cha
 
 #### Overview
 
-Below are key concepts and properties for NFTs on **Cronos PoS Chain**:
+Below are key concepts and properties for NFTs on **Cronos POS Chain**:
 
 *   **Denom**
 
@@ -134,7 +134,7 @@ $ chain-maind tx nft mint fftb2050 v1ed1 --name "Version 1 Edition 1" --uri "htt
 
 #### `edit`:
 
-Unlike NFTs minted on **Ethereum**, an NFT minted on **Cronos PoS Chain** may easily be edited, provided that the user editing it is both the owner and creator of such NFT.
+Unlike NFTs minted on **Ethereum**, an NFT minted on **Cronos POS Chain** may easily be edited, provided that the user editing it is both the owner and creator of such NFT.
 
 **`tx nft edit [denom_id] [token_id] --name [new_name] --uri [new_uri] --data [new_metadata] --from [user_address]`- Edit an NFT**
 

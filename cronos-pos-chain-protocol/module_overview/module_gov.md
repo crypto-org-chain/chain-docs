@@ -4,7 +4,7 @@
 
 #### Introduction
 
-The `gov` module enables on-chain governance which allows Cronos PoS Chain token holders to participate in the decision-making processes. For example, users can:
+The `gov` module enables on-chain governance which allows Cronos POS Chain token holders to participate in the decision-making processes. For example, users can:
 
 * Form an idea and seek the feedback;
 * Create the proposal and adjust according to feedback as needed;

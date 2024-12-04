@@ -49,7 +49,7 @@ IMPORTANT: If you are not able to perform this upgrades, you can also request a 
 **Reminder**: The binary for _testnet_ and the binary for _mainnet_ are two **different** binaries. Please make sure you are using the correct binary.
 {% endhint %}
 
-To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz)) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
+To simplify the following step, we will be using **Linux** (Intel x86) for illustration. Binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_arm64.tar.gz)) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Windows_x86_64.zip) are also available.
 
 *   To install Cronos POS Chain released **testnet binaries** from GitHub:
 
@@ -103,7 +103,7 @@ Before kick-starting your node, we will have to configure your node so that it c
       $ ./chain-maind init [moniker] --chain-id testnet-croeseid-4
     ```
 
-    This `moniker` will be the displayed ID of your node when connected to Cronos PoS Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed. The example below shows how to initialize a node named `pegasus-node` :
+    This `moniker` will be the displayed ID of your node when connected to Cronos POS Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed. The example below shows how to initialize a node named `pegasus-node` :
 
     ```bash
       $ ./chain-maind init pegasus-node --chain-id testnet-croeseid-4
@@ -355,7 +355,7 @@ $ ./chain-maind query tendermint-validator-set | grep -c [tcrocnclcons...]
 ## 1 = Yes; 0 = Not yet added ##
 ```
 
-To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature\_checking/check-validator-up.sh), for example:
+To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-com/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \

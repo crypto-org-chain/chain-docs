@@ -1,6 +1,6 @@
 # Mainnet/Testnet: Running Nodes using AWS 1-click Deployment
 
-This tutorial will use our AWS 1-click Deployment image to start and create the latest Cronos PoS Chain 1-Click Node for both Mainnet and Testnet
+This tutorial will use our AWS 1-click Deployment image to start and create the latest Cronos POS Chain 1-Click Node for both Mainnet and Testnet
 
 {% hint style="warning" %}
 **CAUTION** We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use it with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html)
@@ -18,19 +18,19 @@ Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.s
 
 Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance"
 
-&#x20;![](../../docs/getting-started/assets/aws\_ec2\_dashboard.png)
+&#x20;![](../../docs/getting-started/assets/aws_ec2_dashboard.png)
 
 ### Step 2-1. Search for Cronos POS Chain 1-Click Node on AWS Marketplace
 
-Search for "Cronos POS Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Cronos POS Chain 1-Click Node" from the search results. ![](../../docs/getting-started/assets/aws\_marketplace.png)
+Search for "Cronos POS Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Cronos POS Chain 1-Click Node" from the search results. ![](../../docs/getting-started/assets/aws_marketplace.png)
 
 ### Step 2-2. Choose an instance type
 
-By default, it will choose the recommended instance type (**m5a.large**) for you. But you can choose another instance type based on [Mainnet](../../docs/getting-started/mainnet.html#prepare-your-machine)/[Testnet](../../docs/getting-started/croeseid-testnet.html#pre-requisites) requirements. ![](../../docs/getting-started/assets/aws\_instance.png)
+By default, it will choose the recommended instance type (**m5a.large**) for you. But you can choose another instance type based on [Mainnet](../../docs/getting-started/mainnet.html#prepare-your-machine)/[Testnet](../../docs/getting-started/croeseid-testnet.html#pre-requisites) requirements. ![](../../docs/getting-started/assets/aws_instance.png)
 
 ### Step 2-3. Configure instance details
 
-![](../../docs/getting-started/assets/aws\_config\_instance.png)
+![](../../docs/getting-started/assets/aws_config_instance.png)
 
 | Configuration           | Value                                                       |
 | ----------------------- | ----------------------------------------------------------- |
@@ -222,7 +222,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Cronos PoS Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Cronos PoS Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Cronos POS Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Cronos POS Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
 
 {% hint style="info" %}
 **NOTE**
@@ -236,7 +236,7 @@ $ chain-maind version
 3.3.9
 ```
 
-* Mainnet binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main\_3.3.9\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main\_3.3.9\_Windows\_x86\_64.zip) are also available.
+* Mainnet binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Windows_x86_64.zip) are also available.
 
 Or
 
@@ -247,7 +247,7 @@ $ chain-maind version
 3.1.0-croeseid
 ```
 
-* Testnet binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
+* Testnet binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Windows_x86_64.zip) are also available.
 {% endhint %}
 
 <details>

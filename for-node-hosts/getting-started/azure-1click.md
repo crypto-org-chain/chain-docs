@@ -14,19 +14,19 @@ Please read `Microsoft Azure` free trial introduction to see if you are eligible
 
 ## Step 2. Common Setup
 
-### Step 2-1. Search for Cronos PoS Chain on Marketplace
+### Step 2-1. Search for Cronos POS Chain on Marketplace
 
-Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft\_Azure\_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Cronos PoS Chain 1-Click Node".
+Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Cronos POS Chain 1-Click Node".
 
-![](../../docs/getting-started/assets/azure\_marketplace.png)
+![](../../docs/getting-started/assets/azure_marketplace.png)
 
 ### Step 2-2. Create a Virtual Machine
 
-Choose the image and click "Create" to start creating the Cronos PoS Chain 1-Click Node.
+Choose the image and click "Create" to start creating the Cronos POS Chain 1-Click Node.
 
 #### 1. Basic
 
-![](../../docs/getting-started/assets/azure\_1click\_basics.png)
+![](../../docs/getting-started/assets/azure_1click_basics.png)
 
 | Configuration           | Value                                                                                                             |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -41,7 +41,7 @@ Choose the image and click "Create" to start creating the Cronos PoS Chain 1-Cli
 
 #### 3. Networking
 
-![](../../docs/getting-started/assets/azure\_1click\_networking.png)
+![](../../docs/getting-started/assets/azure_1click_networking.png)
 
 * _Virtual network_, _Subnet_, _Public IP_ and _NIC_: "Create new" if you don't have any in that region
 
@@ -213,7 +213,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Cronos PoS Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Cronos PoS Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Cronos POS Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Cronos POS Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
 
 {% hint style="info" %}
 **NOTE**
@@ -227,7 +227,7 @@ $ chain-maind version
 3.3.9
 ```
 
-* Mainnet binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main\_2.0.1\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main\_2.0.1\_Windows\_x86\_64.zip) are also available.
+* Mainnet binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.0.1/chain-main_2.0.1_Windows_x86_64.zip) are also available.
 
 Or Testnet
 
@@ -236,7 +236,7 @@ $ chain-maind version
 3.1.0-croeseid
 ```
 
-* Testnet binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_x86\_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Darwin\_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main\_3.1.0-croeseid\_Windows\_x86\_64.zip) are also available.
+* Testnet binary for **Mac** ([Intel x86](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_x86_64.tar.gz) / [M1](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Darwin_arm64.tar.gz))and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.1.0-croeseid/chain-main_3.1.0-croeseid_Windows_x86_64.zip) are also available.
 {% endhint %}
 
 <details>

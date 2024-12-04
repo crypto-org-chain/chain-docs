@@ -8,7 +8,7 @@ For a full overview of the latest upgrades, please refer to ["Notes on network u
 * The chain-maind `v4.2.2` - "V4" upgrade is proposed to be scheduled at the block height of `10,073,800` ( _Estimated time \~WED, 22 Feb 2023 02:00:00 GMT_, but this depends on the actual time taken when the blocks are being processed);
 * Actual timing depends on the progress of block production, the estimated time of this block can be found [here](https://www.mintscan.io/crypto-org/blocks/10073800).
 
-**DO NOT UPGRADE to the binary `v4.2.2` before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade\_guide\_v4.md#step-0-don-t-panic)**.** &#x20;
+**DO NOT UPGRADE to the binary `v4.2.2` before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade_guide_v4.md#step-0-don-t-panic)**.** &#x20;
 {% endhint %}
 
 ## Step 0 - Don't panic
@@ -17,7 +17,7 @@ At the point of proposed upgrade, user will see the error message on the `chain-
 
 `ERR UPGRADE "v4.2.0" NEEDED at time: xxxxxxxxxxxxx: {"binaries":{"darwin/amd64":.......`
 
-**Don't panic** - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Cronos PoS Chain nodes to the latest release binary.
+**Don't panic** - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Cronos POS Chain nodes to the latest release binary.
 
 ### Backups
 
@@ -27,7 +27,7 @@ It is critically important for validator operators to back-up the `.chain-maind/
 
 ## Step 1 - Get the `v4.2.2` binary
 
-To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac(arm64)](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main\_4.2.2\_Darwin\_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main\_4.2.2\_Windows\_x86\_64.zip) are also available.
+To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac(arm64)](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main_4.2.2_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main_4.2.2_Windows_x86_64.zip) are also available.
 
 *   Terminate the `chain-maind`; afterward, download the `4.2.2` released binaries from GitHub:
 

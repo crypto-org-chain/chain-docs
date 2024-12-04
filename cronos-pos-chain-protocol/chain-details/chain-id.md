@@ -2,19 +2,19 @@
 
 ## Chain ID
 
-Cronos PoS Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_. When running the Cronos PoS Chain in your local environment, you will also need to decide your own Chain ID.
+Cronos POS Chain has different Chain ID to distinguish between _devnet_, _testnet_ and _mainnet_. When running the Cronos POS Chain in your local environment, you will also need to decide your own Chain ID.
 
 For example, our testnet Chain ID is `testnet-croeseid-4`.
 
 ## Address prefix
 
-[BIP-0173](https://github.com/satoshilabs/slips/blob/master/slip-0173.md) defines a new format for segregated witness output addresses that contains a human-readable part that identifies the coin type. Cronos PoS Chain has different address prefixes for its corresponding network types, these prefixes are:
+[BIP-0173](https://github.com/satoshilabs/slips/blob/master/slip-0173.md) defines a new format for segregated witness output addresses that contains a human-readable part that identifies the coin type. Cronos POS Chain has different address prefixes for its corresponding network types, these prefixes are:
 
 | Mainnet | Testnet | Devnet |
 | ------- | ------- | ------ |
 | `cro`   | `tcro`  | `dcro` |
 
-Cronos PoS Chain uses the Bech32 address format wherever users must handle binary data. Bech32 encoding provides robust integrity checks on data and the human readable part(HRP) that provides contextual hints that can assist UI developers with providing informative error messages. Specifically, we have the following HRP prefix for different addresses types in the mainnet:
+Cronos POS Chain uses the Bech32 address format wherever users must handle binary data. Bech32 encoding provides robust integrity checks on data and the human readable part(HRP) that provides contextual hints that can assist UI developers with providing informative error messages. Specifically, we have the following HRP prefix for different addresses types in the mainnet:
 
 |                    | Address bech32 Prefix |
 | ------------------ | --------------------- |
@@ -55,7 +55,7 @@ $ chain-maind keys show test --bech cons
 
 ## Signatures
 
-[Digital signature](https://en.wikipedia.org/wiki/Digital\_signature) has been the main way to authenticate users, by allowing users to sign transactions using their own private key. The public key and other data that are required for proper transaction validation are stored in an `Account` object.
+[Digital signature](https://en.wikipedia.org/wiki/Digital_signature) has been the main way to authenticate users, by allowing users to sign transactions using their own private key. The public key and other data that are required for proper transaction validation are stored in an `Account` object.
 
 Since the [`chain-maind`](https://github.com/crypto-org-chain/chain-main/releases) v3.0.0, the new types of public keys and signing algorithms are supported, including secp256r1/NIST P-256. Secp256r1 is commonly applied in HSMs, [macOS/iOS/watchOS Secure Enclave](https://support.apple.com/en-ca/guide/security/sec59b0b31ff/web) and [Android hardware-backed Keystore](https://source.android.com/security/keystore/features), which allows the devices to function as hardware wallets. Based on secp256r1, the chosen parameters are supposed to be random numbers, while secp256k1 has had its parameters chosen [relatively rigidly](http://safecurves.cr.yp.to/rigid.html). Also, the address length (in bytes) in secp256k1 is 20 versus secp256r1 of 32.
 

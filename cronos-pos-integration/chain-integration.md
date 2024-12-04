@@ -2,7 +2,7 @@
 
 ## Useful Links
 
-* [Cronos PoS Chain website](https://crypto.org/)
+* [Cronos POS Chain website](https://crypto.org/)
 * [GitHub Repository](https://github.com/crypto-org-chain/chain-main)
 * [Official Documentation](https://crypto.org/docs/)
 
@@ -14,7 +14,7 @@
 
 * **Mainnet**:
   * [Running a full node](https://crypto.org/docs/getting-started/mainnet.html)
-  * [Running a validator](https://crypto.org/docs/getting-started/mainnet\_validator.html)
+  * [Running a validator](https://crypto.org/docs/getting-started/mainnet_validator.html)
   * [Mainnet Validator Security Checklist](https://crypto.org/docs/getting-started/security-checklist.html#part-1-conduct-survey-on-general-controls-of-hosting-data-centre)
 * **Testnet**:
   * [Joining the Croeseid Testnet](https://crypto.org/docs/getting-started/croeseid-testnet.html)
@@ -24,7 +24,7 @@
 
 ## API Documentation
 
-There are a few ways to access the Cronos PoS Chain
+There are a few ways to access the Cronos POS Chain
 
 1. **Tendermint RPC**
 

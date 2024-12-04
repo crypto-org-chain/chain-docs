@@ -18,19 +18,19 @@ An _authorization_ is an allowance to execute an action by the _grantee_ on beha
 
 **SendAuthorization**
 
-`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](module\_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend with. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` gets cleared when the `SpendLimit`reaches 0. Sending an amount greater than the `SpendLimit` is not allowed.
+`SendAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a basic `send` action defined in the [bank](module_bank.md) module. It takes a `SpendLimit` that is greater than 0 to specify the maximum amount of tokens the _grantee_ can spend with. The `SpendLimit` keeps track of how many tokens allowed are left in the authorization and is updated as the tokens are spent until the `SendAuthorization` gets cleared when the `SpendLimit`reaches 0. Sending an amount greater than the `SpendLimit` is not allowed.
 
 ***
 
 **StakeAuthorization**
 
-`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](module\_staking.md) module. Each of the above actions needs to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](module\_authz.md#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
+`StakeAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, `delegate`, `unbond` (undelegate), or `redelegate` actions defined in the [staking](module_staking.md) module. Each of the above actions needs to be authorized separately, with which either an `AllowList` or a `DenyList` must be specified to restrict which validators to or not to perform a staking action with. Optionally, `MaxTokens` can also be specified in the authorization that keeps track of a limit to the amount of tokens to be delegated/undelegated/redelegated. If left unspecified, the amount is unlimited. Similar to the `SpendLimit` in [`SendAuthorization`](module_authz.md#SendAuthorization), `MaxTokens` gets updated after each valid authorized staking action. An authorized staking action that uses tokens beyond the `MaxTokens` is not allowed.
 
 ***
 
 **GenericAuthorization**
 
-`GenericAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a generic action. In other words, `GenericAuthorization` facilitates an arbitrary action grant, where a `MsgTypeURL` must be specified to correspond to an action defined in the [modules](./). A `GenericAuthorization` is currently unrestricted beyond the `MsgTypeURL`. For example, when granting someone to send tokens, the `SpendLimit` in [`SendAuthorization`](module\_authz.md#SendAuthorization) will not be enforced. Therefore, a [`SendAuthorization`](module\_authz.md#SendAuthorization) without a spend limit may in fact be implemented as a `GenericAuthorization` with the `MsgTypeURL` been set to `/cosmos.bank.v1beta1.MsgSend`. The following are some common `MsgTypeURLs`:
+`GenericAuthorization` implements an authorization to the _grantee_ to perform, on behalf of the _granter_, a generic action. In other words, `GenericAuthorization` facilitates an arbitrary action grant, where a `MsgTypeURL` must be specified to correspond to an action defined in the [modules](./). A `GenericAuthorization` is currently unrestricted beyond the `MsgTypeURL`. For example, when granting someone to send tokens, the `SpendLimit` in [`SendAuthorization`](module_authz.md#SendAuthorization) will not be enforced. Therefore, a [`SendAuthorization`](module_authz.md#SendAuthorization) without a spend limit may in fact be implemented as a `GenericAuthorization` with the `MsgTypeURL` been set to `/cosmos.bank.v1beta1.MsgSend`. The following are some common `MsgTypeURLs`:
 
 * Send: `/cosmos.bank.v1beta1.MsgSend`
 * Delegate: `/cosmos.staking.v1beta1.MsgDelegate`
@@ -275,7 +275,7 @@ $ chain-maind tx authz revoke <grantee_address> /cosmos.bank.v1beta1.MsgSend --f
 
 #### Queries
 
-**`query authz grants [granter_address] [grantee_address]` - Query all existing grants between a **_**granter**_**-**_**grantee**_** pair**
+**`query authz grants [granter_address] [grantee_address]` - Query all existing grants between a&#x20;**_**granter**_**-**_**grantee**_**&#x20;pair**
 
 {% hint style="info" %}
 Example: Query all existing grants between the specified granter and grantee
@@ -325,7 +325,7 @@ $ chain-maind query authz grants <granter_address> <grantee_address> --output js
 
 We may also specify a `MsgTypeURL` for the query:
 
-**`query authz grants [granter_address] [grantee_address] [msg_type_url]` - Query the grant with a specified Message Type URL between a **_**granter**_**-**_**grantee**_** pair**
+**`query authz grants [granter_address] [grantee_address] [msg_type_url]` - Query the grant with a specified Message Type URL between a&#x20;**_**granter**_**-**_**grantee**_**&#x20;pair**
 
 {% hint style="info" %}
 Example: Query the grant to withdraw delegator reward between the specified granter and grantee

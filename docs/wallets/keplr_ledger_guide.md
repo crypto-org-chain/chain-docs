@@ -7,7 +7,7 @@ In the following step-by-step guide, you will learn how to stake your $CROs usin
 ## Install the Keplr Browser and Connect your Ledger Device
 
 _The Keplr browser extension may request permission to access your Ledger device. Please make sure to grant this permission in your browser during this process._ \
-_**Note:** the permission is strictly used to allow Keplr browser extension to communicate with the front-end servers, and all sensitive data remains local on your device._
+&#xNAN;_**Note:** the permission is strictly used to allow Keplr browser extension to communicate with the front-end servers, and all sensitive data remains local on your device._
 
 ## Setup Apps on Ledger Nano S
 

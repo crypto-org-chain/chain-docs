@@ -23,15 +23,17 @@ First of all, you will need to install the Cronos POS Chain app on your Ledger d
 * **Step 2** - On your Ledger device, go to "_Install app_", It should show "_Open Ledger live to install apps_"
 * **Step 3** - On the Ledger Live, find and install Cronos POS Chain in the app catalog under "_Manager_" as below:&#x20;
 
-&#x20;    ![](assets/ledger\_desktop\_wallet/s1-4-1.png)
+&#x20;   &#x20;
+
+<div align="left"><figure><img src="../../.gitbook/assets/Screenshot 2024-12-04 151307.png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 * **Step 4** - Your Ledger device will display "_Processing…_". Once the installation is completed, you should see "_Installed_" on your Ledger Live as below:&#x20;
 
-![](assets/ledger\_desktop\_wallet/s1-4-2.png)
+<div align="left"><figure><img src="../../.gitbook/assets/Screenshot 2024-12-04 at 15.33.28.png" alt="" width="375"><figcaption></figcaption></figure></div>
 
-You can confirm the installation by checking if the Cronos POS Chain App shows up in the main menu of your Ledger device: \
-\
-![](assets/ledger\_desktop\_wallet/s1-4-3.jpeg)
+You can confirm the installation by checking if the Cronos POS Chain App shows up in the main menu of your Ledger device:&#x20;
+
+<div align="left"><figure><img src="../../.gitbook/assets/WhatsApp Image 2024-12-03 at 17.36.22.jpeg" alt="" width="375"><figcaption></figcaption></figure></div>
 
 **Remark**: Once the Cronos POS Chain App is successfully installed, please close the Ledger Live app before proceeding to the next step.
 
@@ -46,7 +48,7 @@ You can confirm the installation by checking if the Cronos POS Chain App shows u
     ```
 
     * `name` is an arbitrary name for your new key
-4. An address will be displayed on your Ledger device, for example: ![](assets/ledger\_desktop\_wallet/s9.png)
+4. An address will be displayed on your Ledger device, for example: ![](assets/ledger_desktop_wallet/s9.png)
 5.  Confirm the address on your Ledger device and verify the address displayed on the terminal. They should match each other, for example, if we create a wallet named `ledger_test`, you should see the same address displayed on your terminal after confirming and pressing "_Ok_" on your ledger device:
 
     ```bash

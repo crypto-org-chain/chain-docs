@@ -19,20 +19,21 @@ i.e. the first address is derived at path `44'/394'/0'/0/0` and the second one a
 
 {% hint style="warning" %}
 **MAKE SURE YOU BACKUP YOUR MNEMONIC WORDS**\
-Before you use the generated mainnet addresses to receive funds on mainnet, make sure that you have backed up your address's mnemonic words correctly in a safe place and that the mnemonic words are correct such that they can be restored to your wallet address in the future.\
-You are the sole owner of your wallet mnemonic words and there is no way for Cronos POS Chain team to restore your wallet or recover your funds if you lost the mnemonic words.&#x20;
+Before using your generated mainnet addresses to receive funds, ensure that you have securely backed up your address's mnemonic words. It’s crucial to verify that these words are correct and can restore your wallet address in the future.
+
+Please note that you are the sole owner of your wallet's mnemonic words. The Cronos POS Chain team cannot restore your wallet or recover your funds if the mnemonic words are lost.
 {% endhint %}
 
 {% hint style="warning" %}
 **GENERATE ADDRESS ONLY IN A SECURE ENVIRONMENT**\
-We recommend you generate an address only on a trusted and secure computer. To further enhance the security, you should consider running on an air-gapped (offline) machine.&#x20;
+We recommend generating an address only on a trusted and secure computer. For enhanced security, consider running on an air-gapped (offline) machine.
 {% endhint %}
 
 {% hint style="warning" %}
 **ALWAYS VERIFY YOUR MNEMONIC WORDS AND ADDRESS**\
-To make sure you have backed up the mnemonic words correctly, we recommend you try to restore your wallet with the mnemonic words and verify the address derived is the same.
+Ensure you have backed up your mnemonic words correctly by restoring your wallet with them and verifying that the derived address is the same.
 
-For more details on how to verify your mnemonic words and addresses, please check [Mainnet Address Verification](mainnet-address-verification.md)&#x20;
+For more details on verifying your mnemonic words and addresses, please check [Mainnet Address Verification](mainnet-address-verification.md)&#x20;
 {% endhint %}
 
 There are four ways to generate the mainnet address by using:
@@ -99,13 +100,13 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 
 #### Step 1-1. Plug in your Ledger device to your computer. If you are using Ledger Nano X, please connect to your computer using the USB-C cable.
 
-#### Step 1-2. Click "Manager" on the left navigation menu. Confirm to "Allow Ledger Manager" on your Ledger device.
+#### Step 1-2. Click "Ledger Icon" on the left navigation menu. Confirm to "Allow Ledger Manager" on your Ledger device.
 
-![](assets/mainnet-address-generation/ledger-live-manager.png)
+<div align="left"><figure><img src="../../.gitbook/assets/Screenshot 2024-12-04 151307.png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 #### Step 1-3. Search for "Cronos POS Chain" and install the application to your Ledger.
 
-![](assets/ledger_desktop_wallet/s1-5.png)
+<div align="left"><figure><img src="../../.gitbook/assets/Screenshot 2024-12-04 at 15.33.28.png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 #### Step 1-4. Confirm the installation
 
@@ -225,8 +226,9 @@ console.log(address);
 Supported OS: Ubuntu, Mac OS, and Windows
 
 {% hint style="warning" %}
-DESKTOP WALLET IS IN BETA Desktop wallet is in beta testing. \
-Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe, and offline computer and always verify the mnemonic words before using the address.
+**DESKTOP WALLET**&#x20;
+
+Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using wallet on the mainnet. Run it only on a trusted, secure, and offline computer. Always verify the mnemonic words before using the address.
 {% endhint %}
 
 Download the latest version of the Crypto.com Defi Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:

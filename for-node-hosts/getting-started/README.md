@@ -39,4 +39,7 @@ Thanks for your interest in Cronos POS Chain. In this technical documentation, w
 
 * [Project Website](http://crypto.org/)
 * [Project Repository](https://github.com/crypto-org-chain/chain-main)
-* Developer community channel (technical): [![Support Server](https://img.shields.io/discord/783264383978569728.svg?color=7289da\&label=Crypto.org%C2%A0Chain%C2%A0=discord%C2%A0=flat-square)](https://discord.gg/pahqHz26q4)
+* [Developer community channel](https://discord.com/invite/pahqHz26q4)&#x20;
+* Community/Third Party Analytic Dashboard&#x20;
+  * [Defier](https://defier.net/)
+  * [Validator.info](https://validator.info/cronos-pos)

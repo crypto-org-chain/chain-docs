@@ -160,4 +160,4 @@ Please note that you can review your undelegation process by clicking "View Unbo
 ![](https://lh7-us.googleusercontent.com/ONDri7RCSzdfF3296hOyHGoe7wMUHe4mH3Xf0DPATrCE8OT8VZZIxbrm37JfdRua1JDBZZ8AiBRAOWH2YRjuf-HgJYpNJVtoau-heXPLueTCZXQUKxnaSPuB2htBH_IHF4CJXcxNAQ5y-viPTu7YQeU)
 {% endhint %}
 
-If you look to see more insights about the validators on Cronos POS chain, visit [Cronos POS explorer](https://cronos-pos.org/explorer/validators), [Validator.info](https://validator.info/cronos-pos) (third party dashboard), and [Defier](https://defier.net/) (third party dashboard).
+If you look to see more insights about the validators on Cronos POS chain, visit [Cronos POS explorer](https://cronos-pos.org/explorer/validators), [Validator.Info](https://validator.info/cronos-pos) (third party dashboard), and [Defier](https://defier.net/) (third party dashboard).

@@ -42,4 +42,4 @@ Thanks for your interest in Cronos POS Chain. In this technical documentation, w
 * [Developer community channel](https://discord.com/invite/pahqHz26q4)&#x20;
 * Community/Third Party Analytic Dashboard&#x20;
   * [Defier](https://defier.net/)
-  * [Validator.info](https://validator.info/cronos-pos)
+  * [Validator.Info](https://validator.info/cronos-pos)

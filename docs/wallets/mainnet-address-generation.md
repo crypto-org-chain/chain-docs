@@ -163,7 +163,9 @@ If you encounter a connection error when creating a wallet, you can try to unplu
 
 ## B-ii. Ledger Wallet via Crypto.com Defi Desktop Wallet
 
-Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address. ::: Download the latest version of the Crypto.com Defi Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
+Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address. \
+\
+Download the latest version of the Crypto.com Defi Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address.
 
 #### Step 1. Open the application and click "Get Started" to set up an application password.
 

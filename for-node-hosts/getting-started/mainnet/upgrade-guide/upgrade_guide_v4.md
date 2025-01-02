@@ -1,6 +1,6 @@
 # The "V4" upgrade guide (v3.\* to v4.2.2) :
 
-For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
+For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
 
 {% hint style="warning" %}
 **Warning**:
@@ -8,7 +8,7 @@ For a full overview of the latest upgrades, please refer to ["Notes on network u
 * The chain-maind `v4.2.2` - "V4" upgrade is proposed to be scheduled at the block height of `10,073,800` ( _Estimated time \~WED, 22 Feb 2023 02:00:00 GMT_, but this depends on the actual time taken when the blocks are being processed);
 * Actual timing depends on the progress of block production, the estimated time of this block can be found [here](https://www.mintscan.io/crypto-org/blocks/10073800).
 
-**DO NOT UPGRADE to the binary `v4.2.2` before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade_guide_v4.md#step-0-don-t-panic)**.** &#x20;
+**DO NOT UPGRADE to the binary `v4.2.2` before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade_guide_v4.md#step-0-dont-panic)**.** &#x20;
 {% endhint %}
 
 ## Step 0 - Don't panic
@@ -120,7 +120,7 @@ We are ready to start the node join the network again with the new binary:
 * Start `chain-maind`, e.g.:
 
 ```bash
-  $ ./chain-maind start
+$ ./chain-maind start
 ```
 
 Afterwards, sit back and wait for the syncing process. You can query the node syncing status by

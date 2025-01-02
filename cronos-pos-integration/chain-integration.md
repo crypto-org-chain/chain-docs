@@ -4,7 +4,6 @@
 
 * [Cronos POS Chain website](https://crypto.org/)
 * [GitHub Repository](https://github.com/crypto-org-chain/chain-main)
-* [Official Documentation](https://crypto.org/docs/)
 
 ## Node and RPC setup notes
 
@@ -13,14 +12,14 @@
 ## Setup Guide
 
 * **Mainnet**:
-  * [Running a full node](https://crypto.org/docs/getting-started/mainnet.html)
-  * [Running a validator](https://crypto.org/docs/getting-started/mainnet_validator.html)
-  * [Mainnet Validator Security Checklist](https://crypto.org/docs/getting-started/security-checklist.html#part-1-conduct-survey-on-general-controls-of-hosting-data-centre)
+  * [Running a full node](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet)
+  * [Running a validator](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet_validator)
+  * [Mainnet Validator Security Checklist](https://docs.cronos-pos.org/for-node-hosts/getting-started/security-checklist)
 * **Testnet**:
-  * [Joining the Croeseid Testnet](https://crypto.org/docs/getting-started/croeseid-testnet.html)
-  * [Deploy testnet node with nix](https://crypto.org/docs/getting-started/croeseid-testnet-nix.html#pre-requisites)
+  * [Joining the Croeseid Testnet](https://docs.cronos-pos.org/for-node-hosts/getting-started/croeseid-testnet)
+  * [Deploy testnet node with nix](https://docs.cronos-pos.org/for-node-hosts/getting-started/croeseid-testnet-nix)
 * **Devnet**
-  * [Running the latest development network locally](https://crypto.org/docs/getting-started/local-devnet.html#overview)
+  * [Running the latest development network locally](https://docs.cronos-pos.org/for-node-hosts/getting-started/local-devnet)
 
 ## API Documentation
 

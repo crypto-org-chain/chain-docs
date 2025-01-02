@@ -161,7 +161,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 
 ### Step 2-3 Enable STATE-SYNC
 
-[STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) is supported in our testnet! 🎉
+[STATE-SYNC](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) is supported in our testnet! 🎉
 
 With state sync your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validators.
 
@@ -531,10 +531,10 @@ $ ./chain-maind tx slashing unjail --from [key_name] --chain-id "testnet-croesei
   confirm transaction before signing and broadcasting [y/N]: y
 ```
 
-Congratulations! You've successfully set up a Testnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
+Congratulations! You've successfully set up a Testnet node and performed some basic transactions! You may refer to [Wallet Management](https://docs.cronos-pos.org/for-users/wallets/cli#transactions-subcommands-chain-maind-tx) for more advanced operations and transactions.
 
 ## Croeseid testnet faucet and explorer
 
 * You can lookup data within the `testnet-croeseid-4` network by the [explorer](https://crypto.org/explorer/croeseid4/);
 * To interact with the blockchain, simply use the [test-token faucet](https://crypto.org/faucet) to obtain test CRO tokens for performing transactions on the **Croeseid** testnet.
-  * Note that you will need to create an [address](croeseid-testnet.md#step-3-1-create-a-new-key-and-address) before using the faucet.
+  * Note that you will need to create an [address](https://docs.cronos-pos.org/for-node-hosts/getting-started/croeseid-testnet#step-3-1.-create-a-new-key-and-address) before using the faucet.

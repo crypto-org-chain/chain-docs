@@ -1,6 +1,6 @@
 # The "Canis Major" upgrade guide (v1.\* to v2.0.1) at block height 922,363:
 
-For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades).
+For a full overview of the latest upgrades, please refer to "[Notes on network upgrades](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet#step-0-notes-on-network-upgrades)".
 
 {% hint style="warning" %}
 **Warning**:
@@ -10,7 +10,7 @@ The chain-maind `v2.0.1` - Canis Major upgrade is completed at block height `922
 
 
 
-For those who want to enjoy the automatic upgrade managed by [cosmovisor](https://docs.cosmos.network/master/run-node/cosmovisor.html), please follow this [cosmovisor guide](cosmovisor.md) for the coming "Canis Major" network upgrade. Otherwise, please continue below manual upgrade steps.
+For those who want to enjoy the automatic upgrade managed by [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor), please follow this [cosmovisor guide](https://docs.cosmos.network/v0.46/run-node/cosmovisor.html#detecting-upgrades) for the coming "Canis Major" network upgrade. Otherwise, please continue below manual upgrade steps.
 
 ## Step 0 - Don't panic
 

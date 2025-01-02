@@ -18,9 +18,9 @@ For the host who would like to build a **Run a Full Node with complete blockchai
   * `iavl-cache-size = 781250`
   * `iavl-disable-fastnode = false` (set to `true` to skip IAVL migration, but keep as `false` when starting from a migrated snapshot. When you are on `INF starting ABCI with Tendermint` for a while, migration is going on and you should NOT terminate this. It might take a couple of hours, so plan well ahead for this migration, as it may incur downtime.)
 * Users can refer to the upgrade guides of
-  * "[Canis Major](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide)" (`v1.*` to `v2.0.1`);
-  * ["DRACO II"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_draco\_2) (`v2.*` to `v3.3.9`);
-  * ["V4 upgrade"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade\_guide\_v4) (`v3.3.9` to `v4.2.2`); for the detailed upgrade steps.
+  * "[Canis Major](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide)" (`v1.*` to `v2.0.1`);
+  * ["DRACO II"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_draco_2) (`v2.*` to `v3.3.9`);
+  * ["V4 upgrade"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_v4) (`v3.3.9` to `v4.2.2`); for the detailed upgrade steps.
 
 ## Pre-requisites
 
@@ -55,10 +55,10 @@ _Please note that the size of snapshots from Quicksync will keep growing._
 ## Step 1. Get the Cronos POS Chain Mainnet binary
 
 {% hint style="info" %}
-**Remarks**: The following is the minimal setup to join Cronos POS Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys etc.
+**Remarks**: The following is the minimal setup to join Cronos POS Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/v0.34/)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://docs.cronos-pos.org/for-users/wallets/cli#keys-management-chain-maind-keys) service for your validator keys etc.
 {% endhint %}
 
-To simplify the following step, we will be using **Linux** for illustration. Binaries for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main\_1.2.1\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main\_1.2.1\_Windows\_x86\_64.zip) are also available. There are two options to install `chain-maind`:
+To simplify the following step, we will be using **Linux** for illustration. Binaries for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Windows_x86_64.zip) are also available. There are two options to install `chain-maind`:
 
 * [Directly from Github](./#option-1-install-chain-maind-released-binaries-from-github); or
 * [Homebrew](./#option-2-install-chain-maind-by-homebrew)
@@ -176,7 +176,7 @@ The list of the`seed`is subject to change, you can also find the latest seed to 
 
 {% hint style="warning" %}
 **Important**: \
-When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07\_tombstone.html)&#x20;
+When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07_tombstone.html)&#x20;
 {% endhint %}
 
 ## Step 3. Run everything
@@ -258,7 +258,7 @@ At the upgrade height of `922,363`, users will see the following error message o
 
 #### Step 3-2-1 - Get the `v2.1.2` binary
 
-To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main\_2.1.2\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main\_2.1.2\_Windows\_x86\_64.zip) are also available.
+To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main_2.1.2_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main_2.1.2_Windows_x86_64.zip) are also available.
 
 *   Terminate the `chain-maind`; afterwards, download the `v2.1.2` released binaries from github:
 
@@ -330,7 +330,7 @@ $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
 
 ## "DRACO II" and "V4" Network upgrades
 
-You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade\_guide\_draco\_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade\_guide\_v4.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://crypto.org/docs/getting-started/mainnet.html#step-0-notes-on-network-upgrades)
+You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade_guide_v4.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
 
 
 

@@ -8,8 +8,8 @@ There are two ways to set up a node:
 
 1. For the host who would like to build a **Validator with complete blockchain data** from scratch,
 
-* Note that there were several breaking network upgrades, requiring upgrading at designated block heights. For more details on upgrading, we refer to this [guide](../../docs/getting-started/mainnet.html#crypto-org-mainnet-running-a-full-node.md) on running a full node.
-* Once you have a complete synced node, you can revisit this page and jump to the [step](mainnet\_validator.md#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) of joining the networking as a validator.
+* Note that there were several breaking network upgrades, requiring upgrading at designated block heights. For more details on upgrading, we refer to this [guide](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide) on running a full node.
+* Once you have a complete synced node, you can revisit this page and jump to the [step](mainnet_validator.md#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) of joining the networking as a validator.
 
 2. For hosts who would like to **join the network and start validating quickly**, one can:
 
@@ -50,15 +50,15 @@ _Please note that the size of snapshots from Quicksync will keep growing._
 ## Step 1. Get the Cronos POS Chain Mainnet binary
 
 {% hint style="info" %}
-**Remarks**: The following is the minimal setup to join Cronos POS Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/master/tendermint-core/running-in-production.html)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://crypto.org/docs/getting-started/advanced-tmkms-integration.html) service for your validator keys, etc.&#x20;
+**Remarks**: The following is the minimal setup to join Cronos POS Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/v0.34/)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://docs.cronos-pos.org/for-users/wallets/cli#keys-management-chain-maind-keys) service for your validator keys, etc.&#x20;
 {% endhint %}
 
-To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main\_3.3.9\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main\_3.3.9\_Windows\_x86\_64.zip) are also available.
+To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Windows_x86_64.zip) are also available.
 
 There are two options to install `chain-maind`:
 
-* [Directly from Github](mainnet\_validator.md#option-1-install-chain-maind-released-binaries-from-github); or
-* [Homebrew](mainnet\_validator.md#option-2-install-chain-maind-by-homebrew)
+* [Directly from Github](mainnet_validator.md#option-1-install-chain-maind-released-binaries-from-github); or
+* [Homebrew](mainnet_validator.md#option-2-install-chain-maind-by-homebrew)
 
 
 
@@ -175,7 +175,15 @@ Before kick-starting your node, we will have to configure the node so that it co
 
 ### Step 2-3. Enable STATE-SYNC
 
-With [STATE-SYNC](https://docs.tendermint.com/master/tendermint-core/state-sync.html) your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validators. For the **validator**, it will be amazingly fast to sync the near head of the chain and join the network. ::: warning CAUTION Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. Kindly refer to this [guide](../../docs/getting-started/mainnet.html#crypto-org-mainnet-running-a-full-node) on building a node with complete data. ::: Follow the below steps to enable state-sync:
+With [STATE-SYNC](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) your node will download data related to the head or near the head of the chain and verify the data. This leads to drastically shorter times for joining a network for validators. For the **validator**, it will be amazingly fast to sync the near head of the chain and join the network.&#x20;
+
+{% hint style="warning" %}
+**Cautious** \
+Blocks before state-sync `trust height` will **NOT** be queryable. If you want to run a **full node** or a validator with complete blockchain data; It is not suggested to use state-sync. \
+Kindly refer to this [guide](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet) on building a node with complete data.&#x20;
+{% endhint %}
+
+Follow the below steps to enable state-sync:
 
 *   For state-sync configuration, in `~/.chain-maind/config/config.toml`, please modify the configurations under \[statesync] `enable`, `rpc_servers`, `trust_height` and `trust_hash` and add `persistent_peers` by:
 
@@ -344,7 +352,7 @@ $ ./chain-maind tendermint show-validator
 ## [crocnclconspub... address] ##
 ```
 
-To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature\_checking/check-validator-up.sh), for example:
+To further check if the validator is signing blocks, kindly run this [script](https://github.com/crypto-com/chain-docs/blob/master/docs/getting-started/assets/signature_checking/check-validator-up.sh), for example:
 
 ```bash
 $ curl -sSL https://raw.githubusercontent.com/crypto-org-chain/chain-docs/master/docs/getting-started/assets/signature_checking/check-validator-up.sh | bash -s -- \
@@ -355,7 +363,7 @@ The validator is in the active validator set under the address  <YOUR_VALIDATOR_
 The validator is signing @ Block#<BLOCK_HEIGHT> 👍
 ```
 
-Congratulations! You've successfully set up a mainnet node and performed some basic transactions! You may refer to [Wallet Management](https://crypto.org/docs/wallets/cli.html#chain-maind) for more advanced operations and transactions.
+Congratulations! You've successfully set up a mainnet node and performed some basic transactions! You may refer to [Wallet Management](https://docs.cronos-pos.org/for-users/wallets/cli#transactions-subcommands-chain-maind-tx) for more advanced operations and transactions.
 
 ## Basic Transactions and queries
 

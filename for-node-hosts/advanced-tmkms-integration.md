@@ -1,6 +1,6 @@
 # 🔄 Advanced TMKMS Integration
 
-* The default consensus engine available within the SDK is Tendermint Core. See [Tendermint notes on running in production](https://docs.tendermint.com/master/tendermint-core/running-in-production.html) and [notes on setting up a validator](https://docs.tendermint.com/master/nodes/validators.html#setting-up-a-validator)
+* The default consensus engine available within the SDK is Tendermint Core. See [Tendermint notes on running in production](https://docs.tendermint.com/v0.34/tendermint-core/running-in-production.html) and [notes on setting up a validator](https://docs.tendermint.com/v0.34/tendermint-core/validators.html#setting-up-a-validator)
 * Validator block signing should be via [tmkms](https://github.com/iqlusioninc/tmkms)
 
 ## Setting up AWS Nitro Enclaves + Tendermint KMS for signing blocks
@@ -22,7 +22,7 @@ What we want to achieve is just running TMKMS securely and provision validator c
 
 Note that this is still a work in progress and this document only describes a basic setup, so it is not yet ready for production use. We recommend looking at other materials for additional setups, such as the [Security best practices for AWS KMS whitepaper](https://d0.awsstatic.com/whitepapers/aws-kms-best-practices.pdf).
 
-![](../docs/getting-started/assets/tmkms\_vsock\_enclave.png)
+![](../docs/getting-started/assets/tmkms_vsock_enclave.png)
 
 ### Step 1. Set up supported EC2 instance types
 
@@ -30,7 +30,7 @@ Virtualized Nitro-based instances with at least four vCPUs. t3, t3a, t4g, a1, c6
 
 We recommend `m5a.xlarge` and `Amazon Linux 2 AMI` for easier installation for AWS Nitro Enclaves CLI.
 
-* Remember to check `Enable` for Enclave in `Advanced Details` when configuring instance details. ![](../docs/getting-started/assets/aws\_enclave\_ec2\_details.png)
+* Remember to check `Enable` for Enclave in `Advanced Details` when configuring instance details. ![](../docs/getting-started/assets/aws_enclave_ec2_details.png)
 
 ### Step 2. Installing the Nitro Enclaves CLI
 
@@ -68,7 +68,7 @@ Attach this role to the previously created EC2. Check this [guide](https://docs.
 * Create your [symmetric CMK](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk)
 * Define key administrative permissions and key usage permissions that user can admin, encrypt and decrypt the signing key in your local or a trusted machine via [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html).
 
-![](../docs/getting-started/assets/aws\_kms\_admin.png)
+![](../docs/getting-started/assets/aws_kms_admin.png)
 
 *   Edit key policy to allow only TMKMS inside nitro enclave to decrypt instead of entire EC2 and encrypt on EC2 You should have a generated policy shown in the console.
 

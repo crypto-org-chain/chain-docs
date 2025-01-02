@@ -1,6 +1,6 @@
 # 🔃 Notes on Production Deployment
 
-* See [Tendermint notes on running in production](https://docs.tendermint.com/master/tendermint-core/running-in-production.html) and [notes on setting up a validator](https://docs.tendermint.com/master/tendermint-core/validators.html#setting-up-a-validator)
+* See [Tendermint notes on running in production](https://docs.tendermint.com/v0.34/tendermint-core/running-in-production.html#running-in-production) and [notes on setting up a validator](https://docs.tendermint.com/v0.34/tendermint-core/validators.html#setting-up-a-validator)
 * Validators shouldn’t be exposed directly to the internet
 * RPC shouldn’t be exposed directly to the internet (as it currently doesn’t support rate-limiting, authentication…)
 * Validator block signing should be via [tmkms](https://github.com/iqlusioninc/tmkms)

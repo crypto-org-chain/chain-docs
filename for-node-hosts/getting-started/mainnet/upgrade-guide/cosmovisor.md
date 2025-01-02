@@ -8,7 +8,7 @@ It is recommended that cosmovisor is better to be used on full nodes rather than
 
 ## Step 0 - Install cosmosviosr
 
-One can follow this [link](https://docs.cosmos.network/master/run-node/cosmovisor.html#installation) to install.
+One can follow this [link](https://docs.cosmos.network/main/build/tooling/cosmovisor) to install.
 
 Alternatively, run the below commands instead
 
@@ -20,7 +20,7 @@ $ make cosmovisor
 
 ## Step 1 - Set up Environment Variables
 
-Set your [Environment Variables](https://docs.cosmos.network/master/run-node/cosmovisor.html#command-line-arguments-and-environment-variables) for cosmovisor to run
+Set your [Environment Variables](https://docs.cosmos.network/main/build/tooling/cosmovisor) for cosmovisor to run
 
 ```
 export DAEMON_NAME=chain-maind
@@ -32,7 +32,7 @@ export DAEMON_LOG_BUFFER_SIZE=512
 
 ### Step 1.1 - Create cosmovisor folder structure
 
-One can follow this [folder structure](https://docs.cosmos.network/master/run-node/cosmovisor.html#data-folder-layout)
+One can follow this [folder structure](https://docs.cosmos.network/main/build/tooling/cosmovisor)
 
 ```
 .chain-maind/
@@ -63,7 +63,7 @@ $ ./cosmovisor start
 Since we enable `DAEMON_ALLOW_DOWNLOAD_BINARIES=true`, cosmovisor will automatically download binary with `3.3.1` in `./cosmovisor/upgrades/v2.0.0/bin/chain-maind` and update `./cosmovisor/current` directory symlink to `upgrades/v3.3.0` instead when proposed upgrade log is found. cosmovisor will create `./cosmovisor/upgrades/v3.3.0/bin/chain-maind` for you.
 
 {% hint style="info" %}
-**Important**: If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v3.3.0/bin/chain-maind` manually before upgrade time. [Linux](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Linux\_x86\_64.tar.gz), [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Darwin\_x86\_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main\_3.3.0\_Windows\_x86\_64.zip) are also available.
+**Important**: If one doesn't want to enable `DAEMON_ALLOW_DOWNLOAD_BINARIES`, one should prepare `./cosmovisor/upgrades/v3.3.0/bin/chain-maind` manually before upgrade time. [Linux](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Linux_x86_64.tar.gz), [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.0/chain-main_3.3.0_Windows_x86_64.zip) are also available.
 {% endhint %}
 
 {% hint style="info" %}

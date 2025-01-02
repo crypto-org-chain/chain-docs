@@ -139,9 +139,9 @@ Note that when you integrate with the API you should still base64 decode the att
 
 ### 1. Mint
 
-In every block, CRO is minted and offered to the active validators and their delegators as block rewards. The actual minted token is subject to inflation and is adjusted every block. Further details on the minting parameters and configuration can be found [here](https://crypto.org/docs/chain-details/module_overview.html#mint).
+In every block, CRO is minted and offered to the active validators and their delegators as block rewards. The actual minted token is subject to inflation and is adjusted every block. Further details on the minting parameters and configuration can be found [here](https://docs.cronos-pos.org/cronos-pos-chain-protocol/module_overview/module_mint).
 
-Minted tokens are distributed as blocks and proposer rewards in the same block. However, since Cosmos SDK does the [lazy rewards calculation and collection](https://docs.cosmos.network/master/modules/distribution/), the minted tokens are first sent to the "Distribution" module account and are later transferred to an account when a delegator withdraws the rewards or commissions by sending a [MsgWithdrawDelegatorReward](blocks-and-transactions.md#_2-msgwithdrawdelegatorreward) or [MsgWithdrawValidatorCommission](blocks-and-transactions.md#_3-msgwithdrawvalidatorcommission).
+Minted tokens are distributed as blocks and proposer rewards in the same block. However, since Cosmos SDK does the [lazy rewards calculation and collection](https://docs.cosmos.network/main/build/modules/distribution#shortcomings), the minted tokens are first sent to the "Distribution" module account and are later transferred to an account when a delegator withdraws the rewards or commissions by sending a [MsgWithdrawDelegatorReward](blocks-and-transactions.md#_2-msgwithdrawdelegatorreward) or [MsgWithdrawValidatorCommission](blocks-and-transactions.md#_3-msgwithdrawvalidatorcommission).
 
 So [Block Rewards](blocks-and-transactions.md#_2-block-rewards), [Proposer Rewards](blocks-and-transactions.md#_3-proposer-rewards) and [Commissions](blocks-and-transactions.md#_4-commissions) events are for record-keeping only and do not represent any actual token transfer between accounts.
 
@@ -166,7 +166,7 @@ To get the reward **per validator**:
 
 ### 3. Proposer Rewards
 
-Block proposers can get extra transaction fees bonus for the block they have successfully proposed. More details can be found [here](https://crypto.org/docs/chain-details/module_overview.html#transaction-fees-bonus) for reference.
+Block proposers can get extra transaction fees bonus for the block they have successfully proposed. More details can be found [here](https://docs.cronos-pos.org/cronos-pos-chain-protocol/module_overview/module_distribution) for reference.
 
 Similar to block rewards, proposer rewards are **not** credited to the account directly. This event serves as a record-keeping purpose only. Each validator creator account must explicitly send a [MsgWithdrawDelegatorReward](blocks-and-transactions.md#_3-msgwithdrawvalidatorcommission) message transaction to collect the rewards.
 
@@ -238,7 +238,7 @@ Note that the `amount` is always in string for precision accuracy. Please make s
 
 This is commonly seen in most message types. It represents a list of tokens.
 
-At the time of writing, there will only be a single entry in this array because `basecro` (or `basetcro` in Croeseid Testnet) is the only supported asset on Cronos POS Chain. However, after IBC transfer and other coins issuance methods are enabled, there will be more asset types, the coin source tracing and their denomination can be found [here](https://github.com/cosmos/cosmos-sdk/blob/master/docs/architecture/adr-001-coin-source-tracing.md)
+At the time of writing, there will only be a single entry in this array because `basecro` (or `basetcro` in Croeseid Testnet) is the only supported asset on Cronos POS Chain. However, after IBC transfer and other coins issuance methods are enabled, there will be more asset types, the coin source tracing and their denomination can be found [here](https://github.com/cosmos/cosmos-sdk/blob/main/docs/architecture/adr-024-coin-metadata.md)
 
 **Example**:
 

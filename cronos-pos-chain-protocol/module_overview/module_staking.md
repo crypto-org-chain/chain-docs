@@ -24,7 +24,7 @@ Validators are responsible for signing or proposing block at each consensus roun
 
 The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](module_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
-It is important to point out that the delegator and the validator are in the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](module_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/v0.40/modules/staking/02_state_transitions.html#delegations) for detailed specification and state transitions of delegation.
+It is important to point out that the delegator and the validator are in the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](module_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/main/build/modules/protocolpool#state-transitions) for detailed specification and state transitions of delegation.
 
 #### Transactions and Queries
 

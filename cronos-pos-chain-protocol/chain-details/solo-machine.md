@@ -2,7 +2,7 @@
 
 A solo machine is a standalone process that can interact with blockchains through the Inter-Blockchain Communication Protocol (IBC). It can store key information like signed messages and private keys but has no consensus algorithm of its own. The solo machine client can be seen as a verification algorithm capable of authenticating messages sent from a chain or solo machine. With solo machines, one can access the IBC transport layer and blockchains (including features built on them) within the Cosmos ecosystem without developing their own blockchain. This provides great ease to token issuers who would like to natively mint IBC-enabled tokens.
 
-Another feature of using a solo machine is that it can [leverage Interchain Accounts (ICA)](https://github.com/cosmos/ibc-go/blob/main/docs/apps/interchain-accounts/overview.md). The key feature of the Interchain Accounts module is that it enables cross-chain account management via the IBC, which allows one blockchain to access the features of another blockchain. On the Cronos POS Chain, we have leveraged solo machines to issue tokens like [Polkadot (DOT)-pegged coins](https://medium.com/crypto-org-chain/crypto-org-chain-issues-dot-token-via-ibc-solo-machine-b0f58e605b0e). These DOT tokens can be natively transferred within the Cosmos interchain ecosystem using IBC.
+Another feature of using a solo machine is that it can [leverage Interchain Accounts (ICA)](https://github.com/cosmos/ibc-go/tree/main/modules/apps/27-interchain-accounts). The key feature of the Interchain Accounts module is that it enables cross-chain account management via the IBC, which allows one blockchain to access the features of another blockchain. On the Cronos POS Chain, we have leveraged solo machines to issue tokens like [Polkadot (DOT)-pegged coins](https://medium.com/crypto-org-chain/crypto-org-chain-issues-dot-token-via-ibc-solo-machine-b0f58e605b0e). These DOT tokens can be natively transferred within the Cosmos interchain ecosystem using IBC.
 
 Solo machines open up plenty of use cases in the Cosmos ecosystem. In this article, we will review simple approaches to implementing token operations using the IBC solo machine (e.g. mint and burn as well as delegation and undelegation) on the Cronos POS Chain locally, while any Cosmos SDK based blockchains should support it. Developers and users who are interested can clone our [Stag repository](https://github.com/devashishdxt/stag) to quickly go through these steps and try the approaches out.
 
@@ -28,7 +28,7 @@ The next step is to add the chain to the solo machine. To run IBC operations on-
 
 A sample `chain.yaml` is shown here:
 
-![chain\_yaml](https://user-images.githubusercontent.com/78806365/190538089-58a57734-b0f1-4aed-be57-8f2d57444531.png)
+<img src="https://user-images.githubusercontent.com/78806365/190538089-58a57734-b0f1-4aed-be57-8f2d57444531.png" alt="chain_yaml" data-size="original">
 
 Now, you can establish an IBC connection with a blockchain using
 
@@ -46,7 +46,7 @@ $ stag core channel create <channel_type> <chain_id>.
 
 There are two options for `channel_type`: `transfer` or `ica`. In the example below, the transfer channel is created, which looks like:
 
-![channeltypes](https://user-images.githubusercontent.com/78806365/190538598-bfd60dd3-53bc-4dad-b930-6a4c44bfe351.png)
+<figure><img src="https://user-images.githubusercontent.com/78806365/190538598-bfd60dd3-53bc-4dad-b930-6a4c44bfe351.png" alt=""><figcaption></figcaption></figure>
 
 #### Use Case #1: Mint and Burn Tokens
 
@@ -120,16 +120,24 @@ Apart from Stag CLI, you can perform the same execution through a UI (User Inter
 
 Once it is connected, the default server listening is at `http://127.0.0.1:8080` and the frontend should look like:
 
-![UI1](https://user-images.githubusercontent.com/78806365/190540263-73b6385d-fff1-4dda-93ae-25af36ea1a06.png)
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540263-73b6385d-fff1-4dda-93ae-25af36ea1a06.png" alt=""><figcaption></figcaption></figure>
 
 Like what we did with CLI, we first need to configure the signers, chains, and connections before building the channels.
 
-![UI2](https://user-images.githubusercontent.com/78806365/190540312-5f7a448e-b4d7-4e8b-95b8-4e5006fe8f8e.png) ![UI3](https://user-images.githubusercontent.com/78806365/190540369-a1bcb3c2-a4ee-4788-bc5f-dd68139db85a.png)
+&#x20;
+
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540369-a1bcb3c2-a4ee-4788-bc5f-dd68139db85a.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540312-5f7a448e-b4d7-4e8b-95b8-4e5006fe8f8e.png" alt=""><figcaption></figcaption></figure>
 
 Here’s how minting and burning tokens look like:
 
-&#x20;![UI4](https://user-images.githubusercontent.com/78806365/190540476-f7ad07e4-5a90-41ec-92a8-d7b02bba64ae.png)
+&#x20;
+
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540476-f7ad07e4-5a90-41ec-92a8-d7b02bba64ae.png" alt=""><figcaption></figcaption></figure>
 
 This is how delegating and undelegating will appear:
 
-&#x20;![UI5](https://user-images.githubusercontent.com/78806365/190540529-252c4860-c2ef-4280-8e59-99869732b03c.png)
+&#x20;
+
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540529-252c4860-c2ef-4280-8e59-99869732b03c.png" alt=""><figcaption></figcaption></figure>

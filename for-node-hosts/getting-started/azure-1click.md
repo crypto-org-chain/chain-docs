@@ -3,7 +3,7 @@
 This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.
 
 {% hint style="warning" %}
-**CAUTION** We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use it with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](../../docs/getting-started/advanced-tmkms-integration.html)
+**CAUTION** We do not recommend directly running validator on Mainnet by 1-Click deployment. Please use it with caution! Because the 1-click deployment is not running with [TMKMS](https://github.com/iqlusioninc/tmkms) and your tendermint validator key is in plain text `/chain/.chain-maind/config/priv_validator_key.json`. You may consider running validator with [tmkms on AWS nitro-enclave](https://docs.cronos-pos.org/for-node-hosts/advanced-tmkms-integration).
 {% endhint %}
 
 ## Step 1. Azure Account Creation
@@ -213,7 +213,7 @@ Once the tendermint syncs to the latest block, the setup is done! You may move o
 
 ## Step 4. Join as a validator
 
-We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Cronos POS Chain binary](../../docs/getting-started/croeseid-testnet.html#step-1-get-the-crypto-org-chain-binary) for testnet or [Step 1. Get the Cronos POS Chain Mainnet binary](../../docs/getting-started/mainnet.html#step-1-get-the-crypto-org-chain-mainnet-binary) for mainnet.&#x20;
+We suggest that you should do this process locally with `chain-maind` to avoid exposing your keys on a cloud server. If you haven't installed `chain-maind` yet, please follow [Step 1. Get the Cronos POS Chain binary for testnet](https://docs.cronos-pos.org/for-node-hosts/getting-started/croeseid-testnet) or [Step 1. Get the Cronos POS Chain Mainnet binary for mainnet](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet).&#x20;
 
 {% hint style="info" %}
 **NOTE**
@@ -245,17 +245,17 @@ $ chain-maind version
 
 ### Create a new key and address
 
-Please follow [Step 3-1. Create a new key and address](../../docs/getting-started/mainnet.html#step-3-1-create-a-new-key-and-address)
+Please follow [Step 3-1. Create a new key and address](https://docs.cronos-pos.org/for-users/wallets/cli#keys-management-chain-maind-keys)
 
 ### Creating a validator node
 
-You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](../../docs/getting-started/aws-1click.html#step-3-1-use-the-reconfiguration-script)
+You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](https://docs.cronos-pos.org/for-node-hosts/getting-started/azure-1click#step-3-1.-use-the-reconfiguration-script)
 
-Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-started/mainnet.html#step-3-5-joining-the-network-as-a-validator-send-a-create-validator-transaction) to create validator.
+Please follow [Step 4. Joining the network as a validator](https://docs.cronos-pos.org/~/changes/2e2355w5GSNes3nTqLmc/for-node-hosts/getting-started/azure-1click#step-4.-join-as-a-validator) to create validator.
 
 ### Check if the validator has been set
 
-Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/mainnet.html#step-3-6-check-your-validator-status)
+Back your server, and follow [Step 3-6. Check your validator status](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet_validator#step-3-3.-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 
@@ -267,17 +267,17 @@ Back your server, and follow [Step 3-6. Check your validator status](../../docs/
 
 ### Create a new key and address
 
-Please follow [Step 3-1. Create a new key and address](../../docs/getting-started/croeseid-testnet.html#step-3-1-create-a-new-key-and-address)
+Please follow [Step 3-1. Create a new key and address](https://docs.cronos-pos.org/for-users/wallets/cli#keys-management-chain-maind-keys)
 
 ### Creating a validator node
 
-You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](../../docs/getting-started/aws-1click.html#step-3-1-use-the-reconfiguration-script)
+You should obtain consensus public key from [Step 3-1. Use the reconfiguration script](https://docs.cronos-pos.org/for-node-hosts/getting-started/azure-1click#step-3-1.-use-the-reconfiguration-script)
 
-Please follow [Step 3-5. Joining the network as a validator](../../docs/getting-started/croeseid-testnet.html#step-3-5-send-a-create-validator-transaction) to create validator.
+Please follow [Step 4. Joining the network as a validator](https://docs.cronos-pos.org/~/changes/2e2355w5GSNes3nTqLmc/for-node-hosts/getting-started/azure-1click#step-4.-join-as-a-validator) to create validator.
 
 ### Check if the validator has been set
 
-Back your server, and follow [Step 3-6. Check your validator status](../../docs/getting-started/croeseid-testnet.html#step-3-6-check-your-validator-status)
+Back your server, and follow [Step 3-6. Check your validator status](https://docs.cronos-pos.org/for-node-hosts/getting-started/croeseid5-testnet#step-3-6.-check-your-validator-status)
 
 🎊 Congratulations! You've successfully joined the network as a validator! 🎊
 

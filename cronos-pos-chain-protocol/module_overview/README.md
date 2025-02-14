@@ -1680,7 +1680,7 @@ The following tables show the overall effects of the staking related network par
 | Higher               | More active validators                    | Longer waiting period for unbonding  |
 | Lower                | Fewer active validators                   | Shorter waiting period for unbonding |
 | Constraints          | Value has to be less than or equal to `1` | Positive value in seconds            |
-| Sample configuration | `100` (maximum 100 active validator)      | `"`2419200s`"` (28 Days)             |
+| Sample configuration | `100` (maximum 100 active validator)      | 2419200s  (28 Days)                  |
 
 ## `supply`
 

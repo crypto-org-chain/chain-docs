@@ -278,5 +278,5 @@ the The following tables show overall effects on different configurations of the
 | Higher               | More active validators               | Longer waiting period for unbonding  |
 | Lower                | Fewer active validators              | Shorter waiting period for unbonding |
 | Constraints          | Value has to be less or equal to `1` | Positive value in seconds            |
-| Sample configuration | `100` (maximum 100 active validator) | `"`2419200`s"` (28 Days)             |
+| Sample configuration | `100` (maximum 100 active validator) | `"`2419200s`"` (28 Days)             |
 

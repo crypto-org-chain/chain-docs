@@ -1650,7 +1650,7 @@ Finally, we can query the current staking parameters by
 $ chain-maind query staking params --output json | jq
 
   {
-    "unbonding_time": "1814400s",
+    "unbonding_time": "2419200s",
     "max_validators": 100,
     "max_entries": 7,
     "historical_entries": 100,
@@ -1680,7 +1680,7 @@ The following tables show the overall effects of the staking related network par
 | Higher               | More active validators                    | Longer waiting period for unbonding  |
 | Lower                | Fewer active validators                   | Shorter waiting period for unbonding |
 | Constraints          | Value has to be less than or equal to `1` | Positive value in seconds            |
-| Sample configuration | `100` (maximum 100 active validator)      | `"1814400s"` (3 weeks)               |
+| Sample configuration | `100` (maximum 100 active validator)      | `"`2419200s`"` (28 Days)             |
 
 ## `supply`
 

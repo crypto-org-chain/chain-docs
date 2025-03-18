@@ -330,7 +330,7 @@ $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
 
 ## "DRACO II" and "V4" Network upgrades
 
-You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade_guide_v4.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
+You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade_guide_v4-1.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
 
 
 

@@ -17,13 +17,13 @@ To run Cronos POS Chain nodes in the testnet, you will need a machine with the f
 Archive Node (setting pruning = nothing)
 
 * RAM: 16GB (goleveldb)
-* Disk: 281GB
+* Disk: 900GB
 * CPU: 4 cores
 
 Default Full Node (setting pruning = default)
 
 * RAM 16GB (goleveldb)
-* Disk: 83GB (Depends on how long the node is running for)
+* Disk: 150GB (Depends on how long the node is running for)
 * CPU: 4 cores
 
 

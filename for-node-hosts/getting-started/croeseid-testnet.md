@@ -12,7 +12,7 @@ We officially support macOS, Windows and Linux only. Other platforms may work bu
 
 ### Prepare your machine
 
-* To run Cronos POS Chain nodes in the testnet, you will need a machine with the following minimum requirements to run different types of nodes:
+To run Cronos POS Chain nodes in the testnet, you will need a machine with the following minimum requirements to run different types of nodes:
 
 Archive Node (setting pruning = nothing)
 

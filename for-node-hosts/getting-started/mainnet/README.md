@@ -35,19 +35,19 @@ For Cronos POS Chain mainnet, you will need a machine with the following minimum
 Archive Node (setting pruning = nothing)
 
 * RAM: 64GB (Rocksdb)
-* Disk: 3.4TB
+* Disk: 5.9TB
 * CPU: 4 cores
 
 Default Full Node (setting pruning = default)
 
 * RAM: 64GB (Rocksdb) or 16GB (goleveldb)
-* Disk: 1.2TB (From quick sync)
+* Disk: 1.5TB (From Quicksync)
 * CPU: 4 cores
 
 Pruned Node (setting pruning = everything)
 
 * RAM: 64GB (Rocksdb) or 16GB (goleveldb)
-* Disk: 40GB (From quick sync)
+* Disk: 15GB (From Publicnode)
 * CPU: 4 cores
 
 _Please note that the size of snapshots from Quicksync will keep growing._

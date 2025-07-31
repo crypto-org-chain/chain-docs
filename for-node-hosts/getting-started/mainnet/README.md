@@ -6,21 +6,25 @@ This is detailed documentation for setting up a **Full Node** on the Cronos POS 
 
 For the host who would like to build a **Run a Full Node with complete blockchain data** from scratch, note that there were several breaking network upgrades, requiring upgrading at designated block heights below:
 
-| Block height             | Binary Version     | Instruction                                                                                       |
-| ------------------------ | ------------------ | ------------------------------------------------------------------------------------------------- |
-| `1 - 922,363`            | `chain-main_1.2.1` | Start the node with the older binary version                                                      |
-| `922,363 - 3,526,800`    | `chain-main_2.0.1` | When it reaches the target block height `922,363` (Canis Major), update the binary and restart    |
-| `3,526,800 - 10,073,800` | `chain-main_3.3.9` | When it reaches the target block height `3,526,800` (Draco II ), update the binary and restart\*  |
-| `>10,073,800`            | `chain-main_4.2.2` | When it reaches the target block height `10,073,800` (V4 upgrade ), update the binary and restart |
+| Block height              | Binary Version       | Instruction                                                                                       |
+| ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------- |
+| `1 - 922,363`             | `chain-main_1.2.1`   | Start the node with the older binary version                                                      |
+| `922,363 - 3,526,800`     | `chain-main_2.0.1`   | When it reaches the target block height `922,363` (Canis Major), update the binary and restart    |
+| `3,526,800 - 10,073,800`  | `chain-main_3.3.9`   | When it reaches the target block height `3,526,800` (Draco II), update the binary and restart\*   |
+| `10,073,800 - 22,649,500` | `chain-main_4.2.2`   | When it reaches the target block height `10,073,800` (V4 upgrade), update the binary and restart  |
+| `22,649,500 - 24,836,000` | `chain-main_v5.0.1`  | When it reaches the target block height `22,649,500` (V4 upgrade ), update the binary and restart |
+| `>24,836,000`             | `chain-main_6.0.0-2` | When it reaches the target block height `24,836,000` (V6 upgrade), update the binary and restart  |
 
 * \*Note that as of `v3.3.5` and higher, you need to modify your `.chain-maind/config/app.toml` and set the following params:
   * `index_events = []`
   * `iavl-cache-size = 781250`
   * `iavl-disable-fastnode = false` (set to `true` to skip IAVL migration, but keep as `false` when starting from a migrated snapshot. When you are on `INF starting ABCI with Tendermint` for a while, migration is going on and you should NOT terminate this. It might take a couple of hours, so plan well ahead for this migration, as it may incur downtime.)
-* Users can refer to the upgrade guides of
+* Users can refer to the upgrade guides for the detailed upgrade steps.
   * "[Canis Major](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide)" (`v1.*` to `v2.0.1`);
   * ["DRACO II"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_draco_2) (`v2.*` to `v3.3.9`);
-  * ["V4 upgrade"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_v4) (`v3.3.9` to `v4.2.2`); for the detailed upgrade steps.
+  * ["V4 upgrade"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_v4) (`v3.3.9` to `v4.2.2`);
+  * [V5 upgrade](upgrade-guide/upgrade_guide_v4-1.md) (`v4.*` to `v5`);&#x20;
+  * [V6 upgrade](upgrade-guide/upgrade_guide_v4.md) (`v5.0.1` to `v6.0.0-2` )&#x20;
 
 ## Pre-requisites
 
@@ -330,7 +334,7 @@ $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
 
 ## "DRACO II" and "V4" Network upgrades
 
-You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade_guide_v4-1.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
+You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade_guide_v4-2.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
 
 
 

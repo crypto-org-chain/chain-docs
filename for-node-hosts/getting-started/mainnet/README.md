@@ -6,14 +6,14 @@ This is detailed documentation for setting up a **Full Node** on the Cronos POS 
 
 For the host who would like to build a **Run a Full Node with complete blockchain data** from scratch, note that there were several breaking network upgrades, requiring upgrading at designated block heights below:
 
-| Block height              | Binary Version       | Instruction                                                                                       |
-| ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------- |
-| `1 - 922,363`             | `chain-main_1.2.1`   | Start the node with the older binary version                                                      |
-| `922,363 - 3,526,800`     | `chain-main_2.0.1`   | When it reaches the target block height `922,363` (Canis Major), update the binary and restart    |
-| `3,526,800 - 10,073,800`  | `chain-main_3.3.9`   | When it reaches the target block height `3,526,800` (Draco II), update the binary and restart\*   |
-| `10,073,800 - 22,649,500` | `chain-main_4.2.2`   | When it reaches the target block height `10,073,800` (V4 upgrade), update the binary and restart  |
-| `22,649,500 - 24,836,000` | `chain-main_v5.0.1`  | When it reaches the target block height `22,649,500` (V4 upgrade ), update the binary and restart |
-| `>24,836,000`             | `chain-main_6.0.0-2` | When it reaches the target block height `24,836,000` (V6 upgrade), update the binary and restart  |
+| Block height              | Binary Version       | Instruction                                                                                      |
+| ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------ |
+| `1 - 922,363`             | `chain-main_1.2.1`   | Start the node with the older binary version                                                     |
+| `922,363 - 3,526,800`     | `chain-main_2.0.1`   | When it reaches the target block height `922,363` (Canis Major), update the binary and restart   |
+| `3,526,800 - 10,073,800`  | `chain-main_3.3.9`   | When it reaches the target block height `3,526,800` (Draco II), update the binary and restart\*  |
+| `10,073,800 - 22,649,500` | `chain-main_4.2.2`   | When it reaches the target block height `10,073,800` (V4 upgrade), update the binary and restart |
+| `22,649,500 - 24,836,000` | `chain-main_v5.0.1`  | When it reaches the target block height `22,649,500` (V5 upgrade), update the binary and restart |
+| `>24,836,000`             | `chain-main_6.0.0-2` | When it reaches the target block height `24,836,000` (V6 upgrade), update the binary and restart |
 
 * \*Note that as of `v3.3.5` and higher, you need to modify your `.chain-maind/config/app.toml` and set the following params:
   * `index_events = []`

@@ -70,7 +70,7 @@ There are two options to install `chain-maind`:
     $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v6.0.1/chain-main_6.0.1_Linux_x86_64.tar.gz
     $ tar -zxvf chain-main_6.0.1_Linux_x86_64.tar.gz
     ```
-*   You can verify the installation by checking the version of the chain-maind, the current version is `3.3.9`.
+*   You can verify the installation by checking the version of the chain-maind, the current version is 6.0.1.
 
     ```bash
     # check the version of chain-maind

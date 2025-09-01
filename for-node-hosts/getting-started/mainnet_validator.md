@@ -13,9 +13,9 @@ There are two ways to set up a node:
 
 2. For hosts who would like to **join the network and start validating quickly**, one can:
 
-* Begin with the binary `v3.3.9` and join the network by `STATE-SYNC`
+* Begin with the binary `v6.0.1` and join the network by `STATE-SYNC`
 
-To simplify this guide, we will be covering the **second case** here in this guide, and guide you to begin with binary `v3.3.9` and join the network by `STATE-SYNC`.
+To simplify this guide, we will be covering the **second case** here in this guide, and guide you to begin with binary `v6.0.1` and join the network by `STATE-SYNC`.
 
 ## Pre-requisites
 
@@ -67,51 +67,15 @@ There are two options to install `chain-maind`:
 *   To install Cronos POS Chain binaries from Github:
 
     ```bash
-    $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.9/chain-main_3.3.9_Linux_x86_64.tar.gz
-    $ tar -zxvf chain-main_3.3.9_Linux_x86_64.tar.gz
+    $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v6.0.1/chain-main_6.0.1_Linux_x86_64.tar.gz
+    $ tar -zxvf chain-main_6.0.1_Linux_x86_64.tar.gz
     ```
 *   You can verify the installation by checking the version of the chain-maind, the current version is `3.3.9`.
 
     ```bash
     # check the version of chain-maind
     $ ./chain-maind version
-    3.3.9
-    ```
-
-**OR**
-
-### Option 2 - Install `chain-maind` by homebrew
-
-{% hint style="info" %}
-**Reminder**:
-
-* If you plan to play around with different networks (mainnet and testnet), we suggest you follow the `Option 1` to download the binary directly.
-* The binary downloaded from homebrew is **only for interacting with mainnet**. You cannot use it to interact with testnet.
-{% endhint %}
-
-To install binaries in Homebrew for macOS X or Linux
-
-[Homebrew](https://brew.sh/) is a free and open-source package management system for macOS X. Install the official Chain-maind formula from the terminal.
-
-* First, install the `crypto-org-chain` tap, a repository of our Homebrew `chain-maind` package:
-
-```bash
-  # tap the repo
-  $ brew tap crypto-org-chain/chain-maind
-```
-
-*   Now, install the `chain-maind` with crypto-org-chain/chain-maind
-
-    ```bash
-      # install the chain-maind CLI tool
-      $ brew install chain-maind
-    ```
-*   You can verify the installation by checking the version of the `chain-maind`
-
-    ```bash
-      # check the version of chain-maind
-      $ chain-maind version
-      3.3.9
+    6.0.1
     ```
 
 ## Step 2. Configure `chain-maind`

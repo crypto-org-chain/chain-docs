@@ -1,8 +1,18 @@
+---
+hidden: true
+---
+
 # Public Node Sync
 
 ## Introduction
 
-This guide provides step-by-step instructions to perform a faster sync for Chain-maind using Public Node Sync snapshots. Please note that the type of snapshot provided is pruned. &#x20;
+[Public Node](https://www.publicnode.com/snapshots#cronos) Snapshots, provided by blockchain infrastructure company [Allnodes](https://www.allnodes.com/), offer a streamlined solution for Cronos node operators looking to quickly sync with the Cronos EVM network.
+
+Available as one-time bulk downloads, the snapshots significantly reduce initial setup time and bandwidth requirements for new nodes. It provides pruned snapshots for both Cronos EVM and **Cronos POS** mainnet blockchains.
+
+This guide walks you through the step-by-step process of performing a `Chain-maid` synchronization using [Public Node](https://www.publicnode.com/snapshots#cronos) Snapshots. The snapshots provided are pruned for optimize file size and download speed.
+
+If a complete blockchain history to operate a full archive node is needed, [Native Snapshots](https://snapshot.cronos.org/?network=mainnet\&db=rocksdb\&pruning=archive\&chain=cronos-pos) or [Quicksync](https://quicksync.io/cronos-pos) archive snapshot are the recommended alternatives.
 
 ## Step 1: Download Public Node Snapshot
 
@@ -22,7 +32,7 @@ Follow the step from [Step 2-1 Initialize and Step 2-2 Configure Chain-maind](ht
 \
 The list of the seed is subject to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes). Make sure edit the `config.toml` under `/Users/<username>/.chain-maind/config/config.toml`.&#x20;
 
-Perform [Step 3.1 Run Everything](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet\_validator#step-3-1.-run-everything), terminate the terminal once `chainmaind` is able to sync for couple of blocks.
+Perform [Step 3.1 Run Everything](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet_validator#step-3-1.-run-everything), terminate the terminal once `chainmaind` is able to sync for couple of blocks.
 
 ## Step 4: Extract Data from the Public Node Sync Snapshot
 

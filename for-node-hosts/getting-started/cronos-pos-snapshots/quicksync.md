@@ -1,12 +1,13 @@
+---
+hidden: true
+---
+
 # Quicksync
 
 Syncing Cronos POS Chain could be a time-consuming process, our team has partnered with Chainlayer to provide the “QuickSync” service to make the process more efficient for our users.
 
-Users can visit [Chainlayer QuickSync page](https://quicksync.io/cronos-chain) and download the snapshots for Cronos POS Chain with different pruning settings (_currently only levelDB downloads are available_). You may refer to the following guide to implement QuickSync.
-
-## Step 1. QuickSync Download
-
-To start with QuickSync, you need to run `brew install lz4` to install lz4 in a new terminal. Then download the file with preferred pruning settings directly from [https://quicksync.io/cronos-chain](https://quicksync.io/cronos-chain).
+Users can visit [Chainlayer QuickSync page](https://quicksync.io/cronos-pos) and download the snapshots for Cronos POS Chain with different pruning settings (_currently only levelDB downloads are available_). \
+Refer to the following guide to implement QuickSync.
 
 #### There are three versions:
 
@@ -22,11 +23,15 @@ To start with QuickSync, you need to run `brew install lz4` to install lz4 in a 
 
 * For the users who would like to query the old block, you may pick the archive one for complete blockchain data. The archive node will have all the blocks from the chain start or chain upgrade with full indexing. So this is a good option for API nodes if you need to have access to the whole chain history. Archives grow fast in size and might be more sluggish to run, so if you need something simpler default or a pruned kickstarted API node might solve most of the needs out there.
 
+## Step 1. QuickSync Download
+
+To start with QuickSync, you need to run `brew install lz4` to install lz4 in a new terminal. Then download the file with preferred pruning settings directly from [https://quicksync.io/cronos-chain](https://quicksync.io/cronos-pos).
+
 ## Step 2. QuickSync Setup
 
 In the following steps, we will take the version `crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4` as an example.
 
-(Optional) you can download an addressbook from [Quicksync](https://quicksync.io/cronos-chain) to get connected to peers faster. After downloading it, place the new `addrbook.json` under `.chain-maind/config` folder and restart your node to take effect.
+(Optional) you can download an address book from [Quicksync](https://quicksync.io/cronos-pos) to get connected to peers faster. After downloading it, place the new `addrbook.json` under `.chain-maind/config` folder and restart your node to take effect.
 
 Now add the `crypto-org-chain-mainnet-1-pruned.20220323.2110.tar.lz4` inside `.chain-maind`.
 

@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Snapshot Downloader
 
 The Snapshot Downloader is a Rust-based automation tool that downloads a blockchain binary, snapshot (single or multi-part), and address book, then automatically extracts the binary and snapshot, initializes the node, merges custom settings into <mark style="color:orange;">`app.toml`</mark> and <mark style="color:orange;">`config.toml`</mark>, and starts the chain. \

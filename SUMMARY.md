@@ -35,7 +35,7 @@
       * [Running "Canis Major" network upgrade with cosmovisor](for-node-hosts/getting-started/mainnet/upgrade-guide/cosmovisor.md)
   * [Cronos POS Snapshots](for-node-hosts/getting-started/cronos-pos-snapshots/README.md)
     * [Native Snapshots](for-node-hosts/getting-started/cronos-pos-snapshots/native-snapshots.md)
-    * [Snapshot Downloade](for-node-hosts/getting-started/cronos-pos-snapshots/snapshot-downloade.md)
+    * [Snapshot Downloader](for-node-hosts/getting-started/cronos-pos-snapshots/snapshot-downloader.md)
     * [Public Node Sync](for-node-hosts/getting-started/cronos-pos-snapshots/public-node-sync.md)
     * [QuickSync SnapShots](for-node-hosts/getting-started/cronos-pos-snapshots/quicksync-snapshots.md)
   * [Cronos POS Chain Mainnet Validator Security Checklist](for-node-hosts/getting-started/security-checklist.md)

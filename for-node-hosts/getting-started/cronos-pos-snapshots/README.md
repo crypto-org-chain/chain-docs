@@ -8,8 +8,8 @@ This section provides an overview of the various sync methods available and guid
 
 {% include "../../../.gitbook/includes/sub-menu-links.md" %}
 
-{% content-ref url="public-node-sync-1.md" %}
-[public-node-sync-1.md](public-node-sync-1.md)
+{% content-ref url="public-node-sync.md" %}
+[public-node-sync.md](public-node-sync.md)
 {% endcontent-ref %}
 
 {% content-ref url="quicksync-snapshots.md" %}

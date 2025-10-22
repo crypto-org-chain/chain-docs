@@ -35,14 +35,11 @@
       * [Running "Canis Major" network upgrade with cosmovisor](for-node-hosts/getting-started/mainnet/upgrade-guide/cosmovisor.md)
   * [Cronos POS Snapshots](for-node-hosts/getting-started/cronos-pos-snapshots/README.md)
     * [Native Snapshots](for-node-hosts/getting-started/cronos-pos-snapshots/native-snapshots.md)
-    * [Snapshot Downloader](for-node-hosts/getting-started/cronos-pos-snapshots/snapshot-downloader.md)
+    * [Snapshot Downloade](for-node-hosts/getting-started/cronos-pos-snapshots/snapshot-downloade.md)
     * [Public Node Sync](for-node-hosts/getting-started/cronos-pos-snapshots/public-node-sync.md)
-    * [Public Node Sync](for-node-hosts/getting-started/cronos-pos-snapshots/public-node-sync-1.md)
-    * [Quicksync](for-node-hosts/getting-started/cronos-pos-snapshots/quicksync.md)
     * [QuickSync SnapShots](for-node-hosts/getting-started/cronos-pos-snapshots/quicksync-snapshots.md)
   * [Cronos POS Chain Mainnet Validator Security Checklist](for-node-hosts/getting-started/security-checklist.md)
   * [Croeseid Testnet: Running Nodes](for-node-hosts/getting-started/croeseid-testnet.md)
-  * [Croeseid 5 Testnet: Running Nodes](for-node-hosts/getting-started/croeseid5-testnet.md)
   * [Mainnet/Testnet: Running Nodes using AWS 1-click Deployment](for-node-hosts/getting-started/aws-1click.md)
   * [Mainnet/Testnet: Running Nodes using Azure 1-click Deployment](for-node-hosts/getting-started/azure-1click.md)
   * [Croeseid Testnet: Running Nodes With Nix](for-node-hosts/getting-started/croeseid-testnet-nix.md)
@@ -82,3 +79,9 @@
 * [🔄 Integration documentation](cronos-pos-integration/chain-integration.md)
 * [🛂 Node Setup and RPC node](cronos-pos-integration/node-and-rpc-setup-notes.md)
 * [🔲 Blocks and Transactions](cronos-pos-integration/blocks-and-transactions.md)
+
+## Achieved Contents
+
+* [Croeseid 5 Testnet: Running Nodes](achieved-contents/croeseid5-testnet.md)
+* [Quicksync](achieved-contents/quicksync.md)
+* [Public Node Sync](achieved-contents/public-node-sync.md)

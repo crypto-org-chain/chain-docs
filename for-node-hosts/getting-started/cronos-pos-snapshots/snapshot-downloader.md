@@ -1,6 +1,7 @@
 # Snapshot Downloader
 
-The Snapshot Downloader is a Rust-based automation tool that downloads a blockchain binary, snapshot (single or multi-part), and address book, then automatically extracts the binary and snapshot, initializes the node, merges custom settings into <mark style="color:orange;">`app.toml`</mark> and <mark style="color:orange;">`config.toml`</mark>`,` and starts the chain. It also provides lifecycle hooks to execute commands at different stages (post-download, post-extraction, post-start).
+The Snapshot Downloader is a Rust-based automation tool that downloads a blockchain binary, snapshot (single or multi-part), and address book, then automatically extracts the binary and snapshot, initializes the node, merges custom settings into <mark style="color:orange;">`app.toml`</mark> and <mark style="color:orange;">`config.toml`</mark>, and starts the chain. \
+It also provides lifecycle hooks to execute commands at different stages (post-download, post-extraction, post-start).
 
 This guide walks you through the installation, setup, and configuration of the Snapshot Downloader for running a Cronos node. Follow the steps in order, adapting to your hardware setup (e.g. number of disks).
 

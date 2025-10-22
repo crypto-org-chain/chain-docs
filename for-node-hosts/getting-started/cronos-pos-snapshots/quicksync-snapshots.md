@@ -58,7 +58,7 @@ cd bin
 #### Initialize and Configure
 
 1. Initialize Chain-maind (refer to the [initialization steps from the main documentation](../mainnet/#step-2-1.-initialize-chain-maind))
-2. Configure the node: edit the configuration file:
+2. Configure the node in \`config.toml\`
 
 ```bash
 nano ~/.chain-maind/config/config.toml

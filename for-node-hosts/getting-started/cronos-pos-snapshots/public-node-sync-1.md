@@ -57,9 +57,7 @@ Update the seed nodes with the latest available seeds (as the list of the seed i
 ./chain-maind start
 ```
 
-Once you see the node syncing for a couple of blocks, terminate the process (Ctrl+C).
-
-**OR,** Perform [Step 3.1 Run Everything](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet_validator#step-3-1.-run-everything), terminate the terminal once `chainmaind` is able to sync for couple of blocks.
+Once you see the node syncing for a couple of blocks, terminate the process (Ctrl+C). OR, perform [Step 3.1 Run Everything](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet_validator#step-3-1.-run-everything), terminate the terminal once `chainmaind` is able to sync for couple of blocks.
 
 ### Step 4: Extract Snapshot Data
 
@@ -83,7 +81,9 @@ cd ~/.chain-maind
 lz4 -d cronos-pos-pruned-18968897-18968907.tar.lz4 | tar -xv
 ```
 
-> **Important:** All extracted files should be placed in `~/.chain-maind/data/`
+{% hint style="info" %}
+**Important:** All extracted files should be placed under `~/.chain-maind/data/`.
+{% endhint %}
 
 ### Step 5: Start Your Synced Node
 

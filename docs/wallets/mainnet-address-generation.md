@@ -102,17 +102,17 @@ scare blur bless unfair chat gadget leaf reveal job depend daughter unveil fatal
 
 #### Step 1-2. Click "Ledger Icon" on the left navigation menu. Confirm to "Allow Ledger Manager" on your Ledger device.
 
-<div align="left"><figure><img src="../../.gitbook/assets/Screenshot 2024-12-04 151307.png" alt="" width="375"><figcaption></figcaption></figure></div>
+<div align="center"><figure><img src="../../.gitbook/assets/Screenshot 2024-12-04 151307.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 #### Step 1-3. Search for "Cronos POS Chain" and install the application to your Ledger.
 
-<div align="left"><figure><img src="../../.gitbook/assets/Screenshot 2024-12-04 at 15.33.28.png" alt="" width="375"><figcaption></figcaption></figure></div>
+<div align="center"><figure><img src="../../.gitbook/assets/Screenshot 2024-12-04 at 15.33.28.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 #### Step 1-4. Confirm the installation
 
 You can confirm the installation by checking if the Cronos POS Chain App shows up in the main menu of your Ledger device:
 
-<div align="left"><figure><img src="../../.gitbook/assets/WhatsApp Image 2024-12-03 at 17.36.22.jpeg" alt="" width="188"><figcaption></figcaption></figure></div>
+<div align="center"><figure><img src="../../.gitbook/assets/WhatsApp Image 2024-12-03 at 17.36.22.jpeg" alt="" width="375"><figcaption></figcaption></figure></div>
 
 ***
 
@@ -169,15 +169,17 @@ Download the latest version of the Crypto.com Defi Desktop Wallet [here](https:/
 
 #### Step 1. Open the application and click "Get Started" to set up an application password.
 
-![](assets/mainnet-address-generation/desktop-get-started.png)
+<figure><img src="assets/mainnet-address-generation/desktop-get-started.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Step 2. After setting up the password, click "Create Wallet".
 
-![](assets/mainnet-address-generation/desktop-create-wallet.png)
+<figure><img src="assets/mainnet-address-generation/desktop-create-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
 
-#### Step 3. Fill in any wallet name of your choice and choose "MAINNET" as the network. Then check "Want to create with hardware wallet?" and choose "Ledger" as "Wallet Type"
+#### Step 3. Fill in any wallet name of your choice and choose "MAINNET" as the network. Then check "Want to create with hardware wallet?" and choose "Ledger" as "Wallet Type"&#x20;
 
-![](assets/mainnet-address-generation/ledger-desktop-create-wallet.png) ![](assets/mainnet-address-generation/desktop-create-success.png)
+<figure><img src="assets/mainnet-address-generation/ledger-desktop-create-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="assets/mainnet-address-generation/desktop-create-success.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Step 4. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launches.
 
@@ -186,11 +188,11 @@ Download the latest version of the Crypto.com Defi Desktop Wallet [here](https:/
 If you encounter a connection error when creating a wallet, you can try to unplug and plug your Ledger device into your computer again. Please make sure your Ledger device is unlocked and you have opened the "Cronos POS Chain" application on your Ledger.
 {% endhint %}
 
-![](assets/mainnet-address-generation/desktop-main-page.png)
+<figure><img src="assets/mainnet-address-generation/desktop-main-page.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Step 5. You can check the wallet address by clicking the "Receive" tab inside any token assets. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
 
-![](assets/mainnet-address-generation/ledger-desktop-address.png)
+<figure><img src="assets/mainnet-address-generation/ledger-desktop-address.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## C. Programmatically
 
@@ -239,24 +241,26 @@ Download the latest version of the Crypto.com Defi Desktop Wallet [here](https:/
 
 #### Step 2. Open the application and click "Get Started" to set up an application password.
 
-![](assets/mainnet-address-generation/desktop-get-started.png)
+<figure><img src="assets/mainnet-address-generation/desktop-get-started.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Step 3. After setting up the password, click "Create Wallet".
 
-![](assets/mainnet-address-generation/desktop-create-wallet.png)
+<figure><img src="assets/mainnet-address-generation/desktop-create-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Step 4. Fill in any wallet name of your choice and choose "MAINNET" as the network. Then create the wallet by clicking "Create Wallet"
 
-![](assets/mainnet-address-generation/desktop-create-mainnet-wallet.png) ![](assets/mainnet-address-generation/desktop-create-success.png)
+<figure><img src="assets/mainnet-address-generation/desktop-create-mainnet-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="assets/mainnet-address-generation/desktop-create-success.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Step 5. Upon successful wallet creation, a list of 24 mnemonic words will be displayed. Make sure you have copied and stored your mnemonic words in a safe place.
 
-![](assets/mainnet-address-generation/desktop-backup-mnemonic.png)
+<figure><img src="assets/mainnet-address-generation/desktop-backup-mnemonic.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Step 6. A warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launches.
 
-![](assets/mainnet-address-generation/desktop-main-page.png)
+<figure><img src="assets/mainnet-address-generation/desktop-main-page.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Step 7. You can check the wallet address by clicking the "Receive" tab on the left navigation menu.
 
-![](assets/mainnet-address-generation/desktop-address.png)
+<figure><img src="assets/mainnet-address-generation/desktop-address.png" alt="" width="563"><figcaption></figcaption></figure>

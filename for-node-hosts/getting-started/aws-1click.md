@@ -18,19 +18,19 @@ Please read `AWS` free trial [page](https://aws.amazon.com/free/?all-free-tier.s
 
 Sign in to your AWS account and go to EC2 Dashboard and change to your favourite region. Click "Launch Instance"
 
-&#x20;![](../../docs/getting-started/assets/aws_ec2_dashboard.png)
+<figure><img src="../../docs/getting-started/assets/aws_ec2_dashboard.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Step 2-1. Search for Cronos POS Chain 1-Click Node on AWS Marketplace
 
 Search for "Cronos POS Chain 1-Click Node" in **Choose an Amazon Machine Image (AMI)** section. Select "Cronos POS Chain 1-Click Node" from the search results.&#x20;
 
-<figure><img src="../../docs/getting-started/assets/aws_marketplace.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../docs/getting-started/assets/aws_marketplace.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Step 2-2. Choose an instance type
 
 By default, it will choose the recommended instance type (**m5a.large**) for you. But you can choose another instance type based on [Mainnet](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet_validator#pre-requisites)/[Testnet](https://docs.cronos-pos.org/for-node-hosts/getting-started/croeseid-testnet) requirements.&#x20;
 
-<figure><img src="../../docs/getting-started/assets/aws_instance.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../docs/getting-started/assets/aws_instance.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Step 2-3. Configure instance details
 
@@ -67,9 +67,7 @@ By default, the image creates a new security group for you allowing ssh, p2p, rp
 
 Click "Launch" once you finish the review
 
-&#x20;
-
-<figure><img src="../../docs/getting-started/assets/aws_launch.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../docs/getting-started/assets/aws_launch.png" alt="" width="563"><figcaption></figcaption></figure>
 
 You can either create a new key pair or import a key pair. Follow this [instruction](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#prepare-key-pair).
 

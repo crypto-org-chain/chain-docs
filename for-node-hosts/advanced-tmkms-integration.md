@@ -6,7 +6,9 @@
 ## Setting up AWS Nitro Enclaves + Tendermint KMS for signing blocks
 
 {% hint style="warning" %}
-**CAUTION** The setup isn't yet ready for production use:
+**CAUTION** \
+\
+The setup isn't yet ready for production use:
 
 * It is not yet audited
 * The [tmkms prototype fork](https://github.com/crypto-com/tmkms-light) isn't meant to be maintained in the long term&#x20;
@@ -30,7 +32,9 @@ Virtualized Nitro-based instances with at least four vCPUs. t3, t3a, t4g, a1, c6
 
 We recommend `m5a.xlarge` and `Amazon Linux 2 AMI` for easier installation for AWS Nitro Enclaves CLI.
 
-* Remember to check `Enable` for Enclave in `Advanced Details` when configuring instance details. ![](../docs/getting-started/assets/aws_enclave_ec2_details.png)
+*   Remember to check `Enable` for Enclave in `Advanced Details` when configuring instance details.&#x20;
+
+    <figure><img src="../docs/getting-started/assets/aws_enclave_ec2_details.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Step 2. Installing the Nitro Enclaves CLI
 

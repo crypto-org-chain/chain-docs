@@ -39,17 +39,17 @@ You Will Need to Burn Your ERC20 CRO To use the migration web tool to migrate yo
 
 Go to [Token Migration](https://crypto.org/migration) website and click "Open Web Tool".
 
-![](../docs/getting-started/assets/token-migration/open-web-tool.png)
+<figure><img src="../docs/getting-started/assets/token-migration/open-web-tool.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 2. Connect to MetaMask Wallet
 
 #### 2.1 Click "Connect Now"
 
-![](../docs/getting-started/assets/token-migration/connect-now.png)
+<figure><img src="../docs/getting-started/assets/token-migration/connect-now.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### 2.2 Choose "MetaMask" on the wallet list
 
-![](../docs/getting-started/assets/token-migration/connect-wallet.png)
+<figure><img src="../docs/getting-started/assets/token-migration/connect-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 3. Fill in Your Mainnet Address
 
@@ -61,13 +61,13 @@ To generate a mainnet address, please refer to the [mainnet address generation g
 
 Fill in the mainnet address you want to receive the migrated CRO. If the address is valid, you will see a green tick next to the address. After you have completed, click "Continue".
 
-![](../docs/getting-started/assets/token-migration/fill-address.png)
+<figure><img src="../docs/getting-started/assets/token-migration/fill-address.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 4. Fill in The Migration Amount
 
 Fill in the amount of CRO you want to migrate to Mainnet and click "Continue".
 
-![](../docs/getting-started/assets/token-migration/fill-amount.png)
+<figure><img src="../docs/getting-started/assets/token-migration/fill-amount.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 5. Review Your Migration
 
@@ -75,19 +75,19 @@ Review and confirm the details of your token migration request. Make sure all th
 
 Afterwards, read the "CRO Token Migration Terms". If you understand and agree to the terms, you can tick the checkbox and click "Sign Agreement".
 
-![](../docs/getting-started/assets/token-migration/review-migration.png)
+<figure><img src="../docs/getting-started/assets/token-migration/review-migration.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 6. Sign The Agreement
 
 A MetaMask popup will appear and ask for your signature. By signing this message with your MetaMask account, you acknowledge that you agree to the "CRO Token Migration Terms".
 
-![](../docs/getting-started/assets/token-migration/sign-metamask-popup.png)
+<figure><img src="../docs/getting-started/assets/token-migration/sign-metamask-popup.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 7. Sign The Burn Transaction
 
 A MetaMask popup will appear and ask for your confirmation to send your ERC20 CRO to the [burn address](https://etherscan.io/address/0x000000000000000000000000000000000000dEaD) (0x000000000000000000000000000000000000dEaD). Please make sure all the information on this popup is correct before clicking "Confirm". In addition, you may adjust the gas parameters of your choice.
 
-![](../docs/getting-started/assets/token-migration/burn-metamask-popup.png)
+<figure><img src="../docs/getting-started/assets/token-migration/burn-metamask-popup.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Could Not See MetaMask Popup?**&#x20;
@@ -95,13 +95,13 @@ A MetaMask popup will appear and ask for your confirmation to send your ERC20 CR
 If you cannot see the MetaMask popups, you can check the MetaMask browser icon in your top right-hand corner. You should see a pending action on the icon and you can click the icon to continue the operations on MetaMask.
 {% endhint %}
 
-![](../docs/getting-started/assets/token-migration/metamask-icon.png)
+<figure><img src="../docs/getting-started/assets/token-migration/metamask-icon.png" alt="" width="510"><figcaption></figcaption></figure>
 
 ### 8. Successful Submission
 
 If your migration request is submitted, you will see the following page.
 
-![](../docs/getting-started/assets/token-migration/complete.png)
+<figure><img src="../docs/getting-started/assets/token-migration/complete.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Failed To Submit Your Migration Request? You can always re-submit your token migration request if your burn transaction has already been confirmed and succeeded on the chain. For details, please refer to the [Re-submit Migration Request guide](token-migration.md#re-submit-migration-request)
@@ -115,7 +115,7 @@ To check for the latest status of your migration requests, click the "Migration 
 
 You will see a list of migration requests associated with your current account and the status of it. If you are uncertain of the status, you can put your mouse over the status for an explanation.
 
-![](../docs/getting-started/assets/token-migration/migration-records.png)
+<figure><img src="../docs/getting-started/assets/token-migration/migration-records.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Re-submit Migration Request
 
@@ -138,11 +138,11 @@ Go to [Token Migration Re-submission Tool](https://crypto.org/migration/resubmit
 
 Alternatively, you can go to [Token Migration website](https://crypto.org/migration) and click "Open Web Tool", you will see a text saying "Proceed to Re-submit Tool.".
 
-![](../docs/getting-started/assets/token-migration/connect-now.png)
+<figure><img src="../docs/getting-started/assets/token-migration/connect-now.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 3 Click "Connect Now" and choose "MetaMask" on the wallet list
 
-![](../docs/getting-started/assets/token-migration/resubmit-connect-now.png)
+<figure><img src="../docs/getting-started/assets/token-migration/resubmit-connect-now.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 4. Fill in Your Mainnet Address
 
@@ -154,7 +154,7 @@ To generate a mainnet address, please refer to the [mainnet address generation g
 
 Fill in the mainnet address you want to receive the migrated CRO. If the address is valid, you will see a green tick next to the address. After you have completed, click "Continue".
 
-![](../docs/getting-started/assets/token-migration/resubmit-fill-address.png)
+<figure><img src="../docs/getting-started/assets/token-migration/resubmit-fill-address.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 5. Fill in Your ERC20 CRO Burn Transaction Hash
 
@@ -162,7 +162,7 @@ Fill in your previous ERC20 CRO burn transaction hash and click "Review Transact
 
 You can look for the burn transaction hash from your MetaMask transaction lists (Under the Activity tab).
 
-![](../docs/getting-started/assets/token-migration/resubmit-fill-burn-tx.png)
+<figure><img src="../docs/getting-started/assets/token-migration/resubmit-fill-burn-tx.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 6. Review Your Burn Transaction
 
@@ -170,13 +170,13 @@ Review and confirm the details of your token migration request. Make sure all th
 
 Afterwards, read the "CRO Token Migration Terms". If you understand and agree to the terms, you can tick the checkbox and click "Sign Agreement".
 
-![](../docs/getting-started/assets/token-migration/resubmit-review-migration.png)
+<figure><img src="../docs/getting-started/assets/token-migration/resubmit-review-migration.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 7. Sign The Agreement
 
 A MetaMask popup will appear and ask for your signature. By signing this message with your MetaMask account, you acknowledge that you agree to the "CRO Token Migration Terms".
 
-![](../docs/getting-started/assets/token-migration/sign-metamask-popup.png)
+<figure><img src="../docs/getting-started/assets/token-migration/sign-metamask-popup.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 **Could Not See MetaMask Popup?**&#x20;
@@ -184,13 +184,13 @@ A MetaMask popup will appear and ask for your signature. By signing this message
 If you cannot see the MetaMask popups, you can check the MetaMask browser icon on the top right-hand corner. You should see a pending action on the icon and you can click the icon to continue the operations on MetaMask. &#x20;
 {% endhint %}
 
-![](../docs/getting-started/assets/token-migration/metamask-icon.png)
+<figure><img src="../docs/getting-started/assets/token-migration/metamask-icon.png" alt="" width="510"><figcaption></figcaption></figure>
 
 ### 8. Successful Submission
 
 If you migration request is submitted, you will see the following page.
 
-![](../docs/getting-started/assets/token-migration/complete.png)
+<figure><img src="../docs/getting-started/assets/token-migration/complete.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Failed To Submit Your Migration Request? You can always re-submit your token migration request if your burn transaction has already been confirmed and succeeded on the chain. For details, please refer to the [Re-submit Migration Request guide](token-migration.md#re-submit-migration-request)&#x20;
@@ -202,4 +202,4 @@ To check for the latest status of your migration requests, click the "Migration 
 
 You will see a list of migration requests associated with your current account and the status of it. If you are uncertain of the status, you can put your mouse over the status for an explanation.
 
-![](../docs/getting-started/assets/token-migration/migration-records.png)
+<figure><img src="../docs/getting-started/assets/token-migration/migration-records.png" alt="" width="563"><figcaption></figcaption></figure>

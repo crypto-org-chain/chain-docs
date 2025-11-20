@@ -10,9 +10,7 @@ Solo machines open up plenty of use cases in the Cosmos ecosystem. In this artic
 
 The blockchain is running locally in this example and the proper configuration setup is required. In the genesis file, ensure 1) `transfer` in the genesis file is enabled (`receive_enabled: true` and `send_enabled: true`); 2) the staking message (`/cosmos.staking.v1beta1/MsgDelegate` and `/cosmos.staking.v1beta1/MsgUndelegate`)is enabled at `allow_message` under `host_genesis_state`. This lets them communicate properly later on.&#x20;
 
-&#x20;
-
-<figure><img src="https://user-images.githubusercontent.com/78806365/190537653-f7ea9530-c0ed-448a-89ba-48fbc7b9662b.png" alt=""><figcaption></figcaption></figure>
+<div align="center" data-full-width="false"><figure><img src="https://user-images.githubusercontent.com/78806365/190537653-f7ea9530-c0ed-448a-89ba-48fbc7b9662b.png" alt=""><figcaption></figcaption></figure></div>
 
 After completing the integration, run the chain in the background.
 
@@ -20,7 +18,7 @@ After completing the integration, run the chain in the background.
 
 Firstly, you need to install Rust to be able to conduct the operation with stag. The prerequisites setup guide is available [here](https://github.com/devashishdxt/stag/blob/main/README.md#installing) and the Stag CLI guide is available [here](https://github.com/devashishdxt/stag/blob/main/stag-cli/README.md). After installing Rust, you need to configure signers for your preferred chains. The sample config for a signer is included in `signer.yaml` by `stag signer sample-config`, where you can set up your own signer and update its details accordingly.
 
-![Signer Configuration](https://user-images.githubusercontent.com/78806365/190538165-ddb74f28-a5c2-40b7-9196-01de29a4e062.png)
+<figure><img src="https://user-images.githubusercontent.com/78806365/190538165-ddb74f28-a5c2-40b7-9196-01de29a4e062.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Add a Blockchain and Create an IBC Channel
 
@@ -28,7 +26,7 @@ The next step is to add the chain to the solo machine. To run IBC operations on-
 
 A sample `chain.yaml` is shown here:
 
-<img src="https://user-images.githubusercontent.com/78806365/190538089-58a57734-b0f1-4aed-be57-8f2d57444531.png" alt="chain_yaml" data-size="original">
+<figure><img src="https://user-images.githubusercontent.com/78806365/190538089-58a57734-b0f1-4aed-be57-8f2d57444531.png" alt="" width="563"><figcaption></figcaption></figure>
 
 Now, you can establish an IBC connection with a blockchain using
 
@@ -46,7 +44,7 @@ $ stag core channel create <channel_type> <chain_id>.
 
 There are two options for `channel_type`: `transfer` or `ica`. In the example below, the transfer channel is created, which looks like:
 
-<figure><img src="https://user-images.githubusercontent.com/78806365/190538598-bfd60dd3-53bc-4dad-b930-6a4c44bfe351.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/78806365/190538598-bfd60dd3-53bc-4dad-b930-6a4c44bfe351.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Use Case #1: Mint and Burn Tokens
 
@@ -76,7 +74,7 @@ $ stag transfer mint chain-main-1 1000 gld
 
 In return, the response should look like this:
 
-![mint1](https://user-images.githubusercontent.com/78806365/190538804-6e18b39c-ca7f-4276-b80f-03d7d8f486ab.png)
+<figure><img src="https://user-images.githubusercontent.com/78806365/190538804-6e18b39c-ca7f-4276-b80f-03d7d8f486ab.png" alt="" width="563"><figcaption></figcaption></figure>
 
 The same token can be burned with the query
 
@@ -84,7 +82,7 @@ The same token can be burned with the query
 $ stag transfer burn <chain_id> <amount> <denom>
 ```
 
-![mint2](https://user-images.githubusercontent.com/78806365/190538891-a1204977-ef1c-40d3-965e-247a08321076.png)
+<figure><img src="https://user-images.githubusercontent.com/78806365/190538891-a1204977-ef1c-40d3-965e-247a08321076.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Use Case #2: Delegation and Undelegation
 
@@ -120,24 +118,18 @@ Apart from Stag CLI, you can perform the same execution through a UI (User Inter
 
 Once it is connected, the default server listening is at `http://127.0.0.1:8080` and the frontend should look like:
 
-<figure><img src="https://user-images.githubusercontent.com/78806365/190540263-73b6385d-fff1-4dda-93ae-25af36ea1a06.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540263-73b6385d-fff1-4dda-93ae-25af36ea1a06.png" alt="" width="563"><figcaption></figcaption></figure>
 
 Like what we did with CLI, we first need to configure the signers, chains, and connections before building the channels.
 
-&#x20;
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540369-a1bcb3c2-a4ee-4788-bc5f-dd68139db85a.png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="https://user-images.githubusercontent.com/78806365/190540369-a1bcb3c2-a4ee-4788-bc5f-dd68139db85a.png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="https://user-images.githubusercontent.com/78806365/190540312-5f7a448e-b4d7-4e8b-95b8-4e5006fe8f8e.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540312-5f7a448e-b4d7-4e8b-95b8-4e5006fe8f8e.png" alt="" width="563"><figcaption></figcaption></figure>
 
 Here’s how minting and burning tokens look like:
 
-&#x20;
-
-<figure><img src="https://user-images.githubusercontent.com/78806365/190540476-f7ad07e4-5a90-41ec-92a8-d7b02bba64ae.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540476-f7ad07e4-5a90-41ec-92a8-d7b02bba64ae.png" alt="" width="563"><figcaption></figcaption></figure>
 
 This is how delegating and undelegating will appear:
 
-&#x20;
-
-<figure><img src="https://user-images.githubusercontent.com/78806365/190540529-252c4860-c2ef-4280-8e59-99869732b03c.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/78806365/190540529-252c4860-c2ef-4280-8e59-99869732b03c.png" alt="" width="563"><figcaption></figcaption></figure>

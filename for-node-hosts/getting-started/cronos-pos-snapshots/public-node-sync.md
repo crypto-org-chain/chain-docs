@@ -29,8 +29,7 @@ To start with Public Node Sync, install the `LZ4` [compression tool](https://www
 1. Download the latest `chain-maind` binary from the [Cronos POS Chain GitHub repository](https://github.com/crypto-org-chain/chain-main/releases) based on your operating system.
 2. Extract the downloaded file by `tar -zxvf chain-main_6.0.1_Darwin_arm64.tar.gz`\
    &#x20;\
-   After you unzip the `chain-maind` to the location you desire. In terminal, change directory to the `bin` folder, where `chain-maind` is located.\
-
+   After you unzip the `chain-maind` to the location you desire. In terminal, change directory to the `bin` folder, where `chain-maind` is located.<br>
 3. Verify Installation:
 
 ```bash

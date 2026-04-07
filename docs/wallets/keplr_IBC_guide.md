@@ -19,8 +19,7 @@ In the following step-by-step guide, you will learn how to make IBC transfers wi
 
 <figure><img src="../../.gitbook/assets/image (13) (1).png" alt="" width="360"><figcaption></figcaption></figure>
 
-3. Enter your Keplr Cronos POS Chain address under “Wallet Address or ICNS”. Keplr will auto-fill your selected account’s address. but you can manually adjust or click the person icon to select from your Address book if needed.  \
-
+3. Enter your Keplr Cronos POS Chain address under “Wallet Address or ICNS”. Keplr will auto-fill your selected account’s address. but you can manually adjust or click the person icon to select from your Address book if needed.  <br>
 
 <figure><img src="../../.gitbook/assets/image (6) (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
@@ -32,8 +31,7 @@ In the following step-by-step guide, you will learn how to make IBC transfers wi
 6.  On the transaction confirmation screen, you can view the details of your transaction. Select "Approve" to confirm the transaction.                                       &#x20;
 
     <figure><img src="../../.gitbook/assets/image (4) (1).png" alt="" width="361"><figcaption></figcaption></figure>
-7.  Now wait a bit for the transfer processing (usually takes less than 1 min). Keplr extension will show the progress of the transfer and a success message.\
-
+7.  Now wait a bit for the transfer processing (usually takes less than 1 min). Keplr extension will show the progress of the transfer and a success message.<br>
 
     <figure><img src="../../.gitbook/assets/Screenshot 2024-05-29 at 11.02.21 PM.png" alt="" width="375"><figcaption></figcaption></figure>
 
@@ -89,8 +87,7 @@ Choose "Cronos POS" from the Destination Chain dropdown menu, and enter "channel
 
 <figure><img src="../../.gitbook/assets/image (11) (1).png" alt="" width="357"><figcaption></figcaption></figure>
 
-Then proceed to input the necessary details and finalize the transaction.\
-
+Then proceed to input the necessary details and finalize the transaction.<br>
 
 ### Transfer ATOM under Cronos POS Chain to Cosmos Network
 

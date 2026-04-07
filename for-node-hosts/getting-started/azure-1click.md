@@ -18,7 +18,7 @@ Please read `Microsoft Azure` free trial introduction to see if you are eligible
 
 Sign in to your Microsoft Azure account and go to [Marketplace](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home). Search for "Cronos POS Chain 1-Click Node".
 
-![](../../docs/getting-started/assets/azure_marketplace.png)
+![](../../.gitbook/assets/azure_marketplace.png)
 
 ### Step 2-2. Create a Virtual Machine
 
@@ -26,7 +26,7 @@ Choose the image and click "Create" to start creating the Cronos POS Chain 1-Cli
 
 #### 1. Basic
 
-![](../../docs/getting-started/assets/azure_1click_basics.png)
+![](../../.gitbook/assets/azure_1click_basics.png)
 
 | Configuration           | Value                                                                                                             |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -41,7 +41,7 @@ Choose the image and click "Create" to start creating the Cronos POS Chain 1-Cli
 
 #### 3. Networking
 
-![](../../docs/getting-started/assets/azure_1click_networking.png)
+![](../../.gitbook/assets/azure_1click_networking.png)
 
 * _Virtual network_, _Subnet_, _Public IP_ and _NIC_: "Create new" if you don't have any in that region
 

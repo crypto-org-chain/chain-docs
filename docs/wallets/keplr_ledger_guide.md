@@ -21,16 +21,13 @@ _The Keplr browser extension may request permission to access your Ledger device
 2.  Launch the extension, then select the person icon <img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXe4IUXiABSHV0JYjmt8wuLbc_HmPmB2LwRmy78y3La6qufaW4KCeQZcdPdMQ3p1sLriBaSWxmPi7VzZ6Z0ywZFSFQUoIcdHRFo9hK5dI74CQIUAI6pPL_shAQCFbCLeQQNSDBofYctp7FmbBtE6SV93LQ?key=ZYYyxJl6MBH_qHpH6Zjglw" alt="" data-size="line"> in the top right corner. &#x20;
 
     <figure><img src="../../.gitbook/assets/image.png" alt="" width="349"><figcaption></figcaption></figure>
-3.  Choose **“Add Wallet”**.  \
-
+3.  Choose **“Add Wallet”**.  <br>
 
     <figure><img src="../../.gitbook/assets/image (1).png" alt="" width="354"><figcaption></figcaption></figure>
-4.  In the following window, select **“Connect Hardware Wallet”.**\
-
+4.  In the following window, select **“Connect Hardware Wallet”.**<br>
 
     <figure><img src="../../.gitbook/assets/image (2).png" alt="" width="563"><figcaption></figcaption></figure>
-5.  "**Connect Ledger**"\
-
+5.  "**Connect Ledger**"<br>
 
     <figure><img src="../../.gitbook/assets/image (3).png" alt="" width="563"><figcaption></figcaption></figure>
 6.  Give your Wallet a friendly username. Also make sure your Ledger Nano S is unlocked and the Cosmos app is open on the Ledger device. The Cosmos app is selected in the Keplr window by default. Click “**Next**”.\
@@ -41,31 +38,25 @@ _The Keplr browser extension may request permission to access your Ledger device
     \
     For more information about Keplr’s advanced setting, it is available [here](https://help.keplr.app/faq).\
     \
-    In this tutorial, we can skip the advanced option.\
-
+    In this tutorial, we can skip the advanced option.<br>
 
     <figure><img src="../../.gitbook/assets/image (5).png" alt="" width="563"><figcaption></figcaption></figure>
-7.  At this point your Ledger Nano S should be unlocked and the Cosmos app selected. Therefore click **Next** for both Step 1 & Step 2.\
-
+7.  At this point your Ledger Nano S should be unlocked and the Cosmos app selected. Therefore click **Next** for both Step 1 & Step 2.<br>
 
     <figure><img src="../../.gitbook/assets/image (6).png" alt="" width="563"><figcaption></figcaption></figure>
-8.  Now select the chains you will manage with the Keplr wallet. Scroll down to select **Cronos POS**. \
-
+8.  Now select the chains you will manage with the Keplr wallet. Scroll down to select **Cronos POS**. <br>
 
     <figure><img src="../../.gitbook/assets/image (7).png" alt="" width="563"><figcaption></figcaption></figure>
 
     <figure><img src="../../.gitbook/assets/image (8).png" alt="" width="563"><figcaption></figcaption></figure>
 9. If you have selected EVM compatible chains such as Injective and Evmos, quit the Cosmos app on your Ledger Nano S and open the Ethereum app if you have it installed (install the Ethereum app on your Ledger device using the Ledger LIVE app).
-10. Click “**Next**” to perform the Step 1 & Step 2 here:\
-
+10. Click “**Next**” to perform the Step 1 & Step 2 here:<br>
 
     <figure><img src="../../.gitbook/assets/image (10).png" alt="" width="563"><figcaption></figcaption></figure>
-11. Finally your Ledger Nano S is now installed/setup on your Keplr browser wallet extension.\
-
+11. Finally your Ledger Nano S is now installed/setup on your Keplr browser wallet extension.<br>
 
     <figure><img src="../../.gitbook/assets/image (11).png" alt="" width="563"><figcaption></figcaption></figure>
-12. Open the Keplr browser extension by clicking on it, the click the person icon <img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfO65-wc2YGR58kq8Gec79mvSyQVO0g1dNRsJHAVLFEjiZ1g-Pp3tP7hkTpTTaxKpMtJ7Dj1nUTY2IrpyUUTqk9wdD62LDtO99mqKg8Fr0VbwK8vI7qD3Pt4xqBafy3dGIfAUgTHrcqE3rsNPAVQ-vSxw?key=ZYYyxJl6MBH_qHpH6Zjglw" alt="" data-size="line"> again to see your Ledger Hardware Wallet.\
-
+12. Open the Keplr browser extension by clicking on it, the click the person icon <img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXfO65-wc2YGR58kq8Gec79mvSyQVO0g1dNRsJHAVLFEjiZ1g-Pp3tP7hkTpTTaxKpMtJ7Dj1nUTY2IrpyUUTqk9wdD62LDtO99mqKg8Fr0VbwK8vI7qD3Pt4xqBafy3dGIfAUgTHrcqE3rsNPAVQ-vSxw?key=ZYYyxJl6MBH_qHpH6Zjglw" alt="" data-size="line"> again to see your Ledger Hardware Wallet.<br>
 
     <figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
@@ -76,29 +67,23 @@ Now we are going to use the Keplr Dashboard to Stake our **$CRO** tokens with a 
 1.  Open your Keplr browser extension, then click on “**Manage Portfolio in Keplr Dashboard**”
 
     <figure><img src="../../.gitbook/assets/image (13).png" alt="" width="354"><figcaption></figcaption></figure>
-2.  The Keplr Dashboard opens in a new browser window or tab. The chains listed on the left menu of the Dashboard are chains that have been set as “**Favorites'**'. If you do not see “**Cronos POS**” in the menu then click on “**Chains**”, a list of chains will appear on the main menu in the middle of the screen.\
-
+2.  The Keplr Dashboard opens in a new browser window or tab. The chains listed on the left menu of the Dashboard are chains that have been set as “**Favorites'**'. If you do not see “**Cronos POS**” in the menu then click on “**Chains**”, a list of chains will appear on the main menu in the middle of the screen.<br>
 
     <figure><img src="../../.gitbook/assets/image (14).png" alt="" width="563"><figcaption></figcaption></figure>
-3.  Now select **Cronos POS** from the menu. The details of your $CRO token holdings are now in the main view in the centre of the Dashboard. The “Stake” option is to the right of the screen. Go ahead and click the “**Stake**” button.\
-
+3.  Now select **Cronos POS** from the menu. The details of your $CRO token holdings are now in the main view in the centre of the Dashboard. The “Stake” option is to the right of the screen. Go ahead and click the “**Stake**” button.<br>
 
     <figure><img src="../../.gitbook/assets/image (15).png" alt="" width="563"><figcaption></figcaption></figure>
-4.  A new menu appears with a list of available **Validators**, along with details of: Voting Power, API % returns & Commission. Choose the option that best fits your needs.\
-
+4.  A new menu appears with a list of available **Validators**, along with details of: Voting Power, API % returns & Commission. Choose the option that best fits your needs.<br>
 
     <figure><img src="../../.gitbook/assets/image (16).png" alt="" width="563"><figcaption></figcaption></figure>
-5.  For this demo we will select the “**Starship**” Validator. Then click the “**Stake**” button at the bottom of the screen.\
-
+5.  For this demo we will select the “**Starship**” Validator. Then click the “**Stake**” button at the bottom of the screen.<br>
 
     <figure><img src="../../.gitbook/assets/image (17).png" alt="" width="563"><figcaption></figcaption></figure>
 6. In this scenario, we chose one of the top ten Validators. Therefore a dialog box appears encouraging us to help improve network decentralization by selecting another Validation lower down the list. For now, we will stay with our choice by clicking the button labeled “**Continue Staking**”. Then the “**Stake**” button on the next pop-up window.&#x20;
-7.  Next we need to “**Approve & Sign**“ the transaction by unlocking our Ledger Nano S device and opening the **Cosmos** app.\
-
+7.  Next we need to “**Approve & Sign**“ the transaction by unlocking our Ledger Nano S device and opening the **Cosmos** app.<br>
 
     <figure><img src="../../.gitbook/assets/image (26).png" alt="" width="375"><figcaption></figcaption></figure>
-8.  ..…..and that's it! We have successfully Staked our **$CRO** tokens from our Ledger Nano S hardware wallet using the Keplr browser extension wallet & **Kepler Dashboard**.\
-
+8.  ..…..and that's it! We have successfully Staked our **$CRO** tokens from our Ledger Nano S hardware wallet using the Keplr browser extension wallet & **Kepler Dashboard**.<br>
 
     <figure><img src="../../.gitbook/assets/image (20).png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -111,12 +96,10 @@ Now we are going to use the Keplr Dashboard to Stake our **$CRO** tokens with a 
 _Please note: claiming always incurs a transaction fee._
 
 1.  It is ideal that you claim the staking rewards regularly. One option is to redelegate these rewards for a compound effect. To claim your **$CRO** staking rewards, open the Keplr Browser Extension and click “**Manage Portfolio in Keplr Dashboard**''. Now plug in and unlock your Ledger Nano S device, then open the **COSMOS** app.\
-    Make sure you have enough $CRO to cover the transaction fee. Now click the “**Claim**” button.\
-
+    Make sure you have enough $CRO to cover the transaction fee. Now click the “**Claim**” button.<br>
 
     <figure><img src="../../.gitbook/assets/image (21).png" alt="" width="563"><figcaption></figcaption></figure>
-2.  A new window pop-up displays the details of the transaction with an “**Approve**” button at the bottom. Click “**Approve**”. The transaction details will be displayed on your Ledger Nano S device. Go ahead and “**Sign**” the transaction.\
-
+2.  A new window pop-up displays the details of the transaction with an “**Approve**” button at the bottom. Click “**Approve**”. The transaction details will be displayed on your Ledger Nano S device. Go ahead and “**Sign**” the transaction.<br>
 
     <figure><img src="../../.gitbook/assets/image (22).png" alt="" width="285"><figcaption></figcaption></figure>
 

@@ -37,18 +37,10 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
     $ tar -zxvf chain-main_3.3.2_Linux_x86_64.tar.gz
     ```
 
-    \
+    <br>
 
-
-    {% hint style="info" %}
-    **Remarks**: If you have stated `chain-maind` with _systemd_ service, kindly stop it by
-
-    ```bash
-    $ sudo systemctl stop chain-maind
-    ```
-
-    And replace the binary in the location where the `ExecStart` states in Systemd Unit file.
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>Remarks</strong>: If you have stated <code>chain-maind</code> with <em>systemd</em> service, kindly stop it by</p><pre class="language-bash"><code class="lang-bash">$ sudo systemctl stop chain-maind
+    </code></pre><p>And replace the binary in the location where the <code>ExecStart</code> states in Systemd Unit file.</p></div>
 
 ### Step 1.1 - Verify the version
 

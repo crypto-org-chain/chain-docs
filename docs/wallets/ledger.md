@@ -48,7 +48,7 @@ You can confirm the installation by checking if the Cronos POS Chain App shows u
     * `name` is an arbitrary name for your new key
 4.  An address will be displayed on your Ledger device, for example:&#x20;
 
-    <figure><img src="assets/ledger_desktop_wallet/s9.png" alt="" width="563"><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/s9.png" alt="" width="563"><figcaption></figcaption></figure>
 5.  Confirm the address on your Ledger device and verify the address displayed on the terminal. They should match each other, for example, if we create a wallet named `ledger_test`, you should see the same address displayed on your terminal after confirming and pressing "_Ok_" on your ledger device:
 
     ```bash

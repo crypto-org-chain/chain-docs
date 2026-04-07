@@ -157,14 +157,8 @@ Before kick-starting your node, we will have to configure the node so that it co
 
 
 
-    {% hint style="info" %}
-    **Note**: \
-    For Mac environment, `sha256sum` was not installed by default. In this case, you may setup `sha256sum` with this command:
-
-    ```bash
-    function sha256sum() { shasum -a 256 "$@" ; } && export -f sha256sum
-    ```
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>Note</strong>: <br>For Mac environment, <code>sha256sum</code> was not installed by default. In this case, you may setup <code>sha256sum</code> with this command:</p><pre class="language-bash"><code class="lang-bash">function sha256sum() { shasum -a 256 "$@" ; } &#x26;&#x26; export -f sha256sum
+    </code></pre></div>
 
 
 *   In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
@@ -237,8 +231,7 @@ It should begin fetching blocks from the other peers. Please wait until it is sy
 
 {% hint style="info" %}
 **Remarks:**  \
-Option 2 - Install `chain-maind` by homebrew \
-
+Option 2 - Install `chain-maind` by homebrew <br>
 
 To install binaries in Homebrew for macOS X or Linux
 

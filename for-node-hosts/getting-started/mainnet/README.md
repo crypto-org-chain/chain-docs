@@ -23,8 +23,8 @@ For the host who would like to build a **Run a Full Node with complete blockchai
   * "[Canis Major](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide)" (`v1.*` to `v2.0.1`);
   * ["DRACO II"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_draco_2) (`v2.*` to `v3.3.9`);
   * ["V4 upgrade"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_v4) (`v3.3.9` to `v4.2.2`);
-  * [V5 upgrade](upgrade-guide/upgrade_guide_v4-1.md) (`v4.*` to `v5`);&#x20;
-  * [V6 upgrade](upgrade-guide/upgrade_guide_v4.md) (`v5.0.1` to `v6.0.0-2` )&#x20;
+  * [V5 upgrade](upgrade-guide/upgrade_guide_v4-2.md) (`v4.*` to `v5`);&#x20;
+  * [V6 upgrade](upgrade-guide/upgrade_guide_v4-1.md) (`v5.0.1` to `v6.0.0-2` )&#x20;
 
 ## Pre-requisites
 
@@ -327,7 +327,7 @@ $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
 
 ## "DRACO II" and "V4" Network upgrades
 
-You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade_guide_v4-2.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
+You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade_guide_v4-3.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
 
 
 

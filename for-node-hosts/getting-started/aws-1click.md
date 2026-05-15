@@ -34,7 +34,7 @@ By default, it will choose the recommended instance type (**m5a.large**) for you
 
 ### Step 2-3. Configure instance details
 
-![](../../.gitbook/assets/aws_config_instance.png)
+<img src="../../.gitbook/assets/aws_config_instance.png" alt="" width="563">
 
 | Configuration           | Value                                                       |
 | ----------------------- | ----------------------------------------------------------- |

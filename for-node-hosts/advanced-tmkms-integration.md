@@ -24,7 +24,7 @@ What we want to achieve is just running TMKMS securely and provision validator c
 
 Note that this is still a work in progress and this document only describes a basic setup, so it is not yet ready for production use. We recommend looking at other materials for additional setups, such as the [Security best practices for AWS KMS whitepaper](https://d0.awsstatic.com/whitepapers/aws-kms-best-practices.pdf).
 
-![](../.gitbook/assets/tmkms_vsock_enclave.png)
+<img src="../.gitbook/assets/tmkms_vsock_enclave.png" alt="" width="563">
 
 ### Step 1. Set up supported EC2 instance types
 
@@ -72,7 +72,7 @@ Attach this role to the previously created EC2. Check this [guide](https://docs.
 * Create your [symmetric CMK](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk)
 * Define key administrative permissions and key usage permissions that user can admin, encrypt and decrypt the signing key in your local or a trusted machine via [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html).
 
-![](../.gitbook/assets/aws_kms_admin.png)
+<img src="../.gitbook/assets/aws_kms_admin.png" alt="" width="563">
 
 *   Edit key policy to allow only TMKMS inside nitro enclave to decrypt instead of entire EC2 and encrypt on EC2 You should have a generated policy shown in the console.
 

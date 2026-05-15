@@ -1,21 +1,21 @@
-# The "V5" upgrade guide (v4.\* to v5.0.1) :
+# The "V6" upgrade guide (v5.0.1 to v6.0.0-2) :
 
 For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide).
 
 {% hint style="warning" %}
 **Warning**:
 
-* The chain-maind `v5.0.1` - "V5" upgrade is proposed to be scheduled at the block height of `22649500` ( _Estimated time \~_&#x33; AM GMT, Tuesday, March 18th, but this depends on the actual time taken when the blocks are being processed);
-* Actual timing depends on the progress of block production, the estimated time of this block can be found [here](https://www.mintscan.io/crypto-org/block/22649500).
+* The chain-maind `v6.0.0-2` - "V6" upgrade is proposed to be scheduled at the block height of `24836000` ( _Estimated time \~6:30_ AM GMT, Monday, July 28 2025, but this depends on the actual time taken when the blocks are being processed);
+* Actual timing depends on the progress of block production, the estimated time of this block can be found [here](https://www.mintscan.io/crypto-org/block/24836000).
 
-**DO NOT UPGRADE to the binary `v5.0.1` before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade_guide_v4-1.md#step-0-dont-panic)**.** &#x20;
+**DO NOT UPGRADE to the binary** `v6.0.0-2` **before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade_guide_v4-1.md#step-0-dont-panic)**.** &#x20;
 {% endhint %}
 
 ## Step 0 - Don't panic
 
 At the point of proposed upgrade, user will see the error message on the `chain-maind` similar to the below:
 
-`ERR UPGRADE "v5.0.1" NEEDED at time: xxxxxxxxxxxxx: {"binaries":{"darwin/amd64":.......`
+`ERR UPGRADE "v6.0.0-2" NEEDED at time: xxxxxxxxxxxxx: {"binaries":{"darwin/amd64":.......`
 
 **Don't panic** - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Cronos POS Chain nodes to the latest release binary.
 
@@ -25,15 +25,15 @@ Before the upgrade, validators are encouraged to take a complete data snapshot. 
 
 It is critically important for validator operators to back-up the `.chain-maind/data/priv_validator_state.json` file after stopping the `chain-maind` process. This file is updated every block as your validator participates in consensus rounds. It is a critical file needed to prevent double-signing if the upgrade fails and the previous chain needs to be restarted.
 
-## Step 1 - Get the `v5.0.1` binary
+## Step 1 - Get the `v6.0.0-2` binary
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac(arm64)](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main_4.2.2_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main_4.2.2_Windows_x86_64.zip) are also available.
 
-*   Terminate the `chain-maind`; afterward, download the `5.0.1` released binaries from GitHub:
+*   Terminate the `chain-maind`; afterward, download the `v6.0.0-2` released binaries from GitHub:
 
     ```bash
-    $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v5.0.1/chain-main_5.0.1-testnet_Linux_x86_64.tar.gz
-    $ tar -zxvf chain-main_5.0.1_Linux_x86_64.tar.gz
+    $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v6.0.0-2/chain-main_6.0.0-2-testnet_Linux_x86_64.tar.gz
+    $ tar -zxvf chain-main_6.0.0-2_Linux_x86_64.tar.gz
     ```
 
 {% hint style="info" %}
@@ -48,12 +48,12 @@ And replace the binary in the location where the `ExecStart` states in Systemd U
 
 ### Step 1.1 - Verify the version
 
-You can verify the installation by checking the version of `chain-maind`, the latest version is `5.0.1`.
+You can verify the installation by checking the version of `chain-maind`, the latest version is `6.0.0-2`.
 
 ```bash
 # check the version of chain-maind
 $ ./chain-maind version
-5.0.1
+6.0.0-2
 ```
 
 ### Step 1.2 - Insert new configuration

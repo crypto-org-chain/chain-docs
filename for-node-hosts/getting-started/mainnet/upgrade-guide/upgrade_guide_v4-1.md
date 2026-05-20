@@ -70,6 +70,21 @@ Several new fields under `~/.chain-maind/config/app.toml` have been introduced, 
 app-db-backend = "goleveldb"
 ```
 
+*   Under `Rosetta Configuration`:
+
+    ```bash
+    # EnableDefaultSuggestedFee defines if the server should suggest fee by default.
+    # If 'construction/medata' is called without gas limit and gas price,
+    # suggested fee based on gas-to-suggest and denom-to-suggest will be given.
+    enable-fee-suggestion = false
+
+    # GasToSuggest defines gas limit when calculating the fee
+    gas-to-suggest = 200000
+
+    # DenomToSuggest defines the defult denom for fee suggestion.
+    # Price must be in minimum-gas-prices.
+    denom-to-suggest = "basecro"
+    ```
 * Under `gRPC Configuration`:
 
 ```bash

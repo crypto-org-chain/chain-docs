@@ -56,9 +56,7 @@ This document describes the block and transaction structure of the Cronos POS Ch
     * [4. Proposal Result](blocks-and-transactions.md#_4-proposal-result)
   * [Appendix: Module Accounts on Mainnet](blocks-and-transactions.md#appendix-module-accounts-on-mainnet)
 
-## Common APIs
 
-### Tendermint
 
 ## Common APIs
 
@@ -73,8 +71,6 @@ This document describes the block and transaction structure of the Cronos POS Ch
 **Example: Checking the block at height `10000` of the mainnet:**\
 [https://](https://https/rpc.mainnet.crypto.org/block?height=10000)[rpc.mainnet.crypto.org](http://rpc.mainnet.cronos-pos.org/)[/block?height=10000](https://https/rpc.mainnet.crypto.org/block?height=10000)
 {% endhint %}
-
-
 
 ### 2. Tendermint Block Results API
 
@@ -134,8 +130,6 @@ $ node block-results-decoder.js "https://rpc.mainnet.crypto.org/block_results?he
 {% endhint %}
 
 Note that when you integrate with the API you should still base64 decode the attributes programmatically.
-
-
 
 ### 1. Mint
 

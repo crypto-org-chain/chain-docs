@@ -27,7 +27,7 @@ It is critically important for validator operators to back-up the `.chain-maind/
 
 ## Step 1 - Get the `v7.1.0` binary
 
-To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac(arm64)](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main_4.2.2_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main_4.2.2_Windows_x86_64.zip) are also available.
+To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac(arm64)](https://github.com/crypto-org-chain/chain-main/releases/download/v4.2.2/chain-main_7.1.0_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v7.1.0/chain-main_7.1.0_Windows_x86_64.tar.gz) are also available.
 
 *   Terminate the `chain-maind`; afterward, download the `v7.1.0` released binaries from GitHub:
 
@@ -67,22 +67,6 @@ Several new fields under `~/.chain-maind/config/app.toml` have been introduced, 
 # First fallback is the deprecated compile-time types.DBBackend value.
 # Second fallback (if the types.DBBackend also isn't set), is the db-backend value set in Tendermint's config.toml.
 app-db-backend = "goleveldb"
-```
-
-* Under `Rosetta Configuration`:
-
-```bash
-# EnableDefaultSuggestedFee defines if the server should suggest fee by default.
-# If 'construction/medata' is called without gas limit and gas price,
-# suggested fee based on gas-to-suggest and denom-to-suggest will be given.
-enable-fee-suggestion = false
-
-# GasToSuggest defines gas limit when calculating the fee
-gas-to-suggest = 200000
-
-# DenomToSuggest defines the defult denom for fee suggestion.
-# Price must be in minimum-gas-prices.
-denom-to-suggest = "basecro"
 ```
 
 * Under `gRPC Configuration`:

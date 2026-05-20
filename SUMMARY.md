@@ -47,7 +47,7 @@
   * [Devnet: Running Latest Development Node](for-node-hosts/getting-started/local-devnet.md)
 * [🔄 Advanced TMKMS Integration](for-node-hosts/advanced-tmkms-integration.md)
 * [💫 Notes on Performance](for-node-hosts/notes-on-performance.md)
-* [🔃 Notes on Production Deployment](for-node-hosts/notes-on-production-deployment.md)
+* [📔 Notes on Production Deployment](for-node-hosts/notes-on-production-deployment.md)
 
 ## Block Explorers
 
@@ -64,6 +64,8 @@
   * [List of parameters](cronos-pos-chain-protocol/chain-details/parameters.md)
   * [Proposal Process](cronos-pos-chain-protocol/chain-details/govprocess.md)
   * [Technical glossary](cronos-pos-chain-protocol/chain-details/technical-glossary.md)
+* [💡 Tiered Staking](cronos-pos-chain-protocol/tiered-staking.md)
+* [Tokenomics](cronos-pos-chain-protocol/tokenomics.md)
 * [🎛️ Modules](cronos-pos-chain-protocol/module_overview/README.md)
   * [module\_supply](cronos-pos-chain-protocol/module_overview/module_supply.md)
   * [module\_slashing](cronos-pos-chain-protocol/module_overview/module_slashing.md)
@@ -74,6 +76,9 @@
   * [module\_staking](cronos-pos-chain-protocol/module_overview/module_staking.md)
   * [module\_distribution](cronos-pos-chain-protocol/module_overview/module_distribution.md)
   * [module\_nft](cronos-pos-chain-protocol/module_overview/module_nft.md)
+  * [module\_inflation](cronos-pos-chain-protocol/module_overview/module_inflation.md)
+  * [module\_inflation (including mint)](cronos-pos-chain-protocol/module_overview/module_inflation-including-mint.md)
+  * [module\_tieredrewards](cronos-pos-chain-protocol/module_overview/module_tieredrewards.md)
 
 ## Cronos PoS Integration
 

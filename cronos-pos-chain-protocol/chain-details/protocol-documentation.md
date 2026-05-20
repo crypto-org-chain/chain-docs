@@ -5019,3 +5019,81 @@ GenesisState defines the ibc-transfer genesis state
 | bool        |                                                                                                                                                 | bool   | boolean    | boolean     | bool    | bool       | boolean        | TrueClass/FalseClass           |
 | string      | A string must always contain UTF-8 encoded or 7-bit ASCII text.                                                                                 | string | String     | str/unicode | string  | string     | string         | String (UTF-8)                 |
 | bytes       | May contain any arbitrary sequence of bytes.                                                                                                    | string | ByteString | str         | \[]byte | ByteString | string         | String (ASCII-8BIT)            |
+|             |                                                                                                                                                 |        |            |             |         |            |                |                                |
+
+### x/inflation
+
+Controls token supply and inflation decay. Introduced in `v7.0.0`.
+
+**Messages:**
+
+| Message           | Description                                                                                           |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| `MsgUpdateParams` | Update all inflation parameters (max\_supply, decay\_rate, burned\_addresses). Authority: governance. |
+
+**Queries:**
+
+| Query    | REST Endpoint                        | Description                                         |
+| -------- | ------------------------------------ | --------------------------------------------------- |
+| `Params` | `GET /chainmain/inflation/v1/params` | Returns max\_supply, decay\_rate, burned\_addresses |
+
+**BeginBlocker:**
+
+Runs every block after the Mint module. Checks circulating supply (total supply − burned address balances) does not exceed max\_supply. Chain halts if exceeded.
+
+**Inflation decay formula:**
+
+```
+inflation_rate = base_rate × (1 − decay_rate) ^ months_elapsed
+
+Where:
+  base_rate      = 1% (InflationMin = InflationMax = 0.01)
+  decay_rate     = 6.8% per month
+  months_elapsed = (current_height − decay_epoch_start) / blocks_per_month
+```
+
+***
+
+### x/tieredrewards
+
+Manages tiered staking positions with bonus APY and exit commitments. Introduced in `v7.0.0`.
+
+**Messages:**
+
+| Message                     | Description                                                              |
+| --------------------------- | ------------------------------------------------------------------------ |
+| `MsgLockTier`               | Lock fresh CRO into a tier position and delegate to a validator          |
+| `MsgCommitDelegationToTier` | Convert existing delegation into a tier position (no unbonding required) |
+| `MsgAddToTierPosition`      | Add tokens to an existing position (rejected if exit in progress)        |
+| `MsgTierRedelegate`         | Move position to a different validator (does not trigger exit)           |
+| `MsgClaimTierRewards`       | Claim pending base + bonus rewards for one or more positions             |
+| `MsgTriggerExitFromTier`    | Start exit commitment countdown                                          |
+| `MsgClearPosition`          | Cancel a triggered exit; resets timer and resumes bonus                  |
+| `MsgExitTierWithDelegation` | Instant exit — transfers delegation back to owner on same validator      |
+| `MsgTierUndelegate`         | Start standard 28-day unbonding period                                   |
+| `MsgWithdrawFromTier`       | Withdraw tokens after unbonding completes                                |
+
+**Queries:**
+
+| Query                       | REST Endpoint                                                  | Description                     |
+| --------------------------- | -------------------------------------------------------------- | ------------------------------- |
+| `Tiers`                     | `GET /chainmain/tieredrewards/v1/tiers`                        | All tier definitions            |
+| `Params`                    | `GET /chainmain/tieredrewards/v1/params`                       | Module parameters               |
+| `Position`                  | `GET /chainmain/tieredrewards/v1/position/{id}`                | Single position                 |
+| `PositionsByOwner`          | `GET /chainmain/tieredrewards/v1/positions/{owner}`            | All positions for an address    |
+| `Positions`                 | `GET /chainmain/tieredrewards/v1/positions`                    | All positions (paginated)       |
+| `EstimateRewards`           | `GET /chainmain/tieredrewards/v1/estimate_rewards/{id}`        | Pending rewards estimate        |
+| `RewardsPoolBalances`       | `GET /chainmain/tieredrewards/v1/rewards_pool_balances`        | Pool balance                    |
+| `VotingPower`               | `GET /chainmain/tieredrewards/v1/voting_power/{owner}`         | Voting power                    |
+| `TotalDelegatedVotingPower` | `GET /chainmain/tieredrewards/v1/total_delegated_voting_power` | Total voting power              |
+| `ValidatorData`             | `GET /chainmain/tieredrewards/v1/validator_data/{validator}`   | Validator reward data           |
+| `PositionMappings`          | `GET /chainmain/tieredrewards/v1/position_mappings/{id}`       | Unbonding/redelegation mappings |
+
+**Key mechanics:**
+
+* Base rewards (\~3% APY) topped up from rewards pool if block fees fall short
+* Bonus rewards paid from Tier Rewards Pool based on tier selection
+* Exit commitment starts when user triggers exit, not at entry
+* Validator commission applies to base rewards only; bonus paid directly to stakers
+* Rewards settled before any position mutation (redelegate, add, exit, clear)
+* All parameters are governance-adjustable

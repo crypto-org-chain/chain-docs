@@ -1,5 +1,9 @@
 # module\_gov
 
+{% hint style="warning" %}
+Since v7(May 2026), tally calculations now include **tier-locked voting power** (see [the proposal](https://github.com/crypto-org-chain/chain-main/discussions/1291)). Delegators who have opted into a time-locked tier position via the [`x/tieredrewards` module](module_tieredrewards.md) retain full voting weight throughout the lock and exit-commitment period.
+{% endhint %}
+
 #### `gov` module
 
 #### Introduction

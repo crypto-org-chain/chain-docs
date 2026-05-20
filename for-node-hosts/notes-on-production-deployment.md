@@ -1,4 +1,4 @@
-# 🔃 Notes on Production Deployment
+# 📔 Notes on Production Deployment
 
 * See [Tendermint notes on running in production](https://docs.tendermint.com/v0.34/tendermint-core/running-in-production.html#running-in-production) and [notes on setting up a validator](https://docs.tendermint.com/v0.34/tendermint-core/validators.html#setting-up-a-validator)
 * Validators shouldn’t be exposed directly to the internet

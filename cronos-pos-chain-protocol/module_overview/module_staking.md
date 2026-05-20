@@ -1,5 +1,15 @@
 # module\_staking
 
+{% hint style="warning" %}
+Since v7(May 2026), the `staking` module itself is unchanged by v7, but two adjacent modules now extend its behavior:
+
+* [**`x/tieredrewards`**](module_tieredrewards.md) lets a delegator opt-in to time-locked tier positions (1 / 2 / 4 years) on top of an ordinary delegation, earning a fixed bonus APY per tier. Existing delegations can be upgraded to a tier **without unbonding** via `MsgCommitDelegationToTier`.
+* A base APY floor (`~3%` by default, governed by `TargetBaseRewardsRate`) is now maintained for all stakers — including base-tier delegators — when block fees fall short.
+
+Standard slashing rules apply to tier-locked positions exactly as they do to ordinary delegations. Validator commission applies only to base rewards, not to tier bonus rewards.\
+See [https://github.com/crypto-org-chain/chain-main/discussions/1291](https://github.com/crypto-org-chain/chain-main/discussions/1291) for the full proposal.
+{% endhint %}
+
 #### `staking` module
 
 #### Introduction
@@ -18,13 +28,17 @@ Cronos POS Chain is based on Tendermint Core's consensus engine, it relies on a 
 
 #### Validator
 
-Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](module_distribution.md) and [mint](module_mint.md)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](module_slashing.md)).
+Validators are responsible for signing or proposing block at each consensus round. It is important that the validators maintain excellent availability and network connectivity to perform their tasks. To incentivise the validator nodes to run the network, rewards are distributed to the validators according to their performance and amount of staked token (see [distribution](module_distribution.md) and [mint](module_inflation-including-mint.md#mint-module)). On the other hand, a penalty should be imposed on validators' misbehavior (see [slashing](module_slashing.md)).
 
 #### Delegator
 
 The `staking` module enables CRO owners to delegate their tokens to active validators and share part of the reward obtained by the validator during the proof of stake protocol(see [distribution](module_distribution.md) module). Specifically, It allows token owners to take part in the consensus process without running a validator themselves.
 
 It is important to point out that the delegator and the validator are in the same boat: They share the reward and the risk. In particular, part of their delegated token could be slashed due to validator's misbehaviour (see [slashing](module_slashing.md)). Therefore, It is very important to choose a reliable validator to delegate. Kindly refer to this [link](https://docs.cosmos.network/main/build/modules/protocolpool#state-transitions) for detailed specification and state transitions of delegation.
+
+{% hint style="info" %}
+Since v7, delegators can additionally **opt-in to tier-locked positions** via the [`x/tieredrewards`](module_tieredrewards.md) module to earn a bonus APY on top of the base reward — without giving up voting rights or custody of their tokens. Existing delegations can be upgraded to a tier in one transaction (`commit-delegation-to-tier`), with no `unbonding` required.
+{% endhint %}
 
 #### Transactions and Queries
 

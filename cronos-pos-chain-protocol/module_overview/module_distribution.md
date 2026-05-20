@@ -1,5 +1,15 @@
 # module\_distribution
 
+{% hint style="warning" %}
+Since v7(May 2026), reward distribution still flows through this module, but v7 introduces a parallel reward stream and changes commission semantics(see [`x/tieredrewards` module](module_tieredrewards.md)):
+
+* **Base staking rewards** (the existing flow described below) now have a per-block floor governed by `TargetBaseRewardsRate` (default `~3%` APY): if block fees to stakers fall below this rate, the `x/tieredrewards` module tops up the shortfall from a dedicated rewards pool, allocated by consensus voting power.
+* **Tier bonus rewards** (for delegators who opt-in to time-locked tiers) are paid through `x/tieredrewards`, **not** through this module.
+* **Validator commission** applies only to base staking rewards. Tier bonus rewards are paid directly to the tier position holder with no commission deducted.
+
+(See [https://github.com/crypto-org-chain/chain-main/discussions/1291](https://github.com/crypto-org-chain/chain-main/discussions/1291) for the full proposal.)
+{% endhint %}
+
 #### `distribution` module
 
 #### Introduction
@@ -21,7 +31,7 @@ Below are all the network parameters for the `distribution` module:
 
 There are two main types of rewards
 
-* Block rewards, governed by the [mint](https://docs.cronos-pos.org/cronos-pos-chain-protocol/module_overview/module_mint) module; and
+* Block rewards, governed by the [mint](module_inflation-including-mint.md#mint-module) module; and
 * [Transaction fees bonus](module_distribution.md#transaction-fees-bonus).
 
 **Block reward**

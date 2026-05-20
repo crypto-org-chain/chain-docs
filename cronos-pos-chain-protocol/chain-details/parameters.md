@@ -2,7 +2,6 @@
 
 This section aims to collect and provide brief a description of all the mentioned network parameters:
 
-
 #### Distribution-related parameters - `distribution` module
 
 | Key                     | Type         | Description                                                              |
@@ -23,17 +22,16 @@ This section aims to collect and provide brief a description of all the mentione
 | `threshold`          | string (dec)         | Minimum proportion of `Yes` votes (excluding `Abstain` votes) for the proposal to be accepted.          |
 | `veto`               | string (dec)         | Minimum proportion of `Veto` votes to Total votes ratio for proposal to be vetoed.                      |
 
-
 #### Reward-related parameters - `mint` module
 
-| Key                     | Type           | Description                                           |
-| ----------------------- | -------------- | ----------------------------------------------------- |
-| `blocks_per_year`       | string (int64) | The expected number of blocks being produced per year |
-| `goal_bonded`           | string (dec)   | Goal of bonded token in percentage                    |
-| `inflation_max`         | string (dec)   | Maximum annual inflation rate                         |
-| `inflation_min`         | string (dec)   | Minimum annual inflation rate                         |
-| `inflation_rate_change` | string (dec)   | Maximum annual change in inflation rate               |
-| `mint_denom`            | string         | Token type being minted. Denominations can be 3 ~ 128 characters long and support letters, followed by either a letter, a number or a separator ('/')                              |
+| Key                     | Type           | Description                                                                                                                                            |
+| ----------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `blocks_per_year`       | string (int64) | The expected number of blocks being produced per year                                                                                                  |
+| `goal_bonded`           | string (dec)   | Goal of bonded token in percentage                                                                                                                     |
+| `inflation_max`         | string (dec)   | Maximum annual inflation rate                                                                                                                          |
+| `inflation_min`         | string (dec)   | Minimum annual inflation rate                                                                                                                          |
+| `inflation_rate_change` | string (dec)   | Maximum annual change in inflation rate                                                                                                                |
+| `mint_denom`            | string         | Token type being minted. Denominations can be 3 \~ 128 characters long and support letters, followed by either a letter, a number or a separator ('/') |
 
 #### Punishment-related parameters - `slashing` module
 
@@ -45,14 +43,35 @@ This section aims to collect and provide brief a description of all the mentione
 | `slash_fraction_double_sign` | string (dec)   | Maximum percentage of stake reduction for byzantine validators             |
 | `slash_fraction_downtime`    | string (dec)   | Maximum percentage of stake reduction for validators with low availability |
 
-
-
 #### Staking-related parameters - `staking` module
 
-| Key                  | Type   | Description                                                     |
-| -------------------- | ------ | --------------------------------------------------------------- |
-| `bond_denom`         | string | Coin denomination for staking. Denominations can be 3 ~ 128 characters long and support letters, followed by either a letter, a number or a separator ('/').                                  |
-| `historical_entries` | uint16 | The number of historical entries to persist                     |
-| `max_entries`        | uint16 | The max entries for either unbonding delegation or redelegation |
-| `max_validators`     | uint16 | The maximum number of validator                                 |
-| `unbonding_time`     | string | The time duration of unbonding                                  |
+| Key                  | Type   | Description                                                                                                                                                   |
+| -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bond_denom`         | string | Coin denomination for staking. Denominations can be 3 \~ 128 characters long and support letters, followed by either a letter, a number or a separator ('/'). |
+| `historical_entries` | uint16 | The number of historical entries to persist                                                                                                                   |
+| `max_entries`        | uint16 | The max entries for either unbonding delegation or redelegation                                                                                               |
+| `max_validators`     | uint16 | The maximum number of validator                                                                                                                               |
+| `unbonding_time`     | string | The time duration of unbonding                                                                                                                                |
+
+#### Inflation Module (`x/inflation`)
+
+| Parameter          | Type      | Value                    | Description                                            |
+| ------------------ | --------- | ------------------------ | ------------------------------------------------------ |
+| `max_supply`       | Int       | 10^19 basecro (100B CRO) | Hard cap on circulating supply                         |
+| `decay_rate`       | Dec       | `0.068` (6.8%)           | Monthly inflation decay rate                           |
+| `burned_addresses` | \[]string | Chain-specific           | Addresses excluded from circulating supply calculation |
+
+#### Tiered Rewards Module (`x/tieredrewards`)
+
+| Parameter               | Type | Value       | Description                                   |
+| ----------------------- | ---- | ----------- | --------------------------------------------- |
+| `TargetBaseRewardsRate` | Dec  | `0.03` (3%) | Base APY floor maintained by the rewards pool |
+
+#### **Tier definitions (queryable, governance-adjustable):**
+
+| Parameter       | Tier 1    | Tier 2    | Tier 3    |
+| --------------- | --------- | --------- | --------- |
+| `ExitDuration`  | 1 year    | 2 years   | 4 years   |
+| `BonusApy`      | 0.02 (2%) | 0.04 (4%) | 0.07 (7%) |
+| `MinLockAmount` | 100 CRO   | 100 CRO   | 100 CRO   |
+| `CloseOnly`     | false     | false     | false     |

@@ -59,7 +59,7 @@ Testnet uses shorter durations and lower minimums so full lifecycle flows can be
 
 **Endpoints:**
 
-<table><thead><tr><th width="163.2734375">Network</th><th>REST</th><th>Chain ID</th></tr></thead><tbody><tr><td>Mainnet</td><td><code>https://rest.mainnet.crypto.org</code></td><td><code>crypto-org-chain-mainnet-1</code></td></tr><tr><td>Testnet</td><td><code>https://rest.testnet.crypto.org</code></td><td><code>testnet-croeseid-4</code></td></tr></tbody></table>
+<table><thead><tr><th width="105.81640625">Network</th><th width="402.29296875">REST</th><th>Chain ID</th></tr></thead><tbody><tr><td>Mainnet</td><td><code>https://rest.mainnet.crypto.org</code></td><td><code>crypto-org-chain-mainnet-1</code></td></tr><tr><td>Testnet</td><td><code>https://rest.testnet-croeseid-4.cronos-pos.org</code></td><td><code>testnet-croeseid-4</code></td></tr></tbody></table>
 
 ***
 
@@ -297,10 +297,10 @@ chain-maind query inflation params
 
 No authentication required. Standard HTTP GET requests.
 
-| Network | Base URL                          |
-| ------- | --------------------------------- |
-| Mainnet | `https://rest.mainnet.crypto.org` |
-| Testnet | `https://rest.testnet.crypto.org` |
+| Network | Base URL                                         |
+| ------- | ------------------------------------------------ |
+| Mainnet | `https://rest.mainnet.crypto.org`                |
+| Testnet | `https://rest.testnet-croeseid-4.cronos-pos.org` |
 
 #### x/tieredrewards Endpoints
 

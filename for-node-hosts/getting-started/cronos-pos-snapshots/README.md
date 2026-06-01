@@ -12,7 +12,3 @@ This section provides an overview of the various sync methods available and guid
 [public-node-sync.md](public-node-sync.md)
 {% endcontent-ref %}
 
-{% content-ref url="quicksync-snapshots.md" %}
-[quicksync-snapshots.md](quicksync-snapshots.md)
-{% endcontent-ref %}
-

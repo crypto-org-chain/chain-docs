@@ -36,16 +36,16 @@ Archive Node (setting pruning = nothing)
 Default Full Node (setting pruning = default)
 
 * RAM: 64GB (Rocksdb) or 16GB (goleveldb)
-* Disk: 1.2TB (From quick sync)
+* Disk: 1.2TB (From [Cronos Native Snapshots](cronos-pos-snapshots/native-snapshots.md))
 * CPU: 4 cores
 
 Pruned Node (setting pruning = everything)
 
 * RAM: 64GB (Rocksdb) or 16GB (goleveldb)
-* Disk: 40GB (From quick sync)
+* Disk: 40GB (From [Cronos Native Snapshots](cronos-pos-snapshots/native-snapshots.md))
 * CPU: 4 cores
 
-_Please note that the size of snapshots from Quicksync will keep growing._
+_Please note that the size of snapshots will keep growing._
 
 ## Step 1. Get the Cronos POS Chain Mainnet binary
 
@@ -116,15 +116,8 @@ Before kick-starting your node, we will have to configure the node so that it co
 
     &#x20;
 
-    {% hint style="info" %}
-    **NOTE**
-
-    *   For Mac environment, `sha256sum` was not installed by default. In this case, you may setup `sha256sum` with this command:
-
-        ```bash
-        function sha256sum() { shasum -a 256 "$@" ; } && export -f sha256sum
-        ```
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>NOTE</strong></p><ul><li><p>For Mac environment, <code>sha256sum</code> was not installed by default. In this case, you may setup <code>sha256sum</code> with this command:</p><pre class="language-bash"><code class="lang-bash">function sha256sum() { shasum -a 256 "$@" ; } &#x26;&#x26; export -f sha256sum
+    </code></pre></li></ul></div>
 
     ###
 *   In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
@@ -169,12 +162,7 @@ Follow the below steps to enable state-sync:
 
 
 
-    {% hint style="info" %}
-    **NOTE**
-
-    * For Mac environment, if `jq` is missing, you may install it by: `brew install jq`
-    * We suggest using `persistent_peers` instead of `seeds` to provide a stable state-sync experience.
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>NOTE</strong></p><ul><li>For Mac environment, if <code>jq</code> is missing, you may install it by: <code>brew install jq</code></li><li>We suggest using <code>persistent_peers</code> instead of <code>seeds</code> to provide a stable state-sync experience.</li></ul></div>
 
 
 

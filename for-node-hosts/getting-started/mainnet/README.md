@@ -45,16 +45,16 @@ Archive Node (setting pruning = nothing)
 Default Full Node (setting pruning = default)
 
 * RAM: 64GB (Rocksdb) or 16GB (goleveldb)
-* Disk: 1.5TB (From Quicksync)
+* Disk: 1.5TB (From [Cronos Native Snapshots](../cronos-pos-snapshots/native-snapshots.md))
 * CPU: 4 cores
 
 Pruned Node (setting pruning = everything)
 
 * RAM: 64GB (Rocksdb) or 16GB (goleveldb)
-* Disk: 15GB (From Publicnode)
+* Disk: 15GB (From [Publicnode](../cronos-pos-snapshots/public-node-sync.md))
 * CPU: 4 cores
 
-_Please note that the size of snapshots from Quicksync will keep growing._
+_Please note that the size of snapshots will keep growing._
 
 ## Step 1. Get the Cronos POS Chain Mainnet binary
 

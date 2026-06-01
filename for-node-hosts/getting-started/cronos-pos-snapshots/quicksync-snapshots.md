@@ -1,5 +1,6 @@
 ---
 description: Newest snapshots for the Cronos Proof Of Steak (POS) Blockchain
+hidden: true
 ---
 
 # QuickSync SnapShots

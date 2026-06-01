@@ -10,7 +10,7 @@ description: Newest snapshots for the Cronos Proof Of Steak (POS) Blockchain
 
 The snapshots provide are `pruned` data for both Cronos EVM and **Cronos POS** mainnet blockchains, optimized for file size and download speed. This guide walks you through the step-by-step process of performing a quick synchronization using Public Node Snapshots.
 
-> **Note:** If you need complete blockchain history to operate a full archive node, Native Snapshots or [Quicksync archive snapshots](https://quicksync.io/cronos-pos) are the recommended alternatives.
+> **Note:** If you need complete blockchain history to operate a full archive node, Native Snapshots are the recommended alternatives.
 
 ### Step 1: Download Public Node Snapshot
 

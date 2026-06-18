@@ -40,8 +40,7 @@ There are four ways to generate the mainnet address by using:
 
 * [Release Binary (CLI)](mainnet-address-generation.md#a-release-binary-cli);
 * [Ledger Wallet](mainnet-address-generation.md#b-ledger-wallet);
-* [Programmatically via Cronos POS Chain JavaScript Library](mainnet-address-generation.md#c-programmatically); and
-* [Crypto.com Defi Desktop Wallet](mainnet-address-generation.md#d-crypto-org-chain-desktop-wallet-beta).
+* [Programmatically via Cronos POS Chain JavaScript Library](mainnet-address-generation.md#c-programmatically);
 
 ## A. Release Binary (CLI)
 
@@ -158,109 +157,3 @@ If you encounter a connection error when creating a wallet, you can try to unplu
   threshold: 0
   pubkeys: []
 ```
-
-***
-
-## B-ii. Ledger Wallet via Crypto.com Defi Desktop Wallet
-
-Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using it in mainnet. You should run it only on a trusted, safe and offline computer and always verify the mnemonic words before using the address. \
-\
-Download the latest version of the Crypto.com Defi Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address.
-
-#### Step 1. Open the application and click "Get Started" to set up an application password.
-
-<figure><img src="../../.gitbook/assets/desktop-get-started.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 2. After setting up the password, click "Create Wallet".
-
-<figure><img src="../../.gitbook/assets/desktop-create-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 3. Fill in any wallet name of your choice and choose "MAINNET" as the network. Then check "Want to create with hardware wallet?" and choose "Ledger" as "Wallet Type"&#x20;
-
-<figure><img src="../../.gitbook/assets/ledger-desktop-create-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/desktop-create-success.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 4. Upon successful wallet creation, a warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launches.
-
-{% hint style="info" %}
-**Cannot Connect To Your Ledger Device?** \
-If you encounter a connection error when creating a wallet, you can try to unplug and plug your Ledger device into your computer again. Please make sure your Ledger device is unlocked and you have opened the "Cronos POS Chain" application on your Ledger.
-{% endhint %}
-
-<figure><img src="../../.gitbook/assets/desktop-main-page.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 5. You can check the wallet address by clicking the "Receive" tab inside any token assets. Click "Verify address on Ledger" and the generated address will appear on your Ledger device screen for verification.
-
-<figure><img src="../../.gitbook/assets/ledger-desktop-address.png" alt="" width="563"><figcaption></figcaption></figure>
-
-## C. Programmatically
-
-You can generate the Mnemonic and address programmatically. Here is an example code snippet written in JavaScript using the [Cronos POS Chain JavaScript Library](https://github.com/crypto-com/chain-jslib) to generate the mnemonic and the mainnet address:
-
-```javascript
-// Import the library
-const sdk = require("@crypto-com/chain-jslib");
-const HDKey = sdk.HDKey;
-const Secp256k1KeyPair = sdk.Secp256k1KeyPair;
-
-// Initializing the library configurations with TestNet config
-const cro = sdk.CroSDK({ network: sdk.CroNetwork.Testnet });
-
-// Generating a random mnemonic words
-const randomHDKey = HDKey.generateMnemonic(24); // This returns a 24 words mnemonic phrase
-
-// Display the mnemonics words to the terminal. Only do this in a trusted, safe and offline computer.
-// You may consider to store it securely instead of logging it.
-console.log(randomHDKey);
-
-// Derive a private key from an HDKey at the specified path
-const privateKey = randomHDKey.derivePrivKey("m/44'/1'/0'/0/0");
-
-// Getting a keyPair from a private key
-const keyPair = Secp256k1KeyPair.fromPrivKey(privateKey);
-
-// Generate address from the key pair
-const address = new cro.Address(keyPair).account();
-console.log(address);
-```
-
-## D. Crypto.com Defi Desktop Wallet
-
-Supported OS: Ubuntu, Mac OS, and Windows
-
-{% hint style="warning" %}
-**DESKTOP WALLET**&#x20;
-
-Please be aware of the [potential risks](https://github.com/crypto-com/chain-desktop-wallet#warning) of using wallet on the mainnet. Run it only on a trusted, secure, and offline computer. Always verify the mnemonic words before using the address.
-{% endhint %}
-
-Download the latest version of the Crypto.com Defi Desktop Wallet [here](https://github.com/crypto-com/chain-desktop-wallet/releases) and follow the steps below to create an address:
-
-#### Step 1. Open the Cronos POS Chain application on your Ledger device
-
-#### Step 2. Open the application and click "Get Started" to set up an application password.
-
-<figure><img src="../../.gitbook/assets/desktop-get-started.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 3. After setting up the password, click "Create Wallet".
-
-<figure><img src="../../.gitbook/assets/desktop-create-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 4. Fill in any wallet name of your choice and choose "MAINNET" as the network. Then create the wallet by clicking "Create Wallet"
-
-<figure><img src="../../.gitbook/assets/desktop-create-mainnet-wallet.png" alt="" width="563"><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/desktop-create-success.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 5. Upon successful wallet creation, a list of 24 mnemonic words will be displayed. Make sure you have copied and stored your mnemonic words in a safe place.
-
-<figure><img src="../../.gitbook/assets/desktop-backup-mnemonic.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 6. A warning message will be shown on the top right hand corner to remind you that the wallet is for address generation only and may not work when mainnet launches.
-
-<figure><img src="../../.gitbook/assets/desktop-main-page.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### Step 7. You can check the wallet address by clicking the "Receive" tab on the left navigation menu.
-
-<figure><img src="../../.gitbook/assets/desktop-address.png" alt="" width="563"><figcaption></figcaption></figure>

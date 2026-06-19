@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Mainnet/Testnet: Running Nodes using Azure 1-click Deployment
 
 This tutorial will use our Azure 1-click Deployment image to start and create the latest Croeseid Testnet validator or full node.

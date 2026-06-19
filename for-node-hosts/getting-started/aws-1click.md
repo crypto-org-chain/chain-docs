@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Mainnet/Testnet: Running Nodes using AWS 1-click Deployment
 
 This tutorial will use our AWS 1-click Deployment image to start and create the latest Cronos POS Chain 1-Click Node for both Mainnet and Testnet

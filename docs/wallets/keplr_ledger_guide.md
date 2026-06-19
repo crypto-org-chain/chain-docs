@@ -69,7 +69,7 @@ Now we are going to use the Keplr Dashboard to Stake our **$CRO** tokens with a 
     <figure><img src="../../.gitbook/assets/image (13).png" alt="" width="354"><figcaption></figcaption></figure>
 2.  The Keplr Dashboard opens in a new browser window or tab. The chains listed on the left menu of the Dashboard are chains that have been set as “**Favorites'**'. If you do not see “**Cronos POS**” in the menu then click on “**Chains**”, a list of chains will appear on the main menu in the middle of the screen.<br>
 
-    <figure><img src="../../.gitbook/assets/image (14).png" alt="" width="563"><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/ddimage_edited.png" alt="" width="563"><figcaption></figcaption></figure>
 3.  Now select **Cronos POS** from the menu. The details of your $CRO token holdings are now in the main view in the centre of the Dashboard. The “Stake” option is to the right of the screen. Go ahead and click the “**Stake**” button.<br>
 
     <figure><img src="../../.gitbook/assets/image (15).png" alt="" width="563"><figcaption></figcaption></figure>

@@ -2,6 +2,27 @@
 description: What is Cronos POS Chain and its design goals?
 cover: .gitbook/assets/Cronos POS Chain Docs Banner.png
 coverY: 0
+layout:
+  width: default
+  cover:
+    visible: true
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+  actions:
+    visible: true
 ---
 
 # 📑 Cronos POS Chain Introduction

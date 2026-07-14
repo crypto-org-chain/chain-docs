@@ -189,7 +189,7 @@ Mar 25 15:34:02 ip-172-31-69-43 chain-maind[2657]: 3:34PM INF committed state ap
 ...
 ```
 
-The consensus public key can be found by and please take a note of it for next [steps](../../docs/getting-started/aws-1click.html#step-4-join-as-a-validator):
+The consensus public key can be found by and please take a note of it for next [steps](https://github.com/crypto-org-chain/chain-docs/blob/Gitbook/docs/getting-started/aws-1click.html#step-4-join-as-a-validator):
 
 ```
 $ sudo /chain/bin/chain-maind tendermint show-validator --home /chain/.chain-maind/

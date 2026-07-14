@@ -1,39 +1,39 @@
-# The "V7" upgrade guide (v6.0.\* to v7.2.0) :
+# The "V8" upgrade guide (v7.2.0 to v8.0.0)
 
 For a full overview of the latest upgrades, please refer to ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide).
 
 {% hint style="warning" %}
 **Warning**:
 
-* The chain-maind `v7.2.0` - "V7" upgrade is proposed to be scheduled at the block height of `29,782,800` ( _Estimated time \~7:00_ AM GMT, Wednesday, May 20 2026, but this depends on the actual time taken when the blocks are being processed);
-* Actual timing depends on the progress of block production, the estimated time of this block can be found [here](https://www.mintscan.io/crypto-org/block/29782800).
+* The chain-maind `v8.0.0` - "V8" upgrade is proposed to be scheduled at the block height of `30,720,400` ( _Estimated time Tuesday, July 14 2026_, but this depends on the actual time taken when the blocks are being processed);
+* Actual timing depends on the progress of block production, the estimated time of this block can be found [here](https://www.mintscan.io/crypto-org/block/30720400).
 
-**DO NOT UPGRADE to the binary** `v7.2.0` **before that suggested upgrade schedule and come across with the error message as described in** [**Step 0**](upgrade_guide_v4.md#step-0-dont-panic)**.**
+**DO NOT UPGRADE to the binary** `v8.0.0` **before that suggested upgrade schedule and come across with the error message as described in** **Step 0.**
 {% endhint %}
 
-## Step 0 - Don't panic
+### Step 0 - Don't panic
 
 At the point of proposed upgrade, user will see the error message on the `chain-maind` similar to the below:
 
-`ERR UPGRADE "v7.2.0" NEEDED at time: xxxxxxxxxxxxx: {"binaries":{"darwin/amd64":.......`
+`ERR UPGRADE "v8.0.0" NEEDED at time: xxxxxxxxxxxxx: {"binaries":{"darwin/amd64":.......`
 
 **Don't panic** - The Chain will be paused to allow the majority of validators to upgrade. Validators and full node hosts will have to upgrade your Cronos POS Chain nodes to the latest release binary.
 
-### Backups
+#### Backups
 
 Before the upgrade, validators are encouraged to take a complete data snapshot. Snapshotting depends heavily on infrastructure, but generally, we can do this by backing up the `.chain-maind` directory.
 
 It is critically important for validator operators to back-up the `.chain-maind/data/priv_validator_state.json` file after stopping the `chain-maind` process. This file is updated every block as your validator participates in consensus rounds. It is a critical file needed to prevent double-signing if the upgrade fails and the previous chain needs to be restarted.
 
-## Step 1 - Get the `v7.2.0` binary
+### Step 1 - Get the `v8.0.0` binary
 
-To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac(arm64)](https://github.com/crypto-org-chain/chain-main/releases/download/v7.2.0/chain-main_7.2.0_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v7.2.0/chain-main_7.2.0_Windows_x86_64.tar.gz) are also available.
+To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac(arm64)](https://github.com/crypto-org-chain/chain-main/releases/download/v8.0.0/chain-main_8.0.0_Darwin_arm64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v8.0.0/chain-main_8.0.0_Windows_x86_64.tar.gz) are also available.
 
-*   Terminate the `chain-maind`; afterward, download the `v7.2.0` released binaries from GitHub:
+*   Terminate the `chain-maind`; afterward, download the `v8.0.0` released binaries from GitHub:
 
     ```bash
-    $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v7.2.0/chain-main_7.2.0_Linux_x86_64.tar.gz
-    $ tar -zxvf chain-main_7.2.0_Linux_x86_64.tar.gz
+    $ curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v8.0.0/chain-main_8.0.0_Linux_x86_64.tar.gz
+    $ tar -zxvf chain-main_8.0.0_Linux_x86_64.tar.gz
     ```
 
 {% hint style="info" %}
@@ -46,16 +46,16 @@ $ sudo systemctl stop chain-maind
 And replace the binary in the location where the `ExecStart` states in Systemd Unit file.
 {% endhint %}
 
-### Step 1.1 - Verify the version
+#### Step 1.1 - Verify the version
 
-You can verify the installation by checking the version of `chain-maind`, the latest version is `7.1.0`.
+You can verify the installation by checking the version of `chain-maind`, the latest version is `v8.0.0`.
 
 <pre class="language-bash"><code class="lang-bash"># check the version of chain-maind
 <strong>$ ./chain-maind version
-</strong>v7.2.0
+</strong>v8.0.0
 </code></pre>
 
-### Step 1.2 - Insert new configuration
+#### Step 1.2 - Insert new configuration
 
 Several new fields under `~/.chain-maind/config/app.toml` have been introduced, kindly add the following fields to the `app.toml`:
 
@@ -82,7 +82,7 @@ max-send-msg-size = "2147483647"
 ```
 
 {% hint style="info" %}
-**Remarks**:  If you are upgrading from `v3.3.5` or earlier, kindly also add the following fields to the `app.toml` under `Base Configuration`:
+**Remarks**: If you are upgrading from `v3.3.5` or earlier, kindly also add the following fields to the `app.toml` under `Base Configuration`:
 
 ```
 index_events = []
@@ -93,10 +93,10 @@ iavl-disable-fastnode = true
 For validators or production critical services, we recommend setting the `iavl-disable-fastnode` as `true` to skip the optional "IAVL migration" and avoid downtime:
 
 * Setting it as `true` would skip the the optional "IAVL migration";
-* Setting it as `false` would run the "IAVL migration" that would take a couple hours with the log `INF starting ABCI with Tendermint` for a while and incur downtime.&#x20;
+* Setting it as `false` would run the "IAVL migration" that would take a couple hours with the log `INF starting ABCI with Tendermint` for a while and incur downtime.
 {% endhint %}
 
-## Step 2. - Run everything
+### Step 2. - Run everything
 
 We are ready to start the node join the network again with the new binary:
 

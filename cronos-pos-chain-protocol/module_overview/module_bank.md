@@ -12,7 +12,7 @@ The `bank` module maintains the state of two primary objects:
 `bank` module tracks and provides query support for the total supply of all assets used in the application. It also supports token transfer functionalities. Specifically, the total supply is updated whenever a token is:
 
 * **Minted**, e.g. Token created by the [mint](module_inflation-including-mint.md#mint-module) module; or
-* **Burned**, e.g. Token distorted by the [slashing](../../docs/chain-details/module_slashing/) module.
+* **Burned**, e.g. Token distorted by the [slashing](https://github.com/crypto-org-chain/chain-docs/blob/Gitbook/docs/chain-details/module_slashing/README.md) module.
 
 #### Transactions and Queries
 

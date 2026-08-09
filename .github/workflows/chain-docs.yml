@@ -24,11 +24,11 @@ jobs:
         id: setValid
         run: |
           if [[ "${{ steps.checkUserMember.outputs.isTeamMember }}" == "true" ]]; then
-            echo "::set-output name=valid::true"
+            echo "valid=true" >> $GITHUB_OUTPUT
           elif [[ "${{ github.event_name }}" == "push" ]]; then
-            echo "::set-output name=valid::true"
+            echo "valid=true" >> $GITHUB_OUTPUT
           else  
-            echo "::set-output name=valid::false"
+            echo "valid=false" >> $GITHUB_OUTPUT
           fi
 
   scan:
@@ -54,8 +54,8 @@ jobs:
         id: pr_data
         if: github.event_name == 'issue_comment'
         run: |
-          echo "::set-output name=branch::${{ fromJson(steps.request.outputs.data).head.ref }}"
-          echo "::set-output name=repo_name::${{ fromJson(steps.request.outputs.data).head.repo.full_name }}"
+          echo "branch=${{ fromJson(steps.request.outputs.data).head.ref }}" >> $GITHUB_OUTPUT
+          echo "repo_name=${{ fromJson(steps.request.outputs.data).head.repo.full_name }}" >> $GITHUB_OUTPUT
       - name: Checkout PR Branch
         uses: actions/checkout@v2
         if: github.event_name == 'issue_comment'
@@ -99,8 +99,8 @@ jobs:
         id: pr_data
         if: github.event_name == 'issue_comment'
         run: |
-          echo "::set-output name=branch::${{ fromJson(steps.request.outputs.data).head.ref }}"
-          echo "::set-output name=repo_name::${{ fromJson(steps.request.outputs.data).head.repo.full_name }}"
+          echo "branch=${{ fromJson(steps.request.outputs.data).head.ref }}" >> $GITHUB_OUTPUT
+          echo "repo_name=${{ fromJson(steps.request.outputs.data).head.repo.full_name }}" >> $GITHUB_OUTPUT
       - name: Checkout PR Branch
         uses: actions/checkout@v2
         if: github.event_name == 'issue_comment'

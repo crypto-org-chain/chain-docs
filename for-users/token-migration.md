@@ -67,7 +67,7 @@ Fill in the mainnet address you want to receive the migrated CRO. If the address
 
 Fill in the amount of CRO you want to migrate to Mainnet and click "Continue".
 
-<figure><img src="../.gitbook/assets/request-image4_CROreplaced.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image2.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 5. Review Your Migration
 
@@ -75,7 +75,7 @@ Review and confirm the details of your token migration request. Make sure all th
 
 Afterwards, read the "CRO Token Migration Terms". If you understand and agree to the terms, you can tick the checkbox and click "Sign Agreement".
 
-<figure><img src="../.gitbook/assets/request-image5_CROreplaced.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image3.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 6. Sign The Agreement
 
@@ -170,7 +170,7 @@ Review and confirm the details of your token migration request. Make sure all th
 
 Afterwards, read the "CRO Token Migration Terms". If you understand and agree to the terms, you can tick the checkbox and click "Sign Agreement".
 
-<figure><img src="../.gitbook/assets/resubmit-image6_CROreplaced.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image4.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 7. Sign The Agreement
 

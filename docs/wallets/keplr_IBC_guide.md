@@ -17,7 +17,7 @@ In the following step-by-step guide, you will learn how to make IBC transfers wi
 
 2. Search ATOM or Cosmos under "Asset", select "IBC Send" then click Cronos POS.                    &#x20;
 
-<figure><img src="../../.gitbook/assets/image1_CROreplaced.png" alt="" width="360"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image1.png" alt="" width="360"><figcaption></figcaption></figure>
 
 3. Enter your Keplr Cronos POS Chain address under “Wallet Address or ICNS”. Keplr will auto-fill your selected account’s address. but you can manually adjust or click the person icon to select from your Address book if needed.  <br>
 

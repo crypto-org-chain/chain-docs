@@ -10,7 +10,7 @@ The module also maintains a base reward floor (\~3% APY) by topping up shortfall
 
 #### How tiered staking mechanism works
 
-Kindly go [here](../tiered-staking.md) for the details.
+Kindly go [here](../../for-users/tokenomics-and-inflation/tiered-staking-rewards.md) for the details.
 
 #### Transactions and Queries
 

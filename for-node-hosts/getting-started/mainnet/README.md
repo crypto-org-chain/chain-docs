@@ -1,11 +1,5 @@
 # Cronos POS Chain Mainnet: Running a Full Node
 
-This is detailed documentation for setting up a **Full Node** on the Cronos POS Chain mainnet. Note that while anyone can set up a full node, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
-
-## Step 0: Notes on network upgrades
-
-For the host who would like to build a **Run a Full Node with complete blockchain data** from scratch, note that there were several breaking network upgrades, requiring upgrading at designated block heights below:
-
 | Block height              | Binary Version       | Instruction                                                                                      |
 | ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------ |
 | `1 - 922,363`             | `chain-main_1.2.1`   | Start the node with the older binary version                                                     |
@@ -30,13 +24,43 @@ For the host who would like to build a **Run a Full Node with complete blockchai
   * [V7 upgrade](upgrade-guide/upgrade_guide_v4-1.md) (`v6.0.0-2` to `v7.2.0` )&#x20;
   * [V8 upgrade](upgrade-guide/upgrade_guide_v4.md) (`v7.2.0` to `v8.0.0` )&#x20;
 
-## Pre-requisites
+This is detailed documentation for setting up a **Full Node** on the Cronos POS Chain mainnet. Note that while anyone can set up a full node, only the top 100 validators are considered "active" and eligible to receive rewards. See [FAQs](https://github.com/crypto-org-chain/chain-main/discussions/442) for more info.
 
-### Supported OS
+### Step 0: Notes on network upgrades
+
+For the host who would like to build a **Run a Full Node with complete blockchain data** from scratch, note that there were several breaking network upgrades, requiring upgrading at designated block heights below:
+
+| Block height              | Binary Version       | Instruction                                                                                      |
+| ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------ |
+| `1 - 922,363`             | `chain-main_1.2.1`   | Start the node with the older binary version                                                     |
+| `922,363 - 3,526,800`     | `chain-main_2.0.1`   | When it reaches the target block height `922,363` (Canis Major), update the binary and restart   |
+| `3,526,800 - 10,073,800`  | `chain-main_3.3.9`   | When it reaches the target block height `3,526,800` (Draco II), update the binary and restart\*  |
+| `10,073,800 - 22,649,500` | `chain-main_4.2.2`   | When it reaches the target block height `10,073,800` (V4 upgrade), update the binary and restart |
+| `22,649,500 - 24,836,000` | `chain-main_v5.0.1`  | When it reaches the target block height `22,649,500` (V5 upgrade), update the binary and restart |
+| `>24,836,000`             | `chain-main_6.0.0-2` | When it reaches the target block height `24,836,000` (V6 upgrade), update the binary and restart |
+| `>29,782,800`             | `chain-main_v7.2.0`  | When it reaches the target block height `29,782,800` (V7 upgrade), update the binary and restart |
+| `>30,720,400`             | `chain-main_8.0.0`   | When it reaches the target block height `30,720,400` (V8 upgrade), update the binary and restart |
+
+* \*Note that as of `v3.3.5` and higher, you need to modify your `.chain-maind/config/app.toml` and set the following params:
+  * `index_events = []`
+  * `iavl-cache-size = 781250`
+  * `iavl-disable-fastnode = false` (set to `true` to skip IAVL migration, but keep as `false` when starting from a migrated snapshot. When you are on `INF starting ABCI with Tendermint` for a while, migration is going on and you should NOT terminate this. It might take a couple of hours, so plan well ahead for this migration, as it may incur downtime.)
+* Users can refer to the upgrade guides for the detailed upgrade steps.
+  * "[Canis Major](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide)" (`v1.*` to `v2.0.1`);
+  * ["DRACO II"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_draco_2) (`v2.*` to `v3.3.9`);
+  * ["V4 upgrade"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_v4) (`v3.3.9` to `v4.2.2`);
+  * V5 upgrade (`v4.*` to `v5`);
+  * V6 upgrade (`v5.0.1` to `v6.0.0-2` )
+  * V7 upgrade (`v6.0.0-2` to `v7.2.0` )
+  * V8 upgrade (`v7.2.0` to `v8.0.0` )
+
+### Pre-requisites
+
+#### Supported OS
 
 We officially support macOS, Windows and Linux only. Other platforms may work, but there is no guarantee. We will extend our support to other platforms after we have stabilized our current architecture.
 
-### Prepare your machine
+#### Prepare your machine
 
 For Cronos POS Chain mainnet, you will need a machine with the following minimum requirements to run different types of nodes:
 
@@ -49,18 +73,18 @@ Archive Node (setting pruning = nothing)
 Default Full Node (setting pruning = default)
 
 * RAM: 64GB (Rocksdb) or 16GB (goleveldb)
-* Disk: 1.5TB (From [Cronos Native Snapshots](../cronos-pos-snapshots/native-snapshots.md))
+* Disk: 1.5TB (From Cronos Native Snapshots)
 * CPU: 4 cores
 
 Pruned Node (setting pruning = everything)
 
 * RAM: 64GB (Rocksdb) or 16GB (goleveldb)
-* Disk: 15GB (From [Publicnode](../cronos-pos-snapshots/public-node-sync.md))
+* Disk: 15GB (From Publicnode)
 * CPU: 4 cores
 
 _Please note that the size of snapshots will keep growing._
 
-## Step 1. Get the Cronos POS Chain Mainnet binary
+### Step 1. Get the Cronos POS Chain Mainnet binary
 
 {% hint style="info" %}
 **Remarks**: The following is the minimal setup to join Cronos POS Chain Mainnet. Furthermore, you may want to run full nodes as sentries (see [Tendermint](https://docs.tendermint.com/v0.34/)), restrict your validator connections to only connect to your full nodes, use secure storage and [key management](https://docs.cronos-pos.org/for-users/wallets/cli#keys-management-chain-maind-keys) service for your validator keys etc.
@@ -68,12 +92,12 @@ _Please note that the size of snapshots will keep growing._
 
 To simplify the following step, we will be using **Linux** for illustration. Binaries for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v1.2.1/chain-main_1.2.1_Windows_x86_64.zip) are also available. There are two options to install `chain-maind`:
 
-* [Directly from Github](./#option-1-install-chain-maind-released-binaries-from-github); or
-* [Homebrew](./#option-2-install-chain-maind-by-homebrew)
+* Directly from Github; or
+* Homebrew
 
 As mentioned before, in order to run a full node with complete blockchain data, we would need to begin with the older binary version `1.2.1`:
 
-### Option 1 - Install `chain-maind` released binaries from GitHub
+#### Option 1 - Install `chain-maind` released binaries from GitHub
 
 *   To install Cronos POS Chain binaries from Github:
 
@@ -91,11 +115,11 @@ As mentioned before, in order to run a full node with complete blockchain data, 
 
 **OR**
 
-### Option 2 - Install `chain-maind` by homebrew
+#### Option 2 - Install `chain-maind` by homebrew
 
 {% hint style="info" %}
-**Reminder**:  \
-\- If you plan to play around with different networks (mainnet and testnet), we suggest you follow Option 1 to download the binary directly. \
+**Reminder**:\
+\- If you plan to play around with different networks (mainnet and testnet), we suggest you follow Option 1 to download the binary directly.\
 \- The binary downloaded from homebrew is **only for interacting with the mainnet**. You cannot use it to interact with testnet.
 {% endhint %}
 
@@ -124,7 +148,7 @@ To install binaries in Homebrew for macOS X or Linux
     1.2.1
     ```
 
-## Step 2. Configure `chain-maind`
+### Step 2. Configure `chain-maind`
 
 Before kick-starting your node, we will have to configure the node so that it connects to the Cronos POS mainnet
 
@@ -134,7 +158,7 @@ Before kick-starting your node, we will have to configure the node so that it co
 \- You can also put the `chain-maind` to your binary path and run it directly by `chain-maind`
 {% endhint %}
 
-### Step 2-1. Initialize `chain-maind`
+#### Step 2-1. Initialize `chain-maind`
 
 *   First of all, you can initialize chain-maind by:
 
@@ -144,7 +168,7 @@ Before kick-starting your node, we will have to configure the node so that it co
 
     * This `moniker` will be the displayed ID of your node when connected to the Cronos POS Chain network. When providing the moniker value, make sure you drop the square brackets since they are not needed.
 
-### Step 2-2. Configure chain-maind
+#### Step 2-2. Configure chain-maind
 
 *   Download and replace the Cronos POS Chain mainnet `genesis.json` by:
 
@@ -159,12 +183,8 @@ Before kick-starting your node, we will have to configure the node so that it co
     OK!
     ```
 
-
-
-    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>Note</strong>: <br>For Mac environment, <code>sha256sum</code> was not installed by default. In this case, you may setup <code>sha256sum</code> with this command:</p><pre class="language-bash"><code class="lang-bash">function sha256sum() { shasum -a 256 "$@" ; } &#x26;&#x26; export -f sha256sum
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>Note</strong>:<br>For Mac environment, <code>sha256sum</code> was not installed by default. In this case, you may setup <code>sha256sum</code> with this command:</p><pre class="language-bash"><code class="lang-bash">function sha256sum() { shasum -a 256 "$@" ; } &#x26;&#x26; export -f sha256sum
     </code></pre></div>
-
-
 *   In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
 
     ```bash
@@ -172,18 +192,18 @@ Before kick-starting your node, we will have to configure the node so that it co
     ```
 
 {% hint style="info" %}
-**Reminder**: \
+**Reminder**:\
 The list of the`seed`is subject to change, you can also find the latest seed to connect [here](https://github.com/crypto-org-chain/mainnet#seed-nodes).
 {% endhint %}
 
 {% hint style="warning" %}
-**Important**: \
-When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07_tombstone.html)&#x20;
+**Important**:\
+When a validator is jailed because of a byzantine fault, their validator public key is added to a list of permanently banned validators and cannot re-join the network as a validator with the same public key, see [staking tombstone](https://docs.cosmos.network/master/modules/slashing/07_tombstone.html)
 {% endhint %}
 
-## Step 3. Run everything
+### Step 3. Run everything
 
-### Step 3-1. Run everything
+#### Step 3-1. Run everything
 
 Once the `chain-maind` has been configured, we are ready to start the node and sync the blockchain data:
 
@@ -205,10 +225,8 @@ Once the `chain-maind` has been configured, we are ready to start the node and s
   $ journalctl -u chain-maind -f
 ```
 
-
-
 {% hint style="info" %}
-&#x20;**Example**: /etc/systemd/system/chain-maind.service created by script
+**Example**: /etc/systemd/system/chain-maind.service created by script
 
 ```bash
 # /etc/systemd/system/chain-maind.service
@@ -234,8 +252,8 @@ WantedBy=multi-user.target
 It should begin fetching blocks from the other peers. Please wait until it is synced to the upgrade height `922,363` before moving onto the next step.
 
 {% hint style="info" %}
-**Remarks:**  \
-Option 2 - Install `chain-maind` by homebrew <br>
+**Remarks:**\
+Option 2 - Install `chain-maind` by homebrew<br>
 
 To install binaries in Homebrew for macOS X or Linux
 
@@ -247,9 +265,7 @@ To install binaries in Homebrew for macOS X or Linux
 * If the above command returns `false`, it means that your node **is synced**; otherwise, it returns `true` and implies your node is still catching up.
 {% endhint %}
 
-
-
-### Step 3-2. Upgrade the `chain-maind` binary to `v2.1.2`
+#### Step 3-2. Upgrade the `chain-maind` binary to `v2.1.2`
 
 At the upgrade height of `922,363`, users will see the following error message on the `chain-maind`:
 
@@ -257,7 +273,7 @@ At the upgrade height of `922,363`, users will see the following error message o
 `ERR UPGRADE "v2.0.0" NEEDED at time: 2021-06-01T23:59:00Z:...`
 ```
 
-#### Step 3-2-1 - Get the `v2.1.2` binary
+**Step 3-2-1 - Get the `v2.1.2` binary**
 
 To simplify the following step, we will be using **Linux** for illustration. Binary for [Mac](https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main_2.1.2_Darwin_x86_64.tar.gz) and [Windows](https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.2/chain-main_2.1.2_Windows_x86_64.zip) are also available.
 
@@ -269,7 +285,7 @@ To simplify the following step, we will be using **Linux** for illustration. Bin
     ```
 
 {% hint style="info" %}
-**Remarks:**  \
+**Remarks:**\
 If you have stated `chain-maind` with _systemd_ service, kindly stop it by
 
 ```bash
@@ -285,7 +301,7 @@ And replace the binary in the location where the `ExecStart` states in Systemd U
     $ brew upgrade chain-maind
     ```
 
-#### Step 3-2-2 - Verify the version
+**Step 3-2-2 - Verify the version**
 
 You can verify the installation by checking the version of `chain-maind`, the latest version is `2.0.1`.
 
@@ -295,7 +311,7 @@ $ ./chain-maind version
 2.1.2
 ```
 
-#### Step 3-2-3 - Restart `chain-maind` with version `v2.1.2`
+**Step 3-2-3 - Restart `chain-maind` with version `v2.1.2`**
 
 We are ready to start the node join the network again with the new binary:
 
@@ -329,10 +345,8 @@ $ ./chain-maind status 2>&1 | jq '.SyncInfo.latest_block_height'
 ```
 ````
 
-## "DRACO II" and "V4" Network upgrades
+### "DRACO II" and "V4" Network upgrades
 
-You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this [guide](upgrade-guide/upgrade_guide_draco_2.md), and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this [guide](upgrade-guide/upgrade_guide_v4-4.md) at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
-
-
+You've successfully performed the **"Canis Major"** binary upgrade! Allow sometime for the node to catch up, meanwhile, you can get ready for **"DRACO II,"** the second network upgrade ( from `v2.*` to `v3.3.2` at block height `3,526,800` ) by following this guide, and **"V4 Upgrade"** (from `v3.3.*` to `v4.2.2` at block height `10,073,800`) by following this guide at a later stage. You can find the key details for all the upgrades under ["Notes on network upgrades"](https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet/upgrade-guide)
 
 ***

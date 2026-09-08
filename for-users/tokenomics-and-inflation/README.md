@@ -1,8 +1,4 @@
----
-icon: coin-blank
----
-
-# Tokenomics
+# ♾️ Tokenomics and Inflation
 
 Cronos POS Chain uses a sustainable staking model designed to reward long-term holders while keeping inflation under control.
 
@@ -23,6 +19,10 @@ _Illustrative estimates based on \~98.5B total supply at launch._
 The chain enforces a hard cap of 100 billion CRO. If circulating supply ever reaches this cap, no further tokens are minted. Balances held at designated burn addresses are excluded from the circulating supply calculation.
 
 ***
+
+{% hint style="success" %}
+Staking on the Cronos POS Chain now comes in two flavors. Every delegator starts with **Base Staking**. Since the v7 upgrade ([governance proposal #33](https://cronos-pos.org/explorer/proposal/33)), holders can also opt into **Tiered Staking**. The two are complementary rather than mutually exclusive, i.e., tiering doesn't replace normal delegation, it builds on it.
+{% endhint %}
 
 ### Base Staking Rewards (\~3% APY)
 
@@ -117,7 +117,8 @@ For full technical details, CLI commands, and REST API reference, see the Tiered
 
 ### Useful Links
 
-* [Tiered Staking](tiered-staking.md)&#x20;
+* [Base Delegation Guide](base-delegation-guide.md)
+* [Tiered Staking](tiered-staking-rewards.md)
 * Rewards Pool Balance: `GET /chainmain/tieredrewards/v1/rewards_pool_balances`
 * Inflation Parameters: `GET /chainmain/inflation/v1/params`
 * Tier Definitions: `GET /chainmain/tieredrewards/v1/tiers`

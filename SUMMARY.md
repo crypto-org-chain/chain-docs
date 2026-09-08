@@ -10,15 +10,19 @@
 * [💰 Wallets](docs/wallets/README.md)
   * [chain-maind](docs/wallets/cli.md)
   * [Ledger Hardware Wallets with chain-maind](docs/wallets/ledger.md)
-  * [Crypto.com DeFi Desktop Wallet](docs/wallets/desktop_wallet.md)
   * [Conducting IBC Transfer with Keplr Wallet](docs/wallets/keplr_IBC_guide.md)
   * [Using Ledger Device with Keplr Wallet](docs/wallets/keplr_ledger_guide.md)
+  * [Chain ID, Address Format and Signatures](for-users/wallets/chain-id.md)
   * [Mainnet Address Generation](docs/wallets/mainnet-address-generation.md)
   * [Mainnet Address Verification](docs/wallets/mainnet-address-verification.md)
   * [Multisig Account](docs/wallets/multisig-account.md)
-  * [Delegation Guide](for-users/wallets/delegation-guide.md)
   * [Key Principles for Wallet Security](for-users/wallets/key-principles-for-wallet-security.md)
-* [🛠️ Token Migration Web Tool](for-users/token-migration.md)
+* [🛠️ Token Migration Guide](for-users/token-migration.md)
+* [♾️ Tokenomics and Inflation](for-users/tokenomics-and-inflation/README.md)
+  * [🗄️ Base Delegation Guide](for-users/tokenomics-and-inflation/base-delegation-guide.md)
+  * [🥜 Tiered Staking Rewards](for-users/tokenomics-and-inflation/tiered-staking-rewards.md)
+* [🏰 Governance and Voting](for-users/govprocess.md)
+* [⚱️ NFT Management](for-users/nft-management.md)
 * [🚰 Croeseid Testnet Faucet](https://cronos-pos.org/faucet)
 
 ## For Node Hosts
@@ -27,6 +31,7 @@
   * [Cronos POS Chain Mainnet: Running a Validator](for-node-hosts/getting-started/mainnet_validator.md)
   * [Cronos POS Chain Mainnet: Running a Full Node](for-node-hosts/getting-started/mainnet/README.md)
     * [Upgrade Guide](for-node-hosts/getting-started/mainnet/upgrade-guide/README.md)
+      * [The "V8" upgrade guide (v7.2.0 to v8.0.0)](for-node-hosts/getting-started/mainnet/upgrade-guide/the-v8-upgrade-guide-v7.2.0-to-v8.0.0.md)
       * [The "V8" upgrade guide (v7.2.0 to v8.0.0)](for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_v4.md)
       * [The "V7" upgrade guide (v6.0.\* to v7.2.0)](for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_v4-1.md)
       * [The "V6" upgrade guide (v5.0.1 to v6.0.0-2) :](for-node-hosts/getting-started/mainnet/upgrade-guide/upgrade_guide_v4-2.md)
@@ -42,31 +47,25 @@
     * [QuickSync SnapShots](for-node-hosts/getting-started/cronos-pos-snapshots/quicksync-snapshots.md)
   * [Cronos POS Chain Mainnet Validator Security Checklist](for-node-hosts/getting-started/security-checklist.md)
   * [Croeseid Testnet: Running Nodes](for-node-hosts/getting-started/croeseid-testnet.md)
-  * [Mainnet/Testnet: Running Nodes using AWS 1-click Deployment](for-node-hosts/getting-started/aws-1click.md)
-  * [Mainnet/Testnet: Running Nodes using Azure 1-click Deployment](for-node-hosts/getting-started/azure-1click.md)
   * [Croeseid Testnet: Running Nodes With Nix](for-node-hosts/getting-started/croeseid-testnet-nix.md)
+  * [Setup a RPC Node](for-node-hosts/getting-started/node-and-rpc-setup-notes.md)
   * [Devnet: Running Latest Development Node](for-node-hosts/getting-started/local-devnet.md)
-* [🔄 Advanced TMKMS Integration](for-node-hosts/advanced-tmkms-integration.md)
-* [💫 Notes on Performance](for-node-hosts/notes-on-performance.md)
-* [📔 Notes on Production Deployment](for-node-hosts/notes-on-production-deployment.md)
+* [Notes on Production Deployment](for-node-hosts/notes-on-production-deployment.md)
 
 ## Block Explorers
 
 * [📊 Cronos POS Chain Mainnet Explorer](https://cronos-pos.org/explorer)
-* [📊 Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid5/)
+* [📊 Croeseid4 Testnet Explorer](https://cronos-pos.org/explorer/croeseid4/)
 
 ## Cronos PoS Chain Protocol
 
 * [⛓️ Chain Details](cronos-pos-chain-protocol/chain-details/README.md)
   * [Genesis](cronos-pos-chain-protocol/chain-details/genesis_file.md)
   * [Protocol Documentation](cronos-pos-chain-protocol/chain-details/protocol-documentation.md)
-  * [Chain ID, Address Format and Signatures](cronos-pos-chain-protocol/chain-details/chain-id.md)
   * [Create the IBC-enabled tokens on the Cronos POS Chain with Solo Machine](cronos-pos-chain-protocol/chain-details/solo-machine.md)
   * [List of parameters](cronos-pos-chain-protocol/chain-details/parameters.md)
   * [Proposal Process](cronos-pos-chain-protocol/chain-details/govprocess.md)
   * [Technical glossary](cronos-pos-chain-protocol/chain-details/technical-glossary.md)
-* [💡 Tiered Staking](cronos-pos-chain-protocol/tiered-staking.md)
-* [Tokenomics](cronos-pos-chain-protocol/tokenomics.md)
 * [🎛️ Modules](cronos-pos-chain-protocol/module_overview/README.md)
   * [module\_supply](cronos-pos-chain-protocol/module_overview/module_supply.md)
   * [module\_slashing](cronos-pos-chain-protocol/module_overview/module_slashing.md)
@@ -81,14 +80,19 @@
   * [module\_inflation (including mint)](cronos-pos-chain-protocol/module_overview/module_inflation-including-mint.md)
   * [module\_tieredrewards](cronos-pos-chain-protocol/module_overview/module_tieredrewards.md)
 
-## Cronos PoS Integration
+## Resources & Support
 
-* [🔄 Integration documentation](cronos-pos-integration/chain-integration.md)
-* [🛂 Node Setup and RPC node](cronos-pos-integration/node-and-rpc-setup-notes.md)
-* [🔲 Blocks and Transactions](cronos-pos-integration/blocks-and-transactions.md)
+* [🔄 Integration documentation](resources-and-support/chain-integration.md)
+* [🔲 Blocks and Transactions](resources-and-support/blocks-and-transactions.md)
+* [🐞 FAQ & TroubleShooting](resources-and-support/faq-and-troubleshooting.md)
+* [Community Links](resources-and-support/community-links.md)
 
 ## Achieved Contents
 
-* [Croeseid 5 Testnet: Running Nodes](achieved-contents/croeseid5-testnet.md)
+* [Mainnet/Testnet: Running Nodes using AWS 1-click Deployment](achieved-contents/aws-1click.md)
+* [Mainnet/Testnet: Running Nodes using Azure 1-click Deployment](achieved-contents/azure-1click.md)
+* [Crypto.com DeFi Desktop Wallet](achieved-contents/desktop_wallet.md)
+* [💫 Notes on Performance](achieved-contents/notes-on-performance.md)
+* [🔄 Advanced TMKMS Integration](achieved-contents/advanced-tmkms-integration.md)
 * [Quicksync](achieved-contents/quicksync.md)
 * [Public Node Sync](achieved-contents/public-node-sync.md)

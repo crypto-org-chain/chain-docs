@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Protocol Documentation
 
 ## Table of Contents

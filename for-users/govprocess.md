@@ -1,10 +1,8 @@
----
-hidden: true
----
+# 🏰 Governance and Voting
 
-# Proposal Process
+On Cronos POS, the network doesn't change by decree — it changes by consensus. Every parameter tweak, software upgrade, and community-pool expenditure ultimately flows through on-chain governance, where bonded CRO holders deliberate and vote on what comes next. In this way, on-chain proposals are how the community collectively shapes the future of the network: they turn an idea into a binding, transparent decision recorded on-chain.You can browse every proposal ever submitted and how it was decided in the [historical proposals explorer](https://cronos-pos.org/explorer/proposals).
 
-_The governance process is divided into a few steps that are outlined below_:
+Because a proposal can reallocate funds, alter how the chain behaves, or commit validators to a binary upgrade, the process is deliberately structured: moving from informal discussion, to a drafted proposal, to community feedback, and finally to a deposit-and-voting phase with clear passing criteria. The steps below walk through that journey end to end, so that anyone with a good idea can navigate it with confidence.
 
 ### 1. The idea
 
@@ -28,8 +26,8 @@ Proposal Types: You may choose to put your proposal in any of the following form
 
 * Parameter Change Proposal\
   Creating a parameter-change governance proposal involves two kinds of risk: losing proposal deposit amounts and potentially altering the function of the network in an undesirable way. Some of the examples are:
-  * SoftwareUpgradeProposal: for breaking changes and binary updates
-  * CancelSoftwareUpgradeProposal: for revoking the planned upgraded proposal
+  * `SoftwareUpgradeProposal`: for breaking changes and binary updates
+  * `CancelSoftwareUpgradeProposal`: for revoking the planned upgraded proposal
 * Community Pool Spend Proposal\
   It unlocks the potential for token-holders to vote to approve spending from the Community Pool. Engaging publicly with the community is the opportunity to develop relationships with stakeholders and to educate them about the importance of your work. If the proposal passes, your account will be credited the supported amount of your proposal request.
 * Text Proposal\
@@ -74,4 +72,4 @@ The voting period is currently 14 days, and the vote can be changed anytime befo
 
 Please note that it is a WIP. The governance will further be explored down the line and some parts in this documentation are in development, so please use this document as a reference and seek feedback when using this information.
 
-For more details about governance transactions, queries, and relevant network parameters, please visit the [gov section](https://docs.cronos-pos.org/cronos-pos-integration/blocks-and-transactions).
+For more details about governance transactions, queries, and relevant network parameters, please visit the [gov section](https://docs.cronos-pos.org/cronos-pos-integration/blocks-and-transactions#governance).

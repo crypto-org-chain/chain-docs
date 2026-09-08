@@ -8,7 +8,7 @@ A | [B](technical-glossary.md#b) | [C](technical-glossary.md#c) | [D](technical-
 
 **Block Explorer**
 
-An application that allows a user to explore the different blocks on a blockchain. It has a record of all the transactions in each block and is often made public to increase blockchain visibility and transparency. Here are our explorers: [Cronos POS Chain Explorer](https://crypto.org/explorer/) and [Croeseid Testnet Explorer](https://crypto.org/explorer/croeseid4/).
+An application that allows a user to explore the different blocks on a blockchain. It has a record of all the transactions in each block and is often made public to increase blockchain visibility and transparency. Here are our explorers: [Cronos POS Chain Explorer](https://cronos-pos.org/explorer/) and [Croeseid Testnet Explorer](https://cronos-pos.org/explorer/croeseid4/).
 
 **Bonded (staking state)**
 
@@ -29,10 +29,6 @@ The **A**pplication **B**lock**C**hain **I**nterface connects Tendermint (for co
 **Chain-maind**
 
 chain-maind is the all-in-one command-line interface. It supports wallet management, funds transfer, and staking operations.
-
-**Client-rpc**
-
-The JSONRPC interface of the wallet client. It can be used to be integrated with different services and also power the Sample Wallet. It provides nearly the same set of operations as Client-cli does.
 
 **Commission Max Change Rate**
 
@@ -62,7 +58,7 @@ CRO holders who do not run validator operations themselves. Users can delegate C
 
 #### F
 
-[**Faucet**](https://crypto.org/faucet)
+[**Faucet**](https://cronos-pos.org/faucet)
 
 Service carried out that dispenses funds in the form of free test token that can be used on a testnet.
 
@@ -104,7 +100,7 @@ The annualized rate at which CRO supply grows.
 
 The commission rate on revenue charged to any delegator by the validator.
 
-[**Inter-Blockchain Communication Protocol (IBC)**](https://ibcprotocol.org/)
+[**Inter-Blockchain Communication Protocol (IBC)**](https://ibcprotocol.dev/)
 
 IBC enables self-sovereign blockchains to connect and build strong network ecosystems, intending to end ‘network tribalism’.
 
@@ -191,10 +187,6 @@ A seed node provides a node with a list of peers to which a node can connect. Wh
 **Sentry Node**
 
 A sentry node is similar to a full node in almost every way. The difference is a sentry node will have one or more private peers. These peers may be validators or other full nodes in the network. A sentry node is meant to provide a layer of security for your validator, similar to how a firewall works with a computer.
-
-**SGX**
-
-The Intel® Software Guard Extensions (SGX) is a set of instructions that increases the security of application code and data. It ensures the integrity and confidentiality of the data by isolating them from the OS or other enclaves.
 
 **Slashing**
 

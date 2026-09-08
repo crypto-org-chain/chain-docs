@@ -5,13 +5,13 @@ description: >-
   Wallet.
 ---
 
-# Delegation Guide
+# 🗄️ Base Delegation Guide
 
 ## [Crypto.com Onchain Wallet](https://crypto.com/eea/defi-wallet)
 
 Crypto.com Onchain Wallet provides intuitive user interface through Earn simplifies the process for staking, claiming rewards, claim to restake, unstaking, and redelegation. The Onchain Wallet App offers the ability to select from a list of approved validators for both staking and changing your delegation from one validator to another.
 
-### Delegate CRO on Crypto.com Onchain Wallet&#x20;
+### Delegate CRO on Crypto.com Onchain Wallet
 
 1. Tap \[Earn] on the bottom navigation of your Onchain Wallet app
 2. Tap \[Start Earning] or \[Earn More] to see the list of tokens supported for earning
@@ -26,9 +26,7 @@ Crypto.com Onchain Wallet provides intuitive user interface through Earn simplif
 Please note that every time when you increase your stake with the same validator, your reward balance will be automatically claimed into your wallet and your CRO reward balance will start to accrue every block after the staking request is confirmed on-chain.
 {% endhint %}
 
-
-
-### Undelegrate CRO on Crypto.com Onchain Wallet&#x20;
+### Undelegrate CRO on Crypto.com Onchain Wallet
 
 You can unstake your CRO delegation anytime by following the below steps.
 
@@ -45,7 +43,7 @@ You can unstake your CRO delegation anytime by following the below steps.
 
 Once you unstake your CRO, all unreceived rewards will be deposited into your wallet automatically.&#x20;
 
-### &#x20;Redelegate CRO on Crypto.com Onchain Wallet&#x20;
+### Redelegate CRO on Crypto.com Onchain Wallet
 
 You can redelegate your existing delegations - change stake from one validator to another without undergoing the 28-day unbonding period
 
@@ -62,7 +60,7 @@ You can redelegate your existing delegations - change stake from one validator t
 Please note that every time when you redelegate your CRO from the existing validator to another validator, your reward balance with the existing validator will be automatically claimed into your wallet.
 {% endhint %}
 
-### &#x20;Restrictions on Re-Delegation
+### Restrictions on Re-Delegation
 
 When managing your CRO delegation, be aware of the following restrictions:
 
@@ -71,4 +69,3 @@ When managing your CRO delegation, be aware of the following restrictions:
 * Cooling Period: Undelegating your CRO will initiate a cooling period during which your tokens will not be accessible or redelegable. This is a security measure to prevent rapid switching and to stabilize the network.
 * Your unstaked CRO will be available to you after a 28-day unbonding period, as enforced by the Cronos POS Chain. This is to protect against a Validator attacking the Cronos POS Chain and then immediately withdrawing the stake amount.
 {% endhint %}
-

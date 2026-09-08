@@ -1,4 +1,4 @@
-# 💡 Tiered Staking
+# 🥜 Tiered Staking Rewards
 
 Tiered staking is a new staking mechanism introduced in Cronos POS Chain v7 (via the `x/tieredrewards` module). CRO holders can lock their stake for a defined exit commitment period in exchange for a higher APY on top of standard staking rewards.
 
@@ -162,7 +162,7 @@ Query the positions by owner:
 chain-maind query tieredrewards positions-by-owner [THE_ADDRESS_OF_YOUR_KEY] 
 ```
 
-* here is [the explanation of fields in response](tiered-staking.md#key-fields-in-position-responses)
+* here is [the explanation of fields in response](tiered-staking-rewards.md#key-fields-in-position-responses)
 
 Add more CRO to an existing position:
 

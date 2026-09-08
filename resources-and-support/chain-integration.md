@@ -2,12 +2,12 @@
 
 ## Useful Links
 
-* [Cronos POS Chain website](https://crypto.org/)
+* [Cronos POS Chain website](https://cronos-pos.org/)
 * [GitHub Repository](https://github.com/crypto-org-chain/chain-main)
 
 ## Node and RPC setup notes
 
-[Node Setup and RPC note](node-and-rpc-setup-notes.md)
+[Node Setup and RPC note](../for-node-hosts/getting-started/node-and-rpc-setup-notes.md)
 
 ## Setup Guide
 
@@ -18,7 +18,7 @@
 * **Testnet**:
   * [Joining the Croeseid Testnet](https://docs.cronos-pos.org/for-node-hosts/getting-started/croeseid-testnet)
   * [Deploy testnet node with nix](https://docs.cronos-pos.org/for-node-hosts/getting-started/croeseid-testnet-nix)
-* **Devnet**
+* **Devnet:**
   * [Running the latest development network locally](https://docs.cronos-pos.org/for-node-hosts/getting-started/local-devnet)
 
 ## API Documentation
@@ -28,8 +28,8 @@ There are a few ways to access the Cronos POS Chain
 1. **Tendermint RPC**
 
 * Raw but most-completed data
-* Hosted documentation (use the latest master only): https://docs.tendermint.com/master/rpc/
-* Swagger file: https://github.com/tendermint/tendermint/blob/v0.34.3/rpc/openapi/openapi.yaml
+* Hosted documentation (use the latest master only): [https://docs.tendermint.com/master/rpc/](https://docs.tendermint.com/master/rpc/)
+* Swagger file: [https://github.com/tendermint/tendermint/blob/v0.34.3/rpc/openapi/openapi.yaml](https://github.com/tendermint/tendermint/blob/v0.34.3/rpc/openapi/openapi.yaml)
 
 2. **gRPC Based**
 
@@ -39,8 +39,6 @@ There are a few ways to access the Cronos POS Chain
   2. [gRPC Proxy RESTful Server](https://github.com/crypto-org-chain/chain-integration/blob/master/grpc-proxy-rest/README.md)
      * [Swagger UI](https://v1.cosmos.network/rpc/v0.41.4)
      * [Swagger file](https://github.com/crypto-org-chain/chain-integration/blob/master/grpc-proxy-rest/swagger.yml)
-
-
 
 ## API Clients and libraries
 
@@ -61,12 +59,12 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 
 ### Mainnet - `crypto-org-chain-mainnet-1`
 
-* [Tendermint](https://rpc.mainnet.crypto.org/)
+* [Tendermint RPC](https://rpc.mainnet.crypto.org/)
 * [Cosmos RESTful gRPC](https://rest.mainnet.crypto.org/)
 
 ### Croeseid Testnet - `testnet-croeseid-4`
 
-* [Tendermint](https://testnet-croeseid-4.crypto.org:26657/)
+* [Tendermint RPC](https://testnet-croeseid-4.crypto.org:26657/)
 * [Cosmos RESTful gRPC](https://testnet-croeseid-4.crypto.org:1317/)
 
 ## Block Explorer
@@ -79,6 +77,3 @@ The Ansible playbook for deploying Prometheus and some rules we are using are un
 
 [https://cronos-pos.org/explorer/croeseid4](https://crypto.org/explorer/croeseid4/)
 
-## Community
-
-[Discord](https://discord.gg/5JTk2ppsY3)

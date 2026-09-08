@@ -111,12 +111,7 @@ Before kick-starting your node, we will have to configure your node so that it c
 
 
 
-    {% hint style="info" %}
-    **NOTE**
-
-    * Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory `~/.chain-maind/` for illustration.
-    * You can also put the `chain-maind` to your binary path and run it by `chain-maind`
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>NOTE</strong></p><ul><li>Depending on your chain-maind home setting, the chain-maind configuration will be initialized to that home directory. To simply the following steps, we will use the default chain-maind home directory <code>~/.chain-maind/</code> for illustration.</li><li>You can also put the <code>chain-maind</code> to your binary path and run it by <code>chain-maind</code></li></ul></div>
 
 ### Step 2-2 Configure chain-maind
 
@@ -135,15 +130,8 @@ Before kick-starting your node, we will have to configure your node so that it c
 
 
 
-    {% hint style="info" %}
-    **NOTE**
-
-    *   For Mac environment, `sha256sum` was not installed by default. In this case, you may setup `sha256sum` with this command:
-
-        ```bash
-        function sha256sum() { shasum -a 256 "$@" ; } && export -f sha256sum
-        ```
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>NOTE</strong></p><ul><li><p>For Mac environment, <code>sha256sum</code> was not installed by default. In this case, you may setup <code>sha256sum</code> with this command:</p><pre class="language-bash"><code class="lang-bash">function sha256sum() { shasum -a 256 "$@" ; } &#x26;&#x26; export -f sha256sum
+    </code></pre></li></ul></div>
 *   In `~/.chain-maind/config/app.toml`, update minimum gas price to avoid [transaction spamming](https://github.com/cosmos/cosmos-sdk/issues/4527)
 
     ```bash
@@ -188,11 +176,7 @@ Follow the below optional steps to enable state-sync.
 
 
 
-    {% hint style="info" %}
-    **NOTE**
-
-    * For Mac environment, if `jq` is missing, you may install it by: `brew install jq`
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p>For Mac environment, if <code>jq</code> is missing, you may install it by: <code>brew install jq</code></p></div>
 
 ## Step 3. Run everything
 
@@ -319,7 +303,7 @@ It should begin fetching blocks from the other peers. Please wait until it is fu
 
 Once the node is fully synced, we are now ready to send a `create-validator` transaction and join the network, for example:
 
-```
+```bash
 $ ./chain-maind tx staking create-validator \
 --from=[name_of_your_key] \
 --amount=500000tcro \

@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # 💫 Notes on Performance
 
 The current discourse in cryptocurrencies focuses on “maximum TPS” as the key defining performance metric, and one often finds various outlandish claims about it. For more details on why these numbers don’t matter, we recommend [this article from the Nervos Network](https://medium.com/nervosnetwork/forget-about-the-tps-competition-df40a45fdad8).&#x20;

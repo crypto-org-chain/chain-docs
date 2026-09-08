@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # 🔄 Advanced TMKMS Integration
 
 * The default consensus engine available within the SDK is Tendermint Core. See [Tendermint notes on running in production](https://docs.tendermint.com/v0.34/tendermint-core/running-in-production.html) and [notes on setting up a validator](https://docs.tendermint.com/v0.34/tendermint-core/validators.html#setting-up-a-validator)
@@ -262,7 +266,7 @@ sudo systemctl start tmkms.service
 
 ### Step 8. Running chain-maind
 
-One should follow the same steps in [Croeseid Testnet: Running Nodes](getting-started/croeseid-testnet.md)
+One should follow the same steps in [Croeseid Testnet: Running Nodes](../for-node-hosts/getting-started/croeseid-testnet.md)
 
 Except for one last thing one needs to further configure `~/.chain-maind/config/config.toml` to enable enclave tmkm to sign.
 

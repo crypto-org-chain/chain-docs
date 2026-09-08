@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Create the IBC-enabled tokens on the Cronos POS Chain with Solo Machine
 
 A solo machine is a standalone process that can interact with blockchains through the Inter-Blockchain Communication Protocol (IBC). It can store key information like signed messages and private keys but has no consensus algorithm of its own. The solo machine client can be seen as a verification algorithm capable of authenticating messages sent from a chain or solo machine. With solo machines, one can access the IBC transport layer and blockchains (including features built on them) within the Cosmos ecosystem without developing their own blockchain. This provides great ease to token issuers who would like to natively mint IBC-enabled tokens.

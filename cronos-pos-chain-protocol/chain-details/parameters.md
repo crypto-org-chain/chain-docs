@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # List of parameters
 
 This section aims to collect and provide brief a description of all the mentioned network parameters:
